@@ -1,4 +1,4 @@
-A Simple GUI for Appium
+A GUI (yum!) for Appium
 =======================
 
 To build:
