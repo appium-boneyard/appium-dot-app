@@ -7,7 +7,4 @@ menu.append(new gui.MenuItem({ label: 'Appium: On', enabled : false }));
 menu.append(new gui.MenuItem({ label: 'Turn Appium Off' }));
 menu.append(new gui.MenuItem({ label: 'Separator', type : 'separator' }));
 menu.append(new gui.MenuItem({ label: 'Listening on port 4723', enabled : false }));
-menu.append(new gui.MenuItem({ label: 'Separator', type : 'separator' }));
-menu.append(new gui.MenuItem({ label: 'Separator', type : 'separator' }));
-menu.append(new gui.MenuItem({ label: 'Open Appium Preferences...' }));
 tray.menu = menu;
