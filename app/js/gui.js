@@ -9,18 +9,24 @@ appium_toggle.click = function() {
     if (this.label == "Turn Appium Off"){
         this.label = "Turn Appium On";
         appium_status.label = "Appium: Off";
+        menu.remove(separator);
+        menu.remove(listening_message);
+        $('#appium-output').append('<p>' + 'Server stopped' + '</p>')
     } else {
         this.label = "Turn Appium Off";
         appium_status.label = "Appium: On";
+        listening_message.label = "Listening on port 4723";
+        menu.append(separator);
+        menu.append(listening_message);
+        $('#appium-output').append('<p>' + 'Starting server...' + '</p>')
     } 
 }
 
+var separator = new gui.MenuItem({ label: 'Separator', type : 'separator' });
+var listening_message = new gui.MenuItem({ label: 'Listening on port 4723', enabled : false });
+
 menu.append(appium_status);
 menu.append(appium_toggle);
-menu.append(new gui.MenuItem({ label: 'Separator', type : 'separator' }));
-menu.append(new gui.MenuItem({ label: 'Listening on port 4723', enabled : false }));
+menu.append(separator);
+menu.append(listening_message);
 tray.menu = menu;
-
-//tray.on('click', function(){
-//   alert('yo');
-//}
