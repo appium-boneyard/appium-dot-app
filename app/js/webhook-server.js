@@ -12,7 +12,7 @@ var ansispan = require('ansispan');
     message_text = JSON.stringify(req.body);
     console.log(message_text);
     if (message.params.message){
-      $('#appium-output').append('<p>' + ansispan(message.params.message) + '</p>')
+      $('#appium-output').append('<p>' + ansispan(message.params.message.replace(/90/g, "37")) + '</p>')
     } else {
       //$('#appium-output').append('<p>' + message_text + '</p>')
     }
