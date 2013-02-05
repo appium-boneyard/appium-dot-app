@@ -11,14 +11,16 @@ appium_toggle.click = function() {
         appium_status.label = "Appium: Off";
         menu.remove(separator);
         menu.remove(listening_message);
-        $('#appium-output').append('<p>' + 'Server stopped' + '</p>')
+        $('#appium-output').append('<p>' + 'Server stopped' + '</p>');
+        $('#server-status').text('Server: Off');
     } else {
         this.label = "Turn Appium Off";
         appium_status.label = "Appium: On";
         listening_message.label = "Listening on port 4723";
         menu.append(separator);
         menu.append(listening_message);
-        $('#appium-output').append('<p>' + 'Starting server...' + '</p>')
+        $('#appium-output').append('<p>' + 'Starting server...' + '</p>');
+        $('#server-status').html('Server: On&nbsp;');
     } 
 }
 
