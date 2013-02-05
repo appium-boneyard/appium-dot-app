@@ -1,0 +1,6 @@
+#!/usr/bin/env node
+var ansispan = require('../');
+process.openStdin().on('data', function (data) {
+  process.stdout.write(ansispan(data.toString()));
+});
+

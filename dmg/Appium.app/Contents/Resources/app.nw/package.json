@@ -1,0 +1,17 @@
+{
+  "name": "appium-dot-app",
+  "main": "index.html",
+  "version": "0.0.1",
+  "dependencies": {
+    "appium": "git://github.com/appium/appium.git",
+    "express": "~3.1.0",
+    "ansispan": "0.0.4"
+  },
+  "window": {
+    "toolbar": false,
+    "height": 500,
+    "widght": 650,
+    "min_height": 500,
+    "min_width": 650
+  }
+}
