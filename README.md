@@ -1,11 +1,8 @@
-A GUI (yum!) for Appium
+GUI for Appium
 =======================
 
 To build:
 
-    $ cd app
-    $ npm install
-    $ cd ..
     $ ./build.sh 
 
 To run:

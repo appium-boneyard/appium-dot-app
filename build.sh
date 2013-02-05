@@ -1,8 +1,9 @@
 #! /bin/sh
 
-# Do this manually for now:
-# 1) cd app
-# 2) npm install
-
+git pull
+cd app
+rm -rf ./node_modules
+npm install
+cd ..
 rm -rf ./build/Appium.app/Contents/Resources/app.nw
 cp -R app ./build/Appium.app/Contents/Resources/app.nw
