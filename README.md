@@ -1,4 +1,4 @@
-GUI for Appium
+An OS X GUI for Appium
 =======================
 
 To build:
