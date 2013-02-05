@@ -1,6 +1,5 @@
 #! /bin/sh
 
-git pull
 cd app
 rm -rf ./node_modules
 npm install
