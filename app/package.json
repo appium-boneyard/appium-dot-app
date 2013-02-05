@@ -1,0 +1,15 @@
+{
+  "name": "Appium",
+  "main": "index.html",
+  "version": "0.0.1",
+  "dependencies": { 
+    "appium": "git://github.com/appium/appium.git"
+  },
+  "window": {
+    "toolbar": false,
+    "height": 500,
+    "widght": 650,
+    "min_height": 500,
+    "min_width": 650
+  }
+}
