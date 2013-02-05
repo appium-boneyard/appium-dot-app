@@ -1,5 +1,7 @@
 var appium = require('appium');
 
+process.env['Appium_app'] = '1';
+
 var args = {
     verbose: '1'
     , udid: null
