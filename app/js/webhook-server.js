@@ -1,4 +1,5 @@
 var express = require('express');
+var ansispan = require('ansispan');
 
 (function() {
   var app = express();
@@ -11,7 +12,7 @@ var express = require('express');
     message_text = JSON.stringify(req.body);
     console.log(message_text);
     if (message.params.message){
-      $('#appium-output').append('<p>' + message.params.message + '</p>')
+      $('#appium-output').append('<p>' + ansispan(message.params.message) + '</p>')
     } else {
       //$('#appium-output').append('<p>' + message_text + '</p>')
     }
