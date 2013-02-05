@@ -3,11 +3,11 @@
     <head>
         <title>Appium</title>
 
+      <script type="text/javascript" src="js/gui.js"></script>
       <script type="text/javascript" src="js/appium.js"></script>
       <script type="text/javascript" src="js/webhook-server.js"></script>
       <script src="js/bootstrap.min.js"></script>
       <script src="js/jquery-1.8.3.min.js"></script>
-      <script type="text/javascript" src="js/gui.js"></script>
 
         <link href="css/bootstrap.css" rel="stylesheet" media="screen">
         <style>
@@ -32,16 +32,13 @@
             <div class="container-fluid">
               <a class="brand" href="#">Appium</a>
               <div class="nav-collapse collapse">
-                <p class="navbar-text pull-right">
-                  Server: On
-                </p>
+                <p class="navbar-text pull-right" id="server-status">Server: On&nbsp;</p>
               </div><!--/.nav-collapse -->
             </div>
           </div>
         </div>
 
         <div class="container">
-          <h3>Listening on port 4723...</h3>
           <div id="appium-output"></div>
         </div>
     </body>
