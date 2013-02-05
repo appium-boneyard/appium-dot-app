@@ -10,6 +10,6 @@ To build:
 
 To run:
 
-    - Find the Appium app in the 'build' directory
-    - Launch (double-click) the application
-    - Appium will be running on localhost:4723
+    1. Find the Appium app in the 'build' directory
+    2. Launch (double-click) the application
+    3. Appium will be running on localhost:4723
