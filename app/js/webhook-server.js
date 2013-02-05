@@ -15,6 +15,7 @@ var express = require('express');
     } else {
       //$('#appium-output').append('<p>' + message_text + '</p>')
     }
+    $(document).scrollTop($(document).height());
     return res.send();
   });
 
