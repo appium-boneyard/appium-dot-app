@@ -3,7 +3,8 @@
   "main": "index.html",
   "version": "0.0.1",
   "dependencies": { 
-    "appium": "git://github.com/appium/appium.git"
+    "appium": "git://github.com/appium/appium.git",
+    "express":"~3.1.0"
   },
   "window": {
     "toolbar": false,
