@@ -55,6 +55,16 @@ PullStream.prototype.pull = over([
   }]
 ]);
 
+PullStream.prototype.pullUpTo = over([
+  [over.numberOptionalWithDefault(null), function (len) {
+    var data = this.read(len);
+    if (len && !data) {
+      data = this.read();
+    }
+    return data;
+  }]
+]);
+
 PullStream.prototype.pipe = over([
   [over.numberOptionalWithDefault(null), over.object, function (len, destStream) {
     if (!len) {

@@ -312,5 +312,78 @@ module.exports = {
       ps.pipe(200 * 1000, writableStream);
       process.nextTick(sourceStream.put.bind(null, bVals));
     });
+  },
+
+  "mix asynchronous pull with synchronous pullUpTo - exact number of bytes returned": function (t) {
+    t.expect(2);
+    var ps = new PullStream();
+
+    var sourceStream = new streamBuffers.ReadableStreamBuffer({
+      frequency: 0,
+      chunkSize: 1000
+    });
+    sourceStream.put("Hello World!");
+
+    sourceStream.pipe(ps);
+
+    ps.pull('Hello'.length, function (err, data) {
+      if (err) {
+        return t.done(err);
+      }
+      t.equal('Hello', data.toString());
+      var data = ps.pullUpTo(" World!".length);
+      t.equal(" World!", data.toString());
+      sourceStream.destroy();
+      t.done();
+    });
+  },
+
+  "mix asynchronous pull with pullUpTo - fewer bytes returned than requested": function (t) {
+    t.expect(2);
+    var ps = new PullStream();
+
+    var sourceStream = new streamBuffers.ReadableStreamBuffer({
+      frequency: 0,
+      chunkSize: 1000
+    });
+    sourceStream.put("Hello World!");
+
+    sourceStream.pipe(ps);
+
+    ps.pull('Hello'.length, function (err, data) {
+      if (err) {
+        return t.done(err);
+      }
+      t.equal('Hello', data.toString());
+      var data = ps.pullUpTo(1000);
+      t.equal(" World!", data.toString());
+      sourceStream.destroy();
+      t.done();
+    });
+  },
+
+  "retrieve all currently remaining bytes": function (t) {
+    t.expect(2);
+    var ps = new PullStream();
+
+    var sourceStream = new streamBuffers.ReadableStreamBuffer({
+      frequency: 0,
+      chunkSize: 1000
+    });
+    sourceStream.put("Hello World!");
+
+    sourceStream.pipe(ps);
+
+    ps.pull('Hello'.length, function (err, data) {
+      if (err) {
+        return t.done(err);
+      }
+      t.equal('Hello', data.toString());
+      var data = ps.pullUpTo();
+      t.equal(" World!", data.toString());
+      sourceStream.destroy();
+      t.done();
+    });
   }
+
 };

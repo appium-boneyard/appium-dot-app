@@ -22,6 +22,9 @@ loremIpsumStream.pipe(ps);
 ps.pull(5, function(err, data) {
   console.log(data.toString('utf8'));
 
+  //synchronously pull 1000 bytes or howevery many bytes are available
+  var bytes = ps.pullUpTo(1000);
+
   // pipe the next 100 to a file
   ps.pipe(100, outputStream).on('end', function () {
     console.log('all done');
@@ -33,6 +36,7 @@ ps.pull(5, function(err, data) {
 
 ## PullStream
  * [pull](#pullStreamPull)
+ * [pullUpTo](#pullStreamPullUpTo)
  * [pipe](#pullStreamPipe)
  * [write](#pullStreamWrite)
  * [end](#pullStreamEnd)
@@ -61,6 +65,25 @@ var ps = new PullStream();
 ps.pull(5, function(err, data) {
   console.log(data.toString('utf8'));
 });
+```
+
+<a name="pullStreamPullUpTo" />
+### ps.pullUpTo([number])
+
+Synchronously returns the specified number of bytes or however many bytes are available from the input stream. If no
+number is specified pullUpTo will return however many bytes are available from the input stream.
+
+__Arguments__
+
+* number (optional) - Number of bytes to read from the input stream.
+
+__Example__
+
+```javascript
+var ps = new PullStream();
+
+var data = ps.pullUpTo(1000);
+console.log(data.toString('utf8'));
 ```
 
 <a name="pullStreamPipe" />
