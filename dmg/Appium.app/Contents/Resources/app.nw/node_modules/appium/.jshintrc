@@ -1,9 +1,0 @@
-{
-  "laxcomma": true,
-  "strict": true,
-  "undef": true,
-  "unused": true,
-  "trailing": true,
-  "node": true,
-  "es5": true
-}
