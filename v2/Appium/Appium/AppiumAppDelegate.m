@@ -10,6 +10,7 @@
 #import "Utility.h"
 #import "ANSIUtility.h"
 #import "NodeInstance.h"
+#import "AppiumInstallationWindowController.h"
 
 NSTask *serverTask;
 NodeInstance *node;
@@ -18,7 +19,8 @@ NodeInstance *node;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // Insert code here to initialize your application
+    
+    [self setIsServerRunning:[NSNumber numberWithBool:NO]];
     [self performSelectorInBackground:@selector(install) withObject:nil];
     
 }
@@ -28,31 +30,45 @@ NodeInstance *node;
     [self killServer];
 }
 
--(void)killServer
+-(BOOL)killServer
 {
     if (serverTask != nil && [serverTask isRunning])
     {
         [serverTask terminate];
+        [self setIsServerRunning:[NSNumber numberWithBool:NO]];
+        return YES;
     }
+    return NO;
 }
 
 -(void) install
 {
-    [[self window] orderOut:self];
-    [[self installationWindow] makeKeyAndOrderFront:self];
-    [[self installationMessageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Installing NodeJS..." waitUntilDone:YES];
+    AppiumInstallationWindowController *installationWindow = [[AppiumInstallationWindowController alloc] initWithWindowNibName:@"AppiumInstallationWindow"];
+    [installationWindow performSelectorOnMainThread:@selector(showWindow:) withObject:self waitUntilDone:YES];
+    [[self mainWindow ]performSelectorOnMainThread:@selector(orderOut:) withObject:self waitUntilDone:YES];
+    [[installationWindow window] performSelectorOnMainThread:@selector(makeKeyAndOrderFront:) withObject:self waitUntilDone:YES];
+    [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Installing NodeJS..." waitUntilDone:YES];
     node = [[NodeInstance alloc] initWithPath:[[NSBundle mainBundle] resourcePath]];
-        [[self installationMessageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Installing Appium Prerequisites..." waitUntilDone:YES];
+        [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Installing Appium Prerequisites..." waitUntilDone:YES];
     [node installPackageWithNPM:@"argparse"];
-    [[self installationMessageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Installing Appium..." waitUntilDone:YES];
+    [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Installing Appium..." waitUntilDone:YES];
     [node installPackageWithNPM:@"appium"];
-    [[self installationWindow] close];
-    [[self window] makeKeyAndOrderFront:self];
+    [[installationWindow window] performSelectorOnMainThread:@selector(close) withObject:nil waitUntilDone:YES];
+    [[self mainWindow] performSelectorOnMainThread:@selector(makeKeyAndOrderFront:) withObject:self waitUntilDone:YES];
 }
 
-- (IBAction) launchAppium:(id)sender
+- (IBAction) launchButtonClicked:(id)sender
 {
-    [self killServer];
+    if ([self killServer])
+    {
+        [[self launchButton] setTitle:@"Launch"];
+        return;
+    }
+    else
+    {
+        [self setIsServerRunning:[NSNumber numberWithBool:YES]];
+        [[self launchButton] setTitle:@"Stop"];
+    }
     serverTask = [NSTask new];
     [serverTask setCurrentDirectoryPath:[[NSBundle mainBundle] resourcePath]];
     [serverTask setLaunchPath:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle]resourcePath], @"node/bin/node"]];

@@ -11,12 +11,12 @@
 @interface AppiumAppDelegate : NSObject <NSApplicationDelegate>
 
 @property (strong) IBOutlet NSTextView *logTextView;
-@property (assign) IBOutlet NSWindow *window;
-@property (weak) IBOutlet NSButton *button;
+@property (assign) IBOutlet NSWindow *mainWindow;
+@property (weak) IBOutlet NSButton *launchButton;
 @property (weak) IBOutlet NSTextField *ipAddressTextField;
 @property (weak) IBOutlet NSTextField *portTextField;
 @property (weak) IBOutlet NSButton *verboseCheckBox;
-@property (unsafe_unretained) IBOutlet NSWindow *installationWindow;
-@property (weak) IBOutlet NSTextField *installationMessageLabel;
+
+@property (weak) IBOutlet NSNumber *isServerRunning;
 
 @end

@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		365A2D7E16E3C847007BADF9 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 365A2D7D16E3C847007BADF9 /* Utility.m */; };
-		365A2D8016E3CBEC007BADF9 /* appium.js in Sources */ = {isa = PBXBuildFile; fileRef = 365A2D7F16E3CBEC007BADF9 /* appium.js */; };
 		365A2D8116E3CC2C007BADF9 /* appium.js in Resources */ = {isa = PBXBuildFile; fileRef = 365A2D7F16E3CBEC007BADF9 /* appium.js */; };
 		365A2D8416E3DF48007BADF9 /* ANSIUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 365A2D8316E3DF48007BADF9 /* ANSIUtility.m */; };
 		365A2D8716E3E67B007BADF9 /* NodeInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 365A2D8616E3E67B007BADF9 /* NodeInstance.m */; };
+		3695CAB016E3FCAE003697A9 /* AppiumInstallationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3695CAAE16E3FCAE003697A9 /* AppiumInstallationWindowController.m */; };
+		3695CAB116E3FCAE003697A9 /* AppiumInstallationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3695CAAF16E3FCAE003697A9 /* AppiumInstallationWindow.xib */; };
 		36CEB7CC16E3662E00B5B100 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36CEB7CB16E3662E00B5B100 /* Cocoa.framework */; };
 		36CEB7D616E3662E00B5B100 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 36CEB7D416E3662E00B5B100 /* InfoPlist.strings */; };
 		36CEB7D816E3662E00B5B100 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CEB7D716E3662E00B5B100 /* main.m */; };
@@ -43,6 +44,9 @@
 		365A2D8316E3DF48007BADF9 /* ANSIUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSIUtility.m; sourceTree = "<group>"; };
 		365A2D8516E3E67B007BADF9 /* NodeInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeInstance.h; sourceTree = "<group>"; };
 		365A2D8616E3E67B007BADF9 /* NodeInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeInstance.m; sourceTree = "<group>"; };
+		3695CAAD16E3FCAE003697A9 /* AppiumInstallationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumInstallationWindowController.h; sourceTree = "<group>"; };
+		3695CAAE16E3FCAE003697A9 /* AppiumInstallationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumInstallationWindowController.m; sourceTree = "<group>"; };
+		3695CAAF16E3FCAE003697A9 /* AppiumInstallationWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppiumInstallationWindow.xib; sourceTree = "<group>"; };
 		36CEB7C816E3662E00B5B100 /* Appium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36CEB7CB16E3662E00B5B100 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		36CEB7CE16E3662E00B5B100 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -86,6 +90,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3695CAB216E3FFB0003697A9 /* XIBs */ = {
+			isa = PBXGroup;
+			children = (
+				36CEB7E016E3662E00B5B100 /* MainMenu.xib */,
+				3695CAAF16E3FCAE003697A9 /* AppiumInstallationWindow.xib */,
+			);
+			name = XIBs;
+			sourceTree = "<group>";
+		};
+		3695CAB316E3FFCD003697A9 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				365A2D8216E3DF48007BADF9 /* ANSIUtility.h */,
+				365A2D8316E3DF48007BADF9 /* ANSIUtility.m */,
+				365A2D8516E3E67B007BADF9 /* NodeInstance.h */,
+				365A2D8616E3E67B007BADF9 /* NodeInstance.m */,
+				365A2D7C16E3C847007BADF9 /* Utility.h */,
+				365A2D7D16E3C847007BADF9 /* Utility.m */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		3695CAB416E40004003697A9 /* WindowControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3695CAAD16E3FCAE003697A9 /* AppiumInstallationWindowController.h */,
+				3695CAAE16E3FCAE003697A9 /* AppiumInstallationWindowController.m */,
+			);
+			name = WindowControllers;
+			sourceTree = "<group>";
+		};
 		36CEB7BF16E3662E00B5B100 = {
 			isa = PBXGroup;
 			children = (
@@ -132,14 +167,10 @@
 			children = (
 				36CEB7DD16E3662E00B5B100 /* AppiumAppDelegate.h */,
 				36CEB7DE16E3662E00B5B100 /* AppiumAppDelegate.m */,
-				36CEB7E016E3662E00B5B100 /* MainMenu.xib */,
 				36CEB7D216E3662E00B5B100 /* Supporting Files */,
-				365A2D8216E3DF48007BADF9 /* ANSIUtility.h */,
-				365A2D8316E3DF48007BADF9 /* ANSIUtility.m */,
-				365A2D8516E3E67B007BADF9 /* NodeInstance.h */,
-				365A2D8616E3E67B007BADF9 /* NodeInstance.m */,
-				365A2D7C16E3C847007BADF9 /* Utility.h */,
-				365A2D7D16E3C847007BADF9 /* Utility.m */,
+				3695CAB316E3FFCD003697A9 /* Utility */,
+				3695CAB216E3FFB0003697A9 /* XIBs */,
+				3695CAB416E40004003697A9 /* WindowControllers */,
 			);
 			path = Appium;
 			sourceTree = "<group>";
@@ -252,6 +283,7 @@
 				36CEB7DC16E3662E00B5B100 /* Credits.rtf in Resources */,
 				36CEB7E216E3662E00B5B100 /* MainMenu.xib in Resources */,
 				36CEB80016E3664000B5B100 /* appium.icns in Resources */,
+				3695CAB116E3FCAE003697A9 /* AppiumInstallationWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,9 +321,9 @@
 				36CEB7D816E3662E00B5B100 /* main.m in Sources */,
 				36CEB7DF16E3662E00B5B100 /* AppiumAppDelegate.m in Sources */,
 				365A2D7E16E3C847007BADF9 /* Utility.m in Sources */,
-				365A2D8016E3CBEC007BADF9 /* appium.js in Sources */,
 				365A2D8416E3DF48007BADF9 /* ANSIUtility.m in Sources */,
 				365A2D8716E3E67B007BADF9 /* NodeInstance.m in Sources */,
+				3695CAB016E3FCAE003697A9 /* AppiumInstallationWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
