@@ -56,10 +56,10 @@ var argsFromParser = parser.parseArgs();
 
 var args = {
     verbose: argsFromParser.verbose
-    , udid: null
+    , udid: argsFromParser.udid
     , address: argsFromParser.address
     , port: parseInt(argsFromParser.port,10)
-    , webhook: "9003"
+    , app : argsFromParser.app
     , remove: true
 };
   

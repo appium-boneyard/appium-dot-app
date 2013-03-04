@@ -7,16 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "AppiumMonitorWindowController.h"
 
 @interface AppiumAppDelegate : NSObject <NSApplicationDelegate>
 
-@property (strong) IBOutlet NSTextView *logTextView;
-@property (assign) IBOutlet NSWindow *mainWindow;
-@property (weak) IBOutlet NSButton *launchButton;
-@property (weak) IBOutlet NSTextField *ipAddressTextField;
-@property (weak) IBOutlet NSTextField *portTextField;
-@property (weak) IBOutlet NSButton *verboseCheckBox;
-
-@property (weak) IBOutlet NSNumber *isServerRunning;
+@property (nonatomic, retain) IBOutlet AppiumMonitorWindowController *mainWindowController;
 
 @end
