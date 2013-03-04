@@ -49,7 +49,7 @@ NSString *nodeRootPath;
     return self;
 }
 
--(void) installPackageWithNPM:(NSString*)packageName
+-(void) installPackage:(NSString*)packageName
 {
     
     NSString *packagePath = [NSString stringWithFormat:@"%@/%@", nodeRootPath, [NSString stringWithFormat:@"%@/%@", @"node_modules", packageName]];
@@ -59,5 +59,10 @@ NSString *nodeRootPath;
         NSString *npmPath = [NSString stringWithFormat:@"%@/%@", nodeRootPath, @"node/bin/npm"];
         [Utility runTaskWithBinary:npmPath arguments:[NSArray arrayWithObjects: @"install", packageName, nil] path:nodeRootPath];
     }
+}
+
+-(NSString*) pathtoPackage:(NSString*)packageName
+{
+    return [NSString stringWithFormat:@"%@/%@/%@/%@", nodeRootPath, @"node_modules", packageName, @"package.json"];
 }
 @end

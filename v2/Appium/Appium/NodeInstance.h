@@ -11,6 +11,6 @@
 @interface NodeInstance : NSObject
 
 -(id) initWithPath:(NSString*)rootPath;
--(void) installPackageWithNPM:(NSString*)packageName;
-
+-(void) installPackage:(NSString*)packageName;
+-(NSString*) pathtoPackage:(NSString*)packageName;
 @end

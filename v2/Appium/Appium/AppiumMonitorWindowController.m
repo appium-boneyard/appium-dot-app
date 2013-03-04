@@ -122,7 +122,7 @@ NSTask *serverTask;
     [openDlg setCanChooseFiles:YES];
     [openDlg setCanChooseDirectories:YES];
     [openDlg setPrompt:@"Select"];
-    NSURL *startingPath = [[[self appPathTextField] stringValue] isEqualToString:@""] ? [NSURL fileURLWithPath:NSHomeDirectory()] : [[self appPathTextField]stringValue];
+    NSURL *startingPath = [NSURL fileURLWithPath:NSHomeDirectory()];
     [openDlg setDirectoryURL:startingPath];
     if ([openDlg runModal] == NSOKButton)
     {
@@ -130,5 +130,49 @@ NSTask *serverTask;
     }
 }
 
+-(void) checkForAppiumUpdate
+{
+    // check github for the latest version
+    NSString *stringURL = @"https://raw.github.com/appium/appium/master/package.json";
+    NSURL  *url = [NSURL URLWithString:stringURL];
+    NSData *urlData = [NSData dataWithContentsOfURL:url];
+    if (!urlData)
+    {
+        return;
+    }
+    NSError *jsonError = nil;
+    id jsonObject = [NSJSONSerialization JSONObjectWithData:urlData options:kNilOptions error:&jsonError];
+    NSDictionary *jsonDictionary = (NSDictionary *)jsonObject;
+    NSString *latestVersion = [jsonDictionary objectForKey:@"version"];
+    NSString *myVersion;
+    
+    // check the local copy of appium
+    NSString *packagePath = [[self node] pathtoPackage:@"appium"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath: packagePath])
+    {
+        NSData *data = [NSData dataWithContentsOfFile:packagePath];
+        jsonObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
+        jsonDictionary = (NSDictionary *)jsonObject;
+        myVersion = [jsonDictionary objectForKey:@"version"];
+    }
+    if (![myVersion isEqualToString:latestVersion])
+    {
+        [self performSelectorOnMainThread:@selector(doUpgradeAlert:) withObject:[NSArray arrayWithObjects:myVersion, latestVersion, nil] waitUntilDone:NO];
+    }
+}
+
+-(void)doUpgradeAlert:(NSArray*)versions
+{
+    NSAlert *upgradeAlert = [NSAlert new];
+    [upgradeAlert setMessageText:@"Appium Upgrade Available"];
+    [upgradeAlert setInformativeText:[NSString stringWithFormat:@"Would you like to stop the server and download the latest version of Appium?\n\nYour Version:\t%@\nLatest Version:\t%@", [versions objectAtIndex:0], [versions objectAtIndex:1]]];
+    [upgradeAlert addButtonWithTitle:@"No"];
+    [upgradeAlert addButtonWithTitle:@"Yes"];
+    if([upgradeAlert runModal] == NSAlertSecondButtonReturn)
+    {
+        [self killServer];
+        [[self node] installPackage:@"appium"];
+    }
+}
 
 @end

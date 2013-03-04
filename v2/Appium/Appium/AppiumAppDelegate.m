@@ -28,12 +28,13 @@
     [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Installing NodeJS..." waitUntilDone:YES];
     self.mainWindowController.node = [[NodeInstance alloc] initWithPath:[[NSBundle mainBundle] resourcePath]];
     [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Installing Appium Prerequisites..." waitUntilDone:YES];
-    [[[self mainWindowController] node] installPackageWithNPM:@"argparse"];
+    [[[self mainWindowController] node] installPackage:@"argparse"];
     [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Installing Appium..." waitUntilDone:YES];
-    [[[self mainWindowController] node] installPackageWithNPM:@"appium"];
+    [[[self mainWindowController] node] installPackage:@"appium"];
     [[installationWindow window] performSelectorOnMainThread:@selector(close) withObject:nil waitUntilDone:YES];
     [[self mainWindowController] performSelectorOnMainThread:@selector(showWindow:) withObject:self waitUntilDone:YES];
     [[[self mainWindowController] window] performSelectorOnMainThread:@selector(makeKeyAndOrderFront:) withObject:self waitUntilDone:YES];
+    [[self mainWindowController] performSelectorInBackground:@selector(checkForAppiumUpdate) withObject:nil];
 }
 
 -(void)applicationWillTerminate:(NSNotification *)notification
