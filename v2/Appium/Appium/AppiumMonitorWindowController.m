@@ -11,6 +11,7 @@
 #import "ANSIUtility.h"
 
 NSTask *serverTask;
+NSStatusItem *statusItem;
 
 @interface AppiumMonitorWindowController ()
 
@@ -32,8 +33,25 @@ NSTask *serverTask;
 - (void)windowDidLoad
 {
     [super windowDidLoad];
+    [self activateStatusMenu];
+}
+
+- (void)activateStatusMenu {
     
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    // add icon
+    NSStatusBar *bar = [NSStatusBar systemStatusBar];
+    statusItem = [bar statusItemWithLength:NSVariableStatusItemLength];
+    NSImage *iconImage = [[NSApplication sharedApplication] applicationIconImage];
+    NSSize newSize = [iconImage size];
+    newSize.height = 18;
+    newSize.width = 18;
+    [iconImage setSize:newSize];
+    [statusItem setImage:iconImage];
+    [statusItem setHighlightMode:YES];
+    
+    // add menu
+    [statusItem setMenu:[NSMenu new]];
+    [[statusItem menu] addItemWithTitle:@"Server Not Running" action:nil keyEquivalent:@""];
 }
 
 -(BOOL)killServer
@@ -72,7 +90,20 @@ NSTask *serverTask;
     [serverTask setStandardOutput: pipe];
     [serverTask setStandardInput:[NSPipe pipe]];
     
+    // set status
     [self setIsServerRunning:[NSNumber numberWithBool:YES]];
+
+    NSMenuItem *addressItem = [NSMenuItem new];
+    [addressItem setTitle:[NSString stringWithFormat:@"Address: %@", [[self ipAddressTextField] stringValue]]];
+    [addressItem setHidden:NO];
+    NSMenuItem *portItem = [NSMenuItem new];
+    [portItem setTitle:[NSString stringWithFormat:@"Port: %@", [[self portTextField] stringValue]]];
+    [portItem setHidden:NO];
+
+    [[statusItem menu] removeAllItems];
+    [[statusItem menu] addItem:addressItem];
+    [[statusItem menu] addItem:portItem];
+    
     [serverTask launch];
     
     [self performSelectorInBackground:@selector(readLoop) withObject:nil];
@@ -114,6 +145,8 @@ NSTask *serverTask;
 {
     [serverTask waitUntilExit];
     [self setIsServerRunning:NO];
+    [[statusItem menu] removeAllItems];
+    [[statusItem menu] addItemWithTitle:@"Server Not Running" action:nil keyEquivalent:@""];
 }
 
 -(IBAction)chooseFile:(id)sender
