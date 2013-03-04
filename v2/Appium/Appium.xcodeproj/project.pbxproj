@@ -188,8 +188,8 @@
 				36CEB7DD16E3662E00B5B100 /* AppiumAppDelegate.h */,
 				36CEB7DE16E3662E00B5B100 /* AppiumAppDelegate.m */,
 				36CEB7D216E3662E00B5B100 /* Supporting Files */,
-				3695CAB316E3FFCD003697A9 /* Utility */,
 				3652B34116E4285900BDE3E4 /* Transformers */,
+				3695CAB316E3FFCD003697A9 /* Utility */,
 				3695CAB216E3FFB0003697A9 /* XIBs */,
 				3695CAB416E40004003697A9 /* WindowControllers */,
 			);
