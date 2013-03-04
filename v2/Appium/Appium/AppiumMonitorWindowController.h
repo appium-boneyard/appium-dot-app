@@ -19,6 +19,7 @@
 @property (weak) IBOutlet NSButton *appPathChooseButton;
 @property (unsafe_unretained) IBOutlet NSTextView *logTextView;
 
+
 @property (weak) NSNumber* isServerRunning;
 @property (nonatomic, retain) NodeInstance *node;
 @property (nonatomic, retain) NSNumber *isAppCheckboxChecked;
@@ -26,5 +27,6 @@
 
 -(BOOL)killServer;
 -(void)checkForAppiumUpdate;
+-(IBAction)clearLog:(id)sender;
 
 @end
