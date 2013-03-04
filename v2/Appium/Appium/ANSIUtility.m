@@ -101,7 +101,7 @@
         case 1:
             return [NSFont fontWithName:@"Andale Mono" size:kFontSize];
         case 30:
-            return [NSColor blackColor];
+            return [NSColor whiteColor];
             break;
         case 31:
             return [NSColor redColor];
@@ -125,10 +125,10 @@
             return [NSColor whiteColor];
             break;
         case 39:
-            return [NSColor blackColor];
+            return [NSColor whiteColor];
             break;
         default:
-            return [NSColor blackColor];
+            return [NSColor whiteColor];
             break;
     }
 }
