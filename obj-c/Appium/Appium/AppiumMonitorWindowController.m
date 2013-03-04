@@ -51,7 +51,7 @@ NSStatusItem *statusItem;
     
     // add menu
     [statusItem setMenu:[NSMenu new]];
-    [[statusItem menu] addItemWithTitle:@"Server Not Running" action:nil keyEquivalent:@""];
+    [[statusItem menu] addItemWithTitle:@"Start Server" action:@selector(launchButtonClicked:) keyEquivalent:@""];
 }
 
 -(BOOL)killServer
@@ -92,7 +92,11 @@ NSStatusItem *statusItem;
     
     // set status
     [self setIsServerRunning:[NSNumber numberWithBool:YES]];
-
+	
+	NSMenuItem *stopServerItem = [NSMenuItem new];
+    [stopServerItem setTitle:@"Stop Server"];
+    [stopServerItem setHidden:NO];
+	[stopServerItem setAction:@selector(launchButtonClicked:)];
     NSMenuItem *addressItem = [NSMenuItem new];
     [addressItem setTitle:[NSString stringWithFormat:@"Address: %@", [[self ipAddressTextField] stringValue]]];
     [addressItem setHidden:NO];
@@ -101,6 +105,8 @@ NSStatusItem *statusItem;
     [portItem setHidden:NO];
 
     [[statusItem menu] removeAllItems];
+    [[statusItem menu] addItem:stopServerItem];
+	[[statusItem menu] addItem:[NSMenuItem separatorItem]];
     [[statusItem menu] addItem:addressItem];
     [[statusItem menu] addItem:portItem];
     
@@ -146,7 +152,7 @@ NSStatusItem *statusItem;
     [serverTask waitUntilExit];
     [self setIsServerRunning:NO];
     [[statusItem menu] removeAllItems];
-    [[statusItem menu] addItemWithTitle:@"Server Not Running" action:nil keyEquivalent:@""];
+    [[statusItem menu] addItemWithTitle:@"Start Server" action:@selector(launchButtonClicked:) keyEquivalent:@""];
 }
 
 -(IBAction)chooseFile:(id)sender
