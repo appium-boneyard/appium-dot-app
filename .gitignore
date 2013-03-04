@@ -12,3 +12,5 @@ v2/.DS_Store
 *.xcscheme
 
 *.plist
+
+*.xcbkptlist
