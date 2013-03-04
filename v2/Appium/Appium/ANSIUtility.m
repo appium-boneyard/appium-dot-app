@@ -128,7 +128,7 @@
             return [NSColor whiteColor];
             break;
         default:
-            return [NSColor whiteColor];
+            return [NSColor blackColor];
             break;
     }
 }

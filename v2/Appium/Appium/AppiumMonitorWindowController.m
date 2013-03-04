@@ -175,4 +175,9 @@ NSTask *serverTask;
     }
 }
 
+-(IBAction)clearLog:(id)sender
+{
+    [[self logTextView] setString:@""];
+}
+
 @end
