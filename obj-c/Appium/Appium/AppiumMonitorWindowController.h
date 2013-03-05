@@ -17,6 +17,8 @@
 @property (weak) IBOutlet NSButton *appPathChooseButton;
 @property (unsafe_unretained) IBOutlet NSTextView *logTextView;
 @property (weak) IBOutlet NSPathControl *appPathControl;
+@property (weak) IBOutlet NSTextField *udidTextField;
+@property (weak) IBOutlet NSButton *udidCheckBox;
 
 @property (weak) NSNumber* isServerRunning;
 @property (nonatomic, retain) NodeInstance *node;

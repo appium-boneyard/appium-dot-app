@@ -10,6 +10,10 @@
 	<string>/</string>
 	<key>Use App Path</key>
 	<false/>
+	<key>Use UDID</key>
+	<false/>
+	<key>UDID</key>
+	<string></string>
 	<key>Verbose</key>
 	<false/>
 	<key>Prelaunch App</key>

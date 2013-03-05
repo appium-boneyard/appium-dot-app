@@ -71,10 +71,12 @@ NSStatusItem *statusItem;
         return;
     }
     
+	// get binary path
     serverTask = [NSTask new];
     [serverTask setCurrentDirectoryPath:[[NSBundle mainBundle] resourcePath]];
     [serverTask setLaunchPath:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle]resourcePath], @"node/bin/node"]];
     
+	// build arguments
     NSArray *arguments = [NSMutableArray arrayWithObjects: @"appium.js", @"-a", [[self ipAddressTextField] stringValue], @"-p", [[self portTextField] stringValue], nil];
     arguments = [arguments arrayByAddingObject:@"-V"];
     arguments = [[NSUserDefaults standardUserDefaults] boolForKey:@"Verbose"] ? [arguments arrayByAddingObject:@"1"] : [arguments arrayByAddingObject:@"0"];
@@ -83,9 +85,14 @@ NSStatusItem *statusItem;
         arguments = [arguments arrayByAddingObject:@"--app"];
         arguments = [arguments arrayByAddingObject:[[self appPathControl] stringValue]];
     }
-    
+	if ([[self udidCheckBox]state] == NSOnState)
+    {
+        arguments = [arguments arrayByAddingObject:@"-U"];
+        arguments = [arguments arrayByAddingObject:[[self udidTextField] stringValue]];
+    }
     [serverTask setArguments: arguments];
     
+	// redirect i/o
     NSPipe *pipe = [NSPipe pipe];
     [serverTask setStandardOutput: pipe];
     [serverTask setStandardInput:[NSPipe pipe]];
@@ -93,6 +100,7 @@ NSStatusItem *statusItem;
     // set status
     [self setIsServerRunning:[NSNumber numberWithBool:YES]];
 	
+	// update menubar
 	NSMenuItem *stopServerItem = [NSMenuItem new];
     [stopServerItem setTitle:@"Stop Server"];
     [stopServerItem setHidden:NO];
@@ -103,15 +111,14 @@ NSStatusItem *statusItem;
     NSMenuItem *portItem = [NSMenuItem new];
     [portItem setTitle:[NSString stringWithFormat:@"Port: %@", [[self portTextField] stringValue]]];
     [portItem setHidden:NO];
-
     [[statusItem menu] removeAllItems];
     [[statusItem menu] addItem:stopServerItem];
 	[[statusItem menu] addItem:[NSMenuItem separatorItem]];
     [[statusItem menu] addItem:addressItem];
     [[statusItem menu] addItem:portItem];
     
+	// launch
     [serverTask launch];
-    
     [self performSelectorInBackground:@selector(readLoop) withObject:nil];
     [self performSelectorInBackground:@selector(exitWait) withObject:nil];
 }
