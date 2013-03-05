@@ -18,6 +18,7 @@
 @property NSNumber *s_UseAppPath;
 @property (readonly)NSString *s_LogText;
 
-- (NSNumber*) s_StartServer: (NSScriptCommand*)command;
-- (NSNumber*) s_StopServer: (NSScriptCommand*)command;
+-(NSNumber*) s_StartServer: (NSScriptCommand*)command;
+-(NSNumber*) s_StopServer: (NSScriptCommand*)command;
+-(void) s_ClearLog: (NSScriptCommand*)command;
 @end
