@@ -68,7 +68,7 @@ NSString *nodeRootPath;
 
 +(BOOL) instanceExistsAtPath:(NSString*)rootPath;
 {
-    NSString *nodePath = [NSString stringWithFormat:@"%@/%@", nodeRootPath, @"node"];
+    NSString *nodePath = [NSString stringWithFormat:@"%@/%@", rootPath, @"node"];
     return [[NSFileManager defaultManager] fileExistsAtPath:nodePath];
 }
 
