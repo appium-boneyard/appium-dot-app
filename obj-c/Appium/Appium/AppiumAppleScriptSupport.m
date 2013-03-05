@@ -71,12 +71,18 @@
     return [NSNumber numberWithBool:YES];
     
 }
+
 - (NSNumber*) s_StopServer: (NSScriptCommand*)command
 {
     if (![[self s_IsServerRunning] boolValue])
         return [NSNumber numberWithBool:NO];
     [[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] launchButtonClicked:nil];
     return [NSNumber numberWithBool:YES];
+}
+
+-(void) s_ClearLog: (NSScriptCommand*)command
+{
+	[[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] clearLog:nil];
 }
 
 @end
