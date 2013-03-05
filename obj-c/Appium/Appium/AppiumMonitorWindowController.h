@@ -22,11 +22,11 @@
 
 @property (weak) NSNumber* isServerRunning;
 @property (nonatomic, retain) NodeInstance *node;
-@property (nonatomic, retain) NSNumber *isAppCheckboxChecked;
 
 
 -(BOOL)killServer;
 -(void) checkForUpdates;
 -(IBAction)clearLog:(id)sender;
+-(IBAction) launchButtonClicked:(id)sender;
 
 @end

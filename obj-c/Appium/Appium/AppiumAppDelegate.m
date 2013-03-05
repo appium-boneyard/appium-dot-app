@@ -14,14 +14,23 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    // install settings from plist
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"defaults" ofType:@"plist"];
+	NSDictionary *settingsDict = [NSDictionary dictionaryWithContentsOfFile:filePath];
+	[[NSUserDefaults standardUserDefaults] registerDefaults:settingsDict];
+	[[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:settingsDict];
     
+    // create main monitor window
     [self setMainWindowController:[[AppiumMonitorWindowController alloc] initWithWindowNibName:@"AppiumMonitorWindow"]];
+
+    // install anything that's missing
     [self performSelectorInBackground:@selector(install) withObject:nil];
     
 }
 
 -(void) install
 {
+    // check is nodejs, appium, or appium pre-reqs are missing
     NSString *nodeRootPath = [[NSBundle mainBundle] resourcePath];
     BOOL installationRequired = ![NodeInstance instanceExistsAtPath:nodeRootPath];
     installationRequired |= ![NodeInstance packageIsInstalledAtPath:nodeRootPath withName:@"appium"];
@@ -29,6 +38,7 @@
     
     if (installationRequired)
     {
+        // install software
         AppiumInstallationWindowController *installationWindow = [[AppiumInstallationWindowController alloc] initWithWindowNibName:@"AppiumInstallationWindow"];
         [installationWindow performSelectorOnMainThread:@selector(showWindow:) withObject:self waitUntilDone:YES];
         [[installationWindow window] performSelectorOnMainThread:@selector(makeKeyAndOrderFront:) withObject:self waitUntilDone:YES];
@@ -42,11 +52,19 @@
     }
     else
     {
+        // create node instance
         [[self mainWindowController] setNode:[[NodeInstance alloc] initWithPath:nodeRootPath]];
     }
+    
+    // show main monitor window
     [[self mainWindowController] performSelectorOnMainThread:@selector(showWindow:) withObject:self waitUntilDone:YES];
     [[[self mainWindowController] window] performSelectorOnMainThread:@selector(makeKeyAndOrderFront:) withObject:self waitUntilDone:YES];
-    [[self mainWindowController] performSelectorInBackground:@selector(checkForUpdates) withObject:nil];
+
+    // check for updates
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Check For Updates"])
+    {
+        [[self mainWindowController] performSelectorInBackground:@selector(checkForUpdates) withObject:nil];
+    }
 }
 
 -(void) restart

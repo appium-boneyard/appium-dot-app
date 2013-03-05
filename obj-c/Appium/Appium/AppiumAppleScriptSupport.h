@@ -14,5 +14,10 @@
 @property (readonly) NSNumber *s_IsServerRunning;
 @property NSString *s_IPAddress;
 @property NSNumber *s_Port;
+@property NSString *s_AppPath;
+@property NSNumber *s_UseAppPath;
+@property (readonly)NSString *s_LogText;
 
+- (NSNumber*) s_StartServer: (NSScriptCommand*)command;
+- (NSNumber*) s_StopServer: (NSScriptCommand*)command;
 @end
