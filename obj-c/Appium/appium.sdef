@@ -23,11 +23,17 @@
 				<cocoa key="s_LogText"/>
 			</property>
 			<responds-to command="start server">
-				<cocoa method="s_StartServer"/>
+				<cocoa method="s_StartServer:"/>
 			</responds-to>
 			<responds-to command="stop server">
-				<cocoa method="s_StopServer"/>
+				<cocoa method="s_StopServer:"/>
 			</responds-to>
 		</class>
+		<command name="start server" code="appmstas" description="starts the appium server">
+			<result description="true if the server was started" type="boolean"/>
+		</command>
+		<command name="stop server" code="appmstos" description="stops the appium server">
+			<result description="true if the server was stopped" type="boolean"/>
+		</command>
 	</suite>
 </dictionary>
