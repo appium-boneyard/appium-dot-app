@@ -16,6 +16,7 @@
 		365A2D8716E3E67B007BADF9 /* NodeInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 365A2D8616E3E67B007BADF9 /* NodeInstance.m */; };
 		3695CAB016E3FCAE003697A9 /* AppiumInstallationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3695CAAE16E3FCAE003697A9 /* AppiumInstallationWindowController.m */; };
 		3695CAB116E3FCAE003697A9 /* AppiumInstallationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3695CAAF16E3FCAE003697A9 /* AppiumInstallationWindow.xib */; };
+		3698833816E6AB1300031D2C /* AppiumPreferenceWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3698833716E6AB1300031D2C /* AppiumPreferenceWindow.xib */; };
 		36AA8D6F16E40B28007472C1 /* AppiumMonitorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AA8D6D16E40B28007472C1 /* AppiumMonitorWindowController.m */; };
 		36AA8D7016E40B28007472C1 /* AppiumMonitorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36AA8D6E16E40B28007472C1 /* AppiumMonitorWindow.xib */; };
 		36B2F18616E6379C008764E0 /* defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 36B2F18516E6379C008764E0 /* defaults.plist */; };
@@ -58,6 +59,7 @@
 		3695CAAD16E3FCAE003697A9 /* AppiumInstallationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumInstallationWindowController.h; sourceTree = "<group>"; };
 		3695CAAE16E3FCAE003697A9 /* AppiumInstallationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumInstallationWindowController.m; sourceTree = "<group>"; };
 		3695CAAF16E3FCAE003697A9 /* AppiumInstallationWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppiumInstallationWindow.xib; sourceTree = "<group>"; };
+		3698833716E6AB1300031D2C /* AppiumPreferenceWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppiumPreferenceWindow.xib; sourceTree = "<group>"; };
 		36AA8D6C16E40B28007472C1 /* AppiumMonitorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumMonitorWindowController.h; sourceTree = "<group>"; };
 		36AA8D6D16E40B28007472C1 /* AppiumMonitorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumMonitorWindowController.m; sourceTree = "<group>"; };
 		36AA8D6E16E40B28007472C1 /* AppiumMonitorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppiumMonitorWindow.xib; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				3695CAAF16E3FCAE003697A9 /* AppiumInstallationWindow.xib */,
 				36AA8D6E16E40B28007472C1 /* AppiumMonitorWindow.xib */,
 				36CEB7E016E3662E00B5B100 /* MainMenu.xib */,
+				3698833716E6AB1300031D2C /* AppiumPreferenceWindow.xib */,
 			);
 			name = XIBs;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				36AA8D7016E40B28007472C1 /* AppiumMonitorWindow.xib in Resources */,
 				3612E5F816E5B6520050CF0A /* appium.sdef in Resources */,
 				36B2F18616E6379C008764E0 /* defaults.plist in Resources */,
+				3698833816E6AB1300031D2C /* AppiumPreferenceWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

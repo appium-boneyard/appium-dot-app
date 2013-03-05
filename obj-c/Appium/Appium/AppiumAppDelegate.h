@@ -14,5 +14,6 @@
 @property (nonatomic, retain) IBOutlet AppiumMonitorWindowController *mainWindowController;
 
 -(void) restart;
+-(IBAction) displayPreferences:(id)sender;
 
 @end
