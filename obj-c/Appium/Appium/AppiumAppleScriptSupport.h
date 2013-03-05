@@ -12,5 +12,7 @@
 @interface NSApplication (AppiumAppleScriptSupport)
 
 @property (readonly) NSNumber *s_IsServerRunning;
+@property NSString *s_IPAddress;
+@property NSNumber *s_Port;
 
 @end

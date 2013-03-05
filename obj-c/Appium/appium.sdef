@@ -7,6 +7,12 @@
 			<property name="is server running" code="bisr" description="true if the appium server is running" type="boolean">
 				<cocoa key="s_IsServerRunning"/>
 			</property>
+			<property name="server address" code="tsia" description="ip address for the appium server" type="text">
+				<cocoa key="s_IPAddress"/>
+			</property>
+			<property name="server port" code="tspt" description="port for the appium server" type="integer">
+				<cocoa key="s_Port"/>
+			</property>
 		</class>
 	</suite>
 </dictionary>
