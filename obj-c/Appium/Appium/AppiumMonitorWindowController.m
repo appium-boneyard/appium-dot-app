@@ -77,11 +77,11 @@ NSStatusItem *statusItem;
     
     NSArray *arguments = [NSMutableArray arrayWithObjects: @"appium.js", @"-a", [[self ipAddressTextField] stringValue], @"-p", [[self portTextField] stringValue], nil];
     arguments = [arguments arrayByAddingObject:@"-V"];
-    arguments = ([[self verboseCheckBox] state] == NSOnState) ? [arguments arrayByAddingObject:@"1"] : [arguments arrayByAddingObject:@"0"];
+    arguments = [[NSUserDefaults standardUserDefaults] boolForKey:@"Verbose"] ? [arguments arrayByAddingObject:@"1"] : [arguments arrayByAddingObject:@"0"];
     if ([[self appPathCheckBox]state] == NSOnState)
     {
         arguments = [arguments arrayByAddingObject:@"--app"];
-        arguments = [arguments arrayByAddingObject:[[self appPathTextField] stringValue]];
+        arguments = [arguments arrayByAddingObject:[[self appPathControl] stringValue]];
     }
     
     [serverTask setArguments: arguments];
@@ -157,7 +157,7 @@ NSStatusItem *statusItem;
 
 -(IBAction)chooseFile:(id)sender
 {
-	NSString *selectedApp = [[self appPathTextField] stringValue];
+	NSString *selectedApp = [[self appPathControl] stringValue];
 	
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
 	[openDlg setShowsHiddenFiles:YES];
@@ -178,7 +178,7 @@ NSStatusItem *statusItem;
     if ([openDlg runModal] == NSOKButton)
     {
 		selectedApp = [[[openDlg URLs] objectAtIndex:0] path];
-		[[NSUserDefaults standardUserDefaults] setValue:selectedApp forKey:@"App Path"];
+		[[self appPathControl] setStringValue:selectedApp];
     }
 }
 

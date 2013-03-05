@@ -38,12 +38,12 @@
 
 -(NSString*) s_AppPath
 {
-    return [[[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] appPathTextField] stringValue];
+    return [[[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] appPathControl] stringValue];
 }
 
 -(void) setS_AppPath:(NSString *)s_AppPath
 {
-    [[[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] appPathTextField] setStringValue:s_AppPath];
+    [[[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] appPathControl] setStringValue:s_AppPath];
 }
 
 -(NSNumber*) s_UseAppPath
