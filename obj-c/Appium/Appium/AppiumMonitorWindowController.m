@@ -157,15 +157,28 @@ NSStatusItem *statusItem;
 
 -(IBAction)chooseFile:(id)sender
 {
+	NSString *selectedApp = [[self appPathTextField] stringValue];
+	
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
+	[openDlg setShowsHiddenFiles:YES];
+	[openDlg setAllowedFileTypes:[NSArray arrayWithObjects:@"app",nil]];
     [openDlg setCanChooseFiles:YES];
-    [openDlg setCanChooseDirectories:YES];
+    [openDlg setCanChooseDirectories:NO];
     [openDlg setPrompt:@"Select"];
-    NSURL *startingPath = [NSURL fileURLWithPath:NSHomeDirectory()];
-    [openDlg setDirectoryURL:startingPath];
+	if ([selectedApp isEqualTo:@"/"])
+	{
+	    [openDlg setDirectoryURL:[NSURL fileURLWithPath:NSHomeDirectory()]];
+	}
+	else
+	{
+		[openDlg setDirectoryURL:[NSURL fileURLWithPath:[selectedApp stringByDeletingLastPathComponent]]];
+	}
+	
+
     if ([openDlg runModal] == NSOKButton)
     {
-        [[self appPathTextField] setStringValue:[[[openDlg URLs] objectAtIndex:0] path]];
+		selectedApp = [[[openDlg URLs] objectAtIndex:0] path];
+		[[NSUserDefaults standardUserDefaults] setValue:selectedApp forKey:@"App Path"];
     }
 }
 
