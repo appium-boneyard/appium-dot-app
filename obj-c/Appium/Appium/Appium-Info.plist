@@ -32,5 +32,9 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+    <key>NSAppleScriptEnabled</key>
+	<string>YES</string>
+	<key>OSAScriptingDefinition</key>
+	<string>appium.sdef</string>
 </dict>
 </plist>
