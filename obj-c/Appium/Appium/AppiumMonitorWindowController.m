@@ -25,7 +25,6 @@ NSStatusItem *statusItem;
     self = [super initWithWindow:window];
     if (self) {
         [self setIsServerRunning:[NSNumber numberWithBool:NO]];
-        [self setIsAppCheckboxChecked:[NSNumber numberWithBool:NO]];
     }
     
     return self;

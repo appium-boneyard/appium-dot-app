@@ -22,7 +22,6 @@
 
 @property (weak) NSNumber* isServerRunning;
 @property (nonatomic, retain) NodeInstance *node;
-@property (nonatomic, retain) NSNumber *isAppCheckboxChecked;
 
 
 -(BOOL)killServer;

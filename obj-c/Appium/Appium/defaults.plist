@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Server Address</key>
+	<string>127.0.0.1</string>
+	<key>Server Port</key>
+	<string>4723</string>
+	<key>App Path</key>
+	<string>/</string>
+	<key>Use App Path</key>
+	<false/>
+	<key>Verbose</key>
+	<false/>
+	<key>Prelaunch App</key>
+	<false/>
+	<key>Clean Application PList</key>
+	<true/>
+	<key>Delete Trace Files</key>
+	<true/>
+	<key>Check For Updates</key>
+	<true/>
+</dict>
+</plist>

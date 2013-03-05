@@ -307,7 +307,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="334895605">
 								<int key="NSCellFlags">-1804599231</int>
 								<int key="NSCellFlags2">272630784</int>
-								<string key="NSContents">127.0.0.1</string>
+								<string key="NSContents"/>
 								<reference key="NSSupport" ref="114488314"/>
 								<string key="NSPlaceholderString"/>
 								<string key="NSCellIdentifier">_NS:9</string>
@@ -364,7 +364,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="842167155">
 								<int key="NSCellFlags">-1804599231</int>
 								<int key="NSCellFlags2">272630784</int>
-								<string key="NSContents">4723</string>
+								<string key="NSContents"/>
 								<reference key="NSSupport" ref="114488314"/>
 								<string key="NSPlaceholderString"/>
 								<string key="NSCellIdentifier">_NS:9</string>
@@ -487,6 +487,7 @@
 							<string key="NSFrame">{{464, 2}, {73, 32}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="970840617">
@@ -667,6 +668,22 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.Server Address</string>
+						<reference key="source" ref="656570450"/>
+						<reference key="destination" ref="290274004"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="656570450"/>
+							<reference key="NSDestination" ref="290274004"/>
+							<string key="NSLabel">value: values.Server Address</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.Server Address</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">168</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: self.isServerRunning</string>
 						<reference key="source" ref="172664229"/>
 						<reference key="destination" ref="1001"/>
@@ -684,6 +701,22 @@
 						</object>
 					</object>
 					<int key="connectionID">117</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.Server Port</string>
+						<reference key="source" ref="172664229"/>
+						<reference key="destination" ref="290274004"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="172664229"/>
+							<reference key="NSDestination" ref="290274004"/>
+							<string key="NSLabel">value: values.Server Port</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.Server Port</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">165</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -727,15 +760,15 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled2: self.isAppCheckboxChecked</string>
+						<string key="label">enabled2: values.Use App Path</string>
 						<reference key="source" ref="1025199881"/>
-						<reference key="destination" ref="1001"/>
+						<reference key="destination" ref="290274004"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="1025199881"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled2: self.isAppCheckboxChecked</string>
+							<reference key="NSDestination" ref="290274004"/>
+							<string key="NSLabel">enabled2: values.Use App Path</string>
 							<string key="NSBinding">enabled2</string>
-							<string key="NSKeyPath">self.isAppCheckboxChecked</string>
+							<string key="NSKeyPath">values.Use App Path</string>
 							<dictionary key="NSOptions">
 								<integer value="-1" key="NSMultipleValuesPlaceholder"/>
 								<integer value="-1" key="NSNoSelectionPlaceholder"/>
@@ -746,7 +779,23 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">155</int>
+					<int key="connectionID">174</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.App Path</string>
+						<reference key="source" ref="628747932"/>
+						<reference key="destination" ref="290274004"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="628747932"/>
+							<reference key="NSDestination" ref="290274004"/>
+							<string key="NSLabel">value: values.App Path</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.App Path</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">170</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -770,19 +819,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: self.isAppCheckboxChecked</string>
+						<string key="label">value: values.Use App Path</string>
 						<reference key="source" ref="1049516458"/>
-						<reference key="destination" ref="1001"/>
+						<reference key="destination" ref="290274004"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="1049516458"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">value: self.isAppCheckboxChecked</string>
+							<reference key="NSDestination" ref="290274004"/>
+							<string key="NSLabel">value: values.Use App Path</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">self.isAppCheckboxChecked</string>
+							<string key="NSKeyPath">values.Use App Path</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">153</int>
+					<int key="connectionID">172</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1728,32 +1777,24 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">163</int>
+			<int key="maxID">174</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">AppiumMonitorWindowController</string>
 					<string key="superclassName">NSWindowController</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="chooseFile:">id</string>
-						<string key="clearLog:">id</string>
-						<string key="launchButtonClicked:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="chooseFile:">
-							<string key="name">chooseFile:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clearLog:">
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">clearLog:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">clearLog:</string>
+						<object class="IBActionInfo" key="NS.object.0">
 							<string key="name">clearLog:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="launchButtonClicked:">
-							<string key="name">launchButtonClicked:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
+					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="appPathCheckBox">NSButton</string>
 						<string key="appPathChooseButton">NSButton</string>
