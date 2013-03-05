@@ -65,4 +65,16 @@ NSString *nodeRootPath;
 {
     return [NSString stringWithFormat:@"%@/%@/%@/%@", nodeRootPath, @"node_modules", packageName, @"package.json"];
 }
+
++(BOOL) instanceExistsAtPath:(NSString*)rootPath;
+{
+    NSString *nodePath = [NSString stringWithFormat:@"%@/%@", nodeRootPath, @"node"];
+    return [[NSFileManager defaultManager] fileExistsAtPath:nodePath];
+}
+
++(BOOL) packageIsInstalledAtPath:(NSString*)rootPath withName:(NSString*)packageName
+{
+    NSString *packagePath = [NSString stringWithFormat:@"%@/%@", rootPath, [NSString stringWithFormat:@"%@/%@", @"node_modules", packageName]];
+    return [[NSFileManager defaultManager] fileExistsAtPath:packagePath];
+}
 @end

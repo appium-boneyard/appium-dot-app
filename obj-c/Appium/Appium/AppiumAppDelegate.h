@@ -13,4 +13,6 @@
 
 @property (nonatomic, retain) IBOutlet AppiumMonitorWindowController *mainWindowController;
 
+-(void) restart;
+
 @end
