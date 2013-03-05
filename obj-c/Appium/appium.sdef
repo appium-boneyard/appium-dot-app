@@ -2,7 +2,7 @@
 <!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
 <dictionary title="Appium Terminology">
 	<suite name="Appium Suite" code="APMS" description="Appium application specific scripting facilities.">
-		<class name="application" code="capp" description="PerfMon Application">
+		<class name="application" code="capp" description="Appium Application">
 			<cocoa class="NSApplication"/>
 			<property name="is server running" code="bisr" description="true if the appium server is running" type="boolean">
 				<cocoa key="s_IsServerRunning"/>
