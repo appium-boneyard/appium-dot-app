@@ -13,4 +13,7 @@
 -(id) initWithPath:(NSString*)rootPath;
 -(void) installPackage:(NSString*)packageName;
 -(NSString*) pathtoPackage:(NSString*)packageName;
+
++(BOOL) instanceExistsAtPath:(NSString*)rootPath;
++(BOOL) packageIsInstalledAtPath:(NSString*)rootPath withName:(NSString*)packageName;
 @end

@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Appium. All rights reserved.
 //
 
+#import "AppiumAppDelegate.h"
 #import "AppiumMonitorWindowController.h"
 #import "NodeInstance.h"
 #import "ANSIUtility.h"
@@ -169,6 +170,37 @@ NSStatusItem *statusItem;
     }
 }
 
+-(void) checkForUpdates
+{
+    //[self checkForUpdate];
+    [self checkForAppiumUpdate];
+}
+
+-(void) checkForUpdate
+{
+    // check github for the latest version
+    NSString *stringURL = @"https://raw.github.com/appium/appium-dot-app/master/obj-c/Appium/Appium/Appium-Info.plist";
+    NSURL  *url = [NSURL URLWithString:stringURL];
+    NSData *urlData = [NSData dataWithContentsOfURL:url];
+    if (!urlData)
+    {
+        return;
+    }
+    
+    // parse plist
+    NSString *error=nil;
+    NSPropertyListFormat format;
+    NSDictionary* plist = [NSPropertyListSerialization propertyListFromData:urlData mutabilityOption:NSPropertyListImmutable format:&format errorDescription:&error];
+    NSString *latestVersion = (NSString*)[plist objectForKey:@"CFBundleShortVersionString"];
+
+    // check the local copy of appium
+    NSString *myVersion = (NSString*)[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    if (![myVersion isEqualToString:latestVersion])
+    {
+        [self performSelectorOnMainThread:@selector(doUpgradeAlert:) withObject:[NSArray arrayWithObjects:myVersion, latestVersion, nil] waitUntilDone:NO];
+    }
+}
+
 -(void) checkForAppiumUpdate
 {
     // check github for the latest version
@@ -201,6 +233,23 @@ NSStatusItem *statusItem;
 }
 
 -(void)doUpgradeAlert:(NSArray*)versions
+{
+    NSAlert *upgradeAlert = [NSAlert new];
+    [upgradeAlert setMessageText:@"Appium.app Upgrade Available"];
+    [upgradeAlert setInformativeText:[NSString stringWithFormat:@"Would you like to stop the server and download the latest version of Appium.app?\n\nYour Version:\t%@\nLatest Version:\t%@", [versions objectAtIndex:0], [versions objectAtIndex:1]]];
+    [upgradeAlert addButtonWithTitle:@"No"];
+    [upgradeAlert addButtonWithTitle:@"Yes"];
+    if([upgradeAlert runModal] == NSAlertSecondButtonReturn)
+    {
+        [self killServer];
+        
+        // TODO: add install upgrade code here
+        
+        [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] restart];
+    }
+}
+
+-(void)doAppiumUpgradeAlert:(NSArray*)versions
 {
     NSAlert *upgradeAlert = [NSAlert new];
     [upgradeAlert setMessageText:@"Appium Upgrade Available"];

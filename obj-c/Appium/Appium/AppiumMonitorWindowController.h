@@ -26,7 +26,7 @@
 
 
 -(BOOL)killServer;
--(void)checkForAppiumUpdate;
+-(void) checkForUpdates;
 -(IBAction)clearLog:(id)sender;
 
 @end
