@@ -57,8 +57,6 @@ NSWindowController *preferencesWindow;
     NSString *nodeRootPath = [[NSBundle mainBundle] resourcePath];
     BOOL installationRequired = ![NodeInstance instanceExistsAtPath:nodeRootPath];
     installationRequired |= ![NodeInstance packageIsInstalledAtPath:nodeRootPath withName:@"appium"];
-    installationRequired |= ![NodeInstance packageIsInstalledAtPath:nodeRootPath withName:@"argparse"];
-    installationRequired |= ![NodeInstance packageIsInstalledAtPath:nodeRootPath withName:@"underscore"];
     
     if (installationRequired)
     {
@@ -68,9 +66,6 @@ NSWindowController *preferencesWindow;
         [[installationWindow window] performSelectorOnMainThread:@selector(makeKeyAndOrderFront:) withObject:self waitUntilDone:YES];
         [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Installing NodeJS..." waitUntilDone:YES];
         [[self mainWindowController] setNode:[[NodeInstance alloc] initWithPath:nodeRootPath]];
-        [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Installing Appium Prerequisites..." waitUntilDone:YES];
-        [[[self mainWindowController] node] installPackage:@"argparse" forceInstall:NO];
-        [[[self mainWindowController] node] installPackage:@"underscore"  forceInstall:NO];
         [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Installing Appium..." waitUntilDone:YES];
         [[[self mainWindowController] node] installPackage:@"appium"  forceInstall:NO];
         [[installationWindow window] performSelectorOnMainThread:@selector(close) withObject:nil waitUntilDone:YES];
