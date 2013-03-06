@@ -71,21 +71,37 @@ NSStatusItem *statusItem;
         return;
     }
     
+	// get binary path
     serverTask = [NSTask new];
     [serverTask setCurrentDirectoryPath:[[NSBundle mainBundle] resourcePath]];
     [serverTask setLaunchPath:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle]resourcePath], @"node/bin/node"]];
     
-    NSArray *arguments = [NSMutableArray arrayWithObjects: @"appium.js", @"-a", [[self ipAddressTextField] stringValue], @"-p", [[self portTextField] stringValue], nil];
-    arguments = [arguments arrayByAddingObject:@"-V"];
-    arguments = ([[self verboseCheckBox] state] == NSOnState) ? [arguments arrayByAddingObject:@"1"] : [arguments arrayByAddingObject:@"0"];
+	// build arguments
+    NSArray *arguments = [NSMutableArray arrayWithObjects: @"appium.js",
+		@"--address", [[self ipAddressTextField] stringValue],
+		@"--port", [[self portTextField] stringValue],
+		@"--launch", ([[NSUserDefaults standardUserDefaults] boolForKey:@"Prelaunch App"]) ? @"1" : @"0",
+		@"--reset", ([[NSUserDefaults standardUserDefaults] boolForKey:@"Clean Application State"]) ? @"1" : @"0",
+		@"--verbose", ([[NSUserDefaults standardUserDefaults] boolForKey:@"Verbose"]) ? @"1" : @"0",						  
+		nil];
     if ([[self appPathCheckBox]state] == NSOnState)
     {
         arguments = [arguments arrayByAddingObject:@"--app"];
-        arguments = [arguments arrayByAddingObject:[[self appPathTextField] stringValue]];
+        arguments = [arguments arrayByAddingObject:[[self appPathControl] stringValue]];
     }
-    
+	if ([[self udidCheckBox]state] == NSOnState)
+    {
+        arguments = [arguments arrayByAddingObject:@"--udid"];
+        arguments = [arguments arrayByAddingObject:[[self udidTextField] stringValue]];
+    }
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Use Warp"])
+    {
+        arguments = [arguments arrayByAddingObject:@"--warp"];
+        arguments = [arguments arrayByAddingObject:@"1"];
+    }
     [serverTask setArguments: arguments];
     
+	// redirect i/o
     NSPipe *pipe = [NSPipe pipe];
     [serverTask setStandardOutput: pipe];
     [serverTask setStandardInput:[NSPipe pipe]];
@@ -93,6 +109,7 @@ NSStatusItem *statusItem;
     // set status
     [self setIsServerRunning:[NSNumber numberWithBool:YES]];
 	
+	// update menubar
 	NSMenuItem *stopServerItem = [NSMenuItem new];
     [stopServerItem setTitle:@"Stop Server"];
     [stopServerItem setHidden:NO];
@@ -103,15 +120,14 @@ NSStatusItem *statusItem;
     NSMenuItem *portItem = [NSMenuItem new];
     [portItem setTitle:[NSString stringWithFormat:@"Port: %@", [[self portTextField] stringValue]]];
     [portItem setHidden:NO];
-
     [[statusItem menu] removeAllItems];
     [[statusItem menu] addItem:stopServerItem];
 	[[statusItem menu] addItem:[NSMenuItem separatorItem]];
     [[statusItem menu] addItem:addressItem];
     [[statusItem menu] addItem:portItem];
     
+	// launch
     [serverTask launch];
-    
     [self performSelectorInBackground:@selector(readLoop) withObject:nil];
     [self performSelectorInBackground:@selector(exitWait) withObject:nil];
 }
@@ -157,7 +173,7 @@ NSStatusItem *statusItem;
 
 -(IBAction)chooseFile:(id)sender
 {
-	NSString *selectedApp = [[self appPathTextField] stringValue];
+	NSString *selectedApp = [[self appPathControl] stringValue];
 	
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
 	[openDlg setShowsHiddenFiles:YES];
@@ -178,7 +194,7 @@ NSStatusItem *statusItem;
     if ([openDlg runModal] == NSOKButton)
     {
 		selectedApp = [[[openDlg URLs] objectAtIndex:0] path];
-		[[NSUserDefaults standardUserDefaults] setValue:selectedApp forKey:@"App Path"];
+		[[self appPathControl] setStringValue:selectedApp];
     }
 }
 

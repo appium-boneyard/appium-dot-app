@@ -10,6 +10,8 @@
 #import "NodeInstance.h"
 #import "AppiumInstallationWindowController.h"
 
+NSWindowController *preferencesWindow;
+
 @implementation AppiumAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -26,6 +28,27 @@
     // install anything that's missing
     [self performSelectorInBackground:@selector(install) withObject:nil];
     
+}
+
+-(IBAction) displayPreferences:(id)sender
+{
+	if (preferencesWindow == nil)
+	{
+		preferencesWindow = [[NSWindowController alloc] initWithWindowNibName:@"AppiumPreferenceWindow" owner:self];
+		[[NSNotificationCenter defaultCenter] addObserver:self
+												 selector:@selector(preferenceWindowWillClose:)
+													 name:NSWindowWillCloseNotification
+												   object:[preferencesWindow window]];
+	}
+	
+	[preferencesWindow showWindow:self];
+	[[preferencesWindow window] makeKeyAndOrderFront:self];
+}
+
+- (void)preferenceWindowWillClose:(NSNotification *)notification
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowWillCloseNotification object:[preferencesWindow window]];
+	preferencesWindow = nil;
 }
 
 -(void) install
