@@ -123,8 +123,8 @@ NSStatusItem *statusItem;
     [serverTask setArguments: arguments];
     
 	// redirect i/o
-    NSPipe *pipe = [NSPipe pipe];
-    [serverTask setStandardOutput: pipe];
+    [serverTask setStandardOutput:[NSPipe pipe]];
+	[serverTask setStandardError:[NSPipe pipe]];
     [serverTask setStandardInput:[NSPipe pipe]];
     
     // set status
@@ -149,6 +149,7 @@ NSStatusItem *statusItem;
     
 	// launch
     [serverTask launch];
+	[self performSelectorInBackground:@selector(errorLoop) withObject:nil];
     [self performSelectorInBackground:@selector(readLoop) withObject:nil];
     [self performSelectorInBackground:@selector(exitWait) withObject:nil];
 }
@@ -171,6 +172,19 @@ NSStatusItem *statusItem;
             buffer = [NSString new];
         }
     }
+}
+
+-(void) errorLoop
+{
+	NSFileHandle *serverStdErr = [[serverTask standardError] fileHandleForReading];
+	NSData *errorData = [serverStdErr readDataToEndOfFile];
+	NSString *string = [[NSString alloc] initWithData: errorData encoding: NSUTF8StringEncoding];
+	if (string != nil && [string length] > 0)
+	{
+		NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
+		[attributedString addAttribute:NSForegroundColorAttributeName value:[NSColor redColor] range:NSMakeRange(0,[string length]-1)];
+		[self performSelectorOnMainThread:@selector(appendToLog:) withObject:attributedString waitUntilDone:YES];
+	}
 }
 
 -(void) appendToLog:(NSAttributedString*)string
