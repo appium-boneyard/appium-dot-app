@@ -49,11 +49,11 @@ NSString *nodeRootPath;
     return self;
 }
 
--(void) installPackage:(NSString*)packageName
+-(void) installPackage:(NSString*)packageName forceInstall:(BOOL)forceInstall
 {
     
     NSString *packagePath = [NSString stringWithFormat:@"%@/%@", nodeRootPath, [NSString stringWithFormat:@"%@/%@", @"node_modules", packageName]];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:packagePath])
+    if (forceInstall || ![[NSFileManager defaultManager] fileExistsAtPath:packagePath])
     {
         // install package
         NSString *npmPath = [NSString stringWithFormat:@"%@/%@", nodeRootPath, @"node/bin/npm"];

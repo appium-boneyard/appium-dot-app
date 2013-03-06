@@ -93,7 +93,7 @@ NSStatusItem *statusItem;
     }
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Prelaunch App"])
     {
-        arguments = [arguments arrayByAddingObject:@"--prelaunch"];
+        arguments = [arguments arrayByAddingObject:@"--pre-launch"];
     }
 	if (![[NSUserDefaults standardUserDefaults] boolForKey:@"Clean Application State"])
     {
@@ -300,7 +300,7 @@ NSStatusItem *statusItem;
     if([upgradeAlert runModal] == NSAlertSecondButtonReturn)
     {
         [self killServer];
-        [[self node] installPackage:@"appium"];
+        [[self node] installPackage:@"appium" forceInstall:YES];
     }
 }
 
