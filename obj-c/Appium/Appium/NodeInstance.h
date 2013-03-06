@@ -11,7 +11,7 @@
 @interface NodeInstance : NSObject
 
 -(id) initWithPath:(NSString*)rootPath;
--(void) installPackage:(NSString*)packageName;
+-(void) installPackage:(NSString*)packageName forceInstall:(BOOL)forceInstall;
 -(NSString*) pathtoPackage:(NSString*)packageName;
 
 +(BOOL) instanceExistsAtPath:(NSString*)rootPath;

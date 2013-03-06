@@ -88,7 +88,7 @@
 						<object class="NSButton" id="939703803">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{18, 79}, {263, 18}}</string>
+							<string key="NSFrame">{{18, 79}, {111, 18}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="405405305"/>
@@ -97,7 +97,7 @@
 							<object class="NSButtonCell" key="NSCell" id="882098229">
 								<int key="NSCellFlags">-2080374784</int>
 								<int key="NSCellFlags2">268435456</int>
-								<string key="NSContents">Remove Instruments Trace Directories</string>
+								<string key="NSContents">Keep Artifacts</string>
 								<reference key="NSSupport" ref="768587992"/>
 								<string key="NSCellIdentifier">_NS:9</string>
 								<reference key="NSControlView" ref="939703803"/>
@@ -142,7 +142,7 @@
 						<object class="NSButton" id="1055012110">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{18, 38}, {173, 18}}</string>
+							<string key="NSFrame">{{18, 38}, {148, 18}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="620231947"/>
@@ -151,7 +151,7 @@
 							<object class="NSButtonCell" key="NSCell" id="379658914">
 								<int key="NSCellFlags">-2080374784</int>
 								<int key="NSCellFlags2">268435456</int>
-								<string key="NSContents">Prelaunch iOS Simulator</string>
+								<string key="NSContents">Prelaunch Simulator</string>
 								<reference key="NSSupport" ref="768587992"/>
 								<string key="NSCellIdentifier">_NS:9</string>
 								<reference key="NSControlView" ref="1055012110"/>
@@ -254,19 +254,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.Delete Trace Files</string>
+						<string key="label">value: values.Keep Artifacts</string>
 						<reference key="source" ref="939703803"/>
 						<reference key="destination" ref="571867745"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="939703803"/>
 							<reference key="NSDestination" ref="571867745"/>
-							<string key="NSLabel">value: values.Delete Trace Files</string>
+							<string key="NSLabel">value: values.Keep Artifacts</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.Delete Trace Files</string>
+							<string key="NSKeyPath">values.Keep Artifacts</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">49</int>
+					<int key="connectionID">84</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -286,19 +286,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.Prelaunch App</string>
+						<string key="label">value: values.Prelaunch</string>
 						<reference key="source" ref="1055012110"/>
 						<reference key="destination" ref="571867745"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="1055012110"/>
 							<reference key="NSDestination" ref="571867745"/>
-							<string key="NSLabel">value: values.Prelaunch App</string>
+							<string key="NSLabel">value: values.Prelaunch</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.Prelaunch App</string>
+							<string key="NSKeyPath">values.Prelaunch</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">56</int>
+					<int key="connectionID">86</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -775,7 +775,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">83</int>
+			<int key="maxID">86</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

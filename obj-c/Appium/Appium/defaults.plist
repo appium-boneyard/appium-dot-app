@@ -16,7 +16,7 @@
 	<string></string>
 	<key>Verbose</key>
 	<false/>
-	<key>Prelaunch App</key>
+	<key>Prelaunch</key>
 	<false/>
 	<key>Clean Application State</key>
 	<true/>
