@@ -269,7 +269,7 @@ NSStatusItem *statusItem;
     }
     if (![myVersion isEqualToString:latestVersion])
     {
-        [self performSelectorOnMainThread:@selector(doUpgradeAlert:) withObject:[NSArray arrayWithObjects:myVersion, latestVersion, nil] waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(doAppiumUpgradeAlert:) withObject:[NSArray arrayWithObjects:myVersion, latestVersion, nil] waitUntilDone:NO];
     }
 }
 
