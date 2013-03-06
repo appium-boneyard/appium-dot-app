@@ -26,7 +26,5 @@
 	<true/>
 	<key>Use Warp</key>
 	<false/>
-	<key>Warp Factor</key>
-	<integer>0</integer>
 </dict>
 </plist>

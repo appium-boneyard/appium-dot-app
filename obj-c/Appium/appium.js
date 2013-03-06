@@ -60,7 +60,9 @@ var args = {
     , address: argsFromParser.address
     , port: parseInt(argsFromParser.port,10)
     , app : argsFromParser.app
-    , remove: true
+    , remove: argsFromParser.remove
+    , warp: argsFromParser.warp
+	, reset: argsFromParser.reset
 };
   
 appium.run(args, function() { console.log('Rock and roll.'.grey); });

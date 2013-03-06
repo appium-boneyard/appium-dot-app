@@ -77,9 +77,13 @@ NSStatusItem *statusItem;
     [serverTask setLaunchPath:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle]resourcePath], @"node/bin/node"]];
     
 	// build arguments
-    NSArray *arguments = [NSMutableArray arrayWithObjects: @"appium.js", @"-a", [[self ipAddressTextField] stringValue], @"-p", [[self portTextField] stringValue], nil];
-    arguments = [arguments arrayByAddingObject:@"-V"];
-    arguments = [[NSUserDefaults standardUserDefaults] boolForKey:@"Verbose"] ? [arguments arrayByAddingObject:@"1"] : [arguments arrayByAddingObject:@"0"];
+    NSArray *arguments = [NSMutableArray arrayWithObjects: @"appium.js",
+		@"--address", [[self ipAddressTextField] stringValue],
+		@"--port", [[self portTextField] stringValue],
+		@"--launch", ([[NSUserDefaults standardUserDefaults] boolForKey:@"Prelaunch App"]) ? @"1" : @"0",
+		@"--reset", ([[NSUserDefaults standardUserDefaults] boolForKey:@"Clean Application State"]) ? @"1" : @"0",
+		@"--verbose", ([[NSUserDefaults standardUserDefaults] boolForKey:@"Verbose"]) ? @"1" : @"0",						  
+		nil];
     if ([[self appPathCheckBox]state] == NSOnState)
     {
         arguments = [arguments arrayByAddingObject:@"--app"];
@@ -87,8 +91,13 @@ NSStatusItem *statusItem;
     }
 	if ([[self udidCheckBox]state] == NSOnState)
     {
-        arguments = [arguments arrayByAddingObject:@"-U"];
+        arguments = [arguments arrayByAddingObject:@"--udid"];
         arguments = [arguments arrayByAddingObject:[[self udidTextField] stringValue]];
+    }
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Use Warp"])
+    {
+        arguments = [arguments arrayByAddingObject:@"--warp"];
+        arguments = [arguments arrayByAddingObject:@"1"];
     }
     [serverTask setArguments: arguments];
     
