@@ -73,14 +73,22 @@ NSStatusItem *statusItem;
     
 	// get binary path
     serverTask = [NSTask new];
-    [serverTask setCurrentDirectoryPath:[[NSBundle mainBundle] resourcePath]];
+    [serverTask setCurrentDirectoryPath:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle]resourcePath], @"node_modules/appium"]];
     [serverTask setLaunchPath:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle]resourcePath], @"node/bin/node"]];
     
 	// build arguments
-    NSArray *arguments = [NSMutableArray arrayWithObjects: @"appium.js",
-		@"--address", [[self ipAddressTextField] stringValue],
-		@"--port", [[self portTextField] stringValue],
-		nil];
+    NSArray *arguments = [NSMutableArray arrayWithObjects: @"server.js", nil];
+	
+	if (![[[self ipAddressTextField] stringValue] isEqualTo:@"127.0.0.1"])
+    {
+        arguments = [arguments arrayByAddingObject:@"--address"];
+        arguments = [arguments arrayByAddingObject:[[self ipAddressTextField] stringValue]];
+    }
+	if (![[[self portTextField] stringValue] isEqualTo:@"4723"])
+    {
+        arguments = [arguments arrayByAddingObject:@"--port"];
+        arguments = [arguments arrayByAddingObject:[[self portTextField] stringValue]];
+    }
     if ([[self appPathCheckBox]state] == NSOnState)
     {
         arguments = [arguments arrayByAddingObject:@"--app"];
@@ -91,7 +99,7 @@ NSStatusItem *statusItem;
         arguments = [arguments arrayByAddingObject:@"--udid"];
         arguments = [arguments arrayByAddingObject:[[self udidTextField] stringValue]];
     }
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Prelaunch App"])
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Prelaunch"])
     {
         arguments = [arguments arrayByAddingObject:@"--pre-launch"];
     }
