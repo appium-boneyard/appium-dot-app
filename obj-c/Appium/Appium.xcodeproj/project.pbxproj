@@ -11,7 +11,6 @@
 		3612E5FC16E5B69C0050CF0A /* AppiumAppleScriptSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3612E5FB16E5B69C0050CF0A /* AppiumAppleScriptSupport.m */; };
 		3652B34416E4287600BDE3E4 /* AppiumLaunchButtonTextTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3652B34316E4287600BDE3E4 /* AppiumLaunchButtonTextTransformer.m */; };
 		365A2D7E16E3C847007BADF9 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 365A2D7D16E3C847007BADF9 /* Utility.m */; };
-		365A2D8116E3CC2C007BADF9 /* appium.js in Resources */ = {isa = PBXBuildFile; fileRef = 365A2D7F16E3CBEC007BADF9 /* appium.js */; };
 		365A2D8416E3DF48007BADF9 /* ANSIUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 365A2D8316E3DF48007BADF9 /* ANSIUtility.m */; };
 		365A2D8716E3E67B007BADF9 /* NodeInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 365A2D8616E3E67B007BADF9 /* NodeInstance.m */; };
 		3695CAB016E3FCAE003697A9 /* AppiumInstallationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3695CAAE16E3FCAE003697A9 /* AppiumInstallationWindowController.m */; };
@@ -51,7 +50,6 @@
 		3652B34316E4287600BDE3E4 /* AppiumLaunchButtonTextTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumLaunchButtonTextTransformer.m; sourceTree = "<group>"; };
 		365A2D7C16E3C847007BADF9 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		365A2D7D16E3C847007BADF9 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
-		365A2D7F16E3CBEC007BADF9 /* appium.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = appium.js; sourceTree = "<group>"; };
 		365A2D8216E3DF48007BADF9 /* ANSIUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANSIUtility.h; sourceTree = "<group>"; };
 		365A2D8316E3DF48007BADF9 /* ANSIUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANSIUtility.m; sourceTree = "<group>"; };
 		365A2D8516E3E67B007BADF9 /* NodeInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeInstance.h; sourceTree = "<group>"; };
@@ -164,7 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				36CEB7FF16E3664000B5B100 /* appium.icns */,
-				365A2D7F16E3CBEC007BADF9 /* appium.js */,
 				3612E5F716E5B6520050CF0A /* appium.sdef */,
 				36CEB7D116E3662E00B5B100 /* Appium */,
 				36CEB7EE16E3662E00B5B100 /* AppiumTests */,
@@ -321,7 +318,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				365A2D8116E3CC2C007BADF9 /* appium.js in Resources */,
 				36CEB7D616E3662E00B5B100 /* InfoPlist.strings in Resources */,
 				36CEB7DC16E3662E00B5B100 /* Credits.rtf in Resources */,
 				36CEB7E216E3662E00B5B100 /* MainMenu.xib in Resources */,
