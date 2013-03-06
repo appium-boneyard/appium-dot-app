@@ -80,9 +80,6 @@ NSStatusItem *statusItem;
     NSArray *arguments = [NSMutableArray arrayWithObjects: @"appium.js",
 		@"--address", [[self ipAddressTextField] stringValue],
 		@"--port", [[self portTextField] stringValue],
-		@"--launch", ([[NSUserDefaults standardUserDefaults] boolForKey:@"Prelaunch App"]) ? @"1" : @"0",
-		@"--reset", ([[NSUserDefaults standardUserDefaults] boolForKey:@"Clean Application State"]) ? @"1" : @"0",
-		@"--verbose", ([[NSUserDefaults standardUserDefaults] boolForKey:@"Verbose"]) ? @"1" : @"0",						  
 		nil];
     if ([[self appPathCheckBox]state] == NSOnState)
     {
@@ -93,6 +90,22 @@ NSStatusItem *statusItem;
     {
         arguments = [arguments arrayByAddingObject:@"--udid"];
         arguments = [arguments arrayByAddingObject:[[self udidTextField] stringValue]];
+    }
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Prelaunch App"])
+    {
+        arguments = [arguments arrayByAddingObject:@"--prelaunch"];
+    }
+	if (![[NSUserDefaults standardUserDefaults] boolForKey:@"Clean Application State"])
+    {
+        arguments = [arguments arrayByAddingObject:@"--no-reset"];
+    }
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Keep Artifacts"])
+    {
+        arguments = [arguments arrayByAddingObject:@"--keep-artifacts"];
+    }
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Verbose"])
+    {
+        arguments = [arguments arrayByAddingObject:@"--verbose"];
     }
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Use Warp"])
     {
