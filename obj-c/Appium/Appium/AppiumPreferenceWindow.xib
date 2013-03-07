@@ -270,19 +270,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.Clean Application State</string>
+						<string key="label">value: values.Reset Application State</string>
 						<reference key="source" ref="405405305"/>
 						<reference key="destination" ref="571867745"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="405405305"/>
 							<reference key="NSDestination" ref="571867745"/>
-							<string key="NSLabel">value: values.Clean Application State</string>
+							<string key="NSLabel">value: values.Reset Application State</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.Clean Application State</string>
+							<string key="NSKeyPath">values.Reset Application State</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">53</int>
+					<int key="connectionID">87</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -775,7 +775,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">86</int>
+			<int key="maxID">87</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
