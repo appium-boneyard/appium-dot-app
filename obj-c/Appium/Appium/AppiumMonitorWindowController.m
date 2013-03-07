@@ -317,12 +317,17 @@ NSStatusItem *statusItem;
 		// install appium.app
 		[Utility runTaskWithBinary:@"/usr/bin/hdiutil" arguments:[NSArray arrayWithObjects: @"attach", dmgPath, nil]];
 		
-		NSError *err;
-		if ( [[NSFileManager defaultManager] isReadableFileAtPath:dmgPath] )
-		{
-			[[NSFileManager defaultManager] copyItemAtPath:@"/Volumes/Appium/Appium.app" toPath:[[NSBundle mainBundle] bundlePath] error:&err];
-		}
+        NSString *sourcePath = @"/Volumes/Appium/Appium.app";
+        NSString *destinationPath = [[[NSBundle mainBundle] bundlePath] stringByDeletingLastPathComponent];
 		
+        NSDictionary *error = [NSDictionary new];
+        NSString *script =  [NSString stringWithFormat:@"do shell script \"sudo cp -rvp \\\"%@\\\" \\\"%@\\\"\" with administrator privileges", sourcePath, destinationPath];
+        NSAppleScript *appleScript = [[NSAppleScript new] initWithSource:script];
+        if (![appleScript executeAndReturnError:&error])
+        {
+            return; 
+        }
+        
 		[Utility runTaskWithBinary:@"/usr/bin/hdiutil" arguments:[NSArray arrayWithObjects: @"detach", @"/Volumes/Appium", nil]];
         
         [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] restart];
