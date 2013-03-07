@@ -13,6 +13,7 @@
 #import "Utility.h"
 #import "AppiumInstallationWindowController.h"
 #import "AppiumMenuBarManager.h"
+#import "Constants.h"
 
 NSTask *serverTask;
 AppiumMenuBarManager *menuBarManager;
@@ -86,23 +87,23 @@ AppiumMenuBarManager *menuBarManager;
         arguments = [arguments arrayByAddingObject:@"--udid"];
         arguments = [arguments arrayByAddingObject:[[self udidTextField] stringValue]];
     }
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Prelaunch"])
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_PRELAUNCH])
     {
         arguments = [arguments arrayByAddingObject:@"--pre-launch"];
     }
-	if (![[NSUserDefaults standardUserDefaults] boolForKey:@"Clean Application State"])
+	if (![[NSUserDefaults standardUserDefaults] boolForKey:PLIST_RESET_APPLICATION_STATE])
     {
         arguments = [arguments arrayByAddingObject:@"--no-reset"];
     }
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Keep Artifacts"])
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_KEEP_ARTIFACTS])
     {
         arguments = [arguments arrayByAddingObject:@"--keep-artifacts"];
     }
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Verbose"])
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_VERBOSE])
     {
         arguments = [arguments arrayByAddingObject:@"--verbose"];
     }
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Use Warp"])
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_USE_WARP])
     {
         arguments = [arguments arrayByAddingObject:@"--warp"];
         arguments = [arguments arrayByAddingObject:@"1"];
