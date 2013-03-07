@@ -11,6 +11,7 @@
 #import "NodeInstance.h"
 #import "ANSIUtility.h"
 #import "Utility.h"
+#import "AppiumInstallationWindowController.h"
 
 NSTask *serverTask;
 NSStatusItem *statusItem;
@@ -300,38 +301,60 @@ NSStatusItem *statusItem;
     [upgradeAlert addButtonWithTitle:@"Yes"];
     if([upgradeAlert runModal] == NSAlertSecondButtonReturn)
     {
-        [self killServer];
-        
-		// download latest appium.app
-		NSString *stringURL = @"http://appium.io/appium.dmg";
-		NSLog(@"Downloading Appium app from \"%@.\"", stringURL);
-		NSURL  *url = [NSURL URLWithString:stringURL];
-		NSData *urlData = [NSData dataWithContentsOfURL:url];
-		if (!urlData)
-		{
-			return;
-		}
-        NSString *dmgPath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath],@"appium.dmg"];
-		[urlData writeToFile:dmgPath atomically:YES];
-		
-		// install appium.app
-		[Utility runTaskWithBinary:@"/usr/bin/hdiutil" arguments:[NSArray arrayWithObjects: @"attach", dmgPath, nil]];
-		
-        NSString *sourcePath = @"/Volumes/Appium/Appium.app";
-        NSString *destinationPath = [[[NSBundle mainBundle] bundlePath] stringByDeletingLastPathComponent];
-		
-        NSDictionary *error = [NSDictionary new];
-        NSString *script =  [NSString stringWithFormat:@"do shell script \"sudo cp -rvp \\\"%@\\\" \\\"%@\\\"\" with administrator privileges", sourcePath, destinationPath];
-        NSAppleScript *appleScript = [[NSAppleScript new] initWithSource:script];
-        if (![appleScript executeAndReturnError:&error])
-        {
-            return; 
-        }
-        
-		[Utility runTaskWithBinary:@"/usr/bin/hdiutil" arguments:[NSArray arrayWithObjects: @"detach", @"/Volumes/Appium", nil]];
-        
-        [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] restart];
+        [self performSelectorInBackground:@selector(doUpgradeInstall) withObject:nil];
     }
+}
+
+-(void)doUpgradeInstall
+{
+    [self killServer];
+    
+    AppiumInstallationWindowController *installationWindow = [[AppiumInstallationWindowController alloc] initWithWindowNibName:@"AppiumInstallationWindow"];
+    [[self window] close];
+    [installationWindow performSelectorOnMainThread:@selector(showWindow:) withObject:self waitUntilDone:YES];
+    [[installationWindow window] makeKeyAndOrderFront:self];
+    [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Downloading Appium.app..." waitUntilDone:YES];
+    
+    // download latest appium.app
+    NSString *stringURL = @"http://appium.io/appium.dmg";
+    NSLog(@"Downloading Appium app from \"%@.\"", stringURL);
+    NSURL  *url = [NSURL URLWithString:stringURL];
+    NSData *urlData = [NSData dataWithContentsOfURL:url];
+    if (!urlData)
+    {
+        return;
+    }
+    NSString *dmgPath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath],@"appium.dmg"];
+    [urlData writeToFile:dmgPath atomically:YES];
+    
+    // install appium.app
+    [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Mounting DiskImage..." waitUntilDone:YES];
+    [Utility runTaskWithBinary:@"/usr/bin/hdiutil" arguments:[NSArray arrayWithObjects: @"attach", dmgPath, nil]];
+    
+    NSString *sourcePath = @"/Volumes/Appium/Appium.app";
+    NSString *destinationPath = [[[NSBundle mainBundle] bundlePath] stringByDeletingLastPathComponent];
+    
+    NSDictionary *error = [NSDictionary new];
+    NSString *script =  [NSString stringWithFormat:@"do shell script \"sudo cp -rvp \\\"%@\\\" \\\"%@\\\"\" with administrator privileges", sourcePath, destinationPath];
+    NSAppleScript *appleScript = [[NSAppleScript new] initWithSource:script];
+    [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Installing Appium.app..." waitUntilDone:YES];
+    if (![appleScript executeAndReturnError:&error])
+    {
+        NSAlert *alert = [NSAlert new];
+        [alert setMessageText:@"Installation Failed"];
+        [alert setInformativeText:@"Could not Install Appium"];
+        [alert runModal];
+        return;
+    }
+    
+        [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Unmounting DiskImage..." waitUntilDone:YES];
+    [Utility runTaskWithBinary:@"/usr/bin/hdiutil" arguments:[NSArray arrayWithObjects: @"detach", @"/Volumes/Appium", nil]];
+    [installationWindow close];
+    NSAlert *alert = [NSAlert new];
+    [alert setMessageText:@"Restart Required"];
+    [alert setInformativeText:@"Appium has been updated. The app will restart after you click\"OK\""];
+    [alert performSelectorOnMainThread:@selector(runModal) withObject:nil waitUntilDone:YES];
+    [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] performSelectorOnMainThread:@selector(restart) withObject:nil waitUntilDone:YES];
 }
 
 -(void)doAppiumUpgradeAlert:(NSArray*)versions
