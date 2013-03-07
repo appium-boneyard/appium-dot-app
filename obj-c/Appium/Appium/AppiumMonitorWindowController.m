@@ -12,9 +12,10 @@
 #import "ANSIUtility.h"
 #import "Utility.h"
 #import "AppiumInstallationWindowController.h"
+#import "AppiumMenuBarManager.h"
 
 NSTask *serverTask;
-NSStatusItem *statusItem;
+AppiumMenuBarManager *menuBarManager;
 
 @interface AppiumMonitorWindowController ()
 
@@ -35,25 +36,8 @@ NSStatusItem *statusItem;
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    [self activateStatusMenu];
-}
-
-- (void)activateStatusMenu {
-    
-    // add icon
-    NSStatusBar *bar = [NSStatusBar systemStatusBar];
-    statusItem = [bar statusItemWithLength:NSVariableStatusItemLength];
-    NSImage *iconImage = [[NSApplication sharedApplication] applicationIconImage];
-    NSSize newSize = [iconImage size];
-    newSize.height = 18;
-    newSize.width = 18;
-    [iconImage setSize:newSize];
-    [statusItem setImage:iconImage];
-    [statusItem setHighlightMode:YES];
-    
-    // add menu
-    [statusItem setMenu:[NSMenu new]];
-    [[statusItem menu] addItemWithTitle:@"Start Server" action:@selector(launchButtonClicked:) keyEquivalent:@""];
+	menuBarManager = [AppiumMenuBarManager new];
+	[self addObserver:menuBarManager forKeyPath:@"isServerRunning" options:NSKeyValueObservingOptionNew context:NULL];
 }
 
 -(BOOL)killServer
@@ -61,6 +45,7 @@ NSStatusItem *statusItem;
     if (serverTask != nil && [serverTask isRunning])
     {
         [serverTask terminate];
+		[self setIsServerRunning:NO];
         return YES;
     }
     return NO;
@@ -132,23 +117,6 @@ NSStatusItem *statusItem;
     // set status
     [self setIsServerRunning:[NSNumber numberWithBool:YES]];
 	
-	// update menubar
-	NSMenuItem *stopServerItem = [NSMenuItem new];
-    [stopServerItem setTitle:@"Stop Server"];
-    [stopServerItem setHidden:NO];
-	[stopServerItem setAction:@selector(launchButtonClicked:)];
-    NSMenuItem *addressItem = [NSMenuItem new];
-    [addressItem setTitle:[NSString stringWithFormat:@"Address: %@", [[self ipAddressTextField] stringValue]]];
-    [addressItem setHidden:NO];
-    NSMenuItem *portItem = [NSMenuItem new];
-    [portItem setTitle:[NSString stringWithFormat:@"Port: %@", [[self portTextField] stringValue]]];
-    [portItem setHidden:NO];
-    [[statusItem menu] removeAllItems];
-    [[statusItem menu] addItem:stopServerItem];
-	[[statusItem menu] addItem:[NSMenuItem separatorItem]];
-    [[statusItem menu] addItem:addressItem];
-    [[statusItem menu] addItem:portItem];
-    
 	// launch
     [serverTask launch];
 	[self performSelectorInBackground:@selector(errorLoop) withObject:nil];
@@ -204,8 +172,6 @@ NSStatusItem *statusItem;
 {
     [serverTask waitUntilExit];
     [self setIsServerRunning:NO];
-    [[statusItem menu] removeAllItems];
-    [[statusItem menu] addItemWithTitle:@"Start Server" action:@selector(launchButtonClicked:) keyEquivalent:@""];
 }
 
 -(IBAction)chooseFile:(id)sender
