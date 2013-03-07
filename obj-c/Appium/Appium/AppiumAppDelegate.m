@@ -7,10 +7,12 @@
 //
 
 #import "AppiumAppDelegate.h"
+#import "AppiumUpdater.h"
 #import "NodeInstance.h"
 #import "AppiumInstallationWindowController.h"
 
 NSWindowController *preferencesWindow;
+AppiumUpdater *updater;
 
 @implementation AppiumAppDelegate
 
@@ -83,7 +85,8 @@ NSWindowController *preferencesWindow;
     // check for updates
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Check For Updates"])
     {
-        [[self mainWindowController] performSelectorInBackground:@selector(checkForUpdates) withObject:nil];
+		updater = [[AppiumUpdater alloc] initWithAppiumMonitorWindowController:[self mainWindowController]];
+        [updater performSelectorInBackground:@selector(checkForUpdates) withObject:nil];
     }
 }
 

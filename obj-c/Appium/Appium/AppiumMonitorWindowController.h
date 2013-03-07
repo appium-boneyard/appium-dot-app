@@ -25,7 +25,6 @@
 
 
 -(BOOL)killServer;
--(void) checkForUpdates;
 -(IBAction)clearLog:(id)sender;
 -(IBAction) launchButtonClicked:(id)sender;
 
