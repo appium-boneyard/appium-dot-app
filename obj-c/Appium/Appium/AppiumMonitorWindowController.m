@@ -10,6 +10,7 @@
 #import "AppiumMonitorWindowController.h"
 #import "NodeInstance.h"
 #import "ANSIUtility.h"
+#import "Utility.h"
 
 NSTask *serverTask;
 NSStatusItem *statusItem;
@@ -235,26 +236,21 @@ NSStatusItem *statusItem;
 
 -(void) checkForUpdates
 {
-    //[self checkForUpdate];
+    [self checkForUpdate];
     [self checkForAppiumUpdate];
 }
 
 -(void) checkForUpdate
 {
     // check github for the latest version
-    NSString *stringURL = @"https://raw.github.com/appium/appium-dot-app/master/obj-c/Appium/Appium/Appium-Info.plist";
+    NSString *stringURL = @"https://raw.github.com/appium/appium.github.com/master/autoupdate/Appium.app.version";
     NSURL  *url = [NSURL URLWithString:stringURL];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
     if (!urlData)
     {
         return;
     }
-    
-    // parse plist
-    NSString *error=nil;
-    NSPropertyListFormat format;
-    NSDictionary* plist = [NSPropertyListSerialization propertyListFromData:urlData mutabilityOption:NSPropertyListImmutable format:&format errorDescription:&error];
-    NSString *latestVersion = (NSString*)[plist objectForKey:@"CFBundleShortVersionString"];
+    NSString *latestVersion = [[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
 
     // check the local copy of appium
     NSString *myVersion = (NSString*)[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
@@ -306,7 +302,33 @@ NSStatusItem *statusItem;
     {
         [self killServer];
         
-        // TODO: add install upgrade code here
+		// download latest appium.app
+		NSString *stringURL = @"http://appium.io/appium.dmg";
+		NSLog(@"Downloading Appium app from \"%@.\"", stringURL);
+		NSURL  *url = [NSURL URLWithString:stringURL];
+		NSData *urlData = [NSData dataWithContentsOfURL:url];
+		if (!urlData)
+		{
+			return;
+		}
+        NSString *dmgPath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath],@"appium.dmg"];
+		[urlData writeToFile:dmgPath atomically:YES];
+		
+		// install appium.app
+		[Utility runTaskWithBinary:@"/usr/bin/hdiutil" arguments:[NSArray arrayWithObjects: @"attach", dmgPath, nil]];
+		
+        NSString *sourcePath = @"/Volumes/Appium/Appium.app";
+        NSString *destinationPath = [[[NSBundle mainBundle] bundlePath] stringByDeletingLastPathComponent];
+		
+        NSDictionary *error = [NSDictionary new];
+        NSString *script =  [NSString stringWithFormat:@"do shell script \"sudo cp -rvp \\\"%@\\\" \\\"%@\\\"\" with administrator privileges", sourcePath, destinationPath];
+        NSAppleScript *appleScript = [[NSAppleScript new] initWithSource:script];
+        if (![appleScript executeAndReturnError:&error])
+        {
+            return; 
+        }
+        
+		[Utility runTaskWithBinary:@"/usr/bin/hdiutil" arguments:[NSArray arrayWithObjects: @"detach", @"/Volumes/Appium", nil]];
         
         [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] restart];
     }

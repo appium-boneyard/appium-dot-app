@@ -18,27 +18,27 @@
 
 -(NSString*) s_IPAddress
 {
-    return [[[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] ipAddressTextField] stringValue];
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"Server Address"];
 }
 
 -(void) setS_IPAddress:(NSString *)s_IPAddress
 {
-    [[[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] ipAddressTextField] setStringValue:s_IPAddress];
+	[[NSUserDefaults standardUserDefaults] setBool:[s_IPAddress boolValue] forKey:@"Server Address"];
 }
 
 -(NSNumber*) s_Port
 {
-    return [NSNumber numberWithInt:[[[[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] portTextField] stringValue] intValue]];
+    return [NSNumber numberWithInt:[[[NSUserDefaults standardUserDefaults] stringForKey:@"Server Port"] intValue]];
 }
 
 -(void) setS_Port:(NSNumber *)s_Port
 {
-    [[[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] portTextField] setStringValue:[s_Port stringValue]];
+	[[NSUserDefaults standardUserDefaults] setValue:s_Port forKey:@"Server Port"];
 }
 
 -(NSString*) s_AppPath
 {
-    return [[[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] appPathControl] stringValue];
+	return [[[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] appPathControl] stringValue];
 }
 
 -(void) setS_AppPath:(NSString *)s_AppPath
@@ -48,14 +48,82 @@
 
 -(NSNumber*) s_UseAppPath
 {
-    BOOL value = [[[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] appPathCheckBox] state] == NSOnState;
-    return [NSNumber numberWithBool:value];
+    return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:@"Use App Path"]];
 }
 
--(void) setS_UseAppPath:(NSNumber *)s_AppPath
+-(void) setS_UseAppPath:(NSNumber *)s_UseAppPath
 {
-    NSInteger newState = [s_AppPath boolValue] ? NSOnState : NSOffState;
-    [[[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] appPathCheckBox] setState:newState];
+	[[NSUserDefaults standardUserDefaults] setBool:[s_UseAppPath boolValue] forKey:@"Use App Path"];
+}
+
+-(NSNumber*) s_UseUDID
+{
+    return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:@"Use UDID"]];
+}
+
+-(void) setS_UseUDID:(NSNumber *)s_UseUDID
+{
+	[[NSUserDefaults standardUserDefaults] setBool:[s_UseUDID boolValue] forKey:@"Use UDID"];
+}
+
+-(NSString*) s_UDID
+{
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"UDID"];
+}
+
+-(void) setS_UDID:(NSString *)s_UDID
+{
+    [[NSUserDefaults standardUserDefaults] setValue:s_UDID forKey:@"UDID"];
+}
+
+-(NSNumber*) s_PrelaunchApp
+{
+    return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:@"Prelaunch"]];
+}
+
+-(void) setS_PrelaunchApp:(NSNumber *)s_PreLaunchApp
+{
+	[[NSUserDefaults standardUserDefaults] setBool:[s_PreLaunchApp boolValue] forKey:@"Prelaunch"];
+}
+
+-(NSNumber*) s_KeepArtifacts
+{
+    return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:@"Keep Artifacts"]];
+}
+
+-(void) setS_KeepArtifacts:(NSNumber *)s_KeepArtifacts
+{
+	[[NSUserDefaults standardUserDefaults] setBool:[s_KeepArtifacts boolValue] forKey:@"Keep Artifacts"];
+}
+
+-(NSNumber*) s_UseWarp
+{
+    return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:@"Use Warp"]];
+}
+
+-(void) setS_UseWarp:(NSNumber *)s_UseWarp
+{
+	[[NSUserDefaults standardUserDefaults] setBool:[s_UseWarp boolValue] forKey:@"Use Warp"];
+}
+
+-(NSNumber*) s_ResetApplicationState
+{
+    return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:@"Reset Application State"]];
+}
+
+-(void) setS_ResetApplicationState:(NSNumber *)s_ResetApplicationState
+{
+	[[NSUserDefaults standardUserDefaults] setBool:[s_ResetApplicationState boolValue] forKey:@"Reset Application State"];
+}
+
+-(NSNumber*) s_CheckForUpdates
+{
+    return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:@"Check For Updates"]];
+}
+
+-(void) setS_CheckForUpdates:(NSNumber *)s_CheckForUpdates
+{
+	[[NSUserDefaults standardUserDefaults] setBool:[s_CheckForUpdates boolValue] forKey:@"Check For Updates"];
 }
 
 -(NSString*) s_LogText
@@ -84,5 +152,8 @@
 {
 	[[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] clearLog:nil];
 }
+
+
+
 
 @end

@@ -13,11 +13,32 @@
 			<property name="server port" code="amsp" description="port for the appium server" type="integer">
 				<cocoa key="s_Port"/>
 			</property>
+			<property name="use app path" code="apua" description="true if the app path is being used" type="boolean">
+				<cocoa key="s_UseAppPath"/>
+			</property>
 			<property name="app path" code="amap" description="path to mobile application" type="text">
 				<cocoa key="s_AppPath"/>
 			</property>
-			<property name="use app path" code="apua" description="true if the app path is being used" type="boolean">
-				<cocoa key="s_UseAppPath"/>
+			<property name="use UDID" code="apuu" description="true if the udid is being used" type="boolean">
+				<cocoa key="s_UseUDID"/>
+			</property>
+			<property name="UDID" code="amud" description="device udid" type="text">
+				<cocoa key="s_UDID"/>
+			</property>
+			<property name="prelaunch simulator" code="apps" description="true if the simulator will prelaunch" type="boolean">
+				<cocoa key="s_PrelaunchApp"/>
+			</property>
+			<property name="keep artifacts" code="apka" description="true if artifacts will be kept after the session" type="boolean">
+				<cocoa key="s_KeepArtifacts"/>
+			</property>
+			<property name="use warp" code="apuw" description="true if warp speed is enabled" type="boolean">
+				<cocoa key="s_UseWarp"/>
+			</property>
+			<property name="reset app state" code="aprs" description="true if warp application state will be reset after the session" type="boolean">
+				<cocoa key="s_ResetApplicationState"/>
+			</property>
+			<property name="check for updates" code="apcu" description="true if appium will check for updates" type="boolean">
+				<cocoa key="s_CheckForUpdates"/>
 			</property>
 			<property name="log text" code="amlt" description="text from the appium log" type="text" access="r">
 				<cocoa key="s_LogText"/>

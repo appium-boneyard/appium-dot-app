@@ -18,9 +18,9 @@
 	<false/>
 	<key>Prelaunch</key>
 	<false/>
-	<key>Clean Application State</key>
+	<key>Reset Application State</key>
 	<true/>
-	<key>Delete Trace Files</key>
+	<key>Keep Artifacts</key>
 	<true/>
 	<key>Check For Updates</key>
 	<true/>
