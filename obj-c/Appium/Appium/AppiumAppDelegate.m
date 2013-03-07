@@ -26,6 +26,7 @@ AppiumUpdater *updater;
     
     // create main monitor window
     [self setMainWindowController:[[AppiumMonitorWindowController alloc] initWithWindowNibName:@"AppiumMonitorWindow"]];
+	updater = [[AppiumUpdater alloc] initWithAppiumMonitorWindowController:[self mainWindowController]];
 
     // install anything that's missing
     [self performSelectorInBackground:@selector(install) withObject:nil];
@@ -85,9 +86,13 @@ AppiumUpdater *updater;
     // check for updates
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Check For Updates"])
     {
-		updater = [[AppiumUpdater alloc] initWithAppiumMonitorWindowController:[self mainWindowController]];
-        [updater performSelectorInBackground:@selector(checkForUpdates) withObject:nil];
+        [self checkForUpdates:nil];
     }
+}
+
+-(IBAction)checkForUpdates:(id)sender
+{
+	[updater performSelectorInBackground:@selector(checkForUpdates:) withObject:sender];
 }
 
 -(void) restart

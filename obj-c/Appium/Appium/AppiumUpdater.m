@@ -27,13 +27,22 @@ AppiumMonitorWindowController *mainWindowController;
     return self;
 }
 
--(void) checkForUpdates
+-(void) checkForUpdates:(id)sender
 {
-    [self checkForAppUpdate];
-    [self checkForPackageUpdate];
+	BOOL alertOnNoUpdates = sender != nil;
+	BOOL updatesAvailable = NO;
+    updatesAvailable |= [self checkForAppUpdate];
+    updatesAvailable |= [self checkForPackageUpdate];
+	if (alertOnNoUpdates && !updatesAvailable)
+	{
+		NSAlert *alert = [NSAlert new];
+		[alert setMessageText:@"No Updates Available"];
+		[alert setInformativeText:@"Your application is up to date"];
+		[alert performSelectorOnMainThread:@selector(runModal) withObject:nil waitUntilDone:YES];
+	}
 }
 
--(void) checkForAppUpdate
+-(BOOL) checkForAppUpdate
 {
     // check github for the latest version
     NSString *stringURL = APPIUM_APP_VERSION_URL;
@@ -41,16 +50,20 @@ AppiumMonitorWindowController *mainWindowController;
     NSData *urlData = [NSData dataWithContentsOfURL:url];
     if (!urlData)
     {
-        return;
+        return NO;
     }
     NSString *latestVersion = [[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
+	latestVersion = [latestVersion stringByReplacingOccurrencesOfString:@"\n" withString:@""];
 	
     // check the local copy of appium
     NSString *myVersion = (NSString*)[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+
     if (![myVersion isEqualToString:latestVersion])
     {
         [self performSelectorOnMainThread:@selector(doAppUpgradeAlert:) withObject:[NSArray arrayWithObjects:myVersion, latestVersion, nil] waitUntilDone:NO];
+		return YES;
     }
+	return NO;
 }
 
 -(void)doAppUpgradeAlert:(NSArray*)versions
@@ -118,7 +131,7 @@ AppiumMonitorWindowController *mainWindowController;
     [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] performSelectorOnMainThread:@selector(restart) withObject:nil waitUntilDone:YES];
 }
 
--(void) checkForPackageUpdate
+-(BOOL) checkForPackageUpdate
 {
     // check github for the latest version
     NSString *stringURL = @"https://raw.github.com/appium/appium/master/package.json";
@@ -126,7 +139,7 @@ AppiumMonitorWindowController *mainWindowController;
     NSData *urlData = [NSData dataWithContentsOfURL:url];
     if (!urlData)
     {
-        return;
+        return NO;
     }
     NSError *jsonError = nil;
     id jsonObject = [NSJSONSerialization JSONObjectWithData:urlData options:kNilOptions error:&jsonError];
@@ -146,7 +159,9 @@ AppiumMonitorWindowController *mainWindowController;
     if (![myVersion isEqualToString:latestVersion])
     {
         [self performSelectorOnMainThread:@selector(doPackageUpgradeAlert:) withObject:[NSArray arrayWithObjects:myVersion, latestVersion, nil] waitUntilDone:NO];
+		return YES;
     }
+	return NO;
 }
 
 -(void)doPackageUpgradeAlert:(NSArray*)versions
