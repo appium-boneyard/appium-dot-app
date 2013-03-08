@@ -2108,10 +2108,15 @@
 					<string key="className">AppiumMonitorWindowController</string>
 					<string key="superclassName">NSWindowController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="chooseFile:">id</string>
 						<string key="clearLog:">id</string>
 						<string key="launchButtonClicked:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="chooseFile:">
+							<string key="name">chooseFile:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="clearLog:">
 							<string key="name">clearLog:</string>
 							<string key="candidateClassName">id</string>

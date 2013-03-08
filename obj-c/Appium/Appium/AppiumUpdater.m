@@ -14,6 +14,8 @@
 
 #define APPIUM_APP_VERSION_URL @"https://raw.github.com/appium/appium.github.com/master/autoupdate/Appium.app.version"
 
+#define APPIUM_PACKAGE_VERSION_URL @"https://raw.github.com/appium/appium/master/package.json"
+
 AppiumMonitorWindowController *mainWindowController;
 
 @implementation AppiumUpdater
@@ -134,7 +136,7 @@ AppiumMonitorWindowController *mainWindowController;
 -(BOOL) checkForPackageUpdate
 {
     // check github for the latest version
-    NSString *stringURL = @"https://raw.github.com/appium/appium/master/package.json";
+    NSString *stringURL = APPIUM_PACKAGE_VERSION_URL;
     NSURL  *url = [NSURL URLWithString:stringURL];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
     if (!urlData)

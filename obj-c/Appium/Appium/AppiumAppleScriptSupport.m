@@ -8,6 +8,7 @@
 
 #import "AppiumAppleScriptSupport.h"
 #import "AppiumAppDelegate.h"
+#import "Constants.h"
 
 @implementation NSApplication(AppiumAppleScriptSupport)
 
@@ -18,22 +19,22 @@
 
 -(NSString*) s_IPAddress
 {
-    return [[NSUserDefaults standardUserDefaults] stringForKey:@"Server Address"];
+    return [[NSUserDefaults standardUserDefaults] stringForKey:PLIST_SERVER_ADDRESS];
 }
 
 -(void) setS_IPAddress:(NSString *)s_IPAddress
 {
-	[[NSUserDefaults standardUserDefaults] setBool:[s_IPAddress boolValue] forKey:@"Server Address"];
+	[[NSUserDefaults standardUserDefaults] setBool:[s_IPAddress boolValue] forKey:PLIST_SERVER_ADDRESS];
 }
 
 -(NSNumber*) s_Port
 {
-    return [NSNumber numberWithInt:[[[NSUserDefaults standardUserDefaults] stringForKey:@"Server Port"] intValue]];
+    return [NSNumber numberWithInt:[[[NSUserDefaults standardUserDefaults] stringForKey:PLIST_SERVER_PORT] intValue]];
 }
 
 -(void) setS_Port:(NSNumber *)s_Port
 {
-	[[NSUserDefaults standardUserDefaults] setValue:s_Port forKey:@"Server Port"];
+	[[NSUserDefaults standardUserDefaults] setValue:s_Port forKey:PLIST_SERVER_PORT];
 }
 
 -(NSString*) s_AppPath
@@ -48,82 +49,82 @@
 
 -(NSNumber*) s_UseAppPath
 {
-    return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:@"Use App Path"]];
+    return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:PLIST_USE_APP_PATH]];
 }
 
 -(void) setS_UseAppPath:(NSNumber *)s_UseAppPath
 {
-	[[NSUserDefaults standardUserDefaults] setBool:[s_UseAppPath boolValue] forKey:@"Use App Path"];
+	[[NSUserDefaults standardUserDefaults] setBool:[s_UseAppPath boolValue] forKey:PLIST_USE_APP_PATH];
 }
 
 -(NSNumber*) s_UseUDID
 {
-    return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:@"Use UDID"]];
+    return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:PLIST_USE_UDID]];
 }
 
 -(void) setS_UseUDID:(NSNumber *)s_UseUDID
 {
-	[[NSUserDefaults standardUserDefaults] setBool:[s_UseUDID boolValue] forKey:@"Use UDID"];
+	[[NSUserDefaults standardUserDefaults] setBool:[s_UseUDID boolValue] forKey:PLIST_USE_UDID];
 }
 
 -(NSString*) s_UDID
 {
-    return [[NSUserDefaults standardUserDefaults] stringForKey:@"UDID"];
+    return [[NSUserDefaults standardUserDefaults] stringForKey:PLIST_UDID];
 }
 
 -(void) setS_UDID:(NSString *)s_UDID
 {
-    [[NSUserDefaults standardUserDefaults] setValue:s_UDID forKey:@"UDID"];
+    [[NSUserDefaults standardUserDefaults] setValue:s_UDID forKey:PLIST_UDID];
 }
 
 -(NSNumber*) s_PrelaunchApp
 {
-    return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:@"Prelaunch"]];
+    return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:PLIST_PRELAUNCH]];
 }
 
 -(void) setS_PrelaunchApp:(NSNumber *)s_PreLaunchApp
 {
-	[[NSUserDefaults standardUserDefaults] setBool:[s_PreLaunchApp boolValue] forKey:@"Prelaunch"];
+	[[NSUserDefaults standardUserDefaults] setBool:[s_PreLaunchApp boolValue] forKey:PLIST_PRELAUNCH];
 }
 
 -(NSNumber*) s_KeepArtifacts
 {
-    return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:@"Keep Artifacts"]];
+    return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:PLIST_KEEP_ARTIFACTS]];
 }
 
 -(void) setS_KeepArtifacts:(NSNumber *)s_KeepArtifacts
 {
-	[[NSUserDefaults standardUserDefaults] setBool:[s_KeepArtifacts boolValue] forKey:@"Keep Artifacts"];
+	[[NSUserDefaults standardUserDefaults] setBool:[s_KeepArtifacts boolValue] forKey:PLIST_KEEP_ARTIFACTS];
 }
 
 -(NSNumber*) s_UseWarp
 {
-    return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:@"Use Warp"]];
+    return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:PLIST_USE_WARP]];
 }
 
 -(void) setS_UseWarp:(NSNumber *)s_UseWarp
 {
-	[[NSUserDefaults standardUserDefaults] setBool:[s_UseWarp boolValue] forKey:@"Use Warp"];
+	[[NSUserDefaults standardUserDefaults] setBool:[s_UseWarp boolValue] forKey:PLIST_USE_WARP];
 }
 
 -(NSNumber*) s_ResetApplicationState
 {
-    return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:@"Reset Application State"]];
+    return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:PLIST_RESET_APPLICATION_STATE]];
 }
 
 -(void) setS_ResetApplicationState:(NSNumber *)s_ResetApplicationState
 {
-	[[NSUserDefaults standardUserDefaults] setBool:[s_ResetApplicationState boolValue] forKey:@"Reset Application State"];
+	[[NSUserDefaults standardUserDefaults] setBool:[s_ResetApplicationState boolValue] forKey:PLIST_RESET_APPLICATION_STATE];
 }
 
 -(NSNumber*) s_CheckForUpdates
 {
-    return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:@"Check For Updates"]];
+    return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:PLIST_CHECK_FOR_UPDATES]];
 }
 
 -(void) setS_CheckForUpdates:(NSNumber *)s_CheckForUpdates
 {
-	[[NSUserDefaults standardUserDefaults] setBool:[s_CheckForUpdates boolValue] forKey:@"Check For Updates"];
+	[[NSUserDefaults standardUserDefaults] setBool:[s_CheckForUpdates boolValue] forKey:PLIST_CHECK_FOR_UPDATES];
 }
 
 -(NSString*) s_LogText
@@ -152,8 +153,5 @@
 {
 	[[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] clearLog:nil];
 }
-
-
-
 
 @end
