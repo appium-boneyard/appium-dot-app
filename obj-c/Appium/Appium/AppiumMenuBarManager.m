@@ -7,6 +7,7 @@
 //
 
 #import "AppiumMenuBarManager.h"
+#import "AppiumAppDelegate.h"
 #import "AppiumMonitorWindowController.h"
 
 NSStatusBar *bar;
@@ -30,7 +31,7 @@ NSStatusItem *item;
 		
 		// add menu
 		[item setMenu:[NSMenu new]];
-		[self installServerOffMenu];
+		[self installServerOffMenu:[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController]];
 
     }
     return self;
@@ -40,27 +41,28 @@ NSStatusItem *item;
 {
 	if([(AppiumMonitorWindowController*)object isServerRunning])
 	{
-		[self installServerOnMenu];
+		[self installServerOnMenu:object];
 	}
 	else
 	{
-		[self installServerOffMenu];
+		[self installServerOffMenu:object];
 	}
 }
 
--(void) installServerOnMenu
+-(void) installServerOnMenu:(AppiumMonitorWindowController*)mainWindowController
 {
-	[[item menu] removeAllItems];
 	NSMenuItem *stopServerItem = [NSMenuItem new];
 	[stopServerItem setTitle:@"Stop Server"];
 	[stopServerItem setHidden:NO];
 	[stopServerItem setAction:@selector(launchButtonClicked:)];
+    [stopServerItem setTarget:mainWindowController];
 	NSMenuItem *addressItem = [NSMenuItem new];
 	[addressItem setTitle:[NSString stringWithFormat:@"Address: %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"Server Address"]]];
 	[addressItem setHidden:NO];
 	NSMenuItem *portItem = [NSMenuItem new];
 	[portItem setTitle:[NSString stringWithFormat:@"Port: %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"Server Port"]]];
 	[portItem setHidden:NO];
+
 	[[item menu] removeAllItems];
 	[[item menu] addItem:stopServerItem];
 	[[item menu] addItem:[NSMenuItem separatorItem]];
@@ -68,9 +70,15 @@ NSStatusItem *item;
 	[[item menu] addItem:portItem];
 }
 
--(void) installServerOffMenu
+-(void) installServerOffMenu:(AppiumMonitorWindowController*)mainWindowController
 {
-	[[item menu] removeAllItems];
-	[[item menu] addItemWithTitle:@"Start Server" action:@selector(launchButtonClicked:) keyEquivalent:@""];
+    NSMenuItem *startServerItem = [NSMenuItem new];
+	[startServerItem setTitle:@"Start Server"];
+	[startServerItem setHidden:NO];
+	[startServerItem setAction:@selector(launchButtonClicked:)];
+    [startServerItem setTarget:mainWindowController];
+	
+    [[item menu] removeAllItems];
+    [[item menu] addItem:startServerItem];
 }
 @end
