@@ -108,17 +108,26 @@ AppiumMenuBarManager *menuBarManager;
         arguments = [arguments arrayByAddingObject:@"--warp"];
         arguments = [arguments arrayByAddingObject:@"1"];
     }
+    
+    // iOS Prefs
     if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_FORCE_DEVICE])
     {
-        if ([[[NSUserDefaults standardUserDefaults] stringForKey:PLIST_DEVICE] isEqualToString:DEVICE_IPHONE])
+        if ([[[NSUserDefaults standardUserDefaults] stringForKey:PLIST_DEVICE] isEqualToString:PLIST_FORCE_DEVICE_IPHONE])
         {
             arguments = [arguments arrayByAddingObject:@"--force-iphone"];
         }
-        else if ([[[NSUserDefaults standardUserDefaults] stringForKey:PLIST_DEVICE] isEqualToString:DEVICE_IPAD])
+        else if ([[[NSUserDefaults standardUserDefaults] stringForKey:PLIST_DEVICE] isEqualToString:PLIST_FORCE_DEVICE_IPAD])
         {
             arguments = [arguments arrayByAddingObject:@"--force-ipad"];
         }
     }
+    
+    // Android Prefs
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_SKIP_ANDROID_INSTALL])
+    {
+        arguments = [arguments arrayByAddingObject:@"--skip-install"];
+    }
+    
     [serverTask setArguments: arguments];
     
 	// redirect i/o

@@ -35,5 +35,9 @@
 		<string>iPhone</string>
 		<string>iPad</string>
 	</array>
+	<key>Preference Tab State</key>
+	<integer>0</integer>
+	<key>Skip Android Install</key>
+	<false/>
 </dict>
 </plist>
