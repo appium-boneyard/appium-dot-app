@@ -8,8 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+
+#define DEVICE_IPAD @"iPad"
+#define DEVICE_IPHONE @"iPhone"
+
 #define PLIST_APP_PATH @"App Path"
 #define PLIST_CHECK_FOR_UPDATES @"Check For Updates"
+#define PLIST_DEVICE @"Device"
+#define PLIST_FORCE_DEVICE @"Force Device"
 #define PLIST_KEEP_ARTIFACTS @"Keep Artifacts"
 #define PLIST_PRELAUNCH @"Prelaunch"
 #define PLIST_RESET_APPLICATION_STATE @"Reset Application State"

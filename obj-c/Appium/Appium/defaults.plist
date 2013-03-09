@@ -26,5 +26,14 @@
 	<true/>
 	<key>Use Warp</key>
 	<false/>
+	<key>Force Device</key>
+	<false/>
+	<key>Device</key>
+	<string>iPhone</string>
+	<key>Devices</key>
+	<array>
+		<string>iPhone</string>
+		<string>iPad</string>
+	</array>
 </dict>
 </plist>

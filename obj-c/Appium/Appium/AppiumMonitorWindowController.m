@@ -108,6 +108,17 @@ AppiumMenuBarManager *menuBarManager;
         arguments = [arguments arrayByAddingObject:@"--warp"];
         arguments = [arguments arrayByAddingObject:@"1"];
     }
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_FORCE_DEVICE])
+    {
+        if ([[[NSUserDefaults standardUserDefaults] stringForKey:PLIST_DEVICE] isEqualToString:DEVICE_IPHONE])
+        {
+            arguments = [arguments arrayByAddingObject:@"--force-iphone"];
+        }
+        else if ([[[NSUserDefaults standardUserDefaults] stringForKey:PLIST_DEVICE] isEqualToString:DEVICE_IPAD])
+        {
+            arguments = [arguments arrayByAddingObject:@"--force-ipad"];
+        }
+    }
     [serverTask setArguments: arguments];
     
 	// redirect i/o
