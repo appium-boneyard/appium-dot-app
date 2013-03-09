@@ -176,8 +176,25 @@ AppiumMonitorWindowController *mainWindowController;
     if([upgradeAlert runModal] == NSAlertSecondButtonReturn)
     {
         [mainWindowController killServer];
-        [[mainWindowController node] installPackage:@"appium" forceInstall:YES];
+        [self performSelectorInBackground:@selector(updateAppiumPackage) withObject:nil];
     }
 }
 
+-(void) updateAppiumPackage
+{
+    AppiumInstallationWindowController *installationWindow = [[AppiumInstallationWindowController alloc] initWithWindowNibName:@"AppiumInstallationWindow"];
+    [installationWindow performSelectorOnMainThread:@selector(showWindow:) withObject:self waitUntilDone:YES];
+    [[installationWindow window] makeKeyAndOrderFront:self];
+    [[mainWindowController window] orderOut:self];
+    [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Updating Appium Package" waitUntilDone:YES];
+
+    [[mainWindowController node] installPackage:@"appium" forceInstall:YES];
+    
+    [[mainWindowController window] makeKeyAndOrderFront:self];
+    [installationWindow close];
+    NSAlert *upgradeCompleteAlert = [NSAlert new];
+    [upgradeCompleteAlert setMessageText:@"Upgrade Complete"];
+    [upgradeCompleteAlert setInformativeText:@"The package was installed successfully"];
+    [upgradeCompleteAlert performSelectorOnMainThread:@selector(runModal) withObject:nil waitUntilDone:YES];
+}
 @end
