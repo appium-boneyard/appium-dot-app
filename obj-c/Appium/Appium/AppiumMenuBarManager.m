@@ -39,7 +39,7 @@ NSStatusItem *item;
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-	if([(AppiumMonitorWindowController*)object isServerRunning])
+	if([[object model] isServerRunning])
 	{
 		[self installServerOnMenu:object];
 	}

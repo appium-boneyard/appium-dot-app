@@ -13,7 +13,6 @@
 #import "Utility.h"
 #import "AppiumInstallationWindowController.h"
 #import "AppiumMenuBarManager.h"
-#import "Constants.h"
 
 NSTask *serverTask;
 AppiumMenuBarManager *menuBarManager;
@@ -28,11 +27,13 @@ AppiumMenuBarManager *menuBarManager;
 {
     self = [super initWithWindow:window];
     if (self) {
-        [self setIsServerRunning:[NSNumber numberWithBool:NO]];
+		// initialization code here
     }
     
     return self;
 }
+
+-(AppiumModel*) model { return [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] model]; }
 
 - (void)windowDidLoad
 {
@@ -46,7 +47,7 @@ AppiumMenuBarManager *menuBarManager;
     if (serverTask != nil && [serverTask isRunning])
     {
         [serverTask terminate];
-		[self setIsServerRunning:NO];
+		[[self model] setIsServerRunning:NO];
         return YES;
     }
     return NO;
@@ -67,62 +68,62 @@ AppiumMenuBarManager *menuBarManager;
 	// build arguments
     NSArray *arguments = [NSMutableArray arrayWithObjects: @"server.js", nil];
 	
-	if (![[[self ipAddressTextField] stringValue] isEqualTo:@"0.0.0.0"])
+	if (![[[self model] ipAddress] isEqualTo:@"0.0.0.0"])
     {
         arguments = [arguments arrayByAddingObject:@"--address"];
-        arguments = [arguments arrayByAddingObject:[[self ipAddressTextField] stringValue]];
+        arguments = [arguments arrayByAddingObject:[[self model] ipAddress]];
     }
-	if (![[[self portTextField] stringValue] isEqualTo:@"4723"])
+	if (![[[self model] port] isEqualTo:@"4723"])
     {
         arguments = [arguments arrayByAddingObject:@"--port"];
-        arguments = [arguments arrayByAddingObject:[[self portTextField] stringValue]];
+        arguments = [arguments arrayByAddingObject:[[[self model] port]stringValue]];
     }
-    if ([[self appPathCheckBox]state] == NSOnState)
+    if ([[self model] useAppPath])
     {
         arguments = [arguments arrayByAddingObject:@"--app"];
-        arguments = [arguments arrayByAddingObject:[[self appPathControl] stringValue]];
+        arguments = [arguments arrayByAddingObject:[[self model] appPath]];
     }
-	if ([[self udidCheckBox]state] == NSOnState)
+	if ([[self model] useUDID])
     {
         arguments = [arguments arrayByAddingObject:@"--udid"];
-        arguments = [arguments arrayByAddingObject:[[self udidTextField] stringValue]];
+        arguments = [arguments arrayByAddingObject:[[self model] udid]];
     }
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_PRELAUNCH])
+	if ([[self model] prelaunchApp])
     {
         arguments = [arguments arrayByAddingObject:@"--pre-launch"];
     }
-	if (![[NSUserDefaults standardUserDefaults] boolForKey:PLIST_RESET_APPLICATION_STATE])
+	if ([[self model] resetApplicationState])
     {
         arguments = [arguments arrayByAddingObject:@"--no-reset"];
     }
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_KEEP_ARTIFACTS])
+	if ([[self model] keepArtifacts])
     {
         arguments = [arguments arrayByAddingObject:@"--keep-artifacts"];
     }
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_VERBOSE])
+	if ([[self model] logVerbose])
     {
         arguments = [arguments arrayByAddingObject:@"--verbose"];
     }
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_USE_WARP])
+	if ([[self model] useWarp])
     {
         arguments = [arguments arrayByAddingObject:@"--warp"];
         arguments = [arguments arrayByAddingObject:@"1"];
     }
     
     // iOS Prefs
-    if ([[NSUserDefaults standardUserDefaults] integerForKey:PLIST_TAB_STATE] == PLIST_TAB_STATE_IOS)
+    if ([[self model] platform] == Platform_iOS)
     {
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_WITHOUT_DELAY])
+        if ([[self model] useInstrumentsWithoutDelay])
         {
             arguments = [arguments arrayByAddingObject:@"--without-delay"];
         }
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_FORCE_DEVICE])
+        if ([[self model] forceDevice])
         {
-            if ([[[NSUserDefaults standardUserDefaults] stringForKey:PLIST_DEVICE] isEqualToString:PLIST_FORCE_DEVICE_IPHONE])
+            if ([[self model] deviceToForce] == iOSAutomationDevice_iPhone)
             {
                 arguments = [arguments arrayByAddingObject:@"--force-iphone"];
             }
-            else if ([[[NSUserDefaults standardUserDefaults] stringForKey:PLIST_DEVICE] isEqualToString:PLIST_FORCE_DEVICE_IPAD])
+            else if ([[self model] deviceToForce] == iOSAutomationDevice_iPad)
             {
                 arguments = [arguments arrayByAddingObject:@"--force-ipad"];
             }
@@ -130,27 +131,21 @@ AppiumMenuBarManager *menuBarManager;
     }
     
     // Android Prefs
-    if ([[NSUserDefaults standardUserDefaults] integerForKey:PLIST_TAB_STATE] == PLIST_TAB_STATE_ANDROID)
+    if ([[self model] platform] == Platform_Android)
     {
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_SKIP_ANDROID_INSTALL])
+        if ([[self model] skipAndroidInstall])
         {
             arguments = [arguments arrayByAddingObject:@"--skip-install"];
         }
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_USE_ANDROID_PACKAGE])
+        if ([[self model] useAndroidPackage])
         {
-            if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_ANDROID_PACKAGE])
-            {
-                arguments = [arguments arrayByAddingObject:@"--app-pkg"];
-                arguments = [arguments arrayByAddingObject:[[NSUserDefaults standardUserDefaults] stringForKey:PLIST_ANDROID_PACKAGE]];
-            }
+            arguments = [arguments arrayByAddingObject:@"--app-pkg"];
+			arguments = [arguments arrayByAddingObject:[[self model] androidPackage]];
         }
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_USE_ANDROID_ACTIVITY])
+        if ([[self model] useAndroidActivity])
         {
-            if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_ANDROID_ACTIVITY])
-            {
-                arguments = [arguments arrayByAddingObject:@"--app-activity"];
-                arguments = [arguments arrayByAddingObject:[[NSUserDefaults standardUserDefaults] stringForKey:PLIST_ANDROID_ACTIVITY]];
-            }
+            arguments = [arguments arrayByAddingObject:@"--app-activity"];
+            arguments = [arguments arrayByAddingObject:[[self model] androidActivity]];
         }
     }
     
@@ -162,7 +157,7 @@ AppiumMenuBarManager *menuBarManager;
     [serverTask setStandardInput:[NSPipe pipe]];
     
     // set status
-    [self setIsServerRunning:[NSNumber numberWithBool:YES]];
+    [[self model] setIsServerRunning:YES];
 	
 	// launch
     [serverTask launch];
@@ -218,7 +213,7 @@ AppiumMenuBarManager *menuBarManager;
 -(void) exitWait
 {
     [serverTask waitUntilExit];
-    [self setIsServerRunning:NO];
+    [[self model] setIsServerRunning:NO];
 }
 
 -(IBAction)chooseFile:(id)sender
@@ -230,8 +225,8 @@ AppiumMenuBarManager *menuBarManager;
 	[openDlg setAllowedFileTypes:[NSArray arrayWithObjects:@"app", @"apk", nil]];
     [openDlg setCanChooseFiles:YES];
     [openDlg setCanChooseDirectories:NO];
-    [openDlg setPrompt:@"Select"];
-	if ([selectedApp isEqualTo:@"/"])
+    [openDlg setPrompt:@"Select Mobile Application"];
+	if (selectedApp == nil || [selectedApp isEqualToString:@"/"])
 	{
 	    [openDlg setDirectoryURL:[NSURL fileURLWithPath:NSHomeDirectory()]];
 	}

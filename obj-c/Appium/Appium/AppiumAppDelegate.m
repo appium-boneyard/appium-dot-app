@@ -18,12 +18,9 @@ AppiumUpdater *updater;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // install settings from plist
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"defaults" ofType:@"plist"];
-	NSDictionary *settingsDict = [NSDictionary dictionaryWithContentsOfFile:filePath];
-	[[NSUserDefaults standardUserDefaults] registerDefaults:settingsDict];
-	[[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:settingsDict];
-    
+	// create model
+	[self setModel:[AppiumModel new]];
+	
     // create main monitor window
     [self setMainWindowController:[[AppiumMonitorWindowController alloc] initWithWindowNibName:@"AppiumMonitorWindow"]];
 	updater = [[AppiumUpdater alloc] initWithAppiumMonitorWindowController:[self mainWindowController]];

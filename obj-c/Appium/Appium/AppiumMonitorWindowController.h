@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "NodeInstance.h"
+#import "AppiumModel.h"
 
 @interface AppiumMonitorWindowController : NSWindowController
 @property (weak) IBOutlet NSTextField *ipAddressTextField;
@@ -20,9 +21,8 @@
 @property (weak) IBOutlet NSTextField *udidTextField;
 @property (weak) IBOutlet NSButton *udidCheckBox;
 
-@property (weak) NSNumber* isServerRunning;
 @property (nonatomic, retain) NodeInstance *node;
-
+@property (readonly) AppiumModel *model;
 
 -(BOOL)killServer;
 -(IBAction)clearLog:(id)sender;

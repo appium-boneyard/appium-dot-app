@@ -698,7 +698,6 @@
 												<int key="NSvFlags">268</int>
 												<string key="NSFrame">{{15, 9}, {91, 18}}</string>
 												<reference key="NSSuperview" ref="336422316"/>
-												<reference key="NSNextKeyView" ref="429772488"/>
 												<string key="NSReuseIdentifierKey">_NS:9</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSButtonCell" key="NSCell" id="195492143">
@@ -1036,15 +1035,15 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: self.isServerRunning</string>
+						<string key="label">enabled: model.isServerRunning</string>
 						<reference key="source" ref="656570450"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="656570450"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled: self.isServerRunning</string>
+							<string key="NSLabel">enabled: model.isServerRunning</string>
 							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">self.isServerRunning</string>
+							<string key="NSKeyPath">model.isServerRunning</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSValueTransformerName</string>
 								<string key="NS.object.0">NSNegateBoolean</string>
@@ -1052,19 +1051,19 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">124</int>
+					<int key="connectionID">1211</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.Server Address</string>
+						<string key="label">value: model.ipAddress</string>
 						<reference key="source" ref="656570450"/>
-						<reference key="destination" ref="290274004"/>
+						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="656570450"/>
-							<reference key="NSDestination" ref="290274004"/>
-							<string key="NSLabel">value: values.Server Address</string>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: model.ipAddress</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.Server Address</string>
+							<string key="NSKeyPath">model.ipAddress</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSContinuouslyUpdatesValue</string>
 								<boolean value="YES" key="NS.object.0"/>
@@ -1072,19 +1071,19 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">390</int>
+					<int key="connectionID">1294</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: self.isServerRunning</string>
+						<string key="label">enabled: model.isServerRunning</string>
 						<reference key="source" ref="172664229"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="172664229"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled: self.isServerRunning</string>
+							<string key="NSLabel">enabled: model.isServerRunning</string>
 							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">self.isServerRunning</string>
+							<string key="NSKeyPath">model.isServerRunning</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSValueTransformerName</string>
 								<string key="NS.object.0">NSNegateBoolean</string>
@@ -1092,39 +1091,39 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">117</int>
+					<int key="connectionID">1214</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.Server Port</string>
+						<string key="label">value: model.port</string>
 						<reference key="source" ref="172664229"/>
-						<reference key="destination" ref="290274004"/>
+						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="172664229"/>
-							<reference key="NSDestination" ref="290274004"/>
-							<string key="NSLabel">value: values.Server Port</string>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: model.port</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.Server Port</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSContinuouslyUpdatesValue</string>
-								<boolean value="YES" key="NS.object.0"/>
-							</object>
+							<string key="NSKeyPath">model.port</string>
+							<dictionary key="NSOptions">
+								<boolean value="YES" key="NSContinuouslyUpdatesValue"/>
+								<string key="NSValueTransformerName">AppiumPortTransformer</string>
+							</dictionary>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">389</int>
+					<int key="connectionID">1292</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">title: isServerRunning</string>
+						<string key="label">title: model.isServerRunning</string>
 						<reference key="source" ref="561969353"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="561969353"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">title: isServerRunning</string>
+							<string key="NSLabel">title: model.isServerRunning</string>
 							<string key="NSBinding">title</string>
-							<string key="NSKeyPath">isServerRunning</string>
+							<string key="NSKeyPath">model.isServerRunning</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSValueTransformerName</string>
 								<string key="NS.object.0">AppiumLaunchButtonTextTransformer</string>
@@ -1132,7 +1131,7 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">293</int>
+					<int key="connectionID">1291</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1168,15 +1167,15 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: isServerRunning</string>
+						<string key="label">enabled: model.isServerRunning</string>
 						<reference key="source" ref="1069397280"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="1004290252">
+						<object class="NSNibBindingConnector" key="connector" id="66477826">
 							<reference key="NSSource" ref="1069397280"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled: isServerRunning</string>
+							<string key="NSLabel">enabled: model.isServerRunning</string>
 							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">isServerRunning</string>
+							<string key="NSKeyPath">model.isServerRunning</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSValueTransformerName</string>
 								<string key="NS.object.0">NSNegateBoolean</string>
@@ -1184,42 +1183,42 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">946</int>
+					<int key="connectionID">1245</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled2: values.Force Device</string>
+						<string key="label">enabled2: model.forceDevice</string>
 						<reference key="source" ref="1069397280"/>
-						<reference key="destination" ref="290274004"/>
+						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="1069397280"/>
-							<reference key="NSDestination" ref="290274004"/>
-							<string key="NSLabel">enabled2: values.Force Device</string>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled2: model.forceDevice</string>
 							<string key="NSBinding">enabled2</string>
-							<string key="NSKeyPath">values.Force Device</string>
+							<string key="NSKeyPath">model.forceDevice</string>
 							<dictionary key="NSOptions">
 								<integer value="-1" key="NSMultipleValuesPlaceholder"/>
 								<integer value="-1" key="NSNoSelectionPlaceholder"/>
 								<integer value="-1" key="NSNotApplicablePlaceholder"/>
 								<integer value="-1" key="NSNullPlaceholder"/>
 							</dictionary>
-							<reference key="NSPreviousConnector" ref="1004290252"/>
+							<reference key="NSPreviousConnector" ref="66477826"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">959</int>
+					<int key="connectionID">1248</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.Device</string>
+						<string key="label">value: model.deviceToForceString</string>
 						<reference key="source" ref="1069397280"/>
-						<reference key="destination" ref="290274004"/>
+						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="1069397280"/>
-							<reference key="NSDestination" ref="290274004"/>
-							<string key="NSLabel">value: values.Device</string>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: model.deviceToForceString</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.Device</string>
+							<string key="NSKeyPath">model.deviceToForceString</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSContinuouslyUpdatesValue</string>
 								<boolean value="YES" key="NS.object.0"/>
@@ -1228,35 +1227,35 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">1207</int>
+					<int key="connectionID">1296</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.Force Device</string>
-						<reference key="source" ref="355968635"/>
-						<reference key="destination" ref="290274004"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="355968635"/>
-							<reference key="NSDestination" ref="290274004"/>
-							<string key="NSLabel">value: values.Force Device</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.Force Device</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">935</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: isServerRunning</string>
+						<string key="label">value: model.forceDevice</string>
 						<reference key="source" ref="355968635"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="355968635"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled: isServerRunning</string>
+							<string key="NSLabel">value: model.forceDevice</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">model.forceDevice</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1241</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: model.isServerRunning</string>
+						<reference key="source" ref="355968635"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="355968635"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: model.isServerRunning</string>
 							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">isServerRunning</string>
+							<string key="NSKeyPath">model.isServerRunning</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSValueTransformerName</string>
 								<string key="NS.object.0">NSNegateBoolean</string>
@@ -1264,35 +1263,19 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">939</int>
+					<int key="connectionID">1242</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.Skip Android Install</string>
-						<reference key="source" ref="947132326"/>
-						<reference key="destination" ref="290274004"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="947132326"/>
-							<reference key="NSDestination" ref="290274004"/>
-							<string key="NSLabel">value: values.Skip Android Install</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.Skip Android Install</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">913</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: isServerRunning</string>
+						<string key="label">enabled: model.isServerRunning</string>
 						<reference key="source" ref="947132326"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="947132326"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled: isServerRunning</string>
+							<string key="NSLabel">enabled: model.isServerRunning</string>
 							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">isServerRunning</string>
+							<string key="NSKeyPath">model.isServerRunning</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSValueTransformerName</string>
 								<string key="NS.object.0">NSNegateBoolean</string>
@@ -1300,35 +1283,35 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">982</int>
+					<int key="connectionID">1279</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.Use App Path</string>
-						<reference key="source" ref="360354850"/>
-						<reference key="destination" ref="290274004"/>
+						<string key="label">value: model.skipAndroidInstall</string>
+						<reference key="source" ref="947132326"/>
+						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="360354850"/>
-							<reference key="NSDestination" ref="290274004"/>
-							<string key="NSLabel">value: values.Use App Path</string>
+							<reference key="NSSource" ref="947132326"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: model.skipAndroidInstall</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.Use App Path</string>
+							<string key="NSKeyPath">model.skipAndroidInstall</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">744</int>
+					<int key="connectionID">1281</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: self.isServerRunning</string>
+						<string key="label">enabled: model.isServerRunning</string>
 						<reference key="source" ref="360354850"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="360354850"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled: self.isServerRunning</string>
+							<string key="NSLabel">enabled: model.isServerRunning</string>
 							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">self.isServerRunning</string>
+							<string key="NSKeyPath">model.isServerRunning</string>
 							<dictionary key="NSOptions">
 								<integer value="1" key="NSNullPlaceholder"/>
 								<string key="NSValueTransformerName">NSNegateBoolean</string>
@@ -1336,19 +1319,35 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">754</int>
+					<int key="connectionID">1217</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: self.isServerRunning</string>
+						<string key="label">value: model.useAppPath</string>
+						<reference key="source" ref="360354850"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="360354850"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: model.useAppPath</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">model.useAppPath</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1219</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: model.isServerRunning</string>
 						<reference key="source" ref="7682766"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="201337137">
+						<object class="NSNibBindingConnector" key="connector" id="141438917">
 							<reference key="NSSource" ref="7682766"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled: self.isServerRunning</string>
+							<string key="NSLabel">enabled: model.isServerRunning</string>
 							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">self.isServerRunning</string>
+							<string key="NSKeyPath">model.isServerRunning</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSValueTransformerName</string>
 								<string key="NS.object.0">NSNegateBoolean</string>
@@ -1356,78 +1355,58 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">748</int>
+					<int key="connectionID">1220</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled2: values.Use App Path</string>
+						<string key="label">enabled2: model.useAppPath</string>
 						<reference key="source" ref="7682766"/>
-						<reference key="destination" ref="290274004"/>
+						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="7682766"/>
-							<reference key="NSDestination" ref="290274004"/>
-							<string key="NSLabel">enabled2: values.Use App Path</string>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled2: model.useAppPath</string>
 							<string key="NSBinding">enabled2</string>
-							<string key="NSKeyPath">values.Use App Path</string>
+							<string key="NSKeyPath">model.useAppPath</string>
 							<dictionary key="NSOptions">
 								<integer value="-1" key="NSMultipleValuesPlaceholder"/>
 								<integer value="-1" key="NSNoSelectionPlaceholder"/>
 								<integer value="-1" key="NSNotApplicablePlaceholder"/>
 								<integer value="-1" key="NSNullPlaceholder"/>
 							</dictionary>
-							<reference key="NSPreviousConnector" ref="201337137"/>
+							<reference key="NSPreviousConnector" ref="141438917"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">749</int>
+					<int key="connectionID">1223</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: values.Use App Path</string>
+						<string key="label">enabled: model.useAppPath</string>
 						<reference key="source" ref="1063515703"/>
-						<reference key="destination" ref="290274004"/>
-						<object class="NSNibBindingConnector" key="connector" id="970892377">
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector" id="564498306">
 							<reference key="NSSource" ref="1063515703"/>
-							<reference key="NSDestination" ref="290274004"/>
-							<string key="NSLabel">enabled: values.Use App Path</string>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: model.useAppPath</string>
 							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">values.Use App Path</string>
+							<string key="NSKeyPath">model.useAppPath</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">746</int>
+					<int key="connectionID">1228</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.App Path</string>
-						<reference key="source" ref="1063515703"/>
-						<reference key="destination" ref="290274004"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="1063515703"/>
-							<reference key="NSDestination" ref="290274004"/>
-							<string key="NSLabel">value: values.App Path</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.App Path</string>
-							<dictionary key="NSOptions">
-								<boolean value="YES" key="NSValidatesImmediately"/>
-								<string key="NSValueTransformerName">AppiumAppPathTransformer</string>
-							</dictionary>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">751</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled2: isServerRunning</string>
+						<string key="label">enabled2: model.isServerRunning</string>
 						<reference key="source" ref="1063515703"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="1063515703"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled2: isServerRunning</string>
+							<string key="NSLabel">enabled2: model.isServerRunning</string>
 							<string key="NSBinding">enabled2</string>
-							<string key="NSKeyPath">isServerRunning</string>
+							<string key="NSKeyPath">model.isServerRunning</string>
 							<dictionary key="NSOptions">
 								<integer value="-1" key="NSMultipleValuesPlaceholder"/>
 								<integer value="-1" key="NSNoSelectionPlaceholder"/>
@@ -1435,39 +1414,60 @@
 								<integer value="-1" key="NSNullPlaceholder"/>
 								<string key="NSValueTransformerName">NSNegateBoolean</string>
 							</dictionary>
-							<reference key="NSPreviousConnector" ref="970892377"/>
+							<reference key="NSPreviousConnector" ref="564498306"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">747</int>
+					<int key="connectionID">1230</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.Use Android Package</string>
+						<string key="label">value: model.appPath</string>
+						<reference key="source" ref="1063515703"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="1063515703"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: model.appPath</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">model.appPath</string>
+							<dictionary key="NSOptions">
+								<boolean value="NO" key="NSConditionallySetsEnabled"/>
+								<boolean value="YES" key="NSValidatesImmediately"/>
+								<string key="NSValueTransformerName">AppiumAppPathTransformer</string>
+							</dictionary>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1293</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: model.useAndroidPackage</string>
 						<reference key="source" ref="239966858"/>
-						<reference key="destination" ref="290274004"/>
+						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="239966858"/>
-							<reference key="NSDestination" ref="290274004"/>
-							<string key="NSLabel">value: values.Use Android Package</string>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: model.useAndroidPackage</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.Use Android Package</string>
+							<string key="NSKeyPath">model.useAndroidPackage</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">906</int>
+					<int key="connectionID">1259</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: isServerRunning</string>
+						<string key="label">enabled: model.isServerRunning</string>
 						<reference key="source" ref="239966858"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="239966858"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled: isServerRunning</string>
+							<string key="NSLabel">enabled: model.isServerRunning</string>
 							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">isServerRunning</string>
+							<string key="NSKeyPath">model.isServerRunning</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSValueTransformerName</string>
 								<string key="NS.object.0">NSNegateBoolean</string>
@@ -1475,35 +1475,35 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">917</int>
+					<int key="connectionID">1260</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.Use Android Activity</string>
-						<reference key="source" ref="275310990"/>
-						<reference key="destination" ref="290274004"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="275310990"/>
-							<reference key="NSDestination" ref="290274004"/>
-							<string key="NSLabel">value: values.Use Android Activity</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.Use Android Activity</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">908</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: isServerRunning</string>
+						<string key="label">value: model.useAndroidActivity</string>
 						<reference key="source" ref="275310990"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="275310990"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled: isServerRunning</string>
+							<string key="NSLabel">value: model.useAndroidActivity</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">model.useAndroidActivity</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1270</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: model.isServerRunning</string>
+						<reference key="source" ref="275310990"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="275310990"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: model.isServerRunning</string>
 							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">isServerRunning</string>
+							<string key="NSKeyPath">model.isServerRunning</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSValueTransformerName</string>
 								<string key="NS.object.0">NSNegateBoolean</string>
@@ -1511,62 +1511,19 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">991</int>
+					<int key="connectionID">1271</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: isServerRunning</string>
+						<string key="label">value: model.androidPackage</string>
 						<reference key="source" ref="169218561"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="198206612">
+						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="169218561"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled: isServerRunning</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">isServerRunning</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSValueTransformerName</string>
-								<string key="NS.object.0">NSNegateBoolean</string>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">972</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled2: values.Use Android Package</string>
-						<reference key="source" ref="169218561"/>
-						<reference key="destination" ref="290274004"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="169218561"/>
-							<reference key="NSDestination" ref="290274004"/>
-							<string key="NSLabel">enabled2: values.Use Android Package</string>
-							<string key="NSBinding">enabled2</string>
-							<string key="NSKeyPath">values.Use Android Package</string>
-							<dictionary key="NSOptions">
-								<integer value="-1" key="NSMultipleValuesPlaceholder"/>
-								<integer value="-1" key="NSNoSelectionPlaceholder"/>
-								<integer value="-1" key="NSNotApplicablePlaceholder"/>
-								<integer value="-1" key="NSNullPlaceholder"/>
-							</dictionary>
-							<reference key="NSPreviousConnector" ref="198206612"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">975</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.Android Package</string>
-						<reference key="source" ref="169218561"/>
-						<reference key="destination" ref="290274004"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="169218561"/>
-							<reference key="NSDestination" ref="290274004"/>
-							<string key="NSLabel">value: values.Android Package</string>
+							<string key="NSLabel">value: model.androidPackage</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.Android Package</string>
+							<string key="NSKeyPath">model.androidPackage</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSContinuouslyUpdatesValue</string>
 								<boolean value="YES" key="NS.object.0"/>
@@ -1574,19 +1531,19 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">1204</int>
+					<int key="connectionID">1262</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: isServerRunning</string>
-						<reference key="source" ref="300031656"/>
+						<string key="label">enabled: model.isServerRunning</string>
+						<reference key="source" ref="169218561"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="994982264">
-							<reference key="NSSource" ref="300031656"/>
+						<object class="NSNibBindingConnector" key="connector" id="134115378">
+							<reference key="NSSource" ref="169218561"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled: isServerRunning</string>
+							<string key="NSLabel">enabled: model.isServerRunning</string>
 							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">isServerRunning</string>
+							<string key="NSKeyPath">model.isServerRunning</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSValueTransformerName</string>
 								<string key="NS.object.0">NSNegateBoolean</string>
@@ -1594,42 +1551,42 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">967</int>
+					<int key="connectionID">1263</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled2: values.Use Android Activity</string>
-						<reference key="source" ref="300031656"/>
-						<reference key="destination" ref="290274004"/>
+						<string key="label">enabled2: model.useAndroidPackage</string>
+						<reference key="source" ref="169218561"/>
+						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="300031656"/>
-							<reference key="NSDestination" ref="290274004"/>
-							<string key="NSLabel">enabled2: values.Use Android Activity</string>
+							<reference key="NSSource" ref="169218561"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled2: model.useAndroidPackage</string>
 							<string key="NSBinding">enabled2</string>
-							<string key="NSKeyPath">values.Use Android Activity</string>
+							<string key="NSKeyPath">model.useAndroidPackage</string>
 							<dictionary key="NSOptions">
 								<integer value="-1" key="NSMultipleValuesPlaceholder"/>
 								<integer value="-1" key="NSNoSelectionPlaceholder"/>
 								<integer value="-1" key="NSNotApplicablePlaceholder"/>
 								<integer value="-1" key="NSNullPlaceholder"/>
 							</dictionary>
-							<reference key="NSPreviousConnector" ref="994982264"/>
+							<reference key="NSPreviousConnector" ref="134115378"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">978</int>
+					<int key="connectionID">1267</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.Android Activity</string>
+						<string key="label">value: model.androidActivity</string>
 						<reference key="source" ref="300031656"/>
-						<reference key="destination" ref="290274004"/>
+						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="300031656"/>
-							<reference key="NSDestination" ref="290274004"/>
-							<string key="NSLabel">value: values.Android Activity</string>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: model.androidActivity</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.Android Activity</string>
+							<string key="NSKeyPath">model.androidActivity</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSContinuouslyUpdatesValue</string>
 								<boolean value="YES" key="NS.object.0"/>
@@ -1637,35 +1594,78 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">1205</int>
+					<int key="connectionID">1273</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.Use UDID</string>
+						<string key="label">enabled: model.isServerRunning</string>
+						<reference key="source" ref="300031656"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector" id="165962331">
+							<reference key="NSSource" ref="300031656"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: model.isServerRunning</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">model.isServerRunning</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1274</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled2: model.useAndroidActivity</string>
+						<reference key="source" ref="300031656"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="300031656"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled2: model.useAndroidActivity</string>
+							<string key="NSBinding">enabled2</string>
+							<string key="NSKeyPath">model.useAndroidActivity</string>
+							<dictionary key="NSOptions">
+								<integer value="-1" key="NSMultipleValuesPlaceholder"/>
+								<integer value="-1" key="NSNoSelectionPlaceholder"/>
+								<integer value="-1" key="NSNotApplicablePlaceholder"/>
+								<integer value="-1" key="NSNullPlaceholder"/>
+							</dictionary>
+							<reference key="NSPreviousConnector" ref="165962331"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1278</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: model.useUDID</string>
 						<reference key="source" ref="616533042"/>
-						<reference key="destination" ref="290274004"/>
+						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="616533042"/>
-							<reference key="NSDestination" ref="290274004"/>
-							<string key="NSLabel">value: values.Use UDID</string>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: model.useUDID</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.Use UDID</string>
+							<string key="NSKeyPath">model.useUDID</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">1142</int>
+					<int key="connectionID">1232</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: isServerRunning</string>
+						<string key="label">enabled: model.isServerRunning</string>
 						<reference key="source" ref="616533042"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="616533042"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled: isServerRunning</string>
+							<string key="NSLabel">enabled: model.isServerRunning</string>
 							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">isServerRunning</string>
+							<string key="NSKeyPath">model.isServerRunning</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSValueTransformerName</string>
 								<string key="NS.object.0">NSNegateBoolean</string>
@@ -1673,62 +1673,19 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">1144</int>
+					<int key="connectionID">1233</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: isServerRunning</string>
+						<string key="label">value: model.udid</string>
 						<reference key="source" ref="337311930"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="205071244">
+						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="337311930"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled: isServerRunning</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">isServerRunning</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSValueTransformerName</string>
-								<string key="NS.object.0">NSNegateBoolean</string>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1171</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled2: values.Use UDID</string>
-						<reference key="source" ref="337311930"/>
-						<reference key="destination" ref="290274004"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="337311930"/>
-							<reference key="NSDestination" ref="290274004"/>
-							<string key="NSLabel">enabled2: values.Use UDID</string>
-							<string key="NSBinding">enabled2</string>
-							<string key="NSKeyPath">values.Use UDID</string>
-							<dictionary key="NSOptions">
-								<integer value="-1" key="NSMultipleValuesPlaceholder"/>
-								<integer value="-1" key="NSNoSelectionPlaceholder"/>
-								<integer value="-1" key="NSNotApplicablePlaceholder"/>
-								<integer value="-1" key="NSNullPlaceholder"/>
-							</dictionary>
-							<reference key="NSPreviousConnector" ref="205071244"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1173</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.UDID</string>
-						<reference key="source" ref="337311930"/>
-						<reference key="destination" ref="290274004"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="337311930"/>
-							<reference key="NSDestination" ref="290274004"/>
-							<string key="NSLabel">value: values.UDID</string>
+							<string key="NSLabel">value: model.udid</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.UDID</string>
+							<string key="NSKeyPath">model.udid</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSContinuouslyUpdatesValue</string>
 								<boolean value="YES" key="NS.object.0"/>
@@ -1736,35 +1693,19 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">1208</int>
+					<int key="connectionID">1235</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.Use BundleID</string>
-						<reference key="source" ref="720105001"/>
-						<reference key="destination" ref="290274004"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="720105001"/>
-							<reference key="NSDestination" ref="290274004"/>
-							<string key="NSLabel">value: values.Use BundleID</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.Use BundleID</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1183</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: isServerRunning</string>
-						<reference key="source" ref="720105001"/>
+						<string key="label">enabled: model.isServerRunning</string>
+						<reference key="source" ref="337311930"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="720105001"/>
+						<object class="NSNibBindingConnector" key="connector" id="25279104">
+							<reference key="NSSource" ref="337311930"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled: isServerRunning</string>
+							<string key="NSLabel">enabled: model.isServerRunning</string>
 							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">isServerRunning</string>
+							<string key="NSKeyPath">model.isServerRunning</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSValueTransformerName</string>
 								<string key="NS.object.0">NSNegateBoolean</string>
@@ -1772,19 +1713,78 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">1194</int>
+					<int key="connectionID">1236</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: isServerRunning</string>
+						<string key="label">enabled2: model.useUDID</string>
+						<reference key="source" ref="337311930"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="337311930"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled2: model.useUDID</string>
+							<string key="NSBinding">enabled2</string>
+							<string key="NSKeyPath">model.useUDID</string>
+							<dictionary key="NSOptions">
+								<integer value="-1" key="NSMultipleValuesPlaceholder"/>
+								<integer value="-1" key="NSNoSelectionPlaceholder"/>
+								<integer value="-1" key="NSNotApplicablePlaceholder"/>
+								<integer value="-1" key="NSNullPlaceholder"/>
+							</dictionary>
+							<reference key="NSPreviousConnector" ref="25279104"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1239</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: model.isServerRunning</string>
+						<reference key="source" ref="720105001"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="720105001"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: model.isServerRunning</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">model.isServerRunning</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1250</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: model.useBundleID</string>
+						<reference key="source" ref="720105001"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="720105001"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: model.useBundleID</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">model.useBundleID</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1283</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: model.isServerRunning</string>
 						<reference key="source" ref="733906917"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="733906917"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled: isServerRunning</string>
+							<string key="NSLabel">enabled: model.isServerRunning</string>
 							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">isServerRunning</string>
+							<string key="NSKeyPath">model.isServerRunning</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSValueTransformerName</string>
 								<string key="NS.object.0">NSNegateBoolean</string>
@@ -1796,15 +1796,15 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: isServerRunning</string>
+						<string key="label">enabled: model.isServerRunning</string>
 						<reference key="source" ref="658957893"/>
 						<reference key="destination" ref="1001"/>
-						<object class="NSNibBindingConnector" key="connector" id="1006997529">
+						<object class="NSNibBindingConnector" key="connector" id="530665123">
 							<reference key="NSSource" ref="658957893"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled: isServerRunning</string>
+							<string key="NSLabel">enabled: model.isServerRunning</string>
 							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">isServerRunning</string>
+							<string key="NSKeyPath">model.isServerRunning</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSValueTransformerName</string>
 								<string key="NS.object.0">NSNegateBoolean</string>
@@ -1812,42 +1812,19 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">1192</int>
+					<int key="connectionID">1254</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled2: values.Use BundleID</string>
+						<string key="label">value: model.bundleID</string>
 						<reference key="source" ref="658957893"/>
-						<reference key="destination" ref="290274004"/>
+						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="658957893"/>
-							<reference key="NSDestination" ref="290274004"/>
-							<string key="NSLabel">enabled2: values.Use BundleID</string>
-							<string key="NSBinding">enabled2</string>
-							<string key="NSKeyPath">values.Use BundleID</string>
-							<dictionary key="NSOptions">
-								<integer value="-1" key="NSMultipleValuesPlaceholder"/>
-								<integer value="-1" key="NSNoSelectionPlaceholder"/>
-								<integer value="-1" key="NSNotApplicablePlaceholder"/>
-								<integer value="-1" key="NSNullPlaceholder"/>
-							</dictionary>
-							<reference key="NSPreviousConnector" ref="1006997529"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1193</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.BundleID</string>
-						<reference key="source" ref="658957893"/>
-						<reference key="destination" ref="290274004"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="658957893"/>
-							<reference key="NSDestination" ref="290274004"/>
-							<string key="NSLabel">value: values.BundleID</string>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: model.bundleID</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.BundleID</string>
+							<string key="NSKeyPath">model.bundleID</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSContinuouslyUpdatesValue</string>
 								<boolean value="YES" key="NS.object.0"/>
@@ -1855,19 +1832,42 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">1206</int>
+					<int key="connectionID">1286</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: isServerRunning</string>
+						<string key="label">enabled2: model.useBundleID</string>
+						<reference key="source" ref="658957893"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="658957893"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled2: model.useBundleID</string>
+							<string key="NSBinding">enabled2</string>
+							<string key="NSKeyPath">model.useBundleID</string>
+							<dictionary key="NSOptions">
+								<integer value="-1" key="NSMultipleValuesPlaceholder"/>
+								<integer value="-1" key="NSNoSelectionPlaceholder"/>
+								<integer value="-1" key="NSNotApplicablePlaceholder"/>
+								<integer value="-1" key="NSNullPlaceholder"/>
+							</dictionary>
+							<reference key="NSPreviousConnector" ref="530665123"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1288</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: model.isServerRunning</string>
 						<reference key="source" ref="656061406"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="656061406"/>
 							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">enabled: isServerRunning</string>
+							<string key="NSLabel">enabled: model.isServerRunning</string>
 							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">isServerRunning</string>
+							<string key="NSKeyPath">model.isServerRunning</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSValueTransformerName</string>
 								<string key="NS.object.0">NSNegateBoolean</string>
@@ -1875,23 +1875,23 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">1200</int>
+					<int key="connectionID">1256</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.Use Mobile Safari</string>
+						<string key="label">value: model.useMobileSafari</string>
 						<reference key="source" ref="656061406"/>
-						<reference key="destination" ref="290274004"/>
+						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="656061406"/>
-							<reference key="NSDestination" ref="290274004"/>
-							<string key="NSLabel">value: values.Use Mobile Safari</string>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: model.useMobileSafari</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.Use Mobile Safari</string>
+							<string key="NSKeyPath">model.useMobileSafari</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">1203</int>
+					<int key="connectionID">1290</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2371,7 +2371,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1208</int>
+			<int key="maxID">1296</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2379,15 +2379,10 @@
 					<string key="className">AppiumMonitorWindowController</string>
 					<string key="superclassName">NSWindowController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="chooseFile:">id</string>
 						<string key="clearLog:">id</string>
 						<string key="launchButtonClicked:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="chooseFile:">
-							<string key="name">chooseFile:</string>
-							<string key="candidateClassName">id</string>
-						</object>
 						<object class="IBActionInfo" key="clearLog:">
 							<string key="name">clearLog:</string>
 							<string key="candidateClassName">id</string>
