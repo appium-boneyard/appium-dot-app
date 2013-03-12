@@ -72,13 +72,15 @@ AppiumMonitorWindowController *mainWindowController;
 {
     NSAlert *upgradeAlert = [NSAlert new];
     [upgradeAlert setMessageText:@"Appium.app Upgrade Available"];
-    [upgradeAlert setInformativeText:[NSString stringWithFormat:@"Would you like to stop the server and download the latest version of Appium.app?\n\nYour Version:\t%@\nLatest Version:\t%@", [versions objectAtIndex:0], [versions objectAtIndex:1]]];
-    [upgradeAlert addButtonWithTitle:@"No"];
-    [upgradeAlert addButtonWithTitle:@"Yes"];
-    if([upgradeAlert runModal] == NSAlertSecondButtonReturn)
-    {
-        [self performSelectorInBackground:@selector(doAppUpgradeInstall) withObject:nil];
-    }
+	[upgradeAlert setInformativeText:@"You can download the latest Appium.app from http://appium.io"];
+	[upgradeAlert runModal];
+    //[upgradeAlert setInformativeText:[NSString stringWithFormat:@"Would you like to stop the server and download the latest version of Appium.app?\n\nYour Version:\t%@\nLatest Version:\t%@", [versions objectAtIndex:0], [versions objectAtIndex:1]]];
+    //[upgradeAlert addButtonWithTitle:@"No"];
+    //[upgradeAlert addButtonWithTitle:@"Yes"];
+    //if([upgradeAlert runModal] == NSAlertSecondButtonReturn)
+    //{
+    //    [self performSelectorInBackground:@selector(doAppUpgradeInstall) withObject:nil];
+    //}
 }
 
 -(void)doAppUpgradeInstall
