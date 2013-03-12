@@ -39,13 +39,14 @@ NSStatusItem *item;
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-	if([[object model] isServerRunning])
+	AppiumAppDelegate *delegate = (AppiumAppDelegate*)[[NSApplication sharedApplication] delegate];
+	if([object isServerRunning])
 	{
-		[self installServerOnMenu:object];
+		[self installServerOnMenu:[delegate mainWindowController]];
 	}
 	else
 	{
-		[self installServerOffMenu:object];
+		[self installServerOffMenu:[delegate mainWindowController]];
 	}
 }
 
