@@ -2,6 +2,25 @@
 <!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
 <dictionary title="Appium Terminology">
 	<suite name="Appium Suite" code="APMS" description="Appium application specific scripting facilities.">
+		<enumeration name="platform" code="cpfm" description="platform">
+			<enumerator name="android" code="cpan" description="android platform">
+				<cocoa string-value="android"/>
+			</enumerator>
+			<enumerator name="ios" code="cpio" description="ios platform">
+				<cocoa string-value="ios"/>
+			</enumerator>
+		</enumeration>
+		<enumeration name="ios device" code="ciod" description="ios device">
+			<enumerator name="ipad" code="cipa" description="ipad">
+				<cocoa string-value="ipad"/>
+			</enumerator>
+			<enumerator name="iphone" code="ciph" description="iphone">
+				<cocoa string-value="iphone"/>
+			</enumerator>
+			<enumerator name="none" code="cdno" description="no device">
+				<cocoa string-value="none"/>
+			</enumerator>
+		</enumeration>
 		<class name="application" code="capp" description="Appium Application">
 			<cocoa class="NSApplication"/>
 			<property name="is server running" code="amsr" description="true if the appium server is running" type="boolean" access="r">
@@ -70,11 +89,11 @@
 			<responds-to command="clear log">
 				<cocoa method="s_ClearLog:"/>
 			</responds-to>
-			<responds-to command="use android">
-				<cocoa method="s_UseAndroid:"/>
+			<responds-to command="use platform">
+				<cocoa method="s_UsePlatform:"/>
 			</responds-to>
-			<responds-to command="use ios">
-				<cocoa method="s_UseiOS:"/>
+			<responds-to command="force ios device">
+				<cocoa method="s_ForceiOSDevice:"/>
 			</responds-to>
 		</class>
 		<command name="start server" code="appmstas" description="starts the appium server">
@@ -83,8 +102,12 @@
 		<command name="stop server" code="appmstos" description="stops the appium server">
 			<result description="true if the server was stopped" type="boolean"/>
 		</command>
-		<command name="clear log" code="aapmclog" description="clears the appium server log display" />
-		<command name="use android" code="aapmusea" description="tells the app to use android" />
-		<command name="use ios" code="aapmusei" description="tells the app to use ios" />
+		<command name="clear log" code="aapmclog" description="clears the appium server log display"/>
+		<command name="force ios device" code="appmfrcd" description="force a device type">
+			<direct-parameter description="type of ios device to force" type="ios device"/>
+		</command>
+		<command name="use platform" code="appmusep" description="sets the platform">
+			<direct-parameter description="platform to use" type="platform"/>
+		</command>
 	</suite>
 </dictionary>

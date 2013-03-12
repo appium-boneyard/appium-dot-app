@@ -13,7 +13,7 @@
 	<key>Check For Updates</key>
 	<true/>
 	<key>Device</key>
-	<string>iPhone</string>
+	<string>iPad</string>
 	<key>Devices</key>
 	<array>
 		<string>iPhone</string>

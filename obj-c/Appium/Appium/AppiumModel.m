@@ -122,8 +122,10 @@ BOOL _isServerRunning;
 -(BOOL) forceDevice { return [_defaults boolForKey:PLIST_FORCE_DEVICE]; }
 -(void) setForceDevice:(BOOL)forceDevice { [_defaults setBool:forceDevice forKey:PLIST_FORCE_DEVICE]; }
 
--(iOSAutomationDevice) deviceToForce { return [[_defaults stringForKey:PLIST_FORCE_DEVICE] isEqualToString:PLIST_FORCE_DEVICE_IPAD] ? iOSAutomationDevice_iPad : iOSAutomationDevice_iPhone; }
--(void) setDeviceToForce:(iOSAutomationDevice)deviceToForce {[_defaults setValue:(deviceToForce == iOSAutomationDevice_iPad ? PLIST_FORCE_DEVICE_IPAD : PLIST_FORCE_DEVICE_IPHONE) forKey:PLIST_FORCE_DEVICE]; }
+-(iOSAutomationDevice) deviceToForce { return [[_defaults stringForKey:PLIST_DEVICE] isEqualToString:PLIST_FORCE_DEVICE_IPAD] ? iOSAutomationDevice_iPad : iOSAutomationDevice_iPhone; }
+-(void) setDeviceToForce:(iOSAutomationDevice)deviceToForce {[self setDeviceToForceString:(deviceToForce == iOSAutomationDevice_iPad ? PLIST_FORCE_DEVICE_IPAD : PLIST_FORCE_DEVICE_IPHONE)]; }
+-(NSString*) deviceToForceString { return [[_defaults valueForKey:PLIST_DEVICE] isEqualToString:PLIST_FORCE_DEVICE_IPAD] ? PLIST_FORCE_DEVICE_IPAD : PLIST_FORCE_DEVICE_IPHONE ; }
+-(void) setDeviceToForceString:(NSString *)deviceToForceString { [_defaults setValue:deviceToForceString forKey:PLIST_DEVICE]; }
 
 -(Platform)platform { return [_defaults integerForKey:PLIST_TAB_STATE] == PLIST_TAB_STATE_ANDROID ? Platform_Android : Platform_iOS; }
 -(void)setPlatform:(Platform)platform { [_defaults setInteger:(platform == Platform_Android ? PLIST_TAB_STATE_ANDROID : PLIST_TAB_STATE_IOS) forKey:PLIST_TAB_STATE]; }

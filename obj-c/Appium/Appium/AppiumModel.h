@@ -47,6 +47,7 @@ typedef enum iOSAutomationDeviceTypes
 @property NSString *bundleID;
 @property BOOL useMobileSafari;
 @property iOSAutomationDevice deviceToForce;
+@property NSString *deviceToForceString;
 @property Platform platform;
 
 @end

@@ -98,15 +98,36 @@
 	[[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] clearLog:nil];
 }
 
--(void) s_UseAndroid:(NSScriptCommand *)command
+-(void) s_UsePlatform:(NSScriptCommand *)command
 {
-	[[self model] setPlatform:Platform_Android];
+	NSString *parameter = [command directParameter];
+	if ([parameter isEqualToString:@"android"])
+	{
+		[[self model] setPlatform:Platform_Android];
+	}
+	else if ([parameter isEqualToString:@"ios"])
+	{
+		[[self model] setPlatform:Platform_iOS];
+	}
 }
 
--(void) s_UseiOS:(NSScriptCommand *)command
+-(void) s_ForceiOSDevice:(NSScriptCommand *)command
 {
-	[[self model] setPlatform:Platform_iOS];
+	NSString *parameter = [command directParameter];
+	if ([parameter isEqualToString:@"none"])
+	{
+		[[self model] setForceDevice:NO];
+	}
+	else if ([parameter isEqualToString:@"ipad"])
+	{
+		[[self model] setForceDevice:YES];
+		[[self model] setDeviceToForce:iOSAutomationDevice_iPad];
+	}
+	else if ([parameter isEqualToString:@"iphone"])
+	{
+		[[self model] setForceDevice:YES];
+		[[self model] setDeviceToForce:iOSAutomationDevice_iPhone];
+	}
 }
-
 
 @end
