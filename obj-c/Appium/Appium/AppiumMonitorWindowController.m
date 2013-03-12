@@ -39,7 +39,7 @@ AppiumMenuBarManager *menuBarManager;
 {
     [super windowDidLoad];
 	menuBarManager = [AppiumMenuBarManager new];
-	[self addObserver:menuBarManager forKeyPath:@"isServerRunning" options:NSKeyValueObservingOptionNew context:NULL];
+	[[self model] addObserver:menuBarManager forKeyPath:@"isServerRunning" options:NSKeyValueObservingOptionNew context:NULL];
 }
 
 -(BOOL)killServer
