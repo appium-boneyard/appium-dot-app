@@ -2,32 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Server Address</key>
-	<string>127.0.0.1</string>
-	<key>Server Port</key>
-	<string>4723</string>
+	<key>Android Activity</key>
+	<string></string>
+	<key>Android Package</key>
+	<string></string>
 	<key>App Path</key>
 	<string>/</string>
-	<key>Use App Path</key>
-	<false/>
-	<key>Use UDID</key>
-	<false/>
-	<key>UDID</key>
+	<key>BundleID</key>
 	<string></string>
-	<key>Verbose</key>
-	<false/>
-	<key>Prelaunch</key>
-	<false/>
-	<key>Reset Application State</key>
-	<true/>
-	<key>Keep Artifacts</key>
-	<true/>
 	<key>Check For Updates</key>
 	<true/>
-	<key>Use Warp</key>
-	<false/>
-	<key>Force Device</key>
-	<false/>
 	<key>Device</key>
 	<string>iPhone</string>
 	<key>Devices</key>
@@ -35,9 +19,41 @@
 		<string>iPhone</string>
 		<string>iPad</string>
 	</array>
-	<key>Preference Tab State</key>
-	<integer>0</integer>
+	<key>Force Device</key>
+	<false/>
+	<key>Keep Artifacts</key>
+	<true/>
+	<key>Prelaunch</key>
+	<false/>
+	<key>Reset Application State</key>
+	<true/>
+	<key>Server Address</key>
+	<string>0.0.0.0</string>
+	<key>Server Port</key>
+	<string>4723</string>
 	<key>Skip Android Install</key>
+	<false/>
+	<key>Tab State</key>
+	<integer>0</integer>
+	<key>UDID</key>
+	<string></string>
+	<key>Use Android Activity</key>
+	<string></string>
+	<key>Use Android Package</key>
+	<string></string>
+	<key>Use App Path</key>
+	<false/>
+	<key>Use BundleID</key>
+	<string></string>
+	<key>Use Mobile Safari</key>
+	<string></string>
+	<key>Use UDID</key>
+	<false/>
+	<key>Use Warp</key>
+	<false/>
+	<key>Verbose</key>
+	<true/>
+	<key>Without Delay</key>
 	<false/>
 </dict>
 </plist>
