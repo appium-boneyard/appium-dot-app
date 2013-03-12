@@ -77,6 +77,56 @@
     [[NSUserDefaults standardUserDefaults] setValue:s_UDID forKey:PLIST_UDID];
 }
 
+-(NSNumber*) s_UseAndroidPackage
+{
+	return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:PLIST_USE_ANDROID_PACKAGE]];
+}
+
+-(void) setS_UseAndroidPackage:(NSNumber *)s_UseAndroidPackage
+{
+	[[NSUserDefaults standardUserDefaults] setBool:[s_UseAndroidPackage boolValue] forKey:PLIST_USE_ANDROID_PACKAGE];
+}
+
+-(NSString*) s_AndroidPackage
+{
+    return [[NSUserDefaults standardUserDefaults] stringForKey:PLIST_ANDROID_PACKAGE];
+}
+
+-(void) setS_AndroidPackage:(NSString *)s_AndroidPackage
+{
+    [[NSUserDefaults standardUserDefaults] setValue:s_AndroidPackage forKey:PLIST_ANDROID_PACKAGE];
+}
+
+-(NSNumber*) s_UseAndroidActivity
+{
+	return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:PLIST_USE_ANDROID_ACTIVITY]];
+}
+-(void) setS_UseAndroidActivity:(NSNumber *)s_UseAndroidActivity
+{
+	[[NSUserDefaults standardUserDefaults] setBool:[s_UseAndroidActivity boolValue] forKey:PLIST_USE_ANDROID_ACTIVITY];
+}
+
+-(NSString*) s_AndroidActivity
+{
+    return [[NSUserDefaults standardUserDefaults] stringForKey:PLIST_ANDROID_ACTIVITY];
+}
+
+-(void) setS_AndroidActivity:(NSString *)s_AndroidActivity
+{
+    [[NSUserDefaults standardUserDefaults] setValue:s_AndroidActivity forKey:PLIST_ANDROID_ACTIVITY];
+}
+
+
+-(NSNumber*) s_SkipAndroidInstall
+{
+	return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:PLIST_SKIP_ANDROID_INSTALL]];
+}
+
+-(void) setS_SkipAndroidInstall:(NSNumber *)S_SkipAndroidInstall
+{
+	[[NSUserDefaults standardUserDefaults] setBool:[S_SkipAndroidInstall boolValue] forKey:PLIST_SKIP_ANDROID_INSTALL];
+}
+
 -(NSNumber*) s_PrelaunchApp
 {
     return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:PLIST_PRELAUNCH]];
@@ -105,6 +155,16 @@
 -(void) setS_UseWarp:(NSNumber *)s_UseWarp
 {
 	[[NSUserDefaults standardUserDefaults] setBool:[s_UseWarp boolValue] forKey:PLIST_USE_WARP];
+}
+
+-(NSNumber*) s_UseInstrumentsWithoutDelay
+{
+    return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:PLIST_WITHOUT_DELAY]];
+}
+
+-(void) setS_UseInstrumentsWithoutDelay:(NSNumber *)s_UseInstrumentsWithoutDelay
+{
+	[[NSUserDefaults standardUserDefaults] setBool:[s_UseInstrumentsWithoutDelay boolValue] forKey:PLIST_WITHOUT_DELAY];
 }
 
 -(NSNumber*) s_ResetApplicationState
@@ -153,5 +213,16 @@
 {
 	[[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] clearLog:nil];
 }
+
+-(void) s_UseAndroid:(NSScriptCommand *)command
+{
+	[[NSUserDefaults standardUserDefaults] setInteger:PLIST_TAB_STATE_ANDROID forKey:PLIST_TAB_STATE];
+}
+
+-(void) s_UseiOS:(NSScriptCommand *)command
+{
+	[[NSUserDefaults standardUserDefaults] setInteger:PLIST_TAB_STATE_IOS forKey:PLIST_TAB_STATE];
+}
+
 
 @end
