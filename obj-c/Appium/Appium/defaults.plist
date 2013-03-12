@@ -30,7 +30,7 @@
 	<key>Server Address</key>
 	<string>0.0.0.0</string>
 	<key>Server Port</key>
-	<string>4723</string>
+	<integer>4723</integer>
 	<key>Skip Android Install</key>
 	<false/>
 	<key>Tab State</key>

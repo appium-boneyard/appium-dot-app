@@ -8,14 +8,15 @@
 
 #import <Cocoa/Cocoa.h>
 #import "AppiumMonitorWindowController.h"
+#import "AppiumModel.h"
 
 @interface AppiumAppDelegate : NSObject <NSApplicationDelegate>
 
 @property (nonatomic, retain) IBOutlet AppiumMonitorWindowController *mainWindowController;
+@property (nonatomic, retain) AppiumModel *model;
 
 - (IBAction)displayPreferences:(id)sender;
 - (IBAction)checkForUpdates:(id)sender;
-
 - (void) restart;
 
 @end

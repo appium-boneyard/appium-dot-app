@@ -10,4 +10,24 @@
 
 @implementation AppiumPortTransformer
 
++ (Class)transformedValueClass
+{
+    return [NSNumber class];
+}
+
++ (BOOL)allowsReverseTransformation
+{
+    return YES;
+}
+
+- (id)transformedValue:(id)value
+{
+    return [[value stringValue] stringByReplacingOccurrencesOfString:@"," withString:@""];
+}
+
+-(id) reverseTransformedValue:(id)value
+{
+	return [NSNumber numberWithInt:[value intValue]];
+}
+
 @end

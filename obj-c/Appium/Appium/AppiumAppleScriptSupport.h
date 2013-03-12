@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
+#import "AppiumModel.h"
 
 @interface NSApplication (AppiumAppleScriptSupport)
+
+@property (readonly) AppiumModel *model;
 
 @property (readonly) NSNumber *s_IsServerRunning;
 @property NSString *s_IPAddress;
@@ -36,4 +39,5 @@
 -(void) s_ClearLog: (NSScriptCommand*)command;
 -(void) s_UseAndroid: (NSScriptCommand*)command;
 -(void) s_UseiOS: (NSScriptCommand*)command;
+
 @end
