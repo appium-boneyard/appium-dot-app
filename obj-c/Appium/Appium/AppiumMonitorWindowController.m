@@ -67,7 +67,7 @@ AppiumMenuBarManager *menuBarManager;
 	// build arguments
     NSArray *arguments = [NSMutableArray arrayWithObjects: @"server.js", nil];
 	
-	if (![[[self ipAddressTextField] stringValue] isEqualTo:@"127.0.0.1"])
+	if (![[[self ipAddressTextField] stringValue] isEqualTo:@"0.0.0.0"])
     {
         arguments = [arguments arrayByAddingObject:@"--address"];
         arguments = [arguments arrayByAddingObject:[[self ipAddressTextField] stringValue]];
@@ -110,22 +110,48 @@ AppiumMenuBarManager *menuBarManager;
     }
     
     // iOS Prefs
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_FORCE_DEVICE])
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:PLIST_TAB_STATE] == PLIST_TAB_STATE_IOS)
     {
-        if ([[[NSUserDefaults standardUserDefaults] stringForKey:PLIST_DEVICE] isEqualToString:PLIST_FORCE_DEVICE_IPHONE])
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_WITHOUT_DELAY])
         {
-            arguments = [arguments arrayByAddingObject:@"--force-iphone"];
+            arguments = [arguments arrayByAddingObject:@"--without-delay"];
         }
-        else if ([[[NSUserDefaults standardUserDefaults] stringForKey:PLIST_DEVICE] isEqualToString:PLIST_FORCE_DEVICE_IPAD])
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_FORCE_DEVICE])
         {
-            arguments = [arguments arrayByAddingObject:@"--force-ipad"];
+            if ([[[NSUserDefaults standardUserDefaults] stringForKey:PLIST_DEVICE] isEqualToString:PLIST_FORCE_DEVICE_IPHONE])
+            {
+                arguments = [arguments arrayByAddingObject:@"--force-iphone"];
+            }
+            else if ([[[NSUserDefaults standardUserDefaults] stringForKey:PLIST_DEVICE] isEqualToString:PLIST_FORCE_DEVICE_IPAD])
+            {
+                arguments = [arguments arrayByAddingObject:@"--force-ipad"];
+            }
         }
     }
     
     // Android Prefs
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_SKIP_ANDROID_INSTALL])
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:PLIST_TAB_STATE] == PLIST_TAB_STATE_ANDROID)
     {
-        arguments = [arguments arrayByAddingObject:@"--skip-install"];
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_SKIP_ANDROID_INSTALL])
+        {
+            arguments = [arguments arrayByAddingObject:@"--skip-install"];
+        }
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_USE_ANDROID_PACKAGE])
+        {
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_ANDROID_PACKAGE])
+            {
+                arguments = [arguments arrayByAddingObject:@"--app-pkg"];
+                arguments = [arguments arrayByAddingObject:[[NSUserDefaults standardUserDefaults] stringForKey:PLIST_ANDROID_PACKAGE]];
+            }
+        }
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_USE_ANDROID_ACTIVITY])
+        {
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:PLIST_ANDROID_ACTIVITY])
+            {
+                arguments = [arguments arrayByAddingObject:@"--app-activity"];
+                arguments = [arguments arrayByAddingObject:[[NSUserDefaults standardUserDefaults] stringForKey:PLIST_ANDROID_ACTIVITY]];
+            }
+        }
     }
     
     [serverTask setArguments: arguments];
@@ -201,7 +227,7 @@ AppiumMenuBarManager *menuBarManager;
 	
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
 	[openDlg setShowsHiddenFiles:YES];
-	[openDlg setAllowedFileTypes:[NSArray arrayWithObjects:@"app",nil]];
+	[openDlg setAllowedFileTypes:[NSArray arrayWithObjects:@"app", @"apk", nil]];
     [openDlg setCanChooseFiles:YES];
     [openDlg setCanChooseDirectories:NO];
     [openDlg setPrompt:@"Select"];

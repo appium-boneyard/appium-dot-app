@@ -18,8 +18,14 @@
 @property NSString *s_AppPath;
 @property NSNumber *s_UseUDID;
 @property NSString *s_UDID;
+@property NSNumber *s_UseAndroidPackage;
+@property NSString *s_AndroidPackage;
+@property NSNumber *s_UseAndroidActivity;
+@property NSString *s_AndroidActivity;
+@property NSNumber *s_SkipAndroidInstall;
 @property NSNumber *s_PrelaunchApp;
 @property NSNumber *s_KeepArtifacts;
+@property NSNumber *s_UseInstrumentsWithoutDelay;
 @property NSNumber *s_UseWarp;
 @property NSNumber *s_ResetApplicationState;
 @property NSNumber *s_CheckForUpdates;
@@ -28,4 +34,6 @@
 -(NSNumber*) s_StartServer: (NSScriptCommand*)command;
 -(NSNumber*) s_StopServer: (NSScriptCommand*)command;
 -(void) s_ClearLog: (NSScriptCommand*)command;
+-(void) s_UseAndroid: (NSScriptCommand*)command;
+-(void) s_UseiOS: (NSScriptCommand*)command;
 @end

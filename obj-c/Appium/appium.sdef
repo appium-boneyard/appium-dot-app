@@ -25,6 +25,18 @@
 			<property name="UDID" code="amud" description="device udid" type="text">
 				<cocoa key="s_UDID"/>
 			</property>
+			<property name="use android package" code="auap" description="true if an android package is supplied" type="boolean">
+				<cocoa key="s_UseAndroidPackage"/>
+			</property>
+			<property name="android package" code="apap" description="name of android package" type="text">
+				<cocoa key="s_AndroidPackage"/>
+			</property>
+			<property name="use android activity" code="auaa" description="true if an android activity is supplied" type="boolean">
+				<cocoa key="s_UseAndroidActivity"/>
+			</property>
+			<property name="android activity" code="apaa" description="name of android activity" type="text">
+				<cocoa key="s_AndroidActivity"/>
+			</property>
 			<property name="prelaunch simulator" code="apps" description="true if the simulator will prelaunch" type="boolean">
 				<cocoa key="s_PrelaunchApp"/>
 			</property>
@@ -33,6 +45,12 @@
 			</property>
 			<property name="use warp" code="apuw" description="true if warp speed is enabled" type="boolean">
 				<cocoa key="s_UseWarp"/>
+			</property>
+			<property name="use instruments without delay" code="apui" description="true if instruments without delay is enabled" type="boolean">
+				<cocoa key="s_UseInstrumentsWithoutDelay"/>
+			</property>
+			<property name="skip android install" code="apsi" description="true if android install will be skipped" type="boolean">
+				<cocoa key="s_SkipAndroidInstall"/>
 			</property>
 			<property name="reset app state" code="aprs" description="true if warp application state will be reset after the session" type="boolean">
 				<cocoa key="s_ResetApplicationState"/>
@@ -52,6 +70,12 @@
 			<responds-to command="clear log">
 				<cocoa method="s_ClearLog:"/>
 			</responds-to>
+			<responds-to command="use android">
+				<cocoa method="s_UseAndroid:"/>
+			</responds-to>
+			<responds-to command="use ios">
+				<cocoa method="s_UseiOS:"/>
+			</responds-to>
 		</class>
 		<command name="start server" code="appmstas" description="starts the appium server">
 			<result description="true if the server was started" type="boolean"/>
@@ -60,5 +84,7 @@
 			<result description="true if the server was stopped" type="boolean"/>
 		</command>
 		<command name="clear log" code="aapmclog" description="clears the appium server log display" />
+		<command name="use android" code="aapmusea" description="tells the app to use android" />
+		<command name="use ios" code="aapmusei" description="tells the app to use ios" />
 	</suite>
 </dictionary>
