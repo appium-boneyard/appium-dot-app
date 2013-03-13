@@ -7,8 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "WebDriverElementNode.h"
 
 @interface AppiumInspectorWindowController : NSWindowController
-@property (weak) IBOutlet NSBrowser *browser;
-
 @end
