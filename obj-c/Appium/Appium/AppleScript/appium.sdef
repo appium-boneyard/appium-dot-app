@@ -2,14 +2,6 @@
 <!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
 <dictionary title="Appium Terminology">
 	<suite name="Appium Suite" code="APMS" description="Appium application specific scripting facilities.">
-		<enumeration name="platform" code="cpfm" description="platform">
-			<enumerator name="android" code="cpan" description="android platform">
-				<cocoa string-value="android"/>
-			</enumerator>
-			<enumerator name="ios" code="cpio" description="ios platform">
-				<cocoa string-value="ios"/>
-			</enumerator>
-		</enumeration>
 		<enumeration name="ios device" code="ciod" description="ios device">
 			<enumerator name="ipad" code="cipa" description="ipad">
 				<cocoa string-value="ipad"/>
@@ -21,10 +13,42 @@
 				<cocoa string-value="none"/>
 			</enumerator>
 		</enumeration>
+		<enumeration name="platform" code="cpfm" description="platform">
+			<enumerator name="android" code="cpan" description="android platform">
+				<cocoa string-value="android"/>
+			</enumerator>
+			<enumerator name="ios" code="cpio" description="ios platform">
+				<cocoa string-value="ios"/>
+			</enumerator>
+		</enumeration>
 		<class name="application" code="capp" description="Appium Application">
 			<cocoa class="NSApplication"/>
+			<property name="android activity" code="apaa" description="name of android activity" type="text">
+				<cocoa key="s_AndroidActivity"/>
+			</property>
+			<property name="android package" code="apap" description="name of android package" type="text">
+				<cocoa key="s_AndroidPackage"/>
+			</property>
+			<property name="app path" code="amap" description="path to mobile application" type="text">
+				<cocoa key="s_AppPath"/>
+			</property>
+			<property name="check for updates" code="apcu" description="true if appium will check for updates" type="boolean">
+				<cocoa key="s_CheckForUpdates"/>
+			</property>
 			<property name="is server running" code="amsr" description="true if the appium server is running" type="boolean" access="r">
 				<cocoa key="s_IsServerRunning"/>
+			</property>
+			<property name="keep artifacts" code="apka" description="true if artifacts will be kept after the session" type="boolean">
+				<cocoa key="s_KeepArtifacts"/>
+			</property>
+			<property name="log text" code="amlt" description="text from the appium log" type="text" access="r">
+				<cocoa key="s_LogText"/>
+			</property>
+			<property name="prelaunch simulator" code="apps" description="true if the simulator will prelaunch" type="boolean">
+				<cocoa key="s_PrelaunchApp"/>
+			</property>
+			<property name="reset app state" code="aprs" description="true if warp application state will be reset after the session" type="boolean">
+				<cocoa key="s_ResetApplicationState"/>
 			</property>
 			<property name="server address" code="amsa" description="ip address for the appium server" type="text">
 				<cocoa key="s_IPAddress"/>
@@ -32,79 +56,55 @@
 			<property name="server port" code="amsp" description="port for the appium server" type="integer">
 				<cocoa key="s_Port"/>
 			</property>
-			<property name="use app path" code="apua" description="true if the app path is being used" type="boolean">
-				<cocoa key="s_UseAppPath"/>
-			</property>
-			<property name="app path" code="amap" description="path to mobile application" type="text">
-				<cocoa key="s_AppPath"/>
-			</property>
-			<property name="use UDID" code="apuu" description="true if the udid is being used" type="boolean">
-				<cocoa key="s_UseUDID"/>
+			<property name="skip android install" code="apsi" description="true if android install will be skipped" type="boolean">
+				<cocoa key="s_SkipAndroidInstall"/>
 			</property>
 			<property name="UDID" code="amud" description="device udid" type="text">
 				<cocoa key="s_UDID"/>
 			</property>
-			<property name="use android package" code="auap" description="true if an android package is supplied" type="boolean">
-				<cocoa key="s_UseAndroidPackage"/>
-			</property>
-			<property name="android package" code="apap" description="name of android package" type="text">
-				<cocoa key="s_AndroidPackage"/>
-			</property>
 			<property name="use android activity" code="auaa" description="true if an android activity is supplied" type="boolean">
 				<cocoa key="s_UseAndroidActivity"/>
 			</property>
-			<property name="android activity" code="apaa" description="name of android activity" type="text">
-				<cocoa key="s_AndroidActivity"/>
+			<property name="use android package" code="auap" description="true if an android package is supplied" type="boolean">
+				<cocoa key="s_UseAndroidPackage"/>
 			</property>
-			<property name="prelaunch simulator" code="apps" description="true if the simulator will prelaunch" type="boolean">
-				<cocoa key="s_PrelaunchApp"/>
-			</property>
-			<property name="keep artifacts" code="apka" description="true if artifacts will be kept after the session" type="boolean">
-				<cocoa key="s_KeepArtifacts"/>
-			</property>
-			<property name="use warp" code="apuw" description="true if warp speed is enabled" type="boolean">
-				<cocoa key="s_UseWarp"/>
+			<property name="use app path" code="apua" description="true if the app path is being used" type="boolean">
+				<cocoa key="s_UseAppPath"/>
 			</property>
 			<property name="use instruments without delay" code="apui" description="true if instruments without delay is enabled" type="boolean">
 				<cocoa key="s_UseInstrumentsWithoutDelay"/>
 			</property>
-			<property name="skip android install" code="apsi" description="true if android install will be skipped" type="boolean">
-				<cocoa key="s_SkipAndroidInstall"/>
+			<property name="use UDID" code="apuu" description="true if the udid is being used" type="boolean">
+				<cocoa key="s_UseUDID"/>
 			</property>
-			<property name="reset app state" code="aprs" description="true if warp application state will be reset after the session" type="boolean">
-				<cocoa key="s_ResetApplicationState"/>
+			<property name="use warp" code="apuw" description="true if warp speed is enabled" type="boolean">
+				<cocoa key="s_UseWarp"/>
 			</property>
-			<property name="check for updates" code="apcu" description="true if appium will check for updates" type="boolean">
-				<cocoa key="s_CheckForUpdates"/>
-			</property>
-			<property name="log text" code="amlt" description="text from the appium log" type="text" access="r">
-				<cocoa key="s_LogText"/>
-			</property>
+			<responds-to command="clear log">
+				<cocoa method="s_ClearLog:"/>
+			</responds-to>
+			<responds-to command="force ios device">
+				<cocoa method="s_ForceiOSDevice:"/>
+			</responds-to>
 			<responds-to command="start server">
 				<cocoa method="s_StartServer:"/>
 			</responds-to>
 			<responds-to command="stop server">
 				<cocoa method="s_StopServer:"/>
 			</responds-to>
-			<responds-to command="clear log">
-				<cocoa method="s_ClearLog:"/>
-			</responds-to>
 			<responds-to command="use platform">
 				<cocoa method="s_UsePlatform:"/>
 			</responds-to>
-			<responds-to command="force ios device">
-				<cocoa method="s_ForceiOSDevice:"/>
-			</responds-to>
 		</class>
+		<command name="clear log" code="aapmclog" description="clears the appium server log display"/>
+		<command name="force ios device" code="appmfrcd" description="force a device type">
+			<direct-parameter description="type of ios device to force" type="ios device"/>
+		</command>
 		<command name="start server" code="appmstas" description="starts the appium server">
 			<result description="true if the server was started" type="boolean"/>
 		</command>
 		<command name="stop server" code="appmstos" description="stops the appium server">
 			<result description="true if the server was stopped" type="boolean"/>
-		</command>
-		<command name="clear log" code="aapmclog" description="clears the appium server log display"/>
-		<command name="force ios device" code="appmfrcd" description="force a device type">
-			<direct-parameter description="type of ios device to force" type="ios device"/>
 		</command>
 		<command name="use platform" code="appmusep" description="sets the platform">
 			<direct-parameter description="platform to use" type="platform"/>
