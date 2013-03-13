@@ -218,14 +218,14 @@ AppiumMenuBarManager *menuBarManager;
 
 -(IBAction)chooseFile:(id)sender
 {
-	NSString *selectedApp = [[self appPathControl] stringValue];
+	NSString *selectedApp = [[self model] appPath];
 	
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
 	[openDlg setShowsHiddenFiles:YES];
 	[openDlg setAllowedFileTypes:[NSArray arrayWithObjects:@"app", @"apk", nil]];
     [openDlg setCanChooseFiles:YES];
     [openDlg setCanChooseDirectories:NO];
-    [openDlg setPrompt:@"Select Mobile Application"];
+    [openDlg setPrompt:@"Select"];
 	if (selectedApp == nil || [selectedApp isEqualToString:@"/"])
 	{
 	    [openDlg setDirectoryURL:[NSURL fileURLWithPath:NSHomeDirectory()]];
@@ -238,7 +238,7 @@ AppiumMenuBarManager *menuBarManager;
     if ([openDlg runModal] == NSOKButton)
     {
 		selectedApp = [[[openDlg URLs] objectAtIndex:0] path];
-		[[self appPathControl] setStringValue:selectedApp];
+		[[self model] setAppPath:selectedApp];
     }
 }
 
