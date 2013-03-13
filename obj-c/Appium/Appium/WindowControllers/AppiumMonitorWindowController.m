@@ -169,34 +169,29 @@ AppiumMenuBarManager *menuBarManager;
 -(void) readLoop
 {
     NSFileHandle *serverStdOut = [[serverTask standardOutput] fileHandleForReading];
-    NSString *buffer = [NSString new];
     NSMutableDictionary *previousAttributes = [NSMutableDictionary new];
     while([serverTask isRunning])
     {
-        NSData *data = [serverStdOut readDataOfLength:1];
+        NSData *data = [serverStdOut availableData];
         
         NSString *string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-        buffer = [buffer stringByAppendingString:string];
-        if ([string isEqualToString:@"\n"])
-        {
-            NSAttributedString *attributedString = [ANSIUtility processIncomingStream:buffer withPreviousAttributes:&previousAttributes];
-            [self performSelectorOnMainThread:@selector(appendToLog:) withObject:attributedString waitUntilDone:YES];
-            buffer = [NSString new];
-        }
+        NSAttributedString *attributedString = [ANSIUtility processIncomingStream:string withPreviousAttributes:&previousAttributes];
+        [self performSelectorOnMainThread:@selector(appendToLog:) withObject:attributedString waitUntilDone:YES];
     }
 }
 
 -(void) errorLoop
 {
 	NSFileHandle *serverStdErr = [[serverTask standardError] fileHandleForReading];
-	NSData *errorData = [serverStdErr readDataToEndOfFile];
-	NSString *string = [[NSString alloc] initWithData: errorData encoding: NSUTF8StringEncoding];
-	if (string != nil && [string length] > 0)
-	{
-		NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
-		[attributedString addAttribute:NSForegroundColorAttributeName value:[NSColor redColor] range:NSMakeRange(0,[string length]-1)];
-		[self performSelectorOnMainThread:@selector(appendToLog:) withObject:attributedString waitUntilDone:YES];
-	}
+    NSMutableDictionary *previousAttributes = [NSMutableDictionary new];
+	while([serverTask isRunning])
+    {
+        NSData *data = [serverStdErr availableData];
+        
+        NSString *string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+        NSAttributedString *attributedString = [ANSIUtility processIncomingStream:string withPreviousAttributes:&previousAttributes];
+        [self performSelectorOnMainThread:@selector(appendToLog:) withObject:attributedString waitUntilDone:YES];
+    }
 }
 
 -(void) appendToLog:(NSAttributedString*)string
