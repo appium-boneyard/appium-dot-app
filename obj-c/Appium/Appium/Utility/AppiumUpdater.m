@@ -77,16 +77,13 @@ AppiumMonitorWindowController *mainWindowController;
 -(void)doAppUpgradeAlert:(NSArray*)versions
 {
     NSAlert *upgradeAlert = [NSAlert new];
-    [upgradeAlert setMessageText:@"Appium.app Upgrade Available"];
-	[upgradeAlert setInformativeText:@"You can download the latest Appium.app from http://appium.io"];
-	[upgradeAlert runModal];
-    //[upgradeAlert setInformativeText:[NSString stringWithFormat:@"Would you like to stop the server and download the latest version of Appium.app?\n\nYour Version:\t%@\nLatest Version:\t%@", [versions objectAtIndex:0], [versions objectAtIndex:1]]];
-    //[upgradeAlert addButtonWithTitle:@"No"];
-    //[upgradeAlert addButtonWithTitle:@"Yes"];
-    //if([upgradeAlert runModal] == NSAlertSecondButtonReturn)
-    //{
-    //    [self performSelectorInBackground:@selector(doAppUpgradeInstall) withObject:nil];
-    //}
+    [upgradeAlert setInformativeText:[NSString stringWithFormat:@"Would you like to download the latest version of Appium.app and restart?\n\nYour Version:\t%@\nLatest Version:\t%@", [versions objectAtIndex:0], [versions objectAtIndex:1]]];
+    [upgradeAlert addButtonWithTitle:@"No"];
+    [upgradeAlert addButtonWithTitle:@"Yes"];
+    if([upgradeAlert runModal] == NSAlertSecondButtonReturn)
+    {
+        [self performSelectorInBackground:@selector(doAppUpgradeInstall) withObject:nil];
+    }
 }
 
 -(void)doAppUpgradeInstall
@@ -108,37 +105,20 @@ AppiumMonitorWindowController *mainWindowController;
     {
         return;
     }
-    NSString *dmgPath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath],@"appium.dmg"];
+    
+	NSString *dmgPath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath],@"appium.dmg"];
+	NSString *mountPath = @"/Volumes/Appium";
+	NSString *sourcePath = @"/Volumes/Appium/Appium.app";
+	NSString *destinationPath = [[[NSBundle mainBundle] bundlePath] stringByDeletingLastPathComponent];
     [urlData writeToFile:dmgPath atomically:YES];
     
-    // install appium.app
-    [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Mounting Disk Image..." waitUntilDone:YES];
-    [Utility runTaskWithBinary:@"/usr/bin/hdiutil" arguments:[NSArray arrayWithObjects: @"attach", dmgPath, nil]];
-    
-    NSString *sourcePath = @"/Volumes/Appium/Appium.app";
-    NSString *destinationPath = [[[NSBundle mainBundle] bundlePath] stringByDeletingLastPathComponent];
-    
-    NSDictionary *error = [NSDictionary new];
-    NSString *script =  [NSString stringWithFormat:@"do shell script \"sudo cp -rvp \\\"%@\\\" \\\"%@\\\"\" with administrator privileges", sourcePath, destinationPath];
-    NSAppleScript *appleScript = [[NSAppleScript new] initWithSource:script];
-    [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Installing Appium.app..." waitUntilDone:YES];
-    if (![appleScript executeAndReturnError:&error])
-    {
-        NSAlert *alert = [NSAlert new];
-        [alert setMessageText:@"Installation Failed"];
-        [alert setInformativeText:@"Could not Install Appium"];
-        [alert runModal];
-        return;
-    }
-    
-	[[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Unmounting Disk Image..." waitUntilDone:YES];
-    [Utility runTaskWithBinary:@"/usr/bin/hdiutil" arguments:[NSArray arrayWithObjects: @"detach", @"/Volumes/Appium", nil]];
-    [installationWindow close];
-    NSAlert *alert = [NSAlert new];
-    [alert setMessageText:@"Restart Required"];
-    [alert setInformativeText:@"Appium has been updated. The app will restart after you click\"OK\""];
-    [alert performSelectorOnMainThread:@selector(runModal) withObject:nil waitUntilDone:YES];
-    [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] performSelectorOnMainThread:@selector(restart) withObject:nil waitUntilDone:YES];
+	NSString *upgradeScriptPath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], @"Upgrade.applescript"];
+    NSTask *restartTask = [NSTask new];
+    [restartTask setLaunchPath:@"/bin/sh"];
+    [restartTask setArguments:[NSArray arrayWithObjects: @"-c",[NSString stringWithFormat:@"sleep 2; osascript \"%@\" \"%@\" \"%@\" \"%@\" \"%@\" ; open \"%@\"", upgradeScriptPath, dmgPath, mountPath, sourcePath, destinationPath, [[NSBundle mainBundle] bundlePath] ], nil]];
+    [restartTask launch];
+    [[NSApplication sharedApplication] terminate:nil];
+	
 }
 
 #pragma mark - Appium Package Update
