@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1080</int>
-		<string key="IBDocument.SystemVersion">12C60</string>
+		<string key="IBDocument.SystemVersion">12C2034</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
 		<string key="IBDocument.AppKitVersion">1187.34</string>
 		<string key="IBDocument.HIToolboxVersion">625.00</string>
@@ -362,7 +362,6 @@
 							<string key="NSFrame">{{579, 13}, {73, 32}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="970840617">
@@ -383,7 +382,7 @@
 						</object>
 						<object class="NSButton" id="561969353">
 							<reference key="NSNextResponder" ref="1006"/>
-							<int key="NSvFlags">297</int>
+							<int key="NSvFlags">265</int>
 							<string key="NSFrame">{{523, 461}, {125, 34}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
@@ -949,7 +948,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="960485214"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {2560, 1578}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMinSize">{666, 524}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<string key="NSFrameAutosaveName">AppiumMonitorWindow</string>
@@ -1932,7 +1931,6 @@
 						<int key="objectID">2</int>
 						<reference key="object" ref="1006"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="561969353"/>
 							<reference ref="960485214"/>
 							<reference ref="656570450"/>
 							<reference ref="783687903"/>
@@ -1943,6 +1941,7 @@
 							<reference ref="7682766"/>
 							<reference ref="1063515703"/>
 							<reference ref="178942879"/>
+							<reference ref="561969353"/>
 						</array>
 						<reference key="parent" ref="1005"/>
 					</object>

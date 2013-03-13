@@ -10,8 +10,9 @@
 #import "AppiumUpdater.h"
 #import "NodeInstance.h"
 #import "AppiumInstallationWindowController.h"
+#import "AppiumPreferencesWindowController.h"
 
-NSWindowController *preferencesWindow;
+AppiumPreferencesWindowController *preferencesWindow;
 AppiumUpdater *updater;
 
 @implementation AppiumAppDelegate
@@ -34,7 +35,7 @@ AppiumUpdater *updater;
 {
 	if (preferencesWindow == nil)
 	{
-		preferencesWindow = [[NSWindowController alloc] initWithWindowNibName:@"AppiumPreferenceWindow" owner:self];
+		preferencesWindow = [[AppiumPreferencesWindowController alloc] initWithWindowNibName:@"AppiumPreferencesWindow" owner:self];
 		[[NSNotificationCenter defaultCenter] addObserver:self
 												 selector:@selector(preferenceWindowWillClose:)
 													 name:NSWindowWillCloseNotification

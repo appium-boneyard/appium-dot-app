@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 @interface AppiumInstallationWindowController : NSWindowController
+
 @property (weak) IBOutlet NSTextField *messageLabel;
 
 @end
