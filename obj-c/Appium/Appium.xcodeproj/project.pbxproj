@@ -41,6 +41,7 @@
 		36CEB7EB16E3662E00B5B100 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36CEB7CB16E3662E00B5B100 /* Cocoa.framework */; };
 		36CEB7F316E3662E00B5B100 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 36CEB7F116E3662E00B5B100 /* InfoPlist.strings */; };
 		36CEB7F616E3662E00B5B100 /* AppiumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CEB7F516E3662E00B5B100 /* AppiumTests.m */; };
+		36D17E2916F144E600DC5797 /* Upgrade.applescript in Resources */ = {isa = PBXBuildFile; fileRef = 36D17E2816F144E600DC5797 /* Upgrade.applescript */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,7 @@
 		36CEB7F216E3662E00B5B100 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		36CEB7F416E3662E00B5B100 /* AppiumTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppiumTests.h; sourceTree = "<group>"; };
 		36CEB7F516E3662E00B5B100 /* AppiumTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppiumTests.m; sourceTree = "<group>"; };
+		36D17E2816F144E600DC5797 /* Upgrade.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = Upgrade.applescript; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 		3612E5F916E5B6820050CF0A /* AppleScript */ = {
 			isa = PBXGroup;
 			children = (
+				36D17E2816F144E600DC5797 /* Upgrade.applescript */,
 				3612E5F716E5B6520050CF0A /* appium.sdef */,
 				3612E5FA16E5B69C0050CF0A /* AppiumAppleScriptSupport.h */,
 				3612E5FB16E5B69C0050CF0A /* AppiumAppleScriptSupport.m */,
@@ -215,8 +218,8 @@
 		36A765A416F01BBF002A7D6A /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
-				36CEB7DE16E3662E00B5B100 /* AppiumAppDelegate.m */,
 				36CEB7DD16E3662E00B5B100 /* AppiumAppDelegate.h */,
+				36CEB7DE16E3662E00B5B100 /* AppiumAppDelegate.m */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 				36A765A616F01C7C002A7D6A /* appium.icns in Resources */,
 				36CD44EF16F0D5C300194193 /* AppiumInspectorWindow.xib in Resources */,
 				36CD44FB16F0E68900194193 /* page_source.py in Resources */,
+				36D17E2916F144E600DC5797 /* Upgrade.applescript in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

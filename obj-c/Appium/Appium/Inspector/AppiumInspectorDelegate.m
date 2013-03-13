@@ -38,23 +38,6 @@
     return node.displayName;
 }
 
-// This is a utility method to find the parent item for a given column. The item based API eliminates the need for this method.
-- (WebDriverElementNode *)parentNodeForColumn:(NSInteger)column {
-    if (_rootNode == nil) {
-        [self populateDOM];
-    }
-    
-    WebDriverElementNode *result = _rootNode;
-    // Walk up to this column, finding the selected row in the column before it and using that in the children array
-    for (NSInteger i = 0; i < column; i++) {
-        NSInteger selectedRowInColumn = [_browser selectedRowInColumn:i];
-        WebDriverElementNode *selectedChildNode = [result.children objectAtIndex:selectedRowInColumn];
-        result = selectedChildNode;
-    }
-    
-    return result;
-}
-
 -(void)populateDOM
 {
 	NSTask *pageSourceTask = [NSTask new];

@@ -10,4 +10,5 @@
 #import "WebDriverElementNode.h"
 
 @interface AppiumInspectorWindowController : NSWindowController
+
 @end

@@ -15,13 +15,25 @@
     BOOL _childrenDirty;
 }
 
-// The designated initializer
 - (id)initWithJSONDict:(NSDictionary *)jsonDict;
+
+#pragma mark - NSBrowerCell Properties
 
 @property(readonly, copy) NSString *displayName;
 @property(readonly, retain) NSImage *icon;
 @property(readonly, retain) NSArray *children;
-@property(readonly) BOOL isDirectory;
+@property(readonly) BOOL isLeaf;
 @property(readonly, retain) NSColor *labelColor;
+
+#pragma mark - Properties
+
+@property BOOL enabled;
+@property BOOL visible;
+@property BOOL valid;
+@property NSString *label;
+@property NSRect rect;
+@property NSString *type;
+@property NSString *value;
+@property NSString *name;
 
 @end

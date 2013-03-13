@@ -15,6 +15,21 @@
 	if (self = [super init])
 	{
 		_jsonDict = jsonDict;
+		[self setEnabled:[[_jsonDict valueForKey:@"enabled"] boolValue]];
+		[self setVisible:[[_jsonDict valueForKey:@"visible"] boolValue]];
+		[self setValid:[[_jsonDict valueForKey:@"valid"] boolValue]];
+		[self setLabel:[_jsonDict valueForKey:@"label"]];
+		[self setType:[_jsonDict valueForKey:@"type"]];
+		[self setValue:[_jsonDict valueForKey:@"value"]];
+		[self setName:[_jsonDict valueForKey:@"name"]];
+		NSDictionary *rect = [_jsonDict valueForKey:@"rect"];
+		NSDictionary *origin = [rect valueForKey:@"origin"];
+		NSDictionary *size = [rect valueForKey:@"size"];
+		long x = [[origin valueForKey:@"x"] longValue];
+		long y = [[origin valueForKey:@"y"] longValue];
+		long width = [[size valueForKey:@"width"] longValue];
+		long height = [[size valueForKey:@"height"] longValue];
+		[self setRect:NSMakeRect((float)x, (float)y, (float)width, (float)height)];
 	}
 	return self;
 }
@@ -23,11 +38,11 @@
     return [NSString stringWithFormat:@"%@ - %@", super.description, [_jsonDict valueForKey:@"name"]];
 }
 
-@dynamic displayName, children, isDirectory, icon, labelColor;
+@dynamic displayName, children, isLeaf, icon, labelColor;
 
 - (NSString *)displayName
 {
-    return [_jsonDict objectForKey:@"name"];
+    return [NSString stringWithFormat:@"[%@] %@", [self type], [self name]];
 }
 
 - (NSImage *)icon
@@ -35,7 +50,7 @@
 	return [[NSApplication sharedApplication] applicationIconImage];
 }
 
-- (BOOL)isDirectory
+- (BOOL)isLeaf
 {
 	NSArray *children = (NSArray*)[_jsonDict objectForKey:@"children"];
     return children.count > 0;
