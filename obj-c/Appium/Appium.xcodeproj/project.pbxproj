@@ -26,6 +26,8 @@
 		36AA8D7016E40B28007472C1 /* AppiumMonitorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36AA8D6E16E40B28007472C1 /* AppiumMonitorWindow.xib */; };
 		36B2F18616E6379C008764E0 /* defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 36B2F18516E6379C008764E0 /* defaults.plist */; };
 		36BA17BB16E81BF30041DD86 /* AppiumAppPathTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BA17BA16E81BF30041DD86 /* AppiumAppPathTransformer.m */; };
+		36CD44EE16F0D5C300194193 /* AppiumInspectorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CD44EC16F0D5C300194193 /* AppiumInspectorWindowController.m */; };
+		36CD44EF16F0D5C300194193 /* AppiumInspectorWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36CD44ED16F0D5C300194193 /* AppiumInspectorWindowController.xib */; };
 		36CEB7CC16E3662E00B5B100 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36CEB7CB16E3662E00B5B100 /* Cocoa.framework */; };
 		36CEB7D616E3662E00B5B100 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 36CEB7D416E3662E00B5B100 /* InfoPlist.strings */; };
 		36CEB7D816E3662E00B5B100 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CEB7D716E3662E00B5B100 /* main.m */; };
@@ -81,6 +83,9 @@
 		36B2F18516E6379C008764E0 /* defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaults.plist; path = "Supporting Files/defaults.plist"; sourceTree = "<group>"; };
 		36BA17B916E81BF30041DD86 /* AppiumAppPathTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumAppPathTransformer.h; sourceTree = "<group>"; };
 		36BA17BA16E81BF30041DD86 /* AppiumAppPathTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumAppPathTransformer.m; sourceTree = "<group>"; };
+		36CD44EB16F0D5C300194193 /* AppiumInspectorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumInspectorWindowController.h; path = WindowControllers/AppiumInspectorWindowController.h; sourceTree = "<group>"; };
+		36CD44EC16F0D5C300194193 /* AppiumInspectorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumInspectorWindowController.m; path = WindowControllers/AppiumInspectorWindowController.m; sourceTree = "<group>"; };
+		36CD44ED16F0D5C300194193 /* AppiumInspectorWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AppiumInspectorWindowController.xib; path = XIBs/AppiumInspectorWindowController.xib; sourceTree = "<group>"; };
 		36CEB7C816E3662E00B5B100 /* Appium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36CEB7CB16E3662E00B5B100 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		36CEB7CE16E3662E00B5B100 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -158,6 +163,7 @@
 		3695CAB216E3FFB0003697A9 /* XIBs */ = {
 			isa = PBXGroup;
 			children = (
+				36CD44ED16F0D5C300194193 /* AppiumInspectorWindowController.xib */,
 				3695CAAF16E3FCAE003697A9 /* AppiumInstallationWindow.xib */,
 				36AA8D6E16E40B28007472C1 /* AppiumMonitorWindow.xib */,
 				36A765A116F01648002A7D6A /* AppiumPreferencesWindow.xib */,
@@ -192,6 +198,8 @@
 				36AA8D6D16E40B28007472C1 /* AppiumMonitorWindowController.m */,
 				36A7659F16F01648002A7D6A /* AppiumPreferencesWindowController.h */,
 				36A765A016F01648002A7D6A /* AppiumPreferencesWindowController.m */,
+				36CD44EB16F0D5C300194193 /* AppiumInspectorWindowController.h */,
+				36CD44EC16F0D5C300194193 /* AppiumInspectorWindowController.m */,
 			);
 			name = WindowControllers;
 			sourceTree = "<group>";
@@ -373,6 +381,7 @@
 				36B2F18616E6379C008764E0 /* defaults.plist in Resources */,
 				36A765A316F01648002A7D6A /* AppiumPreferencesWindow.xib in Resources */,
 				36A765A616F01C7C002A7D6A /* appium.icns in Resources */,
+				36CD44EF16F0D5C300194193 /* AppiumInspectorWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +431,7 @@
 				365CA3BF16EFB9C000A6DBE8 /* AppiumModel.m in Sources */,
 				365CA3C316EFDA8300A6DBE8 /* AppiumPortTransformer.m in Sources */,
 				36A765A216F01648002A7D6A /* AppiumPreferencesWindowController.m in Sources */,
+				36CD44EE16F0D5C300194193 /* AppiumInspectorWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
