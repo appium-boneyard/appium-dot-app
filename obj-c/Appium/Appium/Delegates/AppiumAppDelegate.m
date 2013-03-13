@@ -11,8 +11,10 @@
 #import "NodeInstance.h"
 #import "AppiumInstallationWindowController.h"
 #import "AppiumPreferencesWindowController.h"
+#import "AppiumInspectorWindowController.h"
 
 AppiumPreferencesWindowController *preferencesWindow;
+AppiumInspectorWindowController *inspectorWindow;
 AppiumUpdater *updater;
 
 @implementation AppiumAppDelegate
@@ -61,7 +63,30 @@ AppiumUpdater *updater;
 	preferencesWindow = nil;
 }
 
-# pragma mark - Updates
+#pragma mark - Inspector
+
+-(IBAction) displayInspector:(id)sender
+{
+	if (inspectorWindow == nil)
+	{
+		inspectorWindow = [[AppiumInspectorWindowController alloc] initWithWindowNibName:@"AppiumInspectorWindow" owner:self];
+		[[NSNotificationCenter defaultCenter] addObserver:self
+												 selector:@selector(inspectorWindowWillClose:)
+													 name:NSWindowWillCloseNotification
+												   object:[inspectorWindow window]];
+	}
+	
+	[inspectorWindow showWindow:self];
+	[[inspectorWindow window] makeKeyAndOrderFront:self];
+}
+
+- (void)inspectorWindowWillClose:(NSNotification *)notification
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowWillCloseNotification object:[inspectorWindow window]];
+	inspectorWindow = nil;
+}
+
+#pragma mark - Updates
 
 -(void) install
 {
