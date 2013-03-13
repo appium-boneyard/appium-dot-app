@@ -15,8 +15,8 @@
 @property (nonatomic, retain) IBOutlet AppiumMonitorWindowController *mainWindowController;
 @property (nonatomic, retain) AppiumModel *model;
 
-- (IBAction)displayPreferences:(id)sender;
 - (IBAction)checkForUpdates:(id)sender;
+- (IBAction)displayPreferences:(id)sender;
 - (void) restart;
 
 @end

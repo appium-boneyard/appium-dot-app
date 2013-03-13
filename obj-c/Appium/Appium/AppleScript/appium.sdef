@@ -32,6 +32,9 @@
 			<property name="app path" code="amap" description="path to mobile application" type="text">
 				<cocoa key="s_AppPath"/>
 			</property>
+			<property name="bundle id" code="ambi" description="bundle id" type="text">
+				<cocoa key="s_BundleID"/>
+			</property>
 			<property name="check for updates" code="apcu" description="true if appium will check for updates" type="boolean">
 				<cocoa key="s_CheckForUpdates"/>
 			</property>
@@ -71,8 +74,14 @@
 			<property name="use app path" code="apua" description="true if the app path is being used" type="boolean">
 				<cocoa key="s_UseAppPath"/>
 			</property>
+			<property name="use bundle id" code="aubi" description="true if appium is using the bundle id" type="boolean">
+				<cocoa key="s_UseBundleID"/>
+			</property>
 			<property name="use instruments without delay" code="apui" description="true if instruments without delay is enabled" type="boolean">
 				<cocoa key="s_UseInstrumentsWithoutDelay"/>
+			</property>
+			<property name="use mobile safari" code="aums" description="true if appium will use mobile safari" type="boolean">
+				<cocoa key="s_UseMobileSafari"/>
 			</property>
 			<property name="use UDID" code="apuu" description="true if the udid is being used" type="boolean">
 				<cocoa key="s_UseUDID"/>
