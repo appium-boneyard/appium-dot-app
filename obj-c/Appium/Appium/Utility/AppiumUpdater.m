@@ -12,9 +12,13 @@
 #import "AppiumInstallationWindowController.h"
 #import "Utility.h"
 
+#pragma mark - Constants
+
 #define APPIUM_APP_VERSION_URL @"https://raw.github.com/appium/appium.github.com/master/autoupdate/Appium.app.version"
 
 #define APPIUM_PACKAGE_VERSION_URL @"https://raw.github.com/appium/appium/master/package.json"
+
+#pragma mark - Appium Updater
 
 AppiumMonitorWindowController *mainWindowController;
 
@@ -43,6 +47,8 @@ AppiumMonitorWindowController *mainWindowController;
 		[alert performSelectorOnMainThread:@selector(runModal) withObject:nil waitUntilDone:YES];
 	}
 }
+
+#pragma mark - Appium.app Update
 
 -(BOOL) checkForAppUpdate
 {
@@ -134,6 +140,8 @@ AppiumMonitorWindowController *mainWindowController;
     [alert performSelectorOnMainThread:@selector(runModal) withObject:nil waitUntilDone:YES];
     [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] performSelectorOnMainThread:@selector(restart) withObject:nil waitUntilDone:YES];
 }
+
+#pragma mark - Appium Package Update
 
 -(BOOL) checkForPackageUpdate
 {

@@ -68,6 +68,14 @@
 -(NSNumber*) s_CheckForUpdates { return [NSNumber numberWithBool:[[self model] checkForUpdates]]; }
 -(void) setS_CheckForUpdates:(NSNumber *)s_CheckForUpdates { [[self model] setCheckForUpdates:[s_CheckForUpdates boolValue]]; }
 
+-(NSString*) s_BundleID { return [[self model] bundleID];}
+-(void) setS_BundleID:(NSString *)s_BundleID { [[self model] setBundleID:s_BundleID]; }
+
+-(NSNumber*) s_UseBundleID { return [NSNumber numberWithBool:[[self model] useBundleID]]; }
+-(void) setS_UseBundleID:(NSNumber *)s_UseBundleID { [[self model] setUseBundleID:[s_UseBundleID boolValue]]; }
+
+-(NSNumber*) s_UseMobileSafari { return [NSNumber numberWithBool:[[self model] useMobileSafari]]; }
+-(void) setS_UseMobileSafari:(NSNumber *)s_UseMobileSafari { [[self model] setUseMobileSafari:[s_UseMobileSafari boolValue]]; }
 
 #pragma mark - Functions
 

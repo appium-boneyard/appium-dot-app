@@ -93,7 +93,7 @@
 											<string key="NSFrameSize">{624, 262}</string>
 											<reference key="NSSuperview" ref="388492662"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="482283527"/>
+											<reference key="NSNextKeyView" ref="985606644"/>
 											<string key="NSReuseIdentifierKey">_NS:13</string>
 											<object class="NSTextContainer" key="NSTextContainer" id="157307938">
 												<object class="NSLayoutManager" key="NSLayoutManager">
@@ -231,7 +231,7 @@
 							<string key="NSFrame">{{20, 50}, {626, 264}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="985606644"/>
+							<reference key="NSNextKeyView" ref="388492662"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSsFlags">133138</int>
 							<reference key="NSVScroller" ref="482283527"/>
@@ -415,7 +415,6 @@
 							<string key="NSFrame">{{13, 312}, {640, 112}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="432818200"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<array class="NSMutableArray" key="NSTabViewItems">
 								<object class="NSTabViewItem" id="336909264">
@@ -970,22 +969,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">ipAddressTextField</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="656570450"/>
-					</object>
-					<int key="connectionID">95</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">portTextField</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="172664229"/>
-					</object>
-					<int key="connectionID">97</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">logTextView</string>
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="385630799"/>
@@ -999,14 +982,6 @@
 						<reference key="destination" ref="178942879"/>
 					</object>
 					<int key="connectionID">163</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">launchButton</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="561969353"/>
-					</object>
-					<int key="connectionID">286</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -2391,55 +2366,17 @@
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="appPathCheckBox">NSButton</string>
-						<string key="appPathChooseButton">NSButton</string>
-						<string key="appPathControl">NSPathControl</string>
-						<string key="ipAddressTextField">NSTextField</string>
-						<string key="launchButton">NSButton</string>
-						<string key="logTextView">NSTextView</string>
-						<string key="portTextField">NSTextField</string>
-						<string key="udidCheckBox">NSButton</string>
-						<string key="udidTextField">NSTextField</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="appPathCheckBox">
-							<string key="name">appPathCheckBox</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="appPathChooseButton">
-							<string key="name">appPathChooseButton</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="appPathControl">
-							<string key="name">appPathControl</string>
-							<string key="candidateClassName">NSPathControl</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="ipAddressTextField">
-							<string key="name">ipAddressTextField</string>
-							<string key="candidateClassName">NSTextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="launchButton">
-							<string key="name">launchButton</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="logTextView">
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">logTextView</string>
+						<string key="NS.object.0">NSTextView</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">logTextView</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
 							<string key="name">logTextView</string>
 							<string key="candidateClassName">NSTextView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="portTextField">
-							<string key="name">portTextField</string>
-							<string key="candidateClassName">NSTextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="udidCheckBox">
-							<string key="name">udidCheckBox</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="udidTextField">
-							<string key="name">udidTextField</string>
-							<string key="candidateClassName">NSTextField</string>
-						</object>
-					</dictionary>
+					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/AppiumMonitorWindowController.h</string>

@@ -17,6 +17,8 @@ AppiumUpdater *updater;
 
 @implementation AppiumAppDelegate
 
+#pragma mark - Handlers
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 	// create model
@@ -30,6 +32,13 @@ AppiumUpdater *updater;
     [self performSelectorInBackground:@selector(install) withObject:nil];
     
 }
+
+-(void)applicationWillTerminate:(NSNotification *)notification
+{
+    [[self mainWindowController] killServer];
+}
+
+#pragma mark - Preferences
 
 -(IBAction) displayPreferences:(id)sender
 {
@@ -51,6 +60,8 @@ AppiumUpdater *updater;
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowWillCloseNotification object:[preferencesWindow window]];
 	preferencesWindow = nil;
 }
+
+# pragma mark - Updates
 
 -(void) install
 {
@@ -100,11 +111,6 @@ AppiumUpdater *updater;
     [restartTask setArguments:[NSArray arrayWithObjects: @"-c",[NSString stringWithFormat:@"sleep 2; open \"%@\"", [[NSBundle mainBundle] bundlePath] ], nil]];
     [restartTask launch];
     [[NSApplication sharedApplication] terminate:nil];
-}
-
--(void)applicationWillTerminate:(NSNotification *)notification
-{
-    [[self mainWindowController] killServer];
 }
 
 @end

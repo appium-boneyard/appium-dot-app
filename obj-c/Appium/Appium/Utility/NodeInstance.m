@@ -13,6 +13,8 @@
 
 NSString *nodeRootPath;
 
+#pragma mark - Constructors
+
 - (id)init
 {
     self = [super init];
@@ -49,6 +51,8 @@ NSString *nodeRootPath;
     return self;
 }
 
+#pragma mark - Instance Methods
+
 -(void) installPackage:(NSString*)packageName forceInstall:(BOOL)forceInstall
 {
     
@@ -65,6 +69,8 @@ NSString *nodeRootPath;
 {
     return [NSString stringWithFormat:@"%@/%@/%@/%@", nodeRootPath, @"node_modules", packageName, @"package.json"];
 }
+
+#pragma mark - Static Methods
 
 +(BOOL) instanceExistsAtPath:(NSString*)rootPath;
 {

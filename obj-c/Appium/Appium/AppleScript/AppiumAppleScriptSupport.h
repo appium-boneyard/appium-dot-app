@@ -12,31 +12,36 @@
 
 @interface NSApplication (AppiumAppleScriptSupport)
 
-@property (readonly) AppiumModel *model;
+#pragma mark - Properties
 
-@property (readonly) NSNumber *s_IsServerRunning;
-@property NSString *s_IPAddress;
-@property NSNumber *s_Port;
-@property NSNumber *s_UseAppPath;
-@property NSString *s_AppPath;
-@property NSNumber *s_UseUDID;
-@property NSString *s_UDID;
-@property NSNumber *s_UseAndroidPackage;
-@property NSString *s_AndroidPackage;
-@property NSNumber *s_UseAndroidActivity;
 @property NSString *s_AndroidActivity;
-@property NSNumber *s_SkipAndroidInstall;
-@property NSNumber *s_PrelaunchApp;
-@property NSNumber *s_KeepArtifacts;
-@property NSNumber *s_UseInstrumentsWithoutDelay;
-@property NSNumber *s_UseWarp;
-@property NSNumber *s_ResetApplicationState;
+@property NSString *s_AndroidPackage;
+@property NSString *s_AppPath;
+@property NSString *s_BundleID;
 @property NSNumber *s_CheckForUpdates;
+@property NSString *s_IPAddress;
+@property (readonly) NSNumber *s_IsServerRunning;
+@property NSNumber *s_KeepArtifacts;
 @property (readonly)NSString *s_LogText;
+@property NSNumber *s_Port;
+@property NSNumber *s_PrelaunchApp;
+@property NSNumber *s_ResetApplicationState;
+@property NSNumber *s_SkipAndroidInstall;
+@property NSString *s_UDID;
+@property NSNumber *s_UseAndroidActivity;
+@property NSNumber *s_UseAndroidPackage;
+@property NSNumber *s_UseAppPath;
+@property NSNumber *s_UseBundleID;
+@property NSNumber *s_UseInstrumentsWithoutDelay;
+@property NSNumber *s_UseMobileSafari;
+@property NSNumber *s_UseUDID;
+@property NSNumber *s_UseWarp;
 
+#pragma mark - Functions
+-(void) s_ClearLog: (NSScriptCommand*)command;
+-(void) s_ForceiOSDevice:(NSScriptCommand*)command;
 -(NSNumber*) s_StartServer: (NSScriptCommand*)command;
 -(NSNumber*) s_StopServer: (NSScriptCommand*)command;
--(void) s_ClearLog: (NSScriptCommand*)command;
 -(void) s_UsePlatform: (NSScriptCommand*)command;
--(void) s_ForceiOSDevice:(NSScriptCommand*)command;
+
 @end
