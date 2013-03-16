@@ -7,9 +7,13 @@
 //
 
 #import "AppiumInspectorDelegate.h"
+#import "AppiumModel.h"
+#import "AppiumAppDelegate.h"
+#import <Selenium/RemoteWebDriver.h>
 
 @implementation AppiumInspectorDelegate
 
+RemoteWebDriver *driver;
 
 - (id)rootItemForBrowser:(NSBrowser *)browser {
     if (_rootNode == nil) {
@@ -40,16 +44,18 @@
 
 -(void)populateDOM
 {
-	NSTask *pageSourceTask = [NSTask new];
-	[pageSourceTask setCurrentDirectoryPath:[[NSBundle mainBundle]resourcePath]];
-	[pageSourceTask setLaunchPath:@"/usr/bin/python"];
-	[pageSourceTask setArguments:[NSArray arrayWithObjects:@"page_source.py", @"127.0.0.1", @"4723", nil]];
-	[pageSourceTask setStandardOutput:[NSPipe pipe]];
-	[pageSourceTask launch];
-	[pageSourceTask waitUntilExit];
-	NSData *data = [[[pageSourceTask standardOutput] fileHandleForReading] readDataToEndOfFile];
+	if (driver == nil)
+	{
+		AppiumModel *model = [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] model];
+		Capabilities *capabilities = [Capabilities new];
+		[capabilities setPlatform:@"Mac"];
+		[capabilities setBrowserName:@"iOS"];
+		[capabilities setVersion:@"6.1"];
+		driver = [[RemoteWebDriver alloc] initWithServerAddress:[model ipAddress] port:[[model port] integerValue] desiredCapabilities:capabilities requiredCapabilities:nil];
+	}
+	NSString *pageSource = [driver getPageSource];
 	NSError *e = nil;
-	NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &e];
+	NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData: [pageSource dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: &e];
 	_rootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict];
 }
 
