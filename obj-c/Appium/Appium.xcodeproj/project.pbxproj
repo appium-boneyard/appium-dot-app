@@ -42,6 +42,8 @@
 		36CEB7F316E3662E00B5B100 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 36CEB7F116E3662E00B5B100 /* InfoPlist.strings */; };
 		36CEB7F616E3662E00B5B100 /* AppiumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CEB7F516E3662E00B5B100 /* AppiumTests.m */; };
 		36D17E2916F144E600DC5797 /* Upgrade.applescript in Resources */ = {isa = PBXBuildFile; fileRef = 36D17E2816F144E600DC5797 /* Upgrade.applescript */; };
+		36F5FA2C16F4E87F007751D6 /* Selenium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F5FA2B16F4E87E007751D6 /* Selenium.framework */; };
+		36F5FA2D16F4E889007751D6 /* Selenium.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 36F5FA2B16F4E87E007751D6 /* Selenium.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,19 @@
 			remoteInfo = Appium;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3631DD9216F4E4830087779D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				36F5FA2D16F4E889007751D6 /* Selenium.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		360BD91316F12B03000D3BEB /* AppiumInspectorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumInspectorDelegate.h; path = Inspector/AppiumInspectorDelegate.h; sourceTree = "<group>"; };
@@ -115,6 +130,7 @@
 		36CEB7F416E3662E00B5B100 /* AppiumTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppiumTests.h; sourceTree = "<group>"; };
 		36CEB7F516E3662E00B5B100 /* AppiumTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppiumTests.m; sourceTree = "<group>"; };
 		36D17E2816F144E600DC5797 /* Upgrade.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = Upgrade.applescript; sourceTree = "<group>"; };
+		36F5FA2B16F4E87E007751D6 /* Selenium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Selenium.framework; path = Frameworks/Selenium.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36CEB7CC16E3662E00B5B100 /* Cocoa.framework in Frameworks */,
+				36F5FA2C16F4E87F007751D6 /* Selenium.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +275,7 @@
 		36CEB7CA16E3662E00B5B100 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				36F5FA2B16F4E87E007751D6 /* Selenium.framework */,
 				36CEB7CB16E3662E00B5B100 /* Cocoa.framework */,
 				36CEB7E916E3662E00B5B100 /* SenTestingKit.framework */,
 				36CEB7CD16E3662E00B5B100 /* Other Frameworks */,
@@ -332,6 +350,7 @@
 			buildConfigurationList = 36CEB7F916E3662E00B5B100 /* Build configuration list for PBXNativeTarget "Appium" */;
 			buildPhases = (
 				36CEB7C416E3662E00B5B100 /* Sources */,
+				3631DD9216F4E4830087779D /* CopyFiles */,
 				36CEB7C516E3662E00B5B100 /* Frameworks */,
 				36CEB7C616E3662E00B5B100 /* Resources */,
 			);
@@ -580,6 +599,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Appium/Appium-Prefix.pch";
 				INFOPLIST_FILE = "Appium/Appium-Info.plist";
@@ -593,6 +617,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Appium/Appium-Prefix.pch";
 				INFOPLIST_FILE = "Appium/Appium-Info.plist";
