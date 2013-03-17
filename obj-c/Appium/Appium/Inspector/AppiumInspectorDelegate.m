@@ -51,9 +51,10 @@ RemoteWebDriver *driver;
 		[capabilities setPlatform:@"Mac"];
 		[capabilities setBrowserName:@"iOS"];
 		[capabilities setVersion:@"6.1"];
-		driver = [[RemoteWebDriver alloc] initWithServerAddress:[model ipAddress] port:[[model port] integerValue] desiredCapabilities:capabilities requiredCapabilities:nil];
+        NSError *error;
+		driver = [[RemoteWebDriver alloc] initWithServerAddress:[model ipAddress] port:[[model port] integerValue] desiredCapabilities:capabilities requiredCapabilities:nil error:&error];
 	}
-	NSString *pageSource = [driver getPageSource];
+	NSString *pageSource = [driver pageSource];
 	NSError *e = nil;
 	NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData: [pageSource dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: &e];
 	_rootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict];
