@@ -156,10 +156,10 @@
 		3612E5F916E5B6820050CF0A /* AppleScript */ = {
 			isa = PBXGroup;
 			children = (
-				36D17E2816F144E600DC5797 /* Upgrade.applescript */,
 				3612E5F716E5B6520050CF0A /* appium.sdef */,
 				3612E5FA16E5B69C0050CF0A /* AppiumAppleScriptSupport.h */,
 				3612E5FB16E5B69C0050CF0A /* AppiumAppleScriptSupport.m */,
+				36D17E2816F144E600DC5797 /* Upgrade.applescript */,
 			);
 			path = AppleScript;
 			sourceTree = "<group>";
