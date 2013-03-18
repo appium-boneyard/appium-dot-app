@@ -10,7 +10,6 @@
 
 @interface RemoteWebDriverStatus : NSObject
 
-@property long status;
 @property NSString *buildVersion;
 @property NSString *buildRevision;
 @property NSString *buildTime;

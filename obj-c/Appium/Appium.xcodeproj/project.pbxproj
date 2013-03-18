@@ -30,7 +30,6 @@
 		36CD44EE16F0D5C300194193 /* AppiumInspectorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CD44EC16F0D5C300194193 /* AppiumInspectorWindowController.m */; };
 		36CD44EF16F0D5C300194193 /* AppiumInspectorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36CD44ED16F0D5C300194193 /* AppiumInspectorWindow.xib */; };
 		36CD44F616F0E22800194193 /* WebDriverElementNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CD44F516F0E22800194193 /* WebDriverElementNode.m */; };
-		36CD44FB16F0E68900194193 /* page_source.py in Resources */ = {isa = PBXBuildFile; fileRef = 36CD44FA16F0E68900194193 /* page_source.py */; };
 		36CEB7CC16E3662E00B5B100 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36CEB7CB16E3662E00B5B100 /* Cocoa.framework */; };
 		36CEB7D616E3662E00B5B100 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 36CEB7D416E3662E00B5B100 /* InfoPlist.strings */; };
 		36CEB7D816E3662E00B5B100 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CEB7D716E3662E00B5B100 /* main.m */; };
@@ -109,7 +108,6 @@
 		36CD44ED16F0D5C300194193 /* AppiumInspectorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AppiumInspectorWindow.xib; path = XIBs/AppiumInspectorWindow.xib; sourceTree = "<group>"; };
 		36CD44F416F0E22800194193 /* WebDriverElementNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebDriverElementNode.h; path = Inspector/WebDriverElementNode.h; sourceTree = "<group>"; };
 		36CD44F516F0E22800194193 /* WebDriverElementNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebDriverElementNode.m; path = Inspector/WebDriverElementNode.m; sourceTree = "<group>"; };
-		36CD44FA16F0E68900194193 /* page_source.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = page_source.py; sourceTree = "<group>"; };
 		36CEB7C816E3662E00B5B100 /* Appium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36CEB7CB16E3662E00B5B100 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		36CEB7CE16E3662E00B5B100 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -158,10 +156,10 @@
 		3612E5F916E5B6820050CF0A /* AppleScript */ = {
 			isa = PBXGroup;
 			children = (
-				36D17E2816F144E600DC5797 /* Upgrade.applescript */,
 				3612E5F716E5B6520050CF0A /* appium.sdef */,
 				3612E5FA16E5B69C0050CF0A /* AppiumAppleScriptSupport.h */,
 				3612E5FB16E5B69C0050CF0A /* AppiumAppleScriptSupport.m */,
+				36D17E2816F144E600DC5797 /* Upgrade.applescript */,
 			);
 			path = AppleScript;
 			sourceTree = "<group>";
@@ -246,7 +244,6 @@
 			children = (
 				360BD91316F12B03000D3BEB /* AppiumInspectorDelegate.h */,
 				360BD91416F12B03000D3BEB /* AppiumInspectorDelegate.m */,
-				36CD44FA16F0E68900194193 /* page_source.py */,
 				36CD44F416F0E22800194193 /* WebDriverElementNode.h */,
 				36CD44F516F0E22800194193 /* WebDriverElementNode.m */,
 			);
@@ -425,7 +422,6 @@
 				36A765A316F01648002A7D6A /* AppiumPreferencesWindow.xib in Resources */,
 				36A765A616F01C7C002A7D6A /* appium.icns in Resources */,
 				36CD44EF16F0D5C300194193 /* AppiumInspectorWindow.xib in Resources */,
-				36CD44FB16F0E68900194193 /* page_source.py in Resources */,
 				36D17E2916F144E600DC5797 /* Upgrade.applescript in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
