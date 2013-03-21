@@ -1,5 +1,5 @@
 //
-//  Capabilities.h
+//  SECapabilities.h
 //  Selenium
 //
 //  Created by Dan Cuellar on 3/14/13.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Capabilities : NSObject
+@interface SECapabilities : NSObject
 
 @property NSString* browserName;
 @property NSString* version;
@@ -27,7 +27,7 @@
 @property BOOL nativeEvents;
 // TODO: add proxy object
 
--(id)initWithDictionary:(NSDictionary*)dict;
+-(id) initWithDictionary:(NSDictionary*)dict;
 -(id) getCapabilityForKey:(NSString*)key;
 -(void) addCapabilityForKey:(NSString*)key andValue:(id)value;
 -(NSDictionary*) dictionary;
