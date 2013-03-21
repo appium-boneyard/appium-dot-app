@@ -9,11 +9,11 @@
 #import "AppiumInspectorDelegate.h"
 #import "AppiumModel.h"
 #import "AppiumAppDelegate.h"
-#import <Selenium/RemoteWebDriver.h>
+#import <Selenium/SERemoteWebDriver.h>
 
 @implementation AppiumInspectorDelegate
 
-RemoteWebDriver *driver;
+SERemoteWebDriver *driver;
 
 - (id)rootItemForBrowser:(NSBrowser *)browser {
     if (_rootNode == nil) {
@@ -47,12 +47,12 @@ RemoteWebDriver *driver;
 	if (driver == nil)
 	{
 		AppiumModel *model = [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] model];
-		Capabilities *capabilities = [Capabilities new];
+		SECapabilities *capabilities = [SECapabilities new];
 		[capabilities setPlatform:@"Mac"];
 		[capabilities setBrowserName:@"iOS"];
 		[capabilities setVersion:@"6.1"];
         NSError *error;
-		driver = [[RemoteWebDriver alloc] initWithServerAddress:[model ipAddress] port:[[model port] integerValue] desiredCapabilities:capabilities requiredCapabilities:nil error:&error];
+		driver = [[SERemoteWebDriver alloc] initWithServerAddress:[model ipAddress] port:[[model port] integerValue] desiredCapabilities:capabilities requiredCapabilities:nil error:&error];
 	}
 	NSString *pageSource = [driver pageSource];
 	NSError *e = nil;
