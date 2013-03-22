@@ -218,14 +218,14 @@
 		3695CAB416E40004003697A9 /* WindowControllers */ = {
 			isa = PBXGroup;
 			children = (
+				36CD44EB16F0D5C300194193 /* AppiumInspectorWindowController.h */,
+				36CD44EC16F0D5C300194193 /* AppiumInspectorWindowController.m */,
 				3695CAAD16E3FCAE003697A9 /* AppiumInstallationWindowController.h */,
 				3695CAAE16E3FCAE003697A9 /* AppiumInstallationWindowController.m */,
 				36AA8D6C16E40B28007472C1 /* AppiumMonitorWindowController.h */,
 				36AA8D6D16E40B28007472C1 /* AppiumMonitorWindowController.m */,
 				36A7659F16F01648002A7D6A /* AppiumPreferencesWindowController.h */,
 				36A765A016F01648002A7D6A /* AppiumPreferencesWindowController.m */,
-				36CD44EB16F0D5C300194193 /* AppiumInspectorWindowController.h */,
-				36CD44EC16F0D5C300194193 /* AppiumInspectorWindowController.m */,
 			);
 			name = WindowControllers;
 			sourceTree = "<group>";

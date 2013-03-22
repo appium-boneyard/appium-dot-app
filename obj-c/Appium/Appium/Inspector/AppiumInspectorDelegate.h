@@ -12,7 +12,10 @@
 @interface AppiumInspectorDelegate : NSObject {
 @private
 
+	IBOutlet NSBrowser *_browser;
 	IBOutlet NSTextView *_detailsTextView;
+	IBOutlet NSImageView *_screenshotView;
+
 	WebDriverElementNode *_rootNode;
 }
 

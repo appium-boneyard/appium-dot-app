@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1080</int>
-		<string key="IBDocument.SystemVersion">12C60</string>
+		<string key="IBDocument.SystemVersion">12D78</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.34</string>
-		<string key="IBDocument.HIToolboxVersion">625.00</string>
+		<string key="IBDocument.AppKitVersion">1187.37</string>
+		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			<string key="NS.object.0">3084</string>
@@ -13,6 +13,8 @@
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>NSBrowser</string>
 			<string>NSCustomObject</string>
+			<string>NSImageCell</string>
+			<string>NSImageView</string>
 			<string>NSScrollView</string>
 			<string>NSScroller</string>
 			<string>NSTextView</string>
@@ -55,6 +57,7 @@
 							<string key="NSFrame">{{20, 20}, {576, 460}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="707848315"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -109,10 +112,10 @@
 												<string>WebURLsWithTitlesPboardType</string>
 												<string>public.url</string>
 											</set>
-											<string key="NSFrameSize">{238, 436}</string>
+											<string key="NSFrameSize">{238, 108}</string>
 											<reference key="NSSuperview" ref="153909720"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="721067251"/>
+											<reference key="NSNextKeyView" ref="555555799"/>
 											<string key="NSReuseIdentifierKey">_NS:13</string>
 											<object class="NSTextContainer" key="NSTextContainer" id="926560149">
 												<object class="NSLayoutManager" key="NSLayoutManager">
@@ -181,7 +184,7 @@
 											<nil key="NSDelegate"/>
 										</object>
 									</array>
-									<string key="NSFrame">{{1, 1}, {238, 436}}</string>
+									<string key="NSFrame">{{1, 1}, {238, 108}}</string>
 									<reference key="NSSuperview" ref="410508918"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="328755789"/>
@@ -212,9 +215,10 @@
 								<object class="NSScroller" id="555555799">
 									<reference key="NSNextResponder" ref="410508918"/>
 									<int key="NSvFlags">256</int>
-									<string key="NSFrame">{{223, 1}, {16, 436}}</string>
+									<string key="NSFrame">{{223, 1}, {16, 108}}</string>
 									<reference key="NSSuperview" ref="410508918"/>
 									<reference key="NSWindow"/>
+									<reference key="NSNextKeyView"/>
 									<string key="NSReuseIdentifierKey">_NS:83</string>
 									<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 									<reference key="NSTarget" ref="410508918"/>
@@ -238,10 +242,10 @@
 									<double key="NSPercent">0.94565218687057495</double>
 								</object>
 							</array>
-							<string key="NSFrame">{{604, 20}, {240, 438}}</string>
+							<string key="NSFrame">{{604, 20}, {240, 110}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="153909720"/>
+							<reference key="NSNextKeyView" ref="721067251"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSsFlags">133138</int>
 							<reference key="NSVScroller" ref="555555799"/>
@@ -250,6 +254,35 @@
 							<double key="NSMinMagnification">0.25</double>
 							<double key="NSMaxMagnification">4</double>
 							<double key="NSMagnification">1</double>
+						</object>
+						<object class="NSImageView" id="707848315">
+							<reference key="NSNextResponder" ref="1006"/>
+							<int key="NSvFlags">268</int>
+							<set class="NSMutableSet" key="NSDragTypes">
+								<string>Apple PDF pasteboard type</string>
+								<string>Apple PICT pasteboard type</string>
+								<string>Apple PNG pasteboard type</string>
+								<string>NSFilenamesPboardType</string>
+								<string>NeXT Encapsulated PostScript v1.2 pasteboard type</string>
+								<string>NeXT TIFF v4.0 pasteboard type</string>
+							</set>
+							<string key="NSFrame">{{601, 135}, {246, 326}}</string>
+							<reference key="NSSuperview" ref="1006"/>
+							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="410508918"/>
+							<string key="NSReuseIdentifierKey">_NS:9</string>
+							<bool key="NSEnabled">YES</bool>
+							<object class="NSImageCell" key="NSCell" id="566902573">
+								<int key="NSCellFlags">134217728</int>
+								<int key="NSCellFlags2">33554432</int>
+								<string key="NSCellIdentifier">_NS:9</string>
+								<int key="NSAlign">0</int>
+								<int key="NSScale">0</int>
+								<int key="NSStyle">2</int>
+								<bool key="NSAnimates">NO</bool>
+							</object>
+							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+							<bool key="NSEditable">YES</bool>
 						</object>
 					</array>
 					<string key="NSFrameSize">{864, 480}</string>
@@ -294,11 +327,51 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
+						<string key="label">browser</string>
+						<reference key="source" ref="963484851"/>
+						<reference key="destination" ref="373383690"/>
+					</object>
+					<int key="connectionID">47</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">screenshotView</string>
+						<reference key="source" ref="963484851"/>
+						<reference key="destination" ref="707848315"/>
+					</object>
+					<int key="connectionID">48</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">detailsTextView</string>
+						<reference key="source" ref="963484851"/>
+						<reference key="destination" ref="328755789"/>
+					</object>
+					<int key="connectionID">49</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_browser</string>
+						<reference key="source" ref="963484851"/>
+						<reference key="destination" ref="373383690"/>
+					</object>
+					<int key="connectionID">54</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_screenshotView</string>
+						<reference key="source" ref="963484851"/>
+						<reference key="destination" ref="707848315"/>
+					</object>
+					<int key="connectionID">55</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
 						<string key="label">_detailsTextView</string>
 						<reference key="source" ref="963484851"/>
 						<reference key="destination" ref="328755789"/>
 					</object>
-					<int key="connectionID">40</int>
+					<int key="connectionID">56</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -341,6 +414,7 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="373383690"/>
 							<reference ref="410508918"/>
+							<reference ref="707848315"/>
 						</array>
 						<reference key="parent" ref="1005"/>
 					</object>
@@ -379,6 +453,19 @@
 						<reference key="object" ref="555555799"/>
 						<reference key="parent" ref="410508918"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">43</int>
+						<reference key="object" ref="707848315"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="566902573"/>
+						</array>
+						<reference key="parent" ref="1006"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">44</int>
+						<reference key="object" ref="566902573"/>
+						<reference key="parent" ref="707848315"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -394,30 +481,40 @@
 				<string key="30.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="31.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="32.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="43.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="44.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">40</int>
+			<int key="maxID">56</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">AppiumInspectorDelegate</string>
 					<string key="superclassName">NSObject</string>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">_detailsTextView</string>
-						<string key="NS.object.0">NSTextView</string>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">_detailsTextView</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="_browser">NSBrowser</string>
+						<string key="_detailsTextView">NSTextView</string>
+						<string key="_screenshotView">NSImageView</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="_browser">
+							<string key="name">_browser</string>
+							<string key="candidateClassName">NSBrowser</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="_detailsTextView">
 							<string key="name">_detailsTextView</string>
 							<string key="candidateClassName">NSTextView</string>
 						</object>
-					</object>
+						<object class="IBToOneOutletInfo" key="_screenshotView">
+							<string key="name">_screenshotView</string>
+							<string key="candidateClassName">NSImageView</string>
+						</object>
+					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/AppiumInspectorDelegate.h</string>

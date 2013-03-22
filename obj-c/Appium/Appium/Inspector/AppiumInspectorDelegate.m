@@ -58,6 +58,7 @@ SERemoteWebDriver *driver;
 	NSError *e = nil;
 	NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData: [pageSource dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: &e];
 	_rootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict];
+	[_screenshotView setImage:[driver screenshot]];
 }
 
 @end
