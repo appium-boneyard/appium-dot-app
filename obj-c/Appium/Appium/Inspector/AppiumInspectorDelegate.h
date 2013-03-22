@@ -15,7 +15,7 @@
 	IBOutlet NSBrowser *_browser;
 	IBOutlet NSTextView *_detailsTextView;
 	IBOutlet NSImageView *_screenshotView;
-
+	IBOutlet NSView *_highlightView;
 	WebDriverElementNode *_rootNode;
 }
 

@@ -10,11 +10,13 @@
 #import "AppiumModel.h"
 #import "AppiumAppDelegate.h"
 #import <Selenium/SERemoteWebDriver.h>
+#import <QuartzCore/QuartzCore.h>
 
 @implementation AppiumInspectorDelegate
 
 SERemoteWebDriver *driver;
 NSMutableArray *selectedIndexes;
+NSImage *lastScreenshot;
 
 - (id)rootItemForBrowser:(NSBrowser *)browser {
     if (_rootNode == nil) {
@@ -63,6 +65,35 @@ NSMutableArray *selectedIndexes;
 			node = [node.children objectAtIndex:[[selectedIndexes objectAtIndex:i] integerValue]];
 		}
 		[_detailsTextView setString:[node infoText]];
+		if (!_highlightView.layer) {
+			[_highlightView setWantsLayer:YES];
+			_highlightView.layer.borderColor = [NSColor redColor].CGColor;
+			_highlightView.layer.borderWidth = 2.0f;
+			_highlightView.layer.cornerRadius = 8.0f;
+		}
+		
+		CGRect viewRect = [node rect];
+		CGFloat scalar = 320.0 / lastScreenshot.size.height;
+		CGFloat maxX = 240.0;
+		CGFloat maxY = 320.0;
+		CGFloat xOffset = 0.0;
+		CGFloat yOffset = 0.0;
+
+		if (lastScreenshot.size.width > lastScreenshot.size.height)
+		{
+			maxY = lastScreenshot.size.height * (240.0 / lastScreenshot.size.width);
+			yOffset = (320.0 - maxY) / 2.0;
+		}
+		else
+		{
+			maxX = lastScreenshot.size.width * (320.0 / lastScreenshot.size.height);
+			xOffset = (240.0 - maxX) / 2.0;
+		}
+		viewRect.size.width *= scalar;
+		viewRect.size.height *= scalar;
+		viewRect.origin.x = xOffset + (node.rect.origin.x * scalar);
+		viewRect.origin.y = maxY - (yOffset + ((node.rect.origin.y + node.rect.size.height) * scalar));
+		_highlightView.frame = viewRect;
 	}
     return proposedSelectionIndexes;
 }
@@ -83,7 +114,13 @@ NSMutableArray *selectedIndexes;
 	NSError *e = nil;
 	NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData: [pageSource dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: &e];
 	_rootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict];
-	[_screenshotView setImage:[driver screenshot]];
+	[self refreshScreenshot];
+}
+
+-(void)refreshScreenshot
+{
+	lastScreenshot = [driver screenshot];
+	[_screenshotView setImage:lastScreenshot];
 }
 
 @end
