@@ -35,5 +35,6 @@
 @property NSString *type;
 @property NSString *value;
 @property NSString *name;
+@property (readonly) NSString* infoText;
 
 @end

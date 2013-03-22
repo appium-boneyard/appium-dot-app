@@ -89,7 +89,6 @@
 				}
 			}
 		}
-        
         _children = newChildren;
         _childrenDirty = NO;
     }
@@ -103,6 +102,12 @@
     for (WebDriverElementNode *child in [_children allValues]) {
         [child invalidateChildren];
     }
+}
+
+-(NSString*) infoText
+{
+	NSString* info = [NSString stringWithFormat:@"name: %@\ntype: %@\nvalue: %@\nlabel: %@\nenabled: %@\nvisible: %@\nvalid: %@", self.name, self.type, self.value, self.label, (self.enabled ? @"true" : @"false"),(self.visible ? @"true" : @"false"),(self.valid ? @"true" : @"false")];
+	return info;
 }
 
 @end
