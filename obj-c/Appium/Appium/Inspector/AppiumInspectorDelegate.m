@@ -14,10 +14,12 @@
 @implementation AppiumInspectorDelegate
 
 SERemoteWebDriver *driver;
+NSMutableArray *selectedIndexes;
 
 - (id)rootItemForBrowser:(NSBrowser *)browser {
     if (_rootNode == nil) {
         [self populateDOM];
+		selectedIndexes = [NSMutableArray new];
     }
     return _rootNode;
 }
@@ -40,6 +42,29 @@ SERemoteWebDriver *driver;
 - (id)browser:(NSBrowser *)browser objectValueForItem:(id)item {
     WebDriverElementNode *node = (WebDriverElementNode *)item;
     return node.displayName;
+}
+
+- (NSIndexSet *)browser:(NSBrowser *)browser selectionIndexesForProposedSelection:(NSIndexSet *)proposedSelectionIndexes inColumn:(NSInteger)column
+{
+	if ([proposedSelectionIndexes firstIndex] != NSNotFound)
+	{
+		if (selectedIndexes.count < column+1)
+		{
+			[selectedIndexes addObject:[NSNumber numberWithInteger:[proposedSelectionIndexes firstIndex]]];
+		}
+		else
+		{
+			[selectedIndexes replaceObjectAtIndex:column withObject:[NSNumber numberWithInteger:[proposedSelectionIndexes firstIndex]]];
+		}
+	
+		WebDriverElementNode *node = _rootNode;
+		for(int i=0; i < selectedIndexes.count && i < column+1; i++)
+		{
+			node = [node.children objectAtIndex:[[selectedIndexes objectAtIndex:i] integerValue]];
+		}
+		[_detailsTextView setString:[node infoText]];
+	}
+    return proposedSelectionIndexes;
 }
 
 -(void)populateDOM
