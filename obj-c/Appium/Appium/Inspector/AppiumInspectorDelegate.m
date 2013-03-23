@@ -17,6 +17,31 @@
 SERemoteWebDriver *driver;
 NSMutableArray *selectedIndexes;
 NSImage *lastScreenshot;
+NSString *lastPageSource;
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _showDisabled = YES;
+        _showInvisible = YES;
+    }
+    return self;
+}
+
+-(NSNumber*) showDisabled { return [NSNumber numberWithBool:_showDisabled]; }
+-(NSNumber*) showInvisible { return [NSNumber numberWithBool:_showInvisible]; }
+
+-(void) setShowDisabled:(NSNumber *)showDisabled
+{
+    _showDisabled = [showDisabled boolValue];
+    [self populateDOM];
+}
+-(void) setShowInvisible:(NSNumber *)showInvisible
+{
+    _showInvisible = [showInvisible boolValue];
+    [self populateDOM];
+}
 
 - (id)rootItemForBrowser:(NSBrowser *)browser {
     if (_rootNode == nil) {
@@ -109,12 +134,13 @@ NSImage *lastScreenshot;
 		[capabilities setVersion:@"6.1"];
         NSError *error;
 		driver = [[SERemoteWebDriver alloc] initWithServerAddress:[model ipAddress] port:[[model port] integerValue] desiredCapabilities:capabilities requiredCapabilities:nil error:&error];
+        [self refreshScreenshot];
+        lastPageSource = [driver pageSource];
 	}
-	NSString *pageSource = [driver pageSource];
 	NSError *e = nil;
-	NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData: [pageSource dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: &e];
-	_rootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict];
-	[self refreshScreenshot];
+	NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData: [lastPageSource dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: &e];
+	_rootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict showDisabled:[self.showDisabled boolValue] showInvisible:[self.showInvisible boolValue]];
+    [_browser loadColumnZero];
 }
 
 -(void)refreshScreenshot

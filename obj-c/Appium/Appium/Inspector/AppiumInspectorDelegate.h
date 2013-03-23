@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "WebDriverElementNode.h"
 
+@class WebDriverElementNode;
+
 @interface AppiumInspectorDelegate : NSObject {
 @private
 
@@ -17,6 +19,11 @@
 	IBOutlet NSImageView *_screenshotView;
 	IBOutlet NSView *_highlightView;
 	WebDriverElementNode *_rootNode;
+    BOOL _showDisabled;
+    BOOL _showInvisible;
 }
+
+@property NSNumber *showDisabled;
+@property NSNumber *showInvisible;
 
 @end

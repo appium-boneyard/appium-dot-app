@@ -10,11 +10,13 @@
 
 @implementation WebDriverElementNode
 
--(id)initWithJSONDict:(NSDictionary *)jsonDict
+- (id)initWithJSONDict:(NSDictionary *)jsonDict showDisabled:(BOOL)showDisabled showInvisible:(BOOL)showInvisible
 {
 	if (self = [super init])
 	{
 		_jsonDict = jsonDict;
+        _showDisabled = showDisabled;
+        _showInvisible = showInvisible;
 		[self setEnabled:[[_jsonDict valueForKey:@"enabled"] boolValue]];
 		[self setVisible:[[_jsonDict valueForKey:@"visible"] boolValue]];
 		[self setValid:[[_jsonDict valueForKey:@"valid"] boolValue]];
@@ -30,6 +32,17 @@
 		long width = [[size valueForKey:@"width"] longValue];
 		long height = [[size valueForKey:@"height"] longValue];
 		[self setRect:NSMakeRect((float)x, (float)y, (float)width, (float)height)];
+        
+        _children = [NSMutableArray new];
+        NSArray *jsonItems = [_jsonDict objectForKey:@"children"];
+        for(int i=0; i <jsonItems.count; i++)
+        {
+            WebDriverElementNode* child = [[WebDriverElementNode alloc] initWithJSONDict:[jsonItems objectAtIndex:i] showDisabled:_showDisabled showInvisible:_showInvisible];
+            if ( ![child isLeaf] || ((_showInvisible || child.visible) && (_showDisabled || child.enabled)) )
+            {
+                [_children addObject:child];
+            }
+        }
 	}
 	return self;
 }
@@ -52,8 +65,7 @@
 
 - (BOOL)isLeaf
 {
-	NSArray *children = (NSArray*)[_jsonDict objectForKey:@"children"];
-    return children.count > 0;
+    return _children.count < 1;
 }
 
 - (NSColor *)labelColor
@@ -61,48 +73,7 @@
     return [NSColor blackColor];
 }
 
-- (NSArray *)children {
-    if (_children == nil || _childrenDirty) {
-        // This logic keeps the same pointers around, if possible.
-        NSMutableDictionary *newChildren = [NSMutableDictionary new];
-        
-        NSArray *contentsAtPath = (NSArray*)[_jsonDict objectForKey:@"children"];
-		
-		if (contentsAtPath) {   // We don't deal with the error
-			for (NSDictionary *contentJsonDict in contentsAtPath)
-			{
-				// Use the filename as a key and see if it was around and reuse it, if possible
-				if (_children != nil)
-				{
-					WebDriverElementNode *oldChild = [_children objectForKey:contentJsonDict];
-					if (oldChild != nil) {
-						[newChildren setObject:oldChild forKey:contentJsonDict];
-						continue;
-					}
-				}
-				// We didn't find it, add a new one
-				if (contentJsonDict != nil)
-				{
-					// Wrap the child url with our node
-					WebDriverElementNode *node = [[WebDriverElementNode alloc] initWithJSONDict:contentJsonDict];
-					[newChildren setObject:node forKey:contentJsonDict];
-				}
-			}
-		}
-        _children = newChildren;
-        _childrenDirty = NO;
-    }
-    
-    NSArray *result = [_children allValues];
-    return result;
-}
-
-- (void)invalidateChildren {
-    _childrenDirty = YES;
-    for (WebDriverElementNode *child in [_children allValues]) {
-        [child invalidateChildren];
-    }
-}
+- (NSArray *)children { return _children; }
 
 -(NSString*) infoText
 {
