@@ -47,6 +47,9 @@
 			<property name="log text" code="amlt" description="text from the appium log" type="text" access="r">
 				<cocoa key="s_LogText"/>
 			</property>
+			<property name="node path" code="amnp" description="path to nodejs binary" type="text" access="r">
+				<cocoa key="s_NodePath"/>
+			</property>
 			<property name="prelaunch simulator" code="apps" description="true if the simulator will prelaunch" type="boolean">
 				<cocoa key="s_PrelaunchApp"/>
 			</property>

@@ -11,6 +11,7 @@
 @interface NodeInstance : NSObject
 
 -(id) initWithPath:(NSString*)rootPath;
+-(NSString*) pathToNodeBinary;
 
 +(BOOL) instanceExistsAtPath:(NSString*)rootPath;
 +(BOOL) packageIsInstalledAtPath:(NSString*)rootPath withName:(NSString*)packageName;

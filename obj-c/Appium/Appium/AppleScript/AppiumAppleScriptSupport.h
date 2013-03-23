@@ -23,6 +23,7 @@
 @property (readonly) NSNumber *s_IsServerRunning;
 @property NSNumber *s_KeepArtifacts;
 @property (readonly)NSString *s_LogText;
+@property (readonly)NSString *s_NodePath;
 @property NSNumber *s_Port;
 @property NSNumber *s_PrelaunchApp;
 @property NSNumber *s_ResetApplicationState;
