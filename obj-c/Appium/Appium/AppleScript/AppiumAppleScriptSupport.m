@@ -56,6 +56,8 @@
 -(NSNumber*) s_KeepArtifacts { return [NSNumber numberWithBool:[[self model] keepArtifacts]]; }
 -(void) setS_KeepArtifacts:(NSNumber *)s_KeepArtifacts{	[[self model] setKeepArtifacts:[s_KeepArtifacts boolValue]]; }
 
+-(NSString*) s_NodePath { return [[[(AppiumAppDelegate*)[[NSApplication sharedApplication]delegate] mainWindowController] node] pathToNodeBinary]; }
+
 -(NSNumber*) s_UseWarp { return [NSNumber numberWithBool:[[self model] useWarp]]; }
 -(void) setS_UseWarp:(NSNumber *)s_UseWarp { [[self model] setUseWarp:[s_UseWarp boolValue]]; }
 

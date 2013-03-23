@@ -55,10 +55,10 @@
 						<object class="NSBrowser" id="373383690">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{20, 20}, {576, 460}}</string>
+							<string key="NSFrame">{{20, 138}, {576, 342}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="347033652"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -113,7 +113,7 @@
 												<string>WebURLsWithTitlesPboardType</string>
 												<string>public.url</string>
 											</set>
-											<string key="NSFrameSize">{238, 108}</string>
+											<string key="NSFrameSize">{190, 108}</string>
 											<reference key="NSSuperview" ref="153909720"/>
 											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="555555799"/>
@@ -133,7 +133,7 @@
 													<nil key="NSDelegate"/>
 												</object>
 												<reference key="NSTextView" ref="328755789"/>
-												<double key="NSWidth">238</double>
+												<double key="NSWidth">190</double>
 												<int key="NSTCFlags">1</int>
 											</object>
 											<object class="NSTextViewSharedData" key="NSSharedData">
@@ -185,7 +185,7 @@
 											<nil key="NSDelegate"/>
 										</object>
 									</array>
-									<string key="NSFrame">{{1, 1}, {238, 108}}</string>
+									<string key="NSFrame">{{1, 1}, {190, 108}}</string>
 									<reference key="NSSuperview" ref="410508918"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="328755789"/>
@@ -216,7 +216,7 @@
 								<object class="NSScroller" id="555555799">
 									<reference key="NSNextResponder" ref="410508918"/>
 									<int key="NSvFlags">256</int>
-									<string key="NSFrame">{{223, 1}, {16, 108}}</string>
+									<string key="NSFrame">{{175, 1}, {16, 108}}</string>
 									<reference key="NSSuperview" ref="410508918"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView"/>
@@ -243,7 +243,7 @@
 									<double key="NSPercent">0.94565218687057495</double>
 								</object>
 							</array>
-							<string key="NSFrame">{{604, 20}, {240, 110}}</string>
+							<string key="NSFrame">{{20, 20}, {192, 110}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="721067251"/>
@@ -311,9 +311,9 @@
 					<string key="NSFrameSize">{864, 480}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
-					<reference key="NSNextKeyView" ref="373383690"/>
+					<reference key="NSNextKeyView"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {2560, 1578}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<string key="NSFrameAutosaveName">AppiumInspector</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
@@ -536,7 +536,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">61</int>
+			<int key="maxID">71</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
