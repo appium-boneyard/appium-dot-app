@@ -133,11 +133,7 @@ NSMutableArray *selectedIndexes;
 			node = [node.children objectAtIndex:[[browserSelectedIndexes objectAtIndex:i] integerValue]];
 		}
         browserSelection = node;
-        [self setHighlightBox];
-        //NSString *newDetails = [NSString stringWithFormat:@"%@\nid string: %@", _detailsTextView.string, [self xPathForSelectedNode]];
-        //[_detailsTextView setString:newDetails];
-		
-		
+	
 		// actual selection
 		node = _rootNode;
 		for(int i=0; i < selectedIndexes.count && i < column; i++)
@@ -170,6 +166,11 @@ NSMutableArray *selectedIndexes;
 			node = [node.children objectAtIndex:[[selectedIndexes objectAtIndex:i] integerValue]];
 		}
         selection = node;
+		
+		// update display
+		[self setHighlightBox];
+        NSString *newDetails = [NSString stringWithFormat:@"%@\nid string: %@", _detailsTextView.string, [self xPathForSelectedNode]];
+        [_detailsTextView setString:newDetails];
 		
 	}
     else
@@ -222,60 +223,44 @@ NSMutableArray *selectedIndexes;
     }
 }
 
-/*
 -(NSString*) xPathForSelectedNode
 {
     WebDriverElementNode *parentNode = _rootNode;
-    WebDriverElementNode *browserParentNode = _browserRootNode;
     NSMutableString *xPath = [NSMutableString stringWithString:@"/"];
     BOOL foundNode = NO;
     for(int i=0; i < browserSelectedIndexes.count && !foundNode; i++)
     {
         // find current browser node
-        WebDriverElementNode *currentBrowserNode = [browserParentNode.children objectAtIndex:[[browserSelectedIndexes objectAtIndex:i] integerValue]];
-        if (currentBrowserNode == browserSelection)
+        WebDriverElementNode *currentNode = [parentNode.children objectAtIndex:[[browserSelectedIndexes objectAtIndex:i] integerValue]];
+        if (currentNode == selection)
             foundNode = YES;
-        
-        // find current node
-        WebDriverElementNode *currentNode = nil;
-        NSInteger nodeCount = -1;
-        for(int j=0; j < parentNode.children.count && currentNode == nil; j++)
-        {
-            WebDriverElementNode *node = [parentNode.children objectAtIndex:j];
-            if ([node shouldDisplay])
-            {
-                nodeCount++;
-            }
-            if (nodeCount == [[browserSelectedIndexes objectAtIndex:i] integerValue])
-            {
-                currentNode = node;
-            }
-        }
-        
+
         // build xpath
         [xPath appendString:@"/"];
-        [xPath appendString:currentBrowserNode.typeShortcut];
-        NSInteger nodeTypeCount = 1;
+        [xPath appendString:currentNode.typeShortcut];
+        NSInteger nodeTypeCount = 0;
         for(int j=0; j < parentNode.children.count; j++)
         {
             WebDriverElementNode *node = [parentNode.children objectAtIndex:j];
-            if ( [node.type isEqualToString:browserSelection.type] && j <= nodeCount)
+			WebDriverElementNode *selectedNodeAtLevel = _rootNode;
+			for(int k=0; k < selectedIndexes.count && k <= i; k++)
+				selectedNodeAtLevel = [selectedNodeAtLevel.children objectAtIndex:[[selectedIndexes objectAtIndex:k] intValue]];
+            if ( [node.type isEqualToString:selectedNodeAtLevel.type] && j <= [[selectedIndexes objectAtIndex:i] intValue])
             {
                 nodeTypeCount++;
             }
         }
         
         [xPath appendString:[NSString stringWithFormat:@"[%ld]", nodeTypeCount]];
-        browserParentNode = currentBrowserNode;
         parentNode = currentNode;
     }
     return xPath;
-} */
+}
 
 -(IBAction)tap:(id)sender
 {
-    //SEWebElement *element = [driver findElementBy:[SEBy xPath:[self xPathForSelectedNode]]];
-    //[element click];
+    SEWebElement *element = [driver findElementBy:[SEBy xPath:[self xPathForSelectedNode]]];
+    [element click];
     //[self refreshScreenshot];
     //[self refreshPageSource];
     //[self populateDOM];
