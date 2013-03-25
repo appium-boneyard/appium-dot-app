@@ -49,7 +49,12 @@
 
 -(BOOL)shouldDisplay
 {
-    return ( ![self isLeaf] || ((_showInvisible || self.visible) && (_showDisabled || self.enabled)) );
+	return [self shouldDisplayifInvisible:_showInvisible disabled:_showDisabled];
+}
+
+-(BOOL)shouldDisplayifInvisible:(BOOL)showInvisible disabled:(BOOL)showDisabled
+{
+    return ( ![self isLeaf] || ((showInvisible || self.visible) && (showDisabled || self.enabled)) );
 }
 
 - (NSString *)description {

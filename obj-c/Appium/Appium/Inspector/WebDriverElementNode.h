@@ -38,6 +38,7 @@
 @property NSString *value;
 @property NSString *name;
 @property (readonly) NSString* infoText;
-@property (readonly) BOOL shouldDisplay;
+-(BOOL) shouldDisplay;
+-(BOOL) shouldDisplayifInvisible:(BOOL)showInvisible disabled:(BOOL)showDisabled;
 
 @end

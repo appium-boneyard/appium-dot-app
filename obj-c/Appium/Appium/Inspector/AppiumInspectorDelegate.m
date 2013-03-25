@@ -15,10 +15,12 @@
 @implementation AppiumInspectorDelegate
 
 SERemoteWebDriver *driver;
-NSMutableArray *selectedIndexes;
 NSImage *lastScreenshot;
 NSString *lastPageSource;
+WebDriverElementNode *browserSelection;
 WebDriverElementNode *selection;
+NSMutableArray *browserSelectedIndexes;
+NSMutableArray *selectedIndexes;
 
 - (id)init
 {
@@ -63,6 +65,8 @@ WebDriverElementNode *selection;
 	_browserRootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict showDisabled:[self.showDisabled boolValue] showInvisible:[self.showInvisible boolValue]];
     _rootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict showDisabled:YES showInvisible:YES];
     [_browser loadColumnZero];
+	browserSelectedIndexes = [NSMutableArray new];
+	selectedIndexes = [NSMutableArray new];
 }
 
 -(void)refreshPageSource
@@ -79,7 +83,6 @@ WebDriverElementNode *selection;
 - (id)rootItemForBrowser:(NSBrowser *)browser {
     if (_browserRootNode == nil) {
         [self populateDOM];
-		selectedIndexes = [NSMutableArray new];
     }
     return _browserRootNode;
 }
@@ -114,37 +117,74 @@ WebDriverElementNode *selection;
 {
     if ([proposedSelectionIndexes firstIndex] != NSNotFound)
 	{
-		if (selectedIndexes.count < column+1)
+		// browser selection
+		if (browserSelectedIndexes.count < column+1)
 		{
-			[selectedIndexes addObject:[NSNumber numberWithInteger:[proposedSelectionIndexes firstIndex]]];
+			[browserSelectedIndexes addObject:[NSNumber numberWithInteger:[proposedSelectionIndexes firstIndex]]];
 		}
 		else
 		{
-			[selectedIndexes replaceObjectAtIndex:column withObject:[NSNumber numberWithInteger:[proposedSelectionIndexes firstIndex]]];
+			[browserSelectedIndexes replaceObjectAtIndex:column withObject:[NSNumber numberWithInteger:[proposedSelectionIndexes firstIndex]]];
 		}
         
 		WebDriverElementNode *node = _browserRootNode;
+		for(int i=0; i < browserSelectedIndexes.count && i < column+1; i++)
+		{
+			node = [node.children objectAtIndex:[[browserSelectedIndexes objectAtIndex:i] integerValue]];
+		}
+        browserSelection = node;
+        [self setHighlightBox];
+        //NSString *newDetails = [NSString stringWithFormat:@"%@\nid string: %@", _detailsTextView.string, [self xPathForSelectedNode]];
+        //[_detailsTextView setString:newDetails];
+		
+		
+		// actual selection
+		node = _rootNode;
+		for(int i=0; i < selectedIndexes.count && i < column; i++)
+		{
+			node = [node.children objectAtIndex:[[selectedIndexes objectAtIndex:i] integerValue]];
+		}
+		int indexMapping = 0;
+		int actualIndex = 0;
+		for(; actualIndex < node.children.count && indexMapping < [[browserSelectedIndexes objectAtIndex:column] intValue]; actualIndex++)
+		{
+			WebDriverElementNode* child = [node.children objectAtIndex:actualIndex];
+			if ([child shouldDisplayifInvisible:_showInvisible disabled:_showDisabled])
+			{
+				indexMapping++;
+			}
+		}
+		
+		if (selectedIndexes.count < column+1)
+		{
+			[selectedIndexes addObject:[NSNumber numberWithInteger:indexMapping]];
+		}
+		else
+		{
+			[selectedIndexes replaceObjectAtIndex:column withObject:[NSNumber numberWithInteger:indexMapping]];
+		}
+		
+		node = _rootNode;
 		for(int i=0; i < selectedIndexes.count && i < column+1; i++)
 		{
 			node = [node.children objectAtIndex:[[selectedIndexes objectAtIndex:i] integerValue]];
 		}
         selection = node;
-        [self setHighlightBox];
-        NSString *newDetails = [NSString stringWithFormat:@"%@\nid string: %@", _detailsTextView.string, [self xPathForSelectedNode]];
-        [_detailsTextView setString:newDetails];
+		
 	}
     else
     {
-        selection = nil;
+        browserSelection = nil;
+		selection = nil;
         [_detailsTextView setString:@""];
     }
 }
 
 -(void)setHighlightBox
 {
-    if (selection != nil)
+    if (browserSelection != nil)
     {
-        [_detailsTextView setString:[selection infoText]];
+        [_detailsTextView setString:[browserSelection infoText]];
         if (!_highlightView.layer) {
             [_highlightView setWantsLayer:YES];
             _highlightView.layer.borderColor = [NSColor redColor].CGColor;
@@ -152,7 +192,7 @@ WebDriverElementNode *selection;
             _highlightView.layer.cornerRadius = 8.0f;
         }
         
-        CGRect viewRect = [selection rect];
+        CGRect viewRect = [browserSelection rect];
         CGFloat scalar = 320.0 / lastScreenshot.size.height;
         CGFloat maxX = 240.0;
         CGFloat maxY = 320.0;
@@ -171,8 +211,8 @@ WebDriverElementNode *selection;
         }
         viewRect.size.width *= scalar;
         viewRect.size.height *= scalar;
-        viewRect.origin.x = xOffset + (selection.rect.origin.x * scalar);
-        viewRect.origin.y = maxY - (yOffset + ((selection.rect.origin.y + selection.rect.size.height) * scalar));
+        viewRect.origin.x = xOffset + (browserSelection.rect.origin.x * scalar);
+        viewRect.origin.y = maxY - (yOffset + ((browserSelection.rect.origin.y + browserSelection.rect.size.height) * scalar));
         _highlightView.frame = viewRect;
         [_highlightView setHidden:NO];
     }
@@ -182,17 +222,18 @@ WebDriverElementNode *selection;
     }
 }
 
+/*
 -(NSString*) xPathForSelectedNode
 {
     WebDriverElementNode *parentNode = _rootNode;
     WebDriverElementNode *browserParentNode = _browserRootNode;
     NSMutableString *xPath = [NSMutableString stringWithString:@"/"];
     BOOL foundNode = NO;
-    for(int i=0; i < selectedIndexes.count && !foundNode; i++)
+    for(int i=0; i < browserSelectedIndexes.count && !foundNode; i++)
     {
         // find current browser node
-        WebDriverElementNode *currentBrowserNode = [browserParentNode.children objectAtIndex:[[selectedIndexes objectAtIndex:i] integerValue]];
-        if (currentBrowserNode == selection)
+        WebDriverElementNode *currentBrowserNode = [browserParentNode.children objectAtIndex:[[browserSelectedIndexes objectAtIndex:i] integerValue]];
+        if (currentBrowserNode == browserSelection)
             foundNode = YES;
         
         // find current node
@@ -205,7 +246,7 @@ WebDriverElementNode *selection;
             {
                 nodeCount++;
             }
-            if (nodeCount == [[selectedIndexes objectAtIndex:i] integerValue])
+            if (nodeCount == [[browserSelectedIndexes objectAtIndex:i] integerValue])
             {
                 currentNode = node;
             }
@@ -218,7 +259,7 @@ WebDriverElementNode *selection;
         for(int j=0; j < parentNode.children.count; j++)
         {
             WebDriverElementNode *node = [parentNode.children objectAtIndex:j];
-            if ( [node.type isEqualToString:selection.type] && j <= nodeCount)
+            if ( [node.type isEqualToString:browserSelection.type] && j <= nodeCount)
             {
                 nodeTypeCount++;
             }
@@ -229,15 +270,16 @@ WebDriverElementNode *selection;
         parentNode = currentNode;
     }
     return xPath;
-}
+} */
 
 -(IBAction)tap:(id)sender
 {
-    SEWebElement *element = [driver findElementBy:[SEBy xPath:[self xPathForSelectedNode]]];
-    [element click];
+    //SEWebElement *element = [driver findElementBy:[SEBy xPath:[self xPathForSelectedNode]]];
+    //[element click];
     //[self refreshScreenshot];
     //[self refreshPageSource];
     //[self populateDOM];
+	NSLog(@"NYI");
 }
 
 @end
