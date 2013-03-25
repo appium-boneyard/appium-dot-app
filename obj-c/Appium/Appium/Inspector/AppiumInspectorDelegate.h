@@ -19,6 +19,7 @@
 	IBOutlet NSImageView *_screenshotView;
 	IBOutlet NSView *_highlightView;
 	WebDriverElementNode *_rootNode;
+    WebDriverElementNode *_browserRootNode;
     BOOL _showDisabled;
     BOOL _showInvisible;
 }

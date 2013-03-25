@@ -444,22 +444,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">browser</string>
-						<reference key="source" ref="963484851"/>
-						<reference key="destination" ref="373383690"/>
-					</object>
-					<int key="connectionID">47</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">detailsTextView</string>
-						<reference key="source" ref="963484851"/>
-						<reference key="destination" ref="328755789"/>
-					</object>
-					<int key="connectionID">49</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">_browser</string>
 						<reference key="source" ref="963484851"/>
 						<reference key="destination" ref="373383690"/>
@@ -484,19 +468,19 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">screenshotView</string>
-						<reference key="source" ref="963484851"/>
-						<reference key="destination" ref="707848315"/>
-					</object>
-					<int key="connectionID">48</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">_highlightView</string>
 						<reference key="source" ref="963484851"/>
 						<reference key="destination" ref="1021976772"/>
 					</object>
 					<int key="connectionID">61</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">tap:</string>
+						<reference key="source" ref="963484851"/>
+						<reference key="destination" ref="276139266"/>
+					</object>
+					<int key="connectionID">91</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -716,7 +700,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">90</int>
+			<int key="maxID">91</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

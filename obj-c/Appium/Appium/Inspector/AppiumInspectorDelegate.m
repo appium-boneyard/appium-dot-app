@@ -56,12 +56,18 @@ WebDriverElementNode *selection;
         NSError *error;
 		driver = [[SERemoteWebDriver alloc] initWithServerAddress:[model ipAddress] port:[[model port] integerValue] desiredCapabilities:capabilities requiredCapabilities:nil error:&error];
         [self refreshScreenshot];
-        lastPageSource = [driver pageSource];
+        [self refreshPageSource];
 	}
 	NSError *e = nil;
 	NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData: [lastPageSource dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: &e];
-	_rootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict showDisabled:[self.showDisabled boolValue] showInvisible:[self.showInvisible boolValue]];
+	_browserRootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict showDisabled:[self.showDisabled boolValue] showInvisible:[self.showInvisible boolValue]];
+    _rootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict showDisabled:YES showInvisible:YES];
     [_browser loadColumnZero];
+}
+
+-(void)refreshPageSource
+{
+	lastPageSource = [driver pageSource];
 }
 
 -(void)refreshScreenshot
@@ -71,11 +77,11 @@ WebDriverElementNode *selection;
 }
 
 - (id)rootItemForBrowser:(NSBrowser *)browser {
-    if (_rootNode == nil) {
+    if (_browserRootNode == nil) {
         [self populateDOM];
 		selectedIndexes = [NSMutableArray new];
     }
-    return _rootNode;
+    return _browserRootNode;
 }
 
 - (NSInteger)browser:(NSBrowser *)browser numberOfChildrenOfItem:(id)item {
@@ -117,7 +123,7 @@ WebDriverElementNode *selection;
 			[selectedIndexes replaceObjectAtIndex:column withObject:[NSNumber numberWithInteger:[proposedSelectionIndexes firstIndex]]];
 		}
         
-		WebDriverElementNode *node = _rootNode;
+		WebDriverElementNode *node = _browserRootNode;
 		for(int i=0; i < selectedIndexes.count && i < column+1; i++)
 		{
 			node = [node.children objectAtIndex:[[selectedIndexes objectAtIndex:i] integerValue]];
@@ -178,39 +184,60 @@ WebDriverElementNode *selection;
 
 -(NSString*) xPathForSelectedNode
 {
-    NSString *idString = nil;
     WebDriverElementNode *parentNode = _rootNode;
+    WebDriverElementNode *browserParentNode = _browserRootNode;
     NSMutableString *xPath = [NSMutableString stringWithString:@"/"];
     BOOL foundNode = NO;
     for(int i=0; i < selectedIndexes.count && !foundNode; i++)
     {
-        WebDriverElementNode *currentNode = [parentNode.children objectAtIndex:[[selectedIndexes objectAtIndex:i] integerValue]];
-        if (currentNode == selection)
+        // find current browser node
+        WebDriverElementNode *currentBrowserNode = [browserParentNode.children objectAtIndex:[[selectedIndexes objectAtIndex:i] integerValue]];
+        if (currentBrowserNode == selection)
             foundNode = YES;
+        
+        // find current node
+        WebDriverElementNode *currentNode = nil;
+        NSInteger nodeCount = -1;
+        for(int j=0; j < parentNode.children.count && currentNode == nil; j++)
+        {
+            WebDriverElementNode *node = [parentNode.children objectAtIndex:j];
+            if ([node shouldDisplay])
+            {
+                nodeCount++;
+            }
+            if (nodeCount == [[selectedIndexes objectAtIndex:i] integerValue])
+            {
+                currentNode = node;
+            }
+        }
+        
+        // build xpath
         [xPath appendString:@"/"];
-        [xPath appendString:currentNode.type];
-        NSInteger nodeTypeCount = 0;
+        [xPath appendString:currentBrowserNode.typeShortcut];
+        NSInteger nodeTypeCount = 1;
         for(int j=0; j < parentNode.children.count; j++)
         {
             WebDriverElementNode *node = [parentNode.children objectAtIndex:j];
-            if ( [node.type isEqualToString:selection.type] && j < [[selectedIndexes objectAtIndex:i] integerValue])
+            if ( [node.type isEqualToString:selection.type] && j <= nodeCount)
             {
                 nodeTypeCount++;
             }
-            if (idString != nil && [idString isEqualToString:node.label])
-            {
-                idString = nil;
-            }
         }
+        
         [xPath appendString:[NSString stringWithFormat:@"[%ld]", nodeTypeCount]];
+        browserParentNode = currentBrowserNode;
         parentNode = currentNode;
     }
-    return [NSString stringWithFormat:@"SEBy xPath:@\"%@\"", xPath];
+    return xPath;
 }
 
 -(IBAction)tap:(id)sender
 {
-    
+    SEWebElement *element = [driver findElementBy:[SEBy xPath:[self xPathForSelectedNode]]];
+    [element click];
+    //[self refreshScreenshot];
+    //[self refreshPageSource];
+    //[self populateDOM];
 }
 
 @end

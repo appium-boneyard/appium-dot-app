@@ -34,8 +34,10 @@
 @property NSString *label;
 @property NSRect rect;
 @property NSString *type;
+@property (readonly) NSString *typeShortcut;
 @property NSString *value;
 @property NSString *name;
 @property (readonly) NSString* infoText;
+@property (readonly) BOOL shouldDisplay;
 
 @end

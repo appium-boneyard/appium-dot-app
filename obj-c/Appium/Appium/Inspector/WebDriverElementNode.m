@@ -38,13 +38,18 @@
         for(int i=0; i <jsonItems.count; i++)
         {
             WebDriverElementNode* child = [[WebDriverElementNode alloc] initWithJSONDict:[jsonItems objectAtIndex:i] showDisabled:_showDisabled showInvisible:_showInvisible];
-            if ( ![child isLeaf] || ((_showInvisible || child.visible) && (_showDisabled || child.enabled)) )
+            if ( [child shouldDisplay])
             {
                 [_children addObject:child];
             }
         }
 	}
 	return self;
+}
+
+-(BOOL)shouldDisplay
+{
+    return ( ![self isLeaf] || ((_showInvisible || self.visible) && (_showDisabled || self.enabled)) );
 }
 
 - (NSString *)description {
@@ -79,6 +84,72 @@
 {
 	NSString* info = [NSString stringWithFormat:@"name: %@\ntype: %@\nvalue: %@\nlabel: %@\nenabled: %@\nvisible: %@\nvalid: %@", self.name, self.type, self.value, self.label, (self.enabled ? @"true" : @"false"),(self.visible ? @"true" : @"false"),(self.valid ? @"true" : @"false")];
 	return info;
+}
+
+-(NSString*) typeShortcut
+{
+    if ([self.type isEqualToString:@"UIAActionSheet"])
+        return @"actionsheet";
+    else if ([self.type isEqualToString:@"UIAActivityIndicator"])
+        return @"activityIndicator";
+    else if ([self.type isEqualToString:@"UIAAlert"])
+        return @"alert";
+    else if ([self.type isEqualToString:@"UIAButton"])
+        return @"button";
+    else if ([self.type isEqualToString:@"UIAElement"])
+        return @"*";
+    else if ([self.type isEqualToString:@"UIAImage"])
+        return @"image";
+    else if ([self.type isEqualToString:@"UIALink"])
+        return @"link";
+    else if ([self.type isEqualToString:@"UIAPageIndicator"])
+        return @"pageIndicator";
+    else if ([self.type isEqualToString:@"UIAPicker"])
+        return @"picker";
+    else if ([self.type isEqualToString:@"UIAPickerWheel"])
+        return @"pickerwheel";
+    else if ([self.type isEqualToString:@"UIAPopover"])
+        return @"popover";
+    else if ([self.type isEqualToString:@"UIAProgressIndicator"])
+        return @"progress";
+    else if ([self.type isEqualToString:@"UIAScrollView"])
+        return @"scrollview";
+    else if ([self.type isEqualToString:@"UIASearchBar"])
+        return @"searchbar";
+    else if ([self.type isEqualToString:@"UIASecureTextField"])
+        return @"secure";
+    else if ([self.type isEqualToString:@"UIASegmentedControl"])
+        return @"segemented";
+    else if ([self.type isEqualToString:@"UIASlider"])
+        return @"slider";
+    else if ([self.type isEqualToString:@"UIAStaticText"])
+        return @"text";
+    else if ([self.type isEqualToString:@"UIAStatusBar"])
+        return @"statusbar";
+    else if ([self.type isEqualToString:@"UIASwitch"])
+        return @"switch";
+    else if ([self.type isEqualToString:@"UIATabBar"])
+        return @"tabbar";
+    else if ([self.type isEqualToString:@"UIATableView"])
+        return @"tableview";
+    else if ([self.type isEqualToString:@"UIATableCell"])
+        return @"cell";
+    else if ([self.type isEqualToString:@"UIATableGroup"])
+        return @"group";
+    else if ([self.type isEqualToString:@"UIATextField"])
+        return @"textfield";
+    else if ([self.type isEqualToString:@"UIATextView"])
+        return @"textview";
+    else if ([self.type isEqualToString:@"UIAToolbar"])
+        return @"toolbar";
+    else if ([self.type isEqualToString:@"UIAWebView"])
+        return @"webview";
+    else if ([self.type isEqualToString:@"UIAWindow"])
+        return @"window";
+    else if ([self.type isEqualToString:@"UIANavigationBar"])
+        return @"navigationBar";
+    else
+        return @"*";
 }
 
 @end
