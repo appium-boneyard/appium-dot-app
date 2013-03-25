@@ -256,7 +256,6 @@
 		36CEB7BF16E3662E00B5B100 = {
 			isa = PBXGroup;
 			children = (
-				3695E3C216FD08C800AD1544 /* QuartzCore.framework */,
 				36CEB7D116E3662E00B5B100 /* Appium */,
 				36CEB7EE16E3662E00B5B100 /* AppiumTests */,
 				36CEB7CA16E3662E00B5B100 /* Frameworks */,
@@ -276,8 +275,9 @@
 		36CEB7CA16E3662E00B5B100 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				36F5FA2B16F4E87E007751D6 /* Selenium.framework */,
 				36CEB7CB16E3662E00B5B100 /* Cocoa.framework */,
+				3695E3C216FD08C800AD1544 /* QuartzCore.framework */,
+				36F5FA2B16F4E87E007751D6 /* Selenium.framework */,
 				36CEB7E916E3662E00B5B100 /* SenTestingKit.framework */,
 				36CEB7CD16E3662E00B5B100 /* Other Frameworks */,
 			);

@@ -10,11 +10,13 @@
 
 @implementation WebDriverElementNode
 
--(id)initWithJSONDict:(NSDictionary *)jsonDict
+- (id)initWithJSONDict:(NSDictionary *)jsonDict showDisabled:(BOOL)showDisabled showInvisible:(BOOL)showInvisible
 {
 	if (self = [super init])
 	{
 		_jsonDict = jsonDict;
+        _showDisabled = showDisabled;
+        _showInvisible = showInvisible;
 		[self setEnabled:[[_jsonDict valueForKey:@"enabled"] boolValue]];
 		[self setVisible:[[_jsonDict valueForKey:@"visible"] boolValue]];
 		[self setValid:[[_jsonDict valueForKey:@"valid"] boolValue]];
@@ -30,8 +32,29 @@
 		long width = [[size valueForKey:@"width"] longValue];
 		long height = [[size valueForKey:@"height"] longValue];
 		[self setRect:NSMakeRect((float)x, (float)y, (float)width, (float)height)];
+        
+        _children = [NSMutableArray new];
+        NSArray *jsonItems = [_jsonDict objectForKey:@"children"];
+        for(int i=0; i <jsonItems.count; i++)
+        {
+            WebDriverElementNode* child = [[WebDriverElementNode alloc] initWithJSONDict:[jsonItems objectAtIndex:i] showDisabled:_showDisabled showInvisible:_showInvisible];
+            if ( [child shouldDisplay])
+            {
+                [_children addObject:child];
+            }
+        }
 	}
 	return self;
+}
+
+-(BOOL)shouldDisplay
+{
+	return [self shouldDisplayifInvisible:_showInvisible disabled:_showDisabled];
+}
+
+-(BOOL)shouldDisplayifInvisible:(BOOL)showInvisible disabled:(BOOL)showDisabled
+{
+    return ( ![self isLeaf] || ((showInvisible || self.visible) && (showDisabled || self.enabled)) );
 }
 
 - (NSString *)description {
@@ -52,8 +75,7 @@
 
 - (BOOL)isLeaf
 {
-	NSArray *children = (NSArray*)[_jsonDict objectForKey:@"children"];
-    return children.count > 0;
+    return _children.count < 1;
 }
 
 - (NSColor *)labelColor
@@ -61,53 +83,78 @@
     return [NSColor blackColor];
 }
 
-- (NSArray *)children {
-    if (_children == nil || _childrenDirty) {
-        // This logic keeps the same pointers around, if possible.
-        NSMutableDictionary *newChildren = [NSMutableDictionary new];
-        
-        NSArray *contentsAtPath = (NSArray*)[_jsonDict objectForKey:@"children"];
-		
-		if (contentsAtPath) {   // We don't deal with the error
-			for (NSDictionary *contentJsonDict in contentsAtPath)
-			{
-				// Use the filename as a key and see if it was around and reuse it, if possible
-				if (_children != nil)
-				{
-					WebDriverElementNode *oldChild = [_children objectForKey:contentJsonDict];
-					if (oldChild != nil) {
-						[newChildren setObject:oldChild forKey:contentJsonDict];
-						continue;
-					}
-				}
-				// We didn't find it, add a new one
-				if (contentJsonDict != nil)
-				{
-					// Wrap the child url with our node
-					WebDriverElementNode *node = [[WebDriverElementNode alloc] initWithJSONDict:contentJsonDict];
-					[newChildren setObject:node forKey:contentJsonDict];
-				}
-			}
-		}
-        _children = newChildren;
-        _childrenDirty = NO;
-    }
-    
-    NSArray *result = [_children allValues];
-    return result;
-}
-
-- (void)invalidateChildren {
-    _childrenDirty = YES;
-    for (WebDriverElementNode *child in [_children allValues]) {
-        [child invalidateChildren];
-    }
-}
+- (NSArray *)children { return _children; }
 
 -(NSString*) infoText
 {
 	NSString* info = [NSString stringWithFormat:@"name: %@\ntype: %@\nvalue: %@\nlabel: %@\nenabled: %@\nvisible: %@\nvalid: %@", self.name, self.type, self.value, self.label, (self.enabled ? @"true" : @"false"),(self.visible ? @"true" : @"false"),(self.valid ? @"true" : @"false")];
 	return info;
+}
+
+-(NSString*) typeShortcut
+{
+    if ([self.type isEqualToString:@"UIAActionSheet"])
+        return @"actionsheet";
+    else if ([self.type isEqualToString:@"UIAActivityIndicator"])
+        return @"activityIndicator";
+    else if ([self.type isEqualToString:@"UIAAlert"])
+        return @"alert";
+    else if ([self.type isEqualToString:@"UIAButton"])
+        return @"button";
+    else if ([self.type isEqualToString:@"UIAElement"])
+        return @"*";
+    else if ([self.type isEqualToString:@"UIAImage"])
+        return @"image";
+    else if ([self.type isEqualToString:@"UIALink"])
+        return @"link";
+    else if ([self.type isEqualToString:@"UIAPageIndicator"])
+        return @"pageIndicator";
+    else if ([self.type isEqualToString:@"UIAPicker"])
+        return @"picker";
+    else if ([self.type isEqualToString:@"UIAPickerWheel"])
+        return @"pickerwheel";
+    else if ([self.type isEqualToString:@"UIAPopover"])
+        return @"popover";
+    else if ([self.type isEqualToString:@"UIAProgressIndicator"])
+        return @"progress";
+    else if ([self.type isEqualToString:@"UIAScrollView"])
+        return @"scrollview";
+    else if ([self.type isEqualToString:@"UIASearchBar"])
+        return @"searchbar";
+    else if ([self.type isEqualToString:@"UIASecureTextField"])
+        return @"secure";
+    else if ([self.type isEqualToString:@"UIASegmentedControl"])
+        return @"segemented";
+    else if ([self.type isEqualToString:@"UIASlider"])
+        return @"slider";
+    else if ([self.type isEqualToString:@"UIAStaticText"])
+        return @"text";
+    else if ([self.type isEqualToString:@"UIAStatusBar"])
+        return @"statusbar";
+    else if ([self.type isEqualToString:@"UIASwitch"])
+        return @"switch";
+    else if ([self.type isEqualToString:@"UIATabBar"])
+        return @"tabbar";
+    else if ([self.type isEqualToString:@"UIATableView"])
+        return @"tableview";
+    else if ([self.type isEqualToString:@"UIATableCell"])
+        return @"cell";
+    else if ([self.type isEqualToString:@"UIATableGroup"])
+        return @"group";
+    else if ([self.type isEqualToString:@"UIATextField"])
+        return @"textfield";
+    else if ([self.type isEqualToString:@"UIATextView"])
+        return @"textview";
+    else if ([self.type isEqualToString:@"UIAToolbar"])
+        return @"toolbar";
+    else if ([self.type isEqualToString:@"UIAWebView"])
+        return @"webview";
+    else if ([self.type isEqualToString:@"UIAWindow"])
+        return @"window";
+    else if ([self.type isEqualToString:@"UIANavigationBar"])
+        return @"navigationBar";
+    else
+        return @"*";
 }
 
 @end

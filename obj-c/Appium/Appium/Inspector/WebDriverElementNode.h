@@ -11,11 +11,12 @@
 @interface WebDriverElementNode : NSObject<NSToolbarDelegate> {
 @private
 	NSDictionary *_jsonDict;
-    NSMutableDictionary *_children;
-    BOOL _childrenDirty;
+    NSMutableArray *_children;
+    BOOL _showDisabled;
+    BOOL _showInvisible;
 }
 
-- (id)initWithJSONDict:(NSDictionary *)jsonDict;
+- (id)initWithJSONDict:(NSDictionary *)jsonDict showDisabled:(BOOL)showDisabled showInvisible:(BOOL)showInvisible;
 
 #pragma mark - NSBrowerCell Properties
 
@@ -33,8 +34,11 @@
 @property NSString *label;
 @property NSRect rect;
 @property NSString *type;
+@property (readonly) NSString *typeShortcut;
 @property NSString *value;
 @property NSString *name;
 @property (readonly) NSString* infoText;
+-(BOOL) shouldDisplay;
+-(BOOL) shouldDisplayifInvisible:(BOOL)showInvisible disabled:(BOOL)showDisabled;
 
 @end
