@@ -47,9 +47,6 @@
 -(NSString*) s_AndroidActivity { return [[self model] androidActivity]; }
 -(void) setS_AndroidActivity:(NSString *)s_AndroidActivity { [[self model] setAndroidActivity:s_AndroidActivity]; }
 
--(NSNumber*) s_SkipAndroidInstall {	return [NSNumber numberWithBool:[[self model] skipAndroidInstall]]; }
--(void) setS_SkipAndroidInstall:(NSNumber *)s_SkipAndroidInstall{ [[self model] setSkipAndroidInstall:[s_SkipAndroidInstall boolValue]]; }
-
 -(NSNumber*) s_PrelaunchApp { return [NSNumber numberWithBool:[[self model] prelaunchApp]]; }
 -(void) setS_PrelaunchApp:(NSNumber *)s_PreLaunchApp { [[self model] setPrelaunchApp:[s_PreLaunchApp boolValue]]; }
 
