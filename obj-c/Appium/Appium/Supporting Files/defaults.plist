@@ -31,8 +31,6 @@
 	<string>0.0.0.0</string>
 	<key>Server Port</key>
 	<integer>4723</integer>
-	<key>Skip Android Install</key>
-	<false/>
 	<key>Tab State</key>
 	<integer>0</integer>
 	<key>UDID</key>

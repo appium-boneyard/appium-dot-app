@@ -28,7 +28,6 @@
 #define PLIST_RESET_APPLICATION_STATE @"Reset Application State"
 #define PLIST_SERVER_ADDRESS @"Server Address"
 #define PLIST_SERVER_PORT @"Server Port"
-#define PLIST_SKIP_ANDROID_INSTALL @"Skip Android Install"
 #define PLIST_UDID @"UDID"
 #define PLIST_USE_ANDROID_ACTIVITY @"Use Android Activity"
 #define PLIST_USE_ANDROID_PACKAGE @"Use Android Package"
@@ -109,9 +108,6 @@ BOOL _isServerRunning;
 
 -(BOOL) resetApplicationState { return [_defaults boolForKey:PLIST_RESET_APPLICATION_STATE]; }
 -(void) setResetApplicationState:(BOOL)resetApplicationState { [_defaults setBool:resetApplicationState forKey:PLIST_RESET_APPLICATION_STATE]; }
-
--(BOOL) skipAndroidInstall { return [_defaults boolForKey:PLIST_SKIP_ANDROID_INSTALL]; }
--(void) setSkipAndroidInstall:(BOOL)skipAndroidInstall { [_defaults setBool:skipAndroidInstall forKey:PLIST_SKIP_ANDROID_INSTALL]; }
 
 -(NSString*) udid {return [_defaults stringForKey:PLIST_UDID];}
 -(void) setUdid:(NSString *)udid { [ _defaults setValue:udid forKey:PLIST_UDID]; }

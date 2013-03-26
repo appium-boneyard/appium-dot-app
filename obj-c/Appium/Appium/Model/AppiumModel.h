@@ -38,7 +38,6 @@ typedef enum iOSAutomationDeviceTypes
 @property NSNumber *port;
 @property BOOL prelaunchApp;
 @property BOOL resetApplicationState;
-@property BOOL skipAndroidInstall;
 @property NSString *udid;
 @property BOOL useAndroidActivity;
 @property BOOL useAndroidPackage;

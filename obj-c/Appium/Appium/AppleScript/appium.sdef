@@ -62,9 +62,6 @@
 			<property name="server port" code="amsp" description="port for the appium server" type="integer">
 				<cocoa key="s_Port"/>
 			</property>
-			<property name="skip android install" code="apsi" description="true if android install will be skipped" type="boolean">
-				<cocoa key="s_SkipAndroidInstall"/>
-			</property>
 			<property name="UDID" code="amud" description="device udid" type="text">
 				<cocoa key="s_UDID"/>
 			</property>

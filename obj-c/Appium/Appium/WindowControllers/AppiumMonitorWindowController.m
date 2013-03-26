@@ -63,51 +63,47 @@ AppiumMenuBarManager *menuBarManager;
 	// get binary path
     serverTask = [NSTask new];
     [serverTask setCurrentDirectoryPath:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle]resourcePath], @"node_modules/appium"]];
-    [serverTask setLaunchPath:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle]resourcePath], @"node/bin/node"]];
+    [serverTask setLaunchPath:@"/bin/bash"];
     
 	// build arguments
-    NSArray *arguments = [NSMutableArray arrayWithObjects: @"server.js", nil];
+	NSString *nodeCommandString = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle]resourcePath], @"node/bin/node server.js"];
 	
 	if (![[[self model] ipAddress] isEqualTo:@"0.0.0.0"])
     {
-        arguments = [arguments arrayByAddingObject:@"--address"];
-        arguments = [arguments arrayByAddingObject:[[self model] ipAddress]];
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--address", [[self model] ipAddress]];
     }
 	if (![[[self model] port] isEqualTo:@"4723"])
     {
-        arguments = [arguments arrayByAddingObject:@"--port"];
-        arguments = [arguments arrayByAddingObject:[[[self model] port]stringValue]];
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--port", [[[self model] port]stringValue]];
     }
     if ([[self model] useAppPath])
     {
-        arguments = [arguments arrayByAddingObject:@"--app"];
-        arguments = [arguments arrayByAddingObject:[[self model] appPath]];
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--app", [[[self model] appPath] stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
     }
 	if ([[self model] useUDID])
     {
-        arguments = [arguments arrayByAddingObject:@"--udid"];
-        arguments = [arguments arrayByAddingObject:[[self model] udid]];
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--udid", [[self model] udid]];
     }
 	if ([[self model] prelaunchApp])
     {
-        arguments = [arguments arrayByAddingObject:@"--pre-launch"];
+		nodeCommandString = [nodeCommandString stringByAppendingString:@" --pre-launch"];
     }
 	if ([[self model] resetApplicationState])
     {
-        arguments = [arguments arrayByAddingObject:@"--no-reset"];
+		nodeCommandString = [nodeCommandString stringByAppendingString:@" --no-reset"];
     }
 	if ([[self model] keepArtifacts])
     {
-        arguments = [arguments arrayByAddingObject:@"--keep-artifacts"];
+		nodeCommandString = [nodeCommandString stringByAppendingString:@" --keep-artifacts"];
     }
 	if ([[self model] logVerbose])
     {
-        arguments = [arguments arrayByAddingObject:@"--verbose"];
+		nodeCommandString = [nodeCommandString stringByAppendingString:@" --verbose"];
+
     }
 	if ([[self model] useWarp])
     {
-        arguments = [arguments arrayByAddingObject:@"--warp"];
-        arguments = [arguments arrayByAddingObject:@"1"];
+		nodeCommandString = [nodeCommandString stringByAppendingString:@" --warp 1"];
     }
     
     // iOS Prefs
@@ -115,17 +111,17 @@ AppiumMenuBarManager *menuBarManager;
     {
         if ([[self model] useInstrumentsWithoutDelay])
         {
-            arguments = [arguments arrayByAddingObject:@"--without-delay"];
+			nodeCommandString = [nodeCommandString stringByAppendingString:@" --without-delay"];
         }
         if ([[self model] forceDevice])
         {
             if ([[self model] deviceToForce] == iOSAutomationDevice_iPhone)
             {
-                arguments = [arguments arrayByAddingObject:@"--force-iphone"];
+				nodeCommandString = [nodeCommandString stringByAppendingString:@" --force-iphone"];
             }
             else if ([[self model] deviceToForce] == iOSAutomationDevice_iPad)
             {
-                arguments = [arguments arrayByAddingObject:@"--force-ipad"];
+				nodeCommandString = [nodeCommandString stringByAppendingString:@" --force-ipad"];
             }
         }
     }
@@ -133,23 +129,18 @@ AppiumMenuBarManager *menuBarManager;
     // Android Prefs
     if ([[self model] platform] == Platform_Android)
     {
-        if ([[self model] skipAndroidInstall])
-        {
-            arguments = [arguments arrayByAddingObject:@"--skip-install"];
-        }
         if ([[self model] useAndroidPackage])
         {
-            arguments = [arguments arrayByAddingObject:@"--app-pkg"];
-			arguments = [arguments arrayByAddingObject:[[self model] androidPackage]];
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"app-pkg", [[self model] androidPackage]];
         }
         if ([[self model] useAndroidActivity])
         {
-            arguments = [arguments arrayByAddingObject:@"--app-activity"];
-            arguments = [arguments arrayByAddingObject:[[self model] androidActivity]];
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--app-activity", [[self model] androidActivity]];
         }
     }
     
-    [serverTask setArguments: arguments];
+    [serverTask setArguments: [NSMutableArray arrayWithObjects: @"-l",
+							   @"-c", nodeCommandString, nil]];
     
 	// redirect i/o
     [serverTask setStandardOutput:[NSPipe pipe]];
