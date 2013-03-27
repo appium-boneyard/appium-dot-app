@@ -51,7 +51,7 @@ Preferences can be accessed by Going to Appium > Preferences or with the keyboar
 **Use Instruments Without Delay**: Appium will use the "Instruments Without Delay" plugin, which makes iOS automation much faster.<br />
 **Warp Speed**: (DO NOT USE) This is an old way of making Appium faster. Please use "Use Instruments Without Delay" instead.<br />
 
-
-
-
-
+Inspector (BETA)
+------------
+Inspector can be accessed by Going to Window > Inspector once the Appium server has launched.<br />
+![Appium Inspector](/web/images/inspector.png "Appium Inspector")
