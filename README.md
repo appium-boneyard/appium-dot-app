@@ -16,13 +16,13 @@ Parameter Guide
 
 **IP Address**: the IP addres on which you want the appium server to run (127.0.0.1 is localhost)<br />
 **Port**: the port on which the appium server will listen for WebDriver commands (4723 is the default)<br />
-**Launch / Stop Button**: launches or stops the Appium server
+**Launch / Stop Button**: launches or stops the Appium server<br />
 **App Path**: the path to the iOS application (.app) or Android application (.apk) you wish to test.
 When the checkbox is checked this will be provided to the server so that all connections will boot this application.
 You only need to supply a path here if you are using the pre-launch preference or if you do not want to supply it as
 part of the capabilities object when you connect.<br />
-**Choose Button** used to choose the path to your application<br />
-**Clear Button** clears the display of all log data<br/>
+**Choose Button**: used to choose the path to your application<br />
+**Clear Button**: clears the display of all log data<br/>
 
 ### iOS Tab
 
