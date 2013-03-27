@@ -15,7 +15,6 @@
 #pragma mark - Constants
 
 #define APPIUM_APP_VERSION_URL @"https://raw.github.com/appium/appium.github.com/master/autoupdate/Appium.app.version"
-
 #define APPIUM_PACKAGE_VERSION_URL @"https://raw.github.com/appium/appium/master/package.json"
 
 #pragma mark - Appium Updater
@@ -188,6 +187,8 @@ AppiumMonitorWindowController *mainWindowController;
     [upgradeCompleteAlert setInformativeText:@"The package was installed successfully"];
     [upgradeCompleteAlert performSelectorOnMainThread:@selector(runModal) withObject:nil waitUntilDone:YES];
 }
+
+#pragma mark - Plugin Update
 
 -(BOOL) checkForPluginUpdates
 {
