@@ -29,6 +29,7 @@ NSMutableArray *selectedIndexes;
         _showDisabled = YES;
         _showInvisible = YES;
         [self setKeysToSend:@""];
+        [self setDomIsPopulating:NO];
     }
     return self;
 }
@@ -47,8 +48,18 @@ NSMutableArray *selectedIndexes;
     [self populateDOM];
 }
 
+-(void)setDomIsPopulatingToYes
+{
+    [self setDomIsPopulating:YES];
+}
+-(void)setDomIsPopulatingToNo
+{
+    [self setDomIsPopulating:NO];
+}
+
 -(void)populateDOM
 {
+    [self performSelectorOnMainThread:@selector(setDomIsPopulatingToYes) withObject:nil waitUntilDone:YES];
 	if (driver == nil)
 	{
 		AppiumModel *model = [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] model];
@@ -65,9 +76,10 @@ NSMutableArray *selectedIndexes;
 	NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData: [lastPageSource dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: &e];
 	_browserRootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict showDisabled:[self.showDisabled boolValue] showInvisible:[self.showInvisible boolValue]];
     _rootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict showDisabled:YES showInvisible:YES];
-    [_browser loadColumnZero];
+    [_browser performSelectorOnMainThread:@selector(loadColumnZero) withObject:nil waitUntilDone:YES];
 	browserSelectedIndexes = [NSMutableArray new];
 	selectedIndexes = [NSMutableArray new];
+    [self performSelectorOnMainThread:@selector(setDomIsPopulatingToNo) withObject:nil waitUntilDone:YES];
 }
 
 -(void)refreshPageSource
@@ -83,7 +95,7 @@ NSMutableArray *selectedIndexes;
 
 - (id)rootItemForBrowser:(NSBrowser *)browser {
     if (_browserRootNode == nil) {
-        [self populateDOM];
+        [self performSelectorInBackground:@selector(populateDOM) withObject:nil];
     }
     return _browserRootNode;
 }
@@ -300,6 +312,12 @@ NSMutableArray *selectedIndexes;
 
 -(IBAction)refresh:(id)sender
 {
+    [self performSelectorInBackground:@selector(refreshAll) withObject:nil];
+}
+
+-(void)refreshAll
+{
+    [self performSelectorOnMainThread:@selector(setDomIsPopulatingToYes) withObject:nil waitUntilDone:YES];
     [self refreshScreenshot];
     [self refreshPageSource];
     [self populateDOM];

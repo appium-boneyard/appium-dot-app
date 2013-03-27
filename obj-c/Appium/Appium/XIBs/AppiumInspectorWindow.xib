@@ -19,6 +19,7 @@
 			<string>NSCustomView</string>
 			<string>NSImageCell</string>
 			<string>NSImageView</string>
+			<string>NSProgressIndicator</string>
 			<string>NSScrollView</string>
 			<string>NSScroller</string>
 			<string>NSTextField</string>
@@ -99,7 +100,7 @@
 									<string key="NSFrame">{{48, 96}, {145, 129}}</string>
 									<reference key="NSSuperview" ref="347033652"/>
 									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView" ref="363624305"/>
+									<reference key="NSNextKeyView" ref="985573627"/>
 									<string key="NSReuseIdentifierKey">_NS:9</string>
 									<string key="NSClassName">NSView</string>
 								</object>
@@ -154,7 +155,7 @@
 											<string key="NSFrame">{{105, 7}, {104, 32}}</string>
 											<reference key="NSSuperview" ref="1294689"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="985573627"/>
+											<reference key="NSNextKeyView" ref="493360003"/>
 											<string key="NSReuseIdentifierKey">_NS:9</string>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSButtonCell" key="NSCell" id="276092772">
@@ -296,7 +297,7 @@
 											<string key="NSFrame">{{16, 29}, {114, 18}}</string>
 											<reference key="NSSuperview" ref="909653343"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="493360003"/>
+											<reference key="NSNextKeyView" ref="363624305"/>
 											<string key="NSReuseIdentifierKey">_NS:9</string>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSButtonCell" key="NSCell" id="927199368">
@@ -387,7 +388,7 @@
 											<string key="NSFrame">{{12, 37}, {88, 32}}</string>
 											<reference key="NSSuperview" ref="412423348"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="276139266"/>
+											<reference key="NSNextKeyView" ref="70881741"/>
 											<string key="NSReuseIdentifierKey">_NS:9</string>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSButtonCell" key="NSCell" id="216106546">
@@ -405,6 +406,17 @@
 												<int key="NSPeriodicInterval">25</int>
 											</object>
 											<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+										</object>
+										<object class="NSProgressIndicator" id="70881741">
+											<reference key="NSNextResponder" ref="412423348"/>
+											<int key="NSvFlags">-2147483380</int>
+											<string key="NSFrame">{{48, 46}, {16, 16}}</string>
+											<reference key="NSSuperview" ref="412423348"/>
+											<reference key="NSWindow"/>
+											<reference key="NSNextKeyView" ref="276139266"/>
+											<string key="NSReuseIdentifierKey">_NS:945</string>
+											<int key="NSpiFlags">20746</int>
+											<double key="NSMaxValue">100</double>
 										</object>
 									</array>
 									<string key="NSFrame">{{1, 1}, {176, 75}}</string>
@@ -776,6 +788,43 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: domIsPopulating</string>
+						<reference key="source" ref="88647852"/>
+						<reference key="destination" ref="963484851"/>
+						<object class="NSNibBindingConnector" key="connector" id="189102726">
+							<reference key="NSSource" ref="88647852"/>
+							<reference key="NSDestination" ref="963484851"/>
+							<string key="NSLabel">enabled: domIsPopulating</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">domIsPopulating</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">117</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">hidden: domIsPopulating</string>
+						<reference key="source" ref="88647852"/>
+						<reference key="destination" ref="963484851"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="88647852"/>
+							<reference key="NSDestination" ref="963484851"/>
+							<string key="NSLabel">hidden: domIsPopulating</string>
+							<string key="NSBinding">hidden</string>
+							<string key="NSKeyPath">domIsPopulating</string>
+							<reference key="NSPreviousConnector" ref="189102726"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">119</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: keysToSend</string>
 						<reference key="source" ref="650462467"/>
 						<reference key="destination" ref="963484851"/>
@@ -793,6 +842,42 @@
 						</object>
 					</object>
 					<int key="connectionID">100</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">hidden: domIsPopulating</string>
+						<reference key="source" ref="70881741"/>
+						<reference key="destination" ref="963484851"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="70881741"/>
+							<reference key="NSDestination" ref="963484851"/>
+							<string key="NSLabel">hidden: domIsPopulating</string>
+							<string key="NSBinding">hidden</string>
+							<string key="NSKeyPath">domIsPopulating</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">111</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">animate: domIsPopulating</string>
+						<reference key="source" ref="70881741"/>
+						<reference key="destination" ref="963484851"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="70881741"/>
+							<reference key="NSDestination" ref="963484851"/>
+							<string key="NSLabel">animate: domIsPopulating</string>
+							<string key="NSBinding">animate</string>
+							<string key="NSKeyPath">domIsPopulating</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">113</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -947,6 +1032,7 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="88647852"/>
 							<reference ref="276139266"/>
+							<reference ref="70881741"/>
 						</array>
 						<reference key="parent" ref="1006"/>
 					</object>
@@ -1022,6 +1108,11 @@
 						<reference key="object" ref="566902573"/>
 						<reference key="parent" ref="707848315"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">107</int>
+						<reference key="object" ref="70881741"/>
+						<reference key="parent" ref="363624305"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1035,6 +1126,7 @@
 				<string key="102.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="103.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="105.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="107.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="2.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="26.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="29.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1064,7 +1156,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">106</int>
+			<int key="maxID">119</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
