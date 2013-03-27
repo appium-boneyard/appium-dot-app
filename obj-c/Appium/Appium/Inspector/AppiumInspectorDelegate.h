@@ -27,5 +27,6 @@
 @property NSNumber *showDisabled;
 @property NSNumber *showInvisible;
 @property NSString *keysToSend;
+@property BOOL domIsPopulating;
 
 @end
