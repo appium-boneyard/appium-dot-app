@@ -3,9 +3,9 @@ An OS X GUI for Appium
 
 To install:
 
-    1. Download the [latest version](http://appium.io/appium.dmg) from appium.io
-    2. Mount the disk-image
-    3. Drag Appium.app to your Applications folder
+1. Download the [latest version](http://appium.io/appium.dmg) from appium.io
+2. Mount the disk-image
+3. Drag Appium.app to your Applications folder
 
 Parameter Guide
 ------------
