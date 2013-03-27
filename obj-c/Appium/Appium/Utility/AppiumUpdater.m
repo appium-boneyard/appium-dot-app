@@ -89,7 +89,7 @@ AppiumMonitorWindowController *mainWindowController;
 
 -(void)doAppUpgradeInstall
 {
-    [mainWindowController killServer];
+    [mainWindowController.model killServer];
     
     AppiumInstallationWindowController *installationWindow = [[AppiumInstallationWindowController alloc] initWithWindowNibName:@"AppiumInstallationWindow"];
     [[mainWindowController window] close];
@@ -166,7 +166,7 @@ AppiumMonitorWindowController *mainWindowController;
     [upgradeAlert addButtonWithTitle:@"Yes"];
     if([upgradeAlert runModal] == NSAlertSecondButtonReturn)
     {
-        [mainWindowController killServer];
+        [mainWindowController.model killServer];
         [self performSelectorInBackground:@selector(updateAppiumPackage) withObject:nil];
     }
 }

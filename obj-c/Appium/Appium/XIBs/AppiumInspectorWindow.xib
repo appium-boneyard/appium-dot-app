@@ -119,7 +119,7 @@
 											<string key="NSFrameSize">{238, 108}</string>
 											<reference key="NSSuperview" ref="153909720"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="721067251"/>
+											<reference key="NSNextKeyView" ref="555555799"/>
 											<string key="NSReuseIdentifierKey">_NS:13</string>
 											<object class="NSTextContainer" key="NSTextContainer" id="926560149">
 												<object class="NSLayoutManager" key="NSLayoutManager">
@@ -222,6 +222,7 @@
 									<string key="NSFrame">{{223, 1}, {16, 108}}</string>
 									<reference key="NSSuperview" ref="410508918"/>
 									<reference key="NSWindow"/>
+									<reference key="NSNextKeyView"/>
 									<string key="NSReuseIdentifierKey">_NS:83</string>
 									<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 									<reference key="NSTarget" ref="410508918"/>
@@ -248,7 +249,7 @@
 							<string key="NSFrame">{{604, 20}, {240, 110}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="153909720"/>
+							<reference key="NSNextKeyView" ref="721067251"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSsFlags">133138</int>
 							<reference key="NSVScroller" ref="555555799"/>

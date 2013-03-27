@@ -22,6 +22,8 @@ typedef enum iOSAutomationDeviceTypes
 
 @interface AppiumModel : NSObject
 
+@property NSTask *serverTask;
+
 @property NSString *androidActivity;
 @property NSString *androidPackage;
 @property NSString *appPath;
@@ -47,5 +49,8 @@ typedef enum iOSAutomationDeviceTypes
 @property BOOL useMobileSafari;
 @property BOOL useUDID;
 @property BOOL useWarp;
+
+-(BOOL)killServer;
+-(BOOL)startServer;
 
 @end
