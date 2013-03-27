@@ -37,7 +37,7 @@ AppiumUpdater *updater;
 
 -(void)applicationWillTerminate:(NSNotification *)notification
 {
-    [[self mainWindowController] killServer];
+    [self.model killServer];
 }
 
 #pragma mark - Preferences

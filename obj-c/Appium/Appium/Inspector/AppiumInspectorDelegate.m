@@ -28,6 +28,7 @@ NSMutableArray *selectedIndexes;
     if (self) {
         _showDisabled = YES;
         _showInvisible = YES;
+        [self setKeysToSend:@""];
     }
     return self;
 }
@@ -257,14 +258,58 @@ NSMutableArray *selectedIndexes;
     return xPath;
 }
 
+-(SEWebElement*) elementForSelectedNode
+{
+    SEWebElement *result = nil;
+    NSString *xPath = [[self xPathForSelectedNode] stringByReplacingOccurrencesOfString:@"//" withString:@"/"];
+    NSArray *tags = [xPath componentsSeparatedByString:@"/"];
+    for(int i=0; i < tags.count; i++)
+    {
+        NSError *error;
+        NSString *component = [tags objectAtIndex:i];
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"([^\\[]+)\\[([^\\]]+)\\]" options:NSRegularExpressionCaseInsensitive error:&error];
+        NSTextCheckingResult *firstResult = [regex firstMatchInString:component options:0 range:NSMakeRange(0, [component length])];
+        if ([firstResult numberOfRanges] == 3)
+        {
+            NSString *tagString = [component substringWithRange:[firstResult rangeAtIndex:1]];
+            NSString *indexString = [component substringWithRange:[firstResult rangeAtIndex:2]];
+            NSInteger index = [[[NSNumberFormatter new] numberFromString:indexString] integerValue] - 1;
+            NSArray *elements = (result == nil) ?
+                      [driver findElementsBy:[SEBy tagName:tagString]] :
+                      [result findElementsBy:[SEBy tagName:tagString]];
+            if (elements.count > index)
+            {
+                result = [elements objectAtIndex:index];
+            }
+            else
+            {
+                return nil;
+            }
+                
+        }
+    }
+    return result;
+}
+
 -(IBAction)tap:(id)sender
 {
-    SEWebElement *element = [driver findElementBy:[SEBy xPath:[self xPathForSelectedNode]]];
+    SEWebElement *element = [self elementForSelectedNode];
     [element click];
-    //[self refreshScreenshot];
-    //[self refreshPageSource];
-    //[self populateDOM];
-	NSLog(@"NYI");
+    [self refresh:sender];
+}
+
+-(IBAction)refresh:(id)sender
+{
+    [self refreshScreenshot];
+    [self refreshPageSource];
+    [self populateDOM];
+}
+
+-(IBAction)sendKeys:(id)sender
+{
+    SEWebElement *element = [self elementForSelectedNode];
+    [element sendKeys:self.keysToSend];
+    [self refresh:sender];
 }
 
 @end

@@ -72,7 +72,7 @@ NSString *nodeRootPath;
 
 -(NSString*) pathtoPackage:(NSString*)packageName
 {
-    return [NSString stringWithFormat:@"%@/%@/%@/%@", nodeRootPath, @"node_modules", packageName, @"package.json"];
+    return [NSString stringWithFormat:@"%@/%@/%@", nodeRootPath, @"node_modules", packageName];
 }
 
 #pragma mark - Static Methods

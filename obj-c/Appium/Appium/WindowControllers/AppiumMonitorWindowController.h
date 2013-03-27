@@ -13,12 +13,10 @@
 @interface AppiumMonitorWindowController : NSWindowController
 
 @property (unsafe_unretained) IBOutlet NSTextView *logTextView;
-
 @property (nonatomic, retain) NodeInstance *node;
 @property (readonly) AppiumModel *model;
 
 -(IBAction) clearLog:(id)sender;
 -(IBAction) launchButtonClicked:(id)sender;
--(BOOL) killServer;
 
 @end

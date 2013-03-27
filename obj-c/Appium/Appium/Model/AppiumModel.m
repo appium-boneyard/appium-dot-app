@@ -136,4 +136,115 @@ BOOL _isServerRunning;
 -(BOOL) useWarp { return [_defaults boolForKey:PLIST_USE_WARP]; }
 -(void) setUseWarp:(BOOL)useWarp { [[NSUserDefaults standardUserDefaults] setBool:useWarp forKey:PLIST_USE_WARP]; }
 
+-(BOOL)killServer
+{
+    if (self.serverTask != nil && [self.serverTask isRunning])
+    {
+        [self.serverTask terminate];
+		[self setIsServerRunning:NO];
+        return YES;
+    }
+    return NO;
+}
+
+-(BOOL)startServer
+{
+    if ([self killServer])
+    {
+        return NO;
+    }
+    
+	// get binary path
+    [self setServerTask:[NSTask new]];
+    [self.serverTask setCurrentDirectoryPath:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle]resourcePath], @"node_modules/appium"]];
+    [self.serverTask setLaunchPath:@"/bin/bash"];
+    
+	// build arguments
+	NSString *nodeCommandString = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle]resourcePath], @"node/bin/node server.js"];
+	
+	if (![self.ipAddress isEqualTo:@"0.0.0.0"])
+    {
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--address", self.ipAddress];
+    }
+	if (![self.port isEqualTo:@"4723"])
+    {
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--port", [self.port stringValue]];
+    }
+    if (self.useAppPath)
+    {
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--app", [self.appPath stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
+    }
+	if (self.useUDID)
+    {
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--udid", self.udid];
+    }
+	if (self.prelaunchApp)
+    {
+		nodeCommandString = [nodeCommandString stringByAppendingString:@" --pre-launch"];
+    }
+	if (!self.resetApplicationState)
+    {
+		nodeCommandString = [nodeCommandString stringByAppendingString:@" --no-reset"];
+    }
+	if (self.keepArtifacts)
+    {
+		nodeCommandString = [nodeCommandString stringByAppendingString:@" --keep-artifacts"];
+    }
+	if (self.logVerbose)
+    {
+		nodeCommandString = [nodeCommandString stringByAppendingString:@" --verbose"];
+        
+    }
+	if (self.useWarp)
+    {
+		nodeCommandString = [nodeCommandString stringByAppendingString:@" --warp 1"];
+    }
+    
+    // iOS Prefs
+    if (self.platform == Platform_iOS)
+    {
+        if (self.useInstrumentsWithoutDelay)
+        {
+			nodeCommandString = [nodeCommandString stringByAppendingString:@" --without-delay"];
+        }
+        if (self.forceDevice)
+        {
+            if (self.deviceToForce == iOSAutomationDevice_iPhone)
+            {
+				nodeCommandString = [nodeCommandString stringByAppendingString:@" --force-iphone"];
+            }
+            else if (self.deviceToForce == iOSAutomationDevice_iPad)
+            {
+				nodeCommandString = [nodeCommandString stringByAppendingString:@" --force-ipad"];
+            }
+        }
+    }
+    
+    // Android Prefs
+    if (self.platform == Platform_Android)
+    {
+        if (self.useAndroidPackage)
+        {
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"app-pkg", self.androidPackage];
+        }
+        if (self.useAndroidActivity)
+        {
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--app-activity", self.androidActivity];
+        }
+    }
+    
+    [self.serverTask setArguments: [NSArray arrayWithObjects: @"-l",
+							   @"-c", nodeCommandString, nil]];
+    
+	// redirect i/o
+    [self.serverTask setStandardOutput:[NSPipe pipe]];
+	[self.serverTask setStandardError:[NSPipe pipe]];
+    [self.serverTask setStandardInput:[NSPipe pipe]];
+    
+	// launch
+    [self.serverTask launch];
+    [self setIsServerRunning:self.serverTask.isRunning];
+    return self.isServerRunning;
+}
+
 @end
