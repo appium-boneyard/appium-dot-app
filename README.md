@@ -45,7 +45,7 @@ Preferences can be accessed by Going to Appium > Preferences or with the keyboar
 **Keep Artifactes**: Appium will keep artifacts like .trace files around after a session has ended. <br />
 **Reset App After Each Session**: Appium will reset application state (e.g. delete user plists) after each session. <br />
 **Prelaunch Simulator**: Appium will prelaunch the simulator before beginning to listen for WebDriver commands<br />
-**Use Instruments Without Delay**: Appium will use the "Instruments Without Delay" plugin, which makes iOS automation much faster.<nr />
+**Use Instruments Without Delay**: Appium will use the "Instruments Without Delay" plugin, which makes iOS automation much faster.<br />
 **Warp Speed**: (DO NOT USE) This is an old way of making Appium faster. Please use "Use Instruments Without Delay" instead.<br />
 
 
