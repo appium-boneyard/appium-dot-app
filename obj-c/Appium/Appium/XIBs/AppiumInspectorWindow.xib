@@ -791,7 +791,7 @@
 						<string key="label">enabled: domIsPopulating</string>
 						<reference key="source" ref="88647852"/>
 						<reference key="destination" ref="963484851"/>
-						<object class="NSNibBindingConnector" key="connector" id="189102726">
+						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="88647852"/>
 							<reference key="NSDestination" ref="963484851"/>
 							<string key="NSLabel">enabled: domIsPopulating</string>
@@ -808,20 +808,23 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">hidden: domIsPopulating</string>
+						<string key="label">title: domIsPopulating</string>
 						<reference key="source" ref="88647852"/>
 						<reference key="destination" ref="963484851"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="88647852"/>
 							<reference key="NSDestination" ref="963484851"/>
-							<string key="NSLabel">hidden: domIsPopulating</string>
-							<string key="NSBinding">hidden</string>
+							<string key="NSLabel">title: domIsPopulating</string>
+							<string key="NSBinding">title</string>
 							<string key="NSKeyPath">domIsPopulating</string>
-							<reference key="NSPreviousConnector" ref="189102726"/>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">AppiumInspectorRefreshButtonTextTransformer</string>
+							</object>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">119</int>
+					<int key="connectionID">122</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1156,7 +1159,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">119</int>
+			<int key="maxID">122</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
