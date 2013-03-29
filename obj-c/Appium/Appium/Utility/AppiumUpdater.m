@@ -113,7 +113,7 @@ AppiumMonitorWindowController *mainWindowController;
 	NSString *upgradeScriptPath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], @"Upgrade.applescript"];
     NSTask *restartTask = [NSTask new];
     [restartTask setLaunchPath:@"/bin/sh"];
-    [restartTask setArguments:[NSArray arrayWithObjects: @"-c",[NSString stringWithFormat:@"sleep 2; rm -f /tmp/appium-updater /tmp/appium-upgrade.applescript /tmp/appium.dmg; cp \"%@\" /tmp/appium-upgrade.applescript; cp \"%@\" /tmp/appium.dmg; cp /usr/bin/osascript /tmp/appium-updater; /tmp/appium-updater /tmp/appium-upgrade.applescript \"/tmp/appium.dmg\" \"/Volumes/Appium\" \"/Volumes/Appium/Appium.app\" \"%@\" ; open \"%@\"", upgradeScriptPath, dmgPath, destinationPath, [[NSBundle mainBundle] bundlePath] ], nil]];
+    [restartTask setArguments:[NSArray arrayWithObjects: @"-c",[NSString stringWithFormat:@"sleep 2; rm -f /tmp/appium-updater /tmp/appium-upgrade.applescript /tmp/appium.dmg; cp \"%@\" /tmp/appium-upgrade.applescript; cp \"%@\" /tmp/appium.dmg; cp /usr/bin/osascript /tmp/appium-updater; /tmp/appium-updater /tmp/appium-upgrade.applescript \"/tmp/appium.dmg\" \"/Volumes/Appium\" \"/Volumes/Appium/Appium.app\" \"%@\" \"%@\" ; open \"%@\"", upgradeScriptPath, dmgPath, [[NSBundle mainBundle] bundlePath], destinationPath, [[NSBundle mainBundle] bundlePath] ], nil]];
     [restartTask launch];
     [[NSApplication sharedApplication] terminate:nil];
 	
