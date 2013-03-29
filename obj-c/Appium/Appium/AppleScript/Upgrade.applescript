@@ -3,7 +3,7 @@ on run argv
 	set mountPath to item 2 of argv
 	set source to item 3 of argv
 	set destination to item 4 of argv
-	if length of destination < 3 or destination is equal to "/Applications" or destination is equal to "/" then
+	if length of destination < 3 or destination is equal to "/Applications" or destination is equal to "/Applications/" or destination is equal to "/" then
 		log("CANNOT UPDATE APPIUM")
 		return
 	end if
