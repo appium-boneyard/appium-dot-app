@@ -206,7 +206,7 @@ NSMutableArray *selectedIndexes;
             _highlightView.layer.cornerRadius = 8.0f;
         }
 		
-        CGRect viewRect = [_screenshotView translateSeleniumRect:[browserSelection rect]];
+        CGRect viewRect = [_screenshotView convertSeleniumRectToViewRect:[browserSelection rect]];
         _highlightView.frame = viewRect;
         [_highlightView setHidden:NO];
     }

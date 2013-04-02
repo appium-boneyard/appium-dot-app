@@ -17,6 +17,7 @@
 @property CGFloat maxWidth;
 @property CGFloat maxHeight;
 
--(NSRect) translateSeleniumRect:(NSRect)rect;
+-(NSRect) convertSeleniumRectToViewRect:(NSRect)rect;
+-(NSPoint) convertWindowPointToSeleniumPoint:(NSPoint)pointInWindow;
 
 @end
