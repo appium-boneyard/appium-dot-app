@@ -93,7 +93,7 @@
 											<string key="NSFrameSize">{624, 262}</string>
 											<reference key="NSSuperview" ref="388492662"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="985606644"/>
+											<reference key="NSNextKeyView" ref="482283527"/>
 											<string key="NSReuseIdentifierKey">_NS:13</string>
 											<object class="NSTextContainer" key="NSTextContainer" id="157307938">
 												<object class="NSLayoutManager" key="NSLayoutManager">
@@ -231,7 +231,7 @@
 							<string key="NSFrame">{{20, 50}, {626, 264}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="388492662"/>
+							<reference key="NSNextKeyView" ref="985606644"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSsFlags">133138</int>
 							<reference key="NSVScroller" ref="482283527"/>
@@ -362,6 +362,7 @@
 							<string key="NSFrame">{{579, 13}, {73, 32}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="970840617">
@@ -647,7 +648,6 @@
 												<int key="NSvFlags">268</int>
 												<string key="NSFrame">{{373, 10}, {131, 18}}</string>
 												<reference key="NSSuperview" ref="432818200"/>
-												<reference key="NSNextKeyView" ref="429772488"/>
 												<string key="NSReuseIdentifierKey">_NS:9</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSButtonCell" key="NSCell" id="843897910">
@@ -765,7 +765,7 @@
 												<string key="NSFrame">{{397, 38}, {212, 22}}</string>
 												<reference key="NSSuperview" ref="336422316"/>
 												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView"/>
+												<reference key="NSNextKeyView" ref="429772488"/>
 												<string key="NSReuseIdentifierKey">_NS:9</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSTextFieldCell" key="NSCell" id="913333540">
@@ -920,7 +920,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="960485214"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
+				<string key="NSScreenRect">{{0, 0}, {2560, 1578}}</string>
 				<string key="NSMinSize">{666, 524}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<string key="NSFrameAutosaveName">AppiumMonitorWindow</string>
@@ -983,6 +983,26 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: model.isServerRunning</string>
+						<reference key="source" ref="960485214"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="960485214"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: model.isServerRunning</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">model.isServerRunning</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1301</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: model.isServerRunning</string>
 						<reference key="source" ref="656570450"/>
 						<reference key="destination" ref="1001"/>
 						<object class="NSNibBindingConnector" key="connector">
@@ -1019,6 +1039,26 @@
 						</object>
 					</object>
 					<int key="connectionID">1294</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: model.isServerRunning</string>
+						<reference key="source" ref="783687903"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="783687903"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: model.isServerRunning</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">model.isServerRunning</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1305</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -2266,7 +2306,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1296</int>
+			<int key="maxID">1305</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
