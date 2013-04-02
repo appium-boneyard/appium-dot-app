@@ -47,8 +47,6 @@
 	<string></string>
 	<key>Use UDID</key>
 	<false/>
-	<key>Use Warp</key>
-	<false/>
 	<key>Verbose</key>
 	<true/>
 	<key>Without Delay</key>

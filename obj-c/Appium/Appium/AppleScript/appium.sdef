@@ -86,9 +86,6 @@
 			<property name="use UDID" code="apuu" description="true if the udid is being used" type="boolean">
 				<cocoa key="s_UseUDID"/>
 			</property>
-			<property name="use warp" code="apuw" description="true if warp speed is enabled" type="boolean">
-				<cocoa key="s_UseWarp"/>
-			</property>
 			<responds-to command="clear log">
 				<cocoa method="s_ClearLog:"/>
 			</responds-to>

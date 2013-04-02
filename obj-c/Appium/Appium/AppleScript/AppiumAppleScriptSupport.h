@@ -13,7 +13,6 @@
 @interface NSApplication (AppiumAppleScriptSupport)
 
 #pragma mark - Properties
-
 @property NSString *s_AndroidActivity;
 @property NSString *s_AndroidPackage;
 @property NSString *s_AppPath;
@@ -35,7 +34,6 @@
 @property NSNumber *s_UseInstrumentsWithoutDelay;
 @property NSNumber *s_UseMobileSafari;
 @property NSNumber *s_UseUDID;
-@property NSNumber *s_UseWarp;
 
 #pragma mark - Functions
 -(void) s_ClearLog: (NSScriptCommand*)command;

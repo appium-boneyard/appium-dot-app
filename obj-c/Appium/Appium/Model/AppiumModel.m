@@ -35,7 +35,6 @@
 #define PLIST_USE_BUNDLEID @"Use BundleID"
 #define PLIST_USE_MOBILE_SAFARI @"Use Mobile Safari"
 #define PLIST_USE_UDID @"Use UDID"
-#define PLIST_USE_WARP @"Use Warp"
 #define PLIST_VERBOSE @"Verbose"
 #define PLIST_WITHOUT_DELAY @"Without Delay"
 
@@ -133,9 +132,6 @@ BOOL _isServerRunning;
 -(BOOL) useUDID { return [_defaults boolForKey:PLIST_USE_UDID]; }
 -(void) setUseUDID:(BOOL)useUDID { [_defaults setBool:useUDID forKey:PLIST_USE_UDID]; }
 
--(BOOL) useWarp { return [_defaults boolForKey:PLIST_USE_WARP]; }
--(void) setUseWarp:(BOOL)useWarp { [[NSUserDefaults standardUserDefaults] setBool:useWarp forKey:PLIST_USE_WARP]; }
-
 -(BOOL)killServer
 {
     if (self.serverTask != nil && [self.serverTask isRunning])
@@ -194,10 +190,6 @@ BOOL _isServerRunning;
     {
 		nodeCommandString = [nodeCommandString stringByAppendingString:@" --verbose"];
         
-    }
-	if (self.useWarp)
-    {
-		nodeCommandString = [nodeCommandString stringByAppendingString:@" --warp 1"];
     }
     
     // iOS Prefs
