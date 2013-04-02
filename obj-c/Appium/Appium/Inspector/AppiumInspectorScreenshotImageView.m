@@ -46,7 +46,6 @@
 		self.maxWidth = newImage.size.width * (self.bounds.size.height / newImage.size.height);
 		self.xBorder = (self.bounds.size.width - self.maxWidth) / 2.0f;
 	}
-	
 }
 
 -(NSRect)convertSeleniumRectToViewRect:(NSRect)rect

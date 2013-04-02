@@ -15,7 +15,6 @@
 @implementation AppiumInspectorDelegate
 
 SERemoteWebDriver *driver;
-NSImage *lastScreenshot;
 NSString *lastPageSource;
 WebDriverElementNode *browserSelection;
 WebDriverElementNode *selection;
@@ -89,8 +88,8 @@ NSMutableArray *selectedIndexes;
 
 -(void)refreshScreenshot
 {
-	lastScreenshot = [driver screenshot];
-	[_screenshotView setImage:lastScreenshot];
+	NSImage *screenshot = [driver screenshot];
+	[_screenshotView setImage:screenshot];
 }
 
 - (id)rootItemForBrowser:(NSBrowser *)browser {
