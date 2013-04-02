@@ -256,6 +256,10 @@ BOOL _isServerRunning;
     {
 		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--app", [self.appPath stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
     }
+	else if (self.useBundleID)
+    {
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--app", self.bundleID];
+    }
 	if (self.useUDID)
     {
 		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--udid", self.udid];
