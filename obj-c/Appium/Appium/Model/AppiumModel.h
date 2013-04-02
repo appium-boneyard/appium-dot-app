@@ -48,7 +48,6 @@ typedef enum iOSAutomationDeviceTypes
 @property BOOL useInstrumentsWithoutDelay;
 @property BOOL useMobileSafari;
 @property BOOL useUDID;
-@property BOOL useWarp;
 
 -(BOOL)killServer;
 -(BOOL)startServer;

@@ -35,7 +35,6 @@
 #define PLIST_USE_BUNDLEID @"Use BundleID"
 #define PLIST_USE_MOBILE_SAFARI @"Use Mobile Safari"
 #define PLIST_USE_UDID @"Use UDID"
-#define PLIST_USE_WARP @"Use Warp"
 #define PLIST_VERBOSE @"Verbose"
 #define PLIST_WITHOUT_DELAY @"Without Delay"
 
@@ -119,22 +118,105 @@ BOOL _isServerRunning;
 -(void) setUseAndroidPackage:(BOOL)useAndroidPackage { [_defaults setBool:useAndroidPackage forKey:PLIST_USE_ANDROID_PACKAGE]; }
 
 -(BOOL) useAppPath { return [_defaults boolForKey:PLIST_USE_APP_PATH]; }
--(void) setUseAppPath:(BOOL)useAppPath { [_defaults setBool:useAppPath forKey:PLIST_USE_APP_PATH]; }
+-(void) setUseAppPath:(BOOL)useAppPath
+{
+	[_defaults setBool:useAppPath forKey:PLIST_USE_APP_PATH];
+	if (useAppPath)
+	{
+		if (self.useUDID != NO)
+		{
+			[self setUseUDID:NO];
+		}
+		if (self.useBundleID != NO)
+		{
+			[self setUseBundleID:NO];
+		}
+		if (self.useMobileSafari != NO)
+		{
+			[self setUseMobileSafari:NO];
+		}
+	}
+}
 
 -(BOOL) useBundleID { return [_defaults boolForKey:PLIST_USE_BUNDLEID]; }
--(void) setUseBundleID:(BOOL)useBundleID { [_defaults setBool:useBundleID forKey:PLIST_USE_BUNDLEID]; }
+-(void) setUseBundleID:(BOOL)useBundleID
+{
+	[_defaults setBool:useBundleID forKey:PLIST_USE_BUNDLEID];
+	if (useBundleID)
+	{
+		if (self.useUDID != YES)
+		{
+			[self setUseUDID:YES];
+		}
+		if (self.useAppPath != NO)
+		{
+			[self setUseAppPath:NO];
+		}
+		if (self.useMobileSafari != NO)
+		{
+			[self setUseMobileSafari:NO];
+		}
+	}
+	else
+	{
+		if (self.useUDID != NO)
+		{
+			[self setUseUDID:NO];
+		}
+	}
+}
 
 -(BOOL) useInstrumentsWithoutDelay { return [_defaults boolForKey:PLIST_WITHOUT_DELAY]; }
 -(void) setUseInstrumentsWithoutDelay:(BOOL)useInstrumentsWithoutDelay { [_defaults setBool:useInstrumentsWithoutDelay forKey:PLIST_WITHOUT_DELAY]; }
 
 -(BOOL) useMobileSafari { return [_defaults boolForKey:PLIST_USE_MOBILE_SAFARI]; }
--(void) setUseMobileSafari:(BOOL)useMobileSafari { [_defaults setBool:useMobileSafari forKey:PLIST_USE_MOBILE_SAFARI]; }
+-(void) setUseMobileSafari:(BOOL)useMobileSafari
+{
+	[_defaults setBool:useMobileSafari forKey:PLIST_USE_MOBILE_SAFARI];
+	if (useMobileSafari)
+	{
+		if (self.useAppPath != NO)
+		{
+			[self setUseAppPath:NO];
+		}
+		if (self.useUDID != NO)
+		{
+			[self setUseUDID:NO];
+		}
+		if (self.useBundleID != NO)
+		{
+			[self setUseBundleID:NO];
+		}
+	}
+}
 
 -(BOOL) useUDID { return [_defaults boolForKey:PLIST_USE_UDID]; }
--(void) setUseUDID:(BOOL)useUDID { [_defaults setBool:useUDID forKey:PLIST_USE_UDID]; }
-
--(BOOL) useWarp { return [_defaults boolForKey:PLIST_USE_WARP]; }
--(void) setUseWarp:(BOOL)useWarp { [[NSUserDefaults standardUserDefaults] setBool:useWarp forKey:PLIST_USE_WARP]; }
+-(void) setUseUDID:(BOOL)useUDID
+{
+	[_defaults setBool:useUDID forKey:PLIST_USE_UDID];
+	if (useUDID)
+	{
+		if (self.useBundleID != YES)
+		{
+			[self setUseBundleID:YES];
+		}
+		if (self.useAppPath != NO)
+		{
+			[self setUseAppPath:NO];
+		}
+		if (self.useMobileSafari != NO)
+		{
+			[self setUseMobileSafari:NO];
+		}
+	}
+	else
+	{
+		if (self.useBundleID != NO)
+		{
+			[self setUseBundleID:NO];
+		}
+	}
+}
 
 -(BOOL)killServer
 {
@@ -174,11 +256,15 @@ BOOL _isServerRunning;
     {
 		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--app", [self.appPath stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
     }
+	else if (self.useBundleID)
+    {
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--app", self.bundleID];
+    }
 	if (self.useUDID)
     {
 		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--udid", self.udid];
     }
-	if (self.prelaunchApp)
+	if (self.prelaunchApp && self.useAppPath)
     {
 		nodeCommandString = [nodeCommandString stringByAppendingString:@" --pre-launch"];
     }
@@ -194,10 +280,6 @@ BOOL _isServerRunning;
     {
 		nodeCommandString = [nodeCommandString stringByAppendingString:@" --verbose"];
         
-    }
-	if (self.useWarp)
-    {
-		nodeCommandString = [nodeCommandString stringByAppendingString:@" --warp 1"];
     }
     
     // iOS Prefs
