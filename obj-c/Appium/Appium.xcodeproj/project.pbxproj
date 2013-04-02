@@ -255,10 +255,10 @@
 			children = (
 				360BD91316F12B03000D3BEB /* AppiumInspectorDelegate.h */,
 				360BD91416F12B03000D3BEB /* AppiumInspectorDelegate.m */,
-				36CD44F416F0E22800194193 /* WebDriverElementNode.h */,
-				36CD44F516F0E22800194193 /* WebDriverElementNode.m */,
 				36A871C6170B980F005BFD15 /* AppiumInspectorScreenshotImageView.h */,
 				36A871C7170B980F005BFD15 /* AppiumInspectorScreenshotImageView.m */,
+				36CD44F416F0E22800194193 /* WebDriverElementNode.h */,
+				36CD44F516F0E22800194193 /* WebDriverElementNode.m */,
 			);
 			name = Inspector;
 			sourceTree = "<group>";

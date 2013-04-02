@@ -28,6 +28,7 @@
 -(void)setImage:(NSImage *)newImage
 {
 	[super setImage:newImage];
+	
 	self.actualScreenshotSize = newImage.size;
 	self.screenshotScalar = self.bounds.size.height / newImage.size.height;
 	self.maxWidth = self.bounds.size.width;
@@ -35,7 +36,6 @@
 	self.xBorder = 0.0f;
 	self.yBorder = 0.0f;
 	
-	NSLog(@"%f %f", self.bounds.size.width, self.bounds.size.height);
 	if (newImage.size.width > newImage.size.height)
 	{
 		self.maxHeight = newImage.size.height * (self.bounds.size.width / newImage.size.width);
@@ -70,8 +70,8 @@
 
 -(void)mouseDown:(NSEvent *)event
 {
-	NSPoint point = [event locationInWindow];
-	NSLog( @"mouseDown location: %@", NSStringFromPoint([self convertWindowPointToSeleniumPoint:point]) );
+	//NSPoint point = [event locationInWindow];
+	//NSLog( @"mouseDown location: %@", NSStringFromPoint([self convertWindowPointToSeleniumPoint:point]) );
 }
 
 @end
