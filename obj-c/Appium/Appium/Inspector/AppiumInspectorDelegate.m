@@ -182,7 +182,7 @@ NSMutableArray *selectedIndexes;
 		
 		// update display
 		[self setHighlightBox];
-        NSString *newDetails = [NSString stringWithFormat:@"%@\nid string: %@", _detailsTextView.string, [self xPathForSelectedNode]];
+        NSString *newDetails = [NSString stringWithFormat:@"%@\nXPath string: %@", _detailsTextView.string, [self xPathForSelectedNode]];
         [_detailsTextView setString:newDetails];
 		
 	}
@@ -205,28 +205,8 @@ NSMutableArray *selectedIndexes;
             _highlightView.layer.borderWidth = 2.0f;
             _highlightView.layer.cornerRadius = 8.0f;
         }
-        
-        CGRect viewRect = [browserSelection rect];
-        CGFloat scalar = 320.0 / lastScreenshot.size.height;
-        CGFloat maxX = 240.0;
-        CGFloat maxY = 320.0;
-        CGFloat xOffset = 0.0;
-        CGFloat yOffset = 0.0;
-        
-        if (lastScreenshot.size.width > lastScreenshot.size.height)
-        {
-            maxY = lastScreenshot.size.height * (240.0 / lastScreenshot.size.width);
-            yOffset = (320.0 - maxY) / 2.0;
-        }
-        else
-        {
-            maxX = lastScreenshot.size.width * (320.0 / lastScreenshot.size.height);
-            xOffset = (240.0 - maxX) / 2.0;
-        }
-        viewRect.size.width *= scalar;
-        viewRect.size.height *= scalar;
-        viewRect.origin.x = xOffset + (browserSelection.rect.origin.x * scalar);
-        viewRect.origin.y = maxY - (yOffset + ((browserSelection.rect.origin.y + browserSelection.rect.size.height) * scalar));
+		
+        CGRect viewRect = [_screenshotView convertSeleniumRectToViewRect:[browserSelection rect]];
         _highlightView.frame = viewRect;
         [_highlightView setHidden:NO];
     }
