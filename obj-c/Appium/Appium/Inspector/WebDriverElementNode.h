@@ -12,22 +12,25 @@
 @private
 	NSDictionary *_jsonDict;
     NSMutableArray *_children;
+	NSMutableArray *_visibleChildren;
     BOOL _showDisabled;
     BOOL _showInvisible;
 }
 
-- (id)initWithJSONDict:(NSDictionary *)jsonDict showDisabled:(BOOL)showDisabled showInvisible:(BOOL)showInvisible;
+- (id)initWithJSONDict:(NSDictionary *)jsonDict parent:(WebDriverElementNode*) parent showDisabled:(BOOL)showDisabled showInvisible:(BOOL)showInvisible;
 
 #pragma mark - NSBrowerCell Properties
 
 @property(readonly, copy) NSString *displayName;
 @property(readonly, retain) NSImage *icon;
 @property(readonly, retain) NSArray *children;
+@property(readonly, retain) NSArray *visibleChildren;
 @property(readonly) BOOL isLeaf;
 @property(readonly, retain) NSColor *labelColor;
 
 #pragma mark - Properties
 
+@property WebDriverElementNode *parent;
 @property BOOL enabled;
 @property BOOL visible;
 @property BOOL valid;
@@ -39,6 +42,5 @@
 @property NSString *name;
 @property (readonly) NSString* infoText;
 -(BOOL) shouldDisplay;
--(BOOL) shouldDisplayifInvisible:(BOOL)showInvisible disabled:(BOOL)showDisabled;
 
 @end

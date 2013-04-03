@@ -10,13 +10,14 @@
 
 @implementation WebDriverElementNode
 
-- (id)initWithJSONDict:(NSDictionary *)jsonDict showDisabled:(BOOL)showDisabled showInvisible:(BOOL)showInvisible
+- (id)initWithJSONDict:(NSDictionary *)jsonDict parent:(WebDriverElementNode*) parent showDisabled:(BOOL)showDisabled showInvisible:(BOOL)showInvisible
 {
 	if (self = [super init])
 	{
 		_jsonDict = jsonDict;
         _showDisabled = showDisabled;
         _showInvisible = showInvisible;
+		[self setParent:parent];
 		[self setEnabled:[[_jsonDict valueForKey:@"enabled"] boolValue]];
 		[self setVisible:[[_jsonDict valueForKey:@"visible"] boolValue]];
 		[self setValid:[[_jsonDict valueForKey:@"valid"] boolValue]];
@@ -32,15 +33,17 @@
 		long width = [[size valueForKey:@"width"] longValue];
 		long height = [[size valueForKey:@"height"] longValue];
 		[self setRect:NSMakeRect((float)x, (float)y, (float)width, (float)height)];
-        
+
         _children = [NSMutableArray new];
+		_visibleChildren = [NSMutableArray new];
         NSArray *jsonItems = [_jsonDict objectForKey:@"children"];
         for(int i=0; i <jsonItems.count; i++)
         {
-            WebDriverElementNode* child = [[WebDriverElementNode alloc] initWithJSONDict:[jsonItems objectAtIndex:i] showDisabled:_showDisabled showInvisible:_showInvisible];
+            WebDriverElementNode* child = [[WebDriverElementNode alloc] initWithJSONDict:[jsonItems objectAtIndex:i] parent:self showDisabled:_showDisabled showInvisible:_showInvisible];
+			[_children addObject:child];
             if ( [child shouldDisplay])
             {
-                [_children addObject:child];
+                [_visibleChildren addObject:child];
             }
         }
 	}
@@ -49,12 +52,18 @@
 
 -(BOOL)shouldDisplay
 {
-	return [self shouldDisplayifInvisible:_showInvisible disabled:_showDisabled];
-}
-
--(BOOL)shouldDisplayifInvisible:(BOOL)showInvisible disabled:(BOOL)showDisabled
-{
-    return ( ![self isLeaf] || ((showInvisible || self.visible) && (showDisabled || self.enabled)) );
+	if ((_showInvisible || self.visible) && (_showDisabled || self.enabled))
+		return YES;
+    if ([self isLeaf])
+		return NO;
+	for(int i=0; i < self.visibleChildren.count; i++)
+	{
+		if ([(WebDriverElementNode*)[self.children objectAtIndex:i] shouldDisplay])
+		{
+			return YES;
+		}
+	}
+	return NO;
 }
 
 - (NSString *)description {
@@ -83,7 +92,9 @@
     return [NSColor blackColor];
 }
 
-- (NSArray *)children { return _children; }
+-(NSArray *) children { return _children; }
+
+-(NSArray *) visibleChildren { return _visibleChildren; }
 
 -(NSString*) infoText
 {

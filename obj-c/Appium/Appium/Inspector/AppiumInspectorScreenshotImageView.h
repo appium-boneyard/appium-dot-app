@@ -10,7 +10,6 @@
 
 @interface AppiumInspectorScreenshotImageView : NSImageView
 
-@property NSSize actualScreenshotSize;
 @property CGFloat screenshotScalar;
 @property CGFloat xBorder;
 @property CGFloat yBorder;
