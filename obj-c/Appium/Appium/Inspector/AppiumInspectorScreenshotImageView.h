@@ -7,9 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "AppiumInspectorDelegate.h"
+
+@class AppiumInspectorDelegate;
 
 @interface AppiumInspectorScreenshotImageView : NSImageView
 
+@property AppiumInspectorDelegate *inspector;
 @property CGFloat screenshotScalar;
 @property CGFloat xBorder;
 @property CGFloat yBorder;

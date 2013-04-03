@@ -11,6 +11,7 @@
 #import "AppiumInspectorScreenshotImageView.h"
 
 @class WebDriverElementNode;
+@class AppiumInspectorScreenshotImageView;
 
 @interface AppiumInspectorDelegate : NSObject {
 @private
@@ -28,5 +29,7 @@
 @property NSNumber *showInvisible;
 @property NSString *keysToSend;
 @property BOOL domIsPopulating;
+
+-(void)selectNodeNearestPoint:(NSPoint)point;
 
 @end
