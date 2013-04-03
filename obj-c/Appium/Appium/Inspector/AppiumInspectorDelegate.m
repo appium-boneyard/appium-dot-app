@@ -199,8 +199,15 @@ NSMutableArray *selectedIndexes;
 	for(int i=0; i <nodePath.count; i++)
 	{
 		indexPath = [indexPath indexPathByAddingIndex:[[nodePath objectAtIndex:i] integerValue]];
+		if (selectedIndexes.count < i+1)
+		{
+			[selectedIndexes addObject:[NSNumber numberWithInteger:[[nodePath objectAtIndex:i] integerValue]]];
+		}
+		else
+		{
+			[selectedIndexes replaceObjectAtIndex:i withObject:[nodePath objectAtIndex:i]];
+		}
 	}
-	//selectedIndexes = [nodePath copy];
 	
 	// select
 	selection = node;
