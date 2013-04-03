@@ -16,9 +16,7 @@
 
 SERemoteWebDriver *driver;
 NSString *lastPageSource;
-WebDriverElementNode *browserSelection;
 WebDriverElementNode *selection;
-NSMutableArray *browserSelectedIndexes;
 NSMutableArray *selectedIndexes;
 
 - (id)init
@@ -73,10 +71,9 @@ NSMutableArray *selectedIndexes;
 	}
 	NSError *e = nil;
 	NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData: [lastPageSource dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: &e];
-	_browserRootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict showDisabled:[self.showDisabled boolValue] showInvisible:[self.showInvisible boolValue]];
-    _rootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict showDisabled:YES showInvisible:YES];
+	_browserRootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict parent:nil showDisabled:[self.showDisabled boolValue] showInvisible:[self.showInvisible boolValue]];
+    _rootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict parent:nil showDisabled:_showDisabled showInvisible:_showInvisible];
     [_browser performSelectorOnMainThread:@selector(loadColumnZero) withObject:nil waitUntilDone:YES];
-	browserSelectedIndexes = [NSMutableArray new];
 	selectedIndexes = [NSMutableArray new];
     [self performSelectorOnMainThread:@selector(setDomIsPopulatingToNo) withObject:nil waitUntilDone:YES];
 }
@@ -101,17 +98,17 @@ NSMutableArray *selectedIndexes;
 
 - (NSInteger)browser:(NSBrowser *)browser numberOfChildrenOfItem:(id)item {
     WebDriverElementNode *node = (WebDriverElementNode *)item;
-    return node.children.count;
+    return node.visibleChildren.count;
 }
 
 - (id)browser:(NSBrowser *)browser child:(NSInteger)index ofItem:(id)item {
     WebDriverElementNode *node = (WebDriverElementNode *)item;
-    return [node.children objectAtIndex:index];
+    return [node.visibleChildren objectAtIndex:index];
 }
 
 - (BOOL)browser:(NSBrowser *)browser isLeafItem:(id)item {
     WebDriverElementNode *node = (WebDriverElementNode *)item;
-    return node.children.count < 1;
+    return node.visibleChildren.count < 1;
 }
 
 - (id)browser:(NSBrowser *)browser objectValueForItem:(id)item {
@@ -129,55 +126,24 @@ NSMutableArray *selectedIndexes;
 {
     if ([proposedSelectionIndexes firstIndex] != NSNotFound)
 	{
-		// browser selection
-		if (browserSelectedIndexes.count < column+1)
-		{
-			[browserSelectedIndexes addObject:[NSNumber numberWithInteger:[proposedSelectionIndexes firstIndex]]];
-		}
-		else
-		{
-			[browserSelectedIndexes replaceObjectAtIndex:column withObject:[NSNumber numberWithInteger:[proposedSelectionIndexes firstIndex]]];
-		}
-        
-		WebDriverElementNode *node = _browserRootNode;
-		for(int i=0; i < browserSelectedIndexes.count && i < column+1; i++)
-		{
-			node = [node.children objectAtIndex:[[browserSelectedIndexes objectAtIndex:i] integerValue]];
-		}
-        browserSelection = node;
-	
-		// actual selection
-		node = _rootNode;
+		// find the parent
+		WebDriverElementNode *parentNode = _rootNode;
 		for(int i=0; i < selectedIndexes.count && i < column; i++)
 		{
-			node = [node.children objectAtIndex:[[selectedIndexes objectAtIndex:i] integerValue]];
-		}
-		int indexMapping = 0;
-		int actualIndex = 0;
-		for(; actualIndex < node.children.count && indexMapping < [[browserSelectedIndexes objectAtIndex:column] intValue]; actualIndex++)
-		{
-			WebDriverElementNode* child = [node.children objectAtIndex:actualIndex];
-			if ([child shouldDisplayifInvisible:_showInvisible disabled:_showDisabled])
-			{
-				indexMapping++;
-			}
+			parentNode = [parentNode.visibleChildren objectAtIndex:[[selectedIndexes objectAtIndex:i] integerValue]];
 		}
 		
+		
+		
+        selection = [parentNode.visibleChildren objectAtIndex:[proposedSelectionIndexes firstIndex]];
 		if (selectedIndexes.count < column+1)
 		{
-			[selectedIndexes addObject:[NSNumber numberWithInteger:indexMapping]];
+			[selectedIndexes addObject:[NSNumber numberWithInteger:[proposedSelectionIndexes firstIndex]]];
 		}
 		else
 		{
-			[selectedIndexes replaceObjectAtIndex:column withObject:[NSNumber numberWithInteger:indexMapping]];
+			[selectedIndexes replaceObjectAtIndex:column withObject:[NSNumber numberWithInteger:[proposedSelectionIndexes firstIndex]]];
 		}
-		
-		node = _rootNode;
-		for(int i=0; i < selectedIndexes.count && i < column+1; i++)
-		{
-			node = [node.children objectAtIndex:[[selectedIndexes objectAtIndex:i] integerValue]];
-		}
-        selection = node;
 		
 		// update display
 		[self setHighlightBox];
@@ -187,7 +153,6 @@ NSMutableArray *selectedIndexes;
 	}
     else
     {
-        browserSelection = nil;
 		selection = nil;
         [_detailsTextView setString:@""];
     }
@@ -195,9 +160,9 @@ NSMutableArray *selectedIndexes;
 
 -(void)setHighlightBox
 {
-    if (browserSelection != nil)
+    if (selection != nil)
     {
-        [_detailsTextView setString:[browserSelection infoText]];
+        [_detailsTextView setString:[selection infoText]];
         if (!_highlightView.layer) {
             [_highlightView setWantsLayer:YES];
             _highlightView.layer.borderColor = [NSColor redColor].CGColor;
@@ -205,7 +170,7 @@ NSMutableArray *selectedIndexes;
             _highlightView.layer.cornerRadius = 8.0f;
         }
 		
-        CGRect viewRect = [_screenshotView convertSeleniumRectToViewRect:[browserSelection rect]];
+        CGRect viewRect = [_screenshotView convertSeleniumRectToViewRect:[selection rect]];
         _highlightView.frame = viewRect;
         [_highlightView setHidden:NO];
     }
@@ -220,10 +185,10 @@ NSMutableArray *selectedIndexes;
     WebDriverElementNode *parentNode = _rootNode;
     NSMutableString *xPath = [NSMutableString stringWithString:@"/"];
     BOOL foundNode = NO;
-    for(int i=0; i < browserSelectedIndexes.count && !foundNode; i++)
+    for(int i=0; i < selectedIndexes.count && !foundNode; i++)
     {
         // find current browser node
-        WebDriverElementNode *currentNode = [parentNode.children objectAtIndex:[[browserSelectedIndexes objectAtIndex:i] integerValue]];
+        WebDriverElementNode *currentNode = [parentNode.visibleChildren objectAtIndex:[[selectedIndexes objectAtIndex:i] integerValue]];
         if (currentNode == selection)
             foundNode = YES;
 
@@ -231,16 +196,18 @@ NSMutableArray *selectedIndexes;
         [xPath appendString:@"/"];
         [xPath appendString:currentNode.typeShortcut];
         NSInteger nodeTypeCount = 0;
-        for(int j=0; j < parentNode.children.count; j++)
+        for(int j=0; j < parentNode.children.count ; j++)
         {
             WebDriverElementNode *node = [parentNode.children objectAtIndex:j];
 			WebDriverElementNode *selectedNodeAtLevel = _rootNode;
 			for(int k=0; k < selectedIndexes.count && k <= i; k++)
-				selectedNodeAtLevel = [selectedNodeAtLevel.children objectAtIndex:[[selectedIndexes objectAtIndex:k] intValue]];
-            if ( [node.type isEqualToString:selectedNodeAtLevel.type] && j <= [[selectedIndexes objectAtIndex:i] intValue])
+				selectedNodeAtLevel = [selectedNodeAtLevel.visibleChildren objectAtIndex:[[selectedIndexes objectAtIndex:k] intValue]];
+            if ( [node.type isEqualToString:selectedNodeAtLevel.type])
             {
                 nodeTypeCount++;
             }
+			if (node == selectedNodeAtLevel)
+				break;
         }
         
         [xPath appendString:[NSString stringWithFormat:@"[%ld]", nodeTypeCount]];
