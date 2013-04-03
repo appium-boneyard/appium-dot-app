@@ -29,7 +29,6 @@
 {
 	[super setImage:newImage];
 	
-	self.actualScreenshotSize = newImage.size;
 	self.screenshotScalar = self.bounds.size.height / newImage.size.height;
 	self.maxWidth = self.bounds.size.width;
 	self.maxHeight = self.bounds.size.height;
