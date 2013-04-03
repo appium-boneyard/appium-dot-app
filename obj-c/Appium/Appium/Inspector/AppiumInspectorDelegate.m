@@ -133,8 +133,7 @@ NSMutableArray *selectedIndexes;
 			parentNode = [parentNode.visibleChildren objectAtIndex:[[selectedIndexes objectAtIndex:i] integerValue]];
 		}
 		
-		
-		
+		// find the element
         selection = [parentNode.visibleChildren objectAtIndex:[proposedSelectionIndexes firstIndex]];
 		if (selectedIndexes.count < column+1)
 		{
@@ -187,7 +186,7 @@ NSMutableArray *selectedIndexes;
     BOOL foundNode = NO;
     for(int i=0; i < selectedIndexes.count && !foundNode; i++)
     {
-        // find current browser node
+        // find current node
         WebDriverElementNode *currentNode = [parentNode.visibleChildren objectAtIndex:[[selectedIndexes objectAtIndex:i] integerValue]];
         if (currentNode == selection)
             foundNode = YES;
