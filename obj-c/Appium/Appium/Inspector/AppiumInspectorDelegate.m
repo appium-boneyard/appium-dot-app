@@ -87,6 +87,7 @@ NSMutableArray *selectedIndexes;
 {
 	NSImage *screenshot = [driver screenshot];
 	[_screenshotView setImage:screenshot];
+	[_screenshotView setInspector:self];
 }
 
 - (id)rootItemForBrowser:(NSBrowser *)browser {
@@ -143,25 +144,28 @@ NSMutableArray *selectedIndexes;
 		{
 			[selectedIndexes replaceObjectAtIndex:column withObject:[NSNumber numberWithInteger:[proposedSelectionIndexes firstIndex]]];
 		}
-		
-		// update display
-		[self setHighlightBox];
-        NSString *newDetails = [NSString stringWithFormat:@"%@\nXPath string: %@", _detailsTextView.string, [self xPathForSelectedNode]];
-        [_detailsTextView setString:newDetails];
-		
 	}
     else
     {
 		selection = nil;
-        [_detailsTextView setString:@""];
     }
+	[self updateDetailsDisplay];
 }
 
--(void)setHighlightBox
+-(void) updateDetailsDisplay
 {
-    if (selection != nil)
+	if (selection != nil)
+	{
+        NSString *newDetails = [NSString stringWithFormat:@"%@\nXPath string: %@", [selection infoText], [self xPathForSelectedNode]];
+        [_detailsTextView setString:newDetails];
+	}
+	else
+	{
+        [_detailsTextView setString:@""];
+	}
+	
+	if (selection != nil)
     {
-        [_detailsTextView setString:[selection infoText]];
         if (!_highlightView.layer) {
             [_highlightView setWantsLayer:YES];
             _highlightView.layer.borderColor = [NSColor redColor].CGColor;
@@ -177,6 +181,82 @@ NSMutableArray *selectedIndexes;
     {
         [_highlightView setHidden:YES];
     }
+}
+
+-(void)setSelectedNode:(WebDriverElementNode*)node
+{
+	// get the tree from the node to the root
+	NSMutableArray *nodes = [NSMutableArray new];
+	WebDriverElementNode *currentNode = node;
+	[nodes addObject:currentNode];
+	while(currentNode.parent != nil)
+	{
+		currentNode = currentNode.parent;
+		[nodes addObject:currentNode];
+	}
+	
+	// get the indexes from the root to the node
+	NSMutableArray *nodePath = [NSMutableArray new];
+	for(NSInteger i=nodes.count-1; i > 0; i--)
+	{
+		currentNode = [nodes objectAtIndex:i];
+		WebDriverElementNode *nodeToFind = [nodes objectAtIndex:i-1];
+		BOOL foundNode = NO;
+		for(int j=0; j < currentNode.visibleChildren.count && !foundNode; j++)
+		{
+			if ([currentNode.visibleChildren objectAtIndex:j] == nodeToFind)
+			{
+				[nodePath addObject:[NSNumber numberWithInt:j]];
+			}
+		}
+	}
+	
+	// build index set
+	NSIndexPath *indexPath = [NSIndexPath new];
+	for(int i=0; i <nodePath.count; i++)
+	{
+		indexPath = [indexPath indexPathByAddingIndex:[[nodePath objectAtIndex:i] integerValue]];
+		if (selectedIndexes.count < i+1)
+		{
+			[selectedIndexes addObject:[NSNumber numberWithInteger:[[nodePath objectAtIndex:i] integerValue]]];
+		}
+		else
+		{
+			[selectedIndexes replaceObjectAtIndex:i withObject:[nodePath objectAtIndex:i]];
+		}
+		[self setSelectedNode:[NSIndexSet indexSetWithIndex:[[nodePath objectAtIndex:i] integerValue]] inColumn:i];
+	}
+	
+	// select
+	selection = node;
+	[_browser setSelectionIndexPath:indexPath];
+	[self updateDetailsDisplay];
+}
+
+-(WebDriverElementNode*)findDisplayedNodeForPoint:(NSPoint)point node:(WebDriverElementNode*)node
+{
+	// DFS for element inside rect
+	for(int i=0; i< node.visibleChildren.count; i++)
+	{
+		WebDriverElementNode *child = [node.visibleChildren objectAtIndex:i];
+		WebDriverElementNode *result = [self findDisplayedNodeForPoint:point node:child];
+		if (result != nil)
+			return result;
+	}
+	
+	if (NSPointInRect(point, node.rect))
+		return node;
+	
+	return nil;
+}
+
+-(void)selectNodeNearestPoint:(NSPoint)point
+{
+	WebDriverElementNode *node = [self findDisplayedNodeForPoint:point node:_rootNode];
+	if (node != nil)
+	{
+		[self setSelectedNode:node];
+	}
 }
 
 -(NSString*) xPathForSelectedNode

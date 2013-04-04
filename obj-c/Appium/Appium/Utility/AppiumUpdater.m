@@ -14,7 +14,7 @@
 
 #pragma mark - Constants
 
-#define APPIUM_APP_VERSION_URL @"https://raw.github.com/appium/appium.github.com/master/autoupdate/Appium.app.version"
+#define UPDATE_INFO_URL @"https://raw.github.com/appium/appium.github.com/master/autoupdate/update.json"
 #define APPIUM_PACKAGE_VERSION_URL @"https://raw.github.com/appium/appium/master/package.json"
 
 #pragma mark - Appium Updater
@@ -53,21 +53,35 @@ AppiumMonitorWindowController *mainWindowController;
 -(BOOL) checkForAppUpdate
 {
     // check github for the latest version
-    NSString *stringURL = APPIUM_APP_VERSION_URL;
+    NSString *stringURL = UPDATE_INFO_URL;
     NSURL  *url = [NSURL URLWithString:stringURL];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
     if (!urlData)
     {
         return NO;
     }
-    NSString *latestVersion = [[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
-	latestVersion = [latestVersion stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-	
-    // check the local copy of appium
+    NSError *jsonError = nil;
+    id jsonObject = [NSJSONSerialization JSONObjectWithData:urlData options:kNilOptions error:&jsonError];
+    NSDictionary *jsonDictionary = (NSDictionary *)jsonObject;
     NSString *myVersion = (NSString*)[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
-
+    NSString *latestVersion = [jsonDictionary objectForKey:@"latest"];
+	NSArray *notUpgradableVersions = [jsonDictionary objectForKey:@"do-not-upgrade"];
+	
+	// check if this version is currently the latest
     if (![myVersion isEqualToString:latestVersion])
     {
+		// check for non-upgradable versions
+		for(int i=0; i < notUpgradableVersions.count; i++)
+		{
+			if ([myVersion isEqualToString:(NSString*)[notUpgradableVersions objectAtIndex:i]])
+			{
+				NSAlert *cannotUpgradeAlert = [NSAlert new];
+				[cannotUpgradeAlert setMessageText:@"Cannot Upgrade This App"];
+				[cannotUpgradeAlert setInformativeText:@"A new version of Appium.app is available but this version of Appium.app cannot be upgraded.\n\nPlease download the latest version from http://appium.io"];
+				[cannotUpgradeAlert runModal];
+				return NO;
+			}
+		}
         [self performSelectorOnMainThread:@selector(doAppUpgradeAlert:) withObject:[NSArray arrayWithObjects:myVersion, latestVersion, nil] waitUntilDone:NO];
 		return YES;
     }

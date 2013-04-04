@@ -165,7 +165,7 @@
     else if ([self.type isEqualToString:@"UIANavigationBar"])
         return @"navigationBar";
     else
-        return @"*";
+        return self.type;
 }
 
 @end
