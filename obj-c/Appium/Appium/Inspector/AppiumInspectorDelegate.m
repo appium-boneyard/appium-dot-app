@@ -168,9 +168,22 @@ NSMutableArray *selectedIndexes;
     {
         if (!_highlightView.layer) {
             [_highlightView setWantsLayer:YES];
-            _highlightView.layer.borderColor = [NSColor redColor].CGColor;
             _highlightView.layer.borderWidth = 2.0f;
             _highlightView.layer.cornerRadius = 8.0f;
+			//_highlightView.layer.borderColor = [NSColor redColor].CGColor; // Not allowed in 10.7
+			NSColor* redColor = [NSColor redColor];
+			CGColorRef redCGColor = NULL;
+			CGColorSpaceRef genericRGBSpace = CGColorSpaceCreateWithName
+			(kCGColorSpaceGenericRGB);
+			if (genericRGBSpace != NULL)
+			{
+				CGFloat colorComponents[4] = {[redColor redComponent],
+					[redColor greenComponent], [redColor blueComponent],
+					[redColor alphaComponent]};
+				redCGColor = CGColorCreate(genericRGBSpace, colorComponents);
+				CGColorSpaceRelease(genericRGBSpace);
+			}
+            _highlightView.layer.borderColor = redCGColor;
         }
 		
         CGRect viewRect = [_screenshotView convertSeleniumRectToViewRect:[selection rect]];
