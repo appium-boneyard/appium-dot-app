@@ -154,16 +154,33 @@ NSMutableArray *selectedIndexes;
 
 -(void) updateDetailsDisplay
 {
-	[self setHighlightBox];
 	if (selection != nil)
 	{
-        NSString *newDetails = [NSString stringWithFormat:@"%@\nXPath string: %@", _detailsTextView.string, [self xPathForSelectedNode]];
+        NSString *newDetails = [NSString stringWithFormat:@"%@\nXPath string: %@", [selection infoText], [self xPathForSelectedNode]];
         [_detailsTextView setString:newDetails];
 	}
 	else
 	{
         [_detailsTextView setString:@""];
 	}
+	
+	if (selection != nil)
+    {
+        if (!_highlightView.layer) {
+            [_highlightView setWantsLayer:YES];
+            _highlightView.layer.borderColor = [NSColor redColor].CGColor;
+            _highlightView.layer.borderWidth = 2.0f;
+            _highlightView.layer.cornerRadius = 8.0f;
+        }
+		
+        CGRect viewRect = [_screenshotView convertSeleniumRectToViewRect:[selection rect]];
+        _highlightView.frame = viewRect;
+        [_highlightView setHidden:NO];
+    }
+    else
+    {
+        [_highlightView setHidden:YES];
+    }
 }
 
 -(void)setSelectedNode:(WebDriverElementNode*)node
@@ -207,6 +224,7 @@ NSMutableArray *selectedIndexes;
 		{
 			[selectedIndexes replaceObjectAtIndex:i withObject:[nodePath objectAtIndex:i]];
 		}
+		[self setSelectedNode:[NSIndexSet indexSetWithIndex:[[nodePath objectAtIndex:i] integerValue]] inColumn:i];
 	}
 	
 	// select
@@ -239,28 +257,6 @@ NSMutableArray *selectedIndexes;
 	{
 		[self setSelectedNode:node];
 	}
-}
-
--(void)setHighlightBox
-{
-    if (selection != nil)
-    {
-        [_detailsTextView setString:[selection infoText]];
-        if (!_highlightView.layer) {
-            [_highlightView setWantsLayer:YES];
-            _highlightView.layer.borderColor = [NSColor redColor].CGColor;
-            _highlightView.layer.borderWidth = 2.0f;
-            _highlightView.layer.cornerRadius = 8.0f;
-        }
-		
-        CGRect viewRect = [_screenshotView convertSeleniumRectToViewRect:[selection rect]];
-        _highlightView.frame = viewRect;
-        [_highlightView setHidden:NO];
-    }
-    else
-    {
-        [_highlightView setHidden:YES];
-    }
 }
 
 -(NSString*) xPathForSelectedNode
