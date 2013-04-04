@@ -42,8 +42,18 @@ typedef enum seleniumMouseButtonTypes
 	SELENIUM_MOUSE_RIGHT_BUTTON = 2
 } SEMouseButton;
 
+
+typedef enum seleniumLogTypes
+{
+    SELENIUM_LOG_TYPE_CLIENT,
+    SELENIUM_LOG_TYPE_DRIVER,
+    SELENIUM_LOG_TYPE_BROWSER,
+    SELENIUM_LOG_TYPE_SERVER    
+}SELogType;
+
 +(NSString*) stringForTimeoutType:(SETimeoutType)type;
 +(SEApplicationCacheStatus) applicationCacheStatusWithInt:(NSInteger)applicationCacheStatusInt;
 +(NSInteger) intForMouseButton:(SEMouseButton)button;
++(NSString*) stringForLogType:(SELogType)logType;
 
 @end

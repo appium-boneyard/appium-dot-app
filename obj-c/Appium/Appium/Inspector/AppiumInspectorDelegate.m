@@ -74,7 +74,9 @@ NSMutableArray *selectedIndexes;
 	_browserRootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict parent:nil showDisabled:[self.showDisabled boolValue] showInvisible:[self.showInvisible boolValue]];
     _rootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict parent:nil showDisabled:_showDisabled showInvisible:_showInvisible];
     [_browser performSelectorOnMainThread:@selector(loadColumnZero) withObject:nil waitUntilDone:YES];
+	selection = nil;
 	selectedIndexes = [NSMutableArray new];
+    [self performSelectorOnMainThread:@selector(updateDetailsDisplay) withObject:nil waitUntilDone:YES];
     [self performSelectorOnMainThread:@selector(setDomIsPopulatingToNo) withObject:nil waitUntilDone:YES];
 }
 
