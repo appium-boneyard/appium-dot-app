@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1080</int>
+		<int key="IBDocument.SystemTarget">1070</int>
 		<string key="IBDocument.SystemVersion">12D78</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
 		<string key="IBDocument.AppKitVersion">1187.37</string>
@@ -490,7 +490,7 @@
 															<string key="NSFrameSize">{206, 94}</string>
 															<reference key="NSSuperview" ref="153909720"/>
 															<reference key="NSWindow"/>
-															<reference key="NSNextKeyView" ref="555555799"/>
+															<reference key="NSNextKeyView" ref="721067251"/>
 															<string key="NSReuseIdentifierKey">_NS:13</string>
 															<object class="NSTextContainer" key="NSTextContainer" id="926560149">
 																<object class="NSLayoutManager" key="NSLayoutManager">
@@ -587,7 +587,6 @@
 													<string key="NSFrame">{{191, 1}, {16, 94}}</string>
 													<reference key="NSSuperview" ref="410508918"/>
 													<reference key="NSWindow"/>
-													<reference key="NSNextKeyView"/>
 													<string key="NSReuseIdentifierKey">_NS:83</string>
 													<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 													<reference key="NSTarget" ref="410508918"/>
@@ -613,7 +612,7 @@
 											<string key="NSFrame">{{18, 14}, {208, 96}}</string>
 											<reference key="NSSuperview" ref="932273903"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="721067251"/>
+											<reference key="NSNextKeyView" ref="153909720"/>
 											<string key="NSReuseIdentifierKey">_NS:9</string>
 											<int key="NSsFlags">133138</int>
 											<reference key="NSVScroller" ref="555555799"/>
@@ -1171,7 +1170,7 @@
 						<string key="_browser">NSBrowser</string>
 						<string key="_detailsTextView">NSTextView</string>
 						<string key="_highlightView">NSView</string>
-						<string key="_screenshotView">NSImageView</string>
+						<string key="_screenshotView">AppiumInspectorScreenshotImageView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="_browser">
@@ -1188,7 +1187,7 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="_screenshotView">
 							<string key="name">_screenshotView</string>
-							<string key="candidateClassName">NSImageView</string>
+							<string key="candidateClassName">AppiumInspectorScreenshotImageView</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -1216,6 +1215,10 @@
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
+		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.macosx</string>
+			<real value="1070" key="NS.object.0"/>
+		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
