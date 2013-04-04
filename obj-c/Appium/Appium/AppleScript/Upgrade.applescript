@@ -4,7 +4,7 @@ on run argv
 	set source to item 3 of argv
 	set appPath to item 4 of argv
 	set destination to item 5 of argv
-	if length of destination < 3 or destination is equal to "/Applications" or destination is equal to "/Applications/" or destination is equal to "/" then
+	if length of appPath < 3 or appPath is equal to "/Applications" or appPath is equal to "/Applications/" or appPath is equal to "/" or appPath does not end with ".app" then
 		log("CANNOT UPDATE APPIUM")
 		return
 	end if
