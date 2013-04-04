@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SEJsonWireClient.h"
 #import "SEBy.h"
 
 @class SEJsonWireClient;
