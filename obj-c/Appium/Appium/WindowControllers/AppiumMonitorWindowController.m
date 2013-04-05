@@ -104,7 +104,7 @@ AppiumInspectorWindowController *inspectorWindow;
 	
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
 	[openDlg setShowsHiddenFiles:YES];
-	[openDlg setAllowedFileTypes:[NSArray arrayWithObjects:@"app", @"apk", nil]];
+	[openDlg setAllowedFileTypes:[NSArray arrayWithObjects:@"app", @"apk", @"zip",/* @"ipa",*/ nil]];
     [openDlg setCanChooseFiles:YES];
     [openDlg setCanChooseDirectories:NO];
     [openDlg setPrompt:@"Select"];

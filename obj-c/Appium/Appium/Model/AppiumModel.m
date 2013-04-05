@@ -17,6 +17,8 @@
 #define PLIST_APP_PATH @"App Path"
 #define PLIST_BUNDLEID @"BundleID"
 #define PLIST_CHECK_FOR_UPDATES @"Check For Updates"
+#define PLIST_CUSTOM_APPIUM_PACKAGE_PATH @"Custom Appium Package Path"
+#define PLIST_CUSTOM_NODEJS_BINARY_PATH @"Custom NodeJS Binary Path"
 #define PLIST_DEVICE @"Device"
 #define PLIST_DEVELOPER_MODE @"Developer Mode"
 #define PLIST_FORCE_DEVICE @"Force Device"
@@ -35,6 +37,8 @@
 #define PLIST_USE_ANDROID_PACKAGE @"Use Android Package"
 #define PLIST_USE_APP_PATH @"Use App Path"
 #define PLIST_USE_BUNDLEID @"Use BundleID"
+#define PLIST_USE_CUSTOM_APPIUM_PACKAGE_PATH @"Use Custom Appium Package"
+#define PLIST_USE_CUSTOM_NODEJS_BINARY_PATH @"Use Custom NodeJS Binary"
 #define PLIST_USE_REMOTE_SERVER @"Use Remote Server"
 #define PLIST_USE_MOBILE_SAFARI @"Use Mobile Safari"
 #define PLIST_USE_UDID @"Use UDID"
@@ -80,6 +84,12 @@ BOOL _isServerListening;
 
 -(BOOL) checkForUpdates { return [_defaults boolForKey:PLIST_CHECK_FOR_UPDATES]; }
 -(void) setCheckForUpdates:(BOOL)checkForUpdates { [_defaults setBool:checkForUpdates forKey:PLIST_CHECK_FOR_UPDATES]; }
+
+-(NSString*) customAppiumPackagePath { return [_defaults stringForKey:PLIST_CUSTOM_APPIUM_PACKAGE_PATH]; }
+-(void) setCustomAppiumPackagePath:(NSString *)customAppiumPackagePath { [_defaults setValue:customAppiumPackagePath forKey:PLIST_CUSTOM_APPIUM_PACKAGE_PATH]; }
+
+-(NSString*) customNodeJSBinaryPath { return [_defaults stringForKey:PLIST_CUSTOM_NODEJS_BINARY_PATH]; }
+-(void) setCustomNodeJSBinaryPath:(NSString *)customNodeJSBinaryPath { [_defaults setValue:customNodeJSBinaryPath forKey:PLIST_CUSTOM_NODEJS_BINARY_PATH]; }
 
 -(BOOL) developerMode { return [_defaults boolForKey:PLIST_DEVELOPER_MODE]; }
 -(void) setDeveloperMode:(BOOL)developerMode { [_defaults setBool:developerMode forKey:PLIST_DEVELOPER_MODE]; }
@@ -177,6 +187,12 @@ BOOL _isServerListening;
 	}
 }
 
+-(BOOL) useCustomAppiumPackage { return self.developerMode && [_defaults boolForKey:PLIST_USE_CUSTOM_APPIUM_PACKAGE_PATH]; }
+-(void) setUseCustomAppiumPackage:(BOOL)useCustomAppiumPackage { [_defaults setBool:useCustomAppiumPackage forKey:PLIST_USE_CUSTOM_APPIUM_PACKAGE_PATH]; }
+
+-(BOOL) useCustomNodeJSBinary { return self.developerMode && [_defaults boolForKey:PLIST_USE_CUSTOM_NODEJS_BINARY_PATH]; }
+-(void) setUseCustomNodeJSBinary:(BOOL)useCustomNodeJSBinary { [_defaults setBool:useCustomNodeJSBinary forKey:PLIST_USE_CUSTOM_NODEJS_BINARY_PATH]; }
+
 -(BOOL) useInstrumentsWithoutDelay { return [_defaults boolForKey:PLIST_WITHOUT_DELAY]; }
 -(void) setUseInstrumentsWithoutDelay:(BOOL)useInstrumentsWithoutDelay { [_defaults setBool:useInstrumentsWithoutDelay forKey:PLIST_WITHOUT_DELAY]; }
 
@@ -261,13 +277,17 @@ BOOL _isServerListening;
         return NO;
     }
     
-	// get binary path
-    [self setServerTask:[NSTask new]];
-    [self.serverTask setCurrentDirectoryPath:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle]resourcePath], @"node_modules/appium"]];
-    [self.serverTask setLaunchPath:@"/bin/bash"];
-    
 	// build arguments
-	NSString *nodeCommandString = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle]resourcePath], @"node/bin/node server.js"];
+	NSString *nodeCommandString;
+	if (self.useCustomAppiumPackage)
+	{
+		nodeCommandString = [NSString stringWithFormat:@"%@ server.js", self.customNodeJSBinaryPath];
+
+	}
+	else
+	{
+		nodeCommandString = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle]resourcePath], @"node/bin/node server.js"];
+	}
 	
 	if (![self.ipAddress isEqualTo:@"0.0.0.0"])
     {
@@ -339,10 +359,20 @@ BOOL _isServerListening;
 			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--app-activity", self.androidActivity];
         }
     }
-    
+	
+	[self setServerTask:[NSTask new]];
+	if (self.useCustomAppiumPackage)
+	{
+		[self.serverTask setCurrentDirectoryPath:self.customAppiumPackagePath];
+	}
+	else
+	{
+		[self.serverTask setCurrentDirectoryPath:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle]resourcePath], @"node_modules/appium"]];
+	}
+    [self.serverTask setLaunchPath:@"/bin/bash"];
     [self.serverTask setArguments: [NSArray arrayWithObjects: @"-l",
 							   @"-c", nodeCommandString, nil]];
-    
+	
 	// redirect i/o
     [self.serverTask setStandardOutput:[NSPipe pipe]];
 	[self.serverTask setStandardError:[NSPipe pipe]];

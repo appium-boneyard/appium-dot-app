@@ -29,6 +29,8 @@ typedef enum iOSAutomationDeviceTypes
 @property NSString *appPath;
 @property NSString *bundleID;
 @property BOOL checkForUpdates;
+@property NSString *customAppiumPackagePath;
+@property NSString *customNodeJSBinaryPath;
 @property BOOL developerMode;
 @property iOSAutomationDevice deviceToForce;
 @property NSString *deviceToForceString;
@@ -47,6 +49,8 @@ typedef enum iOSAutomationDeviceTypes
 @property BOOL useAndroidPackage;
 @property BOOL useAppPath;
 @property BOOL useBundleID;
+@property BOOL useCustomAppiumPackage;
+@property BOOL useCustomNodeJSBinary;
 @property BOOL useRemoteServer;
 @property BOOL useInstrumentsWithoutDelay;
 @property BOOL useMobileSafari;
