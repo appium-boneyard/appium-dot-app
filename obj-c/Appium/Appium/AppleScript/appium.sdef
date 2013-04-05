@@ -38,6 +38,15 @@
 			<property name="check for updates" code="apcu" description="true if appium will check for updates" type="boolean">
 				<cocoa key="s_CheckForUpdates"/>
 			</property>
+			<property name="developer mode" code="apdm" description="true if appium is in developer mode" type="boolean">
+				<cocoa key="s_DeveloperMode"/>
+			</property>
+			<property name="external appium package path" code="aeap" description="path to external appium package" type="text">
+				<cocoa key="s_ExternalAppiumPackagePath"/>
+			</property>
+			<property name="external node path" code="aenp" description="path to external node binaries" type="text">
+				<cocoa key="s_ExternalNodeJSBinaryPath"/>
+			</property>
 			<property name="is server running" code="amsr" description="true if the appium server is running" type="boolean" access="r">
 				<cocoa key="s_IsServerRunning"/>
 			</property>
@@ -77,11 +86,20 @@
 			<property name="use bundle id" code="aubi" description="true if appium is using the bundle id" type="boolean">
 				<cocoa key="s_UseBundleID"/>
 			</property>
+			<property name="use external appium package" code="auea" description="true if an external appium package path with be used" type="boolean">
+				<cocoa key="s_UseExternalAppiumPackage"/>
+			</property>
+			<property name="use external node path" code="auen" description="true if an external nodeJS binary path with be used" type="boolean">
+				<cocoa key="s_UseExternalNodeJSBinary"/>
+			</property>
 			<property name="use instruments without delay" code="apui" description="true if instruments without delay is enabled" type="boolean">
 				<cocoa key="s_UseInstrumentsWithoutDelay"/>
 			</property>
 			<property name="use mobile safari" code="aums" description="true if appium will use mobile safari" type="boolean">
 				<cocoa key="s_UseMobileSafari"/>
+			</property>
+			<property name="use remote server" code="aurs" description="true if appium will use a remote server" type="boolean">
+				<cocoa key="s_UseRemoteServer"/>
 			</property>
 			<property name="use UDID" code="apuu" description="true if the udid is being used" type="boolean">
 				<cocoa key="s_UseUDID"/>

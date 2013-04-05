@@ -12,10 +12,6 @@
 	<string></string>
 	<key>Check For Updates</key>
 	<true/>
-	<key>Custom NodeJS Binary Path</key>
-	<string>/opt/local/bin/node</string>
-	<key>Custom Appium Package Path</key>
-	<string>/Users/me/appium</string>
 	<key>Developer Mode</key>
 	<false/>
 	<key>Device</key>
@@ -25,6 +21,10 @@
 		<string>iPhone</string>
 		<string>iPad</string>
 	</array>
+	<key>External Appium Package Path</key>
+	<string>/Users/me/appium</string>
+	<key>External NodeJS Binary Path</key>
+	<string>/usr/local/bin/node</string>
 	<key>Force Device</key>
 	<false/>
 	<key>Keep Artifacts</key>
@@ -49,9 +49,9 @@
 	<false/>
 	<key>Use BundleID</key>
 	<false/>
-	<key>Use Custom NodeJS Binary</key>
+	<key>Use External NodeJS Binary</key>
 	<false/>
-	<key>Use Custom Appium Package</key>
+	<key>Use External Appium Package</key>
 	<false/>
 	<key>Use Remote Server</key>
 	<false/>
