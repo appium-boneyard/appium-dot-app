@@ -12,6 +12,8 @@
 	<string></string>
 	<key>Check For Updates</key>
 	<true/>
+	<key>Developer Mode</key>
+	<false/>
 	<key>Device</key>
 	<string>iPad</string>
 	<key>Devices</key>
@@ -36,20 +38,22 @@
 	<key>UDID</key>
 	<string></string>
 	<key>Use Android Activity</key>
-	<string></string>
+	<false/>
 	<key>Use Android Package</key>
-	<string></string>
+	<false/>
 	<key>Use App Path</key>
 	<false/>
 	<key>Use BundleID</key>
-	<string></string>
+	<false/>
+	<key>Use Remote Server</key>
+	<false/>
 	<key>Use Mobile Safari</key>
-	<string></string>
+	<false/>
 	<key>Use UDID</key>
 	<false/>
 	<key>Verbose</key>
 	<true/>
 	<key>Without Delay</key>
-	<false/>
+	<true/>
 </dict>
 </plist>

@@ -17,6 +17,7 @@
 
 - (IBAction)checkForUpdates:(id)sender;
 - (IBAction)displayPreferences:(id)sender;
+-(IBAction) displayInspector:(id)sender;
 - (void) restart;
 
 @end

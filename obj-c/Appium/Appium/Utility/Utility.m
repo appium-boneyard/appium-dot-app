@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Appium. All rights reserved.
 //
 
+#import "AppiumGlobals.h"
 #import "Utility.h"
 
 @implementation Utility
@@ -23,12 +24,18 @@
     NSPipe *pipe = [NSPipe pipe];
     [task setStandardOutput:pipe];
     [task setStandardInput:[NSPipe pipe]];
-    NSLog(@"Launching %@", binary);
+	if (APPIUM_DEBUG_LEVEL > 0)
+	{
+		NSLog(@"Launching %@", binary);
+	}
     [task launch];
     NSFileHandle *stdOutHandle = [pipe fileHandleForReading];
     NSData *data = [stdOutHandle readDataToEndOfFile];
     NSString *output = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-    //NSLog(@"%@ exited with output: %@", binary, output);
+	if (APPIUM_DEBUG_LEVEL > 1)
+	{
+		NSLog(@"%@ exited with output: %@", binary, output);
+	}
     return output;
 }
 

@@ -8,6 +8,7 @@
 
 #import "AppiumModel.h"
 #import "AppiumAppDelegate.h"
+#import "Utility.h"
 
 # pragma mark - Constants
 
@@ -17,6 +18,7 @@
 #define PLIST_BUNDLEID @"BundleID"
 #define PLIST_CHECK_FOR_UPDATES @"Check For Updates"
 #define PLIST_DEVICE @"Device"
+#define PLIST_DEVELOPER_MODE @"Developer Mode"
 #define PLIST_FORCE_DEVICE @"Force Device"
 #define PLIST_FORCE_DEVICE_IPAD @"iPad"
 #define PLIST_FORCE_DEVICE_IPHONE @"iPhone"
@@ -33,6 +35,7 @@
 #define PLIST_USE_ANDROID_PACKAGE @"Use Android Package"
 #define PLIST_USE_APP_PATH @"Use App Path"
 #define PLIST_USE_BUNDLEID @"Use BundleID"
+#define PLIST_USE_REMOTE_SERVER @"Use Remote Server"
 #define PLIST_USE_MOBILE_SAFARI @"Use Mobile Safari"
 #define PLIST_USE_UDID @"Use UDID"
 #define PLIST_VERBOSE @"Verbose"
@@ -42,6 +45,7 @@
 
 NSUserDefaults* _defaults;
 BOOL _isServerRunning;
+BOOL _isServerListening;
 
 @implementation AppiumModel
 
@@ -55,6 +59,7 @@ BOOL _isServerRunning;
 		[[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:settingsDict];
 		_defaults = [NSUserDefaults standardUserDefaults];
 		_isServerRunning = NO;
+		_isServerListening = [self useRemoteServer];
     }
     return self;
 }
@@ -76,6 +81,9 @@ BOOL _isServerRunning;
 -(BOOL) checkForUpdates { return [_defaults boolForKey:PLIST_CHECK_FOR_UPDATES]; }
 -(void) setCheckForUpdates:(BOOL)checkForUpdates { [_defaults setBool:checkForUpdates forKey:PLIST_CHECK_FOR_UPDATES]; }
 
+-(BOOL) developerMode { return [_defaults boolForKey:PLIST_DEVELOPER_MODE]; }
+-(void) setDeveloperMode:(BOOL)developerMode { [_defaults setBool:developerMode forKey:PLIST_DEVELOPER_MODE]; }
+
 -(iOSAutomationDevice) deviceToForce { return [[_defaults stringForKey:PLIST_DEVICE] isEqualToString:PLIST_FORCE_DEVICE_IPAD] ? iOSAutomationDevice_iPad : iOSAutomationDevice_iPhone; }
 -(void) setDeviceToForce:(iOSAutomationDevice)deviceToForce {[self setDeviceToForceString:(deviceToForce == iOSAutomationDevice_iPad ? PLIST_FORCE_DEVICE_IPAD : PLIST_FORCE_DEVICE_IPHONE)]; }
 -(NSString*) deviceToForceString { return [[_defaults valueForKey:PLIST_DEVICE] isEqualToString:PLIST_FORCE_DEVICE_IPAD] ? PLIST_FORCE_DEVICE_IPAD : PLIST_FORCE_DEVICE_IPHONE ; }
@@ -86,6 +94,9 @@ BOOL _isServerRunning;
 
 -(BOOL) isServerRunning { return _isServerRunning; }
 -(void) setIsServerRunning:(BOOL)isServerRunning { _isServerRunning = isServerRunning; }
+
+-(BOOL) isServerListening { return _isServerListening; }
+-(void) setIsServerListening:(BOOL)isServerListening { _isServerListening = isServerListening; }
 
 -(NSString*) ipAddress { return [_defaults stringForKey:PLIST_SERVER_ADDRESS]; }
 -(void) setIpAddress:(NSString *)ipAddress { [_defaults setValue:ipAddress forKey:PLIST_SERVER_ADDRESS]; }
@@ -188,6 +199,20 @@ BOOL _isServerRunning;
 			[self setUseBundleID:NO];
 		}
 	}
+}
+
+-(BOOL) useRemoteServer
+{
+	return [_defaults boolForKey:PLIST_USE_REMOTE_SERVER] && [self developerMode];
+}
+-(void) setUseRemoteServer:(BOOL)useRemoteServer
+{
+	[_defaults setBool:useRemoteServer forKey:PLIST_USE_REMOTE_SERVER];
+	if (useRemoteServer)
+	{
+		[self killServer];
+	}
+	[self setIsServerListening:useRemoteServer];
 }
 
 -(BOOL) useUDID { return [_defaults boolForKey:PLIST_USE_UDID]; }
@@ -326,7 +351,25 @@ BOOL _isServerRunning;
 	// launch
     [self.serverTask launch];
     [self setIsServerRunning:self.serverTask.isRunning];
+	[self performSelectorInBackground:@selector(monitorListenStatus) withObject:nil];
     return self.isServerRunning;
+}
+
+-(void) monitorListenStatus
+{
+	while(self.isServerRunning)
+	{
+		sleep(1);
+		NSString *output = [Utility runTaskWithBinary:@"/usr/sbin/lsof" arguments:[NSArray arrayWithObjects:@"-i", [NSString stringWithFormat:@":%@", self.port, nil], nil]];
+		BOOL newValue = ([output rangeOfString:@"LISTEN"].location != NSNotFound);
+		if (newValue == YES && self.isServerListening)
+		{
+			// sleep to avoid race condition where server is listening but not ready
+			sleep(1);
+		}
+		[self setIsServerListening:newValue];
+	}
+	[self setIsServerListening:NO];
 }
 
 @end

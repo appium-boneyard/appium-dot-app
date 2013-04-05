@@ -7,6 +7,7 @@
 //
 
 #import "AppiumAppDelegate.h"
+#import "AppiumInspectorWindowController.h"
 #import "AppiumMonitorWindowController.h"
 #import "NodeInstance.h"
 #import "ANSIUtility.h"
@@ -15,6 +16,7 @@
 #import "AppiumMenuBarManager.h"
 
 AppiumMenuBarManager *menuBarManager;
+AppiumInspectorWindowController *inspectorWindow;
 
 @interface AppiumMonitorWindowController ()
 
@@ -125,6 +127,11 @@ AppiumMenuBarManager *menuBarManager;
 -(IBAction)clearLog:(id)sender
 {
     [[self logTextView] setString:@""];
+}
+
+-(IBAction)displayInspector:(id)sender
+{
+	[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] displayInspector:nil];
 }
 
 @end
