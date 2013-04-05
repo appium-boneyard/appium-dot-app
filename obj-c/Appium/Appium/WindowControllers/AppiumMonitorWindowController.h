@@ -18,5 +18,6 @@
 
 -(IBAction) clearLog:(id)sender;
 -(IBAction) launchButtonClicked:(id)sender;
+-(IBAction) displayInspector:(id)sender;
 
 @end
