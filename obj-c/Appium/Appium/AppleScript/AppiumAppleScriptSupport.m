@@ -73,6 +73,24 @@
 -(NSNumber*) s_UseMobileSafari { return [NSNumber numberWithBool:[[self model] useMobileSafari]]; }
 -(void) setS_UseMobileSafari:(NSNumber *)s_UseMobileSafari { [[self model] setUseMobileSafari:[s_UseMobileSafari boolValue]]; }
 
+-(NSNumber*) s_DeveloperMode { return [NSNumber numberWithBool:[[self model] developerMode]]; }
+-(void) setS_DeveloperMode:(NSNumber *)s_DeveloperMode { [[self model] setDeveloperMode:[s_DeveloperMode boolValue]]; }
+
+-(NSString*) s_ExternalAppiumPackagePath { return [[self model] externalAppiumPackagePath];}
+-(void) setS_ExternalAppiumPackagePath:(NSString *)s_ExternalAppiumPackagePath { [[self model] setExternalAppiumPackagePath:s_ExternalAppiumPackagePath]; }
+
+-(NSString*) s_ExternalNodeJSBinaryPath { return [[self model] externalNodeJSBinaryPath];}
+-(void) setS_ExternalNodeJSBinaryPath:(NSString *)s_ExternalNodeJSBinaryPath { [[self model] setExternalNodeJSBinaryPath:s_ExternalNodeJSBinaryPath]; }
+
+-(NSNumber*) s_UseExternalAppiumPackage { return [NSNumber numberWithBool:[[self model] useExternalAppiumPackage]]; }
+-(void) setS_UseExternalAppiumPackage:(NSNumber *)s_UseExternalAppiumPackage { [[self model] setUseExternalAppiumPackage:[s_UseExternalAppiumPackage boolValue]]; }
+
+-(NSNumber*) s_UseExternalNodeJSBinary { return [NSNumber numberWithBool:[[self model] useExternalNodeJSBinary]]; }
+-(void) setS_UseExternalNodeJSBinary:(NSNumber *)s_UseExternalNodeJSBinary { [[self model] setUseExternalNodeJSBinary:[s_UseExternalNodeJSBinary boolValue]]; }
+
+-(NSNumber*) s_UseRemoteServer { return [NSNumber numberWithBool:[[self model] useRemoteServer]]; }
+-(void) setS_UseRemoteServer:(NSNumber *)s_UseRemoteServer { [[self model] setUseRemoteServer:[s_UseRemoteServer boolValue]]; }
+
 #pragma mark - Functions
 
 -(NSString*) s_LogText
