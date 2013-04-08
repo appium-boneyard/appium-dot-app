@@ -19,30 +19,39 @@ NSString *lastPageSource;
 WebDriverElementNode *selection;
 NSMutableArray *selectedIndexes;
 
-- (id)init
+-(id) init
 {
     self = [super init];
     if (self) {
         _showDisabled = YES;
         _showInvisible = YES;
+		_isRecording = NO;
         [self setKeysToSend:@""];
         [self setDomIsPopulating:NO];
     }
     return self;
 }
 
+-(NSTextView*) _drawerContent { return (NSTextView*)_drawer.contentView; }
 -(NSNumber*) showDisabled { return [NSNumber numberWithBool:_showDisabled]; }
 -(NSNumber*) showInvisible { return [NSNumber numberWithBool:_showInvisible]; }
+-(NSNumber*) isRecording { return [NSNumber numberWithBool:_isRecording]; }
 
 -(void) setShowDisabled:(NSNumber *)showDisabled
 {
     _showDisabled = [showDisabled boolValue];
     [self populateDOM];
 }
+
 -(void) setShowInvisible:(NSNumber *)showInvisible
 {
     _showInvisible = [showInvisible boolValue];
     [self populateDOM];
+}
+
+-(void) setIsRecording:(NSNumber *)isRecording
+{
+	_isRecording = [isRecording boolValue];
 }
 
 -(void)setDomIsPopulatingToYes
@@ -52,6 +61,19 @@ NSMutableArray *selectedIndexes;
 -(void)setDomIsPopulatingToNo
 {
     [self setDomIsPopulating:NO];
+}
+
+-(void) awakeFromNib
+{
+    NSSize contentSize = NSMakeSize(_screenshotView.window.frame.size.width, 200);
+    _drawer = [[NSDrawer alloc] initWithContentSize:contentSize preferredEdge:NSMinYEdge];
+    [_drawer setParentWindow:_screenshotView.window];
+    [_drawer setMinContentSize:contentSize];
+    [_drawer setMaxContentSize:contentSize];
+	_drawerContent = [NSTextView new];
+	[_drawerContent setString:@""];
+	[_drawer setContentView:_drawerContent];
+
 }
 
 -(void)populateDOM
@@ -353,6 +375,10 @@ NSMutableArray *selectedIndexes;
 
 -(IBAction)tap:(id)sender
 {
+	if (_isRecording)
+	{
+		[_drawerContent setString:[NSString stringWithFormat:@"%@\n%@", _drawerContent.string, @"Tap"]];
+	}
     SEWebElement *element = [self elementForSelectedNode];
     [element click];
     [self refresh:sender];
@@ -376,6 +402,19 @@ NSMutableArray *selectedIndexes;
     SEWebElement *element = [self elementForSelectedNode];
     [element sendKeys:self.keysToSend];
     [self refresh:sender];
+}
+
+-(IBAction)toggleRecording:(id)sender
+{
+	[self setIsRecording:[NSNumber numberWithBool:!_isRecording]];
+	if (_isRecording)
+	{
+		[_drawer openOnEdge:NSMinYEdge];
+	}
+	else
+	{
+		[_drawer close];
+	}
 }
 
 @end

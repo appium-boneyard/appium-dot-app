@@ -23,12 +23,16 @@
     WebDriverElementNode *_browserRootNode;
     BOOL _showDisabled;
     BOOL _showInvisible;
+	BOOL _isRecording;
+	NSDrawer *_drawer;
+	NSTextView *_drawerContent;
 }
 
 @property NSNumber *showDisabled;
 @property NSNumber *showInvisible;
 @property NSString *keysToSend;
 @property BOOL domIsPopulating;
+@property NSNumber *isRecording;
 
 -(void)selectNodeNearestPoint:(NSPoint)point;
 
