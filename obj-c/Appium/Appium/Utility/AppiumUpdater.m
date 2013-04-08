@@ -14,12 +14,13 @@
 
 #pragma mark - Constants
 
-#define UPDATE_INFO_URL @"https://raw.github.com/appium/appium.github.com/master/autoupdate/update.json"
+#define UPDATE_INFO_URL @"https://raw.github.com/appium/appium.io/master/autoupdate/update.json"
 #define APPIUM_PACKAGE_VERSION_URL @"https://raw.github.com/appium/appium/master/package.json"
 
 #pragma mark - Appium Updater
 
 AppiumMonitorWindowController *mainWindowController;
+NSString* upgradeUrl;
 
 @implementation AppiumUpdater
 
@@ -28,6 +29,7 @@ AppiumMonitorWindowController *mainWindowController;
     self = [super init];
     if (self) {
         mainWindowController = windowController;
+		upgradeUrl = @"https://bitbucket.org/appium/appium.app/downloads/appium.dmg";
     }
     return self;
 }
@@ -65,6 +67,7 @@ AppiumMonitorWindowController *mainWindowController;
     NSDictionary *jsonDictionary = (NSDictionary *)jsonObject;
     NSString *myVersion = (NSString*)[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
     NSString *latestVersion = [jsonDictionary objectForKey:@"latest"];
+    upgradeUrl = [jsonDictionary objectForKey:@"url"];
 	NSArray *notUpgradableVersions = [jsonDictionary objectForKey:@"do-not-upgrade"];
 	
 	// check if this version is currently the latest
@@ -111,9 +114,8 @@ AppiumMonitorWindowController *mainWindowController;
     [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Downloading Appium.app..." waitUntilDone:YES];
     
     // download latest appium.app
-    NSString *stringURL = @"http://appium.io/appium.dmg";
-    NSLog(@"Downloading Appium app from \"%@.\"", stringURL);
-    NSURL  *url = [NSURL URLWithString:stringURL];
+    NSLog(@"Downloading Appium app from \"%@.\"", upgradeUrl);
+    NSURL  *url = [NSURL URLWithString:upgradeUrl];
     NSData *urlData = [NSData dataWithContentsOfURL:url];
     if (!urlData)
     {
