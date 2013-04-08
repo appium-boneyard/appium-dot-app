@@ -64,9 +64,17 @@ NSMutableArray *selectedIndexes;
 		[capabilities setPlatform:@"Mac"];
 		[capabilities setBrowserName:@"iOS"];
 		[capabilities setVersion:@"6.1"];
-        NSError *error;
-		driver = [[SERemoteWebDriver alloc] initWithServerAddress:[model ipAddress] port:[[model port] integerValue] desiredCapabilities:capabilities requiredCapabilities:nil error:&error];
-        [self refreshScreenshot];
+		driver = [[SERemoteWebDriver alloc] initWithServerAddress:[model ipAddress] port:[[model port] integerValue]];
+		NSArray *sessions = [driver allSessions];
+		if (sessions.count > 0)
+		{
+			[driver setSession:[sessions objectAtIndex:0]];
+		}
+		if (sessions.count == 0 || driver.session == nil || driver.session.capabilities.platform == nil)
+		{
+			[driver startSessionWithDesiredCapabilities:capabilities requiredCapabilities:nil];
+		}
+		[self refreshScreenshot];
         [self refreshPageSource];
 	}
 	NSError *e = nil;

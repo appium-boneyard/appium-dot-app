@@ -47,6 +47,16 @@
  
  @param address The IP address of the remote web driver server
  @param port The TCP port on which the remote web driver server is running
+ @return The remote web driver, initialized with server configuraion and tied to a newly created session
+ */
+-(id) initWithServerAddress:(NSString *)address port:(NSInteger)port;
+
+
+/**
+ Initializes the webdriver with server configuration and capabilities
+ 
+ @param address The IP address of the remote web driver server
+ @param port The TCP port on which the remote web driver server is running
  @param desiredCapabilities Capabilties desired for the server to implement
  @param requiredCapabilites Capabilties required for the server to implement
  @param error Storage for an error that may occur
@@ -59,6 +69,13 @@
   Quits the remote webdriver and deletes the session
  */
 -(void) quit;
+
+
+
+-(SESession*) startSessionWithDesiredCapabilities:(SECapabilities*)desiredCapabilities requiredCapabilities:(SECapabilities*)requiredCapabilites;
+
+
+-(NSArray*) allSessions;
 
 
 /**
@@ -91,7 +108,7 @@
 
  @return The current window handle.
  */
--(NSNumber*) window;
+-(NSString*) window;
 
 
 /**
@@ -205,8 +222,8 @@
 -(void) deactivateInputMethodEngine;
 -(void) activateInputMethodEngine:(NSString*)engine;
 -(void) setFrame:(id)name;
--(void) setWindow:(NSNumber*)windowHandle;
--(void) closeWindow:(NSNumber*)windowHandle;
+-(void) setWindow:(NSString*)windowHandle;
+-(void) closeWindow:(NSString*)windowHandle;
 -(void) setWindowSize:(NSSize)size window:(NSString*)windowHandle;
 -(NSSize) windowSizeForWindow:(NSString*)windowHandle;
 -(void) setWindowPosition:(NSPoint)position window:(NSString*)windowHandle;

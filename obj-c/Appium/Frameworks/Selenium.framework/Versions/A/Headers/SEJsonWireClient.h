@@ -22,8 +22,7 @@
 @class SELocation;
 
 @interface SEJsonWireClient : NSObject
-
--(id) initWithServerAddress:(NSString*)address port:(NSInteger)port desiredCapabilities:(SECapabilities*)desiredCapabilities requiredCapabilities:(SECapabilities*)requiredCapabilites error:(NSError**)error;
+-(id) initWithServerAddress:(NSString*)address port:(NSInteger)port error:(NSError**)error;
 
 #pragma mark - JSON-Wire Protocol Implementation
 
@@ -52,7 +51,7 @@
 -(void) postImplicitWaitTimeout:(NSInteger)timeoutInMilliseconds session:(NSString*)sessionId error:(NSError**)error;
 
 // GET /session/:sessionId/window_handle
--(NSNumber*) getWindowHandleWithSession:(NSString*)sessionId error:(NSError**)error;
+-(NSString*) getWindowHandleWithSession:(NSString*)sessionId error:(NSError**)error;
 
 // GET /session/:sessionId/window_handles
 -(NSArray*) getWindowHandlesWithSession:(NSString*)sessionId error:(NSError**)error;
@@ -100,25 +99,25 @@
 -(void) postSetFrame:(id)name session:(NSString*)sessionId error:(NSError**)error;
 
 // POST /session/:sessionId/window
--(void) postSetWindow:(NSNumber*)windowHandle session:(NSString*)sessionId error:(NSError**)error;
+-(void) postSetWindow:(NSString*)windowHandle session:(NSString*)sessionId error:(NSError**)error;
 
 // DELETE /session/:sessionId/window
 -(void) deleteWindowWithSession:(NSString*)sessionId error:(NSError**)error;
 
 // POST /session/:sessionId/window/:windowHandle/size
--(void) postSetWindowSize:(NSSize)size window:(NSNumber*)windowHandle session:(NSString*)sessionId error:(NSError**)error;
+-(void) postSetWindowSize:(NSSize)size window:(NSString*)windowHandle session:(NSString*)sessionId error:(NSError**)error;
 
 // GET /session/:sessionId/window/:windowHandle/size
--(NSSize) getWindowSizeWithWindow:(NSNumber*)windowHandle session:(NSString*)sessionId error:(NSError**)error;
+-(NSSize) getWindowSizeWithWindow:(NSString*)windowHandle session:(NSString*)sessionId error:(NSError**)error;
 
 // POST /session/:sessionId/window/:windowHandle/position
--(void) postSetWindowPosition:(NSPoint)position window:(NSNumber*)windowHandle session:(NSString*)sessionId error:(NSError**)error;
+-(void) postSetWindowPosition:(NSPoint)position window:(NSString*)windowHandle session:(NSString*)sessionId error:(NSError**)error;
 
 // GET /session/:sessionId/window/:windowHandle/position
--(NSPoint) getWindowPositionWithWindow:(NSNumber*)windowHandle session:(NSString*)sessionId error:(NSError**)error;
+-(NSPoint) getWindowPositionWithWindow:(NSString*)windowHandle session:(NSString*)sessionId error:(NSError**)error;
 
 // POST /session/:sessionId/window/:windowHandle/maximize
--(void) postMaximizeWindow:(NSNumber*)windowHandle session:(NSString*)sessionId error:(NSError**)error;
+-(void) postMaximizeWindow:(NSString*)windowHandle session:(NSString*)sessionId error:(NSError**)error;
 
 // GET /session/:sessionId/cookie
 -(NSArray*) getCookiesWithSession:(NSString*)sessionId error:(NSError**)error;
