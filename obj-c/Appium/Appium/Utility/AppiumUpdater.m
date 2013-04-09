@@ -200,6 +200,8 @@ NSString* upgradeUrl;
     [upgradeCompleteAlert setMessageText:@"Upgrade Complete"];
     [upgradeCompleteAlert setInformativeText:@"The package was installed successfully"];
     [upgradeCompleteAlert performSelectorOnMainThread:@selector(runModal) withObject:nil waitUntilDone:YES];
+	
+	[self checkForPluginUpdates];
 }
 
 #pragma mark - Plugin Update
@@ -210,13 +212,13 @@ NSString* upgradeUrl;
 	
     if (![[NSFileManager defaultManager] fileExistsAtPath:pluginPath])
     {
-        [self performSelectorOnMainThread:@selector(doPluginUpgradeAlert:) withObject:nil waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(doPluginUpgradeAlert) withObject:nil waitUntilDone:NO];
 		return YES;
     }
 	return NO;
 }
 
--(void) doPluginUpgradeAlert:(NSArray*)versions
+-(void) doPluginUpgradeAlert
 {
     NSAlert *upgradeAlert = [NSAlert new];
     [upgradeAlert setMessageText:@"Appium Plugin Available"];
