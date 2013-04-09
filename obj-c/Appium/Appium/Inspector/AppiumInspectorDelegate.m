@@ -9,6 +9,7 @@
 #import "AppiumInspectorDelegate.h"
 #import "AppiumModel.h"
 #import "AppiumAppDelegate.h"
+#import "AppiumCSharpCodeMaker.h"
 #import <Selenium/SERemoteWebDriver.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -18,6 +19,7 @@ SERemoteWebDriver *driver;
 NSString *lastPageSource;
 WebDriverElementNode *selection;
 NSMutableArray *selectedIndexes;
+id<AppiumCodeMaker> codeMaker;
 
 -(id) init
 {
@@ -28,6 +30,7 @@ NSMutableArray *selectedIndexes;
 		_isRecording = NO;
         [self setKeysToSend:@""];
         [self setDomIsPopulating:NO];
+        codeMaker = [AppiumCSharpCodeMaker new];
     }
     return self;
 }
@@ -377,7 +380,7 @@ NSMutableArray *selectedIndexes;
 {
 	if (_isRecording)
 	{
-		[_drawerContent setString:[NSString stringWithFormat:@"%@\n%@", _drawerContent.string, @"Tap"]];
+		[_drawerContent setString:[_drawerContent.string stringByAppendingFormat:[codeMaker tap]]];
 	}
     SEWebElement *element = [self elementForSelectedNode];
     [element click];
