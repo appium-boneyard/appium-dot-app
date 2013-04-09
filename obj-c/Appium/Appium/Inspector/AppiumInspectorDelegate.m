@@ -10,6 +10,7 @@
 #import "AppiumModel.h"
 #import "AppiumAppDelegate.h"
 #import "AppiumCSharpCodeMaker.h"
+#import "AppiumInspectorWindowController.h"
 #import <Selenium/SERemoteWebDriver.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -67,17 +68,6 @@ NSString *generatedCode;
     [self setDomIsPopulating:NO];
 }
 
--(void) awakeFromNib
-{
-    NSSize contentSize = NSMakeSize(_screenshotView.window.frame.size.width, 200);
-    _drawer = [[NSDrawer alloc] initWithContentSize:contentSize preferredEdge:NSMinYEdge];
-    [_drawer setParentWindow:_screenshotView.window];
-    [_drawer setMinContentSize:contentSize];
-	
-	[_drawer setContentView:_drawerContentView];
-	[_drawer.contentView setAutoresizingMask:NSViewHeightSizable];
-}
-
 -(void)populateDOM
 {
     [self performSelectorOnMainThread:@selector(setDomIsPopulatingToYes) withObject:nil waitUntilDone:YES];
@@ -107,7 +97,7 @@ NSString *generatedCode;
 	NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData: [lastPageSource dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: &e];
 	_browserRootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict parent:nil showDisabled:[self.showDisabled boolValue] showInvisible:[self.showInvisible boolValue]];
     _rootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict parent:nil showDisabled:_showDisabled showInvisible:_showInvisible];
-    [_browser performSelectorOnMainThread:@selector(loadColumnZero) withObject:nil waitUntilDone:YES];
+    [_windowController.browser performSelectorOnMainThread:@selector(loadColumnZero) withObject:nil waitUntilDone:YES];
 	selection = nil;
 	selectedIndexes = [NSMutableArray new];
     [self performSelectorOnMainThread:@selector(updateDetailsDisplay) withObject:nil waitUntilDone:YES];
@@ -122,8 +112,7 @@ NSString *generatedCode;
 -(void)refreshScreenshot
 {
 	NSImage *screenshot = [driver screenshot];
-	[_screenshotView setImage:screenshot];
-	[_screenshotView setInspector:self];
+	[_windowController.screenshotImageView setImage:screenshot];
 }
 
 - (id)rootItemForBrowser:(NSBrowser *)browser {
@@ -190,22 +179,24 @@ NSString *generatedCode;
 
 -(void) updateDetailsDisplay
 {
+	NSView *highlightView = _windowController.selectedElementHighlightView;
+	
 	if (selection != nil)
 	{
         NSString *newDetails = [NSString stringWithFormat:@"%@\nXPath string: %@", [selection infoText], [self xPathForSelectedNode]];
-        [_detailsTextView setString:newDetails];
+        [_windowController.detailsTextView setString:newDetails];
 	}
 	else
 	{
-        [_detailsTextView setString:@""];
+        [_windowController.detailsTextView setString:@""];
 	}
 	
 	if (selection != nil)
     {
-        if (!_highlightView.layer) {
-            [_highlightView setWantsLayer:YES];
-            _highlightView.layer.borderWidth = 2.0f;
-            _highlightView.layer.cornerRadius = 8.0f;
+        if (!highlightView.layer) {
+            [highlightView setWantsLayer:YES];
+            highlightView.layer.borderWidth = 2.0f;
+            highlightView.layer.cornerRadius = 8.0f;
 			//_highlightView.layer.borderColor = [NSColor redColor].CGColor; // Not allowed in 10.7
 			NSColor* redColor = [NSColor redColor];
 			CGColorRef redCGColor = NULL;
@@ -219,16 +210,16 @@ NSString *generatedCode;
 				redCGColor = CGColorCreate(genericRGBSpace, colorComponents);
 				CGColorSpaceRelease(genericRGBSpace);
 			}
-            _highlightView.layer.borderColor = redCGColor;
+            highlightView.layer.borderColor = redCGColor;
         }
 		
-        CGRect viewRect = [_screenshotView convertSeleniumRectToViewRect:[selection rect]];
-        _highlightView.frame = viewRect;
-        [_highlightView setHidden:NO];
+        CGRect viewRect = [_windowController.screenshotImageView convertSeleniumRectToViewRect:[selection rect]];
+        highlightView.frame = viewRect;
+        [highlightView setHidden:NO];
     }
     else
     {
-        [_highlightView setHidden:YES];
+        [highlightView setHidden:YES];
     }
 }
 
@@ -278,7 +269,7 @@ NSString *generatedCode;
 	
 	// select
 	selection = node;
-	[_browser setSelectionIndexPath:indexPath];
+	[_windowController.browser setSelectionIndexPath:indexPath];
 	[self updateDetailsDisplay];
 }
 
@@ -390,18 +381,19 @@ NSString *generatedCode;
     [self populateDOM];
 }
 
+/*
 -(void) appendCode:(NSString*)code
 {
 	generatedCode = [generatedCode stringByAppendingString:code];
 	[_drawerContentTextView setString:[NSString stringWithFormat:@"%@%@%@", codeMaker.preCodeBoilerplate, generatedCode, codeMaker.postCodeBoilerplate]];
-}
+} */
 
 -(IBAction)tap:(id)sender
 {
     SEWebElement *element = [self elementForSelectedNode];
 	if (_isRecording)
 	{
-		[self appendCode:[codeMaker tap:[self xPathForSelectedNode]]];
+		//[self appendCode:[codeMaker tap:[self xPathForSelectedNode]]];
 	}
     [element click];
     [self refresh:sender];
@@ -412,7 +404,7 @@ NSString *generatedCode;
     SEWebElement *element = [self elementForSelectedNode];
 	if (_isRecording)
 	{
-		[self appendCode:[codeMaker sendKeys:self.keysToSend element:[self xPathForSelectedNode]]];
+		//[self appendCode:[codeMaker sendKeys:self.keysToSend element:[self xPathForSelectedNode]]];
 	}
     [element sendKeys:self.keysToSend];
     [self refresh:sender];
@@ -423,11 +415,11 @@ NSString *generatedCode;
 	[self setIsRecording:[NSNumber numberWithBool:!_isRecording]];
 	if (_isRecording)
 	{
-		[_drawer openOnEdge:NSMinYEdge];
+		[_windowController.bottomDrawer openOnEdge:NSMinYEdge];
 	}
 	else
 	{
-		[_drawer close];
+		[_windowController.bottomDrawer close];
 	}
 }
 
