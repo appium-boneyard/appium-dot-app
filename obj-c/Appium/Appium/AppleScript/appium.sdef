@@ -47,6 +47,9 @@
 			<property name="external node path" code="aenp" description="path to external node binaries" type="text">
 				<cocoa key="s_ExternalNodeJSBinaryPath"/>
 			</property>
+			<property name="is server listening" code="amsl" description="true if the appium server is listening" type="boolean" access="r">
+				<cocoa key="s_IsServerListening"/>
+			</property>
 			<property name="is server running" code="amsr" description="true if the appium server is running" type="boolean" access="r">
 				<cocoa key="s_IsServerRunning"/>
 			</property>

@@ -22,6 +22,7 @@
 @property NSString *s_ExternalAppiumPackagePath;
 @property NSString *s_ExternalNodeJSBinaryPath;
 @property NSString *s_IPAddress;
+@property (readonly) NSNumber *s_IsServerListening;
 @property (readonly) NSNumber *s_IsServerRunning;
 @property NSNumber *s_KeepArtifacts;
 @property (readonly)NSString *s_LogText;
