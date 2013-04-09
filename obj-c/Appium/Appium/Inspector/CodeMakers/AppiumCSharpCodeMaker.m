@@ -43,14 +43,20 @@ namespace se_builder {\n\
 \t\t}\n}\n";
 }
 
--(NSString*) sendKeys
+-(NSString*) sendKeys:(NSString *)keys element:(NSString*)xpath
 {
-    return @"\t\t\t\twd.SendKeys(%@,%@);\n";
+	return [NSString stringWithFormat:@"\t\t\t\twd.FindElement(%@).SendKeys(%@);\n", [self xPath:xpath], [self escapeString:keys]];
 }
 
--(NSString*) tap
+-(NSString*) tap:(NSString *)xpath
 {
-    return @"\t\t\t\twd.Click(%@);\n";
+	return [NSString stringWithFormat:@"\t\t\t\twd.Click(%@);\n", [self xPath:xpath]];
+}
+
+-(NSString*) xPath:(NSString*)xpath
+{
+
+	return [NSString stringWithFormat:@"By.Xpath(\"%@\")", [self escapeString:xpath]];
 }
 
 -(NSString*) escapeString:(NSString *)string

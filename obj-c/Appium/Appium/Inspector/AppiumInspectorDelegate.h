@@ -19,13 +19,14 @@
 	IBOutlet NSTextView *_detailsTextView;
 	IBOutlet AppiumInspectorScreenshotImageView *_screenshotView;
 	IBOutlet NSView *_highlightView;
+	IBOutlet NSView *_drawerContentView;
+	IBOutlet NSTextView *_drawerContentTextView;
 	WebDriverElementNode *_rootNode;
     WebDriverElementNode *_browserRootNode;
     BOOL _showDisabled;
     BOOL _showInvisible;
 	BOOL _isRecording;
 	NSDrawer *_drawer;
-	NSTextView *_drawerContent;
 }
 
 @property NSNumber *showDisabled;

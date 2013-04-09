@@ -9,6 +9,7 @@
 #import "AppiumInspectorDelegate.h"
 #import "AppiumModel.h"
 #import "AppiumAppDelegate.h"
+#import "AppiumCSharpCodeMaker.h"
 #import <Selenium/SERemoteWebDriver.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -18,7 +19,8 @@ SERemoteWebDriver *driver;
 NSString *lastPageSource;
 WebDriverElementNode *selection;
 NSMutableArray *selectedIndexes;
-//id<AppiumCodeMaker> codeMaker;
+id<AppiumCodeMaker> codeMaker;
+NSString *generatedCode;
 
 -(id) init
 {
@@ -29,12 +31,12 @@ NSMutableArray *selectedIndexes;
 		_isRecording = NO;
         [self setKeysToSend:@""];
         [self setDomIsPopulating:NO];
-        //codeMaker = [AppiumCSharpCodeMaker new];
+        codeMaker = [AppiumCSharpCodeMaker new];
+		generatedCode = @"";
     }
     return self;
 }
 
--(NSTextView*) _drawerContent { return (NSTextView*)_drawer.contentView; }
 -(NSNumber*) showDisabled { return [NSNumber numberWithBool:_showDisabled]; }
 -(NSNumber*) showInvisible { return [NSNumber numberWithBool:_showInvisible]; }
 -(NSNumber*) isRecording { return [NSNumber numberWithBool:_isRecording]; }
@@ -71,11 +73,9 @@ NSMutableArray *selectedIndexes;
     _drawer = [[NSDrawer alloc] initWithContentSize:contentSize preferredEdge:NSMinYEdge];
     [_drawer setParentWindow:_screenshotView.window];
     [_drawer setMinContentSize:contentSize];
-    [_drawer setMaxContentSize:contentSize];
-	_drawerContent = [NSTextView new];
-	[_drawerContent setString:@""];
-	[_drawer setContentView:_drawerContent];
-
+	
+	[_drawer setContentView:_drawerContentView];
+	[_drawer.contentView setAutoresizingMask:NSViewHeightSizable];
 }
 
 -(void)populateDOM
@@ -99,8 +99,10 @@ NSMutableArray *selectedIndexes;
 			[driver startSessionWithDesiredCapabilities:capabilities requiredCapabilities:nil];
 		}
 		[self refreshScreenshot];
-        [self refreshPageSource];
+	    [self refreshPageSource];
 	}
+	if (lastPageSource == nil)
+		[self refreshPageSource];
 	NSError *e = nil;
 	NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData: [lastPageSource dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: &e];
 	_browserRootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict parent:nil showDisabled:[self.showDisabled boolValue] showInvisible:[self.showInvisible boolValue]];
@@ -375,13 +377,6 @@ NSMutableArray *selectedIndexes;
     return result;
 }
 
--(IBAction)tap:(id)sender
-{
-    SEWebElement *element = [self elementForSelectedNode];
-    [element click];
-    [self refresh:sender];
-}
-
 -(IBAction)refresh:(id)sender
 {
     [self performSelectorInBackground:@selector(refreshAll) withObject:nil];
@@ -395,9 +390,30 @@ NSMutableArray *selectedIndexes;
     [self populateDOM];
 }
 
+-(void) appendCode:(NSString*)code
+{
+	generatedCode = [generatedCode stringByAppendingString:code];
+	[_drawerContentTextView setString:[NSString stringWithFormat:@"%@%@%@", codeMaker.preCodeBoilerplate, generatedCode, codeMaker.postCodeBoilerplate]];
+}
+
+-(IBAction)tap:(id)sender
+{
+    SEWebElement *element = [self elementForSelectedNode];
+	if (_isRecording)
+	{
+		[self appendCode:[codeMaker tap:[self xPathForSelectedNode]]];
+	}
+    [element click];
+    [self refresh:sender];
+}
+
 -(IBAction)sendKeys:(id)sender
 {
     SEWebElement *element = [self elementForSelectedNode];
+	if (_isRecording)
+	{
+		[self appendCode:[codeMaker sendKeys:self.keysToSend element:[self xPathForSelectedNode]]];
+	}
     [element sendKeys:self.keysToSend];
     [self refresh:sender];
 }
