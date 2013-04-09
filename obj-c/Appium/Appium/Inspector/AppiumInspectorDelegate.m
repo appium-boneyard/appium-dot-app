@@ -9,6 +9,7 @@
 #import "AppiumInspectorDelegate.h"
 #import "AppiumModel.h"
 #import "AppiumAppDelegate.h"
+#import "AppiumCSharpCodeMaker.h"
 #import <Selenium/SERemoteWebDriver.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -18,31 +19,43 @@ SERemoteWebDriver *driver;
 NSString *lastPageSource;
 WebDriverElementNode *selection;
 NSMutableArray *selectedIndexes;
+id<AppiumCodeMaker> codeMaker;
+NSString *generatedCode;
 
-- (id)init
+-(id) init
 {
     self = [super init];
     if (self) {
         _showDisabled = YES;
         _showInvisible = YES;
+		_isRecording = NO;
         [self setKeysToSend:@""];
         [self setDomIsPopulating:NO];
+        codeMaker = [AppiumCSharpCodeMaker new];
+		generatedCode = @"";
     }
     return self;
 }
 
 -(NSNumber*) showDisabled { return [NSNumber numberWithBool:_showDisabled]; }
 -(NSNumber*) showInvisible { return [NSNumber numberWithBool:_showInvisible]; }
+-(NSNumber*) isRecording { return [NSNumber numberWithBool:_isRecording]; }
 
 -(void) setShowDisabled:(NSNumber *)showDisabled
 {
     _showDisabled = [showDisabled boolValue];
     [self populateDOM];
 }
+
 -(void) setShowInvisible:(NSNumber *)showInvisible
 {
     _showInvisible = [showInvisible boolValue];
     [self populateDOM];
+}
+
+-(void) setIsRecording:(NSNumber *)isRecording
+{
+	_isRecording = [isRecording boolValue];
 }
 
 -(void)setDomIsPopulatingToYes
@@ -52,6 +65,17 @@ NSMutableArray *selectedIndexes;
 -(void)setDomIsPopulatingToNo
 {
     [self setDomIsPopulating:NO];
+}
+
+-(void) awakeFromNib
+{
+    NSSize contentSize = NSMakeSize(_screenshotView.window.frame.size.width, 200);
+    _drawer = [[NSDrawer alloc] initWithContentSize:contentSize preferredEdge:NSMinYEdge];
+    [_drawer setParentWindow:_screenshotView.window];
+    [_drawer setMinContentSize:contentSize];
+	
+	[_drawer setContentView:_drawerContentView];
+	[_drawer.contentView setAutoresizingMask:NSViewHeightSizable];
 }
 
 -(void)populateDOM
@@ -75,8 +99,10 @@ NSMutableArray *selectedIndexes;
 			[driver startSessionWithDesiredCapabilities:capabilities requiredCapabilities:nil];
 		}
 		[self refreshScreenshot];
-        [self refreshPageSource];
+	    [self refreshPageSource];
 	}
+	if (lastPageSource == nil)
+		[self refreshPageSource];
 	NSError *e = nil;
 	NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData: [lastPageSource dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: &e];
 	_browserRootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict parent:nil showDisabled:[self.showDisabled boolValue] showInvisible:[self.showInvisible boolValue]];
@@ -351,13 +377,6 @@ NSMutableArray *selectedIndexes;
     return result;
 }
 
--(IBAction)tap:(id)sender
-{
-    SEWebElement *element = [self elementForSelectedNode];
-    [element click];
-    [self refresh:sender];
-}
-
 -(IBAction)refresh:(id)sender
 {
     [self performSelectorInBackground:@selector(refreshAll) withObject:nil];
@@ -371,11 +390,45 @@ NSMutableArray *selectedIndexes;
     [self populateDOM];
 }
 
+-(void) appendCode:(NSString*)code
+{
+	generatedCode = [generatedCode stringByAppendingString:code];
+	[_drawerContentTextView setString:[NSString stringWithFormat:@"%@%@%@", codeMaker.preCodeBoilerplate, generatedCode, codeMaker.postCodeBoilerplate]];
+}
+
+-(IBAction)tap:(id)sender
+{
+    SEWebElement *element = [self elementForSelectedNode];
+	if (_isRecording)
+	{
+		[self appendCode:[codeMaker tap:[self xPathForSelectedNode]]];
+	}
+    [element click];
+    [self refresh:sender];
+}
+
 -(IBAction)sendKeys:(id)sender
 {
     SEWebElement *element = [self elementForSelectedNode];
+	if (_isRecording)
+	{
+		[self appendCode:[codeMaker sendKeys:self.keysToSend element:[self xPathForSelectedNode]]];
+	}
     [element sendKeys:self.keysToSend];
     [self refresh:sender];
+}
+
+-(IBAction)toggleRecording:(id)sender
+{
+	[self setIsRecording:[NSNumber numberWithBool:!_isRecording]];
+	if (_isRecording)
+	{
+		[_drawer openOnEdge:NSMinYEdge];
+	}
+	else
+	{
+		[_drawer close];
+	}
 }
 
 @end

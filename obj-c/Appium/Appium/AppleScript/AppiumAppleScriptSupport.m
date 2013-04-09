@@ -15,6 +15,7 @@
 
 # pragma mark - Properties
 
+-(NSNumber*) s_IsServerListening { return [NSNumber numberWithBool:[[self model] isServerListening]]; }
 -(NSNumber*) s_IsServerRunning { return [NSNumber numberWithBool:[[self model] isServerRunning]]; }
 
 -(NSString*) s_IPAddress { return [[self model] ipAddress]; }
