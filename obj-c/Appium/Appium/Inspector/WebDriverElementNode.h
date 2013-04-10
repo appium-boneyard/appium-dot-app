@@ -1,5 +1,5 @@
 //
-//  UIAElementNode.h
+//  WebDriverElementNode.h
 //  Appium
 //
 //  Created by Dan Cuellar on 3/13/13.
@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class WebDriverElementNode;
+
 @interface WebDriverElementNode : NSObject<NSToolbarDelegate> {
+
 @private
 	NSDictionary *_jsonDict;
     NSMutableArray *_children;

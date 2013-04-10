@@ -25,9 +25,9 @@
 
 @property NSNumber *showDisabled;
 @property NSNumber *showInvisible;
+@property NSNumber *isRecording;
 @property NSString *keysToSend;
 @property BOOL domIsPopulating;
-@property NSNumber *isRecording;
 
 -(void)selectNodeNearestPoint:(NSPoint)point;
 

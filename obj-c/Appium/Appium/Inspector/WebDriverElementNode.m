@@ -1,5 +1,5 @@
 //
-//  UIAElementNode.m
+//  WebDriverElementNode.m
 //  Appium
 //
 //  Created by Dan Cuellar on 3/13/13.
@@ -10,7 +10,7 @@
 
 @implementation WebDriverElementNode
 
-- (id)initWithJSONDict:(NSDictionary *)jsonDict parent:(WebDriverElementNode*) parent showDisabled:(BOOL)showDisabled showInvisible:(BOOL)showInvisible
+-(id) initWithJSONDict:(NSDictionary *)jsonDict parent:(WebDriverElementNode*) parent showDisabled:(BOOL)showDisabled showInvisible:(BOOL)showInvisible
 {
 	if (self = [super init])
 	{
@@ -50,7 +50,7 @@
 	return self;
 }
 
--(BOOL)shouldDisplay
+-(BOOL) shouldDisplay
 {
 	if ((_showInvisible || self.visible) && (_showDisabled || self.enabled))
 		return YES;
@@ -72,29 +72,29 @@
 
 @dynamic displayName, children, isLeaf, icon, labelColor;
 
-- (NSString *)displayName
+- (NSString*) displayName
 {
     return [NSString stringWithFormat:@"[%@] %@", [self type], [self name]];
 }
 
-- (NSImage *)icon
+- (NSImage*) icon
 {
 	return [[NSApplication sharedApplication] applicationIconImage];
 }
 
-- (BOOL)isLeaf
+- (BOOL) isLeaf
 {
     return _children.count < 1;
 }
 
-- (NSColor *)labelColor
+- (NSColor*) labelColor
 {
     return [NSColor blackColor];
 }
 
--(NSArray *) children { return _children; }
+-(NSArray*) children { return _children; }
 
--(NSArray *) visibleChildren { return _visibleChildren; }
+-(NSArray*) visibleChildren { return _visibleChildren; }
 
 -(NSString*) infoText
 {
