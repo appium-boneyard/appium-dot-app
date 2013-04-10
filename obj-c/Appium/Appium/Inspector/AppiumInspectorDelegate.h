@@ -8,25 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import "WebDriverElementNode.h"
-#import "AppiumInspectorScreenshotImageView.h"
+#import "AppiumInspectorWindowController.h"
 
 @class WebDriverElementNode;
-@class AppiumInspectorScreenshotImageView;
+@class AppiumInspectorWindowController;
 
 @interface AppiumInspectorDelegate : NSObject {
 @private
-	IBOutlet NSBrowser *_browser;
-	IBOutlet NSTextView *_detailsTextView;
-	IBOutlet AppiumInspectorScreenshotImageView *_screenshotView;
-	IBOutlet NSView *_highlightView;
-	IBOutlet NSView *_drawerContentView;
-	IBOutlet NSTextView *_drawerContentTextView;
+	IBOutlet AppiumInspectorWindowController *_windowController;
 	WebDriverElementNode *_rootNode;
     WebDriverElementNode *_browserRootNode;
     BOOL _showDisabled;
     BOOL _showInvisible;
 	BOOL _isRecording;
-	NSDrawer *_drawer;
 }
 
 @property NSNumber *showDisabled;

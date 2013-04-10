@@ -454,7 +454,7 @@
 															<string key="NSFrameSize">{206, 126}</string>
 															<reference key="NSSuperview" ref="153909720"/>
 															<reference key="NSWindow"/>
-															<reference key="NSNextKeyView" ref="721067251"/>
+															<reference key="NSNextKeyView" ref="555555799"/>
 															<string key="NSReuseIdentifierKey">_NS:13</string>
 															<object class="NSTextContainer" key="NSTextContainer" id="926560149">
 																<object class="NSLayoutManager" key="NSLayoutManager">
@@ -576,7 +576,7 @@
 											<string key="NSFrame">{{18, 14}, {208, 128}}</string>
 											<reference key="NSSuperview" ref="932273903"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="153909720"/>
+											<reference key="NSNextKeyView" ref="721067251"/>
 											<string key="NSReuseIdentifierKey">_NS:9</string>
 											<int key="NSsFlags">133138</int>
 											<reference key="NSVScroller" ref="555555799"/>
@@ -619,7 +619,7 @@
 						</object>
 						<object class="NSButton" id="32328844">
 							<reference key="NSNextResponder" ref="1006"/>
-							<int key="NSvFlags">-2147483380</int>
+							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{399, 473}, {89, 41}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
@@ -627,7 +627,7 @@
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="478588093">
-								<int key="NSCellFlags">603979776</int>
+								<int key="NSCellFlags">67108864</int>
 								<int key="NSCellFlags2">134217728</int>
 								<string key="NSContents">Record</string>
 								<reference key="NSSupport" ref="453601671"/>
@@ -690,12 +690,6 @@
 				<string key="NSFrameAutosaveName">AppiumInspector</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
-			<object class="NSCustomObject" id="963484851">
-				<string key="NSClassName">AppiumInspectorDelegate</string>
-			</object>
-			<object class="NSUserDefaultsController" id="544515380">
-				<bool key="NSSharedInstance">YES</bool>
-			</object>
 			<object class="NSCustomView" id="378629004">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
@@ -733,7 +727,7 @@
 										<string key="NSFrameSize">{521, 199}</string>
 										<reference key="NSSuperview" ref="544444181"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="115272450"/>
+										<reference key="NSNextKeyView" ref="112661245"/>
 										<string key="NSReuseIdentifierKey">_NS:13</string>
 										<object class="NSTextContainer" key="NSTextContainer" id="832897207">
 											<object class="NSLayoutManager" key="NSLayoutManager">
@@ -835,7 +829,7 @@
 						<string key="NSFrameSize">{521, 201}</string>
 						<reference key="NSSuperview" ref="378629004"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="544444181"/>
+						<reference key="NSNextKeyView" ref="115272450"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<int key="NSsFlags">133266</int>
 						<reference key="NSVScroller" ref="112661245"/>
@@ -849,7 +843,17 @@
 				<string key="NSFrameSize">{521, 226}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView" ref="1034142380"/>
 				<string key="NSClassName">NSView</string>
+			</object>
+			<object class="NSCustomObject" id="852581576">
+				<string key="NSClassName">AppiumInspectorWindowController</string>
+			</object>
+			<object class="NSCustomObject" id="963484851">
+				<string key="NSClassName">AppiumInspectorDelegate</string>
+			</object>
+			<object class="NSUserDefaultsController" id="544515380">
+				<bool key="NSSharedInstance">YES</bool>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -880,27 +884,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">_browser</string>
-						<reference key="source" ref="963484851"/>
-						<reference key="destination" ref="373383690"/>
-					</object>
-					<int key="connectionID">54</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">_screenshotView</string>
 						<reference key="source" ref="963484851"/>
 						<reference key="destination" ref="707848315"/>
 					</object>
 					<int key="connectionID">55</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">_highlightView</string>
-						<reference key="source" ref="963484851"/>
-						<reference key="destination" ref="1021976772"/>
-					</object>
-					<int key="connectionID">61</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -917,14 +905,6 @@
 						<reference key="destination" ref="121075717"/>
 					</object>
 					<int key="connectionID">104</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">_detailsTextView</string>
-						<reference key="source" ref="963484851"/>
-						<reference key="destination" ref="328755789"/>
-					</object>
-					<int key="connectionID">56</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -944,19 +924,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">_drawerContentView</string>
+						<string key="label">_windowController</string>
 						<reference key="source" ref="963484851"/>
-						<reference key="destination" ref="378629004"/>
+						<reference key="destination" ref="852581576"/>
 					</object>
-					<int key="connectionID">138</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">_drawerContentTextView</string>
-						<reference key="source" ref="963484851"/>
-						<reference key="destination" ref="973359876"/>
-					</object>
-					<int key="connectionID">140</int>
+					<int key="connectionID">145</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1085,6 +1057,70 @@
 						</object>
 					</object>
 					<int key="connectionID">111</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">bottomDrawerContentTextView</string>
+						<reference key="source" ref="852581576"/>
+						<reference key="destination" ref="973359876"/>
+					</object>
+					<int key="connectionID">142</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">bottomDrawerContentView</string>
+						<reference key="source" ref="852581576"/>
+						<reference key="destination" ref="378629004"/>
+					</object>
+					<int key="connectionID">143</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">window</string>
+						<reference key="source" ref="852581576"/>
+						<reference key="destination" ref="1005"/>
+					</object>
+					<int key="connectionID">144</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">browser</string>
+						<reference key="source" ref="852581576"/>
+						<reference key="destination" ref="373383690"/>
+					</object>
+					<int key="connectionID">146</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">detailsTextView</string>
+						<reference key="source" ref="852581576"/>
+						<reference key="destination" ref="328755789"/>
+					</object>
+					<int key="connectionID">147</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">selectedElementHighlightView</string>
+						<reference key="source" ref="852581576"/>
+						<reference key="destination" ref="1021976772"/>
+					</object>
+					<int key="connectionID">148</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">screenshotImageView</string>
+						<reference key="source" ref="852581576"/>
+						<reference key="destination" ref="707848315"/>
+					</object>
+					<int key="connectionID">149</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">inspector</string>
+						<reference key="source" ref="852581576"/>
+						<reference key="destination" ref="963484851"/>
+					</object>
+					<int key="connectionID">153</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1367,6 +1403,11 @@
 						<reference key="object" ref="973359876"/>
 						<reference key="parent" ref="1034142380"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">141</int>
+						<reference key="object" ref="852581576"/>
+						<reference key="parent" ref="0"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1388,6 +1429,7 @@
 				<string key="135.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="136.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="137.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="141.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="2.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="26.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="29.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1418,47 +1460,24 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">140</int>
+			<int key="maxID">153</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">AppiumInspectorDelegate</string>
 					<string key="superclassName">NSObject</string>
-					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="_browser">NSBrowser</string>
-						<string key="_detailsTextView">NSTextView</string>
-						<string key="_drawerContentTextView">NSTextView</string>
-						<string key="_drawerContentView">NSView</string>
-						<string key="_highlightView">NSView</string>
-						<string key="_screenshotView">AppiumInspectorScreenshotImageView</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="_browser">
-							<string key="name">_browser</string>
-							<string key="candidateClassName">NSBrowser</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">_windowController</string>
+						<string key="NS.object.0">AppiumInspectorWindowController</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">_windowController</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">_windowController</string>
+							<string key="candidateClassName">AppiumInspectorWindowController</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="_detailsTextView">
-							<string key="name">_detailsTextView</string>
-							<string key="candidateClassName">NSTextView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_drawerContentTextView">
-							<string key="name">_drawerContentTextView</string>
-							<string key="candidateClassName">NSTextView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_drawerContentView">
-							<string key="name">_drawerContentView</string>
-							<string key="candidateClassName">NSView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_highlightView">
-							<string key="name">_highlightView</string>
-							<string key="candidateClassName">NSView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="_screenshotView">
-							<string key="name">_screenshotView</string>
-							<string key="candidateClassName">AppiumInspectorScreenshotImageView</string>
-						</object>
-					</dictionary>
+					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/AppiumInspectorDelegate.h</string>
@@ -1475,6 +1494,45 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">AppiumInspectorWindowController</string>
 					<string key="superclassName">NSWindowController</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="bottomDrawerContentTextView">NSTextView</string>
+						<string key="bottomDrawerContentView">NSView</string>
+						<string key="browser">NSBrowser</string>
+						<string key="detailsTextView">NSTextView</string>
+						<string key="inspector">AppiumInspectorDelegate</string>
+						<string key="screenshotImageView">AppiumInspectorScreenshotImageView</string>
+						<string key="selectedElementHighlightView">NSView</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="bottomDrawerContentTextView">
+							<string key="name">bottomDrawerContentTextView</string>
+							<string key="candidateClassName">NSTextView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="bottomDrawerContentView">
+							<string key="name">bottomDrawerContentView</string>
+							<string key="candidateClassName">NSView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="browser">
+							<string key="name">browser</string>
+							<string key="candidateClassName">NSBrowser</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="detailsTextView">
+							<string key="name">detailsTextView</string>
+							<string key="candidateClassName">NSTextView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="inspector">
+							<string key="name">inspector</string>
+							<string key="candidateClassName">AppiumInspectorDelegate</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="screenshotImageView">
+							<string key="name">screenshotImageView</string>
+							<string key="candidateClassName">AppiumInspectorScreenshotImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="selectedElementHighlightView">
+							<string key="name">selectedElementHighlightView</string>
+							<string key="candidateClassName">NSView</string>
+						</object>
+					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/AppiumInspectorWindowController.h</string>
