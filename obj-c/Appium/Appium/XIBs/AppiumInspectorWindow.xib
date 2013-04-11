@@ -476,7 +476,7 @@
 																<string>WebURLsWithTitlesPboardType</string>
 																<string>public.url</string>
 															</set>
-															<string key="NSFrameSize">{206, 126}</string>
+															<string key="NSFrameSize">{206, 143}</string>
 															<reference key="NSSuperview" ref="153909720"/>
 															<reference key="NSWindow"/>
 															<reference key="NSNextKeyView" ref="555555799"/>
@@ -542,7 +542,7 @@
 															<nil key="NSDelegate"/>
 														</object>
 													</array>
-													<string key="NSFrame">{{1, 1}, {206, 126}}</string>
+													<string key="NSFrame">{{1, 1}, {206, 143}}</string>
 													<reference key="NSSuperview" ref="410508918"/>
 													<reference key="NSWindow"/>
 													<reference key="NSNextKeyView" ref="328755789"/>
@@ -573,7 +573,7 @@
 												<object class="NSScroller" id="555555799">
 													<reference key="NSNextResponder" ref="410508918"/>
 													<int key="NSvFlags">256</int>
-													<string key="NSFrame">{{191, 1}, {16, 126}}</string>
+													<string key="NSFrame">{{191, 1}, {16, 143}}</string>
 													<reference key="NSSuperview" ref="410508918"/>
 													<reference key="NSWindow"/>
 													<reference key="NSNextKeyView"/>
@@ -599,7 +599,7 @@
 													<double key="NSPercent">0.94565218687057495</double>
 												</object>
 											</array>
-											<string key="NSFrame">{{18, 14}, {208, 128}}</string>
+											<string key="NSFrame">{{18, 14}, {208, 145}}</string>
 											<reference key="NSSuperview" ref="932273903"/>
 											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="721067251"/>
@@ -613,14 +613,14 @@
 											<double key="NSMagnification">1</double>
 										</object>
 									</array>
-									<string key="NSFrame">{{1, 1}, {244, 152}}</string>
+									<string key="NSFrame">{{1, 1}, {244, 169}}</string>
 									<reference key="NSSuperview" ref="493360003"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="410508918"/>
 									<string key="NSReuseIdentifierKey">_NS:11</string>
 								</object>
 							</array>
-							<string key="NSFrame">{{596, 33}, {246, 168}}</string>
+							<string key="NSFrame">{{596, 16}, {246, 185}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="932273903"/>
@@ -1556,7 +1556,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">176</int>
+			<int key="maxID">188</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
