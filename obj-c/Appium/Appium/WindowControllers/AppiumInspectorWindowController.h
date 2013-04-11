@@ -23,4 +23,5 @@
 	@property IBOutlet NSView *selectedElementHighlightView;
 	@property IBOutlet AppiumInspectorDelegate *inspector;
 	@property IBOutlet AppiumInspectorScreenshotImageView *screenshotImageView;
+	@property IBOutlet NSButton *recordButton;
 @end

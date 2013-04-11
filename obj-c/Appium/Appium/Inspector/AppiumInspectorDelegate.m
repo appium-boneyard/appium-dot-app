@@ -46,6 +46,7 @@
 -(void) setIsRecording:(NSNumber *)isRecording
 {
 	_isRecording = [isRecording boolValue];
+	[_windowController.recordButton setWantsLayer:_isRecording];
 }
 
 -(void)setDomIsPopulatingToYes
@@ -368,12 +369,17 @@
     [self populateDOM];
 }
 
+-(AppiumCodeMakerLocator*) locatorForSelectedNode
+{
+	return [[AppiumCodeMakerLocator alloc] initWithLocatorType:APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH locatorString:[self xPathForSelectedNode]];
+}
+
 -(IBAction)tap:(id)sender
 {
     SEWebElement *element = [self elementForSelectedNode];
 	if (_isRecording)
 	{
-		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_TAP params:[NSArray arrayWithObjects:[self xPathForSelectedNode], nil]]];
+		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_TAP params:[NSArray arrayWithObjects:[self locatorForSelectedNode], nil]]];
 	}
     [element click];
     [self refresh:sender];
@@ -384,7 +390,7 @@
     SEWebElement *element = [self elementForSelectedNode];
 	if (_isRecording)
 	{
-		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_SEND_KEYS params:[NSArray arrayWithObjects:[self keysToSend], [self xPathForSelectedNode], nil]]];
+		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_SEND_KEYS params:[NSArray arrayWithObjects:[self keysToSend], [self locatorForSelectedNode], nil]]];
 	}
     [element sendKeys:self.keysToSend];
     [self refresh:sender];

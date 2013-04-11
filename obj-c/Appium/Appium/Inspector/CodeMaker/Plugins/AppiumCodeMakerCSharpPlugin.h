@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "AppiumCodeMaker.h"
 
-@interface AppiumCodeMakerPluginCSharp : NSObject <AppiumCodeMakerPlugin>
+@class AppiumCodeMaker;
+
+@interface AppiumCodeMakerCSharpPlugin : NSObject <AppiumCodeMakerPlugin>
+
+@property (weak) AppiumCodeMaker *codeMaker;
 
 @end

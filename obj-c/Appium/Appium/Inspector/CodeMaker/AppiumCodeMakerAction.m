@@ -15,8 +15,8 @@
 	self = [super init];
     if (self)
 	{
-		_actionType = actionType;
-		_params = params;
+		self.actionType = actionType;
+		self.params = params;
 	}
     return self;
 }
