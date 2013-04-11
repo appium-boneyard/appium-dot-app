@@ -19,8 +19,8 @@ using OpenQA.Selenium.Support.UI;\n\
 using System;\n\
 using System.Threading;\n\
 \n\
-namespace se_builder {\n\
-\tpublic class {scriptName} {\n\
+namespace AppiumTests {\n\
+\tpublic class RecordedTest {\n\
 \t\tstatic void Main(string[] args) {\n\
 \t\t\tIWebDriver wd = new RemoteWebDriver(DesiredCapabilities.Firefox());\n\
 \t\t\ttry {\n";
@@ -71,7 +71,7 @@ namespace se_builder {\n\
 
 -(NSString*) comment:(NSString *)comment
 {
-	return [NSString stringWithFormat:@"\t\t\t\t//%@\n", comment];
+	return [NSString stringWithFormat:@"\t\t\t\t// %@\n", comment];
 }
 
 -(NSString*) sendKeys:(NSString *)keys element:(NSString*)xpath
