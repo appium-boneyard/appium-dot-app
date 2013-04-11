@@ -56,6 +56,7 @@
 							<string key="NSFrame">{{-9, 20}, {492, 17}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:1535</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="323431685">
@@ -194,6 +195,7 @@
 							<reference ref="1006"/>
 						</array>
 						<reference key="parent" ref="0"/>
+						<string key="objectName">Appium Installation Window</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">2</int>
@@ -267,6 +269,7 @@
 							<reference ref="677138508"/>
 						</array>
 						<reference key="parent" ref="1005"/>
+						<string key="objectName">Main View</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">5</int>
@@ -291,6 +294,7 @@
 							</object>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Installation Message Label</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">6</int>
@@ -341,6 +345,7 @@
 							</object>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Appium Logo</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">28</int>

@@ -576,7 +576,6 @@
 													<string key="NSFrame">{{191, 1}, {16, 143}}</string>
 													<reference key="NSSuperview" ref="410508918"/>
 													<reference key="NSWindow"/>
-													<reference key="NSNextKeyView"/>
 													<string key="NSReuseIdentifierKey">_NS:83</string>
 													<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 													<reference key="NSTarget" ref="410508918"/>
@@ -829,7 +828,6 @@
 								<string key="NSFrame">{{504, 1}, {16, 215}}</string>
 								<reference key="NSSuperview" ref="1034142380"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:83</string>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 								<reference key="NSTarget" ref="1034142380"/>
@@ -1236,6 +1234,7 @@
 							<reference ref="1006"/>
 						</array>
 						<reference key="parent" ref="0"/>
+						<string key="objectName">Appium Inspector Window</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">2</int>
@@ -1252,11 +1251,13 @@
 							<reference ref="1071712306"/>
 						</array>
 						<reference key="parent" ref="1005"/>
+						<string key="objectName">Main View</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">6</int>
 						<reference key="object" ref="373383690"/>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">DOM Browser</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">26</int>
@@ -1271,11 +1272,13 @@
 							<reference ref="1021976772"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Screenshot Area View</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">57</int>
 						<reference key="object" ref="1021976772"/>
 						<reference key="parent" ref="347033652"/>
+						<string key="objectName">Highlight View</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">85</int>
@@ -1291,6 +1294,7 @@
 							<reference ref="578193745"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Actions Box 2</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">94</int>
@@ -1299,6 +1303,7 @@
 							<reference ref="276092772"/>
 						</array>
 						<reference key="parent" ref="1071712306"/>
+						<string key="objectName">Send Keys Button</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">95</int>
@@ -1312,6 +1317,7 @@
 							<reference ref="460568110"/>
 						</array>
 						<reference key="parent" ref="1071712306"/>
+						<string key="objectName">Actions Box TextField</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">98</int>
@@ -1326,6 +1332,7 @@
 							<reference ref="691136117"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Filters Box</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">80</int>
@@ -1334,6 +1341,7 @@
 							<reference ref="375562266"/>
 						</array>
 						<reference key="parent" ref="985573627"/>
+						<string key="objectName">Show Invisible Checkbox</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">81</int>
@@ -1347,6 +1355,7 @@
 							<reference ref="927199368"/>
 						</array>
 						<reference key="parent" ref="985573627"/>
+						<string key="objectName">Show Disabled Checkbox</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">83</int>
@@ -1360,6 +1369,7 @@
 							<reference ref="276139266"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Actions Box</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">89</int>
@@ -1381,6 +1391,7 @@
 							<reference ref="410508918"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Details Box</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">29</int>
@@ -1391,6 +1402,7 @@
 							<reference ref="328755789"/>
 						</array>
 						<reference key="parent" ref="493360003"/>
+						<string key="objectName">Details Text View</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">32</int>
@@ -1414,6 +1426,7 @@
 							<reference ref="478588093"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Record Button</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">125</int>
@@ -1427,6 +1440,7 @@
 							<reference ref="216106546"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Refresh Button</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">93</int>
@@ -1437,6 +1451,7 @@
 						<int key="objectID">107</int>
 						<reference key="object" ref="70881741"/>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Refresh Spinner</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">43</int>
@@ -1445,6 +1460,7 @@
 							<reference ref="566902573"/>
 						</array>
 						<reference key="parent" ref="347033652"/>
+						<string key="objectName">Screenshot Image View</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">44</int>
@@ -1458,6 +1474,7 @@
 							<reference ref="1034142380"/>
 						</array>
 						<reference key="parent" ref="0"/>
+						<string key="objectName">Drawer Content View</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">134</int>
@@ -1468,6 +1485,7 @@
 							<reference ref="973359876"/>
 						</array>
 						<reference key="parent" ref="378629004"/>
+						<string key="objectName">Drawer Content Text View</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">135</int>
@@ -1496,6 +1514,7 @@
 							<reference ref="52702253"/>
 						</array>
 						<reference key="parent" ref="1071712306"/>
+						<string key="objectName">Add Comment Button</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">162</int>

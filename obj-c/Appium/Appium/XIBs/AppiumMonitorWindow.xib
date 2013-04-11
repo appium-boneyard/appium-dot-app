@@ -2307,6 +2307,7 @@
 							<reference ref="1006"/>
 						</array>
 						<reference key="parent" ref="0"/>
+						<string key="objectName">Appium Main Window</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">2</int>
@@ -2327,6 +2328,7 @@
 							<reference ref="857447306"/>
 						</array>
 						<reference key="parent" ref="1005"/>
+						<string key="objectName">Main View</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">5</int>
@@ -2337,6 +2339,7 @@
 							<reference ref="385630799"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Console Text View</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">7</int>
@@ -2345,7 +2348,7 @@
 							<reference ref="79701090"/>
 						</array>
 						<reference key="parent" ref="1006"/>
-						<string key="objectName">IPAddressLabel</string>
+						<string key="objectName">IP Address Label</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">8</int>
@@ -2354,7 +2357,7 @@
 							<reference ref="334895605"/>
 						</array>
 						<reference key="parent" ref="1006"/>
-						<string key="objectName">IPAddressTextField</string>
+						<string key="objectName">IP Address TextField</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">9</int>
@@ -2363,7 +2366,7 @@
 							<reference ref="583884409"/>
 						</array>
 						<reference key="parent" ref="1006"/>
-						<string key="objectName">PortLabel</string>
+						<string key="objectName">Port Label</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">10</int>
@@ -2372,7 +2375,7 @@
 							<reference ref="842167155"/>
 						</array>
 						<reference key="parent" ref="1006"/>
-						<string key="objectName">PortTextField</string>
+						<string key="objectName">Port TextField</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">20</int>
@@ -2421,6 +2424,7 @@
 							<reference ref="970840617"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Clear Console Button</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">159</int>
@@ -2434,6 +2438,7 @@
 							<reference ref="1051366677"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Launch Button</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">277</int>
@@ -2448,6 +2453,7 @@
 							<reference ref="719533421"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Platform Tab View</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">406</int>
@@ -2456,6 +2462,7 @@
 							<reference ref="432818200"/>
 						</array>
 						<reference key="parent" ref="815510873"/>
+						<string key="objectName">iOS Tab</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">407</int>
@@ -2464,6 +2471,7 @@
 							<reference ref="336422316"/>
 						</array>
 						<reference key="parent" ref="815510873"/>
+						<string key="objectName">Anroid Tab</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">408</int>
@@ -2475,6 +2483,7 @@
 							<reference ref="300031656"/>
 						</array>
 						<reference key="parent" ref="719533421"/>
+						<string key="objectName">Android Tab View</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">409</int>
@@ -2489,6 +2498,7 @@
 							<reference ref="1069397280"/>
 						</array>
 						<reference key="parent" ref="336909264"/>
+						<string key="objectName">iOS Tab View</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">519</int>
@@ -2497,6 +2507,7 @@
 							<reference ref="534151689"/>
 						</array>
 						<reference key="parent" ref="432818200"/>
+						<string key="objectName">Force Device Checkbox</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">520</int>
@@ -2510,6 +2521,7 @@
 							<reference ref="956814672"/>
 						</array>
 						<reference key="parent" ref="336422316"/>
+						<string key="objectName">Use Package Checkbox</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">788</int>
@@ -2523,6 +2535,7 @@
 							<reference ref="855875938"/>
 						</array>
 						<reference key="parent" ref="336422316"/>
+						<string key="objectName">Use Activity Checkbox</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">792</int>
@@ -2536,6 +2549,7 @@
 							<reference ref="521236890"/>
 						</array>
 						<reference key="parent" ref="336422316"/>
+						<string key="objectName">Package TextField</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">811</int>
@@ -2549,6 +2563,7 @@
 							<reference ref="913333540"/>
 						</array>
 						<reference key="parent" ref="336422316"/>
+						<string key="objectName">Activity TextField</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">827</int>
@@ -2562,6 +2577,7 @@
 							<reference ref="681429823"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Use App Path Checkbox</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">737</int>
@@ -2575,6 +2591,7 @@
 							<reference ref="576804093"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Choose App Path Button</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">734</int>
@@ -2588,6 +2605,7 @@
 							<reference ref="1041369790"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">App Path Widget</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">733</int>
@@ -2601,6 +2619,7 @@
 							<reference ref="1007918263"/>
 						</array>
 						<reference key="parent" ref="432818200"/>
+						<string key="objectName">Use UDID Checkbox</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1130</int>
@@ -2614,6 +2633,7 @@
 							<reference ref="668688664"/>
 						</array>
 						<reference key="parent" ref="432818200"/>
+						<string key="objectName">Device ComboBox</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">521</int>
@@ -2627,6 +2647,7 @@
 							<reference ref="669820150"/>
 						</array>
 						<reference key="parent" ref="432818200"/>
+						<string key="objectName">UDID TextField</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1157</int>
@@ -2640,6 +2661,7 @@
 							<reference ref="733906917"/>
 						</array>
 						<reference key="parent" ref="432818200"/>
+						<string key="objectName">Use BundleID Checkbox</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1175</int>
@@ -2653,6 +2675,7 @@
 							<reference ref="650445517"/>
 						</array>
 						<reference key="parent" ref="432818200"/>
+						<string key="objectName">BundleID TextField</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1179</int>
@@ -2666,6 +2689,7 @@
 							<reference ref="843897910"/>
 						</array>
 						<reference key="parent" ref="432818200"/>
+						<string key="objectName">Use Mobile Safari Checkbox</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1196</int>
@@ -2679,6 +2703,7 @@
 							<reference ref="980279963"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Inspector Button</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1307</int>
@@ -2692,6 +2717,7 @@
 							<reference ref="181723329"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Use Remote Server Checkbox</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1309</int>

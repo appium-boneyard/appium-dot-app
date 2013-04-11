@@ -49,7 +49,7 @@
 				<nil key="NSViewClass"/>
 				<nil key="NSUserInterfaceItemIdentifier"/>
 				<object class="NSView" key="NSWindowView" id="1006">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<array class="NSMutableArray" key="NSSubviews">
 						<object class="NSButton" id="817804686">
@@ -57,6 +57,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{18, 204}, {129, 18}}</string>
 							<reference key="NSSuperview" ref="1006"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="705476032"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -92,6 +93,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{18, 184}, {111, 18}}</string>
 							<reference key="NSSuperview" ref="1006"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="143369266"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -118,6 +120,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{18, 164}, {241, 18}}</string>
 							<reference key="NSSuperview" ref="1006"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="1063783530"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -144,6 +147,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{18, 144}, {148, 18}}</string>
 							<reference key="NSSuperview" ref="1006"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="615909108"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -170,6 +174,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{18, 224}, {141, 18}}</string>
 							<reference key="NSSuperview" ref="1006"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="817804686"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -196,6 +201,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{18, 124}, {217, 18}}</string>
 							<reference key="NSSuperview" ref="1006"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="691238899"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -222,6 +228,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{18, 104}, {125, 18}}</string>
 							<reference key="NSSuperview" ref="1006"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="885856229"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -248,6 +255,7 @@
 							<int key="NSvFlags">12</int>
 							<string key="NSFrame">{{0, 80}, {449, 5}}</string>
 							<reference key="NSSuperview" ref="1006"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="620438338"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<string key="NSOffsets">{0, 0}</string>
@@ -280,6 +288,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{159, 82}, {131, 17}}</string>
 							<reference key="NSSuperview" ref="1006"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="221799974"/>
 							<string key="NSReuseIdentifierKey">_NS:1535</string>
 							<bool key="NSEnabled">YES</bool>
@@ -320,6 +329,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{18, 54}, {192, 18}}</string>
 							<reference key="NSSuperview" ref="1006"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="457615829"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -346,6 +356,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{233, 52}, {196, 22}}</string>
 							<reference key="NSSuperview" ref="1006"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="602901332"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -372,6 +383,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{18, 22}, {209, 18}}</string>
 							<reference key="NSSuperview" ref="1006"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="205229235"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -398,6 +410,8 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{233, 20}, {196, 22}}</string>
 							<reference key="NSSuperview" ref="1006"/>
+							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="1070183631">
@@ -415,6 +429,8 @@
 						</object>
 					</array>
 					<string key="NSFrameSize">{449, 260}</string>
+					<reference key="NSSuperview"/>
+					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="116013523"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {2560, 1578}}</string>
@@ -772,6 +788,7 @@
 							<reference ref="1006"/>
 						</array>
 						<reference key="parent" ref="0"/>
+						<string key="objectName">Appium Preferences Window</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">2</int>
@@ -1256,6 +1273,7 @@
 							<reference ref="205229235"/>
 						</array>
 						<reference key="parent" ref="1005"/>
+						<string key="objectName">Main View</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">5</int>
@@ -1264,6 +1282,7 @@
 							<reference ref="333536683"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Verbose Logging Checkbox</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">6</int>
@@ -1272,6 +1291,7 @@
 							<reference ref="867099298"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Keep Artifacts Checkbox</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">7</int>
@@ -1280,6 +1300,7 @@
 							<reference ref="817660500"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Reset Application State Checkbox</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">8</int>
@@ -1288,6 +1309,7 @@
 							<reference ref="584487744"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Prelaunch Simulator Checkbox</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">10</int>
@@ -1296,6 +1318,7 @@
 							<reference ref="462868634"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Check For Updates Checkbox</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">11</int>
@@ -1304,6 +1327,7 @@
 							<reference ref="1049442458"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Use Instruments Without Delay Checkbox</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">12</int>
@@ -1407,6 +1431,7 @@
 							<reference ref="240444432"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Developer Mode Checkbox</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">68</int>
@@ -1417,6 +1442,7 @@
 						<int key="objectID">76</int>
 						<reference key="object" ref="885856229"/>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Developer Settings Line</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">77</int>
@@ -1435,6 +1461,7 @@
 							<reference ref="32118140"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Developer Settings Label</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">99</int>
@@ -1453,6 +1480,7 @@
 							<reference ref="637616517"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Use External NodeJS Binary Checkbox</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">111</int>
@@ -1471,6 +1499,7 @@
 							<reference ref="690673938"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">External NodeJS Binary Path TextField</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">115</int>
@@ -1489,6 +1518,7 @@
 							<reference ref="93408885"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">Use External Appium Package Checkbox</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">122</int>
@@ -1497,6 +1527,7 @@
 							<reference ref="1070183631"/>
 						</array>
 						<reference key="parent" ref="1006"/>
+						<string key="objectName">External Appium Package Path TextField</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">123</int>
