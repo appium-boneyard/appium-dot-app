@@ -9,25 +9,33 @@
 #import <Foundation/Foundation.h>
 #import "WebDriverElementNode.h"
 #import "AppiumInspectorWindowController.h"
+#import "AppiumCodeMaker.h"
+#import <Selenium/SERemoteWebDriver.h>
 
 @class WebDriverElementNode;
 @class AppiumInspectorWindowController;
 
 @interface AppiumInspectorDelegate : NSObject {
+
 @private
 	IBOutlet AppiumInspectorWindowController *_windowController;
-	WebDriverElementNode *_rootNode;
-    WebDriverElementNode *_browserRootNode;
-    BOOL _showDisabled;
+	BOOL _showDisabled;
     BOOL _showInvisible;
 	BOOL _isRecording;
+	WebDriverElementNode *_rootNode;
+    WebDriverElementNode *_browserRootNode;
+	WebDriverElementNode *_selection;
+	NSMutableArray *_selectedIndexes;
+	SERemoteWebDriver *_driver;
+	NSString *_lastPageSource;
 }
 
 @property NSNumber *showDisabled;
 @property NSNumber *showInvisible;
+@property NSNumber *isRecording;
 @property NSString *keysToSend;
 @property BOOL domIsPopulating;
-@property NSNumber *isRecording;
+@property AppiumCodeMaker *codeMaker;
 
 -(void)selectNodeNearestPoint:(NSPoint)point;
 
