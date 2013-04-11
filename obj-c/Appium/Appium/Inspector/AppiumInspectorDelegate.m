@@ -9,19 +9,9 @@
 #import "AppiumInspectorDelegate.h"
 #import "AppiumModel.h"
 #import "AppiumAppDelegate.h"
-#import "AppiumCSharpCodeMaker.h"
-#import "AppiumInspectorWindowController.h"
-#import <Selenium/SERemoteWebDriver.h>
 #import <QuartzCore/QuartzCore.h>
 
 @implementation AppiumInspectorDelegate
-
-SERemoteWebDriver *driver;
-NSString *lastPageSource;
-WebDriverElementNode *selection;
-NSMutableArray *selectedIndexes;
-id<AppiumCodeMaker> codeMaker;
-NSString *generatedCode;
 
 -(id) init
 {
@@ -32,8 +22,7 @@ NSString *generatedCode;
 		_isRecording = NO;
         [self setKeysToSend:@""];
         [self setDomIsPopulating:NO];
-        codeMaker = [AppiumCSharpCodeMaker new];
-		generatedCode = @"";
+        _codeMaker = [AppiumCodeMaker new];
     }
     return self;
 }
@@ -71,47 +60,45 @@ NSString *generatedCode;
 -(void)populateDOM
 {
     [self performSelectorOnMainThread:@selector(setDomIsPopulatingToYes) withObject:nil waitUntilDone:YES];
-	if (driver == nil)
+	if (_driver == nil)
 	{
 		AppiumModel *model = [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] model];
-		SECapabilities *capabilities = [SECapabilities new];
-		[capabilities setPlatform:@"Mac"];
-		[capabilities setBrowserName:@"iOS"];
-		[capabilities setVersion:@"6.1"];
-		driver = [[SERemoteWebDriver alloc] initWithServerAddress:[model ipAddress] port:[[model port] integerValue]];
-		NSArray *sessions = [driver allSessions];
+		_driver = [[SERemoteWebDriver alloc] initWithServerAddress:[model ipAddress] port:[[model port] integerValue]];
+		NSArray *sessions = [_driver allSessions];
 		if (sessions.count > 0)
 		{
-			[driver setSession:[sessions objectAtIndex:0]];
+			[_driver setSession:[sessions objectAtIndex:0]];
 		}
-		if (sessions.count == 0 || driver.session == nil || driver.session.capabilities.platform == nil)
+		if (sessions.count == 0 || _driver.session == nil || _driver.session.capabilities.platform == nil)
 		{
-			[driver startSessionWithDesiredCapabilities:capabilities requiredCapabilities:nil];
+			SECapabilities *capabilities = [SECapabilities new];
+			[capabilities setPlatform:@"Mac"];
+			[capabilities setBrowserName:@"iOS"];
+			[capabilities setVersion:@"6.1"];
+			[_driver startSessionWithDesiredCapabilities:capabilities requiredCapabilities:nil];
 		}
 		[self refreshScreenshot];
-	    [self refreshPageSource];
 	}
-	if (lastPageSource == nil)
-		[self refreshPageSource];
+	[self refreshPageSource];
 	NSError *e = nil;
-	NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData: [lastPageSource dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: &e];
+	NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData: [_lastPageSource dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: &e];
 	_browserRootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict parent:nil showDisabled:[self.showDisabled boolValue] showInvisible:[self.showInvisible boolValue]];
     _rootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict parent:nil showDisabled:_showDisabled showInvisible:_showInvisible];
     [_windowController.browser performSelectorOnMainThread:@selector(loadColumnZero) withObject:nil waitUntilDone:YES];
-	selection = nil;
-	selectedIndexes = [NSMutableArray new];
+	_selection = nil;
+	_selectedIndexes = [NSMutableArray new];
     [self performSelectorOnMainThread:@selector(updateDetailsDisplay) withObject:nil waitUntilDone:YES];
     [self performSelectorOnMainThread:@selector(setDomIsPopulatingToNo) withObject:nil waitUntilDone:YES];
 }
 
 -(void)refreshPageSource
 {
-	lastPageSource = [driver pageSource];
+	_lastPageSource = [_driver pageSource];
 }
 
 -(void)refreshScreenshot
 {
-	NSImage *screenshot = [driver screenshot];
+	NSImage *screenshot = [_driver screenshot];
 	[_windowController.screenshotImageView setImage:screenshot];
 }
 
@@ -154,25 +141,25 @@ NSString *generatedCode;
 	{
 		// find the parent
 		WebDriverElementNode *parentNode = _rootNode;
-		for(int i=0; i < selectedIndexes.count && i < column; i++)
+		for(int i=0; i < _selectedIndexes.count && i < column; i++)
 		{
-			parentNode = [parentNode.visibleChildren objectAtIndex:[[selectedIndexes objectAtIndex:i] integerValue]];
+			parentNode = [parentNode.visibleChildren objectAtIndex:[[_selectedIndexes objectAtIndex:i] integerValue]];
 		}
 		
 		// find the element
-        selection = [parentNode.visibleChildren objectAtIndex:[proposedSelectionIndexes firstIndex]];
-		if (selectedIndexes.count < column+1)
+        _selection = [parentNode.visibleChildren objectAtIndex:[proposedSelectionIndexes firstIndex]];
+		if (_selectedIndexes.count < column+1)
 		{
-			[selectedIndexes addObject:[NSNumber numberWithInteger:[proposedSelectionIndexes firstIndex]]];
+			[_selectedIndexes addObject:[NSNumber numberWithInteger:[proposedSelectionIndexes firstIndex]]];
 		}
 		else
 		{
-			[selectedIndexes replaceObjectAtIndex:column withObject:[NSNumber numberWithInteger:[proposedSelectionIndexes firstIndex]]];
+			[_selectedIndexes replaceObjectAtIndex:column withObject:[NSNumber numberWithInteger:[proposedSelectionIndexes firstIndex]]];
 		}
 	}
     else
     {
-		selection = nil;
+		_selection = nil;
     }
 	[self updateDetailsDisplay];
 }
@@ -181,9 +168,9 @@ NSString *generatedCode;
 {
 	NSView *highlightView = _windowController.selectedElementHighlightView;
 	
-	if (selection != nil)
+	if (_selection != nil)
 	{
-        NSString *newDetails = [NSString stringWithFormat:@"%@\nXPath string: %@", [selection infoText], [self xPathForSelectedNode]];
+        NSString *newDetails = [NSString stringWithFormat:@"%@\nXPath string: %@", [_selection infoText], [self xPathForSelectedNode]];
         [_windowController.detailsTextView setString:newDetails];
 	}
 	else
@@ -191,7 +178,7 @@ NSString *generatedCode;
         [_windowController.detailsTextView setString:@""];
 	}
 	
-	if (selection != nil)
+	if (_selection != nil)
     {
         if (!highlightView.layer) {
             [highlightView setWantsLayer:YES];
@@ -213,7 +200,7 @@ NSString *generatedCode;
             highlightView.layer.borderColor = redCGColor;
         }
 		
-        CGRect viewRect = [_windowController.screenshotImageView convertSeleniumRectToViewRect:[selection rect]];
+        CGRect viewRect = [_windowController.screenshotImageView convertSeleniumRectToViewRect:[_selection rect]];
         highlightView.frame = viewRect;
         [highlightView setHidden:NO];
     }
@@ -256,19 +243,19 @@ NSString *generatedCode;
 	for(int i=0; i <nodePath.count; i++)
 	{
 		indexPath = [indexPath indexPathByAddingIndex:[[nodePath objectAtIndex:i] integerValue]];
-		if (selectedIndexes.count < i+1)
+		if (_selectedIndexes.count < i+1)
 		{
-			[selectedIndexes addObject:[NSNumber numberWithInteger:[[nodePath objectAtIndex:i] integerValue]]];
+			[_selectedIndexes addObject:[NSNumber numberWithInteger:[[nodePath objectAtIndex:i] integerValue]]];
 		}
 		else
 		{
-			[selectedIndexes replaceObjectAtIndex:i withObject:[nodePath objectAtIndex:i]];
+			[_selectedIndexes replaceObjectAtIndex:i withObject:[nodePath objectAtIndex:i]];
 		}
 		[self setSelectedNode:[NSIndexSet indexSetWithIndex:[[nodePath objectAtIndex:i] integerValue]] inColumn:i];
 	}
 	
 	// select
-	selection = node;
+	_selection = node;
 	[_windowController.browser setSelectionIndexPath:indexPath];
 	[self updateDetailsDisplay];
 }
@@ -304,11 +291,11 @@ NSString *generatedCode;
     WebDriverElementNode *parentNode = _rootNode;
     NSMutableString *xPath = [NSMutableString stringWithString:@"/"];
     BOOL foundNode = NO;
-    for(int i=0; i < selectedIndexes.count && !foundNode; i++)
+    for(int i=0; i < _selectedIndexes.count && !foundNode; i++)
     {
         // find current node
-        WebDriverElementNode *currentNode = [parentNode.visibleChildren objectAtIndex:[[selectedIndexes objectAtIndex:i] integerValue]];
-        if (currentNode == selection)
+        WebDriverElementNode *currentNode = [parentNode.visibleChildren objectAtIndex:[[_selectedIndexes objectAtIndex:i] integerValue]];
+        if (currentNode == _selection)
             foundNode = YES;
 
         // build xpath
@@ -319,8 +306,8 @@ NSString *generatedCode;
         {
             WebDriverElementNode *node = [parentNode.children objectAtIndex:j];
 			WebDriverElementNode *selectedNodeAtLevel = _rootNode;
-			for(int k=0; k < selectedIndexes.count && k <= i; k++)
-				selectedNodeAtLevel = [selectedNodeAtLevel.visibleChildren objectAtIndex:[[selectedIndexes objectAtIndex:k] intValue]];
+			for(int k=0; k < _selectedIndexes.count && k <= i; k++)
+				selectedNodeAtLevel = [selectedNodeAtLevel.visibleChildren objectAtIndex:[[_selectedIndexes objectAtIndex:k] intValue]];
             if ( [node.type isEqualToString:selectedNodeAtLevel.type])
             {
                 nodeTypeCount++;
@@ -352,7 +339,7 @@ NSString *generatedCode;
             NSString *indexString = [component substringWithRange:[firstResult rangeAtIndex:2]];
             NSInteger index = [[[NSNumberFormatter new] numberFromString:indexString] integerValue] - 1;
             NSArray *elements = (result == nil) ?
-                      [driver findElementsBy:[SEBy tagName:tagString]] :
+                      [_driver findElementsBy:[SEBy tagName:tagString]] :
                       [result findElementsBy:[SEBy tagName:tagString]];
             if (elements.count > index)
             {
@@ -381,19 +368,12 @@ NSString *generatedCode;
     [self populateDOM];
 }
 
-/*
--(void) appendCode:(NSString*)code
-{
-	generatedCode = [generatedCode stringByAppendingString:code];
-	[_drawerContentTextView setString:[NSString stringWithFormat:@"%@%@%@", codeMaker.preCodeBoilerplate, generatedCode, codeMaker.postCodeBoilerplate]];
-} */
-
 -(IBAction)tap:(id)sender
 {
     SEWebElement *element = [self elementForSelectedNode];
 	if (_isRecording)
 	{
-		//[self appendCode:[codeMaker tap:[self xPathForSelectedNode]]];
+		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_TAP params:[NSArray arrayWithObjects:[self xPathForSelectedNode], nil]]];
 	}
     [element click];
     [self refresh:sender];
@@ -404,10 +384,18 @@ NSString *generatedCode;
     SEWebElement *element = [self elementForSelectedNode];
 	if (_isRecording)
 	{
-		//[self appendCode:[codeMaker sendKeys:self.keysToSend element:[self xPathForSelectedNode]]];
+		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_SEND_KEYS params:[NSArray arrayWithObjects:[self keysToSend], [self xPathForSelectedNode], nil]]];
 	}
     [element sendKeys:self.keysToSend];
     [self refresh:sender];
+}
+
+-(IBAction)comment:(id)sender
+{
+	if (_isRecording)
+	{
+		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_COMMENT params:[NSArray arrayWithObjects:[self keysToSend], nil]]];
+	}
 }
 
 -(IBAction)toggleRecording:(id)sender

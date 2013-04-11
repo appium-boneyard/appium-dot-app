@@ -7,18 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Selenium/SEWebElement.h>
-#import "WebDriverElementNode.h"
+#import "AppiumCodeMakerAction.h"
 
-@class WebDriverElementNode;
-
-@protocol AppiumCodeMaker
+@protocol AppiumCodeMakerPlugin
 
 @property (readonly) NSString *preCodeBoilerplate;
 @property (readonly) NSString *postCodeBoilerplate;
 
--(NSString*) sendKeys:(NSString*)keys element:(NSString*)xpath;
--(NSString* )tap:(NSString*)xpath;
--(NSString*) escapeString:(NSString*)string;
+-(NSString*) renderAction:(AppiumCodeMakerAction*)action;
 
 @end
