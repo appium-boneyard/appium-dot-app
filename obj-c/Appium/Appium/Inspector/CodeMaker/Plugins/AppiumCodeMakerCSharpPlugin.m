@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Appium. All rights reserved.
 //
 
-#import "AppiumCodeMakerPluginCSharp.h"
+#import "AppiumCodeMakerCSharpPlugin.h"
 
-@implementation AppiumCodeMakerPluginCSharp
+@implementation AppiumCodeMakerCSharpPlugin
 
 -(NSString*) preCodeBoilerplate
 {
@@ -43,17 +43,6 @@ namespace AppiumTests {\n\
 \t\t}\n}\n";
 }
 
--(NSString*) xPath:(NSString*)xpath
-{
-	
-	return [NSString stringWithFormat:@"By.Xpath(\"%@\")", [self escapeString:xpath]];
-}
-
--(NSString*) escapeString:(NSString *)string
-{
-    return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-}
-
 -(NSString*) renderAction:(AppiumCodeMakerAction*)action
 {
 	switch(action.actionType)
@@ -61,11 +50,28 @@ namespace AppiumTests {\n\
 		case APPIUM_CODE_MAKER_ACTION_COMMENT:
 			return [self comment:[action.params objectAtIndex:0]];
 		case APPIUM_CODE_MAKER_ACTION_SEND_KEYS:
-			return [self sendKeys:[action.params objectAtIndex:0] element:[action.params objectAtIndex:1]];
+			return [self sendKeys:[action.params objectAtIndex:0] locator:[action.params objectAtIndex:1]];
 		case APPIUM_CODE_MAKER_ACTION_TAP:
 			return [self tap:[action.params objectAtIndex:0]];
 		default:
 			return nil;
+	}
+}
+
+-(NSString*) escapeString:(NSString *)string
+{
+    return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+}
+
+-(NSString*) locatorString:(AppiumCodeMakerLocator*)locator
+{
+	switch(locator.locatorType)
+	{
+		case APPIUM_CODE_MAKER_LOCATOR_TYPE_NAME:
+			return [NSString stringWithFormat:@"By.Name(\"%@\")", [self escapeString:locator.locatorString]];
+		case APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH:
+			return [NSString stringWithFormat:@"By.Xpath(\"%@\")", [self escapeString:locator.locatorString]];
+		default: return nil;
 	}
 }
 
@@ -74,15 +80,14 @@ namespace AppiumTests {\n\
 	return [NSString stringWithFormat:@"\t\t\t\t// %@\n", comment];
 }
 
--(NSString*) sendKeys:(NSString *)keys element:(NSString*)xpath
+-(NSString*) sendKeys:(NSString *)keys locator:(AppiumCodeMakerLocator*)locator
 {
-	return [NSString stringWithFormat:@"\t\t\t\twd.FindElement(%@).SendKeys(\"%@\");\n", [self xPath:xpath], [self escapeString:keys]];
+	return [NSString stringWithFormat:@"\t\t\t\twd.FindElement(%@).SendKeys(\"%@\");\n", [self locatorString:locator], [self escapeString:keys]];
 }
 
--(NSString*) tap:(NSString *)xpath
+-(NSString*) tap:(AppiumCodeMakerLocator*)locator
 {
-	return [NSString stringWithFormat:@"\t\t\t\twd.Click(%@);\n", [self xPath:xpath]];
+	return [NSString stringWithFormat:@"\t\t\t\twd.Click(%@);\n", [self locatorString:locator]];
 }
-
 
 @end

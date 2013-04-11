@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "AppiumCodeMaker.h"
 
-@interface AppiumCodeMakerPluginCSharp : NSObject <AppiumCodeMakerPlugin>
+@interface AppiumCodeMakerCSharpPlugin : NSObject <AppiumCodeMakerPlugin>
 
 @end

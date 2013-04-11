@@ -8,7 +8,10 @@
 
 #import "AppiumCodeMaker.h"
 #import "AppiumCodeMakerAction.h"
-#import "AppiumCodeMakerPluginCSharp.h"
+#import "AppiumCodeMakerCSharpPlugin.h"
+#import "AppiumCodeMakerJavaPlugin.h"
+#import "AppiumCodeMakerPythonPlugin.h"
+#import "AppiumCodeMakerRubyPlugin.h"
 
 @class AppiumCodeMakerAction;
 
@@ -19,13 +22,19 @@
     self = [super init];
     if (self) {
 		_actions =[NSMutableArray new];
-		[self setPlugin:[AppiumCodeMakerPluginCSharp new]];
+		self.plugins = [[NSDictionary alloc] initWithObjectsAndKeys:
+						[AppiumCodeMakerCSharpPlugin new], @"C#",
+						[AppiumCodeMakerCSharpPlugin new], @"Java",
+						[AppiumCodeMakerPythonPlugin new], @"Python",
+						[AppiumCodeMakerRubyPlugin new], @"Ruby",
+						nil];
+		[self setActivePlugin:[self.plugins objectForKey:@"Python"]];
     }
     return self;
 }
 
--(id<AppiumCodeMakerPlugin>) plugin { return _plugin; }
--(void) setPlugin:(id<AppiumCodeMakerPlugin>)plugin
+-(id<AppiumCodeMakerPlugin>) activePlugin { return _plugin; }
+-(void) setActivePlugin:(id<AppiumCodeMakerPlugin>)plugin
 {
 	_plugin = plugin;
 	_renderedActions = @"";

@@ -16,7 +16,8 @@
 	id<AppiumCodeMakerPlugin> _plugin;
 }
 
-@property id<AppiumCodeMakerPlugin> plugin;
+@property id<AppiumCodeMakerPlugin> activePlugin;
+@property NSDictionary *plugins;
 @property NSString *string;
 @property NSAttributedString *attributedString;
 

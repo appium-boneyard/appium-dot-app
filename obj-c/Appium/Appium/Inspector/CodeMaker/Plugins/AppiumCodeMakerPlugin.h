@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AppiumCodeMakerAction.h"
+#import "AppiumCodeMakerLocator.h"
 
 @protocol AppiumCodeMakerPlugin
 
