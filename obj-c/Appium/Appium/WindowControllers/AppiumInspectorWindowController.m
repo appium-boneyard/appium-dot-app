@@ -19,6 +19,7 @@
     self = [super initWithWindow:window];
 
     if (self) {
+
     }
     
     return self;
@@ -41,6 +42,7 @@
 	
 	[self.bottomDrawer setContentView:self.bottomDrawerContentView];
 	[self.bottomDrawer.contentView setAutoresizingMask:NSViewHeightSizable];
+	[self.recordButton setWantsLayer:NO];
 }
 
 @end

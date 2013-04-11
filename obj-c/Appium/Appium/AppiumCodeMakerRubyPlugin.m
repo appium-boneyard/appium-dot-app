@@ -10,6 +10,17 @@
 
 @implementation AppiumCodeMakerRubyPlugin
 
+-(id) initWithCodeMaker:(AppiumCodeMaker*)codeMaker
+{
+	self = [super init];
+    if (self) {
+        [self setCodeMaker:codeMaker];
+    }
+    return self;
+}
+
+-(NSString*) name { return @"Ruby"; }
+
 -(NSString*) preCodeBoilerplate
 {
     return

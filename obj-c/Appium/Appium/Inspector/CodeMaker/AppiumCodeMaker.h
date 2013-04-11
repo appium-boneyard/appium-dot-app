@@ -13,11 +13,14 @@
 @private
 	NSMutableArray *_actions;
 	NSString *_renderedActions;
-	id<AppiumCodeMakerPlugin> _plugin;
+	id<AppiumCodeMakerPlugin> _activePlugin;
+	NSDictionary *_plugins;
 }
 
 @property id<AppiumCodeMakerPlugin> activePlugin;
-@property NSDictionary *plugins;
+@property (readonly) NSArray *allPlugins;
+@property NSString *selectedPluginString;
+@property NSNumber *useBoilerPlate;
 @property NSString *string;
 @property NSAttributedString *attributedString;
 

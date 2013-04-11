@@ -46,6 +46,7 @@
 -(void) setIsRecording:(NSNumber *)isRecording
 {
 	_isRecording = [isRecording boolValue];
+	[_windowController.recordButton setWantsLayer:_isRecording];
 }
 
 -(void)setDomIsPopulatingToYes

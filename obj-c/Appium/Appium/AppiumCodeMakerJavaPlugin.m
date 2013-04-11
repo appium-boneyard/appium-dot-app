@@ -8,7 +8,24 @@
 
 #import "AppiumCodeMakerJavaPlugin.h"
 
+@interface AppiumCodeMakerJavaPlugin ()
+
+@property (readonly) NSString* indentation;
+
+@end
+
 @implementation AppiumCodeMakerJavaPlugin
+
+-(id) initWithCodeMaker:(AppiumCodeMaker*)codeMaker
+{
+	self = [super init];
+    if (self) {
+        [self setCodeMaker:codeMaker];
+    }
+    return self;
+}
+
+-(NSString*) name { return @"Java"; }
 
 -(NSString*) preCodeBoilerplate
 {
@@ -68,19 +85,21 @@ public class {scriptName} {\n\
 	}
 }
 
+-(NSString*) indentation { return [self.codeMaker.useBoilerPlate boolValue] ? @"\t\t" : @""; }
+
 -(NSString*) comment:(NSString *)comment
 {
-	return [NSString stringWithFormat:@"\t\t// %@\n", comment];
+	return [NSString stringWithFormat:@"%@// %@\n", self.indentation, comment];
 }
 
 -(NSString*) sendKeys:(NSString *)keys locator:(AppiumCodeMakerLocator*)locator
 {
-	return [NSString stringWithFormat:@"\t\twd.FindElement(%@).sendKeys(\"%@\");\n", [self locatorString:locator], [self escapeString:keys]];
+	return [NSString stringWithFormat:@"%@wd.FindElement(%@).sendKeys(\"%@\");\n", self.indentation, [self locatorString:locator], [self escapeString:keys]];
 }
 
 -(NSString*) tap:(AppiumCodeMakerLocator*)locator
 {
-	return [NSString stringWithFormat:@"\t\twd.click(%@);\n", [self locatorString:locator]];
+	return [NSString stringWithFormat:@"%@wd.click(%@);\n", self.indentation, [self locatorString:locator]];
 }
 
 @end

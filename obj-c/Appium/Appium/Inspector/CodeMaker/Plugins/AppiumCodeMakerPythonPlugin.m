@@ -8,7 +8,24 @@
 
 #import "AppiumCodeMakerPythonPlugin.h"
 
+@interface AppiumCodeMakerPythonPlugin ()
+
+@property (readonly) NSString* indentation;
+
+@end
+
 @implementation AppiumCodeMakerPythonPlugin
+
+-(id) initWithCodeMaker:(AppiumCodeMaker*)codeMaker
+{
+	self = [super init];
+    if (self) {
+        [self setCodeMaker:codeMaker];
+    }
+    return self;
+}
+
+-(NSString*) name { return @"Python"; }
 
 -(NSString*) preCodeBoilerplate
 {
@@ -57,6 +74,8 @@ try:\n";
 	}
 }
 
+-(NSString*) indentation { return [self.codeMaker.useBoilerPlate boolValue] ? @"\t" : @""; }
+
 -(NSString*) renderAction:(AppiumCodeMakerAction*)action
 {
 	switch(action.actionType)
@@ -74,17 +93,17 @@ try:\n";
 
 -(NSString*) comment:(NSString*)comment
 {
-	return [NSString stringWithFormat:@"\t# %@\n", comment];
+	return [NSString stringWithFormat:@"%@# %@\n", self.indentation, comment];
 }
 
 -(NSString*) sendKeys:(NSString*)keys locator:(AppiumCodeMakerLocator*)locator
 {
-	return [NSString stringWithFormat:@"\t%@.send_keys(\"%@\")\n", [self locatorString:locator], [self escapeString:keys]];
+	return [NSString stringWithFormat:@"%@%@.send_keys(\"%@\")\n", self.indentation, [self locatorString:locator], [self escapeString:keys]];
 }
 
 -(NSString*) tap:(AppiumCodeMakerLocator*)locator
 {
-	return [NSString stringWithFormat:@"\t%@.click()\n", [self locatorString:locator]];
+	return [NSString stringWithFormat:@"%@%@.click()\n", self.indentation, [self locatorString:locator]];
 }
 
 @end

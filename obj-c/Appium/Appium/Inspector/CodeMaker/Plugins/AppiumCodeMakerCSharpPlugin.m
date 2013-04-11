@@ -8,7 +8,24 @@
 
 #import "AppiumCodeMakerCSharpPlugin.h"
 
-@implementation AppiumCodeMakerCSharpPlugin
+@interface AppiumCodeMakerCSharpPlugin ()
+
+@property (readonly) NSString* indentation;
+
+@end
+
+@implementation AppiumCodeMakerCSharpPlugin 
+
+-(id) initWithCodeMaker:(AppiumCodeMaker*)codeMaker
+{
+	self = [super init];
+    if (self) {
+        [self setCodeMaker:codeMaker];
+    }
+    return self;
+}
+
+-(NSString*) name { return @"C#"; }
 
 -(NSString*) preCodeBoilerplate
 {
@@ -75,19 +92,21 @@ namespace AppiumTests {\n\
 	}
 }
 
+-(NSString*) indentation { return [self.codeMaker.useBoilerPlate boolValue] ? @"\t\t\t\t" : @""; }
+
 -(NSString*) comment:(NSString *)comment
 {
-	return [NSString stringWithFormat:@"\t\t\t\t// %@\n", comment];
+	return [NSString stringWithFormat:@"%@// %@\n", self.indentation, comment];
 }
 
 -(NSString*) sendKeys:(NSString *)keys locator:(AppiumCodeMakerLocator*)locator
 {
-	return [NSString stringWithFormat:@"\t\t\t\twd.FindElement(%@).SendKeys(\"%@\");\n", [self locatorString:locator], [self escapeString:keys]];
+	return [NSString stringWithFormat:@"%@wd.FindElement(%@).SendKeys(\"%@\");\n", self.indentation, [self locatorString:locator], [self escapeString:keys]];
 }
 
 -(NSString*) tap:(AppiumCodeMakerLocator*)locator
 {
-	return [NSString stringWithFormat:@"\t\t\t\twd.Click(%@);\n", [self locatorString:locator]];
+	return [NSString stringWithFormat:@"%@wd.Click(%@);\n", self.indentation, [self locatorString:locator]];
 }
 
 @end
