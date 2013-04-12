@@ -287,6 +287,39 @@
 	}
 }
 
+-(SEWebElement*) elementForSelectedNode
+{
+    SEWebElement *result = nil;
+    NSString *xPath = [[self xPathForSelectedNode] stringByReplacingOccurrencesOfString:@"//" withString:@"/"];
+    NSArray *tags = [xPath componentsSeparatedByString:@"/"];
+    for(int i=0; i < tags.count; i++)
+    {
+        NSError *error;
+        NSString *component = [tags objectAtIndex:i];
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"([^\\[]+)\\[([^\\]]+)\\]" options:NSRegularExpressionCaseInsensitive error:&error];
+        NSTextCheckingResult *firstResult = [regex firstMatchInString:component options:0 range:NSMakeRange(0, [component length])];
+        if ([firstResult numberOfRanges] == 3)
+        {
+            NSString *tagString = [component substringWithRange:[firstResult rangeAtIndex:1]];
+            NSString *indexString = [component substringWithRange:[firstResult rangeAtIndex:2]];
+            NSInteger index = [[[NSNumberFormatter new] numberFromString:indexString] integerValue] - 1;
+            NSArray *elements = (result == nil) ?
+			[_driver findElementsBy:[SEBy tagName:tagString]] :
+			[result findElementsBy:[SEBy tagName:tagString]];
+            if (elements.count > index)
+            {
+                result = [elements objectAtIndex:index];
+            }
+            else
+            {
+                return nil;
+            }
+			
+        }
+    }
+    return result;
+}
+
 -(NSString*) xPathForSelectedNode
 {
     WebDriverElementNode *parentNode = _rootNode;
@@ -323,37 +356,43 @@
     return xPath;
 }
 
--(SEWebElement*) elementForSelectedNode
+-(BOOL) selectedNodeNameIsUniqueInTree:(WebDriverElementNode*)node
 {
-    SEWebElement *result = nil;
-    NSString *xPath = [[self xPathForSelectedNode] stringByReplacingOccurrencesOfString:@"//" withString:@"/"];
-    NSArray *tags = [xPath componentsSeparatedByString:@"/"];
-    for(int i=0; i < tags.count; i++)
-    {
-        NSError *error;
-        NSString *component = [tags objectAtIndex:i];
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"([^\\[]+)\\[([^\\]]+)\\]" options:NSRegularExpressionCaseInsensitive error:&error];
-        NSTextCheckingResult *firstResult = [regex firstMatchInString:component options:0 range:NSMakeRange(0, [component length])];
-        if ([firstResult numberOfRanges] == 3)
-        {
-            NSString *tagString = [component substringWithRange:[firstResult rangeAtIndex:1]];
-            NSString *indexString = [component substringWithRange:[firstResult rangeAtIndex:2]];
-            NSInteger index = [[[NSNumberFormatter new] numberFromString:indexString] integerValue] - 1;
-            NSArray *elements = (result == nil) ?
-                      [_driver findElementsBy:[SEBy tagName:tagString]] :
-                      [result findElementsBy:[SEBy tagName:tagString]];
-            if (elements.count > index)
-            {
-                result = [elements objectAtIndex:index];
-            }
-            else
-            {
-                return nil;
-            }
-                
-        }
-    }
-    return result;
+	if (node == _selection)
+	{
+		if ((id)node.name == [NSNull null] || node.name == nil)
+		{
+			return NO;
+		}
+	}
+	else
+	{
+		if ((id)node.name != [NSNull null] && node.name != nil)
+		{
+			if ([node.name isEqualToString:_selection.name])
+				return NO;
+		}
+	}
+	for(int i=0; i < node.children.count; i++)
+	{
+		if (![self selectedNodeNameIsUniqueInTree:[node.children objectAtIndex:i]])
+		{
+			return NO;
+		}
+	}
+	return YES;
+}
+
+-(AppiumCodeMakerLocator*) locatorForSelectedNode
+{
+	if ([self selectedNodeNameIsUniqueInTree:_rootNode])
+	{
+		return [[AppiumCodeMakerLocator alloc] initWithLocatorType:APPIUM_CODE_MAKER_LOCATOR_TYPE_NAME locatorString:_selection.name];
+	}
+	else
+	{
+		return [[AppiumCodeMakerLocator alloc] initWithLocatorType:APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH locatorString:[self xPathForSelectedNode]];
+	}
 }
 
 -(IBAction)refresh:(id)sender
@@ -367,11 +406,6 @@
     [self refreshScreenshot];
     [self refreshPageSource];
     [self populateDOM];
-}
-
--(AppiumCodeMakerLocator*) locatorForSelectedNode
-{
-	return [[AppiumCodeMakerLocator alloc] initWithLocatorType:APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH locatorString:[self xPathForSelectedNode]];
 }
 
 -(IBAction)tap:(id)sender
