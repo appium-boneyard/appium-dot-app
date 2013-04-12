@@ -34,13 +34,13 @@
 -(void) setShowDisabled:(NSNumber *)showDisabled
 {
     _showDisabled = [showDisabled boolValue];
-    [self populateDOM];
+    [self performSelectorInBackground:@selector(refreshAll) withObject:nil];
 }
 
 -(void) setShowInvisible:(NSNumber *)showInvisible
 {
     _showInvisible = [showInvisible boolValue];
-    [self populateDOM];
+    [self performSelectorInBackground:@selector(refreshAll) withObject:nil];
 }
 
 -(void) setIsRecording:(NSNumber *)isRecording
@@ -278,22 +278,22 @@
 	return nil;
 }
 
--(void) handleClick:(NSPoint)point
+-(void) handleClickAt:(NSPoint)windowPoint seleniumPoint:(NSPoint)seleniumPoint
 {
 	if (_swipePopover.isShown)
 	{
 		if (_swipePopoverViewController.beginPointWasSetLast)
 		{
-			[_swipePopoverViewController setEndPoint:point];
+			[_swipePopoverViewController setEndPoint:seleniumPoint];
 		}
 		else
 		{
-			[_swipePopoverViewController setBeginPoint:point];
+			[_swipePopoverViewController setBeginPoint:seleniumPoint];
 		}
 	}
 	else
 	{
-		[self selectNodeNearestPoint:point];
+		[self selectNodeNearestPoint:seleniumPoint];
 	}
 }
 

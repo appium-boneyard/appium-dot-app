@@ -69,7 +69,7 @@
 -(void)mouseDown:(NSEvent *)event
 {
 	NSPoint point = [event locationInWindow];
-	[self.inspector handleClick:[self convertWindowPointToSeleniumPoint:point]];
+	[self.inspector handleClickAt:point seleniumPoint:[self convertWindowPointToSeleniumPoint:point]];
 }
 
 @end
