@@ -57,6 +57,25 @@ try:\n";
 \t\traise Exception(\"Test failed.\")\n";
 }
 
+-(NSString*) renderAction:(AppiumCodeMakerAction*)action
+{
+	switch(action.actionType)
+	{
+		case APPIUM_CODE_MAKER_ACTION_ALERT_ACCEPT:
+			return [self acceptAlert];
+		case APPIUM_CODE_MAKER_ACTION_ALERT_DISMISS:
+			return [self dismissAlert];
+		case APPIUM_CODE_MAKER_ACTION_COMMENT:
+			return [self comment:[action.params objectAtIndex:0]];
+		case APPIUM_CODE_MAKER_ACTION_SEND_KEYS:
+			return [self sendKeys:[action.params objectAtIndex:0] locator:[action.params objectAtIndex:1]];
+		case APPIUM_CODE_MAKER_ACTION_TAP:
+			return [self tap:[action.params objectAtIndex:0]];
+		default:
+			return [self comment:@"Action cannot currently be transcribed by Appium Recorder"];
+	}
+}
+
 -(NSString*) escapeString:(NSString *)string
 {
     return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
@@ -78,24 +97,19 @@ try:\n";
 
 -(NSString*) indentation { return [self.codeMaker.useBoilerPlate boolValue] ? @"\t" : @""; }
 
--(NSString*) renderAction:(AppiumCodeMakerAction*)action
+-(NSString*) acceptAlert
 {
-	switch(action.actionType)
-	{
-		case APPIUM_CODE_MAKER_ACTION_COMMENT:
-			return [self comment:[action.params objectAtIndex:0]];
-		case APPIUM_CODE_MAKER_ACTION_SEND_KEYS:
-			return [self sendKeys:[action.params objectAtIndex:0] locator:[action.params objectAtIndex:1]];
-		case APPIUM_CODE_MAKER_ACTION_TAP:
-			return [self tap:[action.params objectAtIndex:0]];
-		default:
-			return [self comment:@"Action cannot currently be transcribed by Appium Recorder"];
-	}
+	return [NSString stringWithFormat:@"%@wd.switch_to_alert().accept()\n", self.indentation];
 }
 
 -(NSString*) comment:(NSString*)comment
 {
 	return [NSString stringWithFormat:@"%@# %@\n", self.indentation, comment];
+}
+
+-(NSString*) dismissAlert
+{
+	return [NSString stringWithFormat:@"%@wd.switch_to_alert().dismiss()\n", self.indentation];
 }
 
 -(NSString*) sendKeys:(NSString*)keys locator:(AppiumCodeMakerLocator*)locator

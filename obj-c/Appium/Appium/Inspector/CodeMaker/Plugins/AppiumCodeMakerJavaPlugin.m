@@ -57,6 +57,10 @@ public class {scriptName} {\n\
 {
 	switch(action.actionType)
 	{
+		case APPIUM_CODE_MAKER_ACTION_ALERT_ACCEPT:
+			return [self acceptAlert];
+		case APPIUM_CODE_MAKER_ACTION_ALERT_DISMISS:
+			return [self dismissAlert];
 		case APPIUM_CODE_MAKER_ACTION_COMMENT:
 			return [self comment:[action.params objectAtIndex:0]];
 		case APPIUM_CODE_MAKER_ACTION_SEND_KEYS:
@@ -89,9 +93,19 @@ public class {scriptName} {\n\
 
 -(NSString*) indentation { return [self.codeMaker.useBoilerPlate boolValue] ? @"\t\t" : @""; }
 
+-(NSString*) acceptAlert
+{
+	return [NSString stringWithFormat:@"%@wd.switchTo().alert().accept();\n", self.indentation];
+}
+
 -(NSString*) comment:(NSString *)comment
 {
 	return [NSString stringWithFormat:@"%@// %@\n", self.indentation, comment];
+}
+
+-(NSString*) dismissAlert
+{
+	return [NSString stringWithFormat:@"%@wd.switchTo().alert().dismiss();\n", self.indentation];
 }
 
 -(NSString*) sendKeys:(NSString *)keys locator:(AppiumCodeMakerLocator*)locator
