@@ -42,6 +42,6 @@
 @property BOOL domIsPopulating;
 @property AppiumCodeMaker *codeMaker;
 
--(void)handleClick:(NSPoint)point;
+-(void) handleClickAt:(NSPoint)windowPoint seleniumPoint:(NSPoint)seleniumPoint;
 
 @end
