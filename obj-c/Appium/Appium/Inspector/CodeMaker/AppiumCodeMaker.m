@@ -70,7 +70,7 @@
 -(void) reset
 {
 	[_actions removeAllObjects];
-	_renderedActions = @"";
+	[self renderAll];
 	
 }
 

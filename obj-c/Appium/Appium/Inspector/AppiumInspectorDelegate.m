@@ -530,4 +530,9 @@
 	}
 }
 
+-(IBAction)clearRecording:(id)sender
+{
+	[_codeMaker reset];
+}
+
 @end

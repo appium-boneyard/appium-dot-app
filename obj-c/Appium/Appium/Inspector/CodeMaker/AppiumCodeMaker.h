@@ -25,6 +25,7 @@
 @property NSString *string;
 @property NSAttributedString *attributedString;
 
+-(void) reset;
 -(void) addAction:(AppiumCodeMakerAction*)action;
 
 @end
