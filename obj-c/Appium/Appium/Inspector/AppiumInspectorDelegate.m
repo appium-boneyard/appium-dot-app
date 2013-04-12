@@ -462,14 +462,20 @@
 
 -(IBAction)acceptAlert:(id)sender
 {
-	[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_ALERT_ACCEPT params:nil]];
+	if (_isRecording)
+	{
+		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_ALERT_ACCEPT params:nil]];
+	}
 	[_driver acceptAlert];
 	[self refresh:sender];
 }
 
 -(IBAction)dismissAlert:(id)sender
 {
-	[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_ALERT_DISMISS params:nil]];
+	if (_isRecording)
+	{
+		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_ALERT_DISMISS params:nil]];
+	}
 	[_driver dismissAlert];
 	[self refresh:sender];
 }
@@ -498,7 +504,10 @@
 													  [NSNumber numberWithInteger:_swipePopoverViewController.endPoint.y], @"endY",
 													  _swipePopoverViewController.duration, @"duration",
 													  nil],nil];
-	[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_SWIPE params:args]];
+	if (_isRecording)
+	{
+		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_SWIPE params:args]];
+	}
 	[_driver executeScript:@"mobile: swipe" arguments:args];
 	
 	// reset for next iteration
