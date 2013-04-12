@@ -59,6 +59,13 @@
 	[self renderAll];
 }
 
+-(NSNumber*) useXPathOnly { return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:PLIST_USE_XPATH_ONLY]]; }
+-(void) setUseXPathOnly:(NSNumber *)useXPathOnly
+{
+	[[NSUserDefaults standardUserDefaults] setBool:[useXPathOnly boolValue] forKey:PLIST_USE_XPATH_ONLY];
+	[self renderAll];
+}
+
 
 -(void) reset
 {

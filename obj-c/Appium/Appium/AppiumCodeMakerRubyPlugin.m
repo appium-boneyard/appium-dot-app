@@ -42,12 +42,14 @@ wd = Selenium::WebDriver.for :firefox\n\n";
 
 -(NSString*) locatorString:(AppiumCodeMakerLocator*)locator
 {
-	switch(locator.locatorType)
+	AppiumCodeMakerLocator *newLocator = [_codeMaker.useXPathOnly boolValue] ? [[AppiumCodeMakerLocator alloc] initWithLocatorType:APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH locatorString:locator.xPath] : [locator copy];
+	
+	switch(newLocator.locatorType)
 	{
 		case APPIUM_CODE_MAKER_LOCATOR_TYPE_NAME:
-			return [NSString stringWithFormat:@"wd.find_element(:name, \"%@\")", [self escapeString:locator.locatorString]];
+			return [NSString stringWithFormat:@"wd.find_element(:name, \"%@\")", [self escapeString:newLocator.locatorString]];
 		case APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH:
-			return [NSString stringWithFormat:@"wd.find_element(:xpath, \"%@\")", [self escapeString:locator.locatorString]];
+			return [NSString stringWithFormat:@"wd.find_element(:xpath, \"%@\")", [self escapeString:newLocator.locatorString]];
 		default: return nil;
 	}
 }

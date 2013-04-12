@@ -278,7 +278,26 @@
 	return nil;
 }
 
--(void)selectNodeNearestPoint:(NSPoint)point
+-(void) handleClick:(NSPoint)point
+{
+	if (_swipePopover.isShown)
+	{
+		if (_swipePopoverViewController.beginPointWasSetLast)
+		{
+			[_swipePopoverViewController setEndPoint:point];
+		}
+		else
+		{
+			[_swipePopoverViewController setBeginPoint:point];
+		}
+	}
+	else
+	{
+		[self selectNodeNearestPoint:point];
+	}
+}
+
+-(void) selectNodeNearestPoint:(NSPoint)point
 {
 	WebDriverElementNode *node = [self findDisplayedNodeForPoint:point node:_rootNode];
 	if (node != nil)
@@ -385,14 +404,17 @@
 
 -(AppiumCodeMakerLocator*) locatorForSelectedNode
 {
+	AppiumCodeMakerLocator *locator;
 	if ([self selectedNodeNameIsUniqueInTree:_rootNode])
 	{
-		return [[AppiumCodeMakerLocator alloc] initWithLocatorType:APPIUM_CODE_MAKER_LOCATOR_TYPE_NAME locatorString:_selection.name];
+		locator = [[AppiumCodeMakerLocator alloc] initWithLocatorType:APPIUM_CODE_MAKER_LOCATOR_TYPE_NAME locatorString:_selection.name];
 	}
 	else
 	{
-		return [[AppiumCodeMakerLocator alloc] initWithLocatorType:APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH locatorString:[self xPathForSelectedNode]];
+		locator = [[AppiumCodeMakerLocator alloc] initWithLocatorType:APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH locatorString:[self xPathForSelectedNode]];
 	}
+	locator.xPath = [self xPathForSelectedNode];
+	return locator;
 }
 
 -(IBAction)refresh:(id)sender
@@ -449,6 +471,26 @@
 	{
 		[_windowController.bottomDrawer close];
 	}
+}
+
+- (IBAction)toggleSwipePopover:(id)sender
+{
+	if (_swipeButton.intValue == 1) {
+		[_windowController.selectedElementHighlightView setHidden:YES];
+		[_swipePopover showRelativeToRect:[_swipeButton bounds]
+								  ofView:_swipeButton
+						   preferredEdge:NSMaxYEdge];
+	} else {
+		[_swipePopover close];
+		[_windowController.selectedElementHighlightView setHidden:NO];
+	}
+}
+
+-(IBAction)performSwipe:(id)sender
+{
+	[_swipePopover close];
+	[_swipePopoverViewController reset];
+	[_windowController.selectedElementHighlightView setHidden:NO];
 }
 
 @end

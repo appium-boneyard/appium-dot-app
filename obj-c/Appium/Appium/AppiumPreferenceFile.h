@@ -41,6 +41,7 @@
 #define PLIST_USE_REMOTE_SERVER @"Use Remote Server"
 #define PLIST_USE_MOBILE_SAFARI @"Use Mobile Safari"
 #define PLIST_USE_UDID @"Use UDID"
+#define PLIST_USE_XPATH_ONLY @"Use XPath Only"
 #define PLIST_VERBOSE @"Verbose"
 #define PLIST_WITHOUT_DELAY @"Without Delay"
 

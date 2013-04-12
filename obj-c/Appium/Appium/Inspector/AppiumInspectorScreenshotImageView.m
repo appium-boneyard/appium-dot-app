@@ -69,7 +69,7 @@
 -(void)mouseDown:(NSEvent *)event
 {
 	NSPoint point = [event locationInWindow];
-	[self.inspector selectNodeNearestPoint:[self convertWindowPointToSeleniumPoint:point]];
+	[self.inspector handleClick:[self convertWindowPointToSeleniumPoint:point]];
 }
 
 @end
