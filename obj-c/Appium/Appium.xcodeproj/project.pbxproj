@@ -160,10 +160,10 @@
 		36F5FA2B16F4E87E007751D6 /* Selenium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Selenium.framework; path = Frameworks/Selenium.framework; sourceTree = "<group>"; };
 		36FF07AB171743AC009ED9E2 /* AppiumCodeMakerLocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerLocator.h; path = Inspector/CodeMaker/AppiumCodeMakerLocator.h; sourceTree = "<group>"; };
 		36FF07AC171743AC009ED9E2 /* AppiumCodeMakerLocator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerLocator.m; path = Inspector/CodeMaker/AppiumCodeMakerLocator.m; sourceTree = "<group>"; };
-		36FF07AE171747C4009ED9E2 /* AppiumCodeMakerJavaPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerJavaPlugin.h; sourceTree = "<group>"; };
-		36FF07AF171747C4009ED9E2 /* AppiumCodeMakerJavaPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerJavaPlugin.m; sourceTree = "<group>"; };
-		36FF07B117174935009ED9E2 /* AppiumCodeMakerRubyPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerRubyPlugin.h; sourceTree = "<group>"; };
-		36FF07B217174935009ED9E2 /* AppiumCodeMakerRubyPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerRubyPlugin.m; sourceTree = "<group>"; };
+		36FF07AE171747C4009ED9E2 /* AppiumCodeMakerJavaPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerJavaPlugin.h; path = Inspector/CodeMaker/Plugins/AppiumCodeMakerJavaPlugin.h; sourceTree = "<group>"; };
+		36FF07AF171747C4009ED9E2 /* AppiumCodeMakerJavaPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerJavaPlugin.m; path = Inspector/CodeMaker/Plugins/AppiumCodeMakerJavaPlugin.m; sourceTree = "<group>"; };
+		36FF07B117174935009ED9E2 /* AppiumCodeMakerRubyPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerRubyPlugin.h; path = Inspector/CodeMaker/Plugins/AppiumCodeMakerRubyPlugin.h; sourceTree = "<group>"; };
+		36FF07B217174935009ED9E2 /* AppiumCodeMakerRubyPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerRubyPlugin.m; path = Inspector/CodeMaker/Plugins/AppiumCodeMakerRubyPlugin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

@@ -65,7 +65,7 @@ wd = Selenium::WebDriver.for :firefox\n\n";
 		case APPIUM_CODE_MAKER_ACTION_TAP:
 			return [self tap:[action.params objectAtIndex:0]];
 		default:
-			return nil;
+			return [self comment:@"Action cannot currently be transcribed by Appium Recorder"];
 	}
 }
 

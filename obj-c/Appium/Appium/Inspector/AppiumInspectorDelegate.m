@@ -475,7 +475,7 @@
 
 - (IBAction)toggleSwipePopover:(id)sender
 {
-	if (_swipeButton.intValue == 1) {
+	if (!_swipePopover.isShown) {
 		[_windowController.selectedElementHighlightView setHidden:YES];
 		[_swipePopover showRelativeToRect:[_swipeButton bounds]
 								  ofView:_swipeButton
@@ -488,9 +488,23 @@
 
 -(IBAction)performSwipe:(id)sender
 {
+	// perform the swipe
+	NSArray *args = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys:
+		[NSNumber numberWithInteger:_swipePopoverViewController.numberOfFingers], @"touchCount",
+    	[NSNumber numberWithInteger:_swipePopoverViewController.beginPoint.x], @"startX",
+		[NSNumber numberWithInteger:_swipePopoverViewController.beginPoint.y], @"startY",
+		[NSNumber numberWithInteger:_swipePopoverViewController.endPoint.x], @"endX",
+		[NSNumber numberWithInteger:_swipePopoverViewController.endPoint.y], @"endY",
+		_swipePopoverViewController.duration, @"duration",
+		nil],nil];
+	[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_SWIPE params:args]];
+	[_driver executeScript:@"mobile: swipe" arguments:args];
+
+	// reset for next iteration
 	[_swipePopover close];
 	[_swipePopoverViewController reset];
 	[_windowController.selectedElementHighlightView setHidden:NO];
+	[self refresh:sender];
 }
 
 @end
