@@ -12,9 +12,7 @@
 #import "AppiumCodeMakerJavaPlugin.h"
 #import "AppiumCodeMakerPythonPlugin.h"
 #import "AppiumCodeMakerRubyPlugin.h"
-
-#define PLIST_CODEMAKER_LANGUAGE @"CodeMaker Language"
-#define PLIST_USE_CODEMAKER_BOILERPLATE @"Use CodeMaker Boilerplate"
+#import "AppiumPreferenceFile.h"
 
 @class AppiumCodeMakerAction;
 

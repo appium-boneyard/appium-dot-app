@@ -84,6 +84,7 @@
 		3612E5F716E5B6520050CF0A /* appium.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = appium.sdef; sourceTree = "<group>"; };
 		3612E5FA16E5B69C0050CF0A /* AppiumAppleScriptSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumAppleScriptSupport.h; sourceTree = "<group>"; };
 		3612E5FB16E5B69C0050CF0A /* AppiumAppleScriptSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumAppleScriptSupport.m; sourceTree = "<group>"; };
+		36187189171871EB0021D7F7 /* AppiumPreferenceFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppiumPreferenceFile.h; sourceTree = "<group>"; };
 		362B5B631713B35A00F1B344 /* AppiumCodeMakerCSharpPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerCSharpPlugin.h; path = Inspector/CodeMaker/Plugins/AppiumCodeMakerCSharpPlugin.h; sourceTree = "<group>"; };
 		362B5B641713B35A00F1B344 /* AppiumCodeMakerCSharpPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerCSharpPlugin.m; path = Inspector/CodeMaker/Plugins/AppiumCodeMakerCSharpPlugin.m; sourceTree = "<group>"; };
 		362DF1E4170F4350001CAD1D /* AppiumGlobals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppiumGlobals.h; sourceTree = "<group>"; };
@@ -362,6 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				362DF1E4170F4350001CAD1D /* AppiumGlobals.h */,
+				36187189171871EB0021D7F7 /* AppiumPreferenceFile.h */,
 				3612E5F916E5B6820050CF0A /* AppleScript */,
 				36A765A416F01BBF002A7D6A /* Delegates */,
 				36CD44F016F0E1CE00194193 /* Inspector */,
