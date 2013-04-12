@@ -15,10 +15,11 @@ typedef enum appiumCodeMakerLocatorTypes
 	
 } AppiumCodeMakerLocatorType;
 
-@interface AppiumCodeMakerLocator : NSObject
+@interface AppiumCodeMakerLocator : NSObject<NSCopying>
 
 @property AppiumCodeMakerLocatorType locatorType;
 @property NSString *locatorString;
+@property NSString *xPath;
 
 -(id) initWithLocatorType:(AppiumCodeMakerLocatorType)locatorType locatorString:(NSString*)locatorString;
 

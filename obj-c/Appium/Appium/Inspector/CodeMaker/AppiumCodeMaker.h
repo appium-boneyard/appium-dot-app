@@ -21,6 +21,7 @@
 @property (readonly) NSArray *allPlugins;
 @property NSString *selectedPluginString;
 @property NSNumber *useBoilerPlate;
+@property NSNumber *useXPathOnly;
 @property NSString *string;
 @property NSAttributedString *attributedString;
 

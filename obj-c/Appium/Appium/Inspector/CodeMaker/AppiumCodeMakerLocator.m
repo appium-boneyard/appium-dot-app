@@ -21,4 +21,10 @@
     return self;
 }
 
+-(id)copyWithZone:(NSZone *)zone
+{
+	AppiumCodeMakerLocator *another = [[AppiumCodeMakerLocator alloc] initWithLocatorType:self.locatorType locatorString:[self.locatorString copy]];
+	return another;
+}
+
 @end

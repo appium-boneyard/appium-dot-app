@@ -64,12 +64,14 @@ try:\n";
 
 -(NSString*) locatorString:(AppiumCodeMakerLocator*)locator
 {
-	switch(locator.locatorType)
+	AppiumCodeMakerLocator *newLocator = [_codeMaker.useXPathOnly boolValue] ? [[AppiumCodeMakerLocator alloc] initWithLocatorType:APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH locatorString:locator.xPath] : [locator copy];
+	
+	switch(newLocator.locatorType)
 	{
 		case APPIUM_CODE_MAKER_LOCATOR_TYPE_NAME:
-			return [NSString stringWithFormat:@"wd.find_elements_by_name(\"%@\")", [self escapeString:locator.locatorString]];
+			return [NSString stringWithFormat:@"wd.find_elements_by_name(\"%@\")", [self escapeString:newLocator.locatorString]];
 		case APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH:
-			return [NSString stringWithFormat:@"wd.find_elements_by_xpath(\"%@\")", [self escapeString:locator.locatorString]];
+			return [NSString stringWithFormat:@"wd.find_elements_by_xpath(\"%@\")", [self escapeString:newLocator.locatorString]];
 		default: return nil;
 	}
 }
@@ -87,7 +89,7 @@ try:\n";
 		case APPIUM_CODE_MAKER_ACTION_TAP:
 			return [self tap:[action.params objectAtIndex:0]];
 		default:
-			return nil;
+			return [self comment:@"Action cannot currently be transcribed by Appium Recorder"];
 	}
 }
 

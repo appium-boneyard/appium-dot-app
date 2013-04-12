@@ -12,9 +12,7 @@
 #import "AppiumCodeMakerJavaPlugin.h"
 #import "AppiumCodeMakerPythonPlugin.h"
 #import "AppiumCodeMakerRubyPlugin.h"
-
-#define PLIST_CODEMAKER_LANGUAGE @"CodeMaker Language"
-#define PLIST_USE_CODEMAKER_BOILERPLATE @"Use CodeMaker Boilerplate"
+#import "AppiumPreferenceFile.h"
 
 @class AppiumCodeMakerAction;
 
@@ -58,6 +56,13 @@
 -(void) setUseBoilerPlate:(NSNumber *)useBoilerPlate
 {
 	[[NSUserDefaults standardUserDefaults] setBool:[useBoilerPlate boolValue] forKey:PLIST_USE_CODEMAKER_BOILERPLATE];
+	[self renderAll];
+}
+
+-(NSNumber*) useXPathOnly { return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:PLIST_USE_XPATH_ONLY]]; }
+-(void) setUseXPathOnly:(NSNumber *)useXPathOnly
+{
+	[[NSUserDefaults standardUserDefaults] setBool:[useXPathOnly boolValue] forKey:PLIST_USE_XPATH_ONLY];
 	[self renderAll];
 }
 

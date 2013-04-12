@@ -10,6 +10,7 @@
 		360BD91516F12B03000D3BEB /* AppiumInspectorDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 360BD91416F12B03000D3BEB /* AppiumInspectorDelegate.m */; };
 		3612E5F816E5B6520050CF0A /* appium.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 3612E5F716E5B6520050CF0A /* appium.sdef */; };
 		3612E5FC16E5B69C0050CF0A /* AppiumAppleScriptSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3612E5FB16E5B69C0050CF0A /* AppiumAppleScriptSupport.m */; };
+		3618718D171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3618718C171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.m */; };
 		362B5B651713B35A00F1B344 /* AppiumCodeMakerCSharpPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 362B5B641713B35A00F1B344 /* AppiumCodeMakerCSharpPlugin.m */; };
 		364C076816E94B1A0093011E /* AppiumMenuBarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 364C076716E94B1A0093011E /* AppiumMenuBarManager.m */; };
 		3652B34416E4287600BDE3E4 /* AppiumLaunchButtonTextTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3652B34316E4287600BDE3E4 /* AppiumLaunchButtonTextTransformer.m */; };
@@ -84,6 +85,9 @@
 		3612E5F716E5B6520050CF0A /* appium.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = appium.sdef; sourceTree = "<group>"; };
 		3612E5FA16E5B69C0050CF0A /* AppiumAppleScriptSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumAppleScriptSupport.h; sourceTree = "<group>"; };
 		3612E5FB16E5B69C0050CF0A /* AppiumAppleScriptSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumAppleScriptSupport.m; sourceTree = "<group>"; };
+		36187189171871EB0021D7F7 /* AppiumPreferenceFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppiumPreferenceFile.h; sourceTree = "<group>"; };
+		3618718B171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerSwipePopOverViewController.h; path = Inspector/CodeMaker/PopOvers/AppiumCodeMakerSwipePopOverViewController.h; sourceTree = "<group>"; };
+		3618718C171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerSwipePopOverViewController.m; path = Inspector/CodeMaker/PopOvers/AppiumCodeMakerSwipePopOverViewController.m; sourceTree = "<group>"; };
 		362B5B631713B35A00F1B344 /* AppiumCodeMakerCSharpPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerCSharpPlugin.h; path = Inspector/CodeMaker/Plugins/AppiumCodeMakerCSharpPlugin.h; sourceTree = "<group>"; };
 		362B5B641713B35A00F1B344 /* AppiumCodeMakerCSharpPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerCSharpPlugin.m; path = Inspector/CodeMaker/Plugins/AppiumCodeMakerCSharpPlugin.m; sourceTree = "<group>"; };
 		362DF1E4170F4350001CAD1D /* AppiumGlobals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppiumGlobals.h; sourceTree = "<group>"; };
@@ -156,10 +160,10 @@
 		36F5FA2B16F4E87E007751D6 /* Selenium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Selenium.framework; path = Frameworks/Selenium.framework; sourceTree = "<group>"; };
 		36FF07AB171743AC009ED9E2 /* AppiumCodeMakerLocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerLocator.h; path = Inspector/CodeMaker/AppiumCodeMakerLocator.h; sourceTree = "<group>"; };
 		36FF07AC171743AC009ED9E2 /* AppiumCodeMakerLocator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerLocator.m; path = Inspector/CodeMaker/AppiumCodeMakerLocator.m; sourceTree = "<group>"; };
-		36FF07AE171747C4009ED9E2 /* AppiumCodeMakerJavaPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerJavaPlugin.h; sourceTree = "<group>"; };
-		36FF07AF171747C4009ED9E2 /* AppiumCodeMakerJavaPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerJavaPlugin.m; sourceTree = "<group>"; };
-		36FF07B117174935009ED9E2 /* AppiumCodeMakerRubyPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerRubyPlugin.h; sourceTree = "<group>"; };
-		36FF07B217174935009ED9E2 /* AppiumCodeMakerRubyPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerRubyPlugin.m; sourceTree = "<group>"; };
+		36FF07AE171747C4009ED9E2 /* AppiumCodeMakerJavaPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerJavaPlugin.h; path = Inspector/CodeMaker/Plugins/AppiumCodeMakerJavaPlugin.h; sourceTree = "<group>"; };
+		36FF07AF171747C4009ED9E2 /* AppiumCodeMakerJavaPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerJavaPlugin.m; path = Inspector/CodeMaker/Plugins/AppiumCodeMakerJavaPlugin.m; sourceTree = "<group>"; };
+		36FF07B117174935009ED9E2 /* AppiumCodeMakerRubyPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerRubyPlugin.h; path = Inspector/CodeMaker/Plugins/AppiumCodeMakerRubyPlugin.h; sourceTree = "<group>"; };
+		36FF07B217174935009ED9E2 /* AppiumCodeMakerRubyPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerRubyPlugin.m; path = Inspector/CodeMaker/Plugins/AppiumCodeMakerRubyPlugin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,9 +200,19 @@
 			path = AppleScript;
 			sourceTree = "<group>";
 		};
+		3618718A1718879A0021D7F7 /* PopOvers */ = {
+			isa = PBXGroup;
+			children = (
+				3618718B171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.h */,
+				3618718C171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.m */,
+			);
+			name = PopOvers;
+			sourceTree = "<group>";
+		};
 		363236781713B1EA0088FFBC /* CodeMaker */ = {
 			isa = PBXGroup;
 			children = (
+				3618718A1718879A0021D7F7 /* PopOvers */,
 				368230D71715C72100FF113F /* Plugins */,
 				368230D81715C73F00FF113F /* AppiumCodeMaker.h */,
 				368230D91715C73F00FF113F /* AppiumCodeMaker.m */,
@@ -362,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				362DF1E4170F4350001CAD1D /* AppiumGlobals.h */,
+				36187189171871EB0021D7F7 /* AppiumPreferenceFile.h */,
 				3612E5F916E5B6820050CF0A /* AppleScript */,
 				36A765A416F01BBF002A7D6A /* Delegates */,
 				36CD44F016F0E1CE00194193 /* Inspector */,
@@ -553,6 +568,7 @@
 				36FF07AD171743AC009ED9E2 /* AppiumCodeMakerLocator.m in Sources */,
 				36FF07B0171747C4009ED9E2 /* AppiumCodeMakerJavaPlugin.m in Sources */,
 				36FF07B317174936009ED9E2 /* AppiumCodeMakerRubyPlugin.m in Sources */,
+				3618718D171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

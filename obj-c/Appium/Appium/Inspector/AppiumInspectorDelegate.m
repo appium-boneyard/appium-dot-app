@@ -278,13 +278,65 @@
 	return nil;
 }
 
--(void)selectNodeNearestPoint:(NSPoint)point
+-(void) handleClick:(NSPoint)point
+{
+	if (_swipePopover.isShown)
+	{
+		if (_swipePopoverViewController.beginPointWasSetLast)
+		{
+			[_swipePopoverViewController setEndPoint:point];
+		}
+		else
+		{
+			[_swipePopoverViewController setBeginPoint:point];
+		}
+	}
+	else
+	{
+		[self selectNodeNearestPoint:point];
+	}
+}
+
+-(void) selectNodeNearestPoint:(NSPoint)point
 {
 	WebDriverElementNode *node = [self findDisplayedNodeForPoint:point node:_rootNode];
 	if (node != nil)
 	{
 		[self setSelectedNode:node];
 	}
+}
+
+-(SEWebElement*) elementForSelectedNode
+{
+    SEWebElement *result = nil;
+    NSString *xPath = [[self xPathForSelectedNode] stringByReplacingOccurrencesOfString:@"//" withString:@"/"];
+    NSArray *tags = [xPath componentsSeparatedByString:@"/"];
+    for(int i=0; i < tags.count; i++)
+    {
+        NSError *error;
+        NSString *component = [tags objectAtIndex:i];
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"([^\\[]+)\\[([^\\]]+)\\]" options:NSRegularExpressionCaseInsensitive error:&error];
+        NSTextCheckingResult *firstResult = [regex firstMatchInString:component options:0 range:NSMakeRange(0, [component length])];
+        if ([firstResult numberOfRanges] == 3)
+        {
+            NSString *tagString = [component substringWithRange:[firstResult rangeAtIndex:1]];
+            NSString *indexString = [component substringWithRange:[firstResult rangeAtIndex:2]];
+            NSInteger index = [[[NSNumberFormatter new] numberFromString:indexString] integerValue] - 1;
+            NSArray *elements = (result == nil) ?
+			[_driver findElementsBy:[SEBy tagName:tagString]] :
+			[result findElementsBy:[SEBy tagName:tagString]];
+            if (elements.count > index)
+            {
+                result = [elements objectAtIndex:index];
+            }
+            else
+            {
+                return nil;
+            }
+			
+        }
+    }
+    return result;
 }
 
 -(NSString*) xPathForSelectedNode
@@ -323,37 +375,46 @@
     return xPath;
 }
 
--(SEWebElement*) elementForSelectedNode
+-(BOOL) selectedNodeNameIsUniqueInTree:(WebDriverElementNode*)node
 {
-    SEWebElement *result = nil;
-    NSString *xPath = [[self xPathForSelectedNode] stringByReplacingOccurrencesOfString:@"//" withString:@"/"];
-    NSArray *tags = [xPath componentsSeparatedByString:@"/"];
-    for(int i=0; i < tags.count; i++)
-    {
-        NSError *error;
-        NSString *component = [tags objectAtIndex:i];
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"([^\\[]+)\\[([^\\]]+)\\]" options:NSRegularExpressionCaseInsensitive error:&error];
-        NSTextCheckingResult *firstResult = [regex firstMatchInString:component options:0 range:NSMakeRange(0, [component length])];
-        if ([firstResult numberOfRanges] == 3)
-        {
-            NSString *tagString = [component substringWithRange:[firstResult rangeAtIndex:1]];
-            NSString *indexString = [component substringWithRange:[firstResult rangeAtIndex:2]];
-            NSInteger index = [[[NSNumberFormatter new] numberFromString:indexString] integerValue] - 1;
-            NSArray *elements = (result == nil) ?
-                      [_driver findElementsBy:[SEBy tagName:tagString]] :
-                      [result findElementsBy:[SEBy tagName:tagString]];
-            if (elements.count > index)
-            {
-                result = [elements objectAtIndex:index];
-            }
-            else
-            {
-                return nil;
-            }
-                
-        }
-    }
-    return result;
+	if (node == _selection)
+	{
+		if ((id)node.name == [NSNull null] || node.name == nil)
+		{
+			return NO;
+		}
+	}
+	else
+	{
+		if ((id)node.name != [NSNull null] && node.name != nil)
+		{
+			if ([node.name isEqualToString:_selection.name])
+				return NO;
+		}
+	}
+	for(int i=0; i < node.children.count; i++)
+	{
+		if (![self selectedNodeNameIsUniqueInTree:[node.children objectAtIndex:i]])
+		{
+			return NO;
+		}
+	}
+	return YES;
+}
+
+-(AppiumCodeMakerLocator*) locatorForSelectedNode
+{
+	AppiumCodeMakerLocator *locator;
+	if ([self selectedNodeNameIsUniqueInTree:_rootNode])
+	{
+		locator = [[AppiumCodeMakerLocator alloc] initWithLocatorType:APPIUM_CODE_MAKER_LOCATOR_TYPE_NAME locatorString:_selection.name];
+	}
+	else
+	{
+		locator = [[AppiumCodeMakerLocator alloc] initWithLocatorType:APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH locatorString:[self xPathForSelectedNode]];
+	}
+	locator.xPath = [self xPathForSelectedNode];
+	return locator;
 }
 
 -(IBAction)refresh:(id)sender
@@ -367,11 +428,6 @@
     [self refreshScreenshot];
     [self refreshPageSource];
     [self populateDOM];
-}
-
--(AppiumCodeMakerLocator*) locatorForSelectedNode
-{
-	return [[AppiumCodeMakerLocator alloc] initWithLocatorType:APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH locatorString:[self xPathForSelectedNode]];
 }
 
 -(IBAction)tap:(id)sender
@@ -415,6 +471,40 @@
 	{
 		[_windowController.bottomDrawer close];
 	}
+}
+
+- (IBAction)toggleSwipePopover:(id)sender
+{
+	if (!_swipePopover.isShown) {
+		[_windowController.selectedElementHighlightView setHidden:YES];
+		[_swipePopover showRelativeToRect:[_swipeButton bounds]
+								  ofView:_swipeButton
+						   preferredEdge:NSMaxYEdge];
+	} else {
+		[_swipePopover close];
+		[_windowController.selectedElementHighlightView setHidden:NO];
+	}
+}
+
+-(IBAction)performSwipe:(id)sender
+{
+	// perform the swipe
+	NSArray *args = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys:
+		[NSNumber numberWithInteger:_swipePopoverViewController.numberOfFingers], @"touchCount",
+    	[NSNumber numberWithInteger:_swipePopoverViewController.beginPoint.x], @"startX",
+		[NSNumber numberWithInteger:_swipePopoverViewController.beginPoint.y], @"startY",
+		[NSNumber numberWithInteger:_swipePopoverViewController.endPoint.x], @"endX",
+		[NSNumber numberWithInteger:_swipePopoverViewController.endPoint.y], @"endY",
+		_swipePopoverViewController.duration, @"duration",
+		nil],nil];
+	[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_SWIPE params:args]];
+	[_driver executeScript:@"mobile: swipe" arguments:args];
+
+	// reset for next iteration
+	[_swipePopover close];
+	[_swipePopoverViewController reset];
+	[_windowController.selectedElementHighlightView setHidden:NO];
+	[self refresh:sender];
 }
 
 @end
