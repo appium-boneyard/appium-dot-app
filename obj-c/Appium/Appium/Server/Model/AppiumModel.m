@@ -225,6 +225,8 @@ BOOL _isServerListening;
 	}
 }
 
+#pragma mark - Methods
+
 -(BOOL)killServer
 {
     if (self.serverTask != nil && [self.serverTask isRunning])

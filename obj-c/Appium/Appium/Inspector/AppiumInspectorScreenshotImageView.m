@@ -10,8 +10,17 @@
 
 @implementation AppiumInspectorScreenshotImageView
 
+-(id)init
+{
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:@"-init is not a valid initializer for the class AppiumInspectorScreenshotImageView"
+                                 userInfo:nil];
+    return nil;
+}
+
 - (id)initWithFrame:(NSRect)frame
 {
+    self = [self init];
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code here.
@@ -20,6 +29,7 @@
     return self;
 }
 
+#pragma mark - NSImageView Overrides
 - (void)drawRect:(NSRect)dirtyRect
 {
 	[super drawRect:dirtyRect];
@@ -47,6 +57,13 @@
 	}
 }
 
+-(void)mouseDown:(NSEvent *)event
+{
+	NSPoint point = [event locationInWindow];
+	[self.inspector handleClickAt:point seleniumPoint:[self convertWindowPointToSeleniumPoint:point]];
+}
+
+#pragma mark - Coordinate Conversion Methods
 -(NSRect)convertSeleniumRectToViewRect:(NSRect)rect
 {
 	CGRect viewRect = rect;
@@ -65,11 +82,4 @@
 	newPoint.y = (self.maxHeight - (relativePoint.y - self.yBorder)) / self.screenshotScalar;
 	return newPoint;
 }
-
--(void)mouseDown:(NSEvent *)event
-{
-	NSPoint point = [event locationInWindow];
-	[self.inspector handleClickAt:point seleniumPoint:[self convertWindowPointToSeleniumPoint:point]];
-}
-
 @end

@@ -27,9 +27,12 @@
     return self;
 }
 
+#pragma mark - Private Properties
 -(SERemoteWebDriver*) driver { return _windowController.driver; }
 
+#pragma mark - Public Properties
 -(NSNumber*) showDisabled { return [NSNumber numberWithBool:_showDisabled]; }
+
 -(NSNumber*) showInvisible { return [NSNumber numberWithBool:_showInvisible]; }
 
 -(void) setShowDisabled:(NSNumber *)showDisabled
@@ -53,6 +56,7 @@
     [self setDomIsPopulating:NO];
 }
 
+#pragma mark - Tree Operations
 -(void)populateDOM
 {
     [self performSelectorOnMainThread:@selector(setDomIsPopulatingToYes) withObject:nil waitUntilDone:YES];
@@ -67,130 +71,6 @@
 	_selectedIndexes = [NSMutableArray new];
     [self performSelectorOnMainThread:@selector(updateDetailsDisplay) withObject:nil waitUntilDone:YES];
     [self performSelectorOnMainThread:@selector(setDomIsPopulatingToNo) withObject:nil waitUntilDone:YES];
-}
-
--(IBAction)refresh:(id)sender
-{
-    [self performSelectorInBackground:@selector(populateDOM) withObject:nil];
-}
-
--(void)refreshPageSource
-{
-	_lastPageSource = [self.driver pageSource];
-}
-
--(void)refreshScreenshot
-{
-	NSImage *screenshot = [self.driver screenshot];
-	[_windowController.screenshotImageView setImage:screenshot];
-}
-
-- (id)rootItemForBrowser:(NSBrowser *)browser {
-    if (_browserRootNode == nil) {
-        [self performSelectorInBackground:@selector(populateDOM) withObject:nil];
-    }
-    return _browserRootNode;
-}
-
-- (NSInteger)browser:(NSBrowser *)browser numberOfChildrenOfItem:(id)item {
-    WebDriverElementNode *node = (WebDriverElementNode *)item;
-    return node.visibleChildren.count;
-}
-
-- (id)browser:(NSBrowser *)browser child:(NSInteger)index ofItem:(id)item {
-    WebDriverElementNode *node = (WebDriverElementNode *)item;
-    return [node.visibleChildren objectAtIndex:index];
-}
-
-- (BOOL)browser:(NSBrowser *)browser isLeafItem:(id)item {
-    WebDriverElementNode *node = (WebDriverElementNode *)item;
-    return node.visibleChildren.count < 1;
-}
-
-- (id)browser:(NSBrowser *)browser objectValueForItem:(id)item {
-    WebDriverElementNode *node = (WebDriverElementNode *)item;
-    return node.displayName;
-}
-
-- (NSIndexSet *)browser:(NSBrowser *)browser selectionIndexesForProposedSelection:(NSIndexSet *)proposedSelectionIndexes inColumn:(NSInteger)column
-{
-    [self setSelectedNode:proposedSelectionIndexes inColumn:column];
-    return proposedSelectionIndexes;
-}
-
--(void)setSelectedNode:(NSIndexSet*)proposedSelectionIndexes inColumn:(NSInteger)column
-{
-    if ([proposedSelectionIndexes firstIndex] != NSNotFound)
-	{
-		// find the parent
-		WebDriverElementNode *parentNode = _rootNode;
-		for(int i=0; i < _selectedIndexes.count && i < column; i++)
-		{
-			parentNode = [parentNode.visibleChildren objectAtIndex:[[_selectedIndexes objectAtIndex:i] integerValue]];
-		}
-		
-		// find the element
-        _selection = [parentNode.visibleChildren objectAtIndex:[proposedSelectionIndexes firstIndex]];
-		if (_selectedIndexes.count < column+1)
-		{
-			[_selectedIndexes addObject:[NSNumber numberWithInteger:[proposedSelectionIndexes firstIndex]]];
-		}
-		else
-		{
-			[_selectedIndexes replaceObjectAtIndex:column withObject:[NSNumber numberWithInteger:[proposedSelectionIndexes firstIndex]]];
-		}
-	}
-    else
-    {
-		_selection = nil;
-    }
-	[self updateDetailsDisplay];
-}
-
--(void) updateDetailsDisplay
-{
-	NSView *highlightView = _windowController.selectedElementHighlightView;
-	
-	if (_selection != nil)
-	{
-        NSString *newDetails = [NSString stringWithFormat:@"%@\nXPath string: %@", [_selection infoText], [self xPathForSelectedNode]];
-        [_windowController.detailsTextView setString:newDetails];
-	}
-	else
-	{
-        [_windowController.detailsTextView setString:@""];
-	}
-	
-	if (_selection != nil)
-    {
-        if (!highlightView.layer) {
-            [highlightView setWantsLayer:YES];
-            highlightView.layer.borderWidth = 2.0f;
-            highlightView.layer.cornerRadius = 8.0f;
-			//_highlightView.layer.borderColor = [NSColor redColor].CGColor; // Not allowed in 10.7
-			NSColor* redColor = [NSColor redColor];
-			CGColorRef redCGColor = NULL;
-			CGColorSpaceRef genericRGBSpace = CGColorSpaceCreateWithName
-			(kCGColorSpaceGenericRGB);
-			if (genericRGBSpace != NULL)
-			{
-				CGFloat colorComponents[4] = {[redColor redComponent],
-					[redColor greenComponent], [redColor blueComponent],
-					[redColor alphaComponent]};
-				redCGColor = CGColorCreate(genericRGBSpace, colorComponents);
-				CGColorSpaceRelease(genericRGBSpace);
-			}
-            highlightView.layer.borderColor = redCGColor;
-        }
-		
-        CGRect viewRect = [_windowController.screenshotImageView convertSeleniumRectToViewRect:[_selection rect]];
-        highlightView.frame = viewRect;
-        [highlightView setHidden:NO];
-    }
-    else
-    {
-        [highlightView setHidden:YES];
-    }
 }
 
 -(void)setSelectedNode:(WebDriverElementNode*)node
@@ -260,25 +140,6 @@
 	return nil;
 }
 
--(void) handleClickAt:(NSPoint)windowPoint seleniumPoint:(NSPoint)seleniumPoint
-{
-	if (_windowController.swipePopover.isShown)
-	{
-		if (_windowController.swipePopoverViewController.beginPointWasSetLast)
-		{
-			[_windowController.swipePopoverViewController setEndPoint:seleniumPoint];
-		}
-		else
-		{
-			[_windowController.swipePopoverViewController setBeginPoint:seleniumPoint];
-		}
-	}
-	else
-	{
-		[self selectNodeNearestPoint:seleniumPoint];
-	}
-}
-
 -(void) selectNodeNearestPoint:(NSPoint)point
 {
 	WebDriverElementNode *node = [self findDisplayedNodeForPoint:point node:_rootNode];
@@ -332,7 +193,7 @@
         WebDriverElementNode *currentNode = [parentNode.visibleChildren objectAtIndex:[[_selectedIndexes objectAtIndex:i] integerValue]];
         if (currentNode == _selection)
             foundNode = YES;
-
+        
         // build xpath
         [xPath appendString:@"/"];
         [xPath appendString:currentNode.typeShortcut];
@@ -397,6 +258,153 @@
 	}
 	locator.xPath = [self xPathForSelectedNode];
 	return locator;
+}
+
+#pragma mark - Inspector Operations
+-(IBAction)refresh:(id)sender
+{
+    [self performSelectorInBackground:@selector(populateDOM) withObject:nil];
+}
+
+-(void)refreshPageSource
+{
+	_lastPageSource = [self.driver pageSource];
+}
+
+-(void)refreshScreenshot
+{
+	NSImage *screenshot = [self.driver screenshot];
+	[_windowController.screenshotImageView setImage:screenshot];
+}
+
+- (id)rootItemForBrowser:(NSBrowser *)browser {
+    if (_browserRootNode == nil) {
+        [self performSelectorInBackground:@selector(populateDOM) withObject:nil];
+    }
+    return _browserRootNode;
+}
+
+#pragma mark - NSBrowserDelegate Implementation
+- (NSInteger)browser:(NSBrowser *)browser numberOfChildrenOfItem:(id)item {
+    WebDriverElementNode *node = (WebDriverElementNode *)item;
+    return node.visibleChildren.count;
+}
+
+- (id)browser:(NSBrowser *)browser child:(NSInteger)index ofItem:(id)item {
+    WebDriverElementNode *node = (WebDriverElementNode *)item;
+    return [node.visibleChildren objectAtIndex:index];
+}
+
+- (BOOL)browser:(NSBrowser *)browser isLeafItem:(id)item {
+    WebDriverElementNode *node = (WebDriverElementNode *)item;
+    return node.visibleChildren.count < 1;
+}
+
+- (id)browser:(NSBrowser *)browser objectValueForItem:(id)item {
+    WebDriverElementNode *node = (WebDriverElementNode *)item;
+    return node.displayName;
+}
+
+- (NSIndexSet *)browser:(NSBrowser *)browser selectionIndexesForProposedSelection:(NSIndexSet *)proposedSelectionIndexes inColumn:(NSInteger)column
+{
+    [self setSelectedNode:proposedSelectionIndexes inColumn:column];
+    return proposedSelectionIndexes;
+}
+
+-(void)setSelectedNode:(NSIndexSet*)proposedSelectionIndexes inColumn:(NSInteger)column
+{
+    if ([proposedSelectionIndexes firstIndex] != NSNotFound)
+	{
+		// find the parent
+		WebDriverElementNode *parentNode = _rootNode;
+		for(int i=0; i < _selectedIndexes.count && i < column; i++)
+		{
+			parentNode = [parentNode.visibleChildren objectAtIndex:[[_selectedIndexes objectAtIndex:i] integerValue]];
+		}
+		
+		// find the element
+        _selection = [parentNode.visibleChildren objectAtIndex:[proposedSelectionIndexes firstIndex]];
+		if (_selectedIndexes.count < column+1)
+		{
+			[_selectedIndexes addObject:[NSNumber numberWithInteger:[proposedSelectionIndexes firstIndex]]];
+		}
+		else
+		{
+			[_selectedIndexes replaceObjectAtIndex:column withObject:[NSNumber numberWithInteger:[proposedSelectionIndexes firstIndex]]];
+		}
+	}
+    else
+    {
+		_selection = nil;
+    }
+	[self updateDetailsDisplay];
+}
+
+#pragma mark - Misc
+
+-(void) updateDetailsDisplay
+{
+	NSView *highlightView = _windowController.selectedElementHighlightView;
+	
+	if (_selection != nil)
+	{
+        NSString *newDetails = [NSString stringWithFormat:@"%@\nXPath string: %@", [_selection infoText], [self xPathForSelectedNode]];
+        [_windowController.detailsTextView setString:newDetails];
+	}
+	else
+	{
+        [_windowController.detailsTextView setString:@""];
+	}
+	
+	if (_selection != nil)
+    {
+        if (!highlightView.layer) {
+            [highlightView setWantsLayer:YES];
+            highlightView.layer.borderWidth = 2.0f;
+            highlightView.layer.cornerRadius = 8.0f;
+			//_highlightView.layer.borderColor = [NSColor redColor].CGColor; // Not allowed in 10.7
+			NSColor* redColor = [NSColor redColor];
+			CGColorRef redCGColor = NULL;
+			CGColorSpaceRef genericRGBSpace = CGColorSpaceCreateWithName
+			(kCGColorSpaceGenericRGB);
+			if (genericRGBSpace != NULL)
+			{
+				CGFloat colorComponents[4] = {[redColor redComponent],
+					[redColor greenComponent], [redColor blueComponent],
+					[redColor alphaComponent]};
+				redCGColor = CGColorCreate(genericRGBSpace, colorComponents);
+				CGColorSpaceRelease(genericRGBSpace);
+			}
+            highlightView.layer.borderColor = redCGColor;
+        }
+		
+        CGRect viewRect = [_windowController.screenshotImageView convertSeleniumRectToViewRect:[_selection rect]];
+        highlightView.frame = viewRect;
+        [highlightView setHidden:NO];
+    }
+    else
+    {
+        [highlightView setHidden:YES];
+    }
+}
+
+-(void) handleClickAt:(NSPoint)windowPoint seleniumPoint:(NSPoint)seleniumPoint
+{
+	if (_windowController.swipePopover.isShown)
+	{
+		if (_windowController.swipePopoverViewController.beginPointWasSetLast)
+		{
+			[_windowController.swipePopoverViewController setEndPoint:seleniumPoint];
+		}
+		else
+		{
+			[_windowController.swipePopoverViewController setBeginPoint:seleniumPoint];
+		}
+	}
+	else
+	{
+		[self selectNodeNearestPoint:seleniumPoint];
+	}
 }
 
 @end

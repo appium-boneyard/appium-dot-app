@@ -20,8 +20,7 @@
 
 - (id)initWithJSONDict:(NSDictionary *)jsonDict parent:(WebDriverElementNode*) parent showDisabled:(BOOL)showDisabled showInvisible:(BOOL)showInvisible;
 
-#pragma mark - NSBrowerCell Properties
-
+#pragma mark - NSBrowerCell Implementation
 @property(readonly, copy) NSString *displayName;
 @property(readonly, retain) NSImage *icon;
 @property(readonly, retain) NSArray *children;
@@ -29,8 +28,7 @@
 @property(readonly) BOOL isLeaf;
 @property(readonly, retain) NSColor *labelColor;
 
-#pragma mark - Properties
-
+#pragma mark - Additional Properties
 @property WebDriverElementNode *parent;
 @property BOOL enabled;
 @property BOOL visible;

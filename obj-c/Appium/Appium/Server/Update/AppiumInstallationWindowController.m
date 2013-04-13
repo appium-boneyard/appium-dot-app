@@ -14,6 +14,14 @@
 
 @implementation AppiumInstallationWindowController
 
+-(id)init
+{
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:@"-init is not a valid initializer for the class AppiumInstallationWindowController"
+                                 userInfo:nil];
+    return nil;
+}
+
 - (id)initWithWindow:(NSWindow *)window
 {
     self = [super initWithWindow:window];
