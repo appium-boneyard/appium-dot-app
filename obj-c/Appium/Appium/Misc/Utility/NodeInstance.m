@@ -12,8 +12,6 @@
 
 @implementation NodeInstance
 
-#pragma mark - Constructors
-
 - (id)init
 {
     self = [super init];

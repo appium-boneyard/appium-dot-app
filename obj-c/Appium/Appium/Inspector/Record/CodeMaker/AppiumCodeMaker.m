@@ -7,6 +7,7 @@
 //
 
 #import "AppiumCodeMaker.h"
+
 #import "AppiumCodeMakerAction.h"
 #import "AppiumCodeMakerCSharpPlugin.h"
 #import "AppiumCodeMakerJavaPlugin.h"
@@ -34,7 +35,15 @@
     return self;
 }
 
+#pragma mark - Properties
+
 -(id<AppiumCodeMakerPlugin>) activePlugin { return _activePlugin; }
+-(NSArray*) allPlugins { return [_plugins allKeys]; }
+-(NSString*) selectedPluginString { return _activePlugin.name; }
+-(NSNumber*) useBoilerPlate { return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:APPIUM_PLIST_USE_CODEMAKER_BOILERPLATE]]; }
+-(NSNumber*) useXPathOnly { return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:APPIUM_PLIST_USE_XPATH_ONLY]]; }
+
+
 -(void) setActivePlugin:(id<AppiumCodeMakerPlugin>)plugin
 {
 	_activePlugin = plugin;
@@ -42,9 +51,6 @@
 	[self renderAll];
 }
 
--(NSArray*) allPlugins { return [_plugins allKeys]; }
-
--(NSString*) selectedPluginString { return _activePlugin.name; }
 -(void)setSelectedPluginString:(NSString *)selectedPluginString
 {
 	[self setActivePlugin:(id<AppiumCodeMakerPlugin>)[_plugins objectForKey:selectedPluginString]];
@@ -52,27 +58,19 @@
 	
 }
 
--(NSNumber*) useBoilerPlate { return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:APPIUM_PLIST_USE_CODEMAKER_BOILERPLATE]]; }
 -(void) setUseBoilerPlate:(NSNumber *)useBoilerPlate
 {
 	[[NSUserDefaults standardUserDefaults] setBool:[useBoilerPlate boolValue] forKey:APPIUM_PLIST_USE_CODEMAKER_BOILERPLATE];
 	[self renderAll];
 }
 
--(NSNumber*) useXPathOnly { return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:APPIUM_PLIST_USE_XPATH_ONLY]]; }
 -(void) setUseXPathOnly:(NSNumber *)useXPathOnly
 {
 	[[NSUserDefaults standardUserDefaults] setBool:[useXPathOnly boolValue] forKey:APPIUM_PLIST_USE_XPATH_ONLY];
 	[self renderAll];
 }
 
-
--(void) reset
-{
-	[_actions removeAllObjects];
-	[self renderAll];
-	
-}
+#pragma mark - Private Methods
 
 -(void) render
 {
@@ -90,6 +88,15 @@
 	}
 	[self render];
 
+}
+
+#pragma mark - Public Methods
+
+-(void) reset
+{
+	[_actions removeAllObjects];
+	[self renderAll];
+	
 }
 
 -(void) addAction:(AppiumCodeMakerAction*)action

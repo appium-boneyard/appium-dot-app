@@ -10,6 +10,14 @@
 
 @implementation WebDriverElementNode
 
+-(id)init
+{
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                   reason:@"-init is not a valid initializer for the class WebDriverElementNode"
+                                 userInfo:nil];
+    return nil;
+}
+
 -(id) initWithJSONDict:(NSDictionary *)jsonDict parent:(WebDriverElementNode*) parent showDisabled:(BOOL)showDisabled showInvisible:(BOOL)showInvisible
 {
 	if (self = [super init])
@@ -50,6 +58,33 @@
 	return self;
 }
 
+#pragma mark - NSBrowerCell Implementation
+- (NSString*) displayName
+{
+    return [NSString stringWithFormat:@"[%@] %@", [self type], [self name]];
+}
+
+-(NSArray*) children
+{
+    return _children;
+}
+
+- (NSImage*) icon
+{
+	return [[NSApplication sharedApplication] applicationIconImage];
+}
+
+- (BOOL) isLeaf
+{
+    return _children.count < 1;
+}
+
+- (NSColor*) labelColor
+{
+    return [NSColor blackColor];
+}
+
+#pragma mark - Additional Properties
 -(BOOL) shouldDisplay
 {
 	if ((_showInvisible || self.visible) && (_showDisabled || self.enabled))
@@ -69,30 +104,6 @@
 - (NSString *)description {
     return [NSString stringWithFormat:@"%@ - %@", super.description, [_jsonDict valueForKey:@"name"]];
 }
-
-@dynamic displayName, children, isLeaf, icon, labelColor;
-
-- (NSString*) displayName
-{
-    return [NSString stringWithFormat:@"[%@] %@", [self type], [self name]];
-}
-
-- (NSImage*) icon
-{
-	return [[NSApplication sharedApplication] applicationIconImage];
-}
-
-- (BOOL) isLeaf
-{
-    return _children.count < 1;
-}
-
-- (NSColor*) labelColor
-{
-    return [NSColor blackColor];
-}
-
--(NSArray*) children { return _children; }
 
 -(NSArray*) visibleChildren { return _visibleChildren; }
 

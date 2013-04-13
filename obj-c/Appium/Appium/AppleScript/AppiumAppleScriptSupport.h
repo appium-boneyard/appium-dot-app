@@ -42,7 +42,7 @@
 @property NSNumber *s_UseRemoteServer;
 @property NSNumber *s_UseUDID;
 
-#pragma mark - Functions
+#pragma mark - Methods
 -(void) s_ClearLog: (NSScriptCommand*)command;
 -(void) s_ForceiOSDevice:(NSScriptCommand*)command;
 -(NSNumber*) s_StartServer: (NSScriptCommand*)command;

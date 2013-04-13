@@ -93,7 +93,7 @@
 -(NSNumber*) s_UseRemoteServer { return [NSNumber numberWithBool:[[self model] useRemoteServer]]; }
 -(void) setS_UseRemoteServer:(NSNumber *)s_UseRemoteServer { [[self model] setUseRemoteServer:[s_UseRemoteServer boolValue]]; }
 
-#pragma mark - Functions
+#pragma mark - Methods
 
 -(NSString*) s_LogText
 {

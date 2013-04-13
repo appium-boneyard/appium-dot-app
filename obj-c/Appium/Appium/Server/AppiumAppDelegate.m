@@ -44,7 +44,7 @@
 {
 	if (_preferencesWindow == nil)
 	{
-		_preferencesWindow = [[AppiumPreferencesWindowController alloc] initWithWindowNibName:@"AppiumPreferencesWindow" owner:self];
+		_preferencesWindow = [[AppiumPreferencesWindowController alloc] initWithWindowNibName:@"AppiumPreferencesWindow"];
 		[[NSNotificationCenter defaultCenter] addObserver:self
 												 selector:@selector(preferenceWindowWillClose:)
 													 name:NSWindowWillCloseNotification

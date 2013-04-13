@@ -30,15 +30,18 @@
     return self;
 }
 
+#pragma mark - Private Properties
 -(AppiumInspectorDelegate*)inspector { return _windowController.inspector; }
 -(SERemoteWebDriver*)driver { return _windowController.driver; }
 
+#pragma mark - Public Properties
 -(NSNumber*) isRecording { return [NSNumber numberWithBool:_isRecording]; }
 -(void) setIsRecording:(NSNumber *)isRecording
 {
 	_isRecording = [isRecording boolValue];
 }
 
+#pragma mark - Actions
 -(IBAction)tap:(id)sender
 {
     SEWebElement *element = [self.inspector elementForSelectedNode];
