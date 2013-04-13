@@ -11,6 +11,10 @@
 #import "AppiumAppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
 
+@interface AppiumInspectorDelegate ()
+    @property (readonly) SERemoteWebDriver *driver;
+@end
+
 @implementation AppiumInspectorDelegate
 
 -(id) init
@@ -27,6 +31,8 @@
     return self;
 }
 
+-(SERemoteWebDriver*) driver { return _windowController.driver; }
+
 -(NSNumber*) showDisabled { return [NSNumber numberWithBool:_showDisabled]; }
 -(NSNumber*) showInvisible { return [NSNumber numberWithBool:_showInvisible]; }
 -(NSNumber*) isRecording { return [NSNumber numberWithBool:_isRecording]; }
@@ -34,13 +40,13 @@
 -(void) setShowDisabled:(NSNumber *)showDisabled
 {
     _showDisabled = [showDisabled boolValue];
-    [self performSelectorInBackground:@selector(refreshAll) withObject:nil];
+    [self performSelectorInBackground:@selector(populateDOM) withObject:nil];
 }
 
 -(void) setShowInvisible:(NSNumber *)showInvisible
 {
     _showInvisible = [showInvisible boolValue];
-    [self performSelectorInBackground:@selector(refreshAll) withObject:nil];
+    [self performSelectorInBackground:@selector(populateDOM) withObject:nil];
 }
 
 -(void) setIsRecording:(NSNumber *)isRecording
@@ -60,26 +66,8 @@
 -(void)populateDOM
 {
     [self performSelectorOnMainThread:@selector(setDomIsPopulatingToYes) withObject:nil waitUntilDone:YES];
-	if (self.driver == nil)
-	{
-		AppiumModel *model = [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] model];
-		self.driver = [[SERemoteWebDriver alloc] initWithServerAddress:[model ipAddress] port:[[model port] integerValue]];
-		NSArray *sessions = [self.driver allSessions];
-		if (sessions.count > 0)
-		{
-			[self.driver setSession:[sessions objectAtIndex:0]];
-		}
-		if (sessions.count == 0 || self.driver.session == nil || self.driver.session.capabilities.platform == nil)
-		{
-			SECapabilities *capabilities = [SECapabilities new];
-			[capabilities setPlatform:@"Mac"];
-			[capabilities setBrowserName:@"iOS"];
-			[capabilities setVersion:@"6.1"];
-			[self.driver startSessionWithDesiredCapabilities:capabilities requiredCapabilities:nil];
-		}
-		[self refreshScreenshot];
-	}
 	[self refreshPageSource];
+    [self refreshScreenshot];
 	NSError *e = nil;
 	NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData: [_lastPageSource dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: &e];
 	_browserRootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict parent:nil showDisabled:[self.showDisabled boolValue] showInvisible:[self.showInvisible boolValue]];
@@ -89,6 +77,11 @@
 	_selectedIndexes = [NSMutableArray new];
     [self performSelectorOnMainThread:@selector(updateDetailsDisplay) withObject:nil waitUntilDone:YES];
     [self performSelectorOnMainThread:@selector(setDomIsPopulatingToNo) withObject:nil waitUntilDone:YES];
+}
+
+-(IBAction)refresh:(id)sender
+{
+    [self performSelectorInBackground:@selector(populateDOM) withObject:nil];
 }
 
 -(void)refreshPageSource
@@ -279,15 +272,15 @@
 
 -(void) handleClickAt:(NSPoint)windowPoint seleniumPoint:(NSPoint)seleniumPoint
 {
-	if (_swipePopover.isShown)
+	if (_windowController.swipePopover.isShown)
 	{
-		if (_swipePopoverViewController.beginPointWasSetLast)
+		if (_windowController.swipePopoverViewController.beginPointWasSetLast)
 		{
-			[_swipePopoverViewController setEndPoint:seleniumPoint];
+			[_windowController.swipePopoverViewController setEndPoint:seleniumPoint];
 		}
 		else
 		{
-			[_swipePopoverViewController setBeginPoint:seleniumPoint];
+			[_windowController.swipePopoverViewController setBeginPoint:seleniumPoint];
 		}
 	}
 	else
@@ -416,19 +409,6 @@
 	return locator;
 }
 
--(IBAction)refresh:(id)sender
-{
-    [self performSelectorInBackground:@selector(refreshAll) withObject:nil];
-}
-
--(void)refreshAll
-{
-    [self performSelectorOnMainThread:@selector(setDomIsPopulatingToYes) withObject:nil waitUntilDone:YES];
-    [self refreshScreenshot];
-    [self refreshPageSource];
-    [self populateDOM];
-}
-
 -(IBAction)tap:(id)sender
 {
     SEWebElement *element = [self elementForSelectedNode];
@@ -481,13 +461,13 @@
 
 - (IBAction)toggleSwipePopover:(id)sender
 {
-	if (!_swipePopover.isShown) {
+	if (!_windowController.swipePopover.isShown) {
 		[_windowController.selectedElementHighlightView setHidden:YES];
-		[_swipePopover showRelativeToRect:[_swipeButton bounds]
-								   ofView:_swipeButton
+		[_windowController.swipePopover showRelativeToRect:[_windowController.swipeButton bounds]
+								   ofView:_windowController.swipeButton
 							preferredEdge:NSMaxYEdge];
 	} else {
-		[_swipePopover close];
+		[_windowController.swipePopover close];
 		[_windowController.selectedElementHighlightView setHidden:NO];
 	}
 }
@@ -496,12 +476,12 @@
 {
 	// perform the swipe
 	NSArray *args = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys:
-													  [NSNumber numberWithInteger:_swipePopoverViewController.numberOfFingers], @"touchCount",
-													  [NSNumber numberWithInteger:_swipePopoverViewController.beginPoint.x], @"startX",
-													  [NSNumber numberWithInteger:_swipePopoverViewController.beginPoint.y], @"startY",
-													  [NSNumber numberWithInteger:_swipePopoverViewController.endPoint.x], @"endX",
-													  [NSNumber numberWithInteger:_swipePopoverViewController.endPoint.y], @"endY",
-													  _swipePopoverViewController.duration, @"duration",
+													  [NSNumber numberWithInteger:_windowController.swipePopoverViewController.numberOfFingers], @"touchCount",
+													  [NSNumber numberWithInteger:_windowController.swipePopoverViewController.beginPoint.x], @"startX",
+													  [NSNumber numberWithInteger:_windowController.swipePopoverViewController.beginPoint.y], @"startY",
+													  [NSNumber numberWithInteger:_windowController.swipePopoverViewController.endPoint.x], @"endX",
+													  [NSNumber numberWithInteger:_windowController.swipePopoverViewController.endPoint.y], @"endY",
+													  _windowController.swipePopoverViewController.duration, @"duration",
 													  nil],nil];
 	if (_isRecording)
 	{
@@ -510,8 +490,8 @@
 	[self.driver executeScript:@"mobile: swipe" arguments:args];
 	
 	// reset for next iteration
-	[_swipePopover close];
-	[_swipePopoverViewController reset];
+	[_windowController.swipePopover close];
+	[_windowController.swipePopoverViewController reset];
 	[_windowController.selectedElementHighlightView setHidden:NO];
 	[self refresh:sender];
 }
@@ -543,6 +523,7 @@
 	}
 	else
 	{
+        [_windowController.recordButton.layer setFilters:[NSArray new]];
         [_windowController.recordButton.layer removeAllAnimations];
         [_windowController.recordButton setWantsLayer:NO];
 		[_windowController.bottomDrawer close];

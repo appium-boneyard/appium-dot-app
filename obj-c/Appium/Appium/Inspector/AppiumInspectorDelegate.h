@@ -13,17 +13,15 @@
 #import "AppiumCodeMakerSwipePopOverViewController.h"
 #import <Selenium/SERemoteWebDriver.h>
 
-@class WebDriverElementNode;
 @class AppiumInspectorWindowController;
 @class AppiumCodeMakerSwipePopOverViewController;
+@class SERemoteWebDriver;
+@class WebDriverElementNode;
 
 @interface AppiumInspectorDelegate : NSObject {
 
 @private
 	IBOutlet AppiumInspectorWindowController *_windowController;
-	IBOutlet NSPopover *_swipePopover;
-	IBOutlet AppiumCodeMakerSwipePopOverViewController *_swipePopoverViewController;
-	IBOutlet NSButton *_swipeButton;
 	BOOL _showDisabled;
     BOOL _showInvisible;
 	BOOL _isRecording;
@@ -34,7 +32,6 @@
 	NSString *_lastPageSource;
 }
 
-@property SERemoteWebDriver *driver;
 @property NSNumber *showDisabled;
 @property NSNumber *showInvisible;
 @property NSNumber *isRecording;

@@ -7,10 +7,11 @@
 //
 
 #import "AppiumInspectorWindowController.h"
+#import "AppiumAppDelegate.h"
+#import "AppiumModel.h"
 
-@interface AppiumInspectorWindowController ()
-
-@end
+@class AppiumAppDelegate;
+@class AppiumModel;
 
 @implementation AppiumInspectorWindowController
 
@@ -20,6 +21,21 @@
 
     if (self) {
 
+        AppiumModel *model = [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] model];
+        self.driver = [[SERemoteWebDriver alloc] initWithServerAddress:[model ipAddress] port:[[model port] integerValue]];
+        NSArray *sessions = [self.driver allSessions];
+        if (sessions.count > 0)
+        {
+            [self.driver setSession:[sessions objectAtIndex:0]];
+        }
+        if (sessions.count == 0 || self.driver.session == nil || self.driver.session.capabilities.platform == nil)
+        {
+            SECapabilities *capabilities = [SECapabilities new];
+            [capabilities setPlatform:@"Mac"];
+            [capabilities setBrowserName:@"iOS"];
+            [capabilities setVersion:@"6.1"];
+            [self.driver startSessionWithDesiredCapabilities:capabilities requiredCapabilities:nil];
+        }
     }
     
     return self;

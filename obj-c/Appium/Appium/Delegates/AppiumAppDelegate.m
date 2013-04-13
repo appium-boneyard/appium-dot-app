@@ -70,7 +70,7 @@ AppiumUpdater *updater;
 {
 	if (inspectorWindow == nil)
 	{
-		inspectorWindow = [[AppiumInspectorWindowController alloc] initWithWindowNibName:@"AppiumInspectorWindow" owner:self];
+		inspectorWindow = [[AppiumInspectorWindowController alloc] initWithWindowNibName:@"AppiumInspectorWindow"];
 		[[NSNotificationCenter defaultCenter] addObserver:self
 												 selector:@selector(inspectorWindowWillClose:)
 													 name:NSWindowWillCloseNotification
