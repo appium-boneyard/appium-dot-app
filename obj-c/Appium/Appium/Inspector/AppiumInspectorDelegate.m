@@ -460,6 +460,63 @@
 	}
 }
 
+-(IBAction)acceptAlert:(id)sender
+{
+	if (_isRecording)
+	{
+		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_ALERT_ACCEPT params:nil]];
+	}
+	[_driver acceptAlert];
+	[self refresh:sender];
+}
+
+-(IBAction)dismissAlert:(id)sender
+{
+	if (_isRecording)
+	{
+		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_ALERT_DISMISS params:nil]];
+	}
+	[_driver dismissAlert];
+	[self refresh:sender];
+}
+
+- (IBAction)toggleSwipePopover:(id)sender
+{
+	if (!_swipePopover.isShown) {
+		[_windowController.selectedElementHighlightView setHidden:YES];
+		[_swipePopover showRelativeToRect:[_swipeButton bounds]
+								   ofView:_swipeButton
+							preferredEdge:NSMaxYEdge];
+	} else {
+		[_swipePopover close];
+		[_windowController.selectedElementHighlightView setHidden:NO];
+	}
+}
+
+-(IBAction)performSwipe:(id)sender
+{
+	// perform the swipe
+	NSArray *args = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys:
+													  [NSNumber numberWithInteger:_swipePopoverViewController.numberOfFingers], @"touchCount",
+													  [NSNumber numberWithInteger:_swipePopoverViewController.beginPoint.x], @"startX",
+													  [NSNumber numberWithInteger:_swipePopoverViewController.beginPoint.y], @"startY",
+													  [NSNumber numberWithInteger:_swipePopoverViewController.endPoint.x], @"endX",
+													  [NSNumber numberWithInteger:_swipePopoverViewController.endPoint.y], @"endY",
+													  _swipePopoverViewController.duration, @"duration",
+													  nil],nil];
+	if (_isRecording)
+	{
+		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_SWIPE params:args]];
+	}
+	[_driver executeScript:@"mobile: swipe" arguments:args];
+	
+	// reset for next iteration
+	[_swipePopover close];
+	[_swipePopoverViewController reset];
+	[_windowController.selectedElementHighlightView setHidden:NO];
+	[self refresh:sender];
+}
+
 -(IBAction)toggleRecording:(id)sender
 {
 	[self setIsRecording:[NSNumber numberWithBool:!_isRecording]];
@@ -473,38 +530,9 @@
 	}
 }
 
-- (IBAction)toggleSwipePopover:(id)sender
+-(IBAction)clearRecording:(id)sender
 {
-	if (!_swipePopover.isShown) {
-		[_windowController.selectedElementHighlightView setHidden:YES];
-		[_swipePopover showRelativeToRect:[_swipeButton bounds]
-								  ofView:_swipeButton
-						   preferredEdge:NSMaxYEdge];
-	} else {
-		[_swipePopover close];
-		[_windowController.selectedElementHighlightView setHidden:NO];
-	}
-}
-
--(IBAction)performSwipe:(id)sender
-{
-	// perform the swipe
-	NSArray *args = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys:
-		[NSNumber numberWithInteger:_swipePopoverViewController.numberOfFingers], @"touchCount",
-    	[NSNumber numberWithInteger:_swipePopoverViewController.beginPoint.x], @"startX",
-		[NSNumber numberWithInteger:_swipePopoverViewController.beginPoint.y], @"startY",
-		[NSNumber numberWithInteger:_swipePopoverViewController.endPoint.x], @"endX",
-		[NSNumber numberWithInteger:_swipePopoverViewController.endPoint.y], @"endY",
-		_swipePopoverViewController.duration, @"duration",
-		nil],nil];
-	[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_SWIPE params:args]];
-	[_driver executeScript:@"mobile: swipe" arguments:args];
-
-	// reset for next iteration
-	[_swipePopover close];
-	[_swipePopoverViewController reset];
-	[_windowController.selectedElementHighlightView setHidden:NO];
-	[self refresh:sender];
+	[_codeMaker reset];
 }
 
 @end

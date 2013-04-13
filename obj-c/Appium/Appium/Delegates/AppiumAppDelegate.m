@@ -12,6 +12,7 @@
 #import "AppiumInstallationWindowController.h"
 #import "AppiumPreferencesWindowController.h"
 #import "AppiumInspectorWindowController.h"
+#import "Utility.h"
 
 AppiumPreferencesWindowController *preferencesWindow;
 AppiumInspectorWindowController *inspectorWindow;
@@ -104,8 +105,16 @@ AppiumUpdater *updater;
         [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Installing NodeJS..." waitUntilDone:YES];
         [[self mainWindowController] setNode:[[NodeInstance alloc] initWithPath:nodeRootPath]];
         [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Installing Appium..." waitUntilDone:YES];
-        [[[self mainWindowController] node] installPackage:@"appium"  forceInstall:NO];
+        [[[self mainWindowController] node] installPackage:@"appium" forceInstall:NO];
         [[installationWindow window] performSelectorOnMainThread:@selector(close) withObject:nil waitUntilDone:YES];
+		
+		NSString *iwdPath = [NSString stringWithFormat:@"%@/submodules/instruments-without-delay/build", [[self.mainWindowController node] pathtoPackage:@"appium"]];
+		if (![[NSFileManager defaultManager] fileExistsAtPath:iwdPath])
+		{
+			NSString *submodulesPath = [NSString stringWithFormat:@"%@/submodules", [[self.mainWindowController node] pathtoPackage:@"appium"]];
+			[[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Building \"Instruments Without Delay\"..." waitUntilDone:YES];
+			[Utility runTaskWithBinary:@"/bin/sh" arguments:[NSArray arrayWithObjects:@"./build.sh", nil] path:[NSString stringWithFormat:@"%@/%@", submodulesPath, @"instruments-without-delay"]];
+		}
     }
     else
     {
