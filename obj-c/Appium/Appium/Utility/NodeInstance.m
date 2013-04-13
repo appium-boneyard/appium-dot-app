@@ -7,11 +7,10 @@
 //
 
 #import "NodeInstance.h"
+
 #import "Utility.h"
 
 @implementation NodeInstance
-
-NSString *nodeRootPath;
 
 #pragma mark - Constructors
 
@@ -25,8 +24,8 @@ NSString *nodeRootPath;
 {
     self = [super init];
     if (self) {
-        nodeRootPath = rootPath;
-        NSString *nodePath = [NSString stringWithFormat:@"%@/%@", nodeRootPath, @"node"];
+        _nodeRootPath = rootPath;
+        NSString *nodePath = [NSString stringWithFormat:@"%@/%@", _nodeRootPath, @"node"];
         if (![[NSFileManager defaultManager] fileExistsAtPath:nodePath])
         {
             [[NSFileManager defaultManager ] createDirectoryAtPath: nodePath withIntermediateDirectories: YES attributes: nil error: NULL ];
@@ -41,11 +40,11 @@ NSString *nodeRootPath;
             {
                 return nil;
             }
-            nodeTarPath = [NSString stringWithFormat:@"%@/%@", nodeRootPath,@"node.tar"];
+            nodeTarPath = [NSString stringWithFormat:@"%@/%@", _nodeRootPath,@"node.tar"];
             [urlData writeToFile:nodeTarPath atomically:YES];
             
             // extract node
-            [Utility runTaskWithBinary:@"/usr/bin/tar" arguments:[NSArray arrayWithObjects: @"--strip-components", @"1", @"-zxvf", nodeTarPath, @"-C", @"./node", nil] path:nodeRootPath];
+            [Utility runTaskWithBinary:@"/usr/bin/tar" arguments:[NSArray arrayWithObjects: @"--strip-components", @"1", @"-zxvf", nodeTarPath, @"-C", @"./node", nil] path:_nodeRootPath];
         }
     }
     return self;
@@ -55,24 +54,24 @@ NSString *nodeRootPath;
 
 -(NSString*) pathToNodeBinary
 {
-    return [NSString stringWithFormat:@"%@/%@", nodeRootPath, @"node/bin/node"];
+    return [NSString stringWithFormat:@"%@/%@", _nodeRootPath, @"node/bin/node"];
 }
 
 -(void) installPackage:(NSString*)packageName forceInstall:(BOOL)forceInstall
 {
     
-    NSString *packagePath = [NSString stringWithFormat:@"%@/%@", nodeRootPath, [NSString stringWithFormat:@"%@/%@", @"node_modules", packageName]];
+    NSString *packagePath = [NSString stringWithFormat:@"%@/%@", _nodeRootPath, [NSString stringWithFormat:@"%@/%@", @"node_modules", packageName]];
     if (forceInstall || ![[NSFileManager defaultManager] fileExistsAtPath:packagePath])
     {
         // install package
-        NSString *npmPath = [NSString stringWithFormat:@"%@/%@", nodeRootPath, @"node/bin/npm"];
-        [Utility runTaskWithBinary:npmPath arguments:[NSArray arrayWithObjects: @"install", packageName, nil] path:nodeRootPath];
+        NSString *npmPath = [NSString stringWithFormat:@"%@/%@", _nodeRootPath, @"node/bin/npm"];
+        [Utility runTaskWithBinary:npmPath arguments:[NSArray arrayWithObjects: @"install", packageName, nil] path:_nodeRootPath];
     }
 }
 
 -(NSString*) pathtoPackage:(NSString*)packageName
 {
-    return [NSString stringWithFormat:@"%@/%@/%@", nodeRootPath, @"node_modules", packageName];
+    return [NSString stringWithFormat:@"%@/%@/%@", _nodeRootPath, @"node_modules", packageName];
 }
 
 #pragma mark - Static Methods

@@ -7,15 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WebDriverElementNode.h"
-#import "AppiumInspectorWindowController.h"
-#import "AppiumCodeMaker.h"
-#import "AppiumCodeMakerSwipePopOverViewController.h"
 #import <Selenium/SERemoteWebDriver.h>
+#import "AppiumCodeMakerLocator.h"
+#import "AppiumInspectorWindowController.h"
+#import "WebDriverElementNode.h"
 
+@class AppiumCodeMakerLocator;
 @class AppiumInspectorWindowController;
-@class AppiumCodeMakerSwipePopOverViewController;
 @class SERemoteWebDriver;
+@class SEWebElement;
 @class WebDriverElementNode;
 
 @interface AppiumInspectorDelegate : NSObject {

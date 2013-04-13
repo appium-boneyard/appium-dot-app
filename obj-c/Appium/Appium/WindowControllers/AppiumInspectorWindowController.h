@@ -8,10 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Selenium/SERemoteWebDriver.h>
-#import "WebDriverElementNode.h"
+#import "AppiumCodeMakerSwipePopOverViewController.h"
 #import "AppiumInspectorDelegate.h"
 #import "AppiumInspectorScreenshotImageView.h"
-#import "AppiumCodeMakerSwipePopOverViewController.h"
+#import "WebDriverElementNode.h"
 
 @class AppiumInspectorDelegate;
 @class AppiumInspectorScreenshotImageView;

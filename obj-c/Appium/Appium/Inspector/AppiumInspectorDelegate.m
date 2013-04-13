@@ -7,8 +7,7 @@
 //
 
 #import "AppiumInspectorDelegate.h"
-#import "AppiumModel.h"
-#import "AppiumAppDelegate.h"
+
 #import <QuartzCore/QuartzCore.h>
 
 @interface AppiumInspectorDelegate ()

@@ -6,9 +6,6 @@
 //  Copyright (c) 2013 Appium. All rights reserved.
 //
 
-#ifndef Appium_AppiumPrefernceFile_h
-#define Appium_AppiumPrefernceFile_h
-
 #define PLIST_ANDROID_ACTIVITY @"Android Activity"
 #define PLIST_ANDROID_PACKAGE @"Android Package"
 #define PLIST_APP_PATH @"App Path"
@@ -44,5 +41,3 @@
 #define PLIST_USE_XPATH_ONLY @"Use XPath Only"
 #define PLIST_VERBOSE @"Verbose"
 #define PLIST_WITHOUT_DELAY @"Without Delay"
-
-#endif

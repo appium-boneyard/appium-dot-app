@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AppiumMenuBarManager : NSObject
+@interface AppiumMenuBarManager : NSObject {
+    @private
+    NSStatusBar *_bar;
+    NSStatusItem *_item;
+}
 
 @end

@@ -7,13 +7,10 @@
 //
 
 #import "AppiumRecorderDelegate.h"
-#import "AppiumInspectorDelegate.h"
+
 #import <Selenium/SERemoteWebDriver.h>
 #import <QuartzCore/QuartzCore.h>
-
-@class AppiumInspectorDelegate;
-@class SERemoteWebDriver;
-@class SEWebElement;
+#import "AppiumInspectorDelegate.h"
 
 @interface AppiumRecorderDelegate ()
     @property (readonly) AppiumInspectorDelegate *inspector;

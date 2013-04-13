@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NodeInstance : NSObject
+@interface NodeInstance : NSObject {
+    @private
+    NSString *_nodeRootPath;
+}
 
 -(id) initWithPath:(NSString*)rootPath;
 -(NSString*) pathToNodeBinary;

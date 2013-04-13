@@ -7,11 +7,9 @@
 //
 
 #import "AppiumInspectorWindowController.h"
+
 #import "AppiumAppDelegate.h"
 #import "AppiumModel.h"
-
-@class AppiumAppDelegate;
-@class AppiumModel;
 
 @implementation AppiumInspectorWindowController
 

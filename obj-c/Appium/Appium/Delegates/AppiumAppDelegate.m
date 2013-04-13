@@ -7,16 +7,13 @@
 //
 
 #import "AppiumAppDelegate.h"
-#import "AppiumUpdater.h"
-#import "NodeInstance.h"
+
+#import "AppiumInspectorWindowController.h"
 #import "AppiumInstallationWindowController.h"
 #import "AppiumPreferencesWindowController.h"
-#import "AppiumInspectorWindowController.h"
+#import "AppiumUpdater.h"
+#import "NodeInstance.h"
 #import "Utility.h"
-
-AppiumPreferencesWindowController *preferencesWindow;
-AppiumInspectorWindowController *inspectorWindow;
-AppiumUpdater *updater;
 
 @implementation AppiumAppDelegate
 
@@ -29,7 +26,7 @@ AppiumUpdater *updater;
 	
     // create main monitor window
     [self setMainWindowController:[[AppiumMonitorWindowController alloc] initWithWindowNibName:@"AppiumMonitorWindow"]];
-	updater = [[AppiumUpdater alloc] initWithAppiumMonitorWindowController:[self mainWindowController]];
+	_updater = [[AppiumUpdater alloc] initWithAppiumMonitorWindowController:[self mainWindowController]];
 
     // install anything that's missing
     [self performSelectorInBackground:@selector(install) withObject:nil];
@@ -45,46 +42,46 @@ AppiumUpdater *updater;
 
 -(IBAction) displayPreferences:(id)sender
 {
-	if (preferencesWindow == nil)
+	if (_preferencesWindow == nil)
 	{
-		preferencesWindow = [[AppiumPreferencesWindowController alloc] initWithWindowNibName:@"AppiumPreferencesWindow" owner:self];
+		_preferencesWindow = [[AppiumPreferencesWindowController alloc] initWithWindowNibName:@"AppiumPreferencesWindow" owner:self];
 		[[NSNotificationCenter defaultCenter] addObserver:self
 												 selector:@selector(preferenceWindowWillClose:)
 													 name:NSWindowWillCloseNotification
-												   object:[preferencesWindow window]];
+												   object:[_preferencesWindow window]];
 	}
 	
-	[preferencesWindow showWindow:self];
-	[[preferencesWindow window] makeKeyAndOrderFront:self];
+	[_preferencesWindow showWindow:self];
+	[[_preferencesWindow window] makeKeyAndOrderFront:self];
 }
 
 - (void)preferenceWindowWillClose:(NSNotification *)notification
 {
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowWillCloseNotification object:[preferencesWindow window]];
-	preferencesWindow = nil;
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowWillCloseNotification object:[_preferencesWindow window]];
+	_preferencesWindow = nil;
 }
 
 #pragma mark - Inspector
 
 -(IBAction) displayInspector:(id)sender
 {
-	if (inspectorWindow == nil)
+	if (_inspectorWindow == nil)
 	{
-		inspectorWindow = [[AppiumInspectorWindowController alloc] initWithWindowNibName:@"AppiumInspectorWindow"];
+		_inspectorWindow = [[AppiumInspectorWindowController alloc] initWithWindowNibName:@"AppiumInspectorWindow"];
 		[[NSNotificationCenter defaultCenter] addObserver:self
 												 selector:@selector(inspectorWindowWillClose:)
 													 name:NSWindowWillCloseNotification
-												   object:[inspectorWindow window]];
+												   object:[_inspectorWindow window]];
 	}
 	
-	[inspectorWindow showWindow:self];
-	[[inspectorWindow window] makeKeyAndOrderFront:self];
+	[_inspectorWindow showWindow:self];
+	[[_inspectorWindow window] makeKeyAndOrderFront:self];
 }
 
 - (void)inspectorWindowWillClose:(NSNotification *)notification
 {
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowWillCloseNotification object:[inspectorWindow window]];
-	inspectorWindow = nil;
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowWillCloseNotification object:[_inspectorWindow window]];
+	_inspectorWindow = nil;
 }
 
 #pragma mark - Updates
@@ -135,7 +132,7 @@ AppiumUpdater *updater;
 
 -(IBAction)checkForUpdates:(id)sender
 {
-	[updater performSelectorInBackground:@selector(checkForUpdates:) withObject:sender];
+	[_updater performSelectorInBackground:@selector(checkForUpdates:) withObject:sender];
 }
 
 -(void) restart

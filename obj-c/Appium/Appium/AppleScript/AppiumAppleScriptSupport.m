@@ -7,6 +7,7 @@
 //
 
 #import "AppiumAppleScriptSupport.h"
+
 #import "AppiumAppDelegate.h"
 
 @implementation NSApplication(AppiumAppleScriptSupport)
