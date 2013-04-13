@@ -46,7 +46,6 @@
 -(void) setIsRecording:(NSNumber *)isRecording
 {
 	_isRecording = [isRecording boolValue];
-	[_windowController.recordButton setWantsLayer:_isRecording];
 }
 
 -(void)setDomIsPopulatingToYes
@@ -523,9 +522,29 @@
 	if (_isRecording)
 	{
 		[_windowController.bottomDrawer openOnEdge:NSMinYEdge];
+        
+        [_windowController.recordButton setWantsLayer:YES];
+        CIFilter *filter = [CIFilter filterWithName:@"CIFalseColor"];
+        [filter setDefaults];
+        [filter setValue:[CIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0] forKey:@"inputColor0"];
+        [filter setValue:[CIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:1.0] forKey:@"inputColor1"];
+        [filter setName:@"pulseFilter"];
+        [_windowController.recordButton.layer setFilters:[NSArray arrayWithObject:filter]];
+        
+        CABasicAnimation* pulseAnimation1 = [CABasicAnimation animation];
+        pulseAnimation1.keyPath = @"filters.pulseFilter.inputColor1";
+        pulseAnimation1.fromValue = [CIColor colorWithRed:0.8 green:0.0 blue:0.0 alpha:0.9];
+        pulseAnimation1.toValue = [CIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:1.0];
+        pulseAnimation1.duration = 1.5;
+        pulseAnimation1.repeatCount = HUGE_VALF;
+        pulseAnimation1.autoreverses = YES;
+        
+        [_windowController.recordButton.layer addAnimation:pulseAnimation1 forKey:@"pulseAnimation1"];
 	}
 	else
 	{
+        [_windowController.recordButton.layer removeAllAnimations];
+        [_windowController.recordButton setWantsLayer:NO];
 		[_windowController.bottomDrawer close];
 	}
 }
