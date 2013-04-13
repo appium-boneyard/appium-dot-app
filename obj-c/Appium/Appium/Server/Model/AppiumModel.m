@@ -9,7 +9,7 @@
 #import "AppiumModel.h"
 #import "AppiumAppDelegate.h"
 #import "Utility.h"
-#import "AppiumPreferenceFile.h"
+#import "AppiumPreferencesFile.h"
 
 #pragma  mark - Model
 

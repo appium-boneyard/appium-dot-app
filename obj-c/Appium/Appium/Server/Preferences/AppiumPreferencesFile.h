@@ -1,5 +1,5 @@
 //
-//  AppiumPrefernceFile.h
+//  AppiumPreferencesFile.h
 //  Appium
 //
 //  Created by Dan Cuellar on 4/12/13.

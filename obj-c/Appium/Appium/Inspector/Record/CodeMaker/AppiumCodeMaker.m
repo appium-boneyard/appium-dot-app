@@ -12,7 +12,7 @@
 #import "AppiumCodeMakerJavaPlugin.h"
 #import "AppiumCodeMakerPythonPlugin.h"
 #import "AppiumCodeMakerRubyPlugin.h"
-#import "AppiumPreferenceFile.h"
+#import "AppiumPreferencesFile.h"
 
 @class AppiumCodeMakerAction;
 
