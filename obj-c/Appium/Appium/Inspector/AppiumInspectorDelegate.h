@@ -31,10 +31,10 @@
     WebDriverElementNode *_browserRootNode;
 	WebDriverElementNode *_selection;
 	NSMutableArray *_selectedIndexes;
-	SERemoteWebDriver *_driver;
 	NSString *_lastPageSource;
 }
 
+@property SERemoteWebDriver *driver;
 @property NSNumber *showDisabled;
 @property NSNumber *showInvisible;
 @property NSNumber *isRecording;

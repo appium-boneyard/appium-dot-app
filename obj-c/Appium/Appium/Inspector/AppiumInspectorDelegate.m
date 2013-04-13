@@ -60,22 +60,22 @@
 -(void)populateDOM
 {
     [self performSelectorOnMainThread:@selector(setDomIsPopulatingToYes) withObject:nil waitUntilDone:YES];
-	if (_driver == nil)
+	if (self.driver == nil)
 	{
 		AppiumModel *model = [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] model];
-		_driver = [[SERemoteWebDriver alloc] initWithServerAddress:[model ipAddress] port:[[model port] integerValue]];
-		NSArray *sessions = [_driver allSessions];
+		self.driver = [[SERemoteWebDriver alloc] initWithServerAddress:[model ipAddress] port:[[model port] integerValue]];
+		NSArray *sessions = [self.driver allSessions];
 		if (sessions.count > 0)
 		{
-			[_driver setSession:[sessions objectAtIndex:0]];
+			[self.driver setSession:[sessions objectAtIndex:0]];
 		}
-		if (sessions.count == 0 || _driver.session == nil || _driver.session.capabilities.platform == nil)
+		if (sessions.count == 0 || self.driver.session == nil || self.driver.session.capabilities.platform == nil)
 		{
 			SECapabilities *capabilities = [SECapabilities new];
 			[capabilities setPlatform:@"Mac"];
 			[capabilities setBrowserName:@"iOS"];
 			[capabilities setVersion:@"6.1"];
-			[_driver startSessionWithDesiredCapabilities:capabilities requiredCapabilities:nil];
+			[self.driver startSessionWithDesiredCapabilities:capabilities requiredCapabilities:nil];
 		}
 		[self refreshScreenshot];
 	}
@@ -93,12 +93,12 @@
 
 -(void)refreshPageSource
 {
-	_lastPageSource = [_driver pageSource];
+	_lastPageSource = [self.driver pageSource];
 }
 
 -(void)refreshScreenshot
 {
-	NSImage *screenshot = [_driver screenshot];
+	NSImage *screenshot = [self.driver screenshot];
 	[_windowController.screenshotImageView setImage:screenshot];
 }
 
@@ -322,7 +322,7 @@
             NSString *indexString = [component substringWithRange:[firstResult rangeAtIndex:2]];
             NSInteger index = [[[NSNumberFormatter new] numberFromString:indexString] integerValue] - 1;
             NSArray *elements = (result == nil) ?
-			[_driver findElementsBy:[SEBy tagName:tagString]] :
+			[self.driver findElementsBy:[SEBy tagName:tagString]] :
 			[result findElementsBy:[SEBy tagName:tagString]];
             if (elements.count > index)
             {
@@ -465,7 +465,7 @@
 	{
 		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_ALERT_ACCEPT params:nil]];
 	}
-	[_driver acceptAlert];
+	[self.driver acceptAlert];
 	[self refresh:sender];
 }
 
@@ -475,7 +475,7 @@
 	{
 		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_ALERT_DISMISS params:nil]];
 	}
-	[_driver dismissAlert];
+	[self.driver dismissAlert];
 	[self refresh:sender];
 }
 
@@ -507,7 +507,7 @@
 	{
 		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_SWIPE params:args]];
 	}
-	[_driver executeScript:@"mobile: swipe" arguments:args];
+	[self.driver executeScript:@"mobile: swipe" arguments:args];
 	
 	// reset for next iteration
 	[_swipePopover close];
