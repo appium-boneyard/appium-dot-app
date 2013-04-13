@@ -40,7 +40,6 @@ NSString* upgradeUrl;
 	BOOL updatesAvailable = NO;
     updatesAvailable |= [self checkForAppUpdate];
     updatesAvailable |= [self checkForPackageUpdate];
-	updatesAvailable |= [self checkForPluginUpdates];
 	if (alertOnNoUpdates && !updatesAvailable)
 	{
 		NSAlert *alert = [NSAlert new];
@@ -194,77 +193,20 @@ NSString* upgradeUrl;
 
     [[mainWindowController node] installPackage:@"appium" forceInstall:YES];
     
+	NSString *iwdPath = [NSString stringWithFormat:@"%@/submodules/instruments-without-delay/build", [[mainWindowController node] pathtoPackage:@"appium"]];
+	if (![[NSFileManager defaultManager] fileExistsAtPath:iwdPath])
+    {
+		NSString *submodulesPath = [NSString stringWithFormat:@"%@/submodules", [[mainWindowController node] pathtoPackage:@"appium"]];
+		[[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Building \"Instruments Without Delay\"..." waitUntilDone:YES];
+		[Utility runTaskWithBinary:@"/bin/sh" arguments:[NSArray arrayWithObjects:@"./build.sh", nil] path:[NSString stringWithFormat:@"%@/%@", submodulesPath, @"instruments-without-delay"]];
+    }
+	
     [[mainWindowController window] makeKeyAndOrderFront:self];
     [installationWindow close];
     NSAlert *upgradeCompleteAlert = [NSAlert new];
     [upgradeCompleteAlert setMessageText:@"Upgrade Complete"];
     [upgradeCompleteAlert setInformativeText:@"The package was installed successfully"];
     [upgradeCompleteAlert performSelectorOnMainThread:@selector(runModal) withObject:nil waitUntilDone:YES];
-	
-	[self checkForPluginUpdates];
 }
 
-#pragma mark - Plugin Update
-
--(BOOL) checkForPluginUpdates
-{
-	NSString *pluginPath = [NSString stringWithFormat:@"%@/submodules/instruments-without-delay", [[mainWindowController node] pathtoPackage:@"appium"]];
-	
-    if (![[NSFileManager defaultManager] fileExistsAtPath:pluginPath])
-    {
-        [self performSelectorOnMainThread:@selector(doPluginUpgradeAlert) withObject:nil waitUntilDone:NO];
-		return YES;
-    }
-	return NO;
-}
-
--(void) doPluginUpgradeAlert
-{
-    NSAlert *upgradeAlert = [NSAlert new];
-    [upgradeAlert setMessageText:@"Appium Plugin Available"];
-    [upgradeAlert setInformativeText:[NSString stringWithFormat:@"Would you like to add \"Instruments Without Delay?\""]];
-    [upgradeAlert addButtonWithTitle:@"No"];
-    [upgradeAlert addButtonWithTitle:@"Yes"];
-    if([upgradeAlert runModal] == NSAlertSecondButtonReturn)
-    {
-        [self performSelectorInBackground:@selector(buildPlugins) withObject:nil];
-    }
-}
-
--(void) buildPlugins
-{
-    AppiumInstallationWindowController *installationWindow = [[AppiumInstallationWindowController alloc] initWithWindowNibName:@"AppiumInstallationWindow"];
-    [installationWindow performSelectorOnMainThread:@selector(showWindow:) withObject:self waitUntilDone:YES];
-    [[installationWindow window] makeKeyAndOrderFront:self];
-    [[mainWindowController window] orderOut:self];
-    [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Downloading \"Instruments Without Delay...\"" waitUntilDone:YES];
-	
-	// download
-	NSString *stringURL = @"https://github.com/facebook/instruments-without-delay/archive/master.zip";
-    NSLog(@"Downloading \"Instruments Without Delay\" from \"%@.\"", stringURL);
-    NSURL  *url = [NSURL URLWithString:stringURL];
-    NSData *urlData = [NSData dataWithContentsOfURL:url];
-    if (!urlData)
-    {
-        return;
-    }
-	
-	// unzip
-	NSString *submodulesPath = [NSString stringWithFormat:@"%@/submodules", [[mainWindowController node] pathtoPackage:@"appium"]];
-	[Utility runTaskWithBinary:@"/bin/mkdir" arguments:[NSArray arrayWithObjects:@"-p", submodulesPath, nil]];
-	[urlData writeToFile:@"/tmp/iwd.zip" atomically:YES];
-	[Utility runTaskWithBinary:@"/usr/bin/unzip" arguments:[NSArray arrayWithObjects:@"/tmp/iwd.zip", @"-d", submodulesPath, nil]];
-	[Utility runTaskWithBinary:@"/bin/mv" arguments:[NSArray arrayWithObjects:@"instruments-without-delay-master", @"instruments-without-delay", nil] path:submodulesPath];
-
-	// build
-    [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Building \"Instruments Without Delay...\"" waitUntilDone:YES];
-	[Utility runTaskWithBinary:@"/bin/sh" arguments:[NSArray arrayWithObjects:@"./build.sh", nil] path:[NSString stringWithFormat:@"%@/%@", submodulesPath, @"instruments-without-delay"]];
-    
-    [[mainWindowController window] makeKeyAndOrderFront:self];
-    [installationWindow close];
-    NSAlert *upgradeCompleteAlert = [NSAlert new];
-    [upgradeCompleteAlert setMessageText:@"Build Complete"];
-    [upgradeCompleteAlert setInformativeText:@"\"Instruments Without Delay\" was built successfully"];
-    [upgradeCompleteAlert performSelectorOnMainThread:@selector(runModal) withObject:nil waitUntilDone:YES];
-}
 @end
