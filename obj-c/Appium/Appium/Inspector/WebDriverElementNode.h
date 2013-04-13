@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@class WebDriverElementNode;
-
 @interface WebDriverElementNode : NSObject<NSToolbarDelegate> {
 
 @private

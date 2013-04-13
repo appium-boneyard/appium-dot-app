@@ -7,11 +7,8 @@
 //
 
 #import "AppiumMenuBarManager.h"
-#import "AppiumAppDelegate.h"
-#import "AppiumMonitorWindowController.h"
 
-NSStatusBar *bar;
-NSStatusItem *item;
+#import "AppiumAppDelegate.h"
 
 @implementation AppiumMenuBarManager
 
@@ -19,18 +16,18 @@ NSStatusItem *item;
 {
     self = [super init];
     if (self) {
-        bar = [NSStatusBar systemStatusBar];
-		item = [bar statusItemWithLength:NSVariableStatusItemLength];
+        _bar = [NSStatusBar systemStatusBar];
+		_item = [_bar statusItemWithLength:NSVariableStatusItemLength];
 		NSImage *iconImage = [[NSApplication sharedApplication] applicationIconImage];
 		NSSize newSize = [iconImage size];
 		newSize.height = 18;
 		newSize.width = 18;
 		[iconImage setSize:newSize];
-		[item setImage:iconImage];
-		[item setHighlightMode:YES];
+		[_item setImage:iconImage];
+		[_item setHighlightMode:YES];
 		
 		// add menu
-		[item setMenu:[NSMenu new]];
+		[_item setMenu:[NSMenu new]];
 		[self installServerOffMenu:[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController]];
 
     }
@@ -64,11 +61,11 @@ NSStatusItem *item;
 	[portItem setTitle:[NSString stringWithFormat:@"Port: %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"Server Port"]]];
 	[portItem setHidden:NO];
 
-	[[item menu] removeAllItems];
-	[[item menu] addItem:stopServerItem];
-	[[item menu] addItem:[NSMenuItem separatorItem]];
-	[[item menu] addItem:addressItem];
-	[[item menu] addItem:portItem];
+	[[_item menu] removeAllItems];
+	[[_item menu] addItem:stopServerItem];
+	[[_item menu] addItem:[NSMenuItem separatorItem]];
+	[[_item menu] addItem:addressItem];
+	[[_item menu] addItem:portItem];
 }
 
 -(void) installServerOffMenu:(AppiumMonitorWindowController*)mainWindowController
@@ -79,7 +76,7 @@ NSStatusItem *item;
 	[startServerItem setAction:@selector(launchButtonClicked:)];
     [startServerItem setTarget:mainWindowController];
 	
-    [[item menu] removeAllItems];
-    [[item menu] addItem:startServerItem];
+    [[_item menu] removeAllItems];
+    [[_item menu] addItem:startServerItem];
 }
 @end

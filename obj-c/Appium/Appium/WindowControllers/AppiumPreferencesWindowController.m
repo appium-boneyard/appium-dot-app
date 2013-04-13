@@ -7,6 +7,7 @@
 //
 
 #import "AppiumPreferencesWindowController.h"
+
 #import "AppiumAppDelegate.h"
 
 @interface AppiumPreferencesWindowController ()

@@ -7,9 +7,12 @@
 //
 
 #import "AppiumInspectorDelegate.h"
-#import "AppiumModel.h"
-#import "AppiumAppDelegate.h"
+
 #import <QuartzCore/QuartzCore.h>
+
+@interface AppiumInspectorDelegate ()
+    @property (readonly) SERemoteWebDriver *driver;
+@end
 
 @implementation AppiumInspectorDelegate
 
@@ -19,34 +22,26 @@
     if (self) {
         _showDisabled = YES;
         _showInvisible = YES;
-		_isRecording = NO;
-        [self setKeysToSend:@""];
         [self setDomIsPopulating:NO];
-        _codeMaker = [AppiumCodeMaker new];
     }
     return self;
 }
 
+-(SERemoteWebDriver*) driver { return _windowController.driver; }
+
 -(NSNumber*) showDisabled { return [NSNumber numberWithBool:_showDisabled]; }
 -(NSNumber*) showInvisible { return [NSNumber numberWithBool:_showInvisible]; }
--(NSNumber*) isRecording { return [NSNumber numberWithBool:_isRecording]; }
 
 -(void) setShowDisabled:(NSNumber *)showDisabled
 {
     _showDisabled = [showDisabled boolValue];
-    [self performSelectorInBackground:@selector(refreshAll) withObject:nil];
+    [self performSelectorInBackground:@selector(populateDOM) withObject:nil];
 }
 
 -(void) setShowInvisible:(NSNumber *)showInvisible
 {
     _showInvisible = [showInvisible boolValue];
-    [self performSelectorInBackground:@selector(refreshAll) withObject:nil];
-}
-
--(void) setIsRecording:(NSNumber *)isRecording
-{
-	_isRecording = [isRecording boolValue];
-	[_windowController.recordButton setWantsLayer:_isRecording];
+    [self performSelectorInBackground:@selector(populateDOM) withObject:nil];
 }
 
 -(void)setDomIsPopulatingToYes
@@ -61,26 +56,8 @@
 -(void)populateDOM
 {
     [self performSelectorOnMainThread:@selector(setDomIsPopulatingToYes) withObject:nil waitUntilDone:YES];
-	if (_driver == nil)
-	{
-		AppiumModel *model = [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] model];
-		_driver = [[SERemoteWebDriver alloc] initWithServerAddress:[model ipAddress] port:[[model port] integerValue]];
-		NSArray *sessions = [_driver allSessions];
-		if (sessions.count > 0)
-		{
-			[_driver setSession:[sessions objectAtIndex:0]];
-		}
-		if (sessions.count == 0 || _driver.session == nil || _driver.session.capabilities.platform == nil)
-		{
-			SECapabilities *capabilities = [SECapabilities new];
-			[capabilities setPlatform:@"Mac"];
-			[capabilities setBrowserName:@"iOS"];
-			[capabilities setVersion:@"6.1"];
-			[_driver startSessionWithDesiredCapabilities:capabilities requiredCapabilities:nil];
-		}
-		[self refreshScreenshot];
-	}
 	[self refreshPageSource];
+    [self refreshScreenshot];
 	NSError *e = nil;
 	NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData: [_lastPageSource dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: &e];
 	_browserRootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict parent:nil showDisabled:[self.showDisabled boolValue] showInvisible:[self.showInvisible boolValue]];
@@ -92,14 +69,19 @@
     [self performSelectorOnMainThread:@selector(setDomIsPopulatingToNo) withObject:nil waitUntilDone:YES];
 }
 
+-(IBAction)refresh:(id)sender
+{
+    [self performSelectorInBackground:@selector(populateDOM) withObject:nil];
+}
+
 -(void)refreshPageSource
 {
-	_lastPageSource = [_driver pageSource];
+	_lastPageSource = [self.driver pageSource];
 }
 
 -(void)refreshScreenshot
 {
-	NSImage *screenshot = [_driver screenshot];
+	NSImage *screenshot = [self.driver screenshot];
 	[_windowController.screenshotImageView setImage:screenshot];
 }
 
@@ -280,15 +262,15 @@
 
 -(void) handleClickAt:(NSPoint)windowPoint seleniumPoint:(NSPoint)seleniumPoint
 {
-	if (_swipePopover.isShown)
+	if (_windowController.swipePopover.isShown)
 	{
-		if (_swipePopoverViewController.beginPointWasSetLast)
+		if (_windowController.swipePopoverViewController.beginPointWasSetLast)
 		{
-			[_swipePopoverViewController setEndPoint:seleniumPoint];
+			[_windowController.swipePopoverViewController setEndPoint:seleniumPoint];
 		}
 		else
 		{
-			[_swipePopoverViewController setBeginPoint:seleniumPoint];
+			[_windowController.swipePopoverViewController setBeginPoint:seleniumPoint];
 		}
 	}
 	else
@@ -323,7 +305,7 @@
             NSString *indexString = [component substringWithRange:[firstResult rangeAtIndex:2]];
             NSInteger index = [[[NSNumberFormatter new] numberFromString:indexString] integerValue] - 1;
             NSArray *elements = (result == nil) ?
-			[_driver findElementsBy:[SEBy tagName:tagString]] :
+			[self.driver findElementsBy:[SEBy tagName:tagString]] :
 			[result findElementsBy:[SEBy tagName:tagString]];
             if (elements.count > index)
             {
@@ -415,124 +397,6 @@
 	}
 	locator.xPath = [self xPathForSelectedNode];
 	return locator;
-}
-
--(IBAction)refresh:(id)sender
-{
-    [self performSelectorInBackground:@selector(refreshAll) withObject:nil];
-}
-
--(void)refreshAll
-{
-    [self performSelectorOnMainThread:@selector(setDomIsPopulatingToYes) withObject:nil waitUntilDone:YES];
-    [self refreshScreenshot];
-    [self refreshPageSource];
-    [self populateDOM];
-}
-
--(IBAction)tap:(id)sender
-{
-    SEWebElement *element = [self elementForSelectedNode];
-	if (_isRecording)
-	{
-		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_TAP params:[NSArray arrayWithObjects:[self locatorForSelectedNode], nil]]];
-	}
-    [element click];
-    [self refresh:sender];
-}
-
--(IBAction)sendKeys:(id)sender
-{
-    SEWebElement *element = [self elementForSelectedNode];
-	if (_isRecording)
-	{
-		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_SEND_KEYS params:[NSArray arrayWithObjects:[self keysToSend], [self locatorForSelectedNode], nil]]];
-	}
-    [element sendKeys:self.keysToSend];
-    [self refresh:sender];
-}
-
--(IBAction)comment:(id)sender
-{
-	if (_isRecording)
-	{
-		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_COMMENT params:[NSArray arrayWithObjects:[self keysToSend], nil]]];
-	}
-}
-
--(IBAction)acceptAlert:(id)sender
-{
-	if (_isRecording)
-	{
-		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_ALERT_ACCEPT params:nil]];
-	}
-	[_driver acceptAlert];
-	[self refresh:sender];
-}
-
--(IBAction)dismissAlert:(id)sender
-{
-	if (_isRecording)
-	{
-		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_ALERT_DISMISS params:nil]];
-	}
-	[_driver dismissAlert];
-	[self refresh:sender];
-}
-
-- (IBAction)toggleSwipePopover:(id)sender
-{
-	if (!_swipePopover.isShown) {
-		[_windowController.selectedElementHighlightView setHidden:YES];
-		[_swipePopover showRelativeToRect:[_swipeButton bounds]
-								   ofView:_swipeButton
-							preferredEdge:NSMaxYEdge];
-	} else {
-		[_swipePopover close];
-		[_windowController.selectedElementHighlightView setHidden:NO];
-	}
-}
-
--(IBAction)performSwipe:(id)sender
-{
-	// perform the swipe
-	NSArray *args = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys:
-													  [NSNumber numberWithInteger:_swipePopoverViewController.numberOfFingers], @"touchCount",
-													  [NSNumber numberWithInteger:_swipePopoverViewController.beginPoint.x], @"startX",
-													  [NSNumber numberWithInteger:_swipePopoverViewController.beginPoint.y], @"startY",
-													  [NSNumber numberWithInteger:_swipePopoverViewController.endPoint.x], @"endX",
-													  [NSNumber numberWithInteger:_swipePopoverViewController.endPoint.y], @"endY",
-													  _swipePopoverViewController.duration, @"duration",
-													  nil],nil];
-	if (_isRecording)
-	{
-		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_SWIPE params:args]];
-	}
-	[_driver executeScript:@"mobile: swipe" arguments:args];
-	
-	// reset for next iteration
-	[_swipePopover close];
-	[_swipePopoverViewController reset];
-	[_windowController.selectedElementHighlightView setHidden:NO];
-	[self refresh:sender];
-}
-
--(IBAction)toggleRecording:(id)sender
-{
-	[self setIsRecording:[NSNumber numberWithBool:!_isRecording]];
-	if (_isRecording)
-	{
-		[_windowController.bottomDrawer openOnEdge:NSMinYEdge];
-	}
-	else
-	{
-		[_windowController.bottomDrawer close];
-	}
-}
-
--(IBAction)clearRecording:(id)sender
-{
-	[_codeMaker reset];
 }
 
 @end

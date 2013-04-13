@@ -6,8 +6,9 @@
 //  Copyright (c) 2013 Appium. All rights reserved.
 //
 
-#import "AppiumGlobals.h"
 #import "Utility.h"
+
+#import "AppiumGlobals.h"
 
 @implementation Utility
 

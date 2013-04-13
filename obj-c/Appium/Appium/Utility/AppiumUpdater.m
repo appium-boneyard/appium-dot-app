@@ -7,8 +7,7 @@
 //
 
 #import "AppiumUpdater.h"
-#import "AppiumAppDelegate.h"
-#import "AppiumMonitorWindowController.h"
+
 #import "AppiumInstallationWindowController.h"
 #import "Utility.h"
 

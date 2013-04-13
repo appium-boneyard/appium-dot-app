@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Appium. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 #import "AppiumModel.h"
 
 @interface NSApplication (AppiumAppleScriptSupport)

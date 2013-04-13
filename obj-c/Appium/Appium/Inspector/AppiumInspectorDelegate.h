@@ -7,41 +7,39 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WebDriverElementNode.h"
-#import "AppiumInspectorWindowController.h"
-#import "AppiumCodeMaker.h"
-#import "AppiumCodeMakerSwipePopOverViewController.h"
 #import <Selenium/SERemoteWebDriver.h>
+#import "AppiumCodeMakerLocator.h"
+#import "AppiumInspectorWindowController.h"
+#import "WebDriverElementNode.h"
 
-@class WebDriverElementNode;
+@class AppiumCodeMakerLocator;
 @class AppiumInspectorWindowController;
-@class AppiumCodeMakerSwipePopOverViewController;
+@class SERemoteWebDriver;
+@class SEWebElement;
+@class WebDriverElementNode;
 
 @interface AppiumInspectorDelegate : NSObject {
 
 @private
 	IBOutlet AppiumInspectorWindowController *_windowController;
-	IBOutlet NSPopover *_swipePopover;
-	IBOutlet AppiumCodeMakerSwipePopOverViewController *_swipePopoverViewController;
-	IBOutlet NSButton *_swipeButton;
 	BOOL _showDisabled;
     BOOL _showInvisible;
-	BOOL _isRecording;
 	WebDriverElementNode *_rootNode;
     WebDriverElementNode *_browserRootNode;
-	WebDriverElementNode *_selection;
 	NSMutableArray *_selectedIndexes;
-	SERemoteWebDriver *_driver;
 	NSString *_lastPageSource;
 }
 
+@property WebDriverElementNode *selection;
 @property NSNumber *showDisabled;
 @property NSNumber *showInvisible;
-@property NSNumber *isRecording;
-@property NSString *keysToSend;
 @property BOOL domIsPopulating;
-@property AppiumCodeMaker *codeMaker;
+
+-(SEWebElement*) elementForSelectedNode;
+-(NSString*) xPathForSelectedNode;
+-(AppiumCodeMakerLocator*) locatorForSelectedNode;
 
 -(void) handleClickAt:(NSPoint)windowPoint seleniumPoint:(NSPoint)seleniumPoint;
+-(IBAction)refresh:(id)sender;
 
 @end

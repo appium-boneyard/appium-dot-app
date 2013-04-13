@@ -6,21 +6,11 @@
 //  Copyright (c) 2013 Appium. All rights reserved.
 //
 
-#import "AppiumAppDelegate.h"
-#import "AppiumInspectorWindowController.h"
 #import "AppiumMonitorWindowController.h"
-#import "NodeInstance.h"
+
+#import "AppiumAppDelegate.h"
 #import "ANSIUtility.h"
 #import "Utility.h"
-#import "AppiumInstallationWindowController.h"
-#import "AppiumMenuBarManager.h"
-
-AppiumMenuBarManager *menuBarManager;
-AppiumInspectorWindowController *inspectorWindow;
-
-@interface AppiumMonitorWindowController ()
-
-@end
 
 @implementation AppiumMonitorWindowController
 
@@ -39,8 +29,8 @@ AppiumInspectorWindowController *inspectorWindow;
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-	menuBarManager = [AppiumMenuBarManager new];
-	[[self model] addObserver:menuBarManager forKeyPath:@"isServerRunning" options:NSKeyValueObservingOptionNew context:NULL];
+	_menuBarManager = [AppiumMenuBarManager new];
+	[[self model] addObserver:_menuBarManager forKeyPath:@"isServerRunning" options:NSKeyValueObservingOptionNew context:NULL];
 }
 
 - (IBAction) launchButtonClicked:(id)sender
