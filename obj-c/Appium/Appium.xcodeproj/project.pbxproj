@@ -81,20 +81,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		360BD91316F12B03000D3BEB /* AppiumInspectorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumInspectorDelegate.h; path = Inspector/AppiumInspectorDelegate.h; sourceTree = "<group>"; };
-		360BD91416F12B03000D3BEB /* AppiumInspectorDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumInspectorDelegate.m; path = Inspector/AppiumInspectorDelegate.m; sourceTree = "<group>"; };
+		360BD91316F12B03000D3BEB /* AppiumInspectorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumInspectorDelegate.h; sourceTree = "<group>"; };
+		360BD91416F12B03000D3BEB /* AppiumInspectorDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumInspectorDelegate.m; sourceTree = "<group>"; };
 		3612E5F716E5B6520050CF0A /* appium.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = appium.sdef; sourceTree = "<group>"; };
 		3612E5FA16E5B69C0050CF0A /* AppiumAppleScriptSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumAppleScriptSupport.h; sourceTree = "<group>"; };
 		3612E5FB16E5B69C0050CF0A /* AppiumAppleScriptSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumAppleScriptSupport.m; sourceTree = "<group>"; };
-		36187189171871EB0021D7F7 /* AppiumPreferenceFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppiumPreferenceFile.h; sourceTree = "<group>"; };
-		3618718B171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerSwipePopOverViewController.h; path = Inspector/CodeMaker/PopOvers/AppiumCodeMakerSwipePopOverViewController.h; sourceTree = "<group>"; };
-		3618718C171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerSwipePopOverViewController.m; path = Inspector/CodeMaker/PopOvers/AppiumCodeMakerSwipePopOverViewController.m; sourceTree = "<group>"; };
-		362B5B631713B35A00F1B344 /* AppiumCodeMakerCSharpPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerCSharpPlugin.h; path = Inspector/CodeMaker/Plugins/AppiumCodeMakerCSharpPlugin.h; sourceTree = "<group>"; };
-		362B5B641713B35A00F1B344 /* AppiumCodeMakerCSharpPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerCSharpPlugin.m; path = Inspector/CodeMaker/Plugins/AppiumCodeMakerCSharpPlugin.m; sourceTree = "<group>"; };
+		36187189171871EB0021D7F7 /* AppiumPreferencesFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppiumPreferencesFile.h; sourceTree = "<group>"; };
+		3618718B171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerSwipePopOverViewController.h; path = PopOvers/AppiumCodeMakerSwipePopOverViewController.h; sourceTree = "<group>"; };
+		3618718C171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerSwipePopOverViewController.m; path = PopOvers/AppiumCodeMakerSwipePopOverViewController.m; sourceTree = "<group>"; };
+		362B5B631713B35A00F1B344 /* AppiumCodeMakerCSharpPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerCSharpPlugin.h; path = Plugins/AppiumCodeMakerCSharpPlugin.h; sourceTree = "<group>"; };
+		362B5B641713B35A00F1B344 /* AppiumCodeMakerCSharpPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerCSharpPlugin.m; path = Plugins/AppiumCodeMakerCSharpPlugin.m; sourceTree = "<group>"; };
 		362DF1E4170F4350001CAD1D /* AppiumGlobals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppiumGlobals.h; sourceTree = "<group>"; };
-		363236791713B2470088FFBC /* AppiumCodeMakerPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerPlugin.h; path = Inspector/CodeMaker/Plugins/AppiumCodeMakerPlugin.h; sourceTree = "<group>"; };
-		364C076616E94B1A0093011E /* AppiumMenuBarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumMenuBarManager.h; path = Utility/AppiumMenuBarManager.h; sourceTree = "<group>"; };
-		364C076716E94B1A0093011E /* AppiumMenuBarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumMenuBarManager.m; path = Utility/AppiumMenuBarManager.m; sourceTree = "<group>"; };
+		363236791713B2470088FFBC /* AppiumCodeMakerPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerPlugin.h; path = Plugins/AppiumCodeMakerPlugin.h; sourceTree = "<group>"; };
+		364C076616E94B1A0093011E /* AppiumMenuBarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumMenuBarManager.h; sourceTree = "<group>"; };
+		364C076716E94B1A0093011E /* AppiumMenuBarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumMenuBarManager.m; sourceTree = "<group>"; };
 		3652B34216E4287600BDE3E4 /* AppiumLaunchButtonTextTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumLaunchButtonTextTransformer.h; sourceTree = "<group>"; };
 		3652B34316E4287600BDE3E4 /* AppiumLaunchButtonTextTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumLaunchButtonTextTransformer.m; sourceTree = "<group>"; };
 		365A2D7C16E3C847007BADF9 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utility.h; path = Utility/Utility.h; sourceTree = "<group>"; };
@@ -103,55 +103,55 @@
 		365A2D8316E3DF48007BADF9 /* ANSIUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ANSIUtility.m; path = Utility/ANSIUtility.m; sourceTree = "<group>"; };
 		365A2D8516E3E67B007BADF9 /* NodeInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NodeInstance.h; path = Utility/NodeInstance.h; sourceTree = "<group>"; };
 		365A2D8616E3E67B007BADF9 /* NodeInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NodeInstance.m; path = Utility/NodeInstance.m; sourceTree = "<group>"; };
-		365CA3BD16EFB9C000A6DBE8 /* AppiumModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumModel.h; path = Model/AppiumModel.h; sourceTree = "<group>"; };
-		365CA3BE16EFB9C000A6DBE8 /* AppiumModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumModel.m; path = Model/AppiumModel.m; sourceTree = "<group>"; };
+		365CA3BD16EFB9C000A6DBE8 /* AppiumModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumModel.h; sourceTree = "<group>"; };
+		365CA3BE16EFB9C000A6DBE8 /* AppiumModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumModel.m; sourceTree = "<group>"; };
 		365CA3C116EFDA8300A6DBE8 /* AppiumPortTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumPortTransformer.h; sourceTree = "<group>"; };
 		365CA3C216EFDA8300A6DBE8 /* AppiumPortTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumPortTransformer.m; sourceTree = "<group>"; };
-		3661735417172AB200E786DF /* AppiumCodeMakerPythonPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerPythonPlugin.h; path = Inspector/CodeMaker/Plugins/AppiumCodeMakerPythonPlugin.h; sourceTree = "<group>"; };
-		3661735517172AB200E786DF /* AppiumCodeMakerPythonPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerPythonPlugin.m; path = Inspector/CodeMaker/Plugins/AppiumCodeMakerPythonPlugin.m; sourceTree = "<group>"; };
-		368230D81715C73F00FF113F /* AppiumCodeMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMaker.h; path = Inspector/CodeMaker/AppiumCodeMaker.h; sourceTree = "<group>"; };
-		368230D91715C73F00FF113F /* AppiumCodeMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMaker.m; path = Inspector/CodeMaker/AppiumCodeMaker.m; sourceTree = "<group>"; };
-		368C3FF316E8F3EC00B84DE6 /* AppiumUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumUpdater.h; path = Utility/AppiumUpdater.h; sourceTree = "<group>"; };
-		368C3FF416E8F3EC00B84DE6 /* AppiumUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumUpdater.m; path = Utility/AppiumUpdater.m; sourceTree = "<group>"; };
+		3661735417172AB200E786DF /* AppiumCodeMakerPythonPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerPythonPlugin.h; path = Plugins/AppiumCodeMakerPythonPlugin.h; sourceTree = "<group>"; };
+		3661735517172AB200E786DF /* AppiumCodeMakerPythonPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerPythonPlugin.m; path = Plugins/AppiumCodeMakerPythonPlugin.m; sourceTree = "<group>"; };
+		368230D81715C73F00FF113F /* AppiumCodeMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMaker.h; sourceTree = "<group>"; };
+		368230D91715C73F00FF113F /* AppiumCodeMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMaker.m; sourceTree = "<group>"; };
+		368C3FF316E8F3EC00B84DE6 /* AppiumUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumUpdater.h; sourceTree = "<group>"; };
+		368C3FF416E8F3EC00B84DE6 /* AppiumUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumUpdater.m; sourceTree = "<group>"; };
 		369126DB1704DABD007FBB5E /* AppiumInspectorRefreshButtonTextTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumInspectorRefreshButtonTextTransformer.h; sourceTree = "<group>"; };
 		369126DC1704DABD007FBB5E /* AppiumInspectorRefreshButtonTextTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumInspectorRefreshButtonTextTransformer.m; sourceTree = "<group>"; };
-		36919C89171616AD00AC2C63 /* AppiumCodeMakerAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerAction.h; path = Inspector/CodeMaker/AppiumCodeMakerAction.h; sourceTree = "<group>"; };
-		36919C8A171616AD00AC2C63 /* AppiumCodeMakerAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerAction.m; path = Inspector/CodeMaker/AppiumCodeMakerAction.m; sourceTree = "<group>"; };
-		3695CAAD16E3FCAE003697A9 /* AppiumInstallationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumInstallationWindowController.h; path = WindowControllers/AppiumInstallationWindowController.h; sourceTree = "<group>"; };
-		3695CAAE16E3FCAE003697A9 /* AppiumInstallationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumInstallationWindowController.m; path = WindowControllers/AppiumInstallationWindowController.m; sourceTree = "<group>"; };
+		36919C89171616AD00AC2C63 /* AppiumCodeMakerAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerAction.h; sourceTree = "<group>"; };
+		36919C8A171616AD00AC2C63 /* AppiumCodeMakerAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerAction.m; sourceTree = "<group>"; };
+		3695CAAD16E3FCAE003697A9 /* AppiumInstallationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumInstallationWindowController.h; sourceTree = "<group>"; };
+		3695CAAE16E3FCAE003697A9 /* AppiumInstallationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumInstallationWindowController.m; sourceTree = "<group>"; };
 		3695CAAF16E3FCAE003697A9 /* AppiumInstallationWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AppiumInstallationWindow.xib; path = XIBs/AppiumInstallationWindow.xib; sourceTree = "<group>"; };
 		3695E3C216FD08C800AD1544 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		36A7659F16F01648002A7D6A /* AppiumPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumPreferencesWindowController.h; path = WindowControllers/AppiumPreferencesWindowController.h; sourceTree = "<group>"; };
-		36A765A016F01648002A7D6A /* AppiumPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumPreferencesWindowController.m; path = WindowControllers/AppiumPreferencesWindowController.m; sourceTree = "<group>"; };
+		36A7659F16F01648002A7D6A /* AppiumPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumPreferencesWindowController.h; sourceTree = "<group>"; };
+		36A765A016F01648002A7D6A /* AppiumPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumPreferencesWindowController.m; sourceTree = "<group>"; };
 		36A765A116F01648002A7D6A /* AppiumPreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AppiumPreferencesWindow.xib; path = XIBs/AppiumPreferencesWindow.xib; sourceTree = "<group>"; };
-		36A765A516F01C7C002A7D6A /* appium.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = appium.icns; path = "Supporting Files/appium.icns"; sourceTree = "<group>"; };
-		36A871C6170B980F005BFD15 /* AppiumInspectorScreenshotImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumInspectorScreenshotImageView.h; path = Inspector/AppiumInspectorScreenshotImageView.h; sourceTree = "<group>"; };
-		36A871C7170B980F005BFD15 /* AppiumInspectorScreenshotImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumInspectorScreenshotImageView.m; path = Inspector/AppiumInspectorScreenshotImageView.m; sourceTree = "<group>"; };
-		36AA8D6C16E40B28007472C1 /* AppiumMonitorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumMonitorWindowController.h; path = WindowControllers/AppiumMonitorWindowController.h; sourceTree = "<group>"; };
-		36AA8D6D16E40B28007472C1 /* AppiumMonitorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumMonitorWindowController.m; path = WindowControllers/AppiumMonitorWindowController.m; sourceTree = "<group>"; };
+		36A765A516F01C7C002A7D6A /* appium.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = appium.icns; sourceTree = "<group>"; };
+		36A871C6170B980F005BFD15 /* AppiumInspectorScreenshotImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumInspectorScreenshotImageView.h; sourceTree = "<group>"; };
+		36A871C7170B980F005BFD15 /* AppiumInspectorScreenshotImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumInspectorScreenshotImageView.m; sourceTree = "<group>"; };
+		36AA8D6C16E40B28007472C1 /* AppiumMonitorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumMonitorWindowController.h; sourceTree = "<group>"; };
+		36AA8D6D16E40B28007472C1 /* AppiumMonitorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumMonitorWindowController.m; sourceTree = "<group>"; };
 		36AA8D6E16E40B28007472C1 /* AppiumMonitorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AppiumMonitorWindow.xib; path = XIBs/AppiumMonitorWindow.xib; sourceTree = "<group>"; };
-		36B2F18516E6379C008764E0 /* defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaults.plist; path = "Supporting Files/defaults.plist"; sourceTree = "<group>"; };
+		36B2F18516E6379C008764E0 /* defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = defaults.plist; sourceTree = "<group>"; };
 		36BA17B916E81BF30041DD86 /* AppiumAppPathTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumAppPathTransformer.h; sourceTree = "<group>"; };
 		36BA17BA16E81BF30041DD86 /* AppiumAppPathTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumAppPathTransformer.m; sourceTree = "<group>"; };
-		36C9479A1719D0CB008DE83F /* AppiumRecorderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumRecorderDelegate.h; path = Inspector/AppiumRecorderDelegate.h; sourceTree = "<group>"; };
-		36C9479B1719D0CB008DE83F /* AppiumRecorderDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumRecorderDelegate.m; path = Inspector/AppiumRecorderDelegate.m; sourceTree = "<group>"; };
-		36CD44EB16F0D5C300194193 /* AppiumInspectorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumInspectorWindowController.h; path = WindowControllers/AppiumInspectorWindowController.h; sourceTree = "<group>"; };
-		36CD44EC16F0D5C300194193 /* AppiumInspectorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumInspectorWindowController.m; path = WindowControllers/AppiumInspectorWindowController.m; sourceTree = "<group>"; };
+		36C9479A1719D0CB008DE83F /* AppiumRecorderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumRecorderDelegate.h; sourceTree = "<group>"; };
+		36C9479B1719D0CB008DE83F /* AppiumRecorderDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumRecorderDelegate.m; sourceTree = "<group>"; };
+		36CD44EB16F0D5C300194193 /* AppiumInspectorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumInspectorWindowController.h; sourceTree = "<group>"; };
+		36CD44EC16F0D5C300194193 /* AppiumInspectorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumInspectorWindowController.m; sourceTree = "<group>"; };
 		36CD44ED16F0D5C300194193 /* AppiumInspectorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AppiumInspectorWindow.xib; path = XIBs/AppiumInspectorWindow.xib; sourceTree = "<group>"; };
-		36CD44F416F0E22800194193 /* WebDriverElementNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebDriverElementNode.h; path = Inspector/WebDriverElementNode.h; sourceTree = "<group>"; };
-		36CD44F516F0E22800194193 /* WebDriverElementNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebDriverElementNode.m; path = Inspector/WebDriverElementNode.m; sourceTree = "<group>"; };
+		36CD44F416F0E22800194193 /* WebDriverElementNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebDriverElementNode.h; sourceTree = "<group>"; };
+		36CD44F516F0E22800194193 /* WebDriverElementNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebDriverElementNode.m; sourceTree = "<group>"; };
 		36CEB7C816E3662E00B5B100 /* Appium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36CEB7CB16E3662E00B5B100 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		36CEB7CE16E3662E00B5B100 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		36CEB7CF16E3662E00B5B100 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		36CEB7D016E3662E00B5B100 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		36CEB7D316E3662E00B5B100 /* Appium-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Appium-Info.plist"; sourceTree = "<group>"; };
+		36CEB7D316E3662E00B5B100 /* Appium-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Appium-Info.plist"; path = "../Appium-Info.plist"; sourceTree = "<group>"; };
 		36CEB7D516E3662E00B5B100 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		36CEB7D716E3662E00B5B100 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Supporting Files/main.m"; sourceTree = "<group>"; };
-		36CEB7D916E3662E00B5B100 /* Appium-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Appium-Prefix.pch"; sourceTree = "<group>"; };
+		36CEB7D716E3662E00B5B100 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		36CEB7D916E3662E00B5B100 /* Appium-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Appium-Prefix.pch"; path = "../Appium-Prefix.pch"; sourceTree = "<group>"; };
 		36CEB7DB16E3662E00B5B100 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		36CEB7DD16E3662E00B5B100 /* AppiumAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppiumAppDelegate.h; path = Delegates/AppiumAppDelegate.h; sourceTree = "<group>"; };
-		36CEB7DE16E3662E00B5B100 /* AppiumAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppiumAppDelegate.m; path = Delegates/AppiumAppDelegate.m; sourceTree = "<group>"; };
+		36CEB7DD16E3662E00B5B100 /* AppiumAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppiumAppDelegate.h; sourceTree = "<group>"; };
+		36CEB7DE16E3662E00B5B100 /* AppiumAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppiumAppDelegate.m; sourceTree = "<group>"; };
 		36CEB7E116E3662E00B5B100 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		36CEB7E816E3662E00B5B100 /* AppiumTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppiumTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		36CEB7E916E3662E00B5B100 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -161,12 +161,12 @@
 		36CEB7F516E3662E00B5B100 /* AppiumTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppiumTests.m; sourceTree = "<group>"; };
 		36D17E2816F144E600DC5797 /* Upgrade.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = Upgrade.applescript; sourceTree = "<group>"; };
 		36F5FA2B16F4E87E007751D6 /* Selenium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Selenium.framework; path = Frameworks/Selenium.framework; sourceTree = "<group>"; };
-		36FF07AB171743AC009ED9E2 /* AppiumCodeMakerLocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerLocator.h; path = Inspector/CodeMaker/AppiumCodeMakerLocator.h; sourceTree = "<group>"; };
-		36FF07AC171743AC009ED9E2 /* AppiumCodeMakerLocator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerLocator.m; path = Inspector/CodeMaker/AppiumCodeMakerLocator.m; sourceTree = "<group>"; };
-		36FF07AE171747C4009ED9E2 /* AppiumCodeMakerJavaPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerJavaPlugin.h; path = Inspector/CodeMaker/Plugins/AppiumCodeMakerJavaPlugin.h; sourceTree = "<group>"; };
-		36FF07AF171747C4009ED9E2 /* AppiumCodeMakerJavaPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerJavaPlugin.m; path = Inspector/CodeMaker/Plugins/AppiumCodeMakerJavaPlugin.m; sourceTree = "<group>"; };
-		36FF07B117174935009ED9E2 /* AppiumCodeMakerRubyPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerRubyPlugin.h; path = Inspector/CodeMaker/Plugins/AppiumCodeMakerRubyPlugin.h; sourceTree = "<group>"; };
-		36FF07B217174935009ED9E2 /* AppiumCodeMakerRubyPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerRubyPlugin.m; path = Inspector/CodeMaker/Plugins/AppiumCodeMakerRubyPlugin.m; sourceTree = "<group>"; };
+		36FF07AB171743AC009ED9E2 /* AppiumCodeMakerLocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerLocator.h; sourceTree = "<group>"; };
+		36FF07AC171743AC009ED9E2 /* AppiumCodeMakerLocator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerLocator.m; sourceTree = "<group>"; };
+		36FF07AE171747C4009ED9E2 /* AppiumCodeMakerJavaPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerJavaPlugin.h; path = Plugins/AppiumCodeMakerJavaPlugin.h; sourceTree = "<group>"; };
+		36FF07AF171747C4009ED9E2 /* AppiumCodeMakerJavaPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerJavaPlugin.m; path = Plugins/AppiumCodeMakerJavaPlugin.m; sourceTree = "<group>"; };
+		36FF07B117174935009ED9E2 /* AppiumCodeMakerRubyPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerRubyPlugin.h; path = Plugins/AppiumCodeMakerRubyPlugin.h; sourceTree = "<group>"; };
+		36FF07B217174935009ED9E2 /* AppiumCodeMakerRubyPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerRubyPlugin.m; path = Plugins/AppiumCodeMakerRubyPlugin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +203,91 @@
 			path = AppleScript;
 			sourceTree = "<group>";
 		};
+		3614B16B1719F29900A72D99 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				3614B16F1719F3F400A72D99 /* MenuBar */,
+				365CA3C016EFB9C400A6DBE8 /* Model */,
+				3614B16D1719F35400A72D99 /* Monitor */,
+				3614B16C1719F2F300A72D99 /* Preferences */,
+				3614B16E1719F3AC00A72D99 /* Update */,
+				36CEB7DD16E3662E00B5B100 /* AppiumAppDelegate.h */,
+				36CEB7DE16E3662E00B5B100 /* AppiumAppDelegate.m */,
+			);
+			path = Server;
+			sourceTree = "<group>";
+		};
+		3614B16C1719F2F300A72D99 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				36187189171871EB0021D7F7 /* AppiumPreferencesFile.h */,
+				36A7659F16F01648002A7D6A /* AppiumPreferencesWindowController.h */,
+				36A765A016F01648002A7D6A /* AppiumPreferencesWindowController.m */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
+		3614B16D1719F35400A72D99 /* Monitor */ = {
+			isa = PBXGroup;
+			children = (
+				36AA8D6C16E40B28007472C1 /* AppiumMonitorWindowController.h */,
+				36AA8D6D16E40B28007472C1 /* AppiumMonitorWindowController.m */,
+			);
+			path = Monitor;
+			sourceTree = "<group>";
+		};
+		3614B16E1719F3AC00A72D99 /* Update */ = {
+			isa = PBXGroup;
+			children = (
+				3695CAAD16E3FCAE003697A9 /* AppiumInstallationWindowController.h */,
+				3695CAAE16E3FCAE003697A9 /* AppiumInstallationWindowController.m */,
+				368C3FF316E8F3EC00B84DE6 /* AppiumUpdater.h */,
+				368C3FF416E8F3EC00B84DE6 /* AppiumUpdater.m */,
+			);
+			path = Update;
+			sourceTree = "<group>";
+		};
+		3614B16F1719F3F400A72D99 /* MenuBar */ = {
+			isa = PBXGroup;
+			children = (
+				364C076616E94B1A0093011E /* AppiumMenuBarManager.h */,
+				364C076716E94B1A0093011E /* AppiumMenuBarManager.m */,
+			);
+			path = MenuBar;
+			sourceTree = "<group>";
+		};
+		3614B1701719F43700A72D99 /* XIBs */ = {
+			isa = PBXGroup;
+			children = (
+				36CD44ED16F0D5C300194193 /* AppiumInspectorWindow.xib */,
+				3695CAAF16E3FCAE003697A9 /* AppiumInstallationWindow.xib */,
+				36AA8D6E16E40B28007472C1 /* AppiumMonitorWindow.xib */,
+				36A765A116F01648002A7D6A /* AppiumPreferencesWindow.xib */,
+				36CEB7E016E3662E00B5B100 /* MainMenu.xib */,
+			);
+			name = XIBs;
+			path = Appium;
+			sourceTree = "<group>";
+		};
+		3614B1711719F46200A72D99 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				3652B34116E4285900BDE3E4 /* NSValueTransformers */,
+				3695CAB316E3FFCD003697A9 /* Utility */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
+		3614B1721719F4C400A72D99 /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				363236781713B1EA0088FFBC /* CodeMaker */,
+				36C9479A1719D0CB008DE83F /* AppiumRecorderDelegate.h */,
+				36C9479B1719D0CB008DE83F /* AppiumRecorderDelegate.m */,
+			);
+			path = Record;
+			sourceTree = "<group>";
+		};
 		3618718A1718879A0021D7F7 /* PopOvers */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,10 +309,10 @@
 				36FF07AB171743AC009ED9E2 /* AppiumCodeMakerLocator.h */,
 				36FF07AC171743AC009ED9E2 /* AppiumCodeMakerLocator.m */,
 			);
-			name = CodeMaker;
+			path = CodeMaker;
 			sourceTree = "<group>";
 		};
-		3652B34116E4285900BDE3E4 /* Transformers */ = {
+		3652B34116E4285900BDE3E4 /* NSValueTransformers */ = {
 			isa = PBXGroup;
 			children = (
 				36BA17B916E81BF30041DD86 /* AppiumAppPathTransformer.h */,
@@ -239,7 +324,7 @@
 				365CA3C116EFDA8300A6DBE8 /* AppiumPortTransformer.h */,
 				365CA3C216EFDA8300A6DBE8 /* AppiumPortTransformer.m */,
 			);
-			path = Transformers;
+			path = NSValueTransformers;
 			sourceTree = "<group>";
 		};
 		365CA3C016EFB9C400A6DBE8 /* Model */ = {
@@ -248,7 +333,7 @@
 				365CA3BD16EFB9C000A6DBE8 /* AppiumModel.h */,
 				365CA3BE16EFB9C000A6DBE8 /* AppiumModel.m */,
 			);
-			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		368230D71715C72100FF113F /* Plugins */ = {
@@ -267,27 +352,11 @@
 			name = Plugins;
 			sourceTree = "<group>";
 		};
-		3695CAB216E3FFB0003697A9 /* XIBs */ = {
-			isa = PBXGroup;
-			children = (
-				36CD44ED16F0D5C300194193 /* AppiumInspectorWindow.xib */,
-				3695CAAF16E3FCAE003697A9 /* AppiumInstallationWindow.xib */,
-				36AA8D6E16E40B28007472C1 /* AppiumMonitorWindow.xib */,
-				36A765A116F01648002A7D6A /* AppiumPreferencesWindow.xib */,
-				36CEB7E016E3662E00B5B100 /* MainMenu.xib */,
-			);
-			name = XIBs;
-			sourceTree = "<group>";
-		};
 		3695CAB316E3FFCD003697A9 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
 				365A2D8216E3DF48007BADF9 /* ANSIUtility.h */,
 				365A2D8316E3DF48007BADF9 /* ANSIUtility.m */,
-				364C076616E94B1A0093011E /* AppiumMenuBarManager.h */,
-				364C076716E94B1A0093011E /* AppiumMenuBarManager.m */,
-				368C3FF316E8F3EC00B84DE6 /* AppiumUpdater.h */,
-				368C3FF416E8F3EC00B84DE6 /* AppiumUpdater.m */,
 				365A2D8516E3E67B007BADF9 /* NodeInstance.h */,
 				365A2D8616E3E67B007BADF9 /* NodeInstance.m */,
 				365A2D7C16E3C847007BADF9 /* Utility.h */,
@@ -296,50 +365,28 @@
 			name = Utility;
 			sourceTree = "<group>";
 		};
-		3695CAB416E40004003697A9 /* WindowControllers */ = {
-			isa = PBXGroup;
-			children = (
-				36CD44EB16F0D5C300194193 /* AppiumInspectorWindowController.h */,
-				36CD44EC16F0D5C300194193 /* AppiumInspectorWindowController.m */,
-				3695CAAD16E3FCAE003697A9 /* AppiumInstallationWindowController.h */,
-				3695CAAE16E3FCAE003697A9 /* AppiumInstallationWindowController.m */,
-				36AA8D6C16E40B28007472C1 /* AppiumMonitorWindowController.h */,
-				36AA8D6D16E40B28007472C1 /* AppiumMonitorWindowController.m */,
-				36A7659F16F01648002A7D6A /* AppiumPreferencesWindowController.h */,
-				36A765A016F01648002A7D6A /* AppiumPreferencesWindowController.m */,
-			);
-			name = WindowControllers;
-			sourceTree = "<group>";
-		};
-		36A765A416F01BBF002A7D6A /* Delegates */ = {
-			isa = PBXGroup;
-			children = (
-				36CEB7DD16E3662E00B5B100 /* AppiumAppDelegate.h */,
-				36CEB7DE16E3662E00B5B100 /* AppiumAppDelegate.m */,
-			);
-			name = Delegates;
-			sourceTree = "<group>";
-		};
 		36CD44F016F0E1CE00194193 /* Inspector */ = {
 			isa = PBXGroup;
 			children = (
-				363236781713B1EA0088FFBC /* CodeMaker */,
+				3614B1721719F4C400A72D99 /* Record */,
 				360BD91316F12B03000D3BEB /* AppiumInspectorDelegate.h */,
 				360BD91416F12B03000D3BEB /* AppiumInspectorDelegate.m */,
-				36C9479A1719D0CB008DE83F /* AppiumRecorderDelegate.h */,
-				36C9479B1719D0CB008DE83F /* AppiumRecorderDelegate.m */,
 				36A871C6170B980F005BFD15 /* AppiumInspectorScreenshotImageView.h */,
 				36A871C7170B980F005BFD15 /* AppiumInspectorScreenshotImageView.m */,
+				36CD44EB16F0D5C300194193 /* AppiumInspectorWindowController.h */,
+				36CD44EC16F0D5C300194193 /* AppiumInspectorWindowController.m */,
 				36CD44F416F0E22800194193 /* WebDriverElementNode.h */,
 				36CD44F516F0E22800194193 /* WebDriverElementNode.m */,
 			);
-			name = Inspector;
+			path = Inspector;
 			sourceTree = "<group>";
 		};
 		36CEB7BF16E3662E00B5B100 = {
 			isa = PBXGroup;
 			children = (
 				36CEB7D116E3662E00B5B100 /* Appium */,
+				36CEB7D216E3662E00B5B100 /* Supporting Files */,
+				3614B1701719F43700A72D99 /* XIBs */,
 				36CEB7EE16E3662E00B5B100 /* AppiumTests */,
 				36CEB7CA16E3662E00B5B100 /* Frameworks */,
 				36CEB7C916E3662E00B5B100 /* Products */,
@@ -381,16 +428,10 @@
 			isa = PBXGroup;
 			children = (
 				362DF1E4170F4350001CAD1D /* AppiumGlobals.h */,
-				36187189171871EB0021D7F7 /* AppiumPreferenceFile.h */,
 				3612E5F916E5B6820050CF0A /* AppleScript */,
-				36A765A416F01BBF002A7D6A /* Delegates */,
 				36CD44F016F0E1CE00194193 /* Inspector */,
-				365CA3C016EFB9C400A6DBE8 /* Model */,
-				36CEB7D216E3662E00B5B100 /* Supporting Files */,
-				3652B34116E4285900BDE3E4 /* Transformers */,
-				3695CAB316E3FFCD003697A9 /* Utility */,
-				3695CAB216E3FFB0003697A9 /* XIBs */,
-				3695CAB416E40004003697A9 /* WindowControllers */,
+				3614B1711719F46200A72D99 /* Misc */,
+				3614B16B1719F29900A72D99 /* Server */,
 			);
 			path = Appium;
 			sourceTree = "<group>";
@@ -407,6 +448,7 @@
 				36CEB7D716E3662E00B5B100 /* main.m */,
 			);
 			name = "Supporting Files";
+			path = "Appium/Supporting Files";
 			sourceTree = "<group>";
 		};
 		36CEB7EE16E3662E00B5B100 /* AppiumTests */ = {
@@ -603,6 +645,7 @@
 				36CEB7D516E3662E00B5B100 /* en */,
 			);
 			name = InfoPlist.strings;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		36CEB7DA16E3662E00B5B100 /* Credits.rtf */ = {
@@ -611,6 +654,7 @@
 				36CEB7DB16E3662E00B5B100 /* en */,
 			);
 			name = Credits.rtf;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		36CEB7E016E3662E00B5B100 /* MainMenu.xib */ = {
