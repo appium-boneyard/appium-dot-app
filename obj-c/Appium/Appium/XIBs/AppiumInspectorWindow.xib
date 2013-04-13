@@ -864,11 +864,37 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
+					<object class="NSButton" id="879366542">
+						<reference key="NSNextResponder" ref="378629004"/>
+						<int key="NSvFlags">265</int>
+						<array class="NSMutableArray" key="NSSubviews"/>
+						<string key="NSFrame">{{647, 200}, {75, 19}}</string>
+						<reference key="NSSuperview" ref="378629004"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="NSEnabled">YES</bool>
+						<object class="NSButtonCell" key="NSCell" id="979225224">
+							<int key="NSCellFlags">-2080374784</int>
+							<int key="NSCellFlags2">134217728</int>
+							<string key="NSContents">Replay</string>
+							<reference key="NSSupport" ref="28246310"/>
+							<string key="NSCellIdentifier">_NS:9</string>
+							<reference key="NSControlView" ref="879366542"/>
+							<int key="NSButtonFlags">-2038153216</int>
+							<int key="NSButtonFlags2">164</int>
+							<string key="NSAlternateContents"/>
+							<string key="NSKeyEquivalent"/>
+							<int key="NSPeriodicDelay">400</int>
+							<int key="NSPeriodicInterval">75</int>
+						</object>
+						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+					</object>
 					<object class="NSButton" id="970890803">
 						<reference key="NSNextResponder" ref="378629004"/>
 						<int key="NSvFlags">265</int>
 						<array class="NSMutableArray" key="NSSubviews"/>
-						<string key="NSFrame">{{736, 193}, {82, 32}}</string>
+						<string key="NSFrame">{{730, 200}, {75, 19}}</string>
 						<reference key="NSSuperview" ref="378629004"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -877,11 +903,15 @@
 							<int key="NSCellFlags">67108864</int>
 							<int key="NSCellFlags2">134217728</int>
 							<string key="NSContents">Clear</string>
-							<reference key="NSSupport" ref="453601671"/>
+							<object class="NSFont" key="NSSupport">
+								<string key="NSName">LucidaGrande</string>
+								<double key="NSSize">12</double>
+								<int key="NSfFlags">4883</int>
+							</object>
 							<string key="NSCellIdentifier">_NS:9</string>
 							<reference key="NSControlView" ref="970890803"/>
 							<int key="NSButtonFlags">-2038284288</int>
-							<int key="NSButtonFlags2">129</int>
+							<int key="NSButtonFlags2">164</int>
 							<string key="NSAlternateContents"/>
 							<string key="NSKeyEquivalent"/>
 							<int key="NSPeriodicDelay">200</int>
@@ -895,7 +925,7 @@
 						<string key="NSFrame">{{817, 200}, {50, 21}}</string>
 						<reference key="NSSuperview" ref="378629004"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="1034142380"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="560027501">
@@ -931,6 +961,7 @@
 						<string key="NSFrame">{{263, 201}, {103, 18}}</string>
 						<reference key="NSSuperview" ref="378629004"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="824997804">
@@ -958,6 +989,7 @@
 						<string key="NSFrame">{{128, 201}, {119, 18}}</string>
 						<reference key="NSSuperview" ref="378629004"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="952418107">
@@ -1163,7 +1195,7 @@
 								<string key="NSFrame">{{847, 1}, {16, 194}}</string>
 								<reference key="NSSuperview" ref="1034142380"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="970890803"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:83</string>
 								<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 								<reference key="NSTarget" ref="1034142380"/>
@@ -2251,6 +2283,14 @@
 					</object>
 					<int key="connectionID">369</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">replay:</string>
+						<reference key="source" ref="455036667"/>
+						<reference key="destination" ref="879366542"/>
+					</object>
+					<int key="connectionID">409</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -2471,6 +2511,7 @@
 							<reference ref="427010185"/>
 							<reference ref="339990262"/>
 							<reference ref="999194875"/>
+							<reference ref="879366542"/>
 							<reference ref="970890803"/>
 						</array>
 						<reference key="parent" ref="0"/>
@@ -2906,6 +2947,7 @@
 							<reference ref="352653648"/>
 						</array>
 						<reference key="parent" ref="378629004"/>
+						<string key="objectName">Clear Button</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">339</int>
@@ -2916,6 +2958,20 @@
 						<int key="objectID">357</int>
 						<reference key="object" ref="455036667"/>
 						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">407</int>
+						<reference key="object" ref="879366542"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="979225224"/>
+						</array>
+						<reference key="parent" ref="378629004"/>
+						<string key="objectName">Replay Button</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">408</int>
+						<reference key="object" ref="979225224"/>
+						<reference key="parent" ref="879366542"/>
 					</object>
 				</array>
 			</object>
@@ -2999,6 +3055,8 @@
 				<string key="338.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="339.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="357.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="407.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="408.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="43.CustomClassName">AppiumInspectorScreenshotImageView</string>
 				<string key="43.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="44.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3023,7 +3081,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">406</int>
+			<int key="maxID">409</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3143,55 +3201,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">AppiumRecorderDelegate</string>
 					<string key="superclassName">NSObject</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="acceptAlert:">id</string>
-						<string key="clearRecording:">id</string>
-						<string key="comment:">id</string>
-						<string key="dismissAlert:">id</string>
-						<string key="performSwipe:">id</string>
-						<string key="sendKeys:">id</string>
-						<string key="tap:">id</string>
-						<string key="toggleRecording:">id</string>
-						<string key="toggleSwipePopover:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="acceptAlert:">
-							<string key="name">acceptAlert:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clearRecording:">
-							<string key="name">clearRecording:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="comment:">
-							<string key="name">comment:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="dismissAlert:">
-							<string key="name">dismissAlert:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="performSwipe:">
-							<string key="name">performSwipe:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="sendKeys:">
-							<string key="name">sendKeys:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="tap:">
-							<string key="name">tap:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="toggleRecording:">
-							<string key="name">toggleRecording:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="toggleSwipePopover:">
-							<string key="name">toggleSwipePopover:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">_windowController</string>
 						<string key="NS.object.0">AppiumInspectorWindowController</string>

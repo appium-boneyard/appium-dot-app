@@ -10,13 +10,14 @@
 
 @implementation AppiumCodeMakerAction
 
--(id) initWithActionType:(AppiumCodeMakerActionType)actionType params:(NSArray*)params
+-(id) initWithActionType:(AppiumCodeMakerActionType)actionType params:(NSArray*)params block:(AppiumCodeMakerActionBlock)block
 {
 	self = [super init];
     if (self)
 	{
 		self.actionType = actionType;
 		self.params = params;
+        self.block = block;
 	}
     return self;
 }

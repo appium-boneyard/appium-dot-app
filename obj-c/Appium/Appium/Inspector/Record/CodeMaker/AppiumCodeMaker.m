@@ -87,7 +87,6 @@
 		_renderedActions = [_renderedActions stringByAppendingString:[_activePlugin renderAction:action]];
 	}
 	[self render];
-
 }
 
 #pragma mark - Public Methods
@@ -104,6 +103,15 @@
 	[_actions addObject:action];
 	_renderedActions =[_renderedActions stringByAppendingString:[_activePlugin renderAction:action]];
 	[self render];
+}
+
+-(void) replay
+{
+  	for(int i=0; i < _actions.count; i++)
+	{
+        AppiumCodeMakerAction *action = [_actions objectAtIndex:i];
+        action.block();
+    }
 }
 
 @end

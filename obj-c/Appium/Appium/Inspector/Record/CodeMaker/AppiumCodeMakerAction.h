@@ -20,11 +20,14 @@ typedef enum appiumCodeMakerActionTypes
 
 } AppiumCodeMakerActionType;
 
+typedef void(^AppiumCodeMakerActionBlock)(void);
+
 @interface AppiumCodeMakerAction : NSObject
 
 @property AppiumCodeMakerActionType actionType;
 @property NSArray *params;
+@property (copy) AppiumCodeMakerActionBlock block;
 
--(id) initWithActionType:(AppiumCodeMakerActionType)actionType params:(NSArray*)params;
+-(id) initWithActionType:(AppiumCodeMakerActionType)actionType params:(NSArray*)params block:(AppiumCodeMakerActionBlock)block;
 
 @end

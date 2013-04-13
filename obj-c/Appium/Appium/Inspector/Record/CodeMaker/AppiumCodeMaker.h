@@ -27,5 +27,6 @@
 
 -(void) reset;
 -(void) addAction:(AppiumCodeMakerAction*)action;
+-(void) replay;
 
 @end

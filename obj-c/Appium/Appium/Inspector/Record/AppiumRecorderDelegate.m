@@ -45,51 +45,64 @@
 -(IBAction)tap:(id)sender
 {
     SEWebElement *element = [self.inspector elementForSelectedNode];
+    AppiumCodeMakerActionBlock block = ^{
+        [element click];
+        [self.inspector refresh:nil];
+    };
 	if (_isRecording)
 	{
-		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_TAP params:[NSArray arrayWithObjects:[self.inspector locatorForSelectedNode], nil]]];
+		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_TAP params:[NSArray arrayWithObjects:[self.inspector locatorForSelectedNode], nil] block:block]];
 	}
-    [element click];
-    [self.inspector refresh:sender];
+    block();
 }
 
 -(IBAction)sendKeys:(id)sender
 {
     SEWebElement *element = [self.inspector elementForSelectedNode];
+    NSString *keysToSend = [self.keysToSend copy];
+    AppiumCodeMakerActionBlock block = ^{
+        [element sendKeys:keysToSend];
+        [self.inspector refresh:nil];
+    };
 	if (_isRecording)
 	{
-		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_SEND_KEYS params:[NSArray arrayWithObjects:[self keysToSend], [self.inspector locatorForSelectedNode], nil]]];
+		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_SEND_KEYS params:[NSArray arrayWithObjects:[self keysToSend], [self.inspector locatorForSelectedNode], nil] block:block]];
 	}
-    [element sendKeys:self.keysToSend];
-    [self.inspector refresh:sender];
+    block();
 }
 
 -(IBAction)comment:(id)sender
 {
 	if (_isRecording)
 	{
-		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_COMMENT params:[NSArray arrayWithObjects:[self keysToSend], nil]]];
+		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_COMMENT params:[NSArray arrayWithObjects:[self keysToSend], nil] block:^{}]];
 	}
 }
 
 -(IBAction)acceptAlert:(id)sender
 {
+    AppiumCodeMakerActionBlock block = ^{
+        [self.driver acceptAlert];
+        [self.inspector refresh:nil];
+    };
 	if (_isRecording)
 	{
-		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_ALERT_ACCEPT params:nil]];
+		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_ALERT_ACCEPT params:nil block:block]];
 	}
-	[self.driver acceptAlert];
-	[self.inspector refresh:sender];
+    block();
 }
 
 -(IBAction)dismissAlert:(id)sender
 {
+    AppiumCodeMakerActionBlock block = ^{
+        [self.driver dismissAlert];
+        [self.inspector refresh:nil];
+    };
 	if (_isRecording)
 	{
-		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_ALERT_DISMISS params:nil]];
+		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_ALERT_DISMISS params:nil block:block]];
 	}
-	[self.driver dismissAlert];
-	[self.inspector refresh:sender];
+	block();
 }
 
 - (IBAction)toggleSwipePopover:(id)sender
@@ -114,13 +127,16 @@
 													  [NSNumber numberWithInteger:_windowController.swipePopoverViewController.beginPoint.y], @"startY",
 													  [NSNumber numberWithInteger:_windowController.swipePopoverViewController.endPoint.x], @"endX",
 													  [NSNumber numberWithInteger:_windowController.swipePopoverViewController.endPoint.y], @"endY",
-													  _windowController.swipePopoverViewController.duration, @"duration",
+													  [_windowController.swipePopoverViewController.duration copy], @"duration",
 													  nil],nil];
+    AppiumCodeMakerActionBlock block = ^{
+        [self.driver executeScript:@"mobile: swipe" arguments:args];
+    };
 	if (_isRecording)
 	{
-		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_SWIPE params:args]];
+		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_SWIPE params:args block:block]];
 	}
-	[self.driver executeScript:@"mobile: swipe" arguments:args];
+	block();
 	
 	// reset for next iteration
 	[_windowController.swipePopover close];
@@ -166,6 +182,11 @@
 -(IBAction)clearRecording:(id)sender
 {
 	[_codeMaker reset];
+}
+
+-(IBAction)replay:(id)sender
+{
+    [_codeMaker replay];
 }
 
 @end
