@@ -29,7 +29,7 @@
 						[[AppiumCodeMakerPythonPlugin alloc] initWithCodeMaker:self], @"Python",
 						[[AppiumCodeMakerRubyPlugin alloc] initWithCodeMaker:self], @"Ruby",
 						nil];
-		[self setSelectedPluginString:[[NSUserDefaults standardUserDefaults] stringForKey:PLIST_CODEMAKER_LANGUAGE]];
+		[self setSelectedPluginString:[[NSUserDefaults standardUserDefaults] stringForKey:APPIUM_PLIST_CODEMAKER_LANGUAGE]];
     }
     return self;
 }
@@ -48,21 +48,21 @@
 -(void)setSelectedPluginString:(NSString *)selectedPluginString
 {
 	[self setActivePlugin:(id<AppiumCodeMakerPlugin>)[_plugins objectForKey:selectedPluginString]];
-	[[NSUserDefaults standardUserDefaults] setObject:selectedPluginString forKey:PLIST_CODEMAKER_LANGUAGE];
+	[[NSUserDefaults standardUserDefaults] setObject:selectedPluginString forKey:APPIUM_PLIST_CODEMAKER_LANGUAGE];
 	
 }
 
--(NSNumber*) useBoilerPlate { return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:PLIST_USE_CODEMAKER_BOILERPLATE]]; }
+-(NSNumber*) useBoilerPlate { return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:APPIUM_PLIST_USE_CODEMAKER_BOILERPLATE]]; }
 -(void) setUseBoilerPlate:(NSNumber *)useBoilerPlate
 {
-	[[NSUserDefaults standardUserDefaults] setBool:[useBoilerPlate boolValue] forKey:PLIST_USE_CODEMAKER_BOILERPLATE];
+	[[NSUserDefaults standardUserDefaults] setBool:[useBoilerPlate boolValue] forKey:APPIUM_PLIST_USE_CODEMAKER_BOILERPLATE];
 	[self renderAll];
 }
 
--(NSNumber*) useXPathOnly { return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:PLIST_USE_XPATH_ONLY]]; }
+-(NSNumber*) useXPathOnly { return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:APPIUM_PLIST_USE_XPATH_ONLY]]; }
 -(void) setUseXPathOnly:(NSNumber *)useXPathOnly
 {
-	[[NSUserDefaults standardUserDefaults] setBool:[useXPathOnly boolValue] forKey:PLIST_USE_XPATH_ONLY];
+	[[NSUserDefaults standardUserDefaults] setBool:[useXPathOnly boolValue] forKey:APPIUM_PLIST_USE_XPATH_ONLY];
 	[self renderAll];
 }
 

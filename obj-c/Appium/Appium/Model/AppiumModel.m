@@ -36,37 +36,37 @@ BOOL _isServerListening;
 
 #pragma mark - Properties
 
--(NSString*) androidActivity { return [_defaults stringForKey:PLIST_ANDROID_ACTIVITY]; }
--(void) setAndroidActivity:(NSString *)androidActivity { [_defaults setValue:androidActivity forKey:PLIST_ANDROID_ACTIVITY]; }
+-(NSString*) androidActivity { return [_defaults stringForKey:APPIUM_PLIST_ANDROID_ACTIVITY]; }
+-(void) setAndroidActivity:(NSString *)androidActivity { [_defaults setValue:androidActivity forKey:APPIUM_PLIST_ANDROID_ACTIVITY]; }
 
--(NSString*) androidPackage { return [_defaults stringForKey:PLIST_ANDROID_PACKAGE]; }
--(void) setAndroidPackage:(NSString *)androidPackage { [_defaults setValue:androidPackage forKey:PLIST_ANDROID_PACKAGE]; }
+-(NSString*) androidPackage { return [_defaults stringForKey:APPIUM_PLIST_ANDROID_PACKAGE]; }
+-(void) setAndroidPackage:(NSString *)androidPackage { [_defaults setValue:androidPackage forKey:APPIUM_PLIST_ANDROID_PACKAGE]; }
 
--(NSString*) appPath { return [_defaults stringForKey:PLIST_APP_PATH];}
--(void) setAppPath:(NSString *)appPath { [_defaults setValue:appPath forKey:PLIST_APP_PATH]; }
+-(NSString*) appPath { return [_defaults stringForKey:APPIUM_PLIST_APP_PATH];}
+-(void) setAppPath:(NSString *)appPath { [_defaults setValue:appPath forKey:APPIUM_PLIST_APP_PATH]; }
 
--(NSString*) bundleID { return [_defaults stringForKey:PLIST_BUNDLEID]; }
--(void) setBundleID:(NSString *)bundleID { [_defaults setValue:bundleID forKey:PLIST_BUNDLEID]; }
+-(NSString*) bundleID { return [_defaults stringForKey:APPIUM_PLIST_BUNDLEID]; }
+-(void) setBundleID:(NSString *)bundleID { [_defaults setValue:bundleID forKey:APPIUM_PLIST_BUNDLEID]; }
 
--(BOOL) checkForUpdates { return [_defaults boolForKey:PLIST_CHECK_FOR_UPDATES]; }
--(void) setCheckForUpdates:(BOOL)checkForUpdates { [_defaults setBool:checkForUpdates forKey:PLIST_CHECK_FOR_UPDATES]; }
+-(BOOL) checkForUpdates { return [_defaults boolForKey:APPIUM_PLIST_CHECK_FOR_UPDATES]; }
+-(void) setCheckForUpdates:(BOOL)checkForUpdates { [_defaults setBool:checkForUpdates forKey:APPIUM_PLIST_CHECK_FOR_UPDATES]; }
 
--(NSString*) externalAppiumPackagePath { return [_defaults stringForKey:PLIST_EXTERNAL_APPIUM_PACKAGE_PATH]; }
--(void) setExternalAppiumPackagePath:(NSString *)customAppiumPackagePath { [_defaults setValue:customAppiumPackagePath forKey:PLIST_EXTERNAL_APPIUM_PACKAGE_PATH]; }
+-(NSString*) externalAppiumPackagePath { return [_defaults stringForKey:APPIUM_PLIST_EXTERNAL_APPIUM_PACKAGE_PATH]; }
+-(void) setExternalAppiumPackagePath:(NSString *)customAppiumPackagePath { [_defaults setValue:customAppiumPackagePath forKey:APPIUM_PLIST_EXTERNAL_APPIUM_PACKAGE_PATH]; }
 
--(NSString*) externalNodeJSBinaryPath { return [_defaults stringForKey:PLIST_EXTERNAL_NODEJS_BINARY_PATH]; }
--(void) setExternalNodeJSBinaryPath:(NSString *)customNodeJSBinaryPath { [_defaults setValue:customNodeJSBinaryPath forKey:PLIST_EXTERNAL_NODEJS_BINARY_PATH]; }
+-(NSString*) externalNodeJSBinaryPath { return [_defaults stringForKey:APPIUM_PLIST_EXTERNAL_NODEJS_BINARY_PATH]; }
+-(void) setExternalNodeJSBinaryPath:(NSString *)customNodeJSBinaryPath { [_defaults setValue:customNodeJSBinaryPath forKey:APPIUM_PLIST_EXTERNAL_NODEJS_BINARY_PATH]; }
 
--(BOOL) developerMode { return [_defaults boolForKey:PLIST_DEVELOPER_MODE]; }
--(void) setDeveloperMode:(BOOL)developerMode { [_defaults setBool:developerMode forKey:PLIST_DEVELOPER_MODE]; }
+-(BOOL) developerMode { return [_defaults boolForKey:APPIUM_PLIST_DEVELOPER_MODE]; }
+-(void) setDeveloperMode:(BOOL)developerMode { [_defaults setBool:developerMode forKey:APPIUM_PLIST_DEVELOPER_MODE]; }
 
--(iOSAutomationDevice) deviceToForce { return [[_defaults stringForKey:PLIST_DEVICE] isEqualToString:PLIST_FORCE_DEVICE_IPAD] ? iOSAutomationDevice_iPad : iOSAutomationDevice_iPhone; }
--(void) setDeviceToForce:(iOSAutomationDevice)deviceToForce {[self setDeviceToForceString:(deviceToForce == iOSAutomationDevice_iPad ? PLIST_FORCE_DEVICE_IPAD : PLIST_FORCE_DEVICE_IPHONE)]; }
--(NSString*) deviceToForceString { return [[_defaults valueForKey:PLIST_DEVICE] isEqualToString:PLIST_FORCE_DEVICE_IPAD] ? PLIST_FORCE_DEVICE_IPAD : PLIST_FORCE_DEVICE_IPHONE ; }
--(void) setDeviceToForceString:(NSString *)deviceToForceString { [_defaults setValue:deviceToForceString forKey:PLIST_DEVICE]; }
+-(iOSAutomationDevice) deviceToForce { return [[_defaults stringForKey:APPIUM_PLIST_DEVICE] isEqualToString:APPIUM_PLIST_FORCE_DEVICE_IPAD] ? iOSAutomationDevice_iPad : iOSAutomationDevice_iPhone; }
+-(void) setDeviceToForce:(iOSAutomationDevice)deviceToForce {[self setDeviceToForceString:(deviceToForce == iOSAutomationDevice_iPad ? APPIUM_PLIST_FORCE_DEVICE_IPAD : APPIUM_PLIST_FORCE_DEVICE_IPHONE)]; }
+-(NSString*) deviceToForceString { return [[_defaults valueForKey:APPIUM_PLIST_DEVICE] isEqualToString:APPIUM_PLIST_FORCE_DEVICE_IPAD] ? APPIUM_PLIST_FORCE_DEVICE_IPAD : APPIUM_PLIST_FORCE_DEVICE_IPHONE ; }
+-(void) setDeviceToForceString:(NSString *)deviceToForceString { [_defaults setValue:deviceToForceString forKey:APPIUM_PLIST_DEVICE]; }
 
--(BOOL) forceDevice { return [_defaults boolForKey:PLIST_FORCE_DEVICE]; }
--(void) setForceDevice:(BOOL)forceDevice { [_defaults setBool:forceDevice forKey:PLIST_FORCE_DEVICE]; }
+-(BOOL) forceDevice { return [_defaults boolForKey:APPIUM_PLIST_FORCE_DEVICE]; }
+-(void) setForceDevice:(BOOL)forceDevice { [_defaults setBool:forceDevice forKey:APPIUM_PLIST_FORCE_DEVICE]; }
 
 -(BOOL) isServerRunning { return _isServerRunning; }
 -(void) setIsServerRunning:(BOOL)isServerRunning { _isServerRunning = isServerRunning; }
@@ -74,40 +74,40 @@ BOOL _isServerListening;
 -(BOOL) isServerListening { return _isServerListening; }
 -(void) setIsServerListening:(BOOL)isServerListening { _isServerListening = isServerListening; }
 
--(NSString*) ipAddress { return [_defaults stringForKey:PLIST_SERVER_ADDRESS]; }
--(void) setIpAddress:(NSString *)ipAddress { [_defaults setValue:ipAddress forKey:PLIST_SERVER_ADDRESS]; }
+-(NSString*) ipAddress { return [_defaults stringForKey:APPIUM_PLIST_SERVER_ADDRESS]; }
+-(void) setIpAddress:(NSString *)ipAddress { [_defaults setValue:ipAddress forKey:APPIUM_PLIST_SERVER_ADDRESS]; }
 
--(BOOL) keepArtifacts { return [_defaults boolForKey:PLIST_KEEP_ARTIFACTS]; }
--(void) setKeepArtifacts:(BOOL)keepArtifacts { [_defaults setBool:keepArtifacts forKey:PLIST_KEEP_ARTIFACTS];}
+-(BOOL) keepArtifacts { return [_defaults boolForKey:APPIUM_PLIST_KEEP_ARTIFACTS]; }
+-(void) setKeepArtifacts:(BOOL)keepArtifacts { [_defaults setBool:keepArtifacts forKey:APPIUM_PLIST_KEEP_ARTIFACTS];}
 
--(BOOL) logVerbose { return [_defaults boolForKey:PLIST_VERBOSE]; }
--(void) setLogVerbose:(BOOL)logVerbose { [_defaults setBool:logVerbose forKey:PLIST_VERBOSE]; }
+-(BOOL) logVerbose { return [_defaults boolForKey:APPIUM_PLIST_VERBOSE]; }
+-(void) setLogVerbose:(BOOL)logVerbose { [_defaults setBool:logVerbose forKey:APPIUM_PLIST_VERBOSE]; }
 
--(Platform)platform { return [_defaults integerForKey:PLIST_TAB_STATE] == PLIST_TAB_STATE_ANDROID ? Platform_Android : Platform_iOS; }
--(void)setPlatform:(Platform)platform { [_defaults setInteger:(platform == Platform_Android ? PLIST_TAB_STATE_ANDROID : PLIST_TAB_STATE_IOS) forKey:PLIST_TAB_STATE]; }
+-(Platform)platform { return [_defaults integerForKey:APPIUM_PLIST_TAB_STATE] == APPIUM_PLIST_TAB_STATE_ANDROID ? Platform_Android : Platform_iOS; }
+-(void)setPlatform:(Platform)platform { [_defaults setInteger:(platform == Platform_Android ? APPIUM_PLIST_TAB_STATE_ANDROID : APPIUM_PLIST_TAB_STATE_IOS) forKey:APPIUM_PLIST_TAB_STATE]; }
 
--(NSNumber*) port { return [NSNumber numberWithInt:[[_defaults stringForKey:PLIST_SERVER_PORT] intValue]]; }
--(void) setPort:(NSNumber *)port { [[NSUserDefaults standardUserDefaults] setValue:port forKey:PLIST_SERVER_PORT]; }
+-(NSNumber*) port { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_SERVER_PORT] intValue]]; }
+-(void) setPort:(NSNumber *)port { [[NSUserDefaults standardUserDefaults] setValue:port forKey:APPIUM_PLIST_SERVER_PORT]; }
 
--(BOOL) prelaunchApp { return [_defaults boolForKey:PLIST_PRELAUNCH]; }
--(void) setPrelaunchApp:(BOOL)preLaunchApp { [_defaults setBool:preLaunchApp forKey:PLIST_PRELAUNCH]; }
+-(BOOL) prelaunchApp { return [_defaults boolForKey:APPIUM_PLIST_PRELAUNCH]; }
+-(void) setPrelaunchApp:(BOOL)preLaunchApp { [_defaults setBool:preLaunchApp forKey:APPIUM_PLIST_PRELAUNCH]; }
 
--(BOOL) resetApplicationState { return [_defaults boolForKey:PLIST_RESET_APPLICATION_STATE]; }
--(void) setResetApplicationState:(BOOL)resetApplicationState { [_defaults setBool:resetApplicationState forKey:PLIST_RESET_APPLICATION_STATE]; }
+-(BOOL) resetApplicationState { return [_defaults boolForKey:APPIUM_PLIST_RESET_APPLICATION_STATE]; }
+-(void) setResetApplicationState:(BOOL)resetApplicationState { [_defaults setBool:resetApplicationState forKey:APPIUM_PLIST_RESET_APPLICATION_STATE]; }
 
--(NSString*) udid {return [_defaults stringForKey:PLIST_UDID];}
--(void) setUdid:(NSString *)udid { [ _defaults setValue:udid forKey:PLIST_UDID]; }
+-(NSString*) udid {return [_defaults stringForKey:APPIUM_PLIST_UDID];}
+-(void) setUdid:(NSString *)udid { [ _defaults setValue:udid forKey:APPIUM_PLIST_UDID]; }
 
--(BOOL) useAndroidActivity { return [_defaults boolForKey:PLIST_USE_ANDROID_ACTIVITY]; }
--(void) setUseAndroidActivity:(BOOL)useAndroidActivity { [_defaults setBool:useAndroidActivity forKey:PLIST_USE_ANDROID_ACTIVITY]; }
+-(BOOL) useAndroidActivity { return [_defaults boolForKey:APPIUM_PLIST_USE_ANDROID_ACTIVITY]; }
+-(void) setUseAndroidActivity:(BOOL)useAndroidActivity { [_defaults setBool:useAndroidActivity forKey:APPIUM_PLIST_USE_ANDROID_ACTIVITY]; }
 
--(BOOL) useAndroidPackage {	return [_defaults boolForKey:PLIST_USE_ANDROID_PACKAGE]; }
--(void) setUseAndroidPackage:(BOOL)useAndroidPackage { [_defaults setBool:useAndroidPackage forKey:PLIST_USE_ANDROID_PACKAGE]; }
+-(BOOL) useAndroidPackage {	return [_defaults boolForKey:APPIUM_PLIST_USE_ANDROID_PACKAGE]; }
+-(void) setUseAndroidPackage:(BOOL)useAndroidPackage { [_defaults setBool:useAndroidPackage forKey:APPIUM_PLIST_USE_ANDROID_PACKAGE]; }
 
--(BOOL) useAppPath { return [_defaults boolForKey:PLIST_USE_APP_PATH]; }
+-(BOOL) useAppPath { return [_defaults boolForKey:APPIUM_PLIST_USE_APP_PATH]; }
 -(void) setUseAppPath:(BOOL)useAppPath
 {
-	[_defaults setBool:useAppPath forKey:PLIST_USE_APP_PATH];
+	[_defaults setBool:useAppPath forKey:APPIUM_PLIST_USE_APP_PATH];
 	if (useAppPath)
 	{
 		if (self.useUDID != NO)
@@ -125,10 +125,10 @@ BOOL _isServerListening;
 	}
 }
 
--(BOOL) useBundleID { return [_defaults boolForKey:PLIST_USE_BUNDLEID]; }
+-(BOOL) useBundleID { return [_defaults boolForKey:APPIUM_PLIST_USE_BUNDLEID]; }
 -(void) setUseBundleID:(BOOL)useBundleID
 {
-	[_defaults setBool:useBundleID forKey:PLIST_USE_BUNDLEID];
+	[_defaults setBool:useBundleID forKey:APPIUM_PLIST_USE_BUNDLEID];
 	if (useBundleID)
 	{
 		if (self.useUDID != YES)
@@ -153,19 +153,19 @@ BOOL _isServerListening;
 	}
 }
 
--(BOOL) useExternalAppiumPackage { return self.developerMode && [_defaults boolForKey:PLIST_USE_EXTERNAL_APPIUM_PACKAGE]; }
--(void) setUseExternalAppiumPackage:(BOOL)useCustomAppiumPackage { [_defaults setBool:useCustomAppiumPackage forKey:PLIST_USE_EXTERNAL_APPIUM_PACKAGE]; }
+-(BOOL) useExternalAppiumPackage { return self.developerMode && [_defaults boolForKey:APPIUM_PLIST_USE_EXTERNAL_APPIUM_PACKAGE]; }
+-(void) setUseExternalAppiumPackage:(BOOL)useCustomAppiumPackage { [_defaults setBool:useCustomAppiumPackage forKey:APPIUM_PLIST_USE_EXTERNAL_APPIUM_PACKAGE]; }
 
--(BOOL) useExternalNodeJSBinary { return self.developerMode && [_defaults boolForKey:PLIST_USE_EXTERNAL_NODEJS_BINARY]; }
--(void) setUseExternalNodeJSBinary:(BOOL)useCustomNodeJSBinary { [_defaults setBool:useCustomNodeJSBinary forKey:PLIST_USE_EXTERNAL_NODEJS_BINARY]; }
+-(BOOL) useExternalNodeJSBinary { return self.developerMode && [_defaults boolForKey:APPIUM_PLIST_USE_EXTERNAL_NODEJS_BINARY]; }
+-(void) setUseExternalNodeJSBinary:(BOOL)useCustomNodeJSBinary { [_defaults setBool:useCustomNodeJSBinary forKey:APPIUM_PLIST_USE_EXTERNAL_NODEJS_BINARY]; }
 
--(BOOL) useInstrumentsWithoutDelay { return [_defaults boolForKey:PLIST_WITHOUT_DELAY]; }
--(void) setUseInstrumentsWithoutDelay:(BOOL)useInstrumentsWithoutDelay { [_defaults setBool:useInstrumentsWithoutDelay forKey:PLIST_WITHOUT_DELAY]; }
+-(BOOL) useInstrumentsWithoutDelay { return [_defaults boolForKey:APPIUM_PLIST_WITHOUT_DELAY]; }
+-(void) setUseInstrumentsWithoutDelay:(BOOL)useInstrumentsWithoutDelay { [_defaults setBool:useInstrumentsWithoutDelay forKey:APPIUM_PLIST_WITHOUT_DELAY]; }
 
--(BOOL) useMobileSafari { return [_defaults boolForKey:PLIST_USE_MOBILE_SAFARI]; }
+-(BOOL) useMobileSafari { return [_defaults boolForKey:APPIUM_PLIST_USE_MOBILE_SAFARI]; }
 -(void) setUseMobileSafari:(BOOL)useMobileSafari
 {
-	[_defaults setBool:useMobileSafari forKey:PLIST_USE_MOBILE_SAFARI];
+	[_defaults setBool:useMobileSafari forKey:APPIUM_PLIST_USE_MOBILE_SAFARI];
 	if (useMobileSafari)
 	{
 		if (self.useAppPath != NO)
@@ -185,11 +185,11 @@ BOOL _isServerListening;
 
 -(BOOL) useRemoteServer
 {
-	return [_defaults boolForKey:PLIST_USE_REMOTE_SERVER] && [self developerMode];
+	return [_defaults boolForKey:APPIUM_PLIST_USE_REMOTE_SERVER] && [self developerMode];
 }
 -(void) setUseRemoteServer:(BOOL)useRemoteServer
 {
-	[_defaults setBool:useRemoteServer forKey:PLIST_USE_REMOTE_SERVER];
+	[_defaults setBool:useRemoteServer forKey:APPIUM_PLIST_USE_REMOTE_SERVER];
 	if (useRemoteServer)
 	{
 		[self killServer];
@@ -197,10 +197,10 @@ BOOL _isServerListening;
 	[self setIsServerListening:useRemoteServer];
 }
 
--(BOOL) useUDID { return [_defaults boolForKey:PLIST_USE_UDID]; }
+-(BOOL) useUDID { return [_defaults boolForKey:APPIUM_PLIST_USE_UDID]; }
 -(void) setUseUDID:(BOOL)useUDID
 {
-	[_defaults setBool:useUDID forKey:PLIST_USE_UDID];
+	[_defaults setBool:useUDID forKey:APPIUM_PLIST_USE_UDID];
 	if (useUDID)
 	{
 		if (self.useBundleID != YES)
