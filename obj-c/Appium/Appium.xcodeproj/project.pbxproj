@@ -35,6 +35,7 @@
 		36AA8D7016E40B28007472C1 /* AppiumMonitorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36AA8D6E16E40B28007472C1 /* AppiumMonitorWindow.xib */; };
 		36B2F18616E6379C008764E0 /* defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 36B2F18516E6379C008764E0 /* defaults.plist */; };
 		36BA17BB16E81BF30041DD86 /* AppiumAppPathTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BA17BA16E81BF30041DD86 /* AppiumAppPathTransformer.m */; };
+		36C9479C1719D0CB008DE83F /* AppiumRecorderDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C9479B1719D0CB008DE83F /* AppiumRecorderDelegate.m */; };
 		36CD44EE16F0D5C300194193 /* AppiumInspectorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CD44EC16F0D5C300194193 /* AppiumInspectorWindowController.m */; };
 		36CD44EF16F0D5C300194193 /* AppiumInspectorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36CD44ED16F0D5C300194193 /* AppiumInspectorWindow.xib */; };
 		36CD44F616F0E22800194193 /* WebDriverElementNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CD44F516F0E22800194193 /* WebDriverElementNode.m */; };
@@ -132,6 +133,8 @@
 		36B2F18516E6379C008764E0 /* defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = defaults.plist; path = "Supporting Files/defaults.plist"; sourceTree = "<group>"; };
 		36BA17B916E81BF30041DD86 /* AppiumAppPathTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumAppPathTransformer.h; sourceTree = "<group>"; };
 		36BA17BA16E81BF30041DD86 /* AppiumAppPathTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumAppPathTransformer.m; sourceTree = "<group>"; };
+		36C9479A1719D0CB008DE83F /* AppiumRecorderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumRecorderDelegate.h; path = Inspector/AppiumRecorderDelegate.h; sourceTree = "<group>"; };
+		36C9479B1719D0CB008DE83F /* AppiumRecorderDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumRecorderDelegate.m; path = Inspector/AppiumRecorderDelegate.m; sourceTree = "<group>"; };
 		36CD44EB16F0D5C300194193 /* AppiumInspectorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumInspectorWindowController.h; path = WindowControllers/AppiumInspectorWindowController.h; sourceTree = "<group>"; };
 		36CD44EC16F0D5C300194193 /* AppiumInspectorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumInspectorWindowController.m; path = WindowControllers/AppiumInspectorWindowController.m; sourceTree = "<group>"; };
 		36CD44ED16F0D5C300194193 /* AppiumInspectorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AppiumInspectorWindow.xib; path = XIBs/AppiumInspectorWindow.xib; sourceTree = "<group>"; };
@@ -323,6 +326,8 @@
 				363236781713B1EA0088FFBC /* CodeMaker */,
 				360BD91316F12B03000D3BEB /* AppiumInspectorDelegate.h */,
 				360BD91416F12B03000D3BEB /* AppiumInspectorDelegate.m */,
+				36C9479A1719D0CB008DE83F /* AppiumRecorderDelegate.h */,
+				36C9479B1719D0CB008DE83F /* AppiumRecorderDelegate.m */,
 				36A871C6170B980F005BFD15 /* AppiumInspectorScreenshotImageView.h */,
 				36A871C7170B980F005BFD15 /* AppiumInspectorScreenshotImageView.m */,
 				36CD44F416F0E22800194193 /* WebDriverElementNode.h */,
@@ -569,6 +574,7 @@
 				36FF07B0171747C4009ED9E2 /* AppiumCodeMakerJavaPlugin.m in Sources */,
 				36FF07B317174936009ED9E2 /* AppiumCodeMakerRubyPlugin.m in Sources */,
 				3618718D171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.m in Sources */,
+				36C9479C1719D0CB008DE83F /* AppiumRecorderDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

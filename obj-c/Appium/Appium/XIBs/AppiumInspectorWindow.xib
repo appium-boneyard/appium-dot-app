@@ -57,6 +57,9 @@
 			<object class="NSCustomObject" id="963484851">
 				<string key="NSClassName">AppiumInspectorDelegate</string>
 			</object>
+			<object class="NSCustomObject" id="455036667">
+				<string key="NSClassName">AppiumRecorderDelegate</string>
+			</object>
 			<object class="NSUserDefaultsController" id="544515380">
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
@@ -779,6 +782,7 @@
 													<string key="NSFrame">{{191, 1}, {16, 143}}</string>
 													<reference key="NSSuperview" ref="410508918"/>
 													<reference key="NSWindow"/>
+													<reference key="NSNextKeyView"/>
 													<string key="NSReuseIdentifierKey">_NS:83</string>
 													<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 													<reference key="NSTarget" ref="410508918"/>
@@ -867,6 +871,7 @@
 						<string key="NSFrame">{{736, 193}, {82, 32}}</string>
 						<reference key="NSSuperview" ref="378629004"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="352653648">
@@ -891,6 +896,7 @@
 						<string key="NSFrame">{{817, 200}, {50, 21}}</string>
 						<reference key="NSSuperview" ref="378629004"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:1535</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="560027501">
@@ -926,6 +932,7 @@
 						<string key="NSFrame">{{263, 201}, {103, 18}}</string>
 						<reference key="NSSuperview" ref="378629004"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="824997804">
@@ -953,6 +960,7 @@
 						<string key="NSFrame">{{128, 201}, {119, 18}}</string>
 						<reference key="NSSuperview" ref="378629004"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="952418107">
@@ -1222,6 +1230,7 @@
 						<string key="NSFrame">{{142, 5}, {61, 19}}</string>
 						<reference key="NSSuperview" ref="772666557"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="247811303">
@@ -1597,83 +1606,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">tap:</string>
-						<reference key="source" ref="963484851"/>
-						<reference key="destination" ref="276139266"/>
-					</object>
-					<int key="connectionID">91</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">sendKeys:</string>
-						<reference key="source" ref="963484851"/>
-						<reference key="destination" ref="121075717"/>
-					</object>
-					<int key="connectionID">104</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
 						<string key="label">refresh:</string>
 						<reference key="source" ref="963484851"/>
 						<reference key="destination" ref="88647852"/>
 					</object>
 					<int key="connectionID">96</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">toggleRecording:</string>
-						<reference key="source" ref="963484851"/>
-						<reference key="destination" ref="32328844"/>
-					</object>
-					<int key="connectionID">127</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">comment:</string>
-						<reference key="source" ref="963484851"/>
-						<reference key="destination" ref="578193745"/>
-					</object>
-					<int key="connectionID">176</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">toggleSwipePopover:</string>
-						<reference key="source" ref="963484851"/>
-						<reference key="destination" ref="538985012"/>
-					</object>
-					<int key="connectionID">232</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">performSwipe:</string>
-						<reference key="source" ref="963484851"/>
-						<reference key="destination" ref="247061205"/>
-					</object>
-					<int key="connectionID">282</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">acceptAlert:</string>
-						<reference key="source" ref="963484851"/>
-						<reference key="destination" ref="217867084"/>
-					</object>
-					<int key="connectionID">302</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">dismissAlert:</string>
-						<reference key="source" ref="963484851"/>
-						<reference key="destination" ref="956976623"/>
-					</object>
-					<int key="connectionID">303</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">clearRecording:</string>
-						<reference key="source" ref="963484851"/>
-						<reference key="destination" ref="970890803"/>
-					</object>
-					<int key="connectionID">340</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -1839,10 +1776,10 @@
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: keysToSend</string>
 						<reference key="source" ref="650462467"/>
-						<reference key="destination" ref="963484851"/>
+						<reference key="destination" ref="455036667"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="650462467"/>
-							<reference key="NSDestination" ref="963484851"/>
+							<reference key="NSDestination" ref="455036667"/>
 							<string key="NSLabel">value: keysToSend</string>
 							<string key="NSBinding">value</string>
 							<string key="NSKeyPath">keysToSend</string>
@@ -1853,7 +1790,7 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">100</int>
+					<int key="connectionID">406</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1895,33 +1832,33 @@
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">attributedString: codeMaker.attributedString</string>
 						<reference key="source" ref="973359876"/>
-						<reference key="destination" ref="963484851"/>
+						<reference key="destination" ref="455036667"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="973359876"/>
-							<reference key="NSDestination" ref="963484851"/>
+							<reference key="NSDestination" ref="455036667"/>
 							<string key="NSLabel">attributedString: codeMaker.attributedString</string>
 							<string key="NSBinding">attributedString</string>
 							<string key="NSKeyPath">codeMaker.attributedString</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">160</int>
+					<int key="connectionID">387</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: isRecording</string>
 						<reference key="source" ref="578193745"/>
-						<reference key="destination" ref="963484851"/>
+						<reference key="destination" ref="455036667"/>
 						<object class="NSNibBindingConnector" key="connector" id="16062714">
 							<reference key="NSSource" ref="578193745"/>
-							<reference key="NSDestination" ref="963484851"/>
+							<reference key="NSDestination" ref="455036667"/>
 							<string key="NSLabel">enabled: isRecording</string>
 							<string key="NSBinding">enabled</string>
 							<string key="NSKeyPath">isRecording</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">174</int>
+					<int key="connectionID">397</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1945,16 +1882,16 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">321</int>
+					<int key="connectionID">398</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">hidden: isRecording</string>
 						<reference key="source" ref="578193745"/>
-						<reference key="destination" ref="963484851"/>
+						<reference key="destination" ref="455036667"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="578193745"/>
-							<reference key="NSDestination" ref="963484851"/>
+							<reference key="NSDestination" ref="455036667"/>
 							<string key="NSLabel">hidden: isRecording</string>
 							<string key="NSBinding">hidden</string>
 							<string key="NSKeyPath">isRecording</string>
@@ -1966,32 +1903,32 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">322</int>
+					<int key="connectionID">403</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">contentValues: codeMaker.allPlugins</string>
 						<reference key="source" ref="136043548"/>
-						<reference key="destination" ref="963484851"/>
+						<reference key="destination" ref="455036667"/>
 						<object class="NSNibBindingConnector" key="connector" id="464736993">
 							<reference key="NSSource" ref="136043548"/>
-							<reference key="NSDestination" ref="963484851"/>
+							<reference key="NSDestination" ref="455036667"/>
 							<string key="NSLabel">contentValues: codeMaker.allPlugins</string>
 							<string key="NSBinding">contentValues</string>
 							<string key="NSKeyPath">codeMaker.allPlugins</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">200</int>
+					<int key="connectionID">380</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">selectedObject: codeMaker.selectedPluginString</string>
 						<reference key="source" ref="136043548"/>
-						<reference key="destination" ref="963484851"/>
+						<reference key="destination" ref="455036667"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="136043548"/>
-							<reference key="NSDestination" ref="963484851"/>
+							<reference key="NSDestination" ref="455036667"/>
 							<string key="NSLabel">selectedObject: codeMaker.selectedPluginString</string>
 							<string key="NSBinding">selectedObject</string>
 							<string key="NSKeyPath">codeMaker.selectedPluginString</string>
@@ -1999,55 +1936,55 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">217</int>
+					<int key="connectionID">384</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">selectedObject: codeMaker.selectedPluginString</string>
 						<reference key="source" ref="986800540"/>
-						<reference key="destination" ref="963484851"/>
+						<reference key="destination" ref="455036667"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="986800540"/>
-							<reference key="NSDestination" ref="963484851"/>
+							<reference key="NSDestination" ref="455036667"/>
 							<string key="NSLabel">selectedObject: codeMaker.selectedPluginString</string>
 							<string key="NSBinding">selectedObject</string>
 							<string key="NSKeyPath">codeMaker.selectedPluginString</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">204</int>
+					<int key="connectionID">390</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: codeMaker.useBoilerPlate</string>
 						<reference key="source" ref="427010185"/>
-						<reference key="destination" ref="963484851"/>
+						<reference key="destination" ref="455036667"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="427010185"/>
-							<reference key="NSDestination" ref="963484851"/>
+							<reference key="NSDestination" ref="455036667"/>
 							<string key="NSLabel">value: codeMaker.useBoilerPlate</string>
 							<string key="NSBinding">value</string>
 							<string key="NSKeyPath">codeMaker.useBoilerPlate</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">210</int>
+					<int key="connectionID">375</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: codeMaker.useXPathOnly</string>
 						<reference key="source" ref="339990262"/>
-						<reference key="destination" ref="963484851"/>
+						<reference key="destination" ref="455036667"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="339990262"/>
-							<reference key="NSDestination" ref="963484851"/>
+							<reference key="NSDestination" ref="455036667"/>
 							<string key="NSLabel">value: codeMaker.useXPathOnly</string>
 							<string key="NSBinding">value</string>
 							<string key="NSKeyPath">codeMaker.useXPathOnly</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">279</int>
+					<int key="connectionID">372</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -2236,6 +2173,86 @@
 						</object>
 					</object>
 					<int key="connectionID">333</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_windowController</string>
+						<reference key="source" ref="455036667"/>
+						<reference key="destination" ref="1001"/>
+					</object>
+					<int key="connectionID">359</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">acceptAlert:</string>
+						<reference key="source" ref="455036667"/>
+						<reference key="destination" ref="217867084"/>
+					</object>
+					<int key="connectionID">360</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">clearRecording:</string>
+						<reference key="source" ref="455036667"/>
+						<reference key="destination" ref="970890803"/>
+					</object>
+					<int key="connectionID">361</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">comment:</string>
+						<reference key="source" ref="455036667"/>
+						<reference key="destination" ref="578193745"/>
+					</object>
+					<int key="connectionID">362</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">dismissAlert:</string>
+						<reference key="source" ref="455036667"/>
+						<reference key="destination" ref="956976623"/>
+					</object>
+					<int key="connectionID">363</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">sendKeys:</string>
+						<reference key="source" ref="455036667"/>
+						<reference key="destination" ref="121075717"/>
+					</object>
+					<int key="connectionID">365</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">tap:</string>
+						<reference key="source" ref="455036667"/>
+						<reference key="destination" ref="276139266"/>
+					</object>
+					<int key="connectionID">366</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">toggleRecording:</string>
+						<reference key="source" ref="455036667"/>
+						<reference key="destination" ref="32328844"/>
+					</object>
+					<int key="connectionID">367</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">toggleSwipePopover:</string>
+						<reference key="source" ref="455036667"/>
+						<reference key="destination" ref="538985012"/>
+					</object>
+					<int key="connectionID">368</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">performSwipe:</string>
+						<reference key="source" ref="455036667"/>
+						<reference key="destination" ref="247061205"/>
+					</object>
+					<int key="connectionID">369</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2898,6 +2915,11 @@
 						<reference key="object" ref="352653648"/>
 						<reference key="parent" ref="970890803"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">357</int>
+						<reference key="object" ref="455036667"/>
+						<reference key="parent" ref="0"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -2979,6 +3001,7 @@
 				<string key="32.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="338.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="339.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="357.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="43.CustomClassName">AppiumInspectorScreenshotImageView</string>
 				<string key="43.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="44.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3003,7 +3026,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">356</int>
+			<int key="maxID">406</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3018,60 +3041,17 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">AppiumInspectorDelegate</string>
 					<string key="superclassName">NSObject</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="acceptAlert:">id</string>
-						<string key="clearRecording:">id</string>
-						<string key="comment:">id</string>
-						<string key="dismissAlert:">id</string>
-						<string key="performSwipe:">id</string>
-						<string key="refresh:">id</string>
-						<string key="sendKeys:">id</string>
-						<string key="tap:">id</string>
-						<string key="toggleRecording:">id</string>
-						<string key="toggleSwipePopover:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="acceptAlert:">
-							<string key="name">acceptAlert:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clearRecording:">
-							<string key="name">clearRecording:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="comment:">
-							<string key="name">comment:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="dismissAlert:">
-							<string key="name">dismissAlert:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="performSwipe:">
-							<string key="name">performSwipe:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="refresh:">
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">refresh:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">refresh:</string>
+						<object class="IBActionInfo" key="NS.object.0">
 							<string key="name">refresh:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="sendKeys:">
-							<string key="name">sendKeys:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="tap:">
-							<string key="name">tap:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="toggleRecording:">
-							<string key="name">toggleRecording:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="toggleSwipePopover:">
-							<string key="name">toggleSwipePopover:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
+					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">_windowController</string>
 						<string key="NS.object.0">AppiumInspectorWindowController</string>
@@ -3161,6 +3141,25 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/AppiumInspectorWindowController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">AppiumRecorderDelegate</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">_windowController</string>
+						<string key="NS.object.0">AppiumInspectorWindowController</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">_windowController</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">_windowController</string>
+							<string key="candidateClassName">AppiumInspectorWindowController</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/AppiumRecorderDelegate.h</string>
 					</object>
 				</object>
 			</array>

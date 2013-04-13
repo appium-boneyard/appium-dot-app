@@ -24,21 +24,22 @@
 	IBOutlet AppiumInspectorWindowController *_windowController;
 	BOOL _showDisabled;
     BOOL _showInvisible;
-	BOOL _isRecording;
 	WebDriverElementNode *_rootNode;
     WebDriverElementNode *_browserRootNode;
-	WebDriverElementNode *_selection;
 	NSMutableArray *_selectedIndexes;
 	NSString *_lastPageSource;
 }
 
+@property WebDriverElementNode *selection;
 @property NSNumber *showDisabled;
 @property NSNumber *showInvisible;
-@property NSNumber *isRecording;
-@property NSString *keysToSend;
 @property BOOL domIsPopulating;
-@property AppiumCodeMaker *codeMaker;
+
+-(SEWebElement*) elementForSelectedNode;
+-(NSString*) xPathForSelectedNode;
+-(AppiumCodeMakerLocator*) locatorForSelectedNode;
 
 -(void) handleClickAt:(NSPoint)windowPoint seleniumPoint:(NSPoint)seleniumPoint;
+-(IBAction)refresh:(id)sender;
 
 @end
