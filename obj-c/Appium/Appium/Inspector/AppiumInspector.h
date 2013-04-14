@@ -18,7 +18,7 @@
 @class SEWebElement;
 @class WebDriverElementNode;
 
-@interface AppiumInspectorDelegate : NSObject {
+@interface AppiumInspector : NSObject {
 
 @private
 	IBOutlet AppiumInspectorWindowController *_windowController;

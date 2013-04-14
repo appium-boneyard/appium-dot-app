@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 Appium. All rights reserved.
 //
 
-#import "AppiumInspectorDelegate.h"
+#import "AppiumInspector.h"
 
 #import <QuartzCore/QuartzCore.h>
 
-@interface AppiumInspectorDelegate ()
+@interface AppiumInspector ()
     @property (readonly) SERemoteWebDriver *driver;
 @end
 
-@implementation AppiumInspectorDelegate
+@implementation AppiumInspector
 
 -(id) init
 {

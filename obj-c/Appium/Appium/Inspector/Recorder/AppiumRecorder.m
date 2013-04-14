@@ -6,19 +6,19 @@
 //  Copyright (c) 2013 Appium. All rights reserved.
 //
 
-#import "AppiumRecorderDelegate.h"
+#import "AppiumRecorder.h"
 
 #import <Selenium/SERemoteWebDriver.h>
 #import <QuartzCore/QuartzCore.h>
-#import "AppiumInspectorDelegate.h"
+#import "AppiumInspector.h"
 #import "AppiumCodeMakerActions.h"
 
-@interface AppiumRecorderDelegate ()
-    @property (readonly) AppiumInspectorDelegate *inspector;
+@interface AppiumRecorder ()
+    @property (readonly) AppiumInspector *inspector;
     @property (readonly) SERemoteWebDriver *driver;
 @end
 
-@implementation AppiumRecorderDelegate
+@implementation AppiumRecorder
 
 -(id) init
 {
@@ -32,7 +32,7 @@
 }
 
 #pragma mark - Private Properties
--(AppiumInspectorDelegate*)inspector { return _windowController.inspector; }
+-(AppiumInspector*)inspector { return _windowController.inspector; }
 -(SERemoteWebDriver*)driver { return _windowController.driver; }
 
 #pragma mark - Public Properties

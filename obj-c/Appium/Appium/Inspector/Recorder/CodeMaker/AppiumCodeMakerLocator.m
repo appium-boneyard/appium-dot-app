@@ -45,7 +45,7 @@
 #pragma mark - NSCopying Implementation
 -(id) copyWithZone:(NSZone *)zone
 {
-	AppiumCodeMakerLocator *another = [[AppiumCodeMakerLocator alloc] initWithLocatorType:self.locatorType locatorString:[self.locatorString copy]];
+	AppiumCodeMakerLocator *another = [[AppiumCodeMakerLocator alloc] initWithLocatorType:self.locatorType locatorString:[self.locatorString copyWithZone:zone]];
 	return another;
 }
 

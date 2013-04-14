@@ -9,11 +9,11 @@
 #import <Cocoa/Cocoa.h>
 #import <Selenium/SERemoteWebDriver.h>
 #import "AppiumCodeMakerSwipePopOverViewController.h"
-#import "AppiumInspectorDelegate.h"
+#import "AppiumInspector.h"
 #import "AppiumInspectorScreenshotImageView.h"
 #import "WebDriverElementNode.h"
 
-@class AppiumInspectorDelegate;
+@class AppiumInspector;
 @class AppiumInspectorScreenshotImageView;
 @class AppiumCodeMakerSwipePopOverViewController;
 @class SERemoteWebDriver;
@@ -26,7 +26,7 @@
 	@property IBOutlet NSBrowser *browser;
 	@property IBOutlet NSTextView *detailsTextView;
 	@property IBOutlet NSView *selectedElementHighlightView;
-	@property IBOutlet AppiumInspectorDelegate *inspector;
+	@property IBOutlet AppiumInspector *inspector;
 	@property IBOutlet AppiumInspectorScreenshotImageView *screenshotImageView;
 	@property IBOutlet NSButton *recordButton;
     @property IBOutlet AppiumCodeMakerSwipePopOverViewController *swipePopoverViewController;

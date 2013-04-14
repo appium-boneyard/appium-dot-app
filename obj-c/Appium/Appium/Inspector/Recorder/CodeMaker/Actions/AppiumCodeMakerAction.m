@@ -43,7 +43,7 @@
 #pragma mark - NSCopying Implementation
 -(id) copyWithZone:(NSZone *)zone
 {
-	AppiumCodeMakerAction *another = [[AppiumCodeMakerAction alloc] initWithActionType:self.actionType params:[self.params copy]];
+	AppiumCodeMakerAction *another = [[AppiumCodeMakerAction alloc] initWithActionType:self.actionType params:[self.params copyWithZone:zone]];
 	return another;
 }
 
