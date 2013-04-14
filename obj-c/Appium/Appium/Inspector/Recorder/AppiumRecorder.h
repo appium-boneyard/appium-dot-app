@@ -12,7 +12,7 @@
 @class AppiumCodeMaker;
 @class AppiumInspectorWindowController;
 
-@interface AppiumRecorderDelegate : NSObject {
+@interface AppiumRecorder : NSObject {
     @private
     IBOutlet AppiumInspectorWindowController *_windowController;
     BOOL _isRecording;

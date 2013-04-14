@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		360BD91516F12B03000D3BEB /* AppiumInspectorDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 360BD91416F12B03000D3BEB /* AppiumInspectorDelegate.m */; };
+		360BD91516F12B03000D3BEB /* AppiumInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 360BD91416F12B03000D3BEB /* AppiumInspector.m */; };
 		3612E5F816E5B6520050CF0A /* appium.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 3612E5F716E5B6520050CF0A /* appium.sdef */; };
 		3612E5FC16E5B69C0050CF0A /* AppiumAppleScriptSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3612E5FB16E5B69C0050CF0A /* AppiumAppleScriptSupport.m */; };
 		3618718D171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3618718C171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.m */; };
@@ -41,7 +41,7 @@
 		36BF1D6F171B4F5100C2CF01 /* AppiumCodeMakerActionAlertAccept.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BF1D6E171B4F5000C2CF01 /* AppiumCodeMakerActionAlertAccept.m */; };
 		36BF1D72171B4FE600C2CF01 /* AppiumCodeMakerActionSwipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BF1D71171B4FE500C2CF01 /* AppiumCodeMakerActionSwipe.m */; };
 		36BF1D75171B540100C2CF01 /* AppiumCodeMakerActionComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BF1D74171B540000C2CF01 /* AppiumCodeMakerActionComment.m */; };
-		36C9479C1719D0CB008DE83F /* AppiumRecorderDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C9479B1719D0CB008DE83F /* AppiumRecorderDelegate.m */; };
+		36C9479C1719D0CB008DE83F /* AppiumRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C9479B1719D0CB008DE83F /* AppiumRecorder.m */; };
 		36CD44EE16F0D5C300194193 /* AppiumInspectorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CD44EC16F0D5C300194193 /* AppiumInspectorWindowController.m */; };
 		36CD44EF16F0D5C300194193 /* AppiumInspectorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36CD44ED16F0D5C300194193 /* AppiumInspectorWindow.xib */; };
 		36CD44F616F0E22800194193 /* WebDriverElementNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CD44F516F0E22800194193 /* WebDriverElementNode.m */; };
@@ -87,8 +87,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		360BD91316F12B03000D3BEB /* AppiumInspectorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumInspectorDelegate.h; sourceTree = "<group>"; };
-		360BD91416F12B03000D3BEB /* AppiumInspectorDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumInspectorDelegate.m; sourceTree = "<group>"; };
+		360BD91316F12B03000D3BEB /* AppiumInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumInspector.h; sourceTree = "<group>"; };
+		360BD91416F12B03000D3BEB /* AppiumInspector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumInspector.m; sourceTree = "<group>"; };
 		3612E5F716E5B6520050CF0A /* appium.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = appium.sdef; sourceTree = "<group>"; };
 		3612E5FA16E5B69C0050CF0A /* AppiumAppleScriptSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumAppleScriptSupport.h; sourceTree = "<group>"; };
 		3612E5FB16E5B69C0050CF0A /* AppiumAppleScriptSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumAppleScriptSupport.m; sourceTree = "<group>"; };
@@ -152,8 +152,8 @@
 		36BF1D73171B540000C2CF01 /* AppiumCodeMakerActionComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerActionComment.h; sourceTree = "<group>"; };
 		36BF1D74171B540000C2CF01 /* AppiumCodeMakerActionComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerActionComment.m; sourceTree = "<group>"; };
 		36BF1D76171B55DE00C2CF01 /* AppiumCodeMakerActions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerActions.h; sourceTree = "<group>"; };
-		36C9479A1719D0CB008DE83F /* AppiumRecorderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumRecorderDelegate.h; sourceTree = "<group>"; };
-		36C9479B1719D0CB008DE83F /* AppiumRecorderDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumRecorderDelegate.m; sourceTree = "<group>"; };
+		36C9479A1719D0CB008DE83F /* AppiumRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumRecorder.h; sourceTree = "<group>"; };
+		36C9479B1719D0CB008DE83F /* AppiumRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumRecorder.m; sourceTree = "<group>"; };
 		36CD44EB16F0D5C300194193 /* AppiumInspectorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumInspectorWindowController.h; sourceTree = "<group>"; };
 		36CD44EC16F0D5C300194193 /* AppiumInspectorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumInspectorWindowController.m; sourceTree = "<group>"; };
 		36CD44ED16F0D5C300194193 /* AppiumInspectorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AppiumInspectorWindow.xib; path = XIBs/AppiumInspectorWindow.xib; sourceTree = "<group>"; };
@@ -297,14 +297,14 @@
 			path = Misc;
 			sourceTree = "<group>";
 		};
-		3614B1721719F4C400A72D99 /* Record */ = {
+		3614B1721719F4C400A72D99 /* Recorder */ = {
 			isa = PBXGroup;
 			children = (
 				363236781713B1EA0088FFBC /* CodeMaker */,
-				36C9479A1719D0CB008DE83F /* AppiumRecorderDelegate.h */,
-				36C9479B1719D0CB008DE83F /* AppiumRecorderDelegate.m */,
+				36C9479A1719D0CB008DE83F /* AppiumRecorder.h */,
+				36C9479B1719D0CB008DE83F /* AppiumRecorder.m */,
 			);
-			path = Record;
+			path = Recorder;
 			sourceTree = "<group>";
 		};
 		3618718A1718879A0021D7F7 /* PopOvers */ = {
@@ -324,8 +324,6 @@
 				368230D71715C72100FF113F /* Plugins */,
 				368230D81715C73F00FF113F /* AppiumCodeMaker.h */,
 				368230D91715C73F00FF113F /* AppiumCodeMaker.m */,
-				36919C89171616AD00AC2C63 /* AppiumCodeMakerAction.h */,
-				36919C8A171616AD00AC2C63 /* AppiumCodeMakerAction.m */,
 				36FF07AB171743AC009ED9E2 /* AppiumCodeMakerLocator.h */,
 				36FF07AC171743AC009ED9E2 /* AppiumCodeMakerLocator.m */,
 			);
@@ -388,6 +386,8 @@
 		36BF1D63171B432E00C2CF01 /* Actions */ = {
 			isa = PBXGroup;
 			children = (
+				36919C89171616AD00AC2C63 /* AppiumCodeMakerAction.h */,
+				36919C8A171616AD00AC2C63 /* AppiumCodeMakerAction.m */,
 				36BF1D76171B55DE00C2CF01 /* AppiumCodeMakerActions.h */,
 				36BF1D6D171B4F5000C2CF01 /* AppiumCodeMakerActionAlertAccept.h */,
 				36BF1D6E171B4F5000C2CF01 /* AppiumCodeMakerActionAlertAccept.m */,
@@ -408,9 +408,9 @@
 		36CD44F016F0E1CE00194193 /* Inspector */ = {
 			isa = PBXGroup;
 			children = (
-				3614B1721719F4C400A72D99 /* Record */,
-				360BD91316F12B03000D3BEB /* AppiumInspectorDelegate.h */,
-				360BD91416F12B03000D3BEB /* AppiumInspectorDelegate.m */,
+				3614B1721719F4C400A72D99 /* Recorder */,
+				360BD91316F12B03000D3BEB /* AppiumInspector.h */,
+				360BD91416F12B03000D3BEB /* AppiumInspector.m */,
 				36A871C6170B980F005BFD15 /* AppiumInspectorScreenshotImageView.h */,
 				36A871C7170B980F005BFD15 /* AppiumInspectorScreenshotImageView.m */,
 				36CD44EB16F0D5C300194193 /* AppiumInspectorWindowController.h */,
@@ -645,7 +645,7 @@
 				36A765A216F01648002A7D6A /* AppiumPreferencesWindowController.m in Sources */,
 				36CD44EE16F0D5C300194193 /* AppiumInspectorWindowController.m in Sources */,
 				36CD44F616F0E22800194193 /* WebDriverElementNode.m in Sources */,
-				360BD91516F12B03000D3BEB /* AppiumInspectorDelegate.m in Sources */,
+				360BD91516F12B03000D3BEB /* AppiumInspector.m in Sources */,
 				369126DD1704DABD007FBB5E /* AppiumInspectorRefreshButtonTextTransformer.m in Sources */,
 				36A871C8170B980F005BFD15 /* AppiumInspectorScreenshotImageView.m in Sources */,
 				362B5B651713B35A00F1B344 /* AppiumCodeMakerCSharpPlugin.m in Sources */,
@@ -656,7 +656,7 @@
 				36FF07B0171747C4009ED9E2 /* AppiumCodeMakerJavaPlugin.m in Sources */,
 				36FF07B317174936009ED9E2 /* AppiumCodeMakerRubyPlugin.m in Sources */,
 				3618718D171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.m in Sources */,
-				36C9479C1719D0CB008DE83F /* AppiumRecorderDelegate.m in Sources */,
+				36C9479C1719D0CB008DE83F /* AppiumRecorder.m in Sources */,
 				36BF1D66171B434C00C2CF01 /* AppiumCodeMakerActionTap.m in Sources */,
 				36BF1D69171B4C1000C2CF01 /* AppiumCodeMakerActionSendKeys.m in Sources */,
 				36BF1D6C171B4ED400C2CF01 /* AppiumCodeMakerAlertDismiss.m in Sources */,
