@@ -105,12 +105,12 @@
 	[self render];
 }
 
--(void) replay
+-(void) replay:(SERemoteWebDriver*)driver
 {
   	for(int i=0; i < _actions.count; i++)
 	{
         AppiumCodeMakerAction *action = [_actions objectAtIndex:i];
-        action.block();
+        action.block(driver);
     }
 }
 

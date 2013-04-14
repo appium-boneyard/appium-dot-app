@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Selenium/SERemoteWebDriver.h>
 
 typedef enum appiumCodeMakerActionTypes
 {
@@ -20,14 +21,12 @@ typedef enum appiumCodeMakerActionTypes
 
 } AppiumCodeMakerActionType;
 
-typedef void(^AppiumCodeMakerActionBlock)(void);
+typedef void(^AppiumCodeMakerActionBlock)(SERemoteWebDriver*);
 
-@interface AppiumCodeMakerAction : NSObject
+@interface AppiumCodeMakerAction : NSObject<NSCopying, NSCoding>
 
 @property AppiumCodeMakerActionType actionType;
-@property NSArray *params;
-@property (copy) AppiumCodeMakerActionBlock block;
-
--(id) initWithActionType:(AppiumCodeMakerActionType)actionType params:(NSArray*)params block:(AppiumCodeMakerActionBlock)block;
+@property NSDictionary *params;
+@property (readonly) AppiumCodeMakerActionBlock block;
 
 @end

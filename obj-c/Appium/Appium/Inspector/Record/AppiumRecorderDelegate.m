@@ -11,6 +11,7 @@
 #import <Selenium/SERemoteWebDriver.h>
 #import <QuartzCore/QuartzCore.h>
 #import "AppiumInspectorDelegate.h"
+#import "AppiumCodeMakerActions.h"
 
 @interface AppiumRecorderDelegate ()
     @property (readonly) AppiumInspectorDelegate *inspector;
@@ -44,65 +45,71 @@
 #pragma mark - Actions
 -(IBAction)tap:(id)sender
 {
-    SEWebElement *element = [self.inspector elementForSelectedNode];
-    AppiumCodeMakerActionBlock block = ^{
-        [element click];
-        [self.inspector refresh:nil];
-    };
+    AppiumCodeMakerLocator *locator = [self.inspector locatorForSelectedNode];
+
+    // vvv remove once xpath with indices is fixed
+    [locator setElementReference:[self.inspector elementForSelectedNode]];
+    // ^^^ remove once xpath with indices is fixed 
+    
+    AppiumCodeMakerAction *action = [[AppiumCodeMakerActionTap alloc] initWithLocator:locator];
 	if (_isRecording)
 	{
-		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_TAP params:[NSArray arrayWithObjects:[self.inspector locatorForSelectedNode], nil] block:block]];
+		[_codeMaker addAction:action];
 	}
-    block();
+    action.block(self.driver);
+    [self.inspector refresh:sender];
 }
 
 -(IBAction)sendKeys:(id)sender
 {
-    SEWebElement *element = [self.inspector elementForSelectedNode];
+
+    AppiumCodeMakerLocator *locator = [self.inspector locatorForSelectedNode];
+    
+    // vvv remove once xpath with indices is fixed
+    [locator setElementReference:[self.inspector elementForSelectedNode]];
+    // ^^^ remove once xpath with indices is fixed
+    
     NSString *keysToSend = [self.keysToSend copy];
-    AppiumCodeMakerActionBlock block = ^{
-        [element sendKeys:keysToSend];
-        [self.inspector refresh:nil];
-    };
+    
+    AppiumCodeMakerAction *action = [[AppiumCodeMakerActionSendKeys alloc] initWithLocator:locator keys:keysToSend];
 	if (_isRecording)
 	{
-		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_SEND_KEYS params:[NSArray arrayWithObjects:[self keysToSend], [self.inspector locatorForSelectedNode], nil] block:block]];
+		[_codeMaker addAction:action];
 	}
-    block();
+    action.block(self.driver);
+    [self.inspector refresh:sender];
 }
 
 -(IBAction)comment:(id)sender
 {
+    NSString *comment = [self.keysToSend copy];
 	if (_isRecording)
 	{
-		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_COMMENT params:[NSArray arrayWithObjects:[self keysToSend], nil] block:^{}]];
+		[_codeMaker addAction:[[AppiumCodeMakerActionComment alloc] initWithComment:comment]];
 	}
 }
 
 -(IBAction)acceptAlert:(id)sender
 {
-    AppiumCodeMakerActionBlock block = ^{
-        [self.driver acceptAlert];
-        [self.inspector refresh:nil];
-    };
+    AppiumCodeMakerAction *action = [[AppiumCodeMakerActionAlertAccept alloc] init];
 	if (_isRecording)
 	{
-		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_ALERT_ACCEPT params:nil block:block]];
+		[_codeMaker addAction:action];
 	}
-    block();
+	action.block(self.driver);
+    [self.inspector refresh:sender];
 }
 
 -(IBAction)dismissAlert:(id)sender
 {
-    AppiumCodeMakerActionBlock block = ^{
-        [self.driver dismissAlert];
-        [self.inspector refresh:nil];
-    };
+
+    AppiumCodeMakerAction *action = [[AppiumCodeMakerActionAlertDismiss alloc] init];
 	if (_isRecording)
 	{
-		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_ALERT_DISMISS params:nil block:block]];
+		[_codeMaker addAction:action];
 	}
-	block();
+	action.block(self.driver);
+    [self.inspector refresh:sender];
 }
 
 - (IBAction)toggleSwipePopover:(id)sender
@@ -129,14 +136,13 @@
 													  [NSNumber numberWithInteger:_windowController.swipePopoverViewController.endPoint.y], @"endY",
 													  [_windowController.swipePopoverViewController.duration copy], @"duration",
 													  nil],nil];
-    AppiumCodeMakerActionBlock block = ^{
-        [self.driver executeScript:@"mobile: swipe" arguments:args];
-    };
+
+    AppiumCodeMakerAction *action = [[AppiumCodeMakerActionSwipe alloc] initWithArguments:args];
 	if (_isRecording)
 	{
-		[_codeMaker addAction:[[AppiumCodeMakerAction alloc] initWithActionType:APPIUM_CODE_MAKER_ACTION_SWIPE params:args block:block]];
+		[_codeMaker addAction:action];
 	}
-	block();
+    action.block(self.driver);
 	
 	// reset for next iteration
 	[_windowController.swipePopover close];
@@ -186,7 +192,7 @@
 
 -(IBAction)replay:(id)sender
 {
-    [_codeMaker replay];
+    [_codeMaker replay:self.driver];
 }
 
 @end

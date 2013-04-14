@@ -20,6 +20,7 @@
 	{
 		self.locatorType = locatorType;
 		self.locatorString = locatorString;
+        self.elementReference = nil;
 	}
     return self;
 }
@@ -42,10 +43,30 @@
 }
 
 #pragma mark - NSCopying Implementation
--(id)copyWithZone:(NSZone *)zone
+-(id) copyWithZone:(NSZone *)zone
 {
 	AppiumCodeMakerLocator *another = [[AppiumCodeMakerLocator alloc] initWithLocatorType:self.locatorType locatorString:[self.locatorString copy]];
 	return another;
+}
+
+#pragma mark - Other Methods
+-(SEWebElement*) elementWithDriver:(SERemoteWebDriver*)driver
+{
+
+    return (self.elementReference == nil) ? [driver findElementBy:[self by]] : self.elementReference;
+}
+
+-(SEBy*) by
+{
+    switch(self.locatorType)
+    {
+        case APPIUM_CODE_MAKER_LOCATOR_TYPE_NAME:
+            return [SEBy name:self.locatorString];
+        case APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH:
+            return [SEBy xPath:self.xPath];
+        default:
+            return nil;
+    }
 }
 
 @end
