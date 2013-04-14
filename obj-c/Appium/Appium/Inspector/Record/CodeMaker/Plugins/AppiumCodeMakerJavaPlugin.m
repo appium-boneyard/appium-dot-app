@@ -7,6 +7,7 @@
 //
 
 #import "AppiumCodeMakerJavaPlugin.h"
+#import "AppiumCodeMakerActions.h"
 
 @interface AppiumCodeMakerJavaPlugin ()
 
@@ -62,11 +63,11 @@ public class {scriptName} {\n\
 		case APPIUM_CODE_MAKER_ACTION_ALERT_DISMISS:
 			return [self dismissAlert];
 		case APPIUM_CODE_MAKER_ACTION_COMMENT:
-			return [self comment:[action.params objectAtIndex:0]];
+			return [self comment:((AppiumCodeMakerActionComment*)action).comment];
 		case APPIUM_CODE_MAKER_ACTION_SEND_KEYS:
-			return [self sendKeys:[action.params objectAtIndex:0] locator:[action.params objectAtIndex:1]];
+			return [self sendKeys:((AppiumCodeMakerActionSendKeys*)action).keys locator:((AppiumCodeMakerActionSendKeys*)action).locator];
 		case APPIUM_CODE_MAKER_ACTION_TAP:
-			return [self tap:[action.params objectAtIndex:0]];
+			return [self tap:((AppiumCodeMakerActionTap*)action).locator];
 		default:
 			return [self comment:@"Action cannot currently be transcribed by Appium Recorder"];
 	}

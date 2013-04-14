@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Selenium/SERemoteWebDriver.h>
 #import "AppiumCodeMakerPlugin.h"
 
 @interface AppiumCodeMaker : NSObject {
@@ -27,6 +28,6 @@
 
 -(void) reset;
 -(void) addAction:(AppiumCodeMakerAction*)action;
--(void) replay;
+-(void) replay:(SERemoteWebDriver*)driver;
 
 @end

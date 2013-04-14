@@ -35,6 +35,12 @@
 		36AA8D7016E40B28007472C1 /* AppiumMonitorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36AA8D6E16E40B28007472C1 /* AppiumMonitorWindow.xib */; };
 		36B2F18616E6379C008764E0 /* defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 36B2F18516E6379C008764E0 /* defaults.plist */; };
 		36BA17BB16E81BF30041DD86 /* AppiumAppPathTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BA17BA16E81BF30041DD86 /* AppiumAppPathTransformer.m */; };
+		36BF1D66171B434C00C2CF01 /* AppiumCodeMakerActionTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BF1D65171B434C00C2CF01 /* AppiumCodeMakerActionTap.m */; };
+		36BF1D69171B4C1000C2CF01 /* AppiumCodeMakerActionSendKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BF1D68171B4C1000C2CF01 /* AppiumCodeMakerActionSendKeys.m */; };
+		36BF1D6C171B4ED400C2CF01 /* AppiumCodeMakerAlertDismiss.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BF1D6B171B4ED400C2CF01 /* AppiumCodeMakerAlertDismiss.m */; };
+		36BF1D6F171B4F5100C2CF01 /* AppiumCodeMakerActionAlertAccept.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BF1D6E171B4F5000C2CF01 /* AppiumCodeMakerActionAlertAccept.m */; };
+		36BF1D72171B4FE600C2CF01 /* AppiumCodeMakerActionSwipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BF1D71171B4FE500C2CF01 /* AppiumCodeMakerActionSwipe.m */; };
+		36BF1D75171B540100C2CF01 /* AppiumCodeMakerActionComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BF1D74171B540000C2CF01 /* AppiumCodeMakerActionComment.m */; };
 		36C9479C1719D0CB008DE83F /* AppiumRecorderDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C9479B1719D0CB008DE83F /* AppiumRecorderDelegate.m */; };
 		36CD44EE16F0D5C300194193 /* AppiumInspectorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CD44EC16F0D5C300194193 /* AppiumInspectorWindowController.m */; };
 		36CD44EF16F0D5C300194193 /* AppiumInspectorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36CD44ED16F0D5C300194193 /* AppiumInspectorWindow.xib */; };
@@ -133,6 +139,19 @@
 		36B2F18516E6379C008764E0 /* defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = defaults.plist; sourceTree = "<group>"; };
 		36BA17B916E81BF30041DD86 /* AppiumAppPathTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumAppPathTransformer.h; sourceTree = "<group>"; };
 		36BA17BA16E81BF30041DD86 /* AppiumAppPathTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumAppPathTransformer.m; sourceTree = "<group>"; };
+		36BF1D64171B434C00C2CF01 /* AppiumCodeMakerActionTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerActionTap.h; sourceTree = "<group>"; };
+		36BF1D65171B434C00C2CF01 /* AppiumCodeMakerActionTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerActionTap.m; sourceTree = "<group>"; };
+		36BF1D67171B4C1000C2CF01 /* AppiumCodeMakerActionSendKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerActionSendKeys.h; sourceTree = "<group>"; };
+		36BF1D68171B4C1000C2CF01 /* AppiumCodeMakerActionSendKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerActionSendKeys.m; sourceTree = "<group>"; };
+		36BF1D6A171B4ED400C2CF01 /* AppiumCodeMakerActionAlertDismiss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerActionAlertDismiss.h; sourceTree = "<group>"; };
+		36BF1D6B171B4ED400C2CF01 /* AppiumCodeMakerAlertDismiss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerAlertDismiss.m; sourceTree = "<group>"; };
+		36BF1D6D171B4F5000C2CF01 /* AppiumCodeMakerActionAlertAccept.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerActionAlertAccept.h; sourceTree = "<group>"; };
+		36BF1D6E171B4F5000C2CF01 /* AppiumCodeMakerActionAlertAccept.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerActionAlertAccept.m; sourceTree = "<group>"; };
+		36BF1D70171B4FE500C2CF01 /* AppiumCodeMakerActionSwipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerActionSwipe.h; sourceTree = "<group>"; };
+		36BF1D71171B4FE500C2CF01 /* AppiumCodeMakerActionSwipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerActionSwipe.m; sourceTree = "<group>"; };
+		36BF1D73171B540000C2CF01 /* AppiumCodeMakerActionComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerActionComment.h; sourceTree = "<group>"; };
+		36BF1D74171B540000C2CF01 /* AppiumCodeMakerActionComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerActionComment.m; sourceTree = "<group>"; };
+		36BF1D76171B55DE00C2CF01 /* AppiumCodeMakerActions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerActions.h; sourceTree = "<group>"; };
 		36C9479A1719D0CB008DE83F /* AppiumRecorderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumRecorderDelegate.h; sourceTree = "<group>"; };
 		36C9479B1719D0CB008DE83F /* AppiumRecorderDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumRecorderDelegate.m; sourceTree = "<group>"; };
 		36CD44EB16F0D5C300194193 /* AppiumInspectorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumInspectorWindowController.h; sourceTree = "<group>"; };
@@ -300,6 +319,7 @@
 		363236781713B1EA0088FFBC /* CodeMaker */ = {
 			isa = PBXGroup;
 			children = (
+				36BF1D63171B432E00C2CF01 /* Actions */,
 				3618718A1718879A0021D7F7 /* PopOvers */,
 				368230D71715C72100FF113F /* Plugins */,
 				368230D81715C73F00FF113F /* AppiumCodeMaker.h */,
@@ -363,6 +383,26 @@
 				365A2D7D16E3C847007BADF9 /* Utility.m */,
 			);
 			name = Utility;
+			sourceTree = "<group>";
+		};
+		36BF1D63171B432E00C2CF01 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				36BF1D76171B55DE00C2CF01 /* AppiumCodeMakerActions.h */,
+				36BF1D6D171B4F5000C2CF01 /* AppiumCodeMakerActionAlertAccept.h */,
+				36BF1D6E171B4F5000C2CF01 /* AppiumCodeMakerActionAlertAccept.m */,
+				36BF1D6A171B4ED400C2CF01 /* AppiumCodeMakerActionAlertDismiss.h */,
+				36BF1D6B171B4ED400C2CF01 /* AppiumCodeMakerAlertDismiss.m */,
+				36BF1D73171B540000C2CF01 /* AppiumCodeMakerActionComment.h */,
+				36BF1D74171B540000C2CF01 /* AppiumCodeMakerActionComment.m */,
+				36BF1D67171B4C1000C2CF01 /* AppiumCodeMakerActionSendKeys.h */,
+				36BF1D68171B4C1000C2CF01 /* AppiumCodeMakerActionSendKeys.m */,
+				36BF1D70171B4FE500C2CF01 /* AppiumCodeMakerActionSwipe.h */,
+				36BF1D71171B4FE500C2CF01 /* AppiumCodeMakerActionSwipe.m */,
+				36BF1D64171B434C00C2CF01 /* AppiumCodeMakerActionTap.h */,
+				36BF1D65171B434C00C2CF01 /* AppiumCodeMakerActionTap.m */,
+			);
+			path = Actions;
 			sourceTree = "<group>";
 		};
 		36CD44F016F0E1CE00194193 /* Inspector */ = {
@@ -617,6 +657,12 @@
 				36FF07B317174936009ED9E2 /* AppiumCodeMakerRubyPlugin.m in Sources */,
 				3618718D171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.m in Sources */,
 				36C9479C1719D0CB008DE83F /* AppiumRecorderDelegate.m in Sources */,
+				36BF1D66171B434C00C2CF01 /* AppiumCodeMakerActionTap.m in Sources */,
+				36BF1D69171B4C1000C2CF01 /* AppiumCodeMakerActionSendKeys.m in Sources */,
+				36BF1D6C171B4ED400C2CF01 /* AppiumCodeMakerAlertDismiss.m in Sources */,
+				36BF1D6F171B4F5100C2CF01 /* AppiumCodeMakerActionAlertAccept.m in Sources */,
+				36BF1D72171B4FE600C2CF01 /* AppiumCodeMakerActionSwipe.m in Sources */,
+				36BF1D75171B540100C2CF01 /* AppiumCodeMakerActionComment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
