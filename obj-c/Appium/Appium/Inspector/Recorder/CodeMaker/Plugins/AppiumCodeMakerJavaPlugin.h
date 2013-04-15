@@ -11,7 +11,7 @@
 @class AppiumCodeMaker;
 @class AppiumCodeMakerPlugin;
 
-@interface AppiumCodeMakerJavaPlugin : AppiumCodeMakerPlugin<AppiumCodeMakerPlugin>
+@interface AppiumCodeMakerJavaPlugin : AppiumCodeMakerPlugin
 
 @property (weak) AppiumCodeMaker *codeMaker;
 

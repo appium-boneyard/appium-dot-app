@@ -55,11 +55,6 @@ wd = Selenium::WebDriver.for :firefox\n\n";
 	}
 }
 
--(NSString*) renderAction:(AppiumCodeMakerAction*)action
-{
-	return [AppiumCodeMakerPlugin renderAction:action withPlugin:self];
-}
-
 -(NSString*) acceptAlert {return [self commentWithString:APPIUM_CODE_MAKER_PLUGIN_METHOD_NYI_STRING];}
 
 -(NSString*) dismissAlert {return [self commentWithString:APPIUM_CODE_MAKER_PLUGIN_METHOD_NYI_STRING];}

@@ -12,27 +12,21 @@
 
 @class AppiumCodeMaker;
 
-@protocol AppiumCodeMakerPlugin
+@interface AppiumCodeMakerPlugin : NSObject
 
 @property (readonly) NSString *name;
 @property (readonly) NSString *preCodeBoilerplate;
 @property (readonly) NSString *postCodeBoilerplate;
--(NSString*) renderAction:(AppiumCodeMakerAction*)action;
+@property (weak) AppiumCodeMaker *codeMaker;
 
+-(id) initWithCodeMaker:(AppiumCodeMaker *)codeMaker;
+
+-(NSString*) renderAction:(AppiumCodeMakerAction*)action;
 -(NSString*) acceptAlert;
 -(NSString*) comment:(AppiumCodeMakerActionComment*)action;
 -(NSString*) commentWithString:(NSString *)comment;
 -(NSString*) dismissAlert;
 -(NSString*) sendKeys:(AppiumCodeMakerActionSendKeys*)action;
 -(NSString*) tap:(AppiumCodeMakerActionTap*)action;
-
-@end
-
-@interface AppiumCodeMakerPlugin : NSObject
-
-@property (weak) AppiumCodeMaker *codeMaker;
-
--(id) initWithCodeMaker:(AppiumCodeMaker*)codeMaker;
-+(NSString*) renderAction:(AppiumCodeMakerAction*)action withPlugin:(id<AppiumCodeMakerPlugin>)plugin;
 
 @end

@@ -33,14 +33,14 @@
 
 #pragma mark - Properties
 
--(id<AppiumCodeMakerPlugin>) activePlugin { return _activePlugin; }
+-(AppiumCodeMakerPlugin*) activePlugin { return _activePlugin; }
 -(NSArray*) allPlugins { return [_plugins allKeys]; }
 -(NSString*) selectedPluginString { return _activePlugin.name; }
 -(NSNumber*) useBoilerPlate { return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:APPIUM_PLIST_USE_CODEMAKER_BOILERPLATE]]; }
 -(NSNumber*) useXPathOnly { return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:APPIUM_PLIST_USE_XPATH_ONLY]]; }
 
 
--(void) setActivePlugin:(id<AppiumCodeMakerPlugin>)plugin
+-(void) setActivePlugin:(AppiumCodeMakerPlugin*)plugin
 {
 	_activePlugin = plugin;
 	_renderedActions = @"";
@@ -49,7 +49,7 @@
 
 -(void)setSelectedPluginString:(NSString *)selectedPluginString
 {
-	[self setActivePlugin:(id<AppiumCodeMakerPlugin>)[_plugins objectForKey:selectedPluginString]];
+	[self setActivePlugin:(AppiumCodeMakerPlugin*)[_plugins objectForKey:selectedPluginString]];
 	[[NSUserDefaults standardUserDefaults] setObject:selectedPluginString forKey:APPIUM_PLIST_CODEMAKER_LANGUAGE];
 	
 }

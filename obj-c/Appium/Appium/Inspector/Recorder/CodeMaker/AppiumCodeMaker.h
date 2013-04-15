@@ -11,17 +11,18 @@
 #import "AppiumCodeMakerPlugin.h"
 
 @class AppiumCodeMakerAction;
+@class AppiumCodeMakerPlugin;
 @class SERemoteWebDriver;
 
 @interface AppiumCodeMaker : NSObject {
 @private
 	NSMutableArray *_actions;
 	NSString *_renderedActions;
-	id<AppiumCodeMakerPlugin> _activePlugin;
+	AppiumCodeMakerPlugin *_activePlugin;
 	NSDictionary *_plugins;
 }
 
-@property id<AppiumCodeMakerPlugin> activePlugin;
+@property AppiumCodeMakerPlugin *activePlugin;
 @property (readonly) NSArray *allPlugins;
 @property NSString *selectedPluginString;
 @property NSNumber *useBoilerPlate;

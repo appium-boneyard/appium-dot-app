@@ -79,11 +79,6 @@ try:\n";
 
 -(NSString*) indentation { return [self.codeMaker.useBoilerPlate boolValue] ? @"\t" : @""; }
 
--(NSString*) renderAction:(AppiumCodeMakerAction*)action
-{
-	return [AppiumCodeMakerPlugin renderAction:action withPlugin:self];
-}
-
 -(NSString*) acceptAlert
 {
 	return [NSString stringWithFormat:@"%@wd.switch_to_alert().accept()\n", self.indentation];

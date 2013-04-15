@@ -83,11 +83,6 @@ namespace AppiumTests {\n\
 
 -(NSString*) indentation { return [self.codeMaker.useBoilerPlate boolValue] ? @"\t\t\t\t" : @""; }
 
--(NSString*) renderAction:(AppiumCodeMakerAction*)action
-{
-	return [AppiumCodeMakerPlugin renderAction:action withPlugin:self];
-}
-
 -(NSString*) acceptAlert
 {
 	return [NSString stringWithFormat:@"%@wd.SwitchTo().Alert().Accept();\n", self.indentation];

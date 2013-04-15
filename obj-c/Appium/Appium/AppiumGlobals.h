@@ -7,3 +7,4 @@
 //
 
 #define APPIUM_DEBUG_LEVEL 0
+#define APPIUM_ABSTRACT_CLASS_ERROR @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)] userInfo:nil];
