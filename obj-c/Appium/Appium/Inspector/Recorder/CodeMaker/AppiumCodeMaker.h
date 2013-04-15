@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <Selenium/SERemoteWebDriver.h>
+#import "AppiumCodeMakerActions.h"
 #import "AppiumCodeMakerPlugin.h"
+
+@class AppiumCodeMakerAction;
 
 @interface AppiumCodeMaker : NSObject {
 @private

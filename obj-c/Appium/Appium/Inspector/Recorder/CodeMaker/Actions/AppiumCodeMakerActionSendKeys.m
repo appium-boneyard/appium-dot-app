@@ -8,6 +8,7 @@
 
 #import "AppiumCodeMakerActionSendKeys.h"
 
+
 @implementation AppiumCodeMakerActionSendKeys
 
 -(id) initWithLocator:(AppiumCodeMakerLocator*)locator keys:(NSString*)keys
@@ -16,7 +17,8 @@
     if (self)
 	{
 		self.actionType = APPIUM_CODE_MAKER_ACTION_SEND_KEYS;
-        self.params = [NSDictionary dictionaryWithObjectsAndKeys:locator, @"locator", keys, @"keys", nil];
+		[self.params setObject:locator forKey:@"locator"];
+		[self.params setObject:keys forKey:@"keys"];
 	}
     return self;
 }

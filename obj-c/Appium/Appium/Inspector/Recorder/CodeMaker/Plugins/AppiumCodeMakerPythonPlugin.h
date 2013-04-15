@@ -11,7 +11,7 @@
 
 @class AppiumCodeMaker;
 
-@interface AppiumCodeMakerPythonPlugin : NSObject <AppiumCodeMakerPlugin>
+@interface AppiumCodeMakerPythonPlugin : AppiumCodeMakerPlugin<AppiumCodeMakerPlugin>
 
 @property (weak) AppiumCodeMaker *codeMaker;
 

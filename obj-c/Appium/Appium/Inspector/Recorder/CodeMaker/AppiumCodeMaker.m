@@ -8,12 +8,8 @@
 
 #import "AppiumCodeMaker.h"
 
-#import "AppiumCodeMakerAction.h"
-#import "AppiumCodeMakerCSharpPlugin.h"
-#import "AppiumCodeMakerJavaPlugin.h"
-#import "AppiumCodeMakerPythonPlugin.h"
-#import "AppiumCodeMakerRubyPlugin.h"
 #import "AppiumPreferencesFile.h"
+#import "AppiumCodeMakerPlugins.h"
 
 @class AppiumCodeMakerAction;
 

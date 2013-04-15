@@ -26,7 +26,7 @@ typedef void(^AppiumCodeMakerActionBlock)(SERemoteWebDriver*);
 @interface AppiumCodeMakerAction : NSObject<NSCopying, NSCoding>
 
 @property AppiumCodeMakerActionType actionType;
-@property NSDictionary *params;
+@property (readonly) NSMutableDictionary *params;
 @property (readonly) AppiumCodeMakerActionBlock block;
 
 @end

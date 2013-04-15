@@ -17,7 +17,7 @@
     if (self)
 	{
 		self.actionType = APPIUM_CODE_MAKER_ACTION_TAP;
-        self.params = [NSDictionary dictionaryWithObjectsAndKeys:locator, @"locator", nil];
+		[self.params setObject:locator forKey:@"locator"];
 	}
     return self;
 }
