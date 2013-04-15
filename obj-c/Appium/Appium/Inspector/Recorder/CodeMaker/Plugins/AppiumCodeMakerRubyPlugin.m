@@ -45,13 +45,13 @@ wd = Selenium::WebDriver.for :firefox\n\n";
 		//case APPIUM_CODE_MAKER_ACTION_ALERT_DISMISS:
 		//	return [self dismissAlert];
 		case APPIUM_CODE_MAKER_ACTION_COMMENT:
-			return [self comment:((AppiumCodeMakerActionComment*)action).comment];
+			return [self comment:(AppiumCodeMakerActionComment*)action];
 		case APPIUM_CODE_MAKER_ACTION_SEND_KEYS:
-			return [self sendKeys:((AppiumCodeMakerActionSendKeys*)action).keys locator:((AppiumCodeMakerActionSendKeys*)action).locator];
+			return [self sendKeys:(AppiumCodeMakerActionSendKeys*)action];
 		case APPIUM_CODE_MAKER_ACTION_TAP:
-			return [self tap:((AppiumCodeMakerActionTap*)action).locator];
+			return [self tap:(AppiumCodeMakerActionTap*)action];
 		default:
-			return [self comment:@"Action cannot currently be transcribed by Appium Recorder"];
+			return [self commentWithString:@"Action cannot currently be transcribed by Appium Recorder"];
 	}
 }
 
@@ -74,20 +74,24 @@ wd = Selenium::WebDriver.for :firefox\n\n";
 	}
 }
 
--(NSString*) comment:(NSString*)comment
+-(NSString*) comment:(AppiumCodeMakerActionComment*)action
+{
+	return [self commentWithString:action.comment];
+}
+
+-(NSString*) commentWithString:(NSString*)comment
 {
 	return [NSString stringWithFormat:@"# %@\n", comment];
 }
 
--(NSString*) sendKeys:(NSString*)keys locator:(AppiumCodeMakerLocator*)locator
+-(NSString*) sendKeys:(AppiumCodeMakerActionSendKeys*)action
 {
-	return [NSString stringWithFormat:@"%@.send_keys \"%@\"\n", [self locatorString:locator], [self escapeString:keys]];
+	return [NSString stringWithFormat:@"%@.send_keys \"%@\"\n", [self locatorString:action.locator], [self escapeString:action.keys]];
 }
 
--(NSString*) tap:(AppiumCodeMakerLocator*)locator
+-(NSString*) tap:(AppiumCodeMakerActionTap*)action
 {
-	return [NSString stringWithFormat:@"%@.click\n", [self locatorString:locator]];
+	return [NSString stringWithFormat:@"%@.click\n", [self locatorString:action.locator]];
 }
-
 
 @end
