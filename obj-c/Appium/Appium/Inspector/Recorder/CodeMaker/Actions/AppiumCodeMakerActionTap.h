@@ -6,9 +6,11 @@
 //  Copyright (c) 2013 Appium. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "AppiumCodeMakerAction.h"
 #import "AppiumCodeMakerLocator.h"
+
+@class AppiumCodeMakerAction;
+@class AppiumCodeMakerLocator;
 
 @interface AppiumCodeMakerActionTap : AppiumCodeMakerAction
 

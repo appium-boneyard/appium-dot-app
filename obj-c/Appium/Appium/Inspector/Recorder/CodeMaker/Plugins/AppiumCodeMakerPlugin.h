@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Appium. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "AppiumCodeMakerActions.h"
 
 #define APPIUM_CODE_MAKER_PLUGIN_METHOD_NYI_STRING @"Action cannot currently be transcribed by Appium Recorder"

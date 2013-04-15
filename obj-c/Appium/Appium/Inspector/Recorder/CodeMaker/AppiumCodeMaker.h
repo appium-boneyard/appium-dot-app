@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 Appium. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <Selenium/SERemoteWebDriver.h>
-#import "AppiumCodeMakerActions.h"
+#import "AppiumCodeMakerAction.h"
 #import "AppiumCodeMakerPlugin.h"
 
 @class AppiumCodeMakerAction;
+@class SERemoteWebDriver;
 
 @interface AppiumCodeMaker : NSObject {
 @private
