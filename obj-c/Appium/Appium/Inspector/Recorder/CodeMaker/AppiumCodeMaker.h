@@ -14,7 +14,7 @@
 @class AppiumCodeMakerPlugin;
 @class SERemoteWebDriver;
 
-@interface AppiumCodeMaker : NSObject {
+@interface AppiumCodeMaker : NSObject<NSCoding> {
 @private
 	NSMutableArray *_actions;
 	NSString *_renderedActions;

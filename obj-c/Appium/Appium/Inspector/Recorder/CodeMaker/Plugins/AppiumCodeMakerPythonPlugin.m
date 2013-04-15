@@ -26,6 +26,7 @@
     return self;
 }
 
+#pragma mark - AppiumCodeMakerPlugin Implementation
 -(NSString*) name { return @"Python"; }
 
 -(NSString*) preCodeBoilerplate
@@ -58,27 +59,6 @@ try:\n";
 \t\traise Exception(\"Test failed.\")\n";
 }
 
--(NSString*) escapeString:(NSString *)string
-{
-    return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-}
-
--(NSString*) locatorString:(AppiumCodeMakerLocator*)locator
-{
-	AppiumCodeMakerLocator *newLocator = [self.codeMaker.useXPathOnly boolValue] ? [[AppiumCodeMakerLocator alloc] initWithLocatorType:APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH locatorString:locator.xPath] : [locator copy];
-	
-	switch(newLocator.locatorType)
-	{
-		case APPIUM_CODE_MAKER_LOCATOR_TYPE_NAME:
-			return [NSString stringWithFormat:@"wd.find_elements_by_name(\"%@\")", [self escapeString:newLocator.locatorString]];
-		case APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH:
-			return [NSString stringWithFormat:@"wd.find_elements_by_xpath(\"%@\")", [self escapeString:newLocator.locatorString]];
-		default: return nil;
-	}
-}
-
--(NSString*) indentation { return [self.codeMaker.useBoilerPlate boolValue] ? @"\t" : @""; }
-
 -(NSString*) acceptAlert
 {
 	return [NSString stringWithFormat:@"%@wd.switch_to_alert().accept()\n", self.indentation];
@@ -107,6 +87,28 @@ try:\n";
 -(NSString*) tap:(AppiumCodeMakerActionTap*)action
 {
 	return [NSString stringWithFormat:@"%@%@.click()\n", self.indentation, [self locatorString:action.locator]];
+}
+
+#pragma mark - Helper Methods
+-(NSString*) escapeString:(NSString *)string
+{
+    return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+}
+
+-(NSString*) indentation { return [self.codeMaker.useBoilerPlate boolValue] ? @"\t" : @""; }
+
+-(NSString*) locatorString:(AppiumCodeMakerLocator*)locator
+{
+	AppiumCodeMakerLocator *newLocator = [self.codeMaker.useXPathOnly boolValue] ? [[AppiumCodeMakerLocator alloc] initWithLocatorType:APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH locatorString:locator.xPath] : [locator copy];
+	
+	switch(newLocator.locatorType)
+	{
+		case APPIUM_CODE_MAKER_LOCATOR_TYPE_NAME:
+			return [NSString stringWithFormat:@"wd.find_elements_by_name(\"%@\")", [self escapeString:newLocator.locatorString]];
+		case APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH:
+			return [NSString stringWithFormat:@"wd.find_elements_by_xpath(\"%@\")", [self escapeString:newLocator.locatorString]];
+		default: return nil;
+	}
 }
 
 @end

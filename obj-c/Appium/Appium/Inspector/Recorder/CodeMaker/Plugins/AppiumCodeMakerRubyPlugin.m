@@ -20,6 +20,7 @@
     return self;
 }
 
+#pragma mark - AppiumCodeMakerPlugin Implementation
 -(NSString*) name { return @"Ruby"; }
 
 -(NSString*) preCodeBoilerplate
@@ -34,25 +35,6 @@ wd = Selenium::WebDriver.for :firefox\n\n";
 -(NSString*) postCodeBoilerplate
 {
     return @"wd.quit\n";
-}
-
--(NSString*) escapeString:(NSString *)string
-{
-    return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
-}
-
--(NSString*) locatorString:(AppiumCodeMakerLocator*)locator
-{
-	AppiumCodeMakerLocator *newLocator = [self.codeMaker.useXPathOnly boolValue] ? [[AppiumCodeMakerLocator alloc] initWithLocatorType:APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH locatorString:locator.xPath] : [locator copy];
-	
-	switch(newLocator.locatorType)
-	{
-		case APPIUM_CODE_MAKER_LOCATOR_TYPE_NAME:
-			return [NSString stringWithFormat:@"wd.find_element(:name, \"%@\")", [self escapeString:newLocator.locatorString]];
-		case APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH:
-			return [NSString stringWithFormat:@"wd.find_element(:xpath, \"%@\")", [self escapeString:newLocator.locatorString]];
-		default: return nil;
-	}
 }
 
 -(NSString*) acceptAlert {return [self commentWithString:APPIUM_CODE_MAKER_PLUGIN_METHOD_NYI_STRING];}
@@ -77,6 +59,26 @@ wd = Selenium::WebDriver.for :firefox\n\n";
 -(NSString*) tap:(AppiumCodeMakerActionTap*)action
 {
 	return [NSString stringWithFormat:@"%@.click\n", [self locatorString:action.locator]];
+}
+
+#pragma mark - Helper Methods
+-(NSString*) escapeString:(NSString *)string
+{
+    return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+}
+
+-(NSString*) locatorString:(AppiumCodeMakerLocator*)locator
+{
+	AppiumCodeMakerLocator *newLocator = [self.codeMaker.useXPathOnly boolValue] ? [[AppiumCodeMakerLocator alloc] initWithLocatorType:APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH locatorString:locator.xPath] : [locator copy];
+	
+	switch(newLocator.locatorType)
+	{
+		case APPIUM_CODE_MAKER_LOCATOR_TYPE_NAME:
+			return [NSString stringWithFormat:@"wd.find_element(:name, \"%@\")", [self escapeString:newLocator.locatorString]];
+		case APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH:
+			return [NSString stringWithFormat:@"wd.find_element(:xpath, \"%@\")", [self escapeString:newLocator.locatorString]];
+		default: return nil;
+	}
 }
 
 @end

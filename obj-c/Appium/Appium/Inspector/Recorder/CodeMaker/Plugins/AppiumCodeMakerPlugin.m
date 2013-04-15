@@ -13,10 +13,10 @@
 
 -(id) initWithCodeMaker:(AppiumCodeMaker *)codeMaker
 {
-	[NSException raise:NSInternalInconsistencyException format:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)];
-	return nil;
+	APPIUM_ABSTRACT_CLASS_ERROR
 }
 
+#pragma mark - Instance Methods
 -(NSString*) renderAction:(AppiumCodeMakerAction*)action
 {
 	switch(action.actionType)
@@ -36,6 +36,7 @@
 	}
 }
 
+#pragma mark - Abstract Methods
 -(NSString*) acceptAlert { APPIUM_ABSTRACT_CLASS_ERROR }
 -(NSString*) comment:(AppiumCodeMakerActionComment*)action { APPIUM_ABSTRACT_CLASS_ERROR }
 -(NSString*) commentWithString:(NSString *)comment { APPIUM_ABSTRACT_CLASS_ERROR }
