@@ -71,13 +71,13 @@ namespace AppiumTests {\n\
 		case APPIUM_CODE_MAKER_ACTION_ALERT_DISMISS:
 			return [self dismissAlert];
 		case APPIUM_CODE_MAKER_ACTION_COMMENT:
-			return [self comment:((AppiumCodeMakerActionComment*)action).comment];
+			return [self comment:(AppiumCodeMakerActionComment*)action];
 		case APPIUM_CODE_MAKER_ACTION_SEND_KEYS:
-			return [self sendKeys:((AppiumCodeMakerActionSendKeys*)action).keys locator:((AppiumCodeMakerActionSendKeys*)action).locator];
+			return [self sendKeys:(AppiumCodeMakerActionSendKeys*)action];
 		case APPIUM_CODE_MAKER_ACTION_TAP:
-			return [self tap:((AppiumCodeMakerActionTap*)action).locator];
+			return [self tap:(AppiumCodeMakerActionTap*)action];
 		default:
-			return [self comment:@"Action cannot currently be transcribed by Appium Recorder"];
+			return [self commentWithString:@"Action cannot currently be transcribed by Appium Recorder"];
 	}
 }
 
@@ -107,7 +107,12 @@ namespace AppiumTests {\n\
 	return [NSString stringWithFormat:@"%@wd.SwitchTo().Alert().Accept();\n", self.indentation];
 }
 
--(NSString*) comment:(NSString *)comment
+-(NSString*) comment:(AppiumCodeMakerActionComment*)action
+{
+	return [self commentWithString:action.comment];
+}
+
+-(NSString*) commentWithString:(NSString *)comment
 {
 	return [NSString stringWithFormat:@"%@// %@\n", self.indentation, comment];
 }
@@ -117,14 +122,14 @@ namespace AppiumTests {\n\
 	return [NSString stringWithFormat:@"%@wd.SwitchTo().Alert().Dismiss();\n", self.indentation];
 }
 
--(NSString*) sendKeys:(NSString *)keys locator:(AppiumCodeMakerLocator*)locator
+-(NSString*) sendKeys:(AppiumCodeMakerActionSendKeys*)action
 {
-	return [NSString stringWithFormat:@"%@wd.FindElement(%@).SendKeys(\"%@\");\n", self.indentation, [self locatorString:locator], [self escapeString:keys]];
+	return [NSString stringWithFormat:@"%@wd.FindElement(%@).SendKeys(\"%@\");\n", self.indentation, [self locatorString:action.locator], [self escapeString:action.keys]];
 }
 
--(NSString*) tap:(AppiumCodeMakerLocator*)locator
+-(NSString*) tap:(AppiumCodeMakerActionTap*)action
 {
-	return [NSString stringWithFormat:@"%@wd.Click(%@);\n", self.indentation, [self locatorString:locator]];
+	return [NSString stringWithFormat:@"%@wd.Click(%@);\n", self.indentation, [self locatorString:action.locator]];
 }
 
 @end

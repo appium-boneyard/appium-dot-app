@@ -67,13 +67,13 @@ try:\n";
 		case APPIUM_CODE_MAKER_ACTION_ALERT_DISMISS:
 			return [self dismissAlert];
 		case APPIUM_CODE_MAKER_ACTION_COMMENT:
-			return [self comment:((AppiumCodeMakerActionComment*)action).comment];
+			return [self comment:(AppiumCodeMakerActionComment*)action];
 		case APPIUM_CODE_MAKER_ACTION_SEND_KEYS:
-			return [self sendKeys:((AppiumCodeMakerActionSendKeys*)action).keys locator:((AppiumCodeMakerActionSendKeys*)action).locator];
+			return [self sendKeys:(AppiumCodeMakerActionSendKeys*)action];
 		case APPIUM_CODE_MAKER_ACTION_TAP:
-			return [self tap:((AppiumCodeMakerActionTap*)action).locator];
+			return [self tap:(AppiumCodeMakerActionTap*)action];
 		default:
-			return [self comment:@"Action cannot currently be transcribed by Appium Recorder"];
+			return [self commentWithString:@"Action cannot currently be transcribed by Appium Recorder"];
 	}
 }
 
@@ -103,7 +103,12 @@ try:\n";
 	return [NSString stringWithFormat:@"%@wd.switch_to_alert().accept()\n", self.indentation];
 }
 
--(NSString*) comment:(NSString*)comment
+-(NSString*) comment:(AppiumCodeMakerActionComment*)action
+{
+	return [self commentWithString:action.comment];
+}
+
+-(NSString*) commentWithString:(NSString*)comment
 {
 	return [NSString stringWithFormat:@"%@# %@\n", self.indentation, comment];
 }
@@ -113,14 +118,14 @@ try:\n";
 	return [NSString stringWithFormat:@"%@wd.switch_to_alert().dismiss()\n", self.indentation];
 }
 
--(NSString*) sendKeys:(NSString*)keys locator:(AppiumCodeMakerLocator*)locator
+-(NSString*) sendKeys:(AppiumCodeMakerActionSendKeys*)action
 {
-	return [NSString stringWithFormat:@"%@%@.send_keys(\"%@\")\n", self.indentation, [self locatorString:locator], [self escapeString:keys]];
+	return [NSString stringWithFormat:@"%@%@.send_keys(\"%@\")\n", self.indentation, [self locatorString:action.locator], [self escapeString:action.keys]];
 }
 
--(NSString*) tap:(AppiumCodeMakerLocator*)locator
+-(NSString*) tap:(AppiumCodeMakerActionTap*)action
 {
-	return [NSString stringWithFormat:@"%@%@.click()\n", self.indentation, [self locatorString:locator]];
+	return [NSString stringWithFormat:@"%@%@.click()\n", self.indentation, [self locatorString:action.locator]];
 }
 
 @end
