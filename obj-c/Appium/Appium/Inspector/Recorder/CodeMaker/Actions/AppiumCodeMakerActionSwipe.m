@@ -16,7 +16,7 @@
     if (self)
 	{
 		self.actionType = APPIUM_CODE_MAKER_ACTION_SWIPE;
-        self.params = [NSDictionary dictionaryWithObjectsAndKeys: arguments, @"args", nil];
+		[self.params setObject:arguments forKey:@"args"];
 	}
     return self;
 }

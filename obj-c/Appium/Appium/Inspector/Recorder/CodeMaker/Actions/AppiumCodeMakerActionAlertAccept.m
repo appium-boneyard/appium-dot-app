@@ -16,7 +16,6 @@
     if (self)
 	{
 		self.actionType = APPIUM_CODE_MAKER_ACTION_ALERT_ACCEPT;
-        self.params = [NSDictionary new];
 	}
     return self;
 }

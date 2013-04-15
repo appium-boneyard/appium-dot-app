@@ -54,25 +54,6 @@ public class {scriptName} {\n\
 }\n";
 }
 
--(NSString*) renderAction:(AppiumCodeMakerAction*)action
-{
-	switch(action.actionType)
-	{
-		case APPIUM_CODE_MAKER_ACTION_ALERT_ACCEPT:
-			return [self acceptAlert];
-		case APPIUM_CODE_MAKER_ACTION_ALERT_DISMISS:
-			return [self dismissAlert];
-		case APPIUM_CODE_MAKER_ACTION_COMMENT:
-			return [self comment:(AppiumCodeMakerActionComment*)action];
-		case APPIUM_CODE_MAKER_ACTION_SEND_KEYS:
-			return [self sendKeys:(AppiumCodeMakerActionSendKeys*)action];
-		case APPIUM_CODE_MAKER_ACTION_TAP:
-			return [self tap:(AppiumCodeMakerActionTap*)action];
-		default:
-			return [self commentWithString:@"Action cannot currently be transcribed by Appium Recorder"];
-	}
-}
-
 -(NSString*) escapeString:(NSString *)string
 {
     return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
@@ -80,7 +61,7 @@ public class {scriptName} {\n\
 
 -(NSString*) locatorString:(AppiumCodeMakerLocator*)locator
 {
-	AppiumCodeMakerLocator *newLocator = [_codeMaker.useXPathOnly boolValue] ? [[AppiumCodeMakerLocator alloc] initWithLocatorType:APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH locatorString:locator.xPath] : [locator copy];
+	AppiumCodeMakerLocator *newLocator = [self.codeMaker.useXPathOnly boolValue] ? [[AppiumCodeMakerLocator alloc] initWithLocatorType:APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH locatorString:locator.xPath] : [locator copy];
 	
 	switch(newLocator.locatorType)
 	{

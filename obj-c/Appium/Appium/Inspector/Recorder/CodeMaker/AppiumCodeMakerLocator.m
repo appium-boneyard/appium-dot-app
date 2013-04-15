@@ -50,11 +50,13 @@
 }
 
 #pragma mark - Other Methods
+// vvv remove once xpath with indices is fixed
 -(SEWebElement*) elementWithDriver:(SERemoteWebDriver*)driver
 {
 
     return (self.elementReference == nil) ? [driver findElementBy:[self by]] : self.elementReference;
 }
+// ^^^ remove once xpath with indices is fixed
 
 -(SEBy*) by
 {

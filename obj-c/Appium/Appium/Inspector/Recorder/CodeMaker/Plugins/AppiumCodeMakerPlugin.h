@@ -6,21 +6,27 @@
 //  Copyright (c) 2013 Appium. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "AppiumCodeMaker.h"
-#import "AppiumCodeMakerAction.h"
-#import "AppiumCodeMakerLocator.h"
+#import "AppiumCodeMakerActions.h"
+
+#define APPIUM_CODE_MAKER_PLUGIN_METHOD_NYI_STRING @"Action cannot currently be transcribed by Appium Recorder"
 
 @class AppiumCodeMaker;
 
-@protocol AppiumCodeMakerPlugin
+@interface AppiumCodeMakerPlugin : NSObject
 
 @property (readonly) NSString *name;
 @property (readonly) NSString *preCodeBoilerplate;
 @property (readonly) NSString *postCodeBoilerplate;
 @property (weak) AppiumCodeMaker *codeMaker;
 
--(id) initWithCodeMaker:(AppiumCodeMaker*)codeMaker;
+-(id) initWithCodeMaker:(AppiumCodeMaker *)codeMaker;
+
 -(NSString*) renderAction:(AppiumCodeMakerAction*)action;
+-(NSString*) acceptAlert;
+-(NSString*) comment:(AppiumCodeMakerActionComment*)action;
+-(NSString*) commentWithString:(NSString *)comment;
+-(NSString*) dismissAlert;
+-(NSString*) sendKeys:(AppiumCodeMakerActionSendKeys*)action;
+-(NSString*) tap:(AppiumCodeMakerActionTap*)action;
 
 @end

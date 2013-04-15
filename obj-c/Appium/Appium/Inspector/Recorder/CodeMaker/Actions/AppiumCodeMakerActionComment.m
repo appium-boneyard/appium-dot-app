@@ -16,7 +16,7 @@
     if (self)
 	{
 		self.actionType = APPIUM_CODE_MAKER_ACTION_COMMENT;
-        self.params = [NSDictionary dictionaryWithObjectsAndKeys:comment, @"comment", nil];
+		[self.params setObject:comment forKey:@"comment"];
 	}
     return self;
 }

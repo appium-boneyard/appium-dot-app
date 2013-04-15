@@ -8,15 +8,20 @@
 
 #import "AppiumCodeMakerAction.h"
 
+@interface AppiumCodeMakerAction ()
+
+@property (readwrite) NSMutableDictionary *params;
+
+@end
+
 @implementation AppiumCodeMakerAction
 
--(id) initWithActionType:(AppiumCodeMakerActionType)actionType params:(NSDictionary*)params
+-(id) init
 {
     self = [super init];
     if (self)
 	{
-		self.actionType = actionType;
-        self.params = params;
+        self.params = [NSMutableDictionary new];
 	}
     return self;
 }
@@ -43,7 +48,11 @@
 #pragma mark - NSCopying Implementation
 -(id) copyWithZone:(NSZone *)zone
 {
-	AppiumCodeMakerAction *another = [[AppiumCodeMakerAction alloc] initWithActionType:self.actionType params:[self.params copyWithZone:zone]];
+	AppiumCodeMakerAction *another = [[AppiumCodeMakerAction alloc] init];
+	[another setActionType:self.actionType];
+	[another setParams:[self.params copyWithZone:zone]];
+									  
+
 	return another;
 }
 

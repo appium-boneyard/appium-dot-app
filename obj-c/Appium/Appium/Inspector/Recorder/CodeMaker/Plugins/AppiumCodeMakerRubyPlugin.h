@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 Appium. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "AppiumCodeMaker.h"
 
 @class AppiumCodeMaker;
+@class AppiumCodeMakerPlugin;
 
-@interface AppiumCodeMakerRubyPlugin : NSObject <AppiumCodeMakerPlugin>
+@interface AppiumCodeMakerRubyPlugin : AppiumCodeMakerPlugin
 
 @property (weak) AppiumCodeMaker *codeMaker;
 
