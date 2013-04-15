@@ -15,7 +15,7 @@
     self = [super init];
     if (self)
 	{
-		self.actionType = APPIUM_CODE_MAKER_ACTION_TAP;
+		self.actionType = APPIUM_CODE_MAKER_ACTION_SEND_KEYS;
         self.params = [NSDictionary dictionaryWithObjectsAndKeys:locator, @"locator", keys, @"keys", nil];
 	}
     return self;
