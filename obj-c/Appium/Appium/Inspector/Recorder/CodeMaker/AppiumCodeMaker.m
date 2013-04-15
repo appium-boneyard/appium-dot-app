@@ -110,4 +110,19 @@
     }
 }
 
+#pragma mark - NSCoding Implementation
+-(id) initWithCoder:(NSCoder *)aDecoder
+{
+    if(self = [self init])
+    {
+        _actions = [aDecoder decodeObjectForKey:@"actions"];
+    }
+    return self;
+}
+
+-(void) encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:_actions forKey:@"actions"];
+}
+
 @end
