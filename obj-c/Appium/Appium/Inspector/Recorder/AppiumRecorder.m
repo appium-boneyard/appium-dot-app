@@ -45,10 +45,6 @@
 -(IBAction)tap:(id)sender
 {
     AppiumCodeMakerLocator *locator = [self.inspector locatorForSelectedNode];
-
-    // vvv remove once xpath with indices is fixed
-    [locator setElementReference:[self.inspector elementForSelectedNode]];
-    // ^^^ remove once xpath with indices is fixed 
     
     AppiumCodeMakerAction *action = [[AppiumCodeMakerActionTap alloc] initWithLocator:locator];
 	if (_isRecording)
@@ -63,10 +59,6 @@
 {
 
     AppiumCodeMakerLocator *locator = [self.inspector locatorForSelectedNode];
-    
-    // vvv remove once xpath with indices is fixed
-    [locator setElementReference:[self.inspector elementForSelectedNode]];
-    // ^^^ remove once xpath with indices is fixed
     
     NSString *keysToSend = [self.keysToSend copy];
     
@@ -157,7 +149,6 @@
 	{
 		[_windowController.bottomDrawer openOnEdge:NSMinYEdge];
         
-        //[_windowController.recordButton setWantsLayer:YES];
         CIFilter *filter = [CIFilter filterWithName:@"CIFalseColor"];
         [filter setDefaults];
         [filter setValue:[CIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0] forKey:@"inputColor0"];
@@ -179,7 +170,6 @@
 	{
         [_windowController.recordButton.layer setFilters:[NSArray new]];
         [_windowController.recordButton.layer removeAllAnimations];
-        //[_windowController.recordButton setWantsLayer:NO];
 		[_windowController.bottomDrawer close];
 	}
 }
