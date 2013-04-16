@@ -25,7 +25,7 @@
 -(AppiumCodeMakerActionBlock) block
 {
     return ^(SERemoteWebDriver* driver){
-        SEWebElement *element = [[self.params objectForKey:@"locator"] elementWithDriver:driver];
+        SEWebElement *element = [driver findElementBy:[self.locator by]];
         [element click];
     };
 }

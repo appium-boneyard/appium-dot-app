@@ -247,17 +247,15 @@
 
 -(AppiumCodeMakerLocator*) locatorForSelectedNode
 {
-	AppiumCodeMakerLocator *locator;
+	NSString *xPath = [self xPathForSelectedNode];
 	if ([self selectedNodeNameIsUniqueInTree:_rootNode])
 	{
-		locator = [[AppiumCodeMakerLocator alloc] initWithLocatorType:APPIUM_CODE_MAKER_LOCATOR_TYPE_NAME locatorString:_selection.name];
+		return [[AppiumCodeMakerLocator alloc] initWithLocatorType:APPIUM_CODE_MAKER_LOCATOR_TYPE_NAME locatorString:_selection.name xPath:xPath];
 	}
 	else
 	{
-		locator = [[AppiumCodeMakerLocator alloc] initWithLocatorType:APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH locatorString:[self xPathForSelectedNode]];
+		return [[AppiumCodeMakerLocator alloc] initWithLocatorType:APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH locatorString:xPath xPath:xPath];
 	}
-	locator.xPath = [self xPathForSelectedNode];
-	return locator;
 }
 
 #pragma mark - Inspector Operations

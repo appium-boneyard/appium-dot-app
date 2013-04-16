@@ -45,10 +45,6 @@
 -(IBAction)tap:(id)sender
 {
     AppiumCodeMakerLocator *locator = [self.inspector locatorForSelectedNode];
-
-    // vvv remove once xpath with indices is fixed
-    [locator setElementReference:[self.inspector elementForSelectedNode]];
-    // ^^^ remove once xpath with indices is fixed 
     
     AppiumCodeMakerAction *action = [[AppiumCodeMakerActionTap alloc] initWithLocator:locator];
 	if (_isRecording)
@@ -63,10 +59,6 @@
 {
 
     AppiumCodeMakerLocator *locator = [self.inspector locatorForSelectedNode];
-    
-    // vvv remove once xpath with indices is fixed
-    [locator setElementReference:[self.inspector elementForSelectedNode]];
-    // ^^^ remove once xpath with indices is fixed
     
     NSString *keysToSend = [self.keysToSend copy];
     

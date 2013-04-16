@@ -7,20 +7,18 @@
 //
 
 #import "AppiumCodeMakerLocator.h"
-
-#define APPIUM_CODEMAKER_LOCATOR_TYPE_ENCODER_KEY @"locatorType"
-#define APPIUM_CODEMAKER_LOCATOR_STRING_ENCODER_KEY @"locatorString"
+#import "AppiumPreferencesFile.h"
 
 @implementation AppiumCodeMakerLocator
 
--(id) initWithLocatorType:(AppiumCodeMakerLocatorType)locatorType locatorString:(NSString*)locatorString
+-(id) initWithLocatorType:(AppiumCodeMakerLocatorType)locatorType locatorString:(NSString*)locatorString xPath:(NSString*)xPath
 {
 	self = [super init];
     if (self)
 	{
 		self.locatorType = locatorType;
 		self.locatorString = locatorString;
-        self.elementReference = nil;
+		self.xPath = xPath;
 	}
     return self;
 }
@@ -30,36 +28,36 @@
 {
     if(self = [super init]) 
     {
-        self.locatorType = [aDecoder decodeIntForKey:APPIUM_CODEMAKER_LOCATOR_TYPE_ENCODER_KEY];
-        self.locatorString = [aDecoder decodeObjectForKey:APPIUM_CODEMAKER_LOCATOR_STRING_ENCODER_KEY];
+        self.locatorType = [aDecoder decodeIntForKey:@"locatorType"];
+        self.locatorString = [aDecoder decodeObjectForKey:@"locatorString"];
+		self.xPath = [aDecoder decodeObjectForKey:@"xPath"];
     }
     return self;
 }
                                           
 -(void) encodeWithCoder:(NSCoder *)aCoder
 {
-    [aCoder encodeInt:self.locatorType forKey:APPIUM_CODEMAKER_LOCATOR_TYPE_ENCODER_KEY];
-    [aCoder encodeObject:self.locatorString forKey:APPIUM_CODEMAKER_LOCATOR_STRING_ENCODER_KEY];
+    [aCoder encodeInt:self.locatorType forKey:@"locatorType"];
+    [aCoder encodeObject:self.locatorString forKey:@"locatorString"];
+	[aCoder encodeObject:self.xPath forKey:@"xPath"];
 }
 
 #pragma mark - NSCopying Implementation
 -(id) copyWithZone:(NSZone *)zone
 {
-	AppiumCodeMakerLocator *another = [[AppiumCodeMakerLocator alloc] initWithLocatorType:self.locatorType locatorString:[self.locatorString copyWithZone:zone]];
+	AppiumCodeMakerLocator *another = [[AppiumCodeMakerLocator alloc] initWithLocatorType:self.locatorType locatorString:[self.locatorString copyWithZone:zone] xPath:[self.xPath copyWithZone:zone]];
 	return another;
 }
 
 #pragma mark - Other Methods
-// vvv remove once xpath with indices is fixed
--(SEWebElement*) elementWithDriver:(SERemoteWebDriver*)driver
-{
-
-    return (self.elementReference == nil) ? [driver findElementBy:[self by]] : self.elementReference;
-}
-// ^^^ remove once xpath with indices is fixed
 
 -(SEBy*) by
 {
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:APPIUM_PLIST_USE_XPATH_ONLY])
+	{
+		return [self byXPath];
+	}
+	
     switch(self.locatorType)
     {
         case APPIUM_CODE_MAKER_LOCATOR_TYPE_NAME:
@@ -69,6 +67,11 @@
         default:
             return nil;
     }
+}
+
+-(SEBy*) byXPath
+{
+	return [SEBy xPath:self.xPath];
 }
 
 @end

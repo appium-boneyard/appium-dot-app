@@ -22,11 +22,8 @@ typedef enum appiumCodeMakerLocatorTypes
 @property NSString *locatorString;
 @property NSString *xPath;
 
-// vvv remove once xpath with indices is fixed
-@property SEWebElement *elementReference;
-// ^^^ remove once xpath with indices is fixed
-
--(id) initWithLocatorType:(AppiumCodeMakerLocatorType)locatorType locatorString:(NSString*)locatorString;
--(SEWebElement*) elementWithDriver:(SERemoteWebDriver*)driver;
+-(id) initWithLocatorType:(AppiumCodeMakerLocatorType)locatorType locatorString:(NSString*)locatorString xPath:(NSString*)xPath;
+-(SEBy*) by;
+-(SEBy*) byXPath;
 
 @end
