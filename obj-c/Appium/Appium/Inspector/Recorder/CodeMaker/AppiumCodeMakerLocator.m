@@ -50,7 +50,6 @@
 }
 
 #pragma mark - Other Methods
-
 -(SEBy*) by
 {
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:APPIUM_PLIST_USE_XPATH_ONLY])
