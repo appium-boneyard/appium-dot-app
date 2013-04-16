@@ -26,7 +26,6 @@
     if (self) {
 		_isRecording = NO;
         [self setKeysToSend:@""];
-        _codeMaker = [AppiumCodeMaker new];
     }
     return self;
 }

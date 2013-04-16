@@ -27,6 +27,8 @@
 		3695CAB016E3FCAE003697A9 /* AppiumInstallationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3695CAAE16E3FCAE003697A9 /* AppiumInstallationWindowController.m */; };
 		3695CAB116E3FCAE003697A9 /* AppiumInstallationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3695CAAF16E3FCAE003697A9 /* AppiumInstallationWindow.xib */; };
 		3695E3C316FD08C800AD1544 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3695E3C216FD08C800AD1544 /* QuartzCore.framework */; };
+		369ED811171DA81E000A7A4E /* MGSFragaria.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369ED810171DA81E000A7A4E /* MGSFragaria.framework */; };
+		369ED812171DA83F000A7A4E /* MGSFragaria.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 369ED810171DA81E000A7A4E /* MGSFragaria.framework */; };
 		36A765A216F01648002A7D6A /* AppiumPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A765A016F01648002A7D6A /* AppiumPreferencesWindowController.m */; };
 		36A765A316F01648002A7D6A /* AppiumPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36A765A116F01648002A7D6A /* AppiumPreferencesWindow.xib */; };
 		36A765A616F01C7C002A7D6A /* appium.icns in Resources */ = {isa = PBXBuildFile; fileRef = 36A765A516F01C7C002A7D6A /* appium.icns */; };
@@ -82,6 +84,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				36F5FA2D16F4E889007751D6 /* Selenium.framework in CopyFiles */,
+				369ED812171DA83F000A7A4E /* MGSFragaria.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +131,7 @@
 		3695CAAE16E3FCAE003697A9 /* AppiumInstallationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumInstallationWindowController.m; sourceTree = "<group>"; };
 		3695CAAF16E3FCAE003697A9 /* AppiumInstallationWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AppiumInstallationWindow.xib; path = XIBs/AppiumInstallationWindow.xib; sourceTree = "<group>"; };
 		3695E3C216FD08C800AD1544 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		369ED810171DA81E000A7A4E /* MGSFragaria.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MGSFragaria.framework; path = Frameworks/MGSFragaria.framework; sourceTree = "<group>"; };
 		36A7659F16F01648002A7D6A /* AppiumPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumPreferencesWindowController.h; sourceTree = "<group>"; };
 		36A765A016F01648002A7D6A /* AppiumPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumPreferencesWindowController.m; sourceTree = "<group>"; };
 		36A765A116F01648002A7D6A /* AppiumPreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AppiumPreferencesWindow.xib; path = XIBs/AppiumPreferencesWindow.xib; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				369ED811171DA81E000A7A4E /* MGSFragaria.framework in Frameworks */,
 				3695E3C316FD08C800AD1544 /* QuartzCore.framework in Frameworks */,
 				36CEB7CC16E3662E00B5B100 /* Cocoa.framework in Frameworks */,
 				36F5FA2C16F4E87F007751D6 /* Selenium.framework in Frameworks */,
@@ -450,6 +455,7 @@
 		36CEB7CA16E3662E00B5B100 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				369ED810171DA81E000A7A4E /* MGSFragaria.framework */,
 				36CEB7CB16E3662E00B5B100 /* Cocoa.framework */,
 				3695E3C216FD08C800AD1544 /* QuartzCore.framework */,
 				36F5FA2B16F4E87E007751D6 /* Selenium.framework */,

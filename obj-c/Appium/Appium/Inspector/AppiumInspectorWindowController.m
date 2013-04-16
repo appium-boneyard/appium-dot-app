@@ -48,15 +48,16 @@
 
 -(void) awakeFromNib
 {
+	// set up screen shot view
 	[self.screenshotImageView setInspector:self.inspector];
+
+	// setup drawer
     NSSize contentSize = NSMakeSize(self.window.frame.size.width, 200);
     self.bottomDrawer = [[NSDrawer alloc] initWithContentSize:contentSize preferredEdge:NSMinYEdge];
     [self.bottomDrawer setParentWindow:self.window];
     [self.bottomDrawer setMinContentSize:contentSize];
-	
 	[self.bottomDrawer setContentView:self.bottomDrawerContentView];
 	[self.bottomDrawer.contentView setAutoresizingMask:NSViewHeightSizable];
-	[self.recordButton setWantsLayer:NO];
 }
 
 @end

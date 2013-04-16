@@ -22,7 +22,6 @@
     @property SERemoteWebDriver *driver;
     @property NSDrawer *bottomDrawer;
 	@property IBOutlet NSView *bottomDrawerContentView;
-	@property IBOutlet NSTextView *bottomDrawerContentTextView;
 	@property IBOutlet NSBrowser *browser;
 	@property IBOutlet NSTextView *detailsTextView;
 	@property IBOutlet NSView *selectedElementHighlightView;
@@ -32,5 +31,5 @@
     @property IBOutlet AppiumCodeMakerSwipePopOverViewController *swipePopoverViewController;
     @property IBOutlet NSPopover *swipePopover;
     @property IBOutlet NSButton *swipeButton;
-
+	@property NSString *syntaxDefinition;
 @end
