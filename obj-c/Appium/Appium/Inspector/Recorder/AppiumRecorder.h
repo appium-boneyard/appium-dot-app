@@ -19,6 +19,6 @@
 
 @property NSNumber *isRecording;
 @property NSString *keysToSend;
-@property AppiumCodeMaker *codeMaker;
+@property IBOutlet AppiumCodeMaker *codeMaker;
 
 @end
