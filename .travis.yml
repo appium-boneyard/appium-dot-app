@@ -1,2 +1,5 @@
 language: objective-c
-script: cd ./obj-c/Appium
+before script:
+  - cd ./obj-c/Appium
+script:
+  - xcodebuild
