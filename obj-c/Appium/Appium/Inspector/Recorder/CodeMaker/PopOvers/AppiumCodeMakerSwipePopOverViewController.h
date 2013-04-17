@@ -7,8 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "AppiumInspectorScreenshotImageView.h"
 
-@interface AppiumCodeMakerSwipePopOverViewController : NSViewController {
+@class AppiumInspectorScreenshotImageView;
+
+@interface AppiumCodeMakerSwipePopOverViewController : NSViewController<NSPopoverDelegate> {
 	@private
 	NSUInteger _numberOfFingers;
 	float _duration;
@@ -17,8 +20,10 @@
 	NSString *_beginPointLabel;
 	NSString *_endPointLabel;
 	BOOL _isReady;
+	IBOutlet AppiumInspectorScreenshotImageView * _screenshotView;
 }
 
+@property IBOutlet NSPopover *popover;
 @property (readonly) NSUInteger numberOfFingers;
 @property NSString *numberOfFingersString;
 @property NSNumber *duration;
