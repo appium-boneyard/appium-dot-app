@@ -16,12 +16,6 @@
 	@private IBOutlet AppiumInspectorWindowController *_windowController;
 }
 
-//@property AppiumInspector *inspector;
-@property CGFloat screenshotScalar;
-@property CGFloat xBorder;
-@property CGFloat yBorder;
-@property CGFloat maxWidth;
-@property CGFloat maxHeight;
 @property NSValue *beginPoint;
 @property NSValue *endPoint;
 
