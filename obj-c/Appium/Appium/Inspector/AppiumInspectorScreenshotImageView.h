@@ -8,18 +8,24 @@
 
 #import <Cocoa/Cocoa.h>
 #import "AppiumInspector.h"
+#import "AppiumInspectorWindowController.h"
 
-@class AppiumInspector;
+@class AppiumInspectorWindowController;
 
-@interface AppiumInspectorScreenshotImageView : NSImageView
+@interface AppiumInspectorScreenshotImageView : NSImageView {
+	@private IBOutlet AppiumInspectorWindowController *_windowController;
+}
 
-@property AppiumInspector *inspector;
+//@property AppiumInspector *inspector;
 @property CGFloat screenshotScalar;
 @property CGFloat xBorder;
 @property CGFloat yBorder;
 @property CGFloat maxWidth;
 @property CGFloat maxHeight;
+@property NSValue *beginPoint;
+@property NSValue *endPoint;
 
+-(NSPoint) convertSeleniumPointToViewPoint:(NSPoint)point;
 -(NSRect) convertSeleniumRectToViewRect:(NSRect)rect;
 -(NSPoint) convertWindowPointToSeleniumPoint:(NSPoint)pointInWindow;
 

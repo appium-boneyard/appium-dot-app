@@ -31,6 +31,17 @@
 	[self setDuration:[NSNumber numberWithFloat:0.5f]];
 	[self setBeginPointLabel:@"(click to select)"];
 	[self setEndPointLabel:@"(click to select)"];
+	[self.popover setDelegate:self];
+}
+
+- (void)popoverDidShow:(NSNotification *)notification
+{
+	[_screenshotView display];
+}
+
+- (void)popoverDidClose:(NSNotification *)notification
+{
+	[_screenshotView display];
 }
 
 -(NSUInteger) numberOfFingers {	return _numberOfFingers; }
@@ -53,6 +64,7 @@
 	_beginPoint = beginPoint;
 	[self setBeginPointLabel:[NSString stringWithFormat:@"(%.01f,%.01f)", _beginPoint.x, _beginPoint.y]];
 	[self setBeginPointWasSetLast:YES];
+	[_screenshotView setBeginPoint:[NSValue valueWithPoint:[_screenshotView convertSeleniumPointToViewPoint:beginPoint]]];
 }
 
 -(NSString*) beginPointLabel { return _beginPointLabel; }
@@ -68,6 +80,7 @@
 	[self setEndPointLabel:[NSString stringWithFormat:@"(%.01f,%.01f)", _endPoint.x, _endPoint.y]];
 	[self setIsReady:[NSNumber numberWithBool:YES]];
 	[self setBeginPointWasSetLast:NO];
+	[_screenshotView setEndPoint:[NSValue valueWithPoint:[_screenshotView convertSeleniumPointToViewPoint:endPoint]]];
 }
 
 -(NSString*) endPointLabel { return _endPointLabel; }
@@ -90,6 +103,8 @@
 	[self setDuration:[NSNumber numberWithFloat:0.5f]];
 	[self setBeginPointLabel:@"(click to select)"];
 	[self setEndPointLabel:@"(click to select)"];
+	[_screenshotView setBeginPoint:nil];
+	[_screenshotView setEndPoint:nil];
 }
 
 @end
