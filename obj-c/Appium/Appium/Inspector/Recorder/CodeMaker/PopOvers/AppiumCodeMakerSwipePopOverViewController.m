@@ -34,16 +34,7 @@
 	[self.popover setDelegate:self];
 }
 
-- (void)popoverDidShow:(NSNotification *)notification
-{
-	[_screenshotView display];
-}
-
-- (void)popoverDidClose:(NSNotification *)notification
-{
-	[_screenshotView display];
-}
-
+#pragma mark - Properties
 -(NSUInteger) numberOfFingers {	return _numberOfFingers; }
 
 -(NSString*) numberOfFingersString { return [NSString stringWithFormat:@"%li", _numberOfFingers]; }
@@ -95,6 +86,7 @@
 	_isReady = [isReady boolValue];
 }
 
+#pragma mark - Public Methods
 -(void) reset
 {
 	[self setBeginPointWasSetLast:NO];
@@ -105,6 +97,17 @@
 	[self setEndPointLabel:@"(click to select)"];
 	[_screenshotView setBeginPoint:nil];
 	[_screenshotView setEndPoint:nil];
+}
+
+#pragma mark - NSPopoverDelegate Implementation
+- (void)popoverDidShow:(NSNotification *)notification
+{
+	[_screenshotView display];
+}
+
+- (void)popoverDidClose:(NSNotification *)notification
+{
+	[_screenshotView display];
 }
 
 @end

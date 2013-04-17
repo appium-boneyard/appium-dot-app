@@ -63,7 +63,7 @@
 			NSBezierPath *line = [NSBezierPath bezierPath];
 			[line moveToPoint:beginPoint];
 			[line lineToPoint:endPoint];
-			[[NSColor blackColor] set];
+			[[[NSColor blackColor] colorWithAlphaComponent:0.85f] set];
 			[line setLineWidth:3.0f];
 			[line setLineCapStyle:NSRoundLineCapStyle];
 			[line stroke];
