@@ -204,14 +204,7 @@
 							<string key="NSFrame">{{411, 488}, {89, 41}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<bool key="NSViewIsLayerTreeHost">YES</bool>
-							<object class="NSShadow" key="NSViewShadow">
-								<object class="NSColor" key="NSShadowColor" id="250024741">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MAA</bytes>
-								</object>
-							</object>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="478588093">
@@ -356,7 +349,6 @@
 							<string key="NSFrame">{{8, 10}, {590, 111}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="648807293"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<array class="NSMutableArray" key="NSTabViewItems">
 								<object class="NSTabViewItem" id="1050174537">
@@ -540,7 +532,10 @@
 														<int key="NSColorSpace">6</int>
 														<string key="NSCatalogName">System</string>
 														<string key="NSColorName">textColor</string>
-														<reference key="NSColor" ref="250024741"/>
+														<object class="NSColor" key="NSColor" id="250024741">
+															<int key="NSColorSpace">3</int>
+															<bytes key="NSWhite">MAA</bytes>
+														</object>
 													</object>
 												</object>
 												<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -722,7 +717,7 @@
 															<string key="NSFrameSize">{206, 143}</string>
 															<reference key="NSSuperview" ref="153909720"/>
 															<reference key="NSWindow"/>
-															<reference key="NSNextKeyView" ref="555555799"/>
+															<reference key="NSNextKeyView" ref="721067251"/>
 															<string key="NSReuseIdentifierKey">_NS:13</string>
 															<object class="NSTextContainer" key="NSTextContainer" id="926560149">
 																<object class="NSLayoutManager" key="NSLayoutManager">
@@ -816,7 +811,6 @@
 													<string key="NSFrame">{{191, 1}, {16, 143}}</string>
 													<reference key="NSSuperview" ref="410508918"/>
 													<reference key="NSWindow"/>
-													<reference key="NSNextKeyView"/>
 													<string key="NSReuseIdentifierKey">_NS:83</string>
 													<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 													<reference key="NSTarget" ref="410508918"/>
@@ -842,7 +836,7 @@
 											<string key="NSFrame">{{18, 14}, {208, 145}}</string>
 											<reference key="NSSuperview" ref="932273903"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="721067251"/>
+											<reference key="NSNextKeyView" ref="153909720"/>
 											<string key="NSReuseIdentifierKey">_NS:9</string>
 											<int key="NSsFlags">133138</int>
 											<reference key="NSVScroller" ref="555555799"/>
@@ -904,7 +898,6 @@
 						<string key="NSFrameSize">{864, 195}</string>
 						<reference key="NSSuperview" ref="378629004"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSClassName">NSView</string>
 					</object>
@@ -915,7 +908,6 @@
 						<string key="NSFrame">{{647, 200}, {75, 19}}</string>
 						<reference key="NSSuperview" ref="378629004"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="979225224">
@@ -941,7 +933,6 @@
 						<string key="NSFrame">{{730, 200}, {75, 19}}</string>
 						<reference key="NSSuperview" ref="378629004"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="352653648">
@@ -997,7 +988,6 @@
 						<string key="NSFrame">{{263, 201}, {103, 18}}</string>
 						<reference key="NSSuperview" ref="378629004"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="824997804">
@@ -1025,7 +1015,6 @@
 						<string key="NSFrame">{{128, 201}, {119, 18}}</string>
 						<reference key="NSSuperview" ref="378629004"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="952418107">
@@ -1149,7 +1138,6 @@
 						<string key="NSFrame">{{142, 5}, {61, 19}}</string>
 						<reference key="NSSuperview" ref="772666557"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="247811303">
@@ -3212,6 +3200,60 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">AppiumRecorder</string>
 					<string key="superclassName">NSObject</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="acceptAlert:">id</string>
+						<string key="clearRecording:">id</string>
+						<string key="comment:">id</string>
+						<string key="dismissAlert:">id</string>
+						<string key="performSwipe:">id</string>
+						<string key="replay:">id</string>
+						<string key="sendKeys:">id</string>
+						<string key="tap:">id</string>
+						<string key="toggleRecording:">id</string>
+						<string key="toggleSwipePopover:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="acceptAlert:">
+							<string key="name">acceptAlert:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clearRecording:">
+							<string key="name">clearRecording:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="comment:">
+							<string key="name">comment:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="dismissAlert:">
+							<string key="name">dismissAlert:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="performSwipe:">
+							<string key="name">performSwipe:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="replay:">
+							<string key="name">replay:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="sendKeys:">
+							<string key="name">sendKeys:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="tap:">
+							<string key="name">tap:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="toggleRecording:">
+							<string key="name">toggleRecording:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="toggleSwipePopover:">
+							<string key="name">toggleSwipePopover:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="_windowController">AppiumInspectorWindowController</string>
 						<string key="codeMaker">AppiumCodeMaker</string>

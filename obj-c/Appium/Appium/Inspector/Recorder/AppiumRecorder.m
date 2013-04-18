@@ -165,9 +165,13 @@
         pulseAnimation1.autoreverses = YES;
         
         [_windowController.recordButton.layer addAnimation:pulseAnimation1 forKey:@"pulseAnimation1"];
+		NSShadow * shadow = [NSShadow new];
+		[shadow setShadowColor:[[NSColor blackColor] colorWithAlphaComponent:0.95f]];
+		[_windowController.recordButton setShadow:shadow];
 	}
 	else
 	{
+		[_windowController.recordButton setShadow:nil];
         [_windowController.recordButton.layer setFilters:[NSArray new]];
         [_windowController.recordButton.layer removeAllAnimations];
 		[_windowController.bottomDrawer close];
