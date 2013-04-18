@@ -320,7 +320,7 @@ BOOL _isServerListening;
     {
         if (self.useAndroidPackage)
         {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"app-pkg", self.androidPackage];
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--app-pkg", self.androidPackage];
         }
         if (self.useAndroidActivity)
         {
