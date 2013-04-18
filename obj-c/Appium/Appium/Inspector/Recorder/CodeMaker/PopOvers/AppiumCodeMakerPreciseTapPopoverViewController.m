@@ -1,24 +1,24 @@
 //
-//  AppiumCodeMakerSwipePopOverViewController.m
+//  AppiumCodeMakerPreciseTapPopoverViewController.m
 //  Appium
 //
-//  Created by Dan Cuellar on 4/12/13.
+//  Created by Dan Cuellar on 4/18/13.
 //  Copyright (c) 2013 Appium. All rights reserved.
 //
 
-#import "AppiumCodeMakerSwipePopOverViewController.h"
+#import "AppiumCodeMakerPreciseTapPopoverViewController.h"
 
-@interface AppiumCodeMakerSwipePopOverViewController ()
+@interface AppiumCodeMakerPreciseTapPopoverViewController ()
 
 @end
 
-@implementation AppiumCodeMakerSwipePopOverViewController
+@implementation AppiumCodeMakerPreciseTapPopoverViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-		[self reset];
+        [self reset];
     }
     
     return self;
@@ -27,13 +27,21 @@
 -(void)awakeFromNib
 {
 	[self setIsReady:[NSNumber numberWithBool:NO]];
+	[self setNumberOfTapsString:@"1"];
 	[self setNumberOfFingersString:@"1"];
 	[self setDuration:[NSNumber numberWithFloat:0.5f]];
-	[self setBeginPointLabel:@"(click to select)"];
-	[self setEndPointLabel:@"(click to select)"];
+	[self setTouchPointLabel:@"(click to select)"];
 }
 
 #pragma mark - Properties
+-(NSUInteger) numberOfTaps { return _numberOfTaps; }
+
+-(NSString*) numberOfTapsString { return [NSString stringWithFormat:@"%li", _numberOfTaps]; }
+-(void) setNumberOfTapsString:(NSString *)numberOfTapsString
+{
+	_numberOfTaps = [numberOfTapsString integerValue];
+}
+
 -(NSUInteger) numberOfFingers {	return _numberOfFingers; }
 
 -(NSString*) numberOfFingersString { return [NSString stringWithFormat:@"%li", _numberOfFingers]; }
@@ -48,63 +56,40 @@
 	_duration = [duration floatValue];
 }
 
--(NSPoint) beginPoint { return _beginPoint; }
--(void) setBeginPoint:(NSPoint)beginPoint
+-(NSPoint) touchPoint { return _touchPoint; }
+-(void) setTouchPoint:(NSPoint)beginPoint
 {
-	_beginPoint = beginPoint;
-	[self setBeginPointLabel:[NSString stringWithFormat:@"(%.01f,%.01f)", _beginPoint.x, _beginPoint.y]];
-	[self setBeginPointWasSetLast:YES];
+	_touchPoint = beginPoint;
+	[self setTouchPointLabel:[NSString stringWithFormat:@"(%.01f,%.01f)", _touchPoint.x, _touchPoint.y]];
 	[_windowController.screenshotImageView setBeginPoint:[NSValue valueWithPoint:[_windowController.screenshotImageView convertSeleniumPointToViewPoint:beginPoint]]];
+	[self setIsReady:[NSNumber numberWithBool:YES]];
 }
 
--(NSString*) beginPointLabel { return _beginPointLabel; }
--(void) setBeginPointLabel:(NSString *)beginPointLabel
+-(NSString*) touchPointLabel { return _beginPointLabel; }
+-(void) setTouchPointLabel:(NSString *)beginPointLabel
 {
 	_beginPointLabel = beginPointLabel;
-}
-
--(NSPoint) endPoint { return _endPoint; }
--(void) setEndPoint:(NSPoint)endPoint
-{
-	_endPoint = endPoint;
-	[self setEndPointLabel:[NSString stringWithFormat:@"(%.01f,%.01f)", _endPoint.x, _endPoint.y]];
-	[self setIsReady:[NSNumber numberWithBool:YES]];
-	[self setBeginPointWasSetLast:NO];
-	[_windowController.screenshotImageView setEndPoint:[NSValue valueWithPoint:[_windowController.screenshotImageView convertSeleniumPointToViewPoint:endPoint]]];
-}
-
--(NSString*) endPointLabel { return _endPointLabel; }
--(void) setEndPointLabel:(NSString *)endPointLabel
-{
-	_endPointLabel = endPointLabel;
-}
-
--(NSNumber*) isReady { return [NSNumber numberWithBool:_isReady]; }
--(void) setIsReady:(NSNumber *)isReady
-{
-	_isReady = [isReady boolValue];
 }
 
 #pragma mark - Public Methods
 -(void) reset
 {
-	[self setBeginPointWasSetLast:NO];
 	[self setIsReady:[NSNumber numberWithBool:NO]];
+	[self setNumberOfTapsString:@"1"];
 	[self setNumberOfFingersString:@"1"];
 	[self setDuration:[NSNumber numberWithFloat:0.5f]];
-	[self setBeginPointLabel:@"(click to select)"];
-	[self setEndPointLabel:@"(click to select)"];
+	[self setTouchPointLabel:@"(click to select)"];
 	[_windowController.screenshotImageView setBeginPoint:nil];
 	[_windowController.screenshotImageView setEndPoint:nil];
 }
 
 #pragma mark - NSPopoverDelegate Implementation
-- (void)popoverDidShow:(NSNotification *)notification
+-(void) popoverDidShow:(NSNotification *)notification
 {
 	[_windowController.screenshotImageView display];
 }
 
-- (void)popoverDidClose:(NSNotification *)notification
+-(void) popoverDidClose:(NSNotification *)notification
 {
 	[_windowController.screenshotImageView display];
 }

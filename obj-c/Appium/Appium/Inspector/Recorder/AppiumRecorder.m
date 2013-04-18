@@ -103,6 +103,19 @@
     [self.inspector refresh:sender];
 }
 
+- (IBAction)togglePreciseTapPopover:(id)sender
+{
+	if (!_windowController.preciseTapPopoverViewController.popover.isShown) {
+		[_windowController.selectedElementHighlightView setHidden:YES];
+		[_windowController.preciseTapPopoverViewController.popover showRelativeToRect:[_windowController.preciseTapButton bounds]
+																		  ofView:_windowController.preciseTapButton
+																   preferredEdge:NSMaxYEdge];
+	} else {
+		[_windowController.preciseTapPopoverViewController.popover close];
+		[_windowController.selectedElementHighlightView setHidden:NO];
+	}
+}
+
 - (IBAction)toggleSwipePopover:(id)sender
 {
 	if (!_windowController.swipePopoverViewController.popover.isShown) {
@@ -114,6 +127,31 @@
 		[_windowController.swipePopoverViewController.popover close];
 		[_windowController.selectedElementHighlightView setHidden:NO];
 	}
+}
+
+-(IBAction)performPreciseTap:(id)sender
+{
+	// perform the swipe
+	NSArray *args = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys:
+													  [NSNumber numberWithInteger:_windowController.preciseTapPopoverViewController.numberOfTaps], @"tapCount",
+													  [NSNumber numberWithInteger:_windowController.preciseTapPopoverViewController.numberOfFingers], @"touchCount",
+													  [NSNumber numberWithInteger:_windowController.preciseTapPopoverViewController.touchPoint.x], @"x",
+													  [NSNumber numberWithInteger:_windowController.preciseTapPopoverViewController.touchPoint.y], @"y",
+													  [_windowController.preciseTapPopoverViewController.duration copy], @"duration",
+													  nil],nil];
+	
+    AppiumCodeMakerAction *action = [[AppiumCodeMakerActionPreciseTap alloc] initWithArguments:args];
+	if (_isRecording)
+	{
+		[_codeMaker addAction:action];
+	}
+    action.block(self.driver);
+	
+	// reset for next iteration
+	[_windowController.preciseTapPopoverViewController.popover close];
+	[_windowController.preciseTapPopoverViewController reset];
+	[_windowController.selectedElementHighlightView setHidden:NO];
+	[self.inspector refresh:sender];
 }
 
 -(IBAction)performSwipe:(id)sender

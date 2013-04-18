@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Selenium/SERemoteWebDriver.h>
+#import "AppiumCodeMakerPreciseTapPopoverViewController.h"
 #import "AppiumCodeMakerSwipePopOverViewController.h"
 #import "AppiumInspector.h"
 #import "AppiumInspectorScreenshotImageView.h"
@@ -15,6 +16,7 @@
 
 @class AppiumInspector;
 @class AppiumInspectorScreenshotImageView;
+@class AppiumCodeMakerPreciseTapPopoverViewController;
 @class AppiumCodeMakerSwipePopOverViewController;
 @class SERemoteWebDriver;
 
@@ -28,6 +30,8 @@
 	@property IBOutlet AppiumInspector *inspector;
 	@property IBOutlet AppiumInspectorScreenshotImageView *screenshotImageView;
 	@property IBOutlet NSButton *recordButton;
+    @property IBOutlet AppiumCodeMakerPreciseTapPopoverViewController *preciseTapPopoverViewController;
+    @property IBOutlet NSButton *preciseTapButton;
     @property IBOutlet AppiumCodeMakerSwipePopOverViewController *swipePopoverViewController;
     @property IBOutlet NSButton *swipeButton;
 	@property NSString *syntaxDefinition;

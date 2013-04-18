@@ -49,7 +49,7 @@
 	[super drawRect:dirtyRect];
 	
 	// draw line from points tapped on screen
-	if (_windowController.swipePopoverViewController.popover.isShown)
+	if (_windowController.swipePopoverViewController.popover.isShown || _windowController.preciseTapPopoverViewController.popover.isShown)
 	{
 		if ((self.beginPoint != nil) && (self.endPoint != nil))
 		{
