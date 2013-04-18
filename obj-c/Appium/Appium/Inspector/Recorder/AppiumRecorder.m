@@ -105,13 +105,13 @@
 
 - (IBAction)toggleSwipePopover:(id)sender
 {
-	if (!_windowController.swipePopover.isShown) {
+	if (!_windowController.swipePopoverViewController.popover.isShown) {
 		[_windowController.selectedElementHighlightView setHidden:YES];
-		[_windowController.swipePopover showRelativeToRect:[_windowController.swipeButton bounds]
+		[_windowController.swipePopoverViewController.popover showRelativeToRect:[_windowController.swipeButton bounds]
                                                     ofView:_windowController.swipeButton
                                              preferredEdge:NSMaxYEdge];
 	} else {
-		[_windowController.swipePopover close];
+		[_windowController.swipePopoverViewController.popover close];
 		[_windowController.selectedElementHighlightView setHidden:NO];
 	}
 }
@@ -136,7 +136,7 @@
     action.block(self.driver);
 	
 	// reset for next iteration
-	[_windowController.swipePopover close];
+	[_windowController.swipePopoverViewController.popover close];
 	[_windowController.swipePopoverViewController reset];
 	[_windowController.selectedElementHighlightView setHidden:NO];
 	[self.inspector refresh:sender];

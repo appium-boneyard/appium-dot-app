@@ -1465,14 +1465,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">swipePopover</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="70801258"/>
-					</object>
-					<int key="connectionID">354</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">swipePopoverViewController</string>
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="860307547"/>
@@ -3147,7 +3139,6 @@
 						<string key="screenshotImageView">AppiumInspectorScreenshotImageView</string>
 						<string key="selectedElementHighlightView">NSView</string>
 						<string key="swipeButton">NSButton</string>
-						<string key="swipePopover">NSPopover</string>
 						<string key="swipePopoverViewController">AppiumCodeMakerSwipePopOverViewController</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -3183,10 +3174,6 @@
 							<string key="name">swipeButton</string>
 							<string key="candidateClassName">NSButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="swipePopover">
-							<string key="name">swipePopover</string>
-							<string key="candidateClassName">NSPopover</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="swipePopoverViewController">
 							<string key="name">swipePopoverViewController</string>
 							<string key="candidateClassName">AppiumCodeMakerSwipePopOverViewController</string>
@@ -3200,60 +3187,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">AppiumRecorder</string>
 					<string key="superclassName">NSObject</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="acceptAlert:">id</string>
-						<string key="clearRecording:">id</string>
-						<string key="comment:">id</string>
-						<string key="dismissAlert:">id</string>
-						<string key="performSwipe:">id</string>
-						<string key="replay:">id</string>
-						<string key="sendKeys:">id</string>
-						<string key="tap:">id</string>
-						<string key="toggleRecording:">id</string>
-						<string key="toggleSwipePopover:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="acceptAlert:">
-							<string key="name">acceptAlert:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clearRecording:">
-							<string key="name">clearRecording:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="comment:">
-							<string key="name">comment:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="dismissAlert:">
-							<string key="name">dismissAlert:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="performSwipe:">
-							<string key="name">performSwipe:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="replay:">
-							<string key="name">replay:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="sendKeys:">
-							<string key="name">sendKeys:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="tap:">
-							<string key="name">tap:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="toggleRecording:">
-							<string key="name">toggleRecording:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="toggleSwipePopover:">
-							<string key="name">toggleSwipePopover:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="_windowController">AppiumInspectorWindowController</string>
 						<string key="codeMaker">AppiumCodeMaker</string>

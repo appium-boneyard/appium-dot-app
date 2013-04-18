@@ -29,7 +29,6 @@
 	@property IBOutlet AppiumInspectorScreenshotImageView *screenshotImageView;
 	@property IBOutlet NSButton *recordButton;
     @property IBOutlet AppiumCodeMakerSwipePopOverViewController *swipePopoverViewController;
-    @property IBOutlet NSPopover *swipePopover;
     @property IBOutlet NSButton *swipeButton;
 	@property NSString *syntaxDefinition;
 @end

@@ -388,7 +388,7 @@
 
 -(void) handleClickAt:(NSPoint)windowPoint seleniumPoint:(NSPoint)seleniumPoint
 {
-	if (_windowController.swipePopover.isShown)
+	if (_windowController.swipePopoverViewController.popover.isShown)
 	{
 		if (_windowController.swipePopoverViewController.beginPointWasSetLast)
 		{
