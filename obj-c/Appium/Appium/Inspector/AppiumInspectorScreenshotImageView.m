@@ -11,6 +11,11 @@
 @interface AppiumInspectorScreenshotImageView ()
 
 @property (readonly) AppiumInspector *inspector;
+@property CGFloat screenshotScalar;
+@property CGFloat xBorder;
+@property CGFloat yBorder;
+@property CGFloat maxWidth;
+@property CGFloat maxHeight;
 
 @end
 
@@ -44,8 +49,26 @@
 	[super drawRect:dirtyRect];
 	
 	// draw line from points tapped on screen
-	if (_windowController.swipePopover.isShown)
+	if (_windowController.swipePopoverViewController.popover.isShown || _windowController.preciseTapPopoverViewController.popover.isShown)
 	{
+		if ((self.beginPoint != nil) && (self.endPoint != nil))
+		{
+			CGFloat beginX = self.beginPoint.pointValue.x+2.0f;
+			CGFloat beginY = self.beginPoint.pointValue.y-2.0f;
+			CGFloat endX = self.endPoint.pointValue.x+2.0f;
+			CGFloat endY = self.endPoint.pointValue.y-2.0f;
+			
+			NSPoint beginPoint = NSMakePoint(beginX, beginY);
+			NSPoint endPoint = NSMakePoint(endX, endY);
+			NSBezierPath *line = [NSBezierPath bezierPath];
+			[line moveToPoint:beginPoint];
+			[line lineToPoint:endPoint];
+			[[[NSColor blackColor] colorWithAlphaComponent:0.85f] set];
+			[line setLineWidth:3.0f];
+			[line setLineCapStyle:NSRoundLineCapStyle];
+			[line stroke];
+		}
+		
 		if (self.beginPoint != nil)
 		{
 			// draw a point at the end
@@ -90,6 +113,7 @@
 			
 			myColorspace = CGColorSpaceCreateDeviceRGB();
 			myGradient = CGGradientCreateWithColorComponents (myColorspace, components, locations, num_locations);
+
 			
 			CGContextMoveToPoint(context, start.x - halfWidth*siny , start.y + halfWidth*cosy);
 			CGContextAddLineToPoint(context, end.x - halfWidth*siny , end.y + halfWidth*cosy);

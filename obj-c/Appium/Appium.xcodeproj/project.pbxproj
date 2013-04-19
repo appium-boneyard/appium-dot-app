@@ -35,6 +35,8 @@
 		36A871C8170B980F005BFD15 /* AppiumInspectorScreenshotImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A871C7170B980F005BFD15 /* AppiumInspectorScreenshotImageView.m */; };
 		36AA8D6F16E40B28007472C1 /* AppiumMonitorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AA8D6D16E40B28007472C1 /* AppiumMonitorWindowController.m */; };
 		36AA8D7016E40B28007472C1 /* AppiumMonitorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36AA8D6E16E40B28007472C1 /* AppiumMonitorWindow.xib */; };
+		36ADA116172093D200D4287B /* AppiumCodeMakerPreciseTapPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36ADA115172093D200D4287B /* AppiumCodeMakerPreciseTapPopoverViewController.m */; };
+		36ADA119172098FA00D4287B /* AppiumCodeMakerActionPreciseTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 36ADA118172098FA00D4287B /* AppiumCodeMakerActionPreciseTap.m */; };
 		36B2F18616E6379C008764E0 /* defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 36B2F18516E6379C008764E0 /* defaults.plist */; };
 		36BA17BB16E81BF30041DD86 /* AppiumAppPathTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BA17BA16E81BF30041DD86 /* AppiumAppPathTransformer.m */; };
 		36BF1D66171B434C00C2CF01 /* AppiumCodeMakerActionTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BF1D65171B434C00C2CF01 /* AppiumCodeMakerActionTap.m */; };
@@ -141,6 +143,10 @@
 		36AA8D6C16E40B28007472C1 /* AppiumMonitorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumMonitorWindowController.h; sourceTree = "<group>"; };
 		36AA8D6D16E40B28007472C1 /* AppiumMonitorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumMonitorWindowController.m; sourceTree = "<group>"; };
 		36AA8D6E16E40B28007472C1 /* AppiumMonitorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AppiumMonitorWindow.xib; path = XIBs/AppiumMonitorWindow.xib; sourceTree = "<group>"; };
+		36ADA114172093D200D4287B /* AppiumCodeMakerPreciseTapPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerPreciseTapPopoverViewController.h; path = PopOvers/AppiumCodeMakerPreciseTapPopoverViewController.h; sourceTree = "<group>"; };
+		36ADA115172093D200D4287B /* AppiumCodeMakerPreciseTapPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerPreciseTapPopoverViewController.m; path = PopOvers/AppiumCodeMakerPreciseTapPopoverViewController.m; sourceTree = "<group>"; };
+		36ADA117172098FA00D4287B /* AppiumCodeMakerActionPreciseTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerActionPreciseTap.h; sourceTree = "<group>"; };
+		36ADA118172098FA00D4287B /* AppiumCodeMakerActionPreciseTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerActionPreciseTap.m; sourceTree = "<group>"; };
 		36B2F18516E6379C008764E0 /* defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = defaults.plist; sourceTree = "<group>"; };
 		36BA17B916E81BF30041DD86 /* AppiumAppPathTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumAppPathTransformer.h; sourceTree = "<group>"; };
 		36BA17BA16E81BF30041DD86 /* AppiumAppPathTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumAppPathTransformer.m; sourceTree = "<group>"; };
@@ -320,6 +326,8 @@
 			children = (
 				3618718B171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.h */,
 				3618718C171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.m */,
+				36ADA114172093D200D4287B /* AppiumCodeMakerPreciseTapPopoverViewController.h */,
+				36ADA115172093D200D4287B /* AppiumCodeMakerPreciseTapPopoverViewController.m */,
 			);
 			name = PopOvers;
 			sourceTree = "<group>";
@@ -405,6 +413,8 @@
 				36BF1D6B171B4ED400C2CF01 /* AppiumCodeMakerAlertDismiss.m */,
 				36BF1D73171B540000C2CF01 /* AppiumCodeMakerActionComment.h */,
 				36BF1D74171B540000C2CF01 /* AppiumCodeMakerActionComment.m */,
+				36ADA117172098FA00D4287B /* AppiumCodeMakerActionPreciseTap.h */,
+				36ADA118172098FA00D4287B /* AppiumCodeMakerActionPreciseTap.m */,
 				36BF1D67171B4C1000C2CF01 /* AppiumCodeMakerActionSendKeys.h */,
 				36BF1D68171B4C1000C2CF01 /* AppiumCodeMakerActionSendKeys.m */,
 				36BF1D70171B4FE500C2CF01 /* AppiumCodeMakerActionSwipe.h */,
@@ -675,6 +685,8 @@
 				36BF1D72171B4FE600C2CF01 /* AppiumCodeMakerActionSwipe.m in Sources */,
 				36BF1D75171B540100C2CF01 /* AppiumCodeMakerActionComment.m in Sources */,
 				36C4BDFD171C9D4C004FD4FA /* AppiumCodeMakerPlugin.m in Sources */,
+				36ADA116172093D200D4287B /* AppiumCodeMakerPreciseTapPopoverViewController.m in Sources */,
+				36ADA119172098FA00D4287B /* AppiumCodeMakerActionPreciseTap.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

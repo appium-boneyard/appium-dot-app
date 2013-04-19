@@ -9,6 +9,7 @@
 #import "AppiumCodeMakerActionAlertAccept.h"
 #import "AppiumCodeMakerActionAlertDismiss.h"
 #import "AppiumCodeMakerActionComment.h"
+#import "AppiumCodeMakerActionPreciseTap.h"
 #import "AppiumCodeMakerActionSendKeys.h"
 #import "AppiumCodeMakerActionSwipe.h"
 #import "AppiumCodeMakerActionTap.h"

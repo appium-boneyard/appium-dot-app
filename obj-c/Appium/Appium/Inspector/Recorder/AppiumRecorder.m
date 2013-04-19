@@ -103,17 +103,55 @@
     [self.inspector refresh:sender];
 }
 
+- (IBAction)togglePreciseTapPopover:(id)sender
+{
+	if (!_windowController.preciseTapPopoverViewController.popover.isShown) {
+		[_windowController.selectedElementHighlightView setHidden:YES];
+		[_windowController.preciseTapPopoverViewController.popover showRelativeToRect:[_windowController.preciseTapButton bounds]
+																		  ofView:_windowController.preciseTapButton
+																   preferredEdge:NSMaxYEdge];
+	} else {
+		[_windowController.preciseTapPopoverViewController.popover close];
+		[_windowController.selectedElementHighlightView setHidden:NO];
+	}
+}
+
 - (IBAction)toggleSwipePopover:(id)sender
 {
-	if (!_windowController.swipePopover.isShown) {
+	if (!_windowController.swipePopoverViewController.popover.isShown) {
 		[_windowController.selectedElementHighlightView setHidden:YES];
-		[_windowController.swipePopover showRelativeToRect:[_windowController.swipeButton bounds]
+		[_windowController.swipePopoverViewController.popover showRelativeToRect:[_windowController.swipeButton bounds]
                                                     ofView:_windowController.swipeButton
                                              preferredEdge:NSMaxYEdge];
 	} else {
-		[_windowController.swipePopover close];
+		[_windowController.swipePopoverViewController.popover close];
 		[_windowController.selectedElementHighlightView setHidden:NO];
 	}
+}
+
+-(IBAction)performPreciseTap:(id)sender
+{
+	// perform the swipe
+	NSArray *args = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys:
+													  [NSNumber numberWithInteger:_windowController.preciseTapPopoverViewController.numberOfTaps], @"tapCount",
+													  [NSNumber numberWithInteger:_windowController.preciseTapPopoverViewController.numberOfFingers], @"touchCount",
+													  [NSNumber numberWithInteger:_windowController.preciseTapPopoverViewController.touchPoint.x], @"x",
+													  [NSNumber numberWithInteger:_windowController.preciseTapPopoverViewController.touchPoint.y], @"y",
+													  [_windowController.preciseTapPopoverViewController.duration copy], @"duration",
+													  nil],nil];
+	
+    AppiumCodeMakerAction *action = [[AppiumCodeMakerActionPreciseTap alloc] initWithArguments:args];
+	if (_isRecording)
+	{
+		[_codeMaker addAction:action];
+	}
+    action.block(self.driver);
+	
+	// reset for next iteration
+	[_windowController.preciseTapPopoverViewController.popover close];
+	[_windowController.preciseTapPopoverViewController reset];
+	[_windowController.selectedElementHighlightView setHidden:NO];
+	[self.inspector refresh:sender];
 }
 
 -(IBAction)performSwipe:(id)sender
@@ -136,7 +174,7 @@
     action.block(self.driver);
 	
 	// reset for next iteration
-	[_windowController.swipePopover close];
+	[_windowController.swipePopoverViewController.popover close];
 	[_windowController.swipePopoverViewController reset];
 	[_windowController.selectedElementHighlightView setHidden:NO];
 	[self.inspector refresh:sender];
@@ -165,9 +203,13 @@
         pulseAnimation1.autoreverses = YES;
         
         [_windowController.recordButton.layer addAnimation:pulseAnimation1 forKey:@"pulseAnimation1"];
+		NSShadow * shadow = [NSShadow new];
+		[shadow setShadowColor:[[NSColor blackColor] colorWithAlphaComponent:0.95f]];
+		[_windowController.recordButton setShadow:shadow];
 	}
 	else
 	{
+		[_windowController.recordButton setShadow:nil];
         [_windowController.recordButton.layer setFilters:[NSArray new]];
         [_windowController.recordButton.layer removeAllAnimations];
 		[_windowController.bottomDrawer close];
