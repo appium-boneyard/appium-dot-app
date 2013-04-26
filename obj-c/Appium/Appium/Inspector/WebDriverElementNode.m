@@ -22,38 +22,90 @@
 {
 	if (self = [super init])
 	{
+		if([jsonDict objectForKey:@"hierarchy"] != nil)
+		{
+			jsonDict = [[jsonDict objectForKey:@"hierarchy"] objectForKey:@"node"];
+		}
 		_jsonDict = jsonDict;
         _showDisabled = showDisabled;
         _showInvisible = showInvisible;
 		[self setParent:parent];
-		[self setEnabled:[[_jsonDict valueForKey:@"enabled"] boolValue]];
-		[self setVisible:[[_jsonDict valueForKey:@"visible"] boolValue]];
-		[self setValid:[[_jsonDict valueForKey:@"valid"] boolValue]];
-		[self setLabel:[_jsonDict valueForKey:@"label"]];
-		[self setType:[_jsonDict valueForKey:@"type"]];
-		[self setValue:[_jsonDict valueForKey:@"value"]];
-		[self setName:[_jsonDict valueForKey:@"name"]];
-		NSDictionary *rect = [_jsonDict valueForKey:@"rect"];
-		NSDictionary *origin = [rect valueForKey:@"origin"];
-		NSDictionary *size = [rect valueForKey:@"size"];
-		long x = [[origin valueForKey:@"x"] longValue];
-		long y = [[origin valueForKey:@"y"] longValue];
-		long width = [[size valueForKey:@"width"] longValue];
-		long height = [[size valueForKey:@"height"] longValue];
-		[self setRect:NSMakeRect((float)x, (float)y, (float)width, (float)height)];
+		
+		if ([_jsonDict.allKeys containsObject:@"node"])
+		{
+			// Android Node
+			[self setEnabled:[[_jsonDict objectForKey:@"@enabled"] boolValue] ? YES : NO];
+			[self setVisible:[[_jsonDict objectForKey:@"@clickable"] boolValue]];
+			[self setType:[_jsonDict objectForKey:@"@class"]];
+			[self setValue:[_jsonDict objectForKey:@"@text"]];
+			NSString *bounds = [_jsonDict objectForKey:@"@bounds"];
+			NSError *error;
+			NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\[(\\d+),(\\d+)\\]\\[(\\d+),(\\d+)\\]" options:NSRegularExpressionCaseInsensitive error:&error];
+			NSTextCheckingResult *firstResult = [regex firstMatchInString:bounds options:0 range:NSMakeRange(0, [bounds length])];
+			if ([firstResult numberOfRanges] == 5)
+			{
+				float x1 = [[[NSNumberFormatter new] numberFromString:[bounds substringWithRange:[firstResult rangeAtIndex:1]]] floatValue];
+				float y1 = [[[NSNumberFormatter new] numberFromString:[bounds substringWithRange:[firstResult rangeAtIndex:2]]] floatValue];
+				float x2 = [[[NSNumberFormatter new] numberFromString:[bounds substringWithRange:[firstResult rangeAtIndex:3]]] floatValue];
+				float y2 = [[[NSNumberFormatter new] numberFromString:[bounds substringWithRange:[firstResult rangeAtIndex:4]]] floatValue];
 
-        _children = [NSMutableArray new];
-		_visibleChildren = [NSMutableArray new];
-        NSArray *jsonItems = [_jsonDict objectForKey:@"children"];
-        for(int i=0; i <jsonItems.count; i++)
-        {
-            WebDriverElementNode* child = [[WebDriverElementNode alloc] initWithJSONDict:[jsonItems objectAtIndex:i] parent:self showDisabled:_showDisabled showInvisible:_showInvisible];
-			[_children addObject:child];
-            if ( [child shouldDisplay])
-            {
-                [_visibleChildren addObject:child];
-            }
-        }
+			[self setRect:NSMakeRect(x1, y1, x2-x1, y2-y1)];
+			}
+			_children = [NSMutableArray new];
+			_visibleChildren = [NSMutableArray new];
+			NSObject *nodes = [_jsonDict objectForKey:@"node"];
+			NSArray *jsonItems = [NSArray new];
+			if([nodes isKindOfClass:[NSArray class]])
+			{
+				jsonItems = (NSArray*)nodes;
+			}
+			else if([nodes isKindOfClass:[NSDictionary class]])
+			{
+				jsonItems = [NSArray arrayWithObject:nodes];
+			}
+			
+			for(int i=0; i <jsonItems.count; i++)
+			{
+				WebDriverElementNode* child = [[WebDriverElementNode alloc] initWithJSONDict:[jsonItems objectAtIndex:i] parent:self showDisabled:_showDisabled showInvisible:_showInvisible];
+				[_children addObject:child];
+				if ( [child shouldDisplay])
+				{
+					[_visibleChildren addObject:child];
+				}
+			}
+		}
+		else
+		{
+			// iOS Node
+			[self setEnabled:[[_jsonDict valueForKey:@"enabled"] boolValue]];
+			[self setVisible:[[_jsonDict valueForKey:@"visible"] boolValue]];
+			[self setValid:[[_jsonDict valueForKey:@"valid"] boolValue]];
+			[self setLabel:[_jsonDict valueForKey:@"label"]];
+			[self setType:[_jsonDict valueForKey:@"type"]];
+			[self setValue:[_jsonDict valueForKey:@"value"]];
+			[self setName:[_jsonDict valueForKey:@"name"]];
+			NSDictionary *rect = [_jsonDict valueForKey:@"rect"];
+			NSDictionary *origin = [rect valueForKey:@"origin"];
+			NSDictionary *size = [rect valueForKey:@"size"];
+			long x = [[origin valueForKey:@"x"] longValue];
+			long y = [[origin valueForKey:@"y"] longValue];
+			long width = [[size valueForKey:@"width"] longValue];
+			long height = [[size valueForKey:@"height"] longValue];
+			[self setRect:NSMakeRect((float)x, (float)y, (float)width, (float)height)];
+			
+			_children = [NSMutableArray new];
+			_visibleChildren = [NSMutableArray new];
+			NSArray *jsonItems = [_jsonDict objectForKey:@"children"];
+			for(int i=0; i <jsonItems.count; i++)
+			{
+				WebDriverElementNode* child = [[WebDriverElementNode alloc] initWithJSONDict:[jsonItems objectAtIndex:i] parent:self showDisabled:_showDisabled showInvisible:_showInvisible];
+				[_children addObject:child];
+				if ( [child shouldDisplay])
+				{
+					[_visibleChildren addObject:child];
+				}
+			}
+		}
 	}
 	return self;
 }
