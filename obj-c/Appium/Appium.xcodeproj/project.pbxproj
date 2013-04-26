@@ -12,6 +12,7 @@
 		3612E5FC16E5B69C0050CF0A /* AppiumAppleScriptSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3612E5FB16E5B69C0050CF0A /* AppiumAppleScriptSupport.m */; };
 		3618718D171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3618718C171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.m */; };
 		362B5B651713B35A00F1B344 /* AppiumCodeMakerCSharpPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 362B5B641713B35A00F1B344 /* AppiumCodeMakerCSharpPlugin.m */; };
+		363782FC172ADA3A00A924F8 /* Selenium.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 363782F7172AD9F300A924F8 /* Selenium.framework */; };
 		364C076816E94B1A0093011E /* AppiumMenuBarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 364C076716E94B1A0093011E /* AppiumMenuBarManager.m */; };
 		3652B34416E4287600BDE3E4 /* AppiumLaunchButtonTextTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3652B34316E4287600BDE3E4 /* AppiumLaunchButtonTextTransformer.m */; };
 		365A2D7E16E3C847007BADF9 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 365A2D7D16E3C847007BADF9 /* Utility.m */; };
@@ -62,13 +63,33 @@
 		36CEB7F616E3662E00B5B100 /* AppiumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CEB7F516E3662E00B5B100 /* AppiumTests.m */; };
 		36D17E2916F144E600DC5797 /* Upgrade.applescript in Resources */ = {isa = PBXBuildFile; fileRef = 36D17E2816F144E600DC5797 /* Upgrade.applescript */; };
 		36F5FA2C16F4E87F007751D6 /* Selenium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F5FA2B16F4E87E007751D6 /* Selenium.framework */; };
-		36F5FA2D16F4E889007751D6 /* Selenium.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 36F5FA2B16F4E87E007751D6 /* Selenium.framework */; };
 		36FF07AD171743AC009ED9E2 /* AppiumCodeMakerLocator.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF07AC171743AC009ED9E2 /* AppiumCodeMakerLocator.m */; };
 		36FF07B0171747C4009ED9E2 /* AppiumCodeMakerJavaPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF07AF171747C4009ED9E2 /* AppiumCodeMakerJavaPlugin.m */; };
 		36FF07B317174936009ED9E2 /* AppiumCodeMakerRubyPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF07B217174935009ED9E2 /* AppiumCodeMakerRubyPlugin.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		363782F6172AD9F300A924F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 363782F1172AD9F200A924F8 /* Selenium.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 36BB380116F268C2003A46FD;
+			remoteInfo = Selenium;
+		};
+		363782F8172AD9F300A924F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 363782F1172AD9F200A924F8 /* Selenium.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 36BB381916F268C2003A46FD;
+			remoteInfo = SeleniumTests;
+		};
+		363782FA172ADA1100A924F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 363782F1172AD9F200A924F8 /* Selenium.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 36BB380016F268C2003A46FD;
+			remoteInfo = Selenium;
+		};
 		36CEB7EC16E3662E00B5B100 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36CEB7C016E3662E00B5B100 /* Project object */;
@@ -85,7 +106,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				36F5FA2D16F4E889007751D6 /* Selenium.framework in CopyFiles */,
+				363782FC172ADA3A00A924F8 /* Selenium.framework in CopyFiles */,
 				369ED812171DA83F000A7A4E /* MGSFragaria.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,6 +126,7 @@
 		362B5B641713B35A00F1B344 /* AppiumCodeMakerCSharpPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerCSharpPlugin.m; path = Plugins/AppiumCodeMakerCSharpPlugin.m; sourceTree = "<group>"; };
 		362DF1E4170F4350001CAD1D /* AppiumGlobals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppiumGlobals.h; sourceTree = "<group>"; };
 		363236791713B2470088FFBC /* AppiumCodeMakerPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerPlugin.h; path = Plugins/AppiumCodeMakerPlugin.h; sourceTree = "<group>"; };
+		363782F1172AD9F200A924F8 /* Selenium.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Selenium.xcodeproj; path = "../../../selenium-objective-c/Selenium/Selenium.xcodeproj"; sourceTree = "<group>"; };
 		364C076616E94B1A0093011E /* AppiumMenuBarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumMenuBarManager.h; sourceTree = "<group>"; };
 		364C076716E94B1A0093011E /* AppiumMenuBarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumMenuBarManager.m; sourceTree = "<group>"; };
 		3652B34216E4287600BDE3E4 /* AppiumLaunchButtonTextTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumLaunchButtonTextTransformer.h; sourceTree = "<group>"; };
@@ -346,6 +368,15 @@
 			path = CodeMaker;
 			sourceTree = "<group>";
 		};
+		363782F2172AD9F200A924F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				363782F7172AD9F300A924F8 /* Selenium.framework */,
+				363782F9172AD9F300A924F8 /* SeleniumTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		3652B34116E4285900BDE3E4 /* NSValueTransformers */ = {
 			isa = PBXGroup;
 			children = (
@@ -444,6 +475,7 @@
 		36CEB7BF16E3662E00B5B100 = {
 			isa = PBXGroup;
 			children = (
+				363782F1172AD9F200A924F8 /* Selenium.xcodeproj */,
 				36CEB7D116E3662E00B5B100 /* Appium */,
 				36CEB7D216E3662E00B5B100 /* Supporting Files */,
 				3614B1701719F43700A72D99 /* XIBs */,
@@ -546,6 +578,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				363782FB172ADA1100A924F8 /* PBXTargetDependency */,
 			);
 			name = Appium;
 			productName = Appium;
@@ -591,6 +624,12 @@
 			mainGroup = 36CEB7BF16E3662E00B5B100;
 			productRefGroup = 36CEB7C916E3662E00B5B100 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 363782F2172AD9F200A924F8 /* Products */;
+					ProjectRef = 363782F1172AD9F200A924F8 /* Selenium.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				36CEB7C716E3662E00B5B100 /* Appium */,
@@ -598,6 +637,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		363782F7172AD9F300A924F8 /* Selenium.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Selenium.framework;
+			remoteRef = 363782F6172AD9F300A924F8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		363782F9172AD9F300A924F8 /* SeleniumTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SeleniumTests.octest;
+			remoteRef = 363782F8172AD9F300A924F8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		36CEB7C616E3662E00B5B100 /* Resources */ = {
@@ -701,6 +757,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		363782FB172ADA1100A924F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Selenium;
+			targetProxy = 363782FA172ADA1100A924F8 /* PBXContainerItemProxy */;
+		};
 		36CEB7ED16E3662E00B5B100 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 36CEB7C716E3662E00B5B100 /* Appium */;
