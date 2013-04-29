@@ -133,11 +133,11 @@
 	if (self.platform == Platform_iOS)
 	{
 		label = self.name;
-		if (label == nil || label.length < 1)
+		if (label == nil || [label isKindOfClass:[NSNull class]] || label.length < 1)
 		{
 			label = self.label;
 		}
-		if (label == nil || label.length < 1)
+		if (label == nil || [label isKindOfClass:[NSNull class]] || label.length < 1)
 		{
 			label = self.value;
 		}
