@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AppiumModel.h"
 
 @interface WebDriverElementNode : NSObject<NSToolbarDelegate> {
 
@@ -28,18 +29,36 @@
 @property(readonly) BOOL isLeaf;
 @property(readonly, retain) NSColor *labelColor;
 
-#pragma mark - Additional Properties
+#pragma mark - Common Properties
+@property Platform platform;
 @property WebDriverElementNode *parent;
+@property (readonly) BOOL shouldDisplay;
 @property BOOL enabled;
 @property BOOL visible;
-@property BOOL valid;
-@property NSString *label;
+@property NSString *value;
+@property NSString *name;
 @property NSRect rect;
 @property NSString *type;
 @property (readonly) NSString *typeShortcut;
-@property NSString *value;
-@property NSString *name;
 @property (readonly) NSString* infoText;
--(BOOL) shouldDisplay;
+
+#pragma mark - iOS-Specific properties
+@property NSString *label;
+@property BOOL valid;
+
+#pragma mark - Android-Specific Properties
+@property BOOL focusable;
+@property BOOL checkable;
+@property BOOL scrollable;
+@property BOOL password;
+@property BOOL longClickable;
+@property BOOL selected;
+@property NSUInteger index;
+@property NSString *contentDesc;
+@property NSString *package;
+@property NSString *text;
+@property BOOL clickable;
+@property BOOL focused;
+@property BOOL checked;
 
 @end

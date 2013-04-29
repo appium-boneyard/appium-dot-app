@@ -34,10 +34,25 @@
 		if ([_jsonDict.allKeys containsObject:@"@enabled"])
 		{
 			// Android Node
-			[self setEnabled:[[_jsonDict objectForKey:@"@enabled"] boolValue] ? YES : NO];
-			[self setVisible:[[_jsonDict objectForKey:@"@clickable"] boolValue] ? YES : NO];
+			[self setPlatform:Platform_Android];
+			[self setEnabled:[[_jsonDict objectForKey:@"@enabled"] boolValue]];
+			[self setVisible:[[_jsonDict objectForKey:@"@clickable"] boolValue]];
 			[self setType:[_jsonDict objectForKey:@"@class"]];
 			[self setValue:[_jsonDict objectForKey:@"@text"]];
+			[self setText:[_jsonDict objectForKey:@"@text"]];
+			[self setIndex:[(NSString*)[_jsonDict objectForKey:@"@index"] integerValue]];
+			[self setName:[_jsonDict objectForKey:@"@content-desc"]];
+			[self setContentDesc:[_jsonDict objectForKey:@"@content-desc"]];
+			[self setCheckable:[[_jsonDict objectForKey:@"@checkable"] boolValue]];
+			[self setPackage:[_jsonDict objectForKey:@"@package"]];
+			[self setScrollable:[[_jsonDict objectForKey:@"@scrollable"] boolValue]];
+			[self setPassword:[[_jsonDict objectForKey:@"@password"] boolValue]];
+			[self setLongClickable:[[_jsonDict objectForKey:@"@long-clickable"] boolValue]];
+			[self setSelected:[[_jsonDict objectForKey:@"@selected"] boolValue]];
+			[self setClickable:[[_jsonDict objectForKey:@"@clickable"] boolValue]];
+			[self setFocused:[[_jsonDict objectForKey:@"@focused"] boolValue]];
+			[self setChecked:[[_jsonDict objectForKey:@"@checked"] boolValue]];
+			
 			NSString *bounds = [_jsonDict objectForKey:@"@bounds"];
 			NSError *error;
 			NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\[(\\d+),(\\d+)\\]\\[(\\d+),(\\d+)\\]" options:NSRegularExpressionCaseInsensitive error:&error];
@@ -77,6 +92,7 @@
 		else
 		{
 			// iOS Node
+			[self setPlatform:Platform_iOS];
 			[self setEnabled:[[_jsonDict valueForKey:@"enabled"] boolValue]];
 			[self setVisible:[[_jsonDict valueForKey:@"visible"] boolValue]];
 			[self setValid:[[_jsonDict valueForKey:@"valid"] boolValue]];
@@ -113,7 +129,28 @@
 #pragma mark - NSBrowerCell Implementation
 - (NSString*) displayName
 {
-    return [NSString stringWithFormat:@"[%@] %@", [[self type] stringByReplacingOccurrencesOfString:@"android.widget." withString:@""], [self name]];
+	NSString *label = @"";
+	if (self.platform == Platform_iOS)
+	{
+		label = self.name;
+		if (label == nil || label.length < 1)
+		{
+			label = self.label;
+		}
+		if (label == nil || label.length < 1)
+		{
+			label = self.value;
+		}
+    }
+	else
+	{
+		label = self.name;
+		if (label == nil || label.length < 1)
+		{
+			label = self.text;
+		}
+	}
+    return [NSString stringWithFormat:@"[%@] %@", self.typeShortcut, label];
 }
 
 -(NSArray*) children
@@ -153,82 +190,86 @@
 	return NO;
 }
 
-- (NSString *)description {
-    return [NSString stringWithFormat:@"%@ - %@", super.description, [_jsonDict valueForKey:@"name"]];
-}
-
 -(NSArray*) visibleChildren { return _visibleChildren; }
 
 -(NSString*) infoText
 {
-	NSString* info = [NSString stringWithFormat:@"name: %@\ntype: %@\nvalue: %@\nlabel: %@\nenabled: %@\nvisible: %@\nvalid: %@", self.name, self.type, self.value, self.label, (self.enabled ? @"true" : @"false"),(self.visible ? @"true" : @"false"),(self.valid ? @"true" : @"false")];
-	return info;
+	if (self.platform == Platform_iOS)
+	{
+		return [NSString stringWithFormat:@"name: %@\ntype: %@\nvalue: %@\nlabel: %@\nenabled: %@\nvisible: %@\nvalid: %@", self.name, self.type, self.value, self.label, (self.enabled ? @"true" : @"false"),(self.visible ? @"true" : @"false"),(self.valid ? @"true" : @"false")];
+	}
+	else
+	{
+		return [NSString stringWithFormat:@"content-desc: %@\nclass: %@\ntext: %@\nindex: %@\nenabled: %@\nclickable: %@", self.contentDesc, self.type, self.text,[NSString stringWithFormat:@"%lu", (u_long)self.index], (self.enabled ? @"true" : @"false"),(self.clickable ? @"true" : @"false")];
+	}
 }
 
 -(NSString*) typeShortcut
 {
-    if ([self.type isEqualToString:@"UIAActionSheet"])
+	NSString *type = [self.type stringByReplacingOccurrencesOfString:@"android.widget." withString:@""];
+	
+    if ([type isEqualToString:@"UIAActionSheet"])
         return @"actionsheet";
-    else if ([self.type isEqualToString:@"UIAActivityIndicator"])
+    else if ([type isEqualToString:@"UIAActivityIndicator"])
         return @"activityIndicator";
-    else if ([self.type isEqualToString:@"UIAAlert"])
+    else if ([type isEqualToString:@"UIAAlert"])
         return @"alert";
-    else if ([self.type isEqualToString:@"UIAButton"])
+    else if ([type isEqualToString:@"UIAButton"])
         return @"button";
-    else if ([self.type isEqualToString:@"UIAElement"])
+    else if ([type isEqualToString:@"UIAElement"])
         return @"*";
-    else if ([self.type isEqualToString:@"UIAImage"])
+    else if ([type isEqualToString:@"UIAImage"])
         return @"image";
-    else if ([self.type isEqualToString:@"UIALink"])
+    else if ([type isEqualToString:@"UIALink"])
         return @"link";
-    else if ([self.type isEqualToString:@"UIAPageIndicator"])
+    else if ([type isEqualToString:@"UIAPageIndicator"])
         return @"pageIndicator";
-    else if ([self.type isEqualToString:@"UIAPicker"])
+    else if ([type isEqualToString:@"UIAPicker"])
         return @"picker";
-    else if ([self.type isEqualToString:@"UIAPickerWheel"])
+    else if ([type isEqualToString:@"UIAPickerWheel"])
         return @"pickerwheel";
-    else if ([self.type isEqualToString:@"UIAPopover"])
+    else if ([type isEqualToString:@"UIAPopover"])
         return @"popover";
-    else if ([self.type isEqualToString:@"UIAProgressIndicator"])
+    else if ([type isEqualToString:@"UIAProgressIndicator"])
         return @"progress";
-    else if ([self.type isEqualToString:@"UIAScrollView"])
+    else if ([type isEqualToString:@"UIAScrollView"])
         return @"scrollview";
-    else if ([self.type isEqualToString:@"UIASearchBar"])
+    else if ([type isEqualToString:@"UIASearchBar"])
         return @"searchbar";
-    else if ([self.type isEqualToString:@"UIASecureTextField"])
+    else if ([type isEqualToString:@"UIASecureTextField"])
         return @"secure";
-    else if ([self.type isEqualToString:@"UIASegmentedControl"])
+    else if ([type isEqualToString:@"UIASegmentedControl"])
         return @"segemented";
-    else if ([self.type isEqualToString:@"UIASlider"])
+    else if ([type isEqualToString:@"UIASlider"])
         return @"slider";
-    else if ([self.type isEqualToString:@"UIAStaticText"])
+    else if ([type isEqualToString:@"UIAStaticText"])
         return @"text";
-    else if ([self.type isEqualToString:@"UIAStatusBar"])
+    else if ([type isEqualToString:@"UIAStatusBar"])
         return @"statusbar";
-    else if ([self.type isEqualToString:@"UIASwitch"])
+    else if ([type isEqualToString:@"UIASwitch"])
         return @"switch";
-    else if ([self.type isEqualToString:@"UIATabBar"])
+    else if ([type isEqualToString:@"UIATabBar"])
         return @"tabbar";
-    else if ([self.type isEqualToString:@"UIATableView"])
+    else if ([type isEqualToString:@"UIATableView"])
         return @"tableview";
-    else if ([self.type isEqualToString:@"UIATableCell"])
+    else if ([type isEqualToString:@"UIATableCell"])
         return @"cell";
-    else if ([self.type isEqualToString:@"UIATableGroup"])
+    else if ([type isEqualToString:@"UIATableGroup"])
         return @"group";
-    else if ([self.type isEqualToString:@"UIATextField"])
+    else if ([type isEqualToString:@"UIATextField"])
         return @"textfield";
-    else if ([self.type isEqualToString:@"UIATextView"])
+    else if ([type isEqualToString:@"UIATextView"])
         return @"textview";
-    else if ([self.type isEqualToString:@"UIAToolbar"])
+    else if ([type isEqualToString:@"UIAToolbar"])
         return @"toolbar";
-    else if ([self.type isEqualToString:@"UIAWebView"])
+    else if ([type isEqualToString:@"UIAWebView"])
         return @"webview";
-    else if ([self.type isEqualToString:@"UIAWindow"])
+    else if ([type isEqualToString:@"UIAWindow"])
         return @"window";
-    else if ([self.type isEqualToString:@"UIANavigationBar"])
+    else if ([type isEqualToString:@"UIANavigationBar"])
         return @"navigationBar";
     else
-        return self.type;
+        return type;
 }
 
 @end
