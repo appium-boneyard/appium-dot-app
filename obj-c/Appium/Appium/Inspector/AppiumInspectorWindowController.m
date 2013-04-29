@@ -29,9 +29,6 @@
         if (sessions.count == 0 || self.driver.session == nil || self.driver.session.capabilities.platform == nil)
         {
             SECapabilities *capabilities = [SECapabilities new];
-            [capabilities setPlatform:@"Mac"];
-            [capabilities setBrowserName:@"iOS"];
-            [capabilities setVersion:@"6.1"];
             [self.driver startSessionWithDesiredCapabilities:capabilities requiredCapabilities:nil];
         }
     }
