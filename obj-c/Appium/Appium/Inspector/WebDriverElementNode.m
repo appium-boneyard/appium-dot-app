@@ -31,11 +31,11 @@
         _showInvisible = showInvisible;
 		[self setParent:parent];
 		
-		if ([_jsonDict.allKeys containsObject:@"node"])
+		if ([_jsonDict.allKeys containsObject:@"@enabled"])
 		{
 			// Android Node
 			[self setEnabled:[[_jsonDict objectForKey:@"@enabled"] boolValue] ? YES : NO];
-			[self setVisible:[[_jsonDict objectForKey:@"@clickable"] boolValue]];
+			[self setVisible:[[_jsonDict objectForKey:@"@clickable"] boolValue] ? YES : NO];
 			[self setType:[_jsonDict objectForKey:@"@class"]];
 			[self setValue:[_jsonDict objectForKey:@"@text"]];
 			NSString *bounds = [_jsonDict objectForKey:@"@bounds"];
@@ -113,7 +113,7 @@
 #pragma mark - NSBrowerCell Implementation
 - (NSString*) displayName
 {
-    return [NSString stringWithFormat:@"[%@] %@", [self type], [self name]];
+    return [NSString stringWithFormat:@"[%@] %@", [[self type] stringByReplacingOccurrencesOfString:@"android.widget." withString:@""], [self name]];
 }
 
 -(NSArray*) children
