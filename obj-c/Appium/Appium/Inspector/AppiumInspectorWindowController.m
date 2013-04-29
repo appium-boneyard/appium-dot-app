@@ -22,15 +22,23 @@
         AppiumModel *model = [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] model];
         self.driver = [[SERemoteWebDriver alloc] initWithServerAddress:[model ipAddress] port:[[model port] integerValue]];
         NSArray *sessions = [self.driver allSessions];
-        if (sessions.count > 0)
+        
+		// get session to use
+		if (sessions.count > 0)
         {
+			// use the existing session
             [self.driver setSession:[sessions objectAtIndex:0]];
         }
         if (sessions.count == 0 || self.driver.session == nil || self.driver.session.capabilities.platform == nil)
         {
+			// create a new session if one does not already exist
             SECapabilities *capabilities = [SECapabilities new];
             [self.driver startSessionWithDesiredCapabilities:capabilities requiredCapabilities:nil];
         }
+		
+		// set 15 minute timeout so Appium will not close prematurely
+		NSArray *timeoutArgs = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys: [NSNumber numberWithInteger:900], @"timeout", nil],nil];
+		[_driver executeScript:@"mobile: setCommandTimeout" arguments:timeoutArgs];
     }
     
     return self;
