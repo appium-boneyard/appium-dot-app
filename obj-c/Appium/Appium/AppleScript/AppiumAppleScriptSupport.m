@@ -49,6 +49,21 @@
 -(NSString*) s_AndroidActivity { return [[self model] androidActivity]; }
 -(void) setS_AndroidActivity:(NSString *)s_AndroidActivity { [[self model] setAndroidActivity:s_AndroidActivity]; }
 
+-(NSNumber*) s_UseAndroidWaitActivity { return [NSNumber numberWithBool:[[self model] useAndroidWaitActivity]]; }
+-(void) setS_UseAndroidWaitActivity:(NSNumber *)s_UseAndroidWaitActivity { [[self model] setUseAndroidWaitActivity:[s_UseAndroidWaitActivity boolValue]]; }
+
+-(NSString*) s_AndroidWaitActivity { return [[self model] androidWaitActivity]; }
+-(void) setS_AndroidWaitActivity:(NSString *)s_AndroidWaitActivity { [[self model] setAndroidWaitActivity:s_AndroidWaitActivity]; }
+
+-(NSNumber*) s_UseAndroidDeviceReadyTimeout { return [NSNumber numberWithBool:[[self model] useAndroidDeviceReadyTimeout]]; }
+-(void) setS_UseAndroidDeviceReadyTimeout:(NSNumber *)s_UseAndroidDeviceReadyTimeout { [[self model] setUseAndroidDeviceReadyTimeout:[s_UseAndroidDeviceReadyTimeout boolValue]]; }
+
+-(NSNumber*) s_AndroidDeviceReadyTimeout { return [NSNumber numberWithInt:[[[self model] androidDeviceReadyTimeout] intValue]]; }
+-(void) setS_AndroidDeviceReadyTimeout:(NSNumber *)s_AndroidDeviceReadyTimeout { [[self model] setAndroidDeviceReadyTimeout:s_AndroidDeviceReadyTimeout]; }
+
+-(NSNumber*) s_UseFastReset { return [NSNumber numberWithBool:[[self model] fastReset]]; }
+-(void) setS_UseFastReset:(NSNumber *)s_UseFastReset { [[self model] setFastReset:[s_UseFastReset boolValue]]; }
+
 -(NSNumber*) s_PrelaunchApp { return [NSNumber numberWithBool:[[self model] prelaunchApp]]; }
 -(void) setS_PrelaunchApp:(NSNumber *)s_PreLaunchApp { [[self model] setPrelaunchApp:[s_PreLaunchApp boolValue]]; }
 
@@ -138,7 +153,7 @@
 -(void) s_ForceiOSDevice:(NSScriptCommand *)command
 {
 	NSString *parameter = [command directParameter];
-	if ([parameter isEqualToString:@"none"])
+	if ([parameter isEqualToString:@"no device"])
 	{
 		[[self model] setForceDevice:NO];
 	}
@@ -151,6 +166,25 @@
 	{
 		[[self model] setForceDevice:YES];
 		[[self model] setDeviceToForce:iOSAutomationDevice_iPhone];
+	}
+}
+
+-(void) s_ForceiOSOrientation:(NSScriptCommand *)command
+{
+	NSString *parameter = [command directParameter];
+	if ([parameter isEqualToString:@"no orientation"])
+	{
+		[[self model] setForceOrientation:NO];
+	}
+	else if ([parameter isEqualToString:@"portrait"])
+	{
+		[[self model] setForceOrientation:YES];
+		[[self model] setOrientationToForce:iOSOrientation_Portrait];
+	}
+	else if ([parameter isEqualToString:@"landscape"])
+	{
+		[[self model] setForceOrientation:YES];
+		[[self model] setOrientationToForce:iOSOrientation_Landscape];
 	}
 }
 

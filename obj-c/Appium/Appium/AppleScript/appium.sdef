@@ -9,8 +9,8 @@
 			<enumerator name="iphone" code="ciph" description="iphone">
 				<cocoa string-value="iphone"/>
 			</enumerator>
-			<enumerator name="none" code="cdno" description="no device">
-				<cocoa string-value="none"/>
+			<enumerator name="no device" code="cdno" description="no device">
+				<cocoa string-value="no device"/>
 			</enumerator>
 		</enumeration>
 		<enumeration name="platform" code="cpfm" description="platform">
@@ -21,13 +21,30 @@
 				<cocoa string-value="ios"/>
 			</enumerator>
 		</enumeration>
+		<enumeration name="orientation" code="corn" description="platform">
+			<enumerator name="portrait" code="corp" description="portrait orientation">
+				<cocoa string-value="portrait"/>
+			</enumerator>
+			<enumerator name="landscape" code="corl" description="landscape orientation">
+				<cocoa string-value="landscape"/>
+			</enumerator>
+			<enumerator name="no orientation" code="cdno" description="no device">
+				<cocoa string-value="no orientation"/>
+			</enumerator>
+		</enumeration>
 		<class name="application" code="capp" description="Appium Application">
 			<cocoa class="NSApplication"/>
 			<property name="android activity" code="apaa" description="name of android activity" type="text">
 				<cocoa key="s_AndroidActivity"/>
 			</property>
+			<property name="android device ready timeout" code="amdt" description="time to allow for an android device to become ready" type="integer">
+				<cocoa key="s_AndroidDeviceReadyTimeout"/>
+			</property>
 			<property name="android package" code="apap" description="name of android package" type="text">
 				<cocoa key="s_AndroidPackage"/>
+			</property>
+			<property name="android wait activity" code="apwa" description="name of android activity to wait for" type="text">
+				<cocoa key="s_AndroidWaitActivity"/>
 			</property>
 			<property name="app path" code="amap" description="path to mobile application" type="text">
 				<cocoa key="s_AppPath"/>
@@ -80,8 +97,14 @@
 			<property name="use android activity" code="auaa" description="true if an android activity is supplied" type="boolean">
 				<cocoa key="s_UseAndroidActivity"/>
 			</property>
+			<property name="use android device ready timeout" code="audt" description="true if an android device wait timeout will be used" type="boolean">
+				<cocoa key="s_UseAndroidDeviceReadyTimeout"/>
+			</property>
 			<property name="use android package" code="auap" description="true if an android package is supplied" type="boolean">
 				<cocoa key="s_UseAndroidPackage"/>
+			</property>
+			<property name="use android wait activity" code="auaw" description="true if an android wait activity is supplied" type="boolean">
+				<cocoa key="s_UseAndroidWaitActivity"/>
 			</property>
 			<property name="use app path" code="apua" description="true if the app path is being used" type="boolean">
 				<cocoa key="s_UseAppPath"/>
@@ -94,6 +117,9 @@
 			</property>
 			<property name="use external node path" code="auen" description="true if an external nodeJS binary path with be used" type="boolean">
 				<cocoa key="s_UseExternalNodeJSBinary"/>
+			</property>
+			<property name="use fast reset" code="aufr" description="true if appium will use fast reset" type="boolean">
+				<cocoa key="s_UseFastReset"/>
 			</property>
 			<property name="use instruments without delay" code="apui" description="true if instruments without delay is enabled" type="boolean">
 				<cocoa key="s_UseInstrumentsWithoutDelay"/>
@@ -113,6 +139,9 @@
 			<responds-to command="force ios device">
 				<cocoa method="s_ForceiOSDevice:"/>
 			</responds-to>
+			<responds-to command="force ios orientation">
+				<cocoa method="s_ForceiOSOrientation:"/>
+			</responds-to>
 			<responds-to command="start server">
 				<cocoa method="s_StartServer:"/>
 			</responds-to>
@@ -126,6 +155,9 @@
 		<command name="clear log" code="aapmclog" description="clears the appium server log display"/>
 		<command name="force ios device" code="appmfrcd" description="force a device type">
 			<direct-parameter description="type of ios device to force" type="ios device"/>
+		</command>
+		<command name="force ios orientation" code="appmfrco" description="force an orientation">
+			<direct-parameter description="oreintation to force" type="orientation"/>
 		</command>
 		<command name="start server" code="appmstas" description="starts the appium server">
 			<result description="true if the server was started" type="boolean"/>
