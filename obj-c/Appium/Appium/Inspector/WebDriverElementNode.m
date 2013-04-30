@@ -289,6 +289,8 @@
 			return @"linear";
 		else if ([type isEqualToString:@"EditText"])
 			return @"textfield";
+		else if ([type isEqualToString:@"ScrollView"])
+			return @"scroll";
 		else
 			return self.type;
 	}
