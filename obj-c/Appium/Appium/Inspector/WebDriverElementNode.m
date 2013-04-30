@@ -206,70 +206,94 @@
 
 -(NSString*) typeShortcut
 {
-	NSString *type = [self.type stringByReplacingOccurrencesOfString:@"android.widget." withString:@""];
-	
-    if ([type isEqualToString:@"UIAActionSheet"])
-        return @"actionsheet";
-    else if ([type isEqualToString:@"UIAActivityIndicator"])
-        return @"activityIndicator";
-    else if ([type isEqualToString:@"UIAAlert"])
-        return @"alert";
-    else if ([type isEqualToString:@"UIAButton"])
-        return @"button";
-    else if ([type isEqualToString:@"UIAElement"])
-        return @"*";
-    else if ([type isEqualToString:@"UIAImage"])
-        return @"image";
-    else if ([type isEqualToString:@"UIALink"])
-        return @"link";
-    else if ([type isEqualToString:@"UIAPageIndicator"])
-        return @"pageIndicator";
-    else if ([type isEqualToString:@"UIAPicker"])
-        return @"picker";
-    else if ([type isEqualToString:@"UIAPickerWheel"])
-        return @"pickerwheel";
-    else if ([type isEqualToString:@"UIAPopover"])
-        return @"popover";
-    else if ([type isEqualToString:@"UIAProgressIndicator"])
-        return @"progress";
-    else if ([type isEqualToString:@"UIAScrollView"])
-        return @"scrollview";
-    else if ([type isEqualToString:@"UIASearchBar"])
-        return @"searchbar";
-    else if ([type isEqualToString:@"UIASecureTextField"])
-        return @"secure";
-    else if ([type isEqualToString:@"UIASegmentedControl"])
-        return @"segemented";
-    else if ([type isEqualToString:@"UIASlider"])
-        return @"slider";
-    else if ([type isEqualToString:@"UIAStaticText"])
-        return @"text";
-    else if ([type isEqualToString:@"UIAStatusBar"])
-        return @"statusbar";
-    else if ([type isEqualToString:@"UIASwitch"])
-        return @"switch";
-    else if ([type isEqualToString:@"UIATabBar"])
-        return @"tabbar";
-    else if ([type isEqualToString:@"UIATableView"])
-        return @"tableview";
-    else if ([type isEqualToString:@"UIATableCell"])
-        return @"cell";
-    else if ([type isEqualToString:@"UIATableGroup"])
-        return @"group";
-    else if ([type isEqualToString:@"UIATextField"])
-        return @"textfield";
-    else if ([type isEqualToString:@"UIATextView"])
-        return @"textview";
-    else if ([type isEqualToString:@"UIAToolbar"])
-        return @"toolbar";
-    else if ([type isEqualToString:@"UIAWebView"])
-        return @"webview";
-    else if ([type isEqualToString:@"UIAWindow"])
-        return @"window";
-    else if ([type isEqualToString:@"UIANavigationBar"])
-        return @"navigationBar";
-    else
-        return type;
+	if (self.platform == Platform_iOS)
+	{
+		if ([self.type isEqualToString:@"UIAActionSheet"])
+			return @"actionsheet";
+		else if ([self.type isEqualToString:@"UIAActivityIndicator"])
+			return @"activityIndicator";
+		else if ([self.type isEqualToString:@"UIAAlert"])
+			return @"alert";
+		else if ([self.type isEqualToString:@"UIAButton"])
+			return @"button";
+		else if ([self.type isEqualToString:@"UIAElement"])
+			return @"*";
+		else if ([self.type isEqualToString:@"UIAImage"])
+			return @"image";
+		else if ([self.type isEqualToString:@"UIALink"])
+			return @"link";
+		else if ([self.type isEqualToString:@"UIAPageIndicator"])
+			return @"pageIndicator";
+		else if ([self.type isEqualToString:@"UIAPicker"])
+			return @"picker";
+		else if ([self.type isEqualToString:@"UIAPickerWheel"])
+			return @"pickerwheel";
+		else if ([self.type isEqualToString:@"UIAPopover"])
+			return @"popover";
+		else if ([self.type isEqualToString:@"UIAProgressIndicator"])
+			return @"progress";
+		else if ([self.type isEqualToString:@"UIAScrollView"])
+			return @"scrollview";
+		else if ([self.type isEqualToString:@"UIASearchBar"])
+			return @"searchbar";
+		else if ([self.type isEqualToString:@"UIASecureTextField"])
+			return @"secure";
+		else if ([self.type isEqualToString:@"UIASegmentedControl"])
+			return @"segemented";
+		else if ([self.type isEqualToString:@"UIASlider"])
+			return @"slider";
+		else if ([self.type isEqualToString:@"UIAStaticText"])
+			return @"text";
+		else if ([self.type isEqualToString:@"UIAStatusBar"])
+			return @"statusbar";
+		else if ([self.type isEqualToString:@"UIASwitch"])
+			return @"switch";
+		else if ([self.type isEqualToString:@"UIATabBar"])
+			return @"tabbar";
+		else if ([self.type isEqualToString:@"UIATableView"])
+			return @"tableview";
+		else if ([self.type isEqualToString:@"UIATableCell"])
+			return @"cell";
+		else if ([self.type isEqualToString:@"UIATableGroup"])
+			return @"group";
+		else if ([self.type isEqualToString:@"UIATextField"])
+			return @"textfield";
+		else if ([self.type isEqualToString:@"UIATextView"])
+			return @"textview";
+		else if ([self.type isEqualToString:@"UIAToolbar"])
+			return @"toolbar";
+		else if ([self.type isEqualToString:@"UIAWebView"])
+			return @"webview";
+		else if ([self.type isEqualToString:@"UIAWindow"])
+			return @"window";
+		else if ([self.type isEqualToString:@"UIANavigationBar"])
+			return @"navigationBar";
+		else
+			return self.type;
+	}
+	else
+	{
+		NSString *type = [self.type stringByReplacingOccurrencesOfString:@"android.widget." withString:@""];
+		
+		if ([type isEqualToString:@"TextView"])
+			return @"text";
+		else if ([type isEqualToString:@"ListView"])
+			return @"list";
+		else if ([type isEqualToString:@"FrameLayout"])
+			return @"frame";
+		else if ([type isEqualToString:@"GridView"])
+			return @"grid";
+		else if ([type isEqualToString:@"RelativeLayout"])
+			return @"relative";
+		else if ([type isEqualToString:@"UIATextView"])
+			return @"linear";
+		else if ([type isEqualToString:@"EditText"])
+			return @"textfield";
+		else if ([type isEqualToString:@"ScrollView"])
+			return @"scroll";
+		else
+			return self.type;
+	}
 }
 
 @end

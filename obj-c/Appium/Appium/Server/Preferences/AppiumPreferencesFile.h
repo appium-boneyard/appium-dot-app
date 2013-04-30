@@ -7,7 +7,9 @@
 //
 
 #define APPIUM_PLIST_ANDROID_ACTIVITY @"Android Activity"
+#define APPIUM_PLIST_ANDROID_DEVICE_READY_TIMEOUT @"Android Device Ready Timeout"
 #define APPIUM_PLIST_ANDROID_PACKAGE @"Android Package"
+#define APPIUM_PLIST_ANDROID_WAIT_ACTIVITY @"Android Wait Activity"
 #define APPIUM_PLIST_APP_PATH @"App Path"
 #define APPIUM_PLIST_BUNDLEID @"BundleID"
 #define APPIUM_PLIST_CODEMAKER_LANGUAGE @"CodeMaker Language"
@@ -16,10 +18,15 @@
 #define APPIUM_PLIST_DEVELOPER_MODE @"Developer Mode"
 #define APPIUM_PLIST_EXTERNAL_APPIUM_PACKAGE_PATH @"External Appium Package Path"
 #define APPIUM_PLIST_EXTERNAL_NODEJS_BINARY_PATH @"External NodeJS Binary Path"
+#define APPIUM_PLIST_FAST_RESET @"Fast Reset"
 #define APPIUM_PLIST_FORCE_DEVICE @"Force Device"
 #define APPIUM_PLIST_FORCE_DEVICE_IPAD @"iPad"
 #define APPIUM_PLIST_FORCE_DEVICE_IPHONE @"iPhone"
+#define APPIUM_PLIST_FORCE_ORIENTATION @"Force Orientation"
+#define APPIUM_PLIST_FORCE_ORIENTATION_PORTRAIT @"Portrait"
+#define APPIUM_PLIST_FORCE_ORIENTATION_LANDSCAPE @"Landscape"
 #define APPIUM_PLIST_KEEP_ARTIFACTS @"Keep Artifacts"
+#define APPIUM_PLIST_ORIENTATION @"Orientation"
 #define APPIUM_PLIST_TAB_STATE @"Tab State"
 #define APPIUM_PLIST_TAB_STATE_ANDROID 1
 #define APPIUM_PLIST_TAB_STATE_IOS 0
@@ -29,6 +36,7 @@
 #define APPIUM_PLIST_SERVER_PORT @"Server Port"
 #define APPIUM_PLIST_UDID @"UDID"
 #define APPIUM_PLIST_USE_ANDROID_ACTIVITY @"Use Android Activity"
+#define APPIUM_PLIST_USE_ANDROID_DEVICE_READY_TIMEOUT @"Use Android Device Ready Timeout"
 #define APPIUM_PLIST_USE_ANDROID_PACKAGE @"Use Android Package"
 #define APPIUM_PLIST_USE_APP_PATH @"Use App Path"
 #define APPIUM_PLIST_USE_BUNDLEID @"Use BundleID"

@@ -4,7 +4,11 @@
 <dict>
 	<key>Android Activity</key>
 	<string></string>
+	<key>Android Device Ready Timeout</key>
+	<integer>5</integer>
 	<key>Android Package</key>
+	<string></string>
+	<key>Android Wait Activity</key>
 	<string></string>
 	<key>App Path</key>
 	<string>/</string>
@@ -27,10 +31,16 @@
 	<string>/Users/me/appium</string>
 	<key>External NodeJS Binary Path</key>
 	<string>/usr/local/bin/node</string>
+	<key>Fast Reset</key>
+	<true/>
 	<key>Force Device</key>
+	<false/>
+	<key>Force Orientation</key>
 	<false/>
 	<key>Keep Artifacts</key>
 	<true/>
+	<key>Orientation</key>
+	<string>Portrait</string>
 	<key>Prelaunch</key>
 	<false/>
 	<key>Reset Application State</key>
@@ -45,7 +55,11 @@
 	<string></string>
 	<key>Use Android Activity</key>
 	<false/>
+	<key>Use Android Device Ready Timeout</key>
+	<false/>
 	<key>Use Android Package</key>
+	<false/>
+	<key>Use Android Wait Activity</key>
 	<false/>
 	<key>Use App Path</key>
 	<false/>

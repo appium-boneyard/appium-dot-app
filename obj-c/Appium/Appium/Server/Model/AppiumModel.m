@@ -39,8 +39,14 @@ BOOL _isServerListening;
 -(NSString*) androidActivity { return [_defaults stringForKey:APPIUM_PLIST_ANDROID_ACTIVITY]; }
 -(void) setAndroidActivity:(NSString *)androidActivity { [_defaults setValue:androidActivity forKey:APPIUM_PLIST_ANDROID_ACTIVITY]; }
 
+-(NSNumber*) androidDeviceReadyTimeout { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_ANDROID_DEVICE_READY_TIMEOUT] intValue]]; }
+-(void) setAndroidDeviceReadyTimeout:(NSNumber *)androidDeviceReadyTimeout { [[NSUserDefaults standardUserDefaults] setValue:androidDeviceReadyTimeout forKey:APPIUM_PLIST_ANDROID_DEVICE_READY_TIMEOUT]; }
+
 -(NSString*) androidPackage { return [_defaults stringForKey:APPIUM_PLIST_ANDROID_PACKAGE]; }
 -(void) setAndroidPackage:(NSString *)androidPackage { [_defaults setValue:androidPackage forKey:APPIUM_PLIST_ANDROID_PACKAGE]; }
+
+-(NSString*) androidWaitActivity { return [_defaults stringForKey:APPIUM_PLIST_ANDROID_WAIT_ACTIVITY]; }
+-(void) setAndroidWaitActivity:(NSString *)androidWaitActivity { [_defaults setValue:androidWaitActivity forKey:APPIUM_PLIST_ANDROID_WAIT_ACTIVITY]; }
 
 -(NSString*) appPath { return [_defaults stringForKey:APPIUM_PLIST_APP_PATH];}
 -(void) setAppPath:(NSString *)appPath { [_defaults setValue:appPath forKey:APPIUM_PLIST_APP_PATH]; }
@@ -65,8 +71,14 @@ BOOL _isServerListening;
 -(NSString*) deviceToForceString { return [[_defaults valueForKey:APPIUM_PLIST_DEVICE] isEqualToString:APPIUM_PLIST_FORCE_DEVICE_IPAD] ? APPIUM_PLIST_FORCE_DEVICE_IPAD : APPIUM_PLIST_FORCE_DEVICE_IPHONE ; }
 -(void) setDeviceToForceString:(NSString *)deviceToForceString { [_defaults setValue:deviceToForceString forKey:APPIUM_PLIST_DEVICE]; }
 
+-(BOOL) fastReset { return [_defaults boolForKey:APPIUM_PLIST_FAST_RESET]; }
+-(void) setFastReset:(BOOL)fastReset { [_defaults setBool:fastReset forKey:APPIUM_PLIST_FAST_RESET]; }
+
 -(BOOL) forceDevice { return [_defaults boolForKey:APPIUM_PLIST_FORCE_DEVICE]; }
 -(void) setForceDevice:(BOOL)forceDevice { [_defaults setBool:forceDevice forKey:APPIUM_PLIST_FORCE_DEVICE]; }
+
+-(BOOL) forceOrientation { return [_defaults boolForKey:APPIUM_PLIST_FORCE_ORIENTATION]; }
+-(void) setForceOrientation:(BOOL)forceOrientation { [_defaults setBool:forceOrientation forKey:APPIUM_PLIST_FORCE_ORIENTATION]; }
 
 -(BOOL) isServerRunning { return _isServerRunning; }
 -(void) setIsServerRunning:(BOOL)isServerRunning { _isServerRunning = isServerRunning; }
@@ -82,6 +94,11 @@ BOOL _isServerListening;
 
 -(BOOL) logVerbose { return [_defaults boolForKey:APPIUM_PLIST_VERBOSE]; }
 -(void) setLogVerbose:(BOOL)logVerbose { [_defaults setBool:logVerbose forKey:APPIUM_PLIST_VERBOSE]; }
+
+-(iOSOrientation) orientationToForce { return [[_defaults stringForKey:APPIUM_PLIST_ORIENTATION] isEqualToString:APPIUM_PLIST_FORCE_ORIENTATION_LANDSCAPE] ? iOSOrientation_Landscape : iOSOrientation_Portrait; }
+-(void) setOrientationToForce:(iOSOrientation)orientationToForce {[self setOrientationToForceString:(orientationToForce == iOSOrientation_Landscape ? APPIUM_PLIST_FORCE_ORIENTATION_LANDSCAPE : APPIUM_PLIST_FORCE_ORIENTATION_PORTRAIT)]; }
+-(NSString*) orientationToForceString { return [[_defaults valueForKey:APPIUM_PLIST_ORIENTATION] isEqualToString:APPIUM_PLIST_FORCE_ORIENTATION_LANDSCAPE] ? APPIUM_PLIST_FORCE_ORIENTATION_LANDSCAPE : APPIUM_PLIST_FORCE_ORIENTATION_PORTRAIT ; }
+-(void) setOrientationToForceString:(NSString *)orientationToForceString { [_defaults setValue:orientationToForceString forKey:APPIUM_PLIST_ORIENTATION]; }
 
 -(Platform)platform { return [_defaults integerForKey:APPIUM_PLIST_TAB_STATE] == APPIUM_PLIST_TAB_STATE_ANDROID ? Platform_Android : Platform_iOS; }
 -(void)setPlatform:(Platform)platform { [_defaults setInteger:(platform == Platform_Android ? APPIUM_PLIST_TAB_STATE_ANDROID : APPIUM_PLIST_TAB_STATE_IOS) forKey:APPIUM_PLIST_TAB_STATE]; }
@@ -101,8 +118,14 @@ BOOL _isServerListening;
 -(BOOL) useAndroidActivity { return [_defaults boolForKey:APPIUM_PLIST_USE_ANDROID_ACTIVITY]; }
 -(void) setUseAndroidActivity:(BOOL)useAndroidActivity { [_defaults setBool:useAndroidActivity forKey:APPIUM_PLIST_USE_ANDROID_ACTIVITY]; }
 
+-(BOOL) useAndroidDeviceReadyTimeout { return [_defaults boolForKey:APPIUM_PLIST_USE_ANDROID_DEVICE_READY_TIMEOUT]; }
+-(void) setUseAndroidDeviceReadyTimeout:(BOOL)useAndroidDeviceReadyTimeout { [_defaults setBool:useAndroidDeviceReadyTimeout forKey:APPIUM_PLIST_USE_ANDROID_DEVICE_READY_TIMEOUT]; }
+
 -(BOOL) useAndroidPackage {	return [_defaults boolForKey:APPIUM_PLIST_USE_ANDROID_PACKAGE]; }
 -(void) setUseAndroidPackage:(BOOL)useAndroidPackage { [_defaults setBool:useAndroidPackage forKey:APPIUM_PLIST_USE_ANDROID_PACKAGE]; }
+
+-(BOOL) useAndroidWaitActivity { return [_defaults boolForKey:APPIUM_PLIST_ANDROID_WAIT_ACTIVITY]; }
+-(void) setUseAndroidWaitActivity:(BOOL)useAndroidWaitActivity { [_defaults setBool:useAndroidWaitActivity forKey:APPIUM_PLIST_ANDROID_WAIT_ACTIVITY]; }
 
 -(BOOL) useAppPath { return [_defaults boolForKey:APPIUM_PLIST_USE_APP_PATH]; }
 -(void) setUseAppPath:(BOOL)useAppPath
@@ -313,6 +336,21 @@ BOOL _isServerListening;
 				nodeCommandString = [nodeCommandString stringByAppendingString:@" --force-ipad"];
             }
         }
+		if (self.forceOrientation)
+        {
+            if (self.orientationToForce == iOSOrientation_Portrait)
+            {
+				nodeCommandString = [nodeCommandString stringByAppendingString:@" --orientation PORTRAIT"];
+            }
+            else if (self.orientationToForce == iOSOrientation_Landscape)
+            {
+				nodeCommandString = [nodeCommandString stringByAppendingString:@" --orientation LANDSCAPE"];
+            }
+        }
+		if (self.useMobileSafari)
+		{
+			nodeCommandString = [nodeCommandString stringByAppendingString:@" --safari"];
+		}
     }
     
     // Android Prefs
@@ -326,6 +364,18 @@ BOOL _isServerListening;
         {
 			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--app-activity", self.androidActivity];
         }
+		if (self.useAndroidDeviceReadyTimeout)
+        {
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--device-ready-timeout", [self.androidDeviceReadyTimeout intValue]];
+        }
+		if (self.useAndroidWaitActivity)
+        {
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--app-wait-activity", self.androidWaitActivity];
+        }
+		if (self.fastReset)
+		{
+			nodeCommandString = [nodeCommandString stringByAppendingString:@" --fast-reset"];
+		}
     }
 	
 	[self setServerTask:[NSTask new]];
