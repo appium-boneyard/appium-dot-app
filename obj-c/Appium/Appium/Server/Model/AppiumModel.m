@@ -124,8 +124,8 @@ BOOL _isServerListening;
 -(BOOL) useAndroidPackage {	return [_defaults boolForKey:APPIUM_PLIST_USE_ANDROID_PACKAGE]; }
 -(void) setUseAndroidPackage:(BOOL)useAndroidPackage { [_defaults setBool:useAndroidPackage forKey:APPIUM_PLIST_USE_ANDROID_PACKAGE]; }
 
--(BOOL) useAndroidWaitActivity { return [_defaults boolForKey:APPIUM_PLIST_ANDROID_WAIT_ACTIVITY]; }
--(void) setUseAndroidWaitActivity:(BOOL)useAndroidWaitActivity { [_defaults setBool:useAndroidWaitActivity forKey:APPIUM_PLIST_ANDROID_WAIT_ACTIVITY]; }
+-(BOOL) useAndroidWaitActivity { return [_defaults boolForKey:APPIUM_PLIST_USE_ANDROID_WAIT_ACTIVITY]; }
+-(void) setUseAndroidWaitActivity:(BOOL)useAndroidWaitActivity { [_defaults setBool:useAndroidWaitActivity forKey:APPIUM_PLIST_USE_ANDROID_WAIT_ACTIVITY]; }
 
 -(BOOL) useAppPath { return [_defaults boolForKey:APPIUM_PLIST_USE_APP_PATH]; }
 -(void) setUseAppPath:(BOOL)useAppPath

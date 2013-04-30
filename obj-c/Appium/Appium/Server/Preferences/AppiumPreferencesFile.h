@@ -38,6 +38,7 @@
 #define APPIUM_PLIST_USE_ANDROID_ACTIVITY @"Use Android Activity"
 #define APPIUM_PLIST_USE_ANDROID_DEVICE_READY_TIMEOUT @"Use Android Device Ready Timeout"
 #define APPIUM_PLIST_USE_ANDROID_PACKAGE @"Use Android Package"
+#define APPIUM_PLIST_USE_ANDROID_WAIT_ACTIVITY @"Use Android Wait Activity"
 #define APPIUM_PLIST_USE_APP_PATH @"Use App Path"
 #define APPIUM_PLIST_USE_BUNDLEID @"Use BundleID"
 #define APPIUM_PLIST_USE_CODEMAKER_BOILERPLATE @"Use CodeMaker Boilerplate"
