@@ -57,7 +57,7 @@ capabilities = {\n\
 \n\
 server_url = \"http://%@:%@/wd/hub\"\n\
 \n\
-wd = Selenium::WebDriver.for(:remote, :desired_capabilities => capabilities, :url => server_url)\n", self.model.appPath, self.model.ipAddress, self.model.port];
+@wd = Selenium::WebDriver.for(:remote, :desired_capabilities => capabilities, :url => server_url)\n", self.model.appPath, self.model.ipAddress, self.model.port];
 }
 
 -(NSString*) postCodeBoilerplate
@@ -79,9 +79,34 @@ wd = Selenium::WebDriver.for(:remote, :desired_capabilities => capabilities, :ur
 	return [NSString stringWithFormat:@"# %@\n", comment];
 }
 
+-(NSString*) preciseTap:(AppiumCodeMakerActionPreciseTap*)action
+{
+    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+    return [NSString stringWithFormat:@"@wd.execute_script 'mobile: tap', \
+:tapCount => %@, \
+:touchCount => %@, \
+:duration => %@, \
+:x => %@, \
+:y => %@",
+            [args objectForKey:@"tapCount"], [args objectForKey:@"touchCount"], [args objectForKey:@"duration"], [args objectForKey:@"x"], [args objectForKey:@"y"]];
+}
+
 -(NSString*) sendKeys:(AppiumCodeMakerActionSendKeys*)action
 {
 	return [NSString stringWithFormat:@"%@.send_keys \"%@\"\n", [self locatorString:action.locator], [self escapeString:action.keys]];
+}
+
+-(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action
+{
+    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+    return [NSString stringWithFormat:@"@wd.execute_script 'mobile: swipe', \
+:touchCount => %@, \
+:startX => %@, \
+:startY => %@, \
+:endX => %@, \
+:endY => %@, \
+:duration => %@",
+            [args objectForKey:@"touchCount"], [args objectForKey:@"startX"], [args objectForKey:@"startY"], [args objectForKey:@"endX"], [args objectForKey:@"endY"], [args objectForKey:@"duration"]];
 }
 
 -(NSString*) tap:(AppiumCodeMakerActionTap*)action

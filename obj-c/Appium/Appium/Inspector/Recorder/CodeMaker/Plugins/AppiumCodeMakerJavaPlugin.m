@@ -105,9 +105,38 @@ public class {scriptName} {\n\
 	return [NSString stringWithFormat:@"%@wd.switchTo().alert().dismiss();\n", self.indentation];
 }
 
+-(NSString*) preciseTap:(AppiumCodeMakerActionPreciseTap*)action
+{
+    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+    return [NSString stringWithFormat:@"(JavascriptExecutor)wd.executeScript(\"mobile: tap\", \
+new HashMap<String, Double>() \
+{{ \
+put(\"tapCount\", %@); \
+put(\"touchCount\", %@); \
+put(\"duration\", %@); \
+put(\"x\", %@); \
+put(\"y\", %@); \
+}});", [args objectForKey:@"tapCount"], [args objectForKey:@"touchCount"], [args objectForKey:@"duration"], [args objectForKey:@"x"], [args objectForKey:@"y"]];
+}
+
 -(NSString*) sendKeys:(AppiumCodeMakerActionSendKeys*)action
 {
 	return [NSString stringWithFormat:@"%@wd.FindElement(%@).sendKeys(\"%@\");\n", self.indentation, [self locatorString:action.locator], [self escapeString:action.keys]];
+}
+
+-(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action
+{
+    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+    return [NSString stringWithFormat:@"(JavascriptExecutor)wd.executeScript(\"mobile: swipe\", \
+new HashMap<String, Double>() \
+{{ \
+put(\"touchCount\", %@); \
+put(\"startX\", %@); \
+put(\"startY\", %@); \
+put(\"endX\", %@); \
+put(\"endY\", %@); \
+put(\"duration\", %@); \
+}});", [args objectForKey:@"touchCount"], [args objectForKey:@"startX"], [args objectForKey:@"startY"], [args objectForKey:@"endX"], [args objectForKey:@"endY"], [args objectForKey:@"duration"]];
 }
 
 -(NSString*) tap:(AppiumCodeMakerActionTap*)action

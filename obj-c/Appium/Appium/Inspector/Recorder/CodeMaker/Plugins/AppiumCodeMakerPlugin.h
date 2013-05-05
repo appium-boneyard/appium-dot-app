@@ -31,7 +31,9 @@
 -(NSString*) comment:(AppiumCodeMakerActionComment*)action;
 -(NSString*) commentWithString:(NSString *)comment;
 -(NSString*) dismissAlert;
+-(NSString*) preciseTap:(AppiumCodeMakerActionPreciseTap*)action;
 -(NSString*) sendKeys:(AppiumCodeMakerActionSendKeys*)action;
+-(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action;
 -(NSString*) tap:(AppiumCodeMakerActionTap*)action;
 
 @end

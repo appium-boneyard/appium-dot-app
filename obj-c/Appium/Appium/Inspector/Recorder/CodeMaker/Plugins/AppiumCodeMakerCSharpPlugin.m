@@ -110,9 +110,38 @@ namespace AppiumTests {\n\
 	return [NSString stringWithFormat:@"%@wd.SwitchTo().Alert().Dismiss();\n", self.indentation];
 }
 
+-(NSString*) preciseTap:(AppiumCodeMakerActionPreciseTap*)action
+{
+    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+    return [NSString stringWithFormat:@"wd.ExecuteScript(\"mobile: tap\", \
+new Dictionary<string, double>() \
+{ \
+{ \"tapCount\", %@ }, \
+{ \"touchCount\", %@ }, \
+{ \"duration\", %@ }, \
+{ \"x\", %@ }, \
+{ \"y\", %@ } \
+});", [args objectForKey:@"tapCount"], [args objectForKey:@"touchCount"], [args objectForKey:@"duration"], [args objectForKey:@"x"], [args objectForKey:@"y"]];
+}
+
 -(NSString*) sendKeys:(AppiumCodeMakerActionSendKeys*)action
 {
 	return [NSString stringWithFormat:@"%@wd.FindElement(%@).SendKeys(\"%@\");\n", self.indentation, [self locatorString:action.locator], [self escapeString:action.keys]];
+}
+
+-(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action
+{
+    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+    return [NSString stringWithFormat:@"wd.ExecuteScript(\"mobile: swipe\", \
+new Dictionary<string, double>() \
+{ \
+{ \"touchCount\", %@ }, \
+{ \"startX\", %@ }, \
+{ \"startY\", %@ }, \
+{ \"endX\", %@ }, \
+{ \"endY\", %@ }, \
+{ \"duration\", %@ } \
+});", [args objectForKey:@"touchCount"], [args objectForKey:@"startX"], [args objectForKey:@"startY"], [args objectForKey:@"endX"], [args objectForKey:@"endY"], [args objectForKey:@"duration"]];
 }
 
 -(NSString*) tap:(AppiumCodeMakerActionTap*)action

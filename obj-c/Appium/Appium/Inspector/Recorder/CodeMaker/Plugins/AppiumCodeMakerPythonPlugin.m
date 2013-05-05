@@ -112,9 +112,34 @@ try:\n", self.model.appPath, self.model.ipAddress, self.model.port];
 	return [NSString stringWithFormat:@"%@wd.switch_to_alert().dismiss()\n", self.indentation];
 }
 
+-(NSString*) preciseTap:(AppiumCodeMakerActionPreciseTap*)action
+{
+    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+    return [NSString stringWithFormat:@"wd.execute_script(\"mobile: tap\", {\
+\"tapCount\": %@, \
+\"touchCount\": %@, \
+\"duration\": %@, \
+\"x\": %@, \
+\"y\": %@ \
+})", [args objectForKey:@"tapCount"], [args objectForKey:@"touchCount"], [args objectForKey:@"duration"], [args objectForKey:@"x"], [args objectForKey:@"y"]];
+}
+
 -(NSString*) sendKeys:(AppiumCodeMakerActionSendKeys*)action
 {
 	return [NSString stringWithFormat:@"%@%@.send_keys(\"%@\")\n", self.indentation, [self locatorString:action.locator], [self escapeString:action.keys]];
+}
+
+-(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action
+{
+    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+    return [NSString stringWithFormat:@"wd.execute_script(\"mobile: swipe\", {\
+\"touchCount\": %@ , \
+\"startX\": %@, \
+\"startY\": %@, \
+\"endX\": %@, \
+\"endY\": %@, \
+\"duration\": %@ \
+})", [args objectForKey:@"touchCount"], [args objectForKey:@"startX"], [args objectForKey:@"startY"], [args objectForKey:@"endX"], [args objectForKey:@"endY"], [args objectForKey:@"duration"]];
 }
 
 -(NSString*) tap:(AppiumCodeMakerActionTap*)action
