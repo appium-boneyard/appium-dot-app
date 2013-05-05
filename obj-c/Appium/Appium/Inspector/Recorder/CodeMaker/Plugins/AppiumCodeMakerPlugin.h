@@ -7,15 +7,20 @@
 //
 
 #import "AppiumCodeMakerActions.h"
+#import "AppiumModel.h"
 
 #define APPIUM_CODE_MAKER_PLUGIN_METHOD_NYI_STRING @"Action cannot currently be transcribed by Appium Recorder"
 
 @class AppiumCodeMaker;
+@class AppiumModel;
 
 @interface AppiumCodeMakerPlugin : NSObject
 
+@property (readonly) AppiumModel *model;
 @property (readonly) NSString *name;
 @property (readonly) NSString *preCodeBoilerplate;
+@property (readonly) NSString *preCodeBoilerplateAndroid;
+@property (readonly) NSString *preCodeBoilerplateiOS;
 @property (readonly) NSString *postCodeBoilerplate;
 @property (weak) AppiumCodeMaker *codeMaker;
 

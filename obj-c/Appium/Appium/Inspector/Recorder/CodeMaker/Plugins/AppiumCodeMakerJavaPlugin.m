@@ -30,10 +30,9 @@
 #pragma mark - AppiumCodeMakerPlugin Implementation
 -(NSString*) name { return @"Java"; }
 
--(NSString*) preCodeBoilerplate
+-(NSString*) preCodeBoilerplateAndroid
 {
-    return
-@"import java.util.concurrent.TimeUnit;\n\
+    return [NSString stringWithFormat:@"import java.util.concurrent.TimeUnit;\n\
 import java.util.Date;\n\
 import java.io.File;\n\
 import org.openqa.selenium.support.ui.Select;\n\
@@ -44,8 +43,38 @@ import static org.openqa.selenium.OutputType.*;\n\
 \n\
 public class {scriptName} {\n\
 \tpublic static void main(String[] args) {\n\
-\t\tFirefoxDriver wd = new FirefoxDriver();\n\
-\t\twd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);\n";
+\t\tDesiredCapabilities capabilities = new DesiredCapabilities();\n\
+\t\tcapabilities.setCapability(\"device\", \"Android\");\n\
+\t\tcapabilities.setCapability(CapabilityType.BROWSER_NAME, \"\");\n\
+\t\tcapabilities.setCapability(CapabilityType.VERSION, \"6.1\");\n\
+\t\tcapabilities.setCapability(CapabilityType.PLATFORM, \"Mac\");\n\
+\t\tcapabilities.setCapability(\"app\", \"%@\");\n\
+\t\tcapabilities.setCapability(\"app-package\", \"%@\");\n\
+\t\tcapabilities.setCapability(\"app-activity\", \"%@\");\n\
+\t\twd = new RemoteWebDriver(new URL(\"http://%@:%@/wd/hub\"), capabilities);\n\
+\t\twd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);\n", self.model.appPath, self.model.androidPackage, self.model.androidActivity, self.model.ipAddress, self.model.port];
+}
+
+-(NSString*) preCodeBoilerplateiOS
+{
+    return [NSString stringWithFormat:@"import java.util.concurrent.TimeUnit;\n\
+import java.util.Date;\n\
+import java.io.File;\n\
+import org.openqa.selenium.support.ui.Select;\n\
+import org.openqa.selenium.interactions.Actions;\n\
+import org.openqa.selenium.firefox.FirefoxDriver;\n\
+import org.openqa.selenium.*;\n\
+import static org.openqa.selenium.OutputType.*;\n\
+\n\
+public class {scriptName} {\n\
+\tpublic static void main(String[] args) {\n\
+\t\tDesiredCapabilities capabilities = new DesiredCapabilities();\n\
+\t\tcapabilities.setCapability(CapabilityType.BROWSER_NAME, \"iOS\");\n\
+\t\tcapabilities.setCapability(CapabilityType.VERSION, \"6.1\");\n\
+\t\tcapabilities.setCapability(CapabilityType.PLATFORM, \"Mac\");\n\
+\t\tcapabilities.setCapability(\"app\", \"%@\");\n\
+\t\twd = new RemoteWebDriver(new URL(\"http://%@:%@/wd/hub\"), capabilities);\n\
+\t\twd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);\n", self.model.appPath, self.model.ipAddress, self.model.port];
 }
 
 -(NSString*) postCodeBoilerplate

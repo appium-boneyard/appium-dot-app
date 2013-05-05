@@ -7,6 +7,8 @@
 //
 
 #import "AppiumCodeMakerPlugin.h"
+
+#import "AppiumAppDelegate.h"
 #import "AppiumGlobals.h"
 
 @implementation AppiumCodeMakerPlugin
@@ -17,6 +19,16 @@
 }
 
 #pragma mark - Instance Methods
+-(AppiumModel*) model
+{
+    return [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] model];
+}
+
+-(NSString*) preCodeBoilerplate
+{
+    return (self.model.platform == Platform_iOS) ? self.preCodeBoilerplateiOS : self.preCodeBoilerplateAndroid;
+}
+
 -(NSString*) renderAction:(AppiumCodeMakerAction*)action
 {
 	switch(action.actionType)
@@ -37,6 +49,8 @@
 }
 
 #pragma mark - Abstract Methods
+-(NSString*) preCodeBoilerplateAndroid { APPIUM_ABSTRACT_CLASS_ERROR }
+-(NSString*) preCodeBoilerplateiOS { APPIUM_ABSTRACT_CLASS_ERROR }
 -(NSString*) acceptAlert { APPIUM_ABSTRACT_CLASS_ERROR }
 -(NSString*) comment:(AppiumCodeMakerActionComment*)action { APPIUM_ABSTRACT_CLASS_ERROR }
 -(NSString*) commentWithString:(NSString *)comment { APPIUM_ABSTRACT_CLASS_ERROR }

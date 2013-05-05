@@ -29,15 +29,22 @@
 #pragma mark - AppiumCodeMakerPlugin Implementation
 -(NSString*) name { return @"Python"; }
 
--(NSString*) preCodeBoilerplate
+-(NSString*) preCodeBoilerplateAndroid
 {
-    return
-@"from selenium.webdriver.firefox.webdriver import WebDriver\n\
+    return [NSString stringWithFormat:@"from selenium.webdriver.firefox.webdriver import WebDriver\n\
 from selenium.webdriver.common.action_chains import ActionChains\n\
 import time\n\
 \n\
 success = True\n\
-wd = WebDriver()\n\
+desired_caps = {}\n\
+desired_caps['device'] = 'Android'\n\
+desired_caps['browserName'] = ''\n\
+desired_caps['version'] = '4.2'\n\
+desired_caps['app'] = os.path.abspath('%@')\n\
+desired_caps['app-package'] = '%@'\n\
+desired_caps['app-activity'] = '%@'\n\
+\n\
+    wd = webdriver.Remote('http://%@:%@/wd/hub', desired_caps)\n\
 wd.implicitly_wait(60)\n\
 \n\
 def is_alert_present(wd):\n\
@@ -47,7 +54,33 @@ def is_alert_present(wd):\n\
 \texcept:\n\
 \t\treturn False\n\
 \n\
-try:\n";
+try:\n", self.model.appPath, self.model.androidPackage, self.model.androidActivity, self.model.ipAddress, self.model.port];
+}
+
+-(NSString*) preCodeBoilerplateiOS
+{
+    return [NSString stringWithFormat:@"from selenium.webdriver.firefox.webdriver import WebDriver\n\
+from selenium.webdriver.common.action_chains import ActionChains\n\
+import time\n\
+\n\
+success = True\n\
+desired_caps = {}\n\
+desired_caps['browserName'] = 'iOS'\n\
+desired_caps['platform'] = 'Mac'\n\
+desired_caps['version'] = '6.1'\n\
+desired_caps['app'] = os.path.abspath('%@')\n\
+\n\
+wd = webdriver.Remote('http://%@:%@/wd/hub', desired_caps)\n\
+wd.implicitly_wait(60)\n\
+\n\
+def is_alert_present(wd):\n\
+\ttry:\n\
+\t\twd.switch_to_alert().text\n\
+\t\treturn True\n\
+\texcept:\n\
+\t\treturn False\n\
+\n\
+try:\n", self.model.appPath, self.model.ipAddress, self.model.port];
 }
 
 -(NSString*) postCodeBoilerplate

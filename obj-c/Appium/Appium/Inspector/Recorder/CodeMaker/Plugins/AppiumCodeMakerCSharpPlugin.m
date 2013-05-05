@@ -7,7 +7,6 @@
 //
 
 #import "AppiumCodeMakerCSharpPlugin.h"
-
 #import "AppiumCodeMakerActions.h"
 
 @interface AppiumCodeMakerCSharpPlugin ()
@@ -30,10 +29,9 @@
 #pragma mark - AppiumCodeMakerPlugin Implementation
 -(NSString*) name { return @"C#"; }
 
--(NSString*) preCodeBoilerplate
+-(NSString*) preCodeBoilerplateAndroid
 {
-    return
-@"using OpenQA.Selenium;\n\
+    return [NSString stringWithFormat: @"using OpenQA.Selenium;\n\
 using OpenQA.Selenium.Remote;\n\
 using OpenQA.Selenium.Support.UI;\n\
 using System;\n\
@@ -42,8 +40,37 @@ using System.Threading;\n\
 namespace AppiumTests {\n\
 \tpublic class RecordedTest {\n\
 \t\tstatic void Main(string[] args) {\n\
-\t\t\tIWebDriver wd = new RemoteWebDriver(DesiredCapabilities.Firefox());\n\
-\t\t\ttry {\n";
+\t\t\tDesiredCapabilities capabilities = new DesiredCapabilities();\n\
+\t\t\tcapabilities.SetCapability(\"device\", \"Android\");\n\
+\t\t\tcapabilities.SetCapability(\"browserName\", \"\");\n\
+\t\t\tcapabilities.SetCapability(\"platform\", \"Mac\");\n\
+\t\t\tcapabilities.SetCapability(\"version\", \"4.2\");\n\
+\t\t\tcapabilities.SetCapability(\"app\", \"%@\");\n\
+\t\t\tcapabilities.SetCapability(\"app-package\", \"%@\");\n\
+\t\t\tcapabilities.SetCapability(\"app-activity\", \"%@\");\n\
+\t\t\tRemoteWebDriver wd = new RemoteWebDriver(new Uri(\"http://%@:%@/wd/hub\"), capabilities);\n\
+\t\t\ttry {\n", self.model.appPath, self.model.androidPackage, self.model.androidActivity, self.model.ipAddress, self.model.port];
+
+}
+
+-(NSString*) preCodeBoilerplateiOS
+{
+    return [NSString stringWithFormat: @"using OpenQA.Selenium;\n\
+using OpenQA.Selenium.Remote;\n\
+using OpenQA.Selenium.Support.UI;\n\
+using System;\n\
+using System.Threading;\n\
+\n\
+namespace AppiumTests {\n\
+\tpublic class RecordedTest {\n\
+\t\tstatic void Main(string[] args) {\n\
+\t\t\tDesiredCapabilities capabilities = new DesiredCapabilities();\n\
+\t\t\tcapabilities.SetCapability(\"browserName\", \"iOS\");\n\
+\t\t\tcapabilities.SetCapability(\"platform\", \"Mac\");\n\
+\t\t\tcapabilities.SetCapability(\"version\", \"6.1\");\n\
+\t\t\tcapabilities.SetCapability(\"app\", \"%@\");\n\
+\t\t\tRemoteWebDriver wd = new RemoteWebDriver(new Uri(\"http://%@:%@/wd/hub\"), capabilities);\n\
+\t\t\ttry {\n", self.model.appPath, self.model.ipAddress, self.model.port];
 }
 
 -(NSString*) postCodeBoilerplate

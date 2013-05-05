@@ -49,7 +49,18 @@ BOOL _isServerListening;
 -(void) setAndroidWaitActivity:(NSString *)androidWaitActivity { [_defaults setValue:androidWaitActivity forKey:APPIUM_PLIST_ANDROID_WAIT_ACTIVITY]; }
 
 -(NSString*) appPath { return [_defaults stringForKey:APPIUM_PLIST_APP_PATH];}
--(void) setAppPath:(NSString *)appPath { [_defaults setValue:appPath forKey:APPIUM_PLIST_APP_PATH]; }
+-(void) setAppPath:(NSString *)appPath
+{
+    if ([appPath hasSuffix:@".app"])
+    {
+        [self setPlatform:Platform_iOS];
+    }
+    if ([appPath hasSuffix:@".apk"])
+    {
+        [self setPlatform:Platform_Android];
+    }
+    [_defaults setValue:appPath forKey:APPIUM_PLIST_APP_PATH];
+}
 
 -(NSString*) bundleID { return [_defaults stringForKey:APPIUM_PLIST_BUNDLEID]; }
 -(void) setBundleID:(NSString *)bundleID { [_defaults setValue:bundleID forKey:APPIUM_PLIST_BUNDLEID]; }
@@ -100,7 +111,18 @@ BOOL _isServerListening;
 -(NSString*) orientationToForceString { return [[_defaults valueForKey:APPIUM_PLIST_ORIENTATION] isEqualToString:APPIUM_PLIST_FORCE_ORIENTATION_LANDSCAPE] ? APPIUM_PLIST_FORCE_ORIENTATION_LANDSCAPE : APPIUM_PLIST_FORCE_ORIENTATION_PORTRAIT ; }
 -(void) setOrientationToForceString:(NSString *)orientationToForceString { [_defaults setValue:orientationToForceString forKey:APPIUM_PLIST_ORIENTATION]; }
 
--(Platform)platform { return [_defaults integerForKey:APPIUM_PLIST_TAB_STATE] == APPIUM_PLIST_TAB_STATE_ANDROID ? Platform_Android : Platform_iOS; }
+-(Platform)platform
+{
+    if ([self.appPath hasSuffix:@".app"])
+    {
+        [self setPlatform:Platform_iOS];
+    }
+    if ([self.appPath hasSuffix:@".apk"])
+    {
+        [self setPlatform:Platform_Android];
+    }
+    return [_defaults integerForKey:APPIUM_PLIST_TAB_STATE] == APPIUM_PLIST_TAB_STATE_ANDROID ? Platform_Android : Platform_iOS;
+}
 -(void)setPlatform:(Platform)platform { [_defaults setInteger:(platform == Platform_Android ? APPIUM_PLIST_TAB_STATE_ANDROID : APPIUM_PLIST_TAB_STATE_IOS) forKey:APPIUM_PLIST_TAB_STATE]; }
 
 -(NSNumber*) port { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_SERVER_PORT] intValue]]; }
