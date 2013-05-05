@@ -23,6 +23,7 @@
 		3661735617172AB200E786DF /* AppiumCodeMakerPythonPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3661735517172AB200E786DF /* AppiumCodeMakerPythonPlugin.m */; };
 		368230DA1715C73F00FF113F /* AppiumCodeMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 368230D91715C73F00FF113F /* AppiumCodeMaker.m */; };
 		368C3FF516E8F3EC00B84DE6 /* AppiumUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 368C3FF416E8F3EC00B84DE6 /* AppiumUpdater.m */; };
+		368DC8521737255A0030F656 /* AppiumCodeMakerActionExecuteScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 368DC8511737255A0030F656 /* AppiumCodeMakerActionExecuteScript.m */; };
 		369126DD1704DABD007FBB5E /* AppiumInspectorRefreshButtonTextTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 369126DC1704DABD007FBB5E /* AppiumInspectorRefreshButtonTextTransformer.m */; };
 		36919C8B171616AD00AC2C63 /* AppiumCodeMakerAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 36919C8A171616AD00AC2C63 /* AppiumCodeMakerAction.m */; };
 		3695CAB016E3FCAE003697A9 /* AppiumInstallationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3695CAAE16E3FCAE003697A9 /* AppiumInstallationWindowController.m */; };
@@ -147,6 +148,8 @@
 		368230D91715C73F00FF113F /* AppiumCodeMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMaker.m; sourceTree = "<group>"; };
 		368C3FF316E8F3EC00B84DE6 /* AppiumUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumUpdater.h; sourceTree = "<group>"; };
 		368C3FF416E8F3EC00B84DE6 /* AppiumUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumUpdater.m; sourceTree = "<group>"; };
+		368DC850173725590030F656 /* AppiumCodeMakerActionExecuteScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerActionExecuteScript.h; sourceTree = "<group>"; };
+		368DC8511737255A0030F656 /* AppiumCodeMakerActionExecuteScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerActionExecuteScript.m; sourceTree = "<group>"; };
 		369126DB1704DABD007FBB5E /* AppiumInspectorRefreshButtonTextTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumInspectorRefreshButtonTextTransformer.h; sourceTree = "<group>"; };
 		369126DC1704DABD007FBB5E /* AppiumInspectorRefreshButtonTextTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumInspectorRefreshButtonTextTransformer.m; sourceTree = "<group>"; };
 		36919C89171616AD00AC2C63 /* AppiumCodeMakerAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerAction.h; sourceTree = "<group>"; };
@@ -444,6 +447,8 @@
 				36BF1D6B171B4ED400C2CF01 /* AppiumCodeMakerAlertDismiss.m */,
 				36BF1D73171B540000C2CF01 /* AppiumCodeMakerActionComment.h */,
 				36BF1D74171B540000C2CF01 /* AppiumCodeMakerActionComment.m */,
+				368DC850173725590030F656 /* AppiumCodeMakerActionExecuteScript.h */,
+				368DC8511737255A0030F656 /* AppiumCodeMakerActionExecuteScript.m */,
 				36ADA117172098FA00D4287B /* AppiumCodeMakerActionPreciseTap.h */,
 				36ADA118172098FA00D4287B /* AppiumCodeMakerActionPreciseTap.m */,
 				36BF1D67171B4C1000C2CF01 /* AppiumCodeMakerActionSendKeys.h */,
@@ -743,6 +748,7 @@
 				36C4BDFD171C9D4C004FD4FA /* AppiumCodeMakerPlugin.m in Sources */,
 				36ADA116172093D200D4287B /* AppiumCodeMakerPreciseTapPopoverViewController.m in Sources */,
 				36ADA119172098FA00D4287B /* AppiumCodeMakerActionPreciseTap.m in Sources */,
+				368DC8521737255A0030F656 /* AppiumCodeMakerActionExecuteScript.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
