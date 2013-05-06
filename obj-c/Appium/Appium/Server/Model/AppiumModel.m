@@ -140,10 +140,6 @@ BOOL _isServerListening;
 	{
 		[self setUseAppPath:YES];
 	}
-	if (self.platform == Platform_Android)
-	{
-		[self setUseAVD:preLaunchApp];
-	}
 }
 
 -(BOOL) resetApplicationState { return [_defaults boolForKey:APPIUM_PLIST_RESET_APPLICATION_STATE]; }
@@ -354,7 +350,7 @@ BOOL _isServerListening;
     {
 		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--udid", self.udid];
     }
-	if (self.prelaunchApp && self.useAppPath && (self.platform == Platform_iOS || self.useAVD))
+	if (self.prelaunchApp && self.useAppPath)
     {
 		nodeCommandString = [nodeCommandString stringByAppendingString:@" --pre-launch"];
     }
