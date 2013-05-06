@@ -19,6 +19,7 @@
 @property NSString *s_AndroidWaitActivity;
 @property NSString *s_AppPath;
 @property NSString *s_AVD;
+@property NSNumber *s_BreakOnNodeAppStart;
 @property NSString *s_BundleID;
 @property NSNumber *s_CheckForUpdates;
 @property NSNumber *s_DeveloperMode;
@@ -29,6 +30,7 @@
 @property (readonly) NSNumber *s_IsServerRunning;
 @property NSNumber *s_KeepArtifacts;
 @property (readonly)NSString *s_LogText;
+@property NSNumber *s_NodeDebugPort;
 @property (readonly)NSString *s_NodePath;
 @property NSNumber *s_Port;
 @property NSNumber *s_PrelaunchApp;
@@ -46,6 +48,7 @@
 @property NSNumber *s_UseFastReset;
 @property NSNumber *s_UseInstrumentsWithoutDelay;
 @property NSNumber *s_UseMobileSafari;
+@property NSNumber *s_UseNodeDebugger;
 @property NSNumber *s_UseRemoteServer;
 @property NSNumber *s_UseUDID;
 

@@ -14,6 +14,8 @@
 	<string>/</string>
 	<key>AVD</key>
 	<string></string>
+	<key>Break On NodeJS Application Start</key>
+	<false/>
 	<key>BundleID</key>
 	<string></string>
 	<key>Check For Updates</key>
@@ -41,6 +43,8 @@
 	<false/>
 	<key>Keep Artifacts</key>
 	<true/>
+	<key>NodeJS Debug Port</key>
+	<integer>5858</integer>
 	<key>Orientation</key>
 	<string>Portrait</string>
 	<key>Prelaunch</key>
@@ -78,6 +82,8 @@
 	<key>Use Remote Server</key>
 	<false/>
 	<key>Use Mobile Safari</key>
+	<false/>
+	<key>Use NodeJS Debugging</key>
 	<false/>
 	<key>Use UDID</key>
 	<false/>

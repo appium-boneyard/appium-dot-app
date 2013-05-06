@@ -46,7 +46,7 @@ public class {scriptName} {\n\
 \t\tDesiredCapabilities capabilities = new DesiredCapabilities();\n\
 \t\tcapabilities.setCapability(\"device\", \"Android\");\n\
 \t\tcapabilities.setCapability(CapabilityType.BROWSER_NAME, \"\");\n\
-\t\tcapabilities.setCapability(CapabilityType.VERSION, \"6.1\");\n\
+\t\tcapabilities.setCapability(CapabilityType.VERSION, \"4.2\");\n\
 \t\tcapabilities.setCapability(CapabilityType.PLATFORM, \"Mac\");\n\
 \t\tcapabilities.setCapability(\"app\", \"%@\");\n\
 \t\tcapabilities.setCapability(\"app-package\", \"%@\");\n\

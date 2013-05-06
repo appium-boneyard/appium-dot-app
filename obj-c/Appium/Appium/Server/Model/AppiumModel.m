@@ -66,6 +66,9 @@ BOOL _isServerListening;
 -(NSString*) avd { return [_defaults stringForKey:APPIUM_PLIST_AVD]; }
 -(void) setAvd:(NSString *)avd { [_defaults setValue:avd forKey:APPIUM_PLIST_AVD]; }
 
+-(BOOL) breakOnNodeApplicationStart { return self.developerMode && self.useNodeDebugging && [_defaults boolForKey:APPIUM_PLIST_BREAK_ON_NODEJS_APP_START]; }
+-(void) setBreakOnNodeApplicationStart:(BOOL)breakOnNodeApplicationStart { [_defaults setBool:breakOnNodeApplicationStart forKey:APPIUM_PLIST_BREAK_ON_NODEJS_APP_START]; }
+
 -(NSString*) bundleID { return [_defaults stringForKey:APPIUM_PLIST_BUNDLEID]; }
 -(void) setBundleID:(NSString *)bundleID { [_defaults setValue:bundleID forKey:APPIUM_PLIST_BUNDLEID]; }
 
@@ -109,6 +112,9 @@ BOOL _isServerListening;
 
 -(BOOL) logVerbose { return [_defaults boolForKey:APPIUM_PLIST_VERBOSE]; }
 -(void) setLogVerbose:(BOOL)logVerbose { [_defaults setBool:logVerbose forKey:APPIUM_PLIST_VERBOSE]; }
+
+-(NSNumber*) nodeDebugPort { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_NODEJS_DEBUG_PORT] intValue]]; }
+-(void) setNodeDebugPort:(NSNumber *)nodeDebugPort { [[NSUserDefaults standardUserDefaults] setValue:nodeDebugPort forKey:APPIUM_PLIST_NODEJS_DEBUG_PORT]; }
 
 -(iOSOrientation) orientationToForce { return [[_defaults stringForKey:APPIUM_PLIST_ORIENTATION] isEqualToString:APPIUM_PLIST_FORCE_ORIENTATION_LANDSCAPE] ? iOSOrientation_Landscape : iOSOrientation_Portrait; }
 -(void) setOrientationToForce:(iOSOrientation)orientationToForce {[self setOrientationToForceString:(orientationToForce == iOSOrientation_Landscape ? APPIUM_PLIST_FORCE_ORIENTATION_LANDSCAPE : APPIUM_PLIST_FORCE_ORIENTATION_PORTRAIT)]; }
@@ -256,6 +262,9 @@ BOOL _isServerListening;
 	}
 }
 
+-(BOOL) useNodeDebugging { return self.developerMode && [_defaults boolForKey:APPIUM_PLIST_USE_NODEJS_DEBUGGING]; }
+-(void) setUseNodeDebugging:(BOOL)useNodeDebugging { [_defaults setBool:useNodeDebugging forKey:APPIUM_PLIST_USE_NODEJS_DEBUGGING]; }
+
 -(BOOL) useRemoteServer
 {
 	return [_defaults boolForKey:APPIUM_PLIST_USE_REMOTE_SERVER] && [self developerMode];
@@ -319,15 +328,23 @@ BOOL _isServerListening;
     }
     
 	// build arguments
+	NSString *nodeDebuggingArguments = @"";
+	if (self.useNodeDebugging)
+	{
+		nodeDebuggingArguments = [nodeDebuggingArguments stringByAppendingString:[NSString stringWithFormat:@" --debug=%@", [self.nodeDebugPort stringValue]]];
+		if (self.breakOnNodeApplicationStart)
+		{
+			nodeDebuggingArguments = [nodeDebuggingArguments stringByAppendingString:@" --debug-brk"];
+		}
+	}
 	NSString *nodeCommandString;
 	if (self.useExternalAppiumPackage)
 	{
-		nodeCommandString = [NSString stringWithFormat:@"%@ server.js", self.externalNodeJSBinaryPath];
-
+		nodeCommandString = [NSString stringWithFormat:@"%@%@ server.js", self.externalNodeJSBinaryPath, nodeDebuggingArguments];
 	}
 	else
 	{
-		nodeCommandString = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle]resourcePath], @"node/bin/node server.js"];
+		nodeCommandString = [NSString stringWithFormat:@"%@/%@%@ server.js", [[NSBundle mainBundle]resourcePath], @"node/bin/node", nodeDebuggingArguments];
 	}
 	
 	if (![self.ipAddress isEqualTo:@"0.0.0.0"])

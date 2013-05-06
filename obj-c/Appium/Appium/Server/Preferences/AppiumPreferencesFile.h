@@ -12,6 +12,7 @@
 #define APPIUM_PLIST_ANDROID_WAIT_ACTIVITY @"Android Wait Activity"
 #define APPIUM_PLIST_APP_PATH @"App Path"
 #define APPIUM_PLIST_AVD @"AVD"
+#define APPIUM_PLIST_BREAK_ON_NODEJS_APP_START @"Break On NodeJS Application Start"
 #define APPIUM_PLIST_BUNDLEID @"BundleID"
 #define APPIUM_PLIST_CODEMAKER_LANGUAGE @"CodeMaker Language"
 #define APPIUM_PLIST_CHECK_FOR_UPDATES @"Check For Updates"
@@ -27,6 +28,7 @@
 #define APPIUM_PLIST_FORCE_ORIENTATION_PORTRAIT @"Portrait"
 #define APPIUM_PLIST_FORCE_ORIENTATION_LANDSCAPE @"Landscape"
 #define APPIUM_PLIST_KEEP_ARTIFACTS @"Keep Artifacts"
+#define APPIUM_PLIST_NODEJS_DEBUG_PORT @"NodeJS Debug Port"
 #define APPIUM_PLIST_ORIENTATION @"Orientation"
 #define APPIUM_PLIST_TAB_STATE @"Tab State"
 #define APPIUM_PLIST_TAB_STATE_ANDROID 1
@@ -46,6 +48,7 @@
 #define APPIUM_PLIST_USE_CODEMAKER_BOILERPLATE @"Use CodeMaker Boilerplate"
 #define APPIUM_PLIST_USE_EXTERNAL_APPIUM_PACKAGE @"Use External Appium Package"
 #define APPIUM_PLIST_USE_EXTERNAL_NODEJS_BINARY @"Use External NodeJS Binary"
+#define APPIUM_PLIST_USE_NODEJS_DEBUGGING @"Use NodeJS Debugging"
 #define APPIUM_PLIST_USE_REMOTE_SERVER @"Use Remote Server"
 #define APPIUM_PLIST_USE_MOBILE_SAFARI @"Use Mobile Safari"
 #define APPIUM_PLIST_USE_UDID @"Use UDID"
