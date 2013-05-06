@@ -21,20 +21,38 @@
 
         AppiumModel *model = [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] model];
         self.driver = [[SERemoteWebDriver alloc] initWithServerAddress:[model ipAddress] port:[[model port] integerValue]];
+		if (self.driver == nil)
+		{
+			return [self closeWithError:@"Could not connect to Appium Server"];
+		}
+		
         NSArray *sessions = [self.driver allSessions];
+		if (self.driver == nil || sessions == nil)
+		{
+			return [self closeWithError:@"Could not get list of sessions from Appium Server"];
+		}
         
 		// get session to use
 		if (sessions.count > 0)
         {
 			// use the existing session
             [self.driver setSession:[sessions objectAtIndex:0]];
+			if (self.driver == nil || self.driver.session == nil)
+			{
+				return [self closeWithError:@"Could not set the session"];
+			}
         }
         if (sessions.count == 0 || self.driver.session == nil || self.driver.session.capabilities.platform == nil)
         {
 			// create a new session if one does not already exist
             SECapabilities *capabilities = [SECapabilities new];
             [self.driver startSessionWithDesiredCapabilities:capabilities requiredCapabilities:nil];
+			if (self.driver == nil || self.driver.session == nil || self.driver.session.sessionId == nil)
+			{
+				return [self closeWithError:@"Could not start a new session"];
+			}
         }
+		
 		
 		// set 15 minute timeout so Appium will not close prematurely
 		NSArray *timeoutArgs = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys: [NSNumber numberWithInteger:900], @"timeout", nil],nil];
@@ -62,7 +80,7 @@
     return self;
 }
 
-- (void)windowDidLoad
+-(void) windowDidLoad
 {
     [super windowDidLoad];
     
@@ -78,6 +96,16 @@
     [self.bottomDrawer setMinContentSize:contentSize];
 	[self.bottomDrawer setContentView:self.bottomDrawerContentView];
 	[self.bottomDrawer.contentView setAutoresizingMask:NSViewHeightSizable];
+}
+
+-(id) closeWithError:(NSString*)informativeText
+{
+	NSAlert *alert = [NSAlert new];
+    [alert setMessageText:@"Could Not Launch Appium Inspector"];
+	[alert setInformativeText:[NSString stringWithFormat:@"%@\n\n%@", informativeText, @"Be sure the Appium server is running with an application opened by using the \"App Path\" parameter in Appium.app (along with package and activity for Android) or by connecting with selenium client and supplying this in the desired capabilities object."]];
+	[alert runModal];
+	[self close];
+	return nil;
 }
 
 @end
