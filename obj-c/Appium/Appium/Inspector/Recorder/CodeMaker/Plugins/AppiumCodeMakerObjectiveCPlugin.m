@@ -60,7 +60,7 @@
 \tSECapabilities *caps = [SECapabilities new];\n\
 \t[caps setPlatform:@\"Mac\"];\n\
 \t[caps setBrowserName:@\"iOS\"];\n\
-\t[caps setVersion:@\"4.2\"];\n\
+\t[caps setVersion:@\"6.1\"];\n\
 \t[caps addCapabilityForKey:@\"app\" andValue:@\"%@\"];\n\
 \tNSError *error;\n\
 \tSERemoteWebDriver *wd = [[SERemoteWebDriver alloc] initWithServerAddress:@\"%@\" port:%@ desiredCapabilities:caps requiredCapabilities:nil error:&error];\n", self.model.appPath, self.model.ipAddress, self.model.port];}
