@@ -39,6 +39,24 @@
 		// set 15 minute timeout so Appium will not close prematurely
 		NSArray *timeoutArgs = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys: [NSNumber numberWithInteger:900], @"timeout", nil],nil];
 		[_driver executeScript:@"mobile: setCommandTimeout" arguments:timeoutArgs];
+        
+        // detect the current platform
+        if ([[self.driver.session.capabilities.browserName lowercaseString] isEqualToString:@"ios"])
+        {
+            [model setPlatform:Platform_iOS];
+        }
+        if ([[self.driver.session.capabilities.browserName lowercaseString] isEqualToString:@"android"])
+        {
+            [model setPlatform:Platform_Android];
+        }
+        if ([[self.driver.session.capabilities.browserName lowercaseString] isEqualToString:@"selendroid"])
+        {
+            [model setPlatform:Platform_Android];
+        }
+        if ([[[self.driver.session.capabilities getCapabilityForKey:@"device"] lowercaseString] isEqualToString:@"android"])
+        {
+            [model setPlatform:Platform_Android];
+        }
     }
     
     return self;

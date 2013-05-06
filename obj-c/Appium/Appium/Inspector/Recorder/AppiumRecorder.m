@@ -71,6 +71,20 @@
     [self.inspector refresh:sender];
 }
 
+-(IBAction)executeScript:(id)sender
+{
+    NSString *script = [self.keysToSend copy];
+    if (script.length < 1)
+        return;
+    AppiumCodeMakerAction *action = [[AppiumCodeMakerActionExecuteScript alloc] initWithScript:script];
+	if (_isRecording)
+	{
+		[_codeMaker addAction:action];
+	}
+    action.block(self.driver);
+    [self.inspector refresh:sender];
+}
+
 -(IBAction)comment:(id)sender
 {
     NSString *comment = [self.keysToSend copy];
