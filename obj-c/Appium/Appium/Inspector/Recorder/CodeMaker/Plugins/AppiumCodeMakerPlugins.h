@@ -8,5 +8,6 @@
 
 #import "AppiumCodeMakerCSharpPlugin.h"
 #import "AppiumCodeMakerJavaPlugin.h"
+#import "AppiumCodeMakerObjectiveCPlugin.h"
 #import "AppiumCodeMakerPythonPlugin.h"
 #import "AppiumCodeMakerRubyPlugin.h"

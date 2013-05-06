@@ -23,6 +23,7 @@
 		_plugins = [[NSDictionary alloc] initWithObjectsAndKeys:
 						[[AppiumCodeMakerCSharpPlugin alloc] initWithCodeMaker:self], @"C#",
 						[[AppiumCodeMakerJavaPlugin alloc] initWithCodeMaker:self], @"Java",
+						[[AppiumCodeMakerObjectiveCPlugin alloc] initWithCodeMaker:self], @"Objective-C",
 						[[AppiumCodeMakerPythonPlugin alloc] initWithCodeMaker:self], @"Python",
 						[[AppiumCodeMakerRubyPlugin alloc] initWithCodeMaker:self], @"Ruby",
 						nil];

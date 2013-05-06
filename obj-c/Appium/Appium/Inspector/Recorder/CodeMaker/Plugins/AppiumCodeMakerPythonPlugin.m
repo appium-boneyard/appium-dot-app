@@ -114,7 +114,7 @@ try:\n", self.model.appPath, self.model.ipAddress, self.model.port];
 
 -(NSString*) executeScript:(AppiumCodeMakerActionExecuteScript*)action
 {
-    return [NSString stringWithFormat:@"wd.execute_script(\"%@\", None);\n", [action.script stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""]];
+    return [NSString stringWithFormat:@"%@wd.execute_script(\"%@\", None);\n", self.indentation, [self escapeString:action.script]];
 }
 
 -(NSString*) preciseTap:(AppiumCodeMakerActionPreciseTap*)action

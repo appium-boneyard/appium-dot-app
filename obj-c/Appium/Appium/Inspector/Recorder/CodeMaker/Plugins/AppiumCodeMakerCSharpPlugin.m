@@ -112,7 +112,7 @@ namespace AppiumTests {\n\
 
 -(NSString*) executeScript:(AppiumCodeMakerActionExecuteScript*)action
 {
-    return [NSString stringWithFormat:@"wd.ExecuteScript(\"%@\", null);\n", [action.script stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""]];
+    return [NSString stringWithFormat:@"%@wd.ExecuteScript(\"%@\", null);\n", self.indentation, [self escapeString:action.script]];
 }
 
 -(NSString*) preciseTap:(AppiumCodeMakerActionPreciseTap*)action
