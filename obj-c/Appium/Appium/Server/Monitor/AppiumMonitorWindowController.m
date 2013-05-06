@@ -34,11 +34,33 @@
 
 -(AppiumModel*) model { return [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] model]; }
 
-- (void)windowDidLoad
+-(void) windowDidLoad
 {
     [super windowDidLoad];
 	_menuBarManager = [AppiumMenuBarManager new];
 	[[self model] addObserver:_menuBarManager forKeyPath:@"isServerRunning" options:NSKeyValueObservingOptionNew context:NULL];
+	[self performSelectorInBackground:@selector(loadAVDs) withObject:nil];
+}
+
+-(void) loadAVDs
+{
+	NSString *androidBinaryPath = [Utility pathToAndroidBinary:@"android"];
+	NSString *avdString = [Utility runTaskWithBinary:androidBinaryPath arguments:[NSArray arrayWithObjects:@"list", @"avd", @"-c", nil]];
+	NSMutableArray *avds = [NSMutableArray new];
+	NSArray *avdList = [avdString componentsSeparatedByString:@"\n"];
+	for (NSString *avd in avdList)
+	{
+		if (avd.length > 0)
+		{
+			[avds addObject:avd];
+		}
+	}
+	
+	[self.model setAvailableAVDs:avds];
+	if (avds.count > 0)
+	{
+		[self.model setAvd:[avds objectAtIndex:0]];
+	}
 }
 
 - (IBAction) launchButtonClicked:(id)sender

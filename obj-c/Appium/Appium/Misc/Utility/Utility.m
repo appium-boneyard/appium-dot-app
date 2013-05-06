@@ -12,7 +12,60 @@
 
 @implementation Utility
 
-+ (NSString*) runTaskWithBinary:(NSString*)binary arguments:(NSArray*)args path:(NSString*)path
++(NSString*) pathToAndroidBinary:(NSString*)binaryName
+{
+	// get the path to $ANDROID_HOME
+	NSTask *androidHomeTask = [NSTask new];
+    [androidHomeTask setLaunchPath:@"/bin/bash"];
+    [androidHomeTask setArguments: [NSArray arrayWithObjects: @"-l",
+									@"-c", @"echo $ANDROID_HOME", nil]];
+	NSPipe *pipe = [NSPipe pipe];
+    [androidHomeTask setStandardOutput:pipe];
+	[androidHomeTask setStandardError:[NSPipe pipe]];
+    [androidHomeTask setStandardInput:[NSPipe pipe]];
+    [androidHomeTask launch];
+	[androidHomeTask waitUntilExit];
+	NSFileHandle *stdOutHandle = [pipe fileHandleForReading];
+    NSData *data = [stdOutHandle readDataToEndOfFile];
+    NSString *androidHomePath = [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+
+	// check platform-tools folder
+	NSString *androidBinaryPath = [[androidHomePath stringByAppendingPathComponent:@"platform-tools"] stringByAppendingPathComponent:binaryName];
+	if ([[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath])
+	{
+		return androidBinaryPath;
+	}
+	
+	// check tools folder
+	androidBinaryPath = [[androidHomePath stringByAppendingPathComponent:@"tools"] stringByAppendingPathComponent:binaryName];
+	if ([[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath])
+	{
+		return androidBinaryPath;
+	}
+	
+	// try using the which command
+	NSTask *whichTask = [NSTask new];
+    [whichTask setLaunchPath:@"/bin/bash"];
+    [whichTask setArguments: [NSArray arrayWithObjects: @"-l",
+									@"-c", [NSString stringWithFormat:@"which %@", binaryName], nil]];
+	pipe = [NSPipe pipe];
+    [whichTask setStandardOutput:pipe];
+	[whichTask setStandardError:[NSPipe pipe]];
+    [whichTask setStandardInput:[NSPipe pipe]];
+    [whichTask launch];
+	[whichTask waitUntilExit];
+	stdOutHandle = [pipe fileHandleForReading];
+    data = [stdOutHandle readDataToEndOfFile];
+    androidBinaryPath = [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+	if ([[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath])
+	{
+		return androidBinaryPath;
+	}
+	
+	return nil;
+}
+
++(NSString*) runTaskWithBinary:(NSString*)binary arguments:(NSArray*)args path:(NSString*)path
 {
     NSTask *task = [NSTask new];
     if (path != nil)
@@ -40,7 +93,7 @@
     return output;
 }
 
-+ (NSString*) runTaskWithBinary:(NSString*)binary arguments:(NSArray*)args
++(NSString*) runTaskWithBinary:(NSString*)binary arguments:(NSArray*)args
 {
     return [self runTaskWithBinary:binary arguments:args path:nil];
 }

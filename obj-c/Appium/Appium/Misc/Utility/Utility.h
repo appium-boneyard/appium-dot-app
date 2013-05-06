@@ -10,7 +10,8 @@
 
 @interface Utility : NSObject
 
-+ (NSString*) runTaskWithBinary:(NSString*)binary arguments:(NSArray*)args path:(NSString*)path;
-+ (NSString*) runTaskWithBinary:(NSString*)binary arguments:(NSArray*)args;
++(NSString*) pathToAndroidBinary:(NSString*)binaryName;
++(NSString*) runTaskWithBinary:(NSString*)binary arguments:(NSArray*)args path:(NSString*)path;
++(NSString*) runTaskWithBinary:(NSString*)binary arguments:(NSArray*)args;
 
 @end

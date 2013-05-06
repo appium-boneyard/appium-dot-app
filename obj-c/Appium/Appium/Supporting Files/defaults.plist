@@ -12,6 +12,8 @@
 	<string></string>
 	<key>App Path</key>
 	<string>/</string>
+	<key>AVD</key>
+	<string></string>
 	<key>BundleID</key>
 	<string></string>
 	<key>Check For Updates</key>
@@ -62,6 +64,8 @@
 	<key>Use Android Wait Activity</key>
 	<false/>
 	<key>Use App Path</key>
+	<false/>
+	<key>Use AVD</key>
 	<false/>
 	<key>Use BundleID</key>
 	<false/>

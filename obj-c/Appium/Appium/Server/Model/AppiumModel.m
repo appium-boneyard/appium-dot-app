@@ -30,6 +30,7 @@ BOOL _isServerListening;
 		_defaults = [NSUserDefaults standardUserDefaults];
 		_isServerRunning = NO;
 		_isServerListening = [self useRemoteServer];
+		[self setAvailableAVDs:[NSArray new]];
     }
     return self;
 }
@@ -61,6 +62,9 @@ BOOL _isServerListening;
     }
     [_defaults setValue:appPath forKey:APPIUM_PLIST_APP_PATH];
 }
+
+-(NSString*) avd { return [_defaults stringForKey:APPIUM_PLIST_AVD]; }
+-(void) setAvd:(NSString *)avd { [_defaults setValue:avd forKey:APPIUM_PLIST_AVD]; }
 
 -(NSString*) bundleID { return [_defaults stringForKey:APPIUM_PLIST_BUNDLEID]; }
 -(void) setBundleID:(NSString *)bundleID { [_defaults setValue:bundleID forKey:APPIUM_PLIST_BUNDLEID]; }
@@ -129,7 +133,18 @@ BOOL _isServerListening;
 -(void) setPort:(NSNumber *)port { [[NSUserDefaults standardUserDefaults] setValue:port forKey:APPIUM_PLIST_SERVER_PORT]; }
 
 -(BOOL) prelaunchApp { return [_defaults boolForKey:APPIUM_PLIST_PRELAUNCH]; }
--(void) setPrelaunchApp:(BOOL)preLaunchApp { [_defaults setBool:preLaunchApp forKey:APPIUM_PLIST_PRELAUNCH]; }
+-(void) setPrelaunchApp:(BOOL)preLaunchApp
+{
+	[_defaults setBool:preLaunchApp forKey:APPIUM_PLIST_PRELAUNCH];
+	if (preLaunchApp && ! self.useAppPath)
+	{
+		[self setUseAppPath:YES];
+	}
+	if (self.platform == Platform_Android)
+	{
+		[self setUseAVD:preLaunchApp];
+	}
+}
 
 -(BOOL) resetApplicationState { return [_defaults boolForKey:APPIUM_PLIST_RESET_APPLICATION_STATE]; }
 -(void) setResetApplicationState:(BOOL)resetApplicationState { [_defaults setBool:resetApplicationState forKey:APPIUM_PLIST_RESET_APPLICATION_STATE]; }
@@ -167,6 +182,23 @@ BOOL _isServerListening;
 		{
 			[self setUseMobileSafari:NO];
 		}
+	}
+	else
+	{
+		if (self.prelaunchApp)
+		{
+			[self setPrelaunchApp:NO];
+		}
+	}
+}
+
+-(BOOL) useAVD { return [_defaults boolForKey:APPIUM_PLIST_USE_AVD]; }
+-(void) setUseAVD:(BOOL)useAVD
+{
+	[_defaults setBool:useAVD forKey:APPIUM_PLIST_USE_AVD];
+	if (useAVD && !self.prelaunchApp)
+	{
+		[self setPrelaunchApp:YES];
 	}
 }
 
@@ -322,7 +354,7 @@ BOOL _isServerListening;
     {
 		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--udid", self.udid];
     }
-	if (self.prelaunchApp && self.useAppPath)
+	if (self.prelaunchApp && self.useAppPath && (self.platform == Platform_iOS || self.useAVD))
     {
 		nodeCommandString = [nodeCommandString stringByAppendingString:@" --pre-launch"];
     }
@@ -393,6 +425,10 @@ BOOL _isServerListening;
 		if (self.useAndroidWaitActivity)
         {
 			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--app-wait-activity", self.androidWaitActivity];
+        }
+		if (self.useAVD)
+        {
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--avd", self.avd];
         }
 		if (self.fastReset)
 		{
