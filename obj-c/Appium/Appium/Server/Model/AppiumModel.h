@@ -35,6 +35,8 @@ typedef enum iOSOrientationTypes
 @property NSString *androidPackage;
 @property NSString *androidWaitActivity;
 @property NSString *appPath;
+@property NSArray *availableAVDs;
+@property NSString *avd;
 @property NSString *bundleID;
 @property BOOL checkForUpdates;
 @property NSString *externalAppiumPackagePath;
@@ -62,6 +64,7 @@ typedef enum iOSOrientationTypes
 @property BOOL useAndroidPackage;
 @property BOOL useAndroidWaitActivity;
 @property BOOL useAppPath;
+@property BOOL useAVD;
 @property BOOL useBundleID;
 @property BOOL useExternalAppiumPackage;
 @property BOOL useExternalNodeJSBinary;

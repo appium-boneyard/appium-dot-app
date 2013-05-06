@@ -107,7 +107,7 @@ public class {scriptName} {\n\
 
 -(NSString*) executeScript:(AppiumCodeMakerActionExecuteScript*)action
 {
-    return [NSString stringWithFormat:@"(JavascriptExecutor)wd.executeScript(\"%@\", null);\n", [action.script stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""]];
+    return [NSString stringWithFormat:@"%@(JavascriptExecutor)wd.executeScript(\"%@\", null);\n", self.indentation, [self escapeString:action.script]];
 }
 
 -(NSString*) preciseTap:(AppiumCodeMakerActionPreciseTap*)action

@@ -81,7 +81,7 @@ server_url = \"http://%@:%@/wd/hub\"\n\
 
 -(NSString*) executeScript:(AppiumCodeMakerActionExecuteScript*)action
 {
-    return [NSString stringWithFormat:@"@wd.execute_script \"%@\"\n", [action.script stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""]];
+    return [NSString stringWithFormat:@"@wd.execute_script \"%@\"\n", [self escapeString:action.script]];
 }
 
 -(NSString*) preciseTap:(AppiumCodeMakerActionPreciseTap*)action

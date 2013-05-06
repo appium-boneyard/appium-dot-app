@@ -49,6 +49,9 @@
 			<property name="app path" code="amap" description="path to mobile application" type="text">
 				<cocoa key="s_AppPath"/>
 			</property>
+			<property name="avd name" code="aavd" description="name of avd" type="text">
+				<cocoa key="s_AVD"/>
+			</property>
 			<property name="bundle id" code="ambi" description="bundle id" type="text">
 				<cocoa key="s_BundleID"/>
 			</property>
@@ -105,6 +108,9 @@
 			</property>
 			<property name="use android wait activity" code="auaw" description="true if an android wait activity is supplied" type="boolean">
 				<cocoa key="s_UseAndroidWaitActivity"/>
+			</property>
+			<property name="launch avd" code="alav" description="true if appium should launch an avd" type="boolean">
+				<cocoa key="s_UseAVD"/>
 			</property>
 			<property name="use app path" code="apua" description="true if the app path is being used" type="boolean">
 				<cocoa key="s_UseAppPath"/>

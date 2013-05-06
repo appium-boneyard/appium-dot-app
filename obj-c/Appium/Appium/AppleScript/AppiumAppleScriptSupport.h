@@ -18,6 +18,7 @@
 @property NSString *s_AndroidPackage;
 @property NSString *s_AndroidWaitActivity;
 @property NSString *s_AppPath;
+@property NSString *s_AVD;
 @property NSString *s_BundleID;
 @property NSNumber *s_CheckForUpdates;
 @property NSNumber *s_DeveloperMode;
@@ -38,6 +39,7 @@
 @property NSNumber *s_UseAndroidPackage;
 @property NSNumber *s_UseAndroidWaitActivity;
 @property NSNumber *s_UseAppPath;
+@property NSNumber *s_UseAVD;
 @property NSNumber *s_UseBundleID;
 @property NSNumber *s_UseExternalAppiumPackage;
 @property NSNumber *s_UseExternalNodeJSBinary;

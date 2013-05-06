@@ -55,6 +55,12 @@
 -(NSString*) s_AndroidWaitActivity { return [[self model] androidWaitActivity]; }
 -(void) setS_AndroidWaitActivity:(NSString *)s_AndroidWaitActivity { [[self model] setAndroidWaitActivity:s_AndroidWaitActivity]; }
 
+-(NSString*) s_AVD { return [[self model] avd]; }
+-(void) setS_AVD:(NSString *)s_AVD { [[self model] setAvd:s_AVD]; }
+
+-(NSNumber*) s_UseAVD { return [NSNumber numberWithBool:[[self model] useAVD]]; }
+-(void) setS_UseAVD:(NSNumber *)s_UseAVD { [[self model] setUseAVD:[s_UseAVD boolValue]]; }
+
 -(NSNumber*) s_UseAndroidDeviceReadyTimeout { return [NSNumber numberWithBool:[[self model] useAndroidDeviceReadyTimeout]]; }
 -(void) setS_UseAndroidDeviceReadyTimeout:(NSNumber *)s_UseAndroidDeviceReadyTimeout { [[self model] setUseAndroidDeviceReadyTimeout:[s_UseAndroidDeviceReadyTimeout boolValue]]; }
 

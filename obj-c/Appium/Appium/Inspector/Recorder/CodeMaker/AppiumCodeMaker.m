@@ -19,10 +19,14 @@
 {
     self = [super init];
     if (self) {
-		_actions =[NSMutableArray new];
+		_actions = [NSMutableArray new];
+        _undoneActions = [NSMutableArray new];
+        self.canUndo = NO;
+        self.canRedo = NO;
 		_plugins = [[NSDictionary alloc] initWithObjectsAndKeys:
 						[[AppiumCodeMakerCSharpPlugin alloc] initWithCodeMaker:self], @"C#",
 						[[AppiumCodeMakerJavaPlugin alloc] initWithCodeMaker:self], @"Java",
+						[[AppiumCodeMakerObjectiveCPlugin alloc] initWithCodeMaker:self], @"Objective-C",
 						[[AppiumCodeMakerPythonPlugin alloc] initWithCodeMaker:self], @"Python",
 						[[AppiumCodeMakerRubyPlugin alloc] initWithCodeMaker:self], @"Ruby",
 						nil];
@@ -102,15 +106,45 @@
 -(void) reset
 {
 	[_actions removeAllObjects];
+    [_undoneActions removeAllObjects];
+    [self setCanUndo:NO];
+    [self setCanRedo:NO];
 	[self renderAll];
 	
 }
 
+-(void) undoLast
+{
+    if (_actions.count > 0)
+    {
+        [self setCanRedo:YES];
+        [_undoneActions addObject:[_actions lastObject]];
+        [_actions removeLastObject];
+        [self renderAll];
+        [self setCanUndo:(_actions.count > 0)];
+    }
+}
+
+-(void) redoLast
+{
+    if (_undoneActions.count > 0)
+    {
+        [self setCanUndo:YES];
+        [_actions addObject:[_undoneActions lastObject]];
+        [_undoneActions removeLastObject];
+        [self renderAll];
+        [self setCanRedo:(_undoneActions.count > 0)];
+    }
+}
+
 -(void) addAction:(AppiumCodeMakerAction*)action
 {
+    [self setCanUndo:YES];
 	[_actions addObject:action];
 	_renderedActions =[_renderedActions stringByAppendingString:[_activePlugin renderAction:action]];
 	[self render];
+    [_undoneActions removeAllObjects];
+    [self setCanRedo:NO];
 }
 
 -(void) replay:(SERemoteWebDriver*)driver
