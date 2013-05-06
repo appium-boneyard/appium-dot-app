@@ -105,6 +105,11 @@ public class {scriptName} {\n\
 	return [NSString stringWithFormat:@"%@wd.switchTo().alert().dismiss();\n", self.indentation];
 }
 
+-(NSString*) executeScript:(AppiumCodeMakerActionExecuteScript*)action
+{
+    return [NSString stringWithFormat:@"(JavascriptExecutor)wd.executeScript(\"%@\", null);\n", [action.script stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""]];
+}
+
 -(NSString*) preciseTap:(AppiumCodeMakerActionPreciseTap*)action
 {
     NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
@@ -116,7 +121,7 @@ put(\"touchCount\", %@); \
 put(\"duration\", %@); \
 put(\"x\", %@); \
 put(\"y\", %@); \
-}});", [args objectForKey:@"tapCount"], [args objectForKey:@"touchCount"], [args objectForKey:@"duration"], [args objectForKey:@"x"], [args objectForKey:@"y"]];
+}});\n", [args objectForKey:@"tapCount"], [args objectForKey:@"touchCount"], [args objectForKey:@"duration"], [args objectForKey:@"x"], [args objectForKey:@"y"]];
 }
 
 -(NSString*) sendKeys:(AppiumCodeMakerActionSendKeys*)action
@@ -136,7 +141,7 @@ put(\"startY\", %@); \
 put(\"endX\", %@); \
 put(\"endY\", %@); \
 put(\"duration\", %@); \
-}});", [args objectForKey:@"touchCount"], [args objectForKey:@"startX"], [args objectForKey:@"startY"], [args objectForKey:@"endX"], [args objectForKey:@"endY"], [args objectForKey:@"duration"]];
+}});\n", [args objectForKey:@"touchCount"], [args objectForKey:@"startX"], [args objectForKey:@"startY"], [args objectForKey:@"endX"], [args objectForKey:@"endY"], [args objectForKey:@"duration"]];
 }
 
 -(NSString*) tap:(AppiumCodeMakerActionTap*)action

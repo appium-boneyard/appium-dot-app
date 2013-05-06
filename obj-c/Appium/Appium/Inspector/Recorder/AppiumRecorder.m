@@ -74,6 +74,8 @@
 -(IBAction)executeScript:(id)sender
 {
     NSString *script = [self.keysToSend copy];
+    if (script.length < 1)
+        return;
     AppiumCodeMakerAction *action = [[AppiumCodeMakerActionExecuteScript alloc] initWithScript:script];
 	if (_isRecording)
 	{

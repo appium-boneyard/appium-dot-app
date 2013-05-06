@@ -39,6 +39,8 @@
 			return [self dismissAlert];
 		case APPIUM_CODE_MAKER_ACTION_COMMENT:
             return [self comment:(AppiumCodeMakerActionComment*)action];
+        case APPIUM_CODE_MAKER_ACTION_EXECUTE_SCRIPT:
+            return [self executeScript:(AppiumCodeMakerActionExecuteScript*)action];
         case APPIUM_CODE_MAKER_ACTION_PRECISE_TAP:
             return [self preciseTap:(AppiumCodeMakerActionPreciseTap*)action];
 		case APPIUM_CODE_MAKER_ACTION_SEND_KEYS:
@@ -67,6 +69,11 @@
 -(NSString*) commentWithString:(NSString *)comment { APPIUM_ABSTRACT_CLASS_ERROR }
 
 -(NSString*) dismissAlert
+{
+    return [self commentWithString:APPIUM_CODE_MAKER_PLUGIN_METHOD_NYI_STRING];
+}
+
+-(NSString*) executeScript:(AppiumCodeMakerActionExecuteScript*)action
 {
     return [self commentWithString:APPIUM_CODE_MAKER_PLUGIN_METHOD_NYI_STRING];
 }

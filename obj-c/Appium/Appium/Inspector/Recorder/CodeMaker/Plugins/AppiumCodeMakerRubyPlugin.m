@@ -79,6 +79,11 @@ server_url = \"http://%@:%@/wd/hub\"\n\
 	return [NSString stringWithFormat:@"# %@\n", comment];
 }
 
+-(NSString*) executeScript:(AppiumCodeMakerActionExecuteScript*)action
+{
+    return [NSString stringWithFormat:@"@wd.execute_script \"%@\"\n", [action.script stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""]];
+}
+
 -(NSString*) preciseTap:(AppiumCodeMakerActionPreciseTap*)action
 {
     NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
@@ -87,7 +92,7 @@ server_url = \"http://%@:%@/wd/hub\"\n\
 :touchCount => %@, \
 :duration => %@, \
 :x => %@, \
-:y => %@",
+:y => %@\n",
             [args objectForKey:@"tapCount"], [args objectForKey:@"touchCount"], [args objectForKey:@"duration"], [args objectForKey:@"x"], [args objectForKey:@"y"]];
 }
 
@@ -105,7 +110,7 @@ server_url = \"http://%@:%@/wd/hub\"\n\
 :startY => %@, \
 :endX => %@, \
 :endY => %@, \
-:duration => %@",
+:duration => %@\n",
             [args objectForKey:@"touchCount"], [args objectForKey:@"startX"], [args objectForKey:@"startY"], [args objectForKey:@"endX"], [args objectForKey:@"endY"], [args objectForKey:@"duration"]];
 }
 
