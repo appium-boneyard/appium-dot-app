@@ -603,7 +603,6 @@
 												<array class="NSMutableArray" key="NSSubviews"/>
 												<string key="NSFrame">{{275, 4}, {132, 32}}</string>
 												<reference key="NSSuperview" ref="648807293"/>
-												<reference key="NSNextKeyView" ref="493360003"/>
 												<string key="NSReuseIdentifierKey">_NS:9</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSButtonCell" key="NSCell" id="52702253">
@@ -819,6 +818,7 @@
 													<string key="NSFrame">{{191, 1}, {16, 143}}</string>
 													<reference key="NSSuperview" ref="410508918"/>
 													<reference key="NSWindow"/>
+													<reference key="NSNextKeyView"/>
 													<string key="NSReuseIdentifierKey">_NS:83</string>
 													<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 													<reference key="NSTarget" ref="410508918"/>
@@ -906,6 +906,7 @@
 						<string key="NSFrameSize">{864, 195}</string>
 						<reference key="NSSuperview" ref="378629004"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<string key="NSClassName">NSView</string>
 					</object>
@@ -939,13 +940,40 @@
 						</object>
 						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 					</object>
-					<object class="NSButton" id="487463818">
+					<object class="NSButton" id="751851494">
 						<reference key="NSNextResponder" ref="378629004"/>
 						<int key="NSvFlags">265</int>
 						<array class="NSMutableArray" key="NSSubviews"/>
 						<string key="NSFrame">{{647, 200}, {75, 19}}</string>
 						<reference key="NSSuperview" ref="378629004"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="NSEnabled">YES</bool>
+						<object class="NSButtonCell" key="NSCell" id="704016815">
+							<int key="NSCellFlags">67108864</int>
+							<int key="NSCellFlags2">134217728</int>
+							<string key="NSContents">Redo</string>
+							<reference key="NSSupport" ref="28246310"/>
+							<string key="NSCellIdentifier">_NS:9</string>
+							<reference key="NSControlView" ref="751851494"/>
+							<int key="NSButtonFlags">-2038284288</int>
+							<int key="NSButtonFlags2">164</int>
+							<string key="NSAlternateContents"/>
+							<string key="NSKeyEquivalent"/>
+							<int key="NSPeriodicDelay">200</int>
+							<int key="NSPeriodicInterval">25</int>
+						</object>
+						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+					</object>
+					<object class="NSButton" id="487463818">
+						<reference key="NSNextResponder" ref="378629004"/>
+						<int key="NSvFlags">265</int>
+						<array class="NSMutableArray" key="NSSubviews"/>
+						<string key="NSFrame">{{564, 200}, {75, 19}}</string>
+						<reference key="NSSuperview" ref="378629004"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="474710734">
@@ -971,6 +999,7 @@
 						<string key="NSFrame">{{730, 200}, {75, 19}}</string>
 						<reference key="NSSuperview" ref="378629004"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="352653648">
@@ -993,9 +1022,10 @@
 						<reference key="NSNextResponder" ref="378629004"/>
 						<int key="NSvFlags">265</int>
 						<array class="NSMutableArray" key="NSSubviews"/>
-						<string key="NSFrame">{{564, 200}, {75, 19}}</string>
+						<string key="NSFrame">{{481, 200}, {75, 19}}</string>
 						<reference key="NSSuperview" ref="378629004"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="979225224">
@@ -1021,6 +1051,7 @@
 						<string key="NSFrame">{{283, 201}, {103, 18}}</string>
 						<reference key="NSSuperview" ref="378629004"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="824997804">
@@ -1048,6 +1079,7 @@
 						<string key="NSFrame">{{148, 201}, {119, 18}}</string>
 						<reference key="NSSuperview" ref="378629004"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="952418107">
@@ -2437,6 +2469,22 @@
 					<int key="connectionID">333</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: codeMaker.canUndo</string>
+						<reference key="source" ref="970890803"/>
+						<reference key="destination" ref="455036667"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="970890803"/>
+							<reference key="NSDestination" ref="455036667"/>
+							<string key="NSLabel">enabled: codeMaker.canUndo</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">codeMaker.canUndo</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">575</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">_windowController</string>
 						<reference key="source" ref="455036667"/>
@@ -2558,11 +2606,35 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
+						<string key="label">redoLast:</string>
+						<reference key="source" ref="455036667"/>
+						<reference key="destination" ref="751851494"/>
+					</object>
+					<int key="connectionID">562</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
 						<string key="label">undoLast:</string>
 						<reference key="source" ref="455036667"/>
 						<reference key="destination" ref="487463818"/>
 					</object>
-					<int key="connectionID">558</int>
+					<int key="connectionID">581</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: codeMaker.canUndo</string>
+						<reference key="source" ref="879366542"/>
+						<reference key="destination" ref="455036667"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="879366542"/>
+							<reference key="NSDestination" ref="455036667"/>
+							<string key="NSLabel">enabled: codeMaker.canUndo</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">codeMaker.canUndo</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">579</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -2728,6 +2800,38 @@
 					</object>
 					<int key="connectionID">548</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: codeMaker.canUndo</string>
+						<reference key="source" ref="487463818"/>
+						<reference key="destination" ref="455036667"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="487463818"/>
+							<reference key="NSDestination" ref="455036667"/>
+							<string key="NSLabel">enabled: codeMaker.canUndo</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">codeMaker.canUndo</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">571</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: codeMaker.canRedo</string>
+						<reference key="source" ref="704016815"/>
+						<reference key="destination" ref="455036667"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="704016815"/>
+							<reference key="NSDestination" ref="455036667"/>
+							<string key="NSLabel">enabled: codeMaker.canRedo</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">codeMaker.canRedo</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">566</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -2870,8 +2974,9 @@
 							<reference ref="970890803"/>
 							<reference ref="999194875"/>
 							<reference ref="112734150"/>
-							<reference ref="487463818"/>
 							<reference ref="879366542"/>
+							<reference ref="487463818"/>
+							<reference ref="751851494"/>
 						</array>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Drawer Content View</string>
@@ -3718,6 +3823,20 @@
 						<reference key="object" ref="474710734"/>
 						<reference key="parent" ref="487463818"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">559</int>
+						<reference key="object" ref="751851494"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="704016815"/>
+						</array>
+						<reference key="parent" ref="378629004"/>
+						<string key="objectName">Redo Button</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">560</int>
+						<reference key="object" ref="704016815"/>
+						<reference key="parent" ref="751851494"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -3848,6 +3967,8 @@
 				<string key="553.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="555.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="556.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="559.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="560.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="57.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="60.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3869,7 +3990,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">558</int>
+			<int key="maxID">581</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4055,80 +4176,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">AppiumRecorder</string>
 					<string key="superclassName">NSObject</string>
-					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="acceptAlert:">id</string>
-						<string key="clearRecording:">id</string>
-						<string key="comment:">id</string>
-						<string key="dismissAlert:">id</string>
-						<string key="executeScript:">id</string>
-						<string key="performPreciseTap:">id</string>
-						<string key="performSwipe:">id</string>
-						<string key="replay:">id</string>
-						<string key="sendKeys:">id</string>
-						<string key="tap:">id</string>
-						<string key="togglePreciseTapPopover:">id</string>
-						<string key="toggleRecording:">id</string>
-						<string key="toggleSwipePopover:">id</string>
-						<string key="undoLast:">id</string>
-					</dictionary>
-					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="acceptAlert:">
-							<string key="name">acceptAlert:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="clearRecording:">
-							<string key="name">clearRecording:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="comment:">
-							<string key="name">comment:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="dismissAlert:">
-							<string key="name">dismissAlert:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="executeScript:">
-							<string key="name">executeScript:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="performPreciseTap:">
-							<string key="name">performPreciseTap:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="performSwipe:">
-							<string key="name">performSwipe:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="replay:">
-							<string key="name">replay:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="sendKeys:">
-							<string key="name">sendKeys:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="tap:">
-							<string key="name">tap:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="togglePreciseTapPopover:">
-							<string key="name">togglePreciseTapPopover:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="toggleRecording:">
-							<string key="name">toggleRecording:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="toggleSwipePopover:">
-							<string key="name">toggleSwipePopover:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="undoLast:">
-							<string key="name">undoLast:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="_windowController">AppiumInspectorWindowController</string>
 						<string key="codeMaker">AppiumCodeMaker</string>

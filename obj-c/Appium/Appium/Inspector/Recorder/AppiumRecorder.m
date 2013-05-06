@@ -235,6 +235,11 @@
 	[_codeMaker undoLast];
 }
 
+-(IBAction)redoLast:(id)sender
+{
+	[_codeMaker redoLast];
+}
+
 -(IBAction)clearRecording:(id)sender
 {
 	[_codeMaker reset];
