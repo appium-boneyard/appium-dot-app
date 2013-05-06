@@ -34,6 +34,7 @@
 @property NSAttributedString *attributedString;
 
 -(void) reset;
+-(void) undoLast;
 -(void) addAction:(AppiumCodeMakerAction*)action;
 -(void) replay:(SERemoteWebDriver*)driver;
 

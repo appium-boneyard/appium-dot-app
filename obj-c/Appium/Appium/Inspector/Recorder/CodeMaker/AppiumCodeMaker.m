@@ -107,6 +107,15 @@
 	
 }
 
+-(void) undoLast
+{
+    if (_actions.count > 0)
+    {
+        [_actions removeLastObject];
+        [self renderAll];
+    }
+}
+
 -(void) addAction:(AppiumCodeMakerAction*)action
 {
 	[_actions addObject:action];

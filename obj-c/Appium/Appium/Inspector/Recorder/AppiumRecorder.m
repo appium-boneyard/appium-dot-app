@@ -230,6 +230,11 @@
 	}
 }
 
+-(IBAction)undoLast:(id)sender
+{
+	[_codeMaker undoLast];
+}
+
 -(IBAction)clearRecording:(id)sender
 {
 	[_codeMaker reset];
@@ -238,6 +243,7 @@
 -(IBAction)replay:(id)sender
 {
     [_codeMaker replay:self.driver];
+    [self.inspector refresh:sender];
 }
 
 @end
