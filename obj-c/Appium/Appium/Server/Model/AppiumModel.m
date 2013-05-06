@@ -424,7 +424,7 @@ BOOL _isServerListening;
         }
 		if (self.useAVD)
         {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--avd", self.avd];
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ @%@", @"--avd", self.avd];
         }
 		if (self.fastReset)
 		{
