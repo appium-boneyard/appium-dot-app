@@ -53,5 +53,5 @@ Preferences can be accessed by Going to Appium > Preferences or with the keyboar
 
 Inspector (BETA)
 ------------
-Inspector can be accessed by Going to Window > Inspector once the Appium server has launched.<br />
+Inspector can be accessed by clicking the blue "i" next to the launch button once the Appium server has launched. Appium must be running with an app open for inspector to work. Otherwise, it may crash.<br />
 ![Appium Inspector](/web/images/inspector.png "Appium Inspector")
