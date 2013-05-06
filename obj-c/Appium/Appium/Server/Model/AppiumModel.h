@@ -37,6 +37,7 @@ typedef enum iOSOrientationTypes
 @property NSString *appPath;
 @property NSArray *availableAVDs;
 @property NSString *avd;
+@property BOOL breakOnNodeApplicationStart;
 @property NSString *bundleID;
 @property BOOL checkForUpdates;
 @property NSString *externalAppiumPackagePath;
@@ -52,6 +53,7 @@ typedef enum iOSOrientationTypes
 @property NSString *ipAddress;
 @property BOOL keepArtifacts;
 @property BOOL logVerbose;
+@property NSNumber *nodeDebugPort;
 @property iOSOrientation orientationToForce;
 @property NSString* orientationToForceString;
 @property Platform platform;
@@ -70,6 +72,7 @@ typedef enum iOSOrientationTypes
 @property BOOL useExternalNodeJSBinary;
 @property BOOL useInstrumentsWithoutDelay;
 @property BOOL useMobileSafari;
+@property BOOL useNodeDebugging;
 @property BOOL useRemoteServer;
 @property BOOL useUDID;
 

@@ -52,6 +52,9 @@
 			<property name="avd name" code="aavd" description="name of avd" type="text">
 				<cocoa key="s_AVD"/>
 			</property>
+			<property name="break on node app start" code="apbn" description="true if a breakpoint will be set when the node application starts" type="boolean">
+				<cocoa key="s_BreakOnNodeAppStart"/>
+			</property>
 			<property name="bundle id" code="ambi" description="bundle id" type="text">
 				<cocoa key="s_BundleID"/>
 			</property>
@@ -76,8 +79,14 @@
 			<property name="keep artifacts" code="apka" description="true if artifacts will be kept after the session" type="boolean">
 				<cocoa key="s_KeepArtifacts"/>
 			</property>
+			<property name="launch avd" code="alav" description="true if appium should launch an avd" type="boolean">
+				<cocoa key="s_UseAVD"/>
+			</property>
 			<property name="log text" code="amlt" description="text from the appium log" type="text" access="r">
 				<cocoa key="s_LogText"/>
+			</property>
+			<property name="node debug port" code="amnd" description="port for the nodeJS debugger" type="integer">
+				<cocoa key="s_NodeDebugPort"/>
 			</property>
 			<property name="node path" code="amnp" description="path to nodejs binary" type="text" access="r">
 				<cocoa key="s_NodePath"/>
@@ -109,9 +118,6 @@
 			<property name="use android wait activity" code="auaw" description="true if an android wait activity is supplied" type="boolean">
 				<cocoa key="s_UseAndroidWaitActivity"/>
 			</property>
-			<property name="launch avd" code="alav" description="true if appium should launch an avd" type="boolean">
-				<cocoa key="s_UseAVD"/>
-			</property>
 			<property name="use app path" code="apua" description="true if the app path is being used" type="boolean">
 				<cocoa key="s_UseAppPath"/>
 			</property>
@@ -132,6 +138,9 @@
 			</property>
 			<property name="use mobile safari" code="aums" description="true if appium will use mobile safari" type="boolean">
 				<cocoa key="s_UseMobileSafari"/>
+			</property>
+			<property name="use node debugger" code="aund" description="true if appium will use node debugging" type="boolean">
+				<cocoa key="s_UseNodeDebugger"/>
 			</property>
 			<property name="use remote server" code="aurs" description="true if appium will use a remote server" type="boolean">
 				<cocoa key="s_UseRemoteServer"/>

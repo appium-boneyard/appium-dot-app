@@ -114,6 +114,15 @@
 -(NSNumber*) s_UseRemoteServer { return [NSNumber numberWithBool:[[self model] useRemoteServer]]; }
 -(void) setS_UseRemoteServer:(NSNumber *)s_UseRemoteServer { [[self model] setUseRemoteServer:[s_UseRemoteServer boolValue]]; }
 
+-(NSNumber*) s_UseNodeDebugger { return [NSNumber numberWithBool:[[self model] useNodeDebugging]]; }
+-(void) setS_UseNodeDebugger:(NSNumber *)s_UseNodeDebugger { [[self model] setUseNodeDebugging:[s_UseNodeDebugger boolValue]]; }
+
+-(NSNumber*) s_NodeDebugPort { return [NSNumber numberWithInt:[[[self model] nodeDebugPort] intValue]]; }
+-(void) setS_NodeDebugPort:(NSNumber *)s_NodeDebugPort { [[self model] setNodeDebugPort:s_NodeDebugPort]; }
+
+-(NSNumber*) s_BreakOnNodeAppStart { return [NSNumber numberWithBool:[[self model] breakOnNodeApplicationStart]]; }
+-(void) setS_BreakOnNodeAppStart:(NSNumber *)s_BreakOnNodeAppStart { [[self model] setUseNodeDebugging:[s_BreakOnNodeAppStart boolValue]]; }
+
 #pragma mark - Methods
 
 -(NSString*) s_LogText
