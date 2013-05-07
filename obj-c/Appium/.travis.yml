@@ -1,3 +1,0 @@
-language: objective-c
-before script:
-  - cd ./obj-c/Appium
