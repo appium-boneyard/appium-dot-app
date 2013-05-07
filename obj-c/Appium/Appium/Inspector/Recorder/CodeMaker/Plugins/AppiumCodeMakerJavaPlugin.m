@@ -129,6 +129,11 @@ put(\"y\", %@); \
 	return [NSString stringWithFormat:@"%@wd.FindElement(%@).sendKeys(\"%@\");\n", self.indentation, [self locatorString:action.locator], [self escapeString:action.keys]];
 }
 
+-(NSString*) shake:(AppiumCodeMakerActionShake*)action
+{
+    return [NSString stringWithFormat:@"%@(JavascriptExecutor)wd.executeScript(\"mobile: shake\", null);\n", self.indentation];
+}
+
 -(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action
 {
     NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];

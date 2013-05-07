@@ -101,6 +101,11 @@ server_url = \"http://%@:%@/wd/hub\"\n\
 	return [NSString stringWithFormat:@"%@.send_keys \"%@\"\n", [self locatorString:action.locator], [self escapeString:action.keys]];
 }
 
+-(NSString*) shake:(AppiumCodeMakerActionShake*)action
+{
+    return [NSString stringWithFormat:@"@wd.execute_script \"mobile: shake\"\n"];
+}
+
 -(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action
 {
     NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];

@@ -134,6 +134,11 @@ try:\n", self.model.appPath, self.model.ipAddress, self.model.port];
 	return [NSString stringWithFormat:@"%@%@.send_keys(\"%@\")\n", self.indentation, [self locatorString:action.locator], [self escapeString:action.keys]];
 }
 
+-(NSString*) shake:(AppiumCodeMakerActionShake*)action
+{
+    return [NSString stringWithFormat:@"%@wd.execute_script(\"mobile: shake\", None);\n", self.indentation];
+}
+
 -(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action
 {
     NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
