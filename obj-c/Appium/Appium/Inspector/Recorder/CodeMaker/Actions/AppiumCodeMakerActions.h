@@ -12,5 +12,6 @@
 #import "AppiumCodeMakerActionExecuteScript.h"
 #import "AppiumCodeMakerActionPreciseTap.h"
 #import "AppiumCodeMakerActionSendKeys.h"
+#import "AppiumCodeMakerActionShake.h"
 #import "AppiumCodeMakerActionSwipe.h"
 #import "AppiumCodeMakerActionTap.h"

@@ -149,6 +149,11 @@ new Dictionary<string, double>() \
 });\n", [args objectForKey:@"touchCount"], [args objectForKey:@"startX"], [args objectForKey:@"startY"], [args objectForKey:@"endX"], [args objectForKey:@"endY"], [args objectForKey:@"duration"]];
 }
 
+-(NSString*) shake:(AppiumCodeMakerActionShake*)action
+{
+    return [NSString stringWithFormat:@"%@wd.ExecuteScript(\"mobile: shake\", null);\n", self.indentation];
+}
+
 -(NSString*) tap:(AppiumCodeMakerActionTap*)action
 {
 	return [NSString stringWithFormat:@"%@wd.Click(%@);\n", self.indentation, [self locatorString:action.locator]];

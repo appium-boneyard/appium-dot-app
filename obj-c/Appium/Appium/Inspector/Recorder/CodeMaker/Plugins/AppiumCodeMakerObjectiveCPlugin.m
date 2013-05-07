@@ -116,6 +116,11 @@ nil], nil]];\n", [args objectForKey:@"tapCount"], [args objectForKey:@"touchCoun
 	return [NSString stringWithFormat:@"%@[[wd findElementBy:%@] sendKeys:@\"%@\"];\n", self.indentation, [self locatorString:action.locator], [self escapeString:action.keys]];
 }
 
+-(NSString*) shake:(AppiumCodeMakerActionShake*)action
+{
+    return [NSString stringWithFormat:@"%@[wd executeScript:@\"mobile: shake\"];\n", self.indentation];
+}
+
 -(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action
 {
     NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];

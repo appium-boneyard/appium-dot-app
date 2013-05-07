@@ -117,6 +117,18 @@
     [self.inspector refresh:sender];
 }
 
+-(IBAction)shake:(id)sender
+{
+	
+    AppiumCodeMakerAction *action = [[AppiumCodeMakerActionShake alloc] init];
+	if (_isRecording)
+	{
+		[_codeMaker addAction:action];
+	}
+	action.block(self.driver);
+    [self.inspector refresh:sender];
+}
+
 - (IBAction)togglePreciseTapPopover:(id)sender
 {
 	if (!_windowController.preciseTapPopoverViewController.popover.isShown) {
