@@ -470,7 +470,7 @@
 											</object>
 											<object class="NSButton" id="691814289">
 												<reference key="NSNextResponder" ref="206512547"/>
-												<int key="NSvFlags">-2147483380</int>
+												<int key="NSvFlags">268</int>
 												<string key="NSFrame">{{123, 1}, {77, 32}}</string>
 												<reference key="NSSuperview" ref="206512547"/>
 												<reference key="NSWindow"/>
@@ -2621,6 +2621,14 @@
 					<int key="connectionID">581</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">shake:</string>
+						<reference key="source" ref="455036667"/>
+						<reference key="destination" ref="691814289"/>
+					</object>
+					<int key="connectionID">582</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">enabled: codeMaker.canUndo</string>
 						<reference key="source" ref="879366542"/>
@@ -3376,8 +3384,8 @@
 							<reference ref="276139266"/>
 							<reference ref="910806825"/>
 							<reference ref="538985012"/>
-							<reference ref="129662126"/>
 							<reference ref="691814289"/>
+							<reference ref="129662126"/>
 						</array>
 						<reference key="parent" ref="1050174537"/>
 					</object>
@@ -3517,7 +3525,7 @@
 							<reference ref="601530186"/>
 						</array>
 						<reference key="parent" ref="206512547"/>
-						<string key="objectName">Shak Button</string>
+						<string key="objectName">Shake Button</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">432</int>
@@ -3990,7 +3998,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">581</int>
+			<int key="maxID">582</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4176,6 +4184,90 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">AppiumRecorder</string>
 					<string key="superclassName">NSObject</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="acceptAlert:">id</string>
+						<string key="clearRecording:">id</string>
+						<string key="comment:">id</string>
+						<string key="dismissAlert:">id</string>
+						<string key="executeScript:">id</string>
+						<string key="performPreciseTap:">id</string>
+						<string key="performSwipe:">id</string>
+						<string key="redoLast:">id</string>
+						<string key="replay:">id</string>
+						<string key="sendKeys:">id</string>
+						<string key="shake:">id</string>
+						<string key="tap:">id</string>
+						<string key="togglePreciseTapPopover:">id</string>
+						<string key="toggleRecording:">id</string>
+						<string key="toggleSwipePopover:">id</string>
+						<string key="undoLast:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="acceptAlert:">
+							<string key="name">acceptAlert:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="clearRecording:">
+							<string key="name">clearRecording:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="comment:">
+							<string key="name">comment:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="dismissAlert:">
+							<string key="name">dismissAlert:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="executeScript:">
+							<string key="name">executeScript:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="performPreciseTap:">
+							<string key="name">performPreciseTap:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="performSwipe:">
+							<string key="name">performSwipe:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="redoLast:">
+							<string key="name">redoLast:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="replay:">
+							<string key="name">replay:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="sendKeys:">
+							<string key="name">sendKeys:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="shake:">
+							<string key="name">shake:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="tap:">
+							<string key="name">tap:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="togglePreciseTapPopover:">
+							<string key="name">togglePreciseTapPopover:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="toggleRecording:">
+							<string key="name">toggleRecording:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="toggleSwipePopover:">
+							<string key="name">toggleSwipePopover:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="undoLast:">
+							<string key="name">undoLast:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="_windowController">AppiumInspectorWindowController</string>
 						<string key="codeMaker">AppiumCodeMaker</string>
