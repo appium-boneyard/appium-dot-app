@@ -45,6 +45,10 @@
 -(void) loadAVDs
 {
 	NSString *androidBinaryPath = [Utility pathToAndroidBinary:@"android"];
+
+	if (androidBinaryPath == nil)
+		return;
+	
 	NSString *avdString = [Utility runTaskWithBinary:androidBinaryPath arguments:[NSArray arrayWithObjects:@"list", @"avd", @"-c", nil]];
 	NSMutableArray *avds = [NSMutableArray new];
 	NSArray *avdList = [avdString componentsSeparatedByString:@"\n"];
