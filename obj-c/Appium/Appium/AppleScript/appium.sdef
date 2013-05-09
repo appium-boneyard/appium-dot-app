@@ -91,7 +91,7 @@
 			<property name="node path" code="amnp" description="path to nodejs binary" type="text" access="r">
 				<cocoa key="s_NodePath"/>
 			</property>
-			<property name="prelaunch simulator" code="apps" description="true if the simulator will prelaunch" type="boolean">
+			<property name="prelaunch application" code="appa" description="true if the application will prelaunch" type="boolean">
 				<cocoa key="s_PrelaunchApp"/>
 			</property>
 			<property name="reset app state" code="aprs" description="true if warp application state will be reset after the session" type="boolean">
@@ -130,7 +130,7 @@
 			<property name="use external node path" code="auen" description="true if an external nodeJS binary path with be used" type="boolean">
 				<cocoa key="s_UseExternalNodeJSBinary"/>
 			</property>
-			<property name="use full andoird reset" code="aufr" description="true if appium will use full reset for android" type="boolean">
+			<property name="use full android reset" code="aufr" description="true if appium will use full reset for android" type="boolean">
 				<cocoa key="s_UseAndroidFullReset"/>
 			</property>
 			<property name="use mobile safari" code="aums" description="true if appium will use mobile safari" type="boolean">
