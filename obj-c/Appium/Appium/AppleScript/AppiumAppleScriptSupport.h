@@ -38,6 +38,7 @@
 @property NSString *s_UDID;
 @property NSNumber *s_UseAndroidActivity;
 @property NSNumber *s_UseAndroidDeviceReadyTimeout;
+@property NSNumber *s_UseAndroidFullReset;
 @property NSNumber *s_UseAndroidPackage;
 @property NSNumber *s_UseAndroidWaitActivity;
 @property NSNumber *s_UseAppPath;
@@ -45,10 +46,10 @@
 @property NSNumber *s_UseBundleID;
 @property NSNumber *s_UseExternalAppiumPackage;
 @property NSNumber *s_UseExternalNodeJSBinary;
-@property NSNumber *s_UseFastReset;
-@property NSNumber *s_UseInstrumentsWithoutDelay;
 @property NSNumber *s_UseMobileSafari;
+@property NSNumber *s_UseNativeInstrumentsLibrary;
 @property NSNumber *s_UseNodeDebugger;
+@property NSNumber *s_UseQuietLogging;
 @property NSNumber *s_UseRemoteServer;
 @property NSNumber *s_UseUDID;
 

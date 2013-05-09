@@ -32,6 +32,7 @@ typedef enum iOSOrientationTypes
 
 @property NSString *androidActivity;
 @property NSNumber *androidDeviceReadyTimeout;
+@property BOOL androidFullReset;
 @property NSString *androidPackage;
 @property NSString *androidWaitActivity;
 @property NSString *appPath;
@@ -45,14 +46,12 @@ typedef enum iOSOrientationTypes
 @property BOOL developerMode;
 @property iOSAutomationDevice deviceToForce;
 @property NSString *deviceToForceString;
-@property BOOL fastReset;
 @property BOOL forceDevice;
 @property BOOL forceOrientation;
 @property BOOL isServerRunning;
 @property BOOL isServerListening;
 @property NSString *ipAddress;
 @property BOOL keepArtifacts;
-@property BOOL logVerbose;
 @property NSNumber *nodeDebugPort;
 @property iOSOrientation orientationToForce;
 @property NSString* orientationToForceString;
@@ -70,9 +69,10 @@ typedef enum iOSOrientationTypes
 @property BOOL useBundleID;
 @property BOOL useExternalAppiumPackage;
 @property BOOL useExternalNodeJSBinary;
-@property BOOL useInstrumentsWithoutDelay;
 @property BOOL useMobileSafari;
+@property BOOL useNativeInstrumentsLib;
 @property BOOL useNodeDebugging;
+@property BOOL useQuietLogging;
 @property BOOL useRemoteServer;
 @property BOOL useUDID;
 

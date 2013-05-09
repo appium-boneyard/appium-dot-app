@@ -67,8 +67,8 @@
 -(NSNumber*) s_AndroidDeviceReadyTimeout { return [NSNumber numberWithInt:[[[self model] androidDeviceReadyTimeout] intValue]]; }
 -(void) setS_AndroidDeviceReadyTimeout:(NSNumber *)s_AndroidDeviceReadyTimeout { [[self model] setAndroidDeviceReadyTimeout:s_AndroidDeviceReadyTimeout]; }
 
--(NSNumber*) s_UseFastReset { return [NSNumber numberWithBool:[[self model] fastReset]]; }
--(void) setS_UseFastReset:(NSNumber *)s_UseFastReset { [[self model] setFastReset:[s_UseFastReset boolValue]]; }
+-(NSNumber*) s_UseAndroidFullReset { return [NSNumber numberWithBool:[[self model] androidFullReset]]; }
+-(void) setS_UseAndroidFullReset:(NSNumber *)s_UseFastReset { [[self model] setAndroidFullReset:[s_UseFastReset boolValue]]; }
 
 -(NSNumber*) s_PrelaunchApp { return [NSNumber numberWithBool:[[self model] prelaunchApp]]; }
 -(void) setS_PrelaunchApp:(NSNumber *)s_PreLaunchApp { [[self model] setPrelaunchApp:[s_PreLaunchApp boolValue]]; }
@@ -78,8 +78,8 @@
 
 -(NSString*) s_NodePath { return [[[(AppiumAppDelegate*)[[NSApplication sharedApplication]delegate] mainWindowController] node] pathToNodeBinary]; }
 
--(NSNumber*) s_UseInstrumentsWithoutDelay { return [NSNumber numberWithBool:[[self model] useInstrumentsWithoutDelay]]; }
--(void) setS_UseInstrumentsWithoutDelay:(NSNumber *)s_UseInstrumentsWithoutDelay { [[self model] setUseInstrumentsWithoutDelay:[s_UseInstrumentsWithoutDelay boolValue]]; }
+-(NSNumber*) s_UseNativeInstrumentsLibrary { return [NSNumber numberWithBool:[[self model] useNativeInstrumentsLib]]; }
+-(void) setS_UseNativeInstrumentsLibrary:(NSNumber *)s_UseInstrumentsWithoutDelay { [[self model] setUseNativeInstrumentsLib:[s_UseInstrumentsWithoutDelay boolValue]]; }
 
 -(NSNumber*) s_ResetApplicationState { return [NSNumber numberWithBool:[[self model] resetApplicationState]]; }
 -(void) setS_ResetApplicationState:(NSNumber *)s_ResetApplicationState{	[[self model] setResetApplicationState:[s_ResetApplicationState boolValue]]; }
@@ -122,6 +122,11 @@
 
 -(NSNumber*) s_BreakOnNodeAppStart { return [NSNumber numberWithBool:[[self model] breakOnNodeApplicationStart]]; }
 -(void) setS_BreakOnNodeAppStart:(NSNumber *)s_BreakOnNodeAppStart { [[self model] setUseNodeDebugging:[s_BreakOnNodeAppStart boolValue]]; }
+
+-(NSNumber*) s_UseQuietLogging { return [NSNumber numberWithBool:self.model.useQuietLogging];}
+-(void) setS_UseQuietLogging:(NSNumber *)s_UseQuietLogging { [[self model] setUseQuietLogging:[s_UseQuietLogging boolValue]];
+	
+}
 
 #pragma mark - Methods
 

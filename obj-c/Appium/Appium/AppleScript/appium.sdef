@@ -130,17 +130,20 @@
 			<property name="use external node path" code="auen" description="true if an external nodeJS binary path with be used" type="boolean">
 				<cocoa key="s_UseExternalNodeJSBinary"/>
 			</property>
-			<property name="use fast reset" code="aufr" description="true if appium will use fast reset" type="boolean">
-				<cocoa key="s_UseFastReset"/>
-			</property>
-			<property name="use instruments without delay" code="apui" description="true if instruments without delay is enabled" type="boolean">
-				<cocoa key="s_UseInstrumentsWithoutDelay"/>
+			<property name="use full andoird reset" code="aufr" description="true if appium will use full reset for android" type="boolean">
+				<cocoa key="s_UseAndroidFullReset"/>
 			</property>
 			<property name="use mobile safari" code="aums" description="true if appium will use mobile safari" type="boolean">
 				<cocoa key="s_UseMobileSafari"/>
 			</property>
+			<property name="use native instruments library" code="apni" description="true if the native instruments library will be used" type="boolean">
+				<cocoa key="s_UseNativeInstrumentsLibrary"/>
+			</property>
 			<property name="use node debugger" code="aund" description="true if appium will use node debugging" type="boolean">
 				<cocoa key="s_UseNodeDebugger"/>
+			</property>
+			<property name="use quiet logging" code="auql" description="true if appium will use quiet logging" type="boolean">
+				<cocoa key="s_UseQuietLogging"/>
 			</property>
 			<property name="use remote server" code="aurs" description="true if appium will use a remote server" type="boolean">
 				<cocoa key="s_UseRemoteServer"/>

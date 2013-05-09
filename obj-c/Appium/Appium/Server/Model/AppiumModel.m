@@ -43,6 +43,9 @@ BOOL _isServerListening;
 -(NSNumber*) androidDeviceReadyTimeout { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_ANDROID_DEVICE_READY_TIMEOUT] intValue]]; }
 -(void) setAndroidDeviceReadyTimeout:(NSNumber *)androidDeviceReadyTimeout { [[NSUserDefaults standardUserDefaults] setValue:androidDeviceReadyTimeout forKey:APPIUM_PLIST_ANDROID_DEVICE_READY_TIMEOUT]; }
 
+-(BOOL) androidFullReset { return [_defaults boolForKey:APPIUM_PLIST_ANDROID_FULL_RESET]; }
+-(void) setAndroidFullReset:(BOOL)fastReset { [_defaults setBool:fastReset forKey:APPIUM_PLIST_ANDROID_FULL_RESET]; }
+
 -(NSString*) androidPackage { return [_defaults stringForKey:APPIUM_PLIST_ANDROID_PACKAGE]; }
 -(void) setAndroidPackage:(NSString *)androidPackage { [_defaults setValue:androidPackage forKey:APPIUM_PLIST_ANDROID_PACKAGE]; }
 
@@ -89,9 +92,6 @@ BOOL _isServerListening;
 -(NSString*) deviceToForceString { return [[_defaults valueForKey:APPIUM_PLIST_DEVICE] isEqualToString:APPIUM_PLIST_FORCE_DEVICE_IPAD] ? APPIUM_PLIST_FORCE_DEVICE_IPAD : APPIUM_PLIST_FORCE_DEVICE_IPHONE ; }
 -(void) setDeviceToForceString:(NSString *)deviceToForceString { [_defaults setValue:deviceToForceString forKey:APPIUM_PLIST_DEVICE]; }
 
--(BOOL) fastReset { return [_defaults boolForKey:APPIUM_PLIST_FAST_RESET]; }
--(void) setFastReset:(BOOL)fastReset { [_defaults setBool:fastReset forKey:APPIUM_PLIST_FAST_RESET]; }
-
 -(BOOL) forceDevice { return [_defaults boolForKey:APPIUM_PLIST_FORCE_DEVICE]; }
 -(void) setForceDevice:(BOOL)forceDevice { [_defaults setBool:forceDevice forKey:APPIUM_PLIST_FORCE_DEVICE]; }
 
@@ -109,9 +109,6 @@ BOOL _isServerListening;
 
 -(BOOL) keepArtifacts { return [_defaults boolForKey:APPIUM_PLIST_KEEP_ARTIFACTS]; }
 -(void) setKeepArtifacts:(BOOL)keepArtifacts { [_defaults setBool:keepArtifacts forKey:APPIUM_PLIST_KEEP_ARTIFACTS];}
-
--(BOOL) logVerbose { return [_defaults boolForKey:APPIUM_PLIST_VERBOSE]; }
--(void) setLogVerbose:(BOOL)logVerbose { [_defaults setBool:logVerbose forKey:APPIUM_PLIST_VERBOSE]; }
 
 -(NSNumber*) nodeDebugPort { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_NODEJS_DEBUG_PORT] intValue]]; }
 -(void) setNodeDebugPort:(NSNumber *)nodeDebugPort { [[NSUserDefaults standardUserDefaults] setValue:nodeDebugPort forKey:APPIUM_PLIST_NODEJS_DEBUG_PORT]; }
@@ -238,9 +235,6 @@ BOOL _isServerListening;
 -(BOOL) useExternalNodeJSBinary { return self.developerMode && [_defaults boolForKey:APPIUM_PLIST_USE_EXTERNAL_NODEJS_BINARY]; }
 -(void) setUseExternalNodeJSBinary:(BOOL)useCustomNodeJSBinary { [_defaults setBool:useCustomNodeJSBinary forKey:APPIUM_PLIST_USE_EXTERNAL_NODEJS_BINARY]; }
 
--(BOOL) useInstrumentsWithoutDelay { return [_defaults boolForKey:APPIUM_PLIST_WITHOUT_DELAY]; }
--(void) setUseInstrumentsWithoutDelay:(BOOL)useInstrumentsWithoutDelay { [_defaults setBool:useInstrumentsWithoutDelay forKey:APPIUM_PLIST_WITHOUT_DELAY]; }
-
 -(BOOL) useMobileSafari { return [_defaults boolForKey:APPIUM_PLIST_USE_MOBILE_SAFARI]; }
 -(void) setUseMobileSafari:(BOOL)useMobileSafari
 {
@@ -262,8 +256,14 @@ BOOL _isServerListening;
 	}
 }
 
+-(BOOL) useNativeInstrumentsLib { return [_defaults boolForKey:APPIUM_PLIST_USE_NATIVE_INSTRUMENTS_LIB]; }
+-(void) setUseNativeInstrumentsLib:(BOOL)useInstrumentsWithoutDelay { [_defaults setBool:useInstrumentsWithoutDelay forKey:APPIUM_PLIST_USE_NATIVE_INSTRUMENTS_LIB]; }
+
 -(BOOL) useNodeDebugging { return self.developerMode && [_defaults boolForKey:APPIUM_PLIST_USE_NODEJS_DEBUGGING]; }
 -(void) setUseNodeDebugging:(BOOL)useNodeDebugging { [_defaults setBool:useNodeDebugging forKey:APPIUM_PLIST_USE_NODEJS_DEBUGGING]; }
+
+-(BOOL) useQuietLogging { return [_defaults boolForKey:APPIUM_PLIST_VERBOSE]; }
+-(void) setUseQuietLogging:(BOOL)logVerbose { [_defaults setBool:logVerbose forKey:APPIUM_PLIST_VERBOSE]; }
 
 -(BOOL) useRemoteServer
 {
@@ -379,18 +379,18 @@ BOOL _isServerListening;
     {
 		nodeCommandString = [nodeCommandString stringByAppendingString:@" --keep-artifacts"];
     }
-	if (self.logVerbose)
+	if (self.useQuietLogging)
     {
-		nodeCommandString = [nodeCommandString stringByAppendingString:@" --verbose"];
+		nodeCommandString = [nodeCommandString stringByAppendingString:@" --quiet"];
         
     }
     
     // iOS Prefs
     if (self.platform == Platform_iOS)
     {
-        if (self.useInstrumentsWithoutDelay)
+        if (self.useNativeInstrumentsLib)
         {
-			nodeCommandString = [nodeCommandString stringByAppendingString:@" --without-delay"];
+			nodeCommandString = [nodeCommandString stringByAppendingString:@" --native-instruments-lib"];
         }
         if (self.forceDevice)
         {
@@ -443,9 +443,9 @@ BOOL _isServerListening;
         {
 			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ @%@", @"--avd", self.avd];
         }
-		if (self.fastReset)
+		if (self.androidFullReset)
 		{
-			nodeCommandString = [nodeCommandString stringByAppendingString:@" --fast-reset"];
+			nodeCommandString = [nodeCommandString stringByAppendingString:@" --full-reset"];
 		}
     }
 	

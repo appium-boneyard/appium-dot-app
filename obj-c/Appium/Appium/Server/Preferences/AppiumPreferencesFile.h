@@ -8,6 +8,7 @@
 
 #define APPIUM_PLIST_ANDROID_ACTIVITY @"Android Activity"
 #define APPIUM_PLIST_ANDROID_DEVICE_READY_TIMEOUT @"Android Device Ready Timeout"
+#define APPIUM_PLIST_ANDROID_FULL_RESET @"Android Full Reset"
 #define APPIUM_PLIST_ANDROID_PACKAGE @"Android Package"
 #define APPIUM_PLIST_ANDROID_WAIT_ACTIVITY @"Android Wait Activity"
 #define APPIUM_PLIST_APP_PATH @"App Path"
@@ -20,7 +21,6 @@
 #define APPIUM_PLIST_DEVELOPER_MODE @"Developer Mode"
 #define APPIUM_PLIST_EXTERNAL_APPIUM_PACKAGE_PATH @"External Appium Package Path"
 #define APPIUM_PLIST_EXTERNAL_NODEJS_BINARY_PATH @"External NodeJS Binary Path"
-#define APPIUM_PLIST_FAST_RESET @"Fast Reset"
 #define APPIUM_PLIST_FORCE_DEVICE @"Force Device"
 #define APPIUM_PLIST_FORCE_DEVICE_IPAD @"iPad"
 #define APPIUM_PLIST_FORCE_DEVICE_IPHONE @"iPhone"
@@ -54,4 +54,4 @@
 #define APPIUM_PLIST_USE_UDID @"Use UDID"
 #define APPIUM_PLIST_USE_XPATH_ONLY @"Use XPath Only"
 #define APPIUM_PLIST_VERBOSE @"Verbose"
-#define APPIUM_PLIST_WITHOUT_DELAY @"Without Delay"
+#define APPIUM_PLIST_USE_NATIVE_INSTRUMENTS_LIB @"Use Native Instruments Lib"
