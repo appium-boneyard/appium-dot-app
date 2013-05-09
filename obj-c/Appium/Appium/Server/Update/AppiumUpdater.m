@@ -191,14 +191,6 @@ NSString* upgradeUrl;
     [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Updating Appium Package..." waitUntilDone:YES];
 
     [[mainWindowController node] installPackage:@"appium" forceInstall:YES];
-    
-	NSString *iwdPath = [NSString stringWithFormat:@"%@/submodules/instruments-without-delay/build", [[mainWindowController node] pathtoPackage:@"appium"]];
-	if (![[NSFileManager defaultManager] fileExistsAtPath:iwdPath])
-    {
-		NSString *submodulesPath = [NSString stringWithFormat:@"%@/submodules", [[mainWindowController node] pathtoPackage:@"appium"]];
-		[[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Building \"Instruments Without Delay\"..." waitUntilDone:YES];
-		[Utility runTaskWithBinary:@"/bin/sh" arguments:[NSArray arrayWithObjects:@"./build.sh", nil] path:[NSString stringWithFormat:@"%@/%@", submodulesPath, @"instruments-without-delay"]];
-    }
 	
     [[mainWindowController window] makeKeyAndOrderFront:self];
     [installationWindow close];
