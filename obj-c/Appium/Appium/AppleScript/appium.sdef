@@ -130,7 +130,7 @@
 			<property name="use external node path" code="auen" description="true if an external nodeJS binary path with be used" type="boolean">
 				<cocoa key="s_UseExternalNodeJSBinary"/>
 			</property>
-			<property name="use full andoird reset" code="aufr" description="true if appium will use full reset for android" type="boolean">
+			<property name="use full android reset" code="aufr" description="true if appium will use full reset for android" type="boolean">
 				<cocoa key="s_UseAndroidFullReset"/>
 			</property>
 			<property name="use mobile safari" code="aums" description="true if appium will use mobile safari" type="boolean">
