@@ -151,6 +151,9 @@
 			<property name="use UDID" code="apuu" description="true if the udid is being used" type="boolean">
 				<cocoa key="s_UseUDID"/>
 			</property>
+			<property name="inspector window" code="apiw" description="appium inpsector window" type="inspector window controller" access="r">
+				<cocoa key="s_InspectorWindow"/>
+			</property>
 			<responds-to command="clear log">
 				<cocoa method="s_ClearLog:"/>
 			</responds-to>
@@ -170,12 +173,18 @@
 				<cocoa method="s_UsePlatform:"/>
 			</responds-to>
 		</class>
+		<class name="inspector window controller" code="caiw" description="Appium Inspector Window">
+			<cocoa class="AppiumInspectorWindowController"/>
+			<property name="details" code="aisd" description="details for the selected element" type="text" access="r">
+				<cocoa key="s_Details"/>
+			</property>
+		</class>
 		<command name="clear log" code="aapmclog" description="clears the appium server log display"/>
 		<command name="force ios device" code="appmfrcd" description="force a device type">
 			<direct-parameter description="type of ios device to force" type="ios device"/>
 		</command>
 		<command name="force ios orientation" code="appmfrco" description="force an orientation">
-			<direct-parameter description="oreintation to force" type="orientation"/>
+			<direct-parameter description="orientation to force" type="orientation"/>
 		</command>
 		<command name="start server" code="appmstas" description="starts the appium server">
 			<result description="true if the server was started" type="boolean"/>

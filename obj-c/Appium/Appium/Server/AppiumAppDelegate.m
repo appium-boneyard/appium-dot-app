@@ -65,23 +65,23 @@
 
 -(IBAction) displayInspector:(id)sender
 {
-	if (_inspectorWindow == nil)
+	if (self.inspectorWindow == nil)
 	{
-		_inspectorWindow = [[AppiumInspectorWindowController alloc] initWithWindowNibName:@"AppiumInspectorWindow"];
+		self.inspectorWindow = [[AppiumInspectorWindowController alloc] initWithWindowNibName:@"AppiumInspectorWindow"];
 		[[NSNotificationCenter defaultCenter] addObserver:self
 												 selector:@selector(inspectorWindowWillClose:)
 													 name:NSWindowWillCloseNotification
-												   object:[_inspectorWindow window]];
+												   object:[self.inspectorWindow window]];
 	}
 	
-	[_inspectorWindow showWindow:self];
-	[[_inspectorWindow window] makeKeyAndOrderFront:self];
+	[self.inspectorWindow showWindow:self];
+	[[self.inspectorWindow window] makeKeyAndOrderFront:self];
 }
 
 - (void)inspectorWindowWillClose:(NSNotification *)notification
 {
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowWillCloseNotification object:[_inspectorWindow window]];
-	_inspectorWindow = nil;
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowWillCloseNotification object:[self.inspectorWindow window]];
+	self.inspectorWindow = nil;
 }
 
 #pragma mark - Updates
