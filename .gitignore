@@ -22,3 +22,5 @@ node-webkit/build/Appium.app/Contents/Frameworks/node-webkit Helper.app/Contents
 node-webkit/build/Appium.app/Contents/Frameworks/node-webkit Helper NP.app/Contents/Info.plist
 
 node-webkit/build/Appium.app/Contents/Frameworks/node-webkit Helper EH.app/Contents/Info.plist
+
+submodules/*
