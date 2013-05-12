@@ -124,8 +124,12 @@
 -(void) setS_BreakOnNodeAppStart:(NSNumber *)s_BreakOnNodeAppStart { [[self model] setUseNodeDebugging:[s_BreakOnNodeAppStart boolValue]]; }
 
 -(NSNumber*) s_UseQuietLogging { return [NSNumber numberWithBool:self.model.useQuietLogging];}
--(void) setS_UseQuietLogging:(NSNumber *)s_UseQuietLogging { [[self model] setUseQuietLogging:[s_UseQuietLogging boolValue]];
-	
+-(void) setS_UseQuietLogging:(NSNumber *)s_UseQuietLogging { [[self model] setUseQuietLogging:[s_UseQuietLogging boolValue]]; }
+
+-(AppiumInspectorWindowController*) s_InspectorWindow
+{
+	AppiumAppDelegate *delegate = [self delegate];
+	return delegate.inspectorWindow;
 }
 
 #pragma mark - Methods

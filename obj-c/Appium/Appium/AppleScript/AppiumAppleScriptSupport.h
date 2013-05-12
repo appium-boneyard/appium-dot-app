@@ -9,6 +9,10 @@
 #import <Cocoa/Cocoa.h>
 #import <Foundation/Foundation.h>
 #import "AppiumModel.h"
+#import "AppiumInspectorWindowController.h"
+
+@class AppiumModel;
+@class AppiumInspectorWindowController;
 
 @interface NSApplication (AppiumAppleScriptSupport)
 
@@ -52,6 +56,8 @@
 @property NSNumber *s_UseQuietLogging;
 @property NSNumber *s_UseRemoteServer;
 @property NSNumber *s_UseUDID;
+
+@property (readonly) AppiumInspectorWindowController* s_InspectorWindow;
 
 #pragma mark - Methods
 -(void) s_ClearLog: (NSScriptCommand*)command;

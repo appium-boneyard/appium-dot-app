@@ -18,11 +18,11 @@
 @interface AppiumAppDelegate : NSObject <NSApplicationDelegate> {
     @private
     AppiumPreferencesWindowController *_preferencesWindow;
-    AppiumInspectorWindowController *_inspectorWindow;
     AppiumUpdater *_updater;
 }
 
 @property (nonatomic, retain) IBOutlet AppiumMonitorWindowController *mainWindowController;
+@property AppiumInspectorWindowController *inspectorWindow;
 @property (nonatomic, retain) AppiumModel *model;
 
 -(IBAction) checkForUpdates:(id)sender;
