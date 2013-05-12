@@ -1,3 +1,6 @@
 [submodule "submodules/selenium-objective-c"]
 	path = submodules/selenium-objective-c
 	url = git://github.com/appium/selenium-objective-c
+[submodule "submodules/appium"]
+	path = submodules/appium
+	url = git://github.com/appium/appium
