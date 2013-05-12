@@ -12,7 +12,7 @@ Parameter Guide
 
 ### Main Window
 
-![Appium Main Window](/web/images/mainwindow.png "Appium Main Window")
+![Appium Main Window](/README-files/images/mainwindow.png "Appium Main Window")
 
 **IP Address**: the IP addres on which you want the appium server to run (127.0.0.1 is localhost)<br />
 **Port**: the port on which the appium server will listen for WebDriver commands (4723 is the default)<br />
@@ -41,7 +41,7 @@ BundleID or App Path should both be unchecked when this option is used.<br />
 Preference Guide
 ------------
 Preferences can be accessed by Going to Appium > Preferences or with the keyboard shortcut (COMMAND + ,)<br />
-![Appium Preferences](/web/images/preferences.png "Appium Preferences")
+![Appium Preferences](/README-files/images/preferences.png "Appium Preferences")
 
 **Check For Updates**: Appium will automatically check for updates upon boot.<br />
 **Verbose Logging**: Appium will log out verbose information.<br />
@@ -54,4 +54,4 @@ Preferences can be accessed by Going to Appium > Preferences or with the keyboar
 Inspector (BETA)
 ------------
 Inspector can be accessed by clicking the blue "i" next to the launch button once the Appium server has launched. Appium must be running with an app open for inspector to work. Otherwise, it may crash.<br />
-![Appium Inspector](/web/images/inspector.png "Appium Inspector")
+![Appium Inspector](/README-files/images/inspector.png "Appium Inspector")
