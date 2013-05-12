@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beginCommand</key>
+	<string></string>
+	<key>endCommand</key>
+	<string></string>
+	<key>beginInstruction</key>
+	<string></string>
+	<key>endInstruction</key>
+	<string></string>
+	<key>beginVariable</key>
+	<string></string>
+	<key>endVariable</key>
+	<string></string>
+	<key>firstString</key>
+	<string>&quot;</string>
+	<key>secondString</key>
+	<string>&apos;</string>
+	<key>firstSingleLineComment</key>
+	<string>//</string>
+	<key>secondSingleLineComment</key>
+	<string></string>
+	<key>beginFirstMultiLineComment</key>
+	<string>/*</string>
+	<key>endFirstMultiLineComment</key>
+	<string>*/</string>
+	<key>beginSecondMultiLineComment</key>
+	<string></string>
+	<key>endSecondMultiLineComment</key>
+	<string></string>
+	<key>functionDefinition</key>
+	<string>^\s*function\s+.*\n?\s*\{</string>
+	<key>removeFromFunction</key>
+	<string>function </string>
+	<key>keywordsCaseSensitive</key>
+	<false/>
+	<key>recolourKeywordIfAlreadyColoured</key>
+	<true/>
+	<key>keywords</key>
+	<array>
+		<string>break</string>
+		<string>case</string>
+		<string>continue</string>
+		<string>default</string>
+		<string>delete</string>
+		<string>do</string>
+		<string>else</string>
+		<string>export</string>
+		<string>for</string>
+		<string>function</string>
+		<string>if</string>
+		<string>import</string>
+		<string>in</string>
+		<string>label</string>
+		<string>new</string>
+		<string>return</string>
+		<string>with</string>
+		<string>switch</string>
+		<string>this</string>
+		<string>typeof</string>
+		<string>var</string>
+		<string>void</string>
+		<string>while</string>
+		<string>null</string>
+		<string>undefined</string>
+		<string>true</string>
+		<string>false</string>
+	</array>
+	<key>autocompleteWords</key>
+	<array/>
+</dict>
+</plist>
