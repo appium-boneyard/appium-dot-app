@@ -1,6 +1,3 @@
-
-v2/.DS_Store
-
 .DS_Store
 
 *.xcworkspacedata
@@ -14,12 +11,3 @@ v2/.DS_Store
 *.xcbkptlist
 
 obj-c/Appium/Appium.xcodeproj/xcuserdata/danc.xcuserdatad/xcschemes/xcschememanagement.plist
-
-node-webkit/build/Appium.app/Contents/Info.plist
-
-node-webkit/build/Appium.app/Contents/Frameworks/node-webkit Helper.app/Contents/Info.plist
-
-node-webkit/build/Appium.app/Contents/Frameworks/node-webkit Helper NP.app/Contents/Info.plist
-
-node-webkit/build/Appium.app/Contents/Frameworks/node-webkit Helper EH.app/Contents/Info.plist
-
