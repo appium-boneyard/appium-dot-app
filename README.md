@@ -87,7 +87,7 @@ Appium must be running with an app open for inspector to work. Otherwise, it wil
 **Show Invisible Filter**: Elements which are not visible will be displayed in the DOM 3-column-view.<br />
 **Show Disabled Filter**: Elements which are not enabled will be displayed in the DOM 3-column-view.<br />
 **Record Button**: Opens the recording Panel and starts recording actions performed using controls in the Appium.<br />
-Inspector.
+Inspector.<br />
 **Refresh Button**: Refreshes the DOM 3-column view and the screenshot.<br />
 **Screenshot Area**: Displays the last screenshot taken for the app. You can click this area to select elements
 in the DOM.<br />
