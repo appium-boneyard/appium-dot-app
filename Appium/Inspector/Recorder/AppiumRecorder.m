@@ -117,6 +117,20 @@
     [self.inspector refresh:sender];
 }
 
+-(IBAction)scrollTo:(id)sender
+{
+    
+    AppiumCodeMakerLocator *locator = [self.inspector locatorForSelectedNode];
+    
+    AppiumCodeMakerAction *action = [[AppiumCodeMakerActionScrollTo alloc] initWithLocator:locator];
+	if (_isRecording)
+	{
+		[_codeMaker addAction:action];
+	}
+    action.block(self.driver);
+    [self.inspector refresh:sender];
+}
+
 -(IBAction)shake:(id)sender
 {
 	
