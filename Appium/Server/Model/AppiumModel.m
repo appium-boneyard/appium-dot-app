@@ -55,11 +55,11 @@ BOOL _isServerListening;
 -(NSString*) appPath { return [_defaults stringForKey:APPIUM_PLIST_APP_PATH];}
 -(void) setAppPath:(NSString *)appPath
 {
-    if ([appPath hasSuffix:@".app"])
+    if ([appPath hasSuffix:@"app"] || [appPath hasSuffix:@"ipa"] || [appPath hasSuffix:@"zip"])
     {
         [self setPlatform:Platform_iOS];
     }
-    if ([appPath hasSuffix:@".apk"])
+    if ([appPath hasSuffix:@"apk"])
     {
         [self setPlatform:Platform_Android];
     }
@@ -357,7 +357,14 @@ BOOL _isServerListening;
     }
     if (self.useAppPath)
     {
+		if ([self.appPath hasSuffix:@"ipa"])
+		{
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--ipa", [self.appPath stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
+		}
+		else
+		{
 		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--app", [self.appPath stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
+		}
     }
 	else if (self.useBundleID)
     {

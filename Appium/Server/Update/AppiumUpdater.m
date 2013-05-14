@@ -38,7 +38,7 @@ NSString* upgradeUrl;
 	BOOL alertOnNoUpdates = sender != nil;
 	BOOL updatesAvailable = NO;
     updatesAvailable |= [self checkForAppUpdate];
-    updatesAvailable |= [self checkForPackageUpdate];
+    //updatesAvailable |= [self checkForPackageUpdate];
 	if (alertOnNoUpdates && !updatesAvailable)
 	{
 		NSAlert *alert = [NSAlert new];
