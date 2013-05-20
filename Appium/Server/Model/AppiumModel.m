@@ -139,14 +139,16 @@ BOOL _isServerListening;
 -(void) setPrelaunchApp:(BOOL)preLaunchApp
 {
 	[_defaults setBool:preLaunchApp forKey:APPIUM_PLIST_PRELAUNCH];
-	if (preLaunchApp && ! self.useAppPath)
-	{
-		[self setUseAppPath:YES];
-	}
 }
 
 -(BOOL) resetApplicationState { return [_defaults boolForKey:APPIUM_PLIST_RESET_APPLICATION_STATE]; }
 -(void) setResetApplicationState:(BOOL)resetApplicationState { [_defaults setBool:resetApplicationState forKey:APPIUM_PLIST_RESET_APPLICATION_STATE]; }
+
+-(NSString*) robotAddress { return [_defaults stringForKey:APPIUM_PLIST_ROBOT_ADDRESS]; }
+-(void) setRobotAddress:(NSString *)robotAddress { [_defaults setValue:robotAddress forKey:APPIUM_PLIST_ROBOT_ADDRESS]; }
+
+-(NSNumber*) robotPort { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_ROBOT_PORT] intValue]]; }
+-(void) setRobotPort:(NSNumber *)robotPort { [[NSUserDefaults standardUserDefaults] setValue:robotPort forKey:APPIUM_PLIST_ROBOT_PORT]; }
 
 -(NSString*) udid {return [_defaults stringForKey:APPIUM_PLIST_UDID];}
 -(void) setUdid:(NSString *)udid { [ _defaults setValue:udid forKey:APPIUM_PLIST_UDID]; }
@@ -167,66 +169,18 @@ BOOL _isServerListening;
 -(void) setUseAppPath:(BOOL)useAppPath
 {
 	[_defaults setBool:useAppPath forKey:APPIUM_PLIST_USE_APP_PATH];
-	if (useAppPath)
-	{
-		if (self.useUDID != NO)
-		{
-			[self setUseUDID:NO];
-		}
-		if (self.useBundleID != NO)
-		{
-			[self setUseBundleID:NO];
-		}
-		if (self.useMobileSafari != NO)
-		{
-			[self setUseMobileSafari:NO];
-		}
-	}
-	else
-	{
-		if (self.prelaunchApp)
-		{
-			[self setPrelaunchApp:NO];
-		}
-	}
 }
 
 -(BOOL) useAVD { return [_defaults boolForKey:APPIUM_PLIST_USE_AVD]; }
 -(void) setUseAVD:(BOOL)useAVD
 {
 	[_defaults setBool:useAVD forKey:APPIUM_PLIST_USE_AVD];
-	if (useAVD && !self.prelaunchApp)
-	{
-		[self setPrelaunchApp:YES];
-	}
 }
 
 -(BOOL) useBundleID { return [_defaults boolForKey:APPIUM_PLIST_USE_BUNDLEID]; }
 -(void) setUseBundleID:(BOOL)useBundleID
 {
 	[_defaults setBool:useBundleID forKey:APPIUM_PLIST_USE_BUNDLEID];
-	if (useBundleID)
-	{
-		if (self.useUDID != YES)
-		{
-			[self setUseUDID:YES];
-		}
-		if (self.useAppPath != NO)
-		{
-			[self setUseAppPath:NO];
-		}
-		if (self.useMobileSafari != NO)
-		{
-			[self setUseMobileSafari:NO];
-		}
-	}
-	else
-	{
-		if (self.useUDID != NO)
-		{
-			[self setUseUDID:NO];
-		}
-	}
 }
 
 -(BOOL) useExternalAppiumPackage { return self.developerMode && [_defaults boolForKey:APPIUM_PLIST_USE_EXTERNAL_APPIUM_PACKAGE]; }
@@ -239,21 +193,6 @@ BOOL _isServerListening;
 -(void) setUseMobileSafari:(BOOL)useMobileSafari
 {
 	[_defaults setBool:useMobileSafari forKey:APPIUM_PLIST_USE_MOBILE_SAFARI];
-	if (useMobileSafari)
-	{
-		if (self.useAppPath != NO)
-		{
-			[self setUseAppPath:NO];
-		}
-		if (self.useUDID != NO)
-		{
-			[self setUseUDID:NO];
-		}
-		if (self.useBundleID != NO)
-		{
-			[self setUseBundleID:NO];
-		}
-	}
 }
 
 -(BOOL) useNativeInstrumentsLib { return [_defaults boolForKey:APPIUM_PLIST_USE_NATIVE_INSTRUMENTS_LIB]; }
@@ -261,6 +200,9 @@ BOOL _isServerListening;
 
 -(BOOL) useNodeDebugging { return self.developerMode && [_defaults boolForKey:APPIUM_PLIST_USE_NODEJS_DEBUGGING]; }
 -(void) setUseNodeDebugging:(BOOL)useNodeDebugging { [_defaults setBool:useNodeDebugging forKey:APPIUM_PLIST_USE_NODEJS_DEBUGGING]; }
+
+-(BOOL) useRobot { return [_defaults boolForKey:APPIUM_PLIST_USE_ROBOT]; }
+-(void) setUseRobot:(BOOL)useRobot { [_defaults setBool:useRobot forKey:APPIUM_PLIST_USE_ROBOT]; }
 
 -(BOOL) useQuietLogging { return [_defaults boolForKey:APPIUM_PLIST_VERBOSE]; }
 -(void) setUseQuietLogging:(BOOL)logVerbose { [_defaults setBool:logVerbose forKey:APPIUM_PLIST_VERBOSE]; }
@@ -283,28 +225,6 @@ BOOL _isServerListening;
 -(void) setUseUDID:(BOOL)useUDID
 {
 	[_defaults setBool:useUDID forKey:APPIUM_PLIST_USE_UDID];
-	if (useUDID)
-	{
-		if (self.useBundleID != YES)
-		{
-			[self setUseBundleID:YES];
-		}
-		if (self.useAppPath != NO)
-		{
-			[self setUseAppPath:NO];
-		}
-		if (self.useMobileSafari != NO)
-		{
-			[self setUseMobileSafari:NO];
-		}
-	}
-	else
-	{
-		if (self.useBundleID != NO)
-		{
-			[self setUseBundleID:NO];
-		}
-	}
 }
 
 #pragma mark - Methods
@@ -374,7 +294,7 @@ BOOL _isServerListening;
     {
 		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--udid", self.udid];
     }
-	if (self.prelaunchApp && self.useAppPath)
+	if (self.prelaunchApp)
     {
 		nodeCommandString = [nodeCommandString stringByAppendingString:@" --pre-launch"];
     }
@@ -455,6 +375,13 @@ BOOL _isServerListening;
 			nodeCommandString = [nodeCommandString stringByAppendingString:@" --full-reset"];
 		}
     }
+	
+	// Robot Prefs
+	if (self.useRobot)
+    {
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--robot-address", self.robotAddress];
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--robot-port", [self.robotPort intValue]];
+	}
 	
 	[self setServerTask:[NSTask new]];
 	if (self.useExternalAppiumPackage)

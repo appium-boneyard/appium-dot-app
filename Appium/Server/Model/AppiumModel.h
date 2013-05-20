@@ -59,6 +59,8 @@ typedef enum iOSOrientationTypes
 @property NSNumber *port;
 @property BOOL prelaunchApp;
 @property BOOL resetApplicationState;
+@property NSString *robotAddress;
+@property NSNumber *robotPort;
 @property NSString *udid;
 @property BOOL useAndroidActivity;
 @property BOOL useAndroidDeviceReadyTimeout;
@@ -74,6 +76,7 @@ typedef enum iOSOrientationTypes
 @property BOOL useNodeDebugging;
 @property BOOL useQuietLogging;
 @property BOOL useRemoteServer;
+@property BOOL useRobot;
 @property BOOL useUDID;
 
 -(BOOL)killServer;

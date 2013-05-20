@@ -35,6 +35,8 @@
 #define APPIUM_PLIST_TAB_STATE_IOS 0
 #define APPIUM_PLIST_PRELAUNCH @"Prelaunch"
 #define APPIUM_PLIST_RESET_APPLICATION_STATE @"Reset Application State"
+#define APPIUM_PLIST_ROBOT_ADDRESS @"Robot Address"
+#define APPIUM_PLIST_ROBOT_PORT @"Robot Port"
 #define APPIUM_PLIST_SERVER_ADDRESS @"Server Address"
 #define APPIUM_PLIST_SERVER_PORT @"Server Port"
 #define APPIUM_PLIST_UDID @"UDID"
@@ -51,6 +53,7 @@
 #define APPIUM_PLIST_USE_NODEJS_DEBUGGING @"Use NodeJS Debugging"
 #define APPIUM_PLIST_USE_REMOTE_SERVER @"Use Remote Server"
 #define APPIUM_PLIST_USE_MOBILE_SAFARI @"Use Mobile Safari"
+#define APPIUM_PLIST_USE_ROBOT @"Use Robot"
 #define APPIUM_PLIST_USE_UDID @"Use UDID"
 #define APPIUM_PLIST_USE_XPATH_ONLY @"Use XPath Only"
 #define APPIUM_PLIST_VERBOSE @"Verbose"
