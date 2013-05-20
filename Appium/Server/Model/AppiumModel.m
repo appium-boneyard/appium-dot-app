@@ -139,10 +139,6 @@ BOOL _isServerListening;
 -(void) setPrelaunchApp:(BOOL)preLaunchApp
 {
 	[_defaults setBool:preLaunchApp forKey:APPIUM_PLIST_PRELAUNCH];
-	if (preLaunchApp && ! self.useAppPath)
-	{
-		[self setUseAppPath:YES];
-	}
 }
 
 -(BOOL) resetApplicationState { return [_defaults boolForKey:APPIUM_PLIST_RESET_APPLICATION_STATE]; }
@@ -169,24 +165,9 @@ BOOL _isServerListening;
 	[_defaults setBool:useAppPath forKey:APPIUM_PLIST_USE_APP_PATH];
 	if (useAppPath)
 	{
-		if (self.useUDID != NO)
-		{
-			[self setUseUDID:NO];
-		}
-		if (self.useBundleID != NO)
-		{
-			[self setUseBundleID:NO];
-		}
 		if (self.useMobileSafari != NO)
 		{
 			[self setUseMobileSafari:NO];
-		}
-	}
-	else
-	{
-		if (self.prelaunchApp)
-		{
-			[self setPrelaunchApp:NO];
 		}
 	}
 }
@@ -195,38 +176,12 @@ BOOL _isServerListening;
 -(void) setUseAVD:(BOOL)useAVD
 {
 	[_defaults setBool:useAVD forKey:APPIUM_PLIST_USE_AVD];
-	if (useAVD && !self.prelaunchApp)
-	{
-		[self setPrelaunchApp:YES];
-	}
 }
 
 -(BOOL) useBundleID { return [_defaults boolForKey:APPIUM_PLIST_USE_BUNDLEID]; }
 -(void) setUseBundleID:(BOOL)useBundleID
 {
 	[_defaults setBool:useBundleID forKey:APPIUM_PLIST_USE_BUNDLEID];
-	if (useBundleID)
-	{
-		if (self.useUDID != YES)
-		{
-			[self setUseUDID:YES];
-		}
-		if (self.useAppPath != NO)
-		{
-			[self setUseAppPath:NO];
-		}
-		if (self.useMobileSafari != NO)
-		{
-			[self setUseMobileSafari:NO];
-		}
-	}
-	else
-	{
-		if (self.useUDID != NO)
-		{
-			[self setUseUDID:NO];
-		}
-	}
 }
 
 -(BOOL) useExternalAppiumPackage { return self.developerMode && [_defaults boolForKey:APPIUM_PLIST_USE_EXTERNAL_APPIUM_PACKAGE]; }
@@ -239,21 +194,6 @@ BOOL _isServerListening;
 -(void) setUseMobileSafari:(BOOL)useMobileSafari
 {
 	[_defaults setBool:useMobileSafari forKey:APPIUM_PLIST_USE_MOBILE_SAFARI];
-	if (useMobileSafari)
-	{
-		if (self.useAppPath != NO)
-		{
-			[self setUseAppPath:NO];
-		}
-		if (self.useUDID != NO)
-		{
-			[self setUseUDID:NO];
-		}
-		if (self.useBundleID != NO)
-		{
-			[self setUseBundleID:NO];
-		}
-	}
 }
 
 -(BOOL) useNativeInstrumentsLib { return [_defaults boolForKey:APPIUM_PLIST_USE_NATIVE_INSTRUMENTS_LIB]; }
@@ -283,28 +223,6 @@ BOOL _isServerListening;
 -(void) setUseUDID:(BOOL)useUDID
 {
 	[_defaults setBool:useUDID forKey:APPIUM_PLIST_USE_UDID];
-	if (useUDID)
-	{
-		if (self.useBundleID != YES)
-		{
-			[self setUseBundleID:YES];
-		}
-		if (self.useAppPath != NO)
-		{
-			[self setUseAppPath:NO];
-		}
-		if (self.useMobileSafari != NO)
-		{
-			[self setUseMobileSafari:NO];
-		}
-	}
-	else
-	{
-		if (self.useBundleID != NO)
-		{
-			[self setUseBundleID:NO];
-		}
-	}
 }
 
 #pragma mark - Methods
@@ -374,7 +292,7 @@ BOOL _isServerListening;
     {
 		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--udid", self.udid];
     }
-	if (self.prelaunchApp && self.useAppPath)
+	if (self.prelaunchApp)
     {
 		nodeCommandString = [nodeCommandString stringByAppendingString:@" --pre-launch"];
     }
