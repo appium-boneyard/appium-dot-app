@@ -51,6 +51,10 @@
 	<false/>
 	<key>Reset Application State</key>
 	<true/>
+	<key>Robot Address</key>
+	<string>0.0.0.0</string>
+	<key>Robot Port</key>
+	<real>4</real>
 	<key>Server Address</key>
 	<string>0.0.0.0</string>
 	<key>Server Port</key>
@@ -86,6 +90,8 @@
 	<key>Use Native Instruments Lib</key>
 	<false/>
 	<key>Use NodeJS Debugging</key>
+	<false/>
+	<key>Use Robot</key>
 	<false/>
 	<key>Use UDID</key>
 	<false/>

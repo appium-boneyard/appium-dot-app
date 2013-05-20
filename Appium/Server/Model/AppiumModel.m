@@ -144,6 +144,12 @@ BOOL _isServerListening;
 -(BOOL) resetApplicationState { return [_defaults boolForKey:APPIUM_PLIST_RESET_APPLICATION_STATE]; }
 -(void) setResetApplicationState:(BOOL)resetApplicationState { [_defaults setBool:resetApplicationState forKey:APPIUM_PLIST_RESET_APPLICATION_STATE]; }
 
+-(NSString*) robotAddress { return [_defaults stringForKey:APPIUM_PLIST_ROBOT_ADDRESS]; }
+-(void) setRobotAddress:(NSString *)robotAddress { [_defaults setValue:robotAddress forKey:APPIUM_PLIST_ROBOT_ADDRESS]; }
+
+-(NSNumber*) robotPort { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_ROBOT_PORT] intValue]]; }
+-(void) setRobotPort:(NSNumber *)robotPort { [[NSUserDefaults standardUserDefaults] setValue:robotPort forKey:APPIUM_PLIST_ROBOT_PORT]; }
+
 -(NSString*) udid {return [_defaults stringForKey:APPIUM_PLIST_UDID];}
 -(void) setUdid:(NSString *)udid { [ _defaults setValue:udid forKey:APPIUM_PLIST_UDID]; }
 
@@ -163,13 +169,6 @@ BOOL _isServerListening;
 -(void) setUseAppPath:(BOOL)useAppPath
 {
 	[_defaults setBool:useAppPath forKey:APPIUM_PLIST_USE_APP_PATH];
-	if (useAppPath)
-	{
-		if (self.useMobileSafari != NO)
-		{
-			[self setUseMobileSafari:NO];
-		}
-	}
 }
 
 -(BOOL) useAVD { return [_defaults boolForKey:APPIUM_PLIST_USE_AVD]; }
@@ -201,6 +200,9 @@ BOOL _isServerListening;
 
 -(BOOL) useNodeDebugging { return self.developerMode && [_defaults boolForKey:APPIUM_PLIST_USE_NODEJS_DEBUGGING]; }
 -(void) setUseNodeDebugging:(BOOL)useNodeDebugging { [_defaults setBool:useNodeDebugging forKey:APPIUM_PLIST_USE_NODEJS_DEBUGGING]; }
+
+-(BOOL) useRobot { return [_defaults boolForKey:APPIUM_PLIST_USE_ROBOT]; }
+-(void) setUseRobot:(BOOL)useRobot { [_defaults setBool:useRobot forKey:APPIUM_PLIST_USE_ROBOT]; }
 
 -(BOOL) useQuietLogging { return [_defaults boolForKey:APPIUM_PLIST_VERBOSE]; }
 -(void) setUseQuietLogging:(BOOL)logVerbose { [_defaults setBool:logVerbose forKey:APPIUM_PLIST_VERBOSE]; }
@@ -373,6 +375,13 @@ BOOL _isServerListening;
 			nodeCommandString = [nodeCommandString stringByAppendingString:@" --full-reset"];
 		}
     }
+	
+	// Robot Prefs
+	if (self.useRobot)
+    {
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--robot-address", self.robotAddress];
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--robot-port", [self.robotPort intValue]];
+	}
 	
 	[self setServerTask:[NSTask new]];
 	if (self.useExternalAppiumPackage)
