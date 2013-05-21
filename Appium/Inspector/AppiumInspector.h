@@ -28,18 +28,22 @@
     WebDriverElementNode *_browserRootNode;
 	NSMutableArray *_selectedIndexes;
 	NSString *_lastPageSource;
+	NSString *_selectedWindow;
 }
 
 @property WebDriverElementNode *selection;
 @property NSNumber *showDisabled;
 @property NSNumber *showInvisible;
 @property BOOL domIsPopulating;
+@property NSArray *windows;
+@property NSString *currentWindow;
+@property NSString *selectedWindow;
 
 -(SEWebElement*) elementForSelectedNode;
 -(NSString*) xPathForSelectedNode;
 -(AppiumCodeMakerLocator*) locatorForSelectedNode;
 
 -(void) handleClickAt:(NSPoint)windowPoint seleniumPoint:(NSPoint)seleniumPoint;
--(IBAction)refresh:(id)sender;
+-(IBAction) refresh:(id)sender;
 
 @end
