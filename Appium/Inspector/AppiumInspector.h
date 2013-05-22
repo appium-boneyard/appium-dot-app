@@ -14,6 +14,7 @@
 
 @class AppiumCodeMakerLocator;
 @class AppiumInspectorWindowController;
+@class AppiumModel;
 @class SERemoteWebDriver;
 @class SEWebElement;
 @class WebDriverElementNode;
@@ -31,6 +32,7 @@
 	NSString *_selectedWindow;
 }
 
+@property (readonly) AppiumModel *model;
 @property WebDriverElementNode *selection;
 @property NSNumber *showDisabled;
 @property NSNumber *showInvisible;

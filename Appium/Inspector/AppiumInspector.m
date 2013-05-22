@@ -9,6 +9,7 @@
 #import "AppiumInspector.h"
 
 #import <QuartzCore/QuartzCore.h>
+#import "AppiumAppDelegate.h"
 
 @interface AppiumInspector ()
     @property (readonly) SERemoteWebDriver *driver;
@@ -33,6 +34,8 @@
 -(SERemoteWebDriver*) driver { return _windowController.driver; }
 
 #pragma mark - Public Properties
+-(AppiumModel*) model { return ((AppiumAppDelegate*)[[NSApplication sharedApplication] delegate]).model; }
+
 -(NSNumber*) showDisabled { return [NSNumber numberWithBool:_showDisabled]; }
 
 -(NSNumber*) showInvisible { return [NSNumber numberWithBool:_showInvisible]; }
@@ -375,16 +378,21 @@
 		return;
 	}
 	
-	[self setWindows:[[NSArray arrayWithObjects:@"native", @"0", nil] arrayByAddingObjectsFromArray:[self.driver allWindows]]];
-	for (NSString *window in self.windows)
+	[self setWindows:[NSArray arrayWithObject:@"native"]];
+	if (self.model.developerMode)
 	{
-		if ([window isEqualToString:self.selectedWindow])
+		[self setWindows:[self.windows arrayByAddingObject:@"0"]];
+		[self setWindows:[self.windows arrayByAddingObjectsFromArray:[self.driver allWindows]]];
+		for	(NSString *window in self.windows)
 		{
-			return;
+			if ([window isEqualToString:self.selectedWindow])
+			{
+				return;
+			}
 		}
+		[self.driver executeScript:@"mobile: leaveWebView"];
+		[self setSelectedWindow:@"native"];
 	}
-	[self.driver executeScript:@"mobile: leaveWebView"];
-	[self setSelectedWindow:@"native"];
 }
 
 -(void) updateDetailsDisplay
