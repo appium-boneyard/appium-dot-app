@@ -30,7 +30,7 @@
             
             // download node
             NSString *nodeTarPath;
-            NSString *stringURL = @"http://nodejs.org/dist/v0.10.5/node-v0.10.5-darwin-x64.tar.gz";
+            NSString *stringURL = @"http://nodejs.org/dist/v0.10.7/node-v0.10.7-darwin-x64.tar.gz";
             NSLog(@"Download NodeJS binaries from \"%@.\"", stringURL);
             NSURL  *url = [NSURL URLWithString:stringURL];
             NSData *urlData = [NSData dataWithContentsOfURL:url];

@@ -44,20 +44,28 @@
 #pragma mark - Actions
 -(IBAction) changeWindow:(id)sender
 {
-	NSString *window = _windowController.inspector.selectedWindow;
-	if ([window isEqualToString:_windowController.inspector.currentWindow])
+	NSString *oldWindow = _windowController.inspector.currentWindow;
+	NSString *newWindow = _windowController.inspector.selectedWindow;
+	[_windowController.inspector setCurrentWindow:newWindow];
+
+	if ([newWindow isEqualToString:oldWindow])
 	{
 		return;
 	}
+	if(([oldWindow isEqualToString:@"0"] && [newWindow isEqualToString:@"native"])
+		|| ([oldWindow isEqualToString:@"native"] && [newWindow isEqualToString:@"0"]))
+	{
+		[self.inspector refresh:sender];
+		return;
+	}
 	
-	[_windowController.inspector setCurrentWindow:window];
-	if ([window isEqualToString:@"native"])
+	if ([newWindow isEqualToString:@"native"] || [newWindow isEqualToString:@"0"])
 	{
 		[self.driver executeScript:@"mobile: leaveWebView"];
 	}
 	else
 	{
-		[self.driver setWindow:window];
+		[self.driver setWindow:newWindow];
 	}
 	[self.inspector refresh:sender];
 }

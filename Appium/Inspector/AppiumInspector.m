@@ -282,8 +282,16 @@
 	else
 	{
 		[self.driver executeScript:@"mobile: leaveWebView"];
-		NSDictionary *response = [self.driver executeScript:[NSString stringWithFormat:@"UIATarget.localTarget().frontMostApp().windows()[%@].getTree()", _selectedWindow]];
-	    _lastPageSource = [response objectForKey:@"value"];
+		NSDictionary *response = [self.driver executeScript:[NSString stringWithFormat:@"UIATarget.localTarget().frontMostApp().windows()[%@].getTree()", self.currentWindow]];
+		NSError *error;
+		NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[response objectForKey:@"value"]
+														   options:0
+															 error:&error];
+		if (! jsonData) {
+			NSLog(@"Got an error parsing webview source: %@", error);
+		} else {
+			_lastPageSource = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+		}
 		[self.driver setWindow:self.currentWindow];
 	}
 }
@@ -361,7 +369,7 @@
 
 -(void)refreshWindowList
 {
-	[self setWindows:[[NSArray arrayWithObject:@"native"] arrayByAddingObjectsFromArray:[self.driver allWindows]]];
+	[self setWindows:[[NSArray arrayWithObjects:@"native", @"0", nil] arrayByAddingObjectsFromArray:[self.driver allWindows]]];
 	for (NSString *window in self.windows)
 	{
 		if ([window isEqualToString:self.selectedWindow])
