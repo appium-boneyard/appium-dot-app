@@ -42,7 +42,35 @@
 }
 
 #pragma mark - Actions
--(IBAction)tap:(id)sender
+-(IBAction) changeWindow:(id)sender
+{
+	NSString *oldWindow = _windowController.inspector.currentWindow;
+	NSString *newWindow = _windowController.inspector.selectedWindow;
+	[_windowController.inspector setCurrentWindow:newWindow];
+
+	if ([newWindow isEqualToString:oldWindow])
+	{
+		return;
+	}
+	if(([oldWindow isEqualToString:@"0"] && [newWindow isEqualToString:@"native"])
+		|| ([oldWindow isEqualToString:@"native"] && [newWindow isEqualToString:@"0"]))
+	{
+		[self.inspector refresh:sender];
+		return;
+	}
+	
+	if ([newWindow isEqualToString:@"native"] || [newWindow isEqualToString:@"0"])
+	{
+		[self.driver executeScript:@"mobile: leaveWebView"];
+	}
+	else
+	{
+		[self.driver setWindow:newWindow];
+	}
+	[self.inspector refresh:sender];
+}
+
+-(IBAction) tap:(id)sender
 {
     AppiumCodeMakerLocator *locator = [self.inspector locatorForSelectedNode];
     
@@ -55,7 +83,7 @@
     [self.inspector refresh:sender];
 }
 
--(IBAction)sendKeys:(id)sender
+-(IBAction) sendKeys:(id)sender
 {
 
     AppiumCodeMakerLocator *locator = [self.inspector locatorForSelectedNode];
@@ -71,7 +99,7 @@
     [self.inspector refresh:sender];
 }
 
--(IBAction)executeScript:(id)sender
+-(IBAction) executeScript:(id)sender
 {
     NSString *script = [self.keysToSend copy];
     if (script.length < 1)

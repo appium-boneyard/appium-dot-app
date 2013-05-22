@@ -9,6 +9,7 @@
 #import "AppiumInspector.h"
 
 #import <QuartzCore/QuartzCore.h>
+#import "AppiumAppDelegate.h"
 
 @interface AppiumInspector ()
     @property (readonly) SERemoteWebDriver *driver;
@@ -22,6 +23,8 @@
     if (self) {
         _showDisabled = YES;
         _showInvisible = YES;
+		self.currentWindow = @"native";
+		_selectedWindow = @"native";
         [self setDomIsPopulating:NO];
     }
     return self;
@@ -31,6 +34,8 @@
 -(SERemoteWebDriver*) driver { return _windowController.driver; }
 
 #pragma mark - Public Properties
+-(AppiumModel*) model { return ((AppiumAppDelegate*)[[NSApplication sharedApplication] delegate]).model; }
+
 -(NSNumber*) showDisabled { return [NSNumber numberWithBool:_showDisabled]; }
 
 -(NSNumber*) showInvisible { return [NSNumber numberWithBool:_showInvisible]; }
@@ -56,12 +61,19 @@
     [self setDomIsPopulating:NO];
 }
 
+-(NSString*)selectedWindow { return _selectedWindow; };
+-(void) setSelectedWindow:(NSString *)selectedWindow {
+	_selectedWindow = selectedWindow;
+}
+
+
 #pragma mark - Tree Operations
 -(void)populateDOM
 {
     [self performSelectorOnMainThread:@selector(setDomIsPopulatingToYes) withObject:nil waitUntilDone:YES];
 	[self refreshPageSource];
     [self refreshScreenshot];
+	[self refreshWindowList];
 	NSError *e = nil;
 	NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData: [_lastPageSource dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: &e];
 	_browserRootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict parent:nil showDisabled:[self.showDisabled boolValue] showInvisible:[self.showInvisible boolValue]];
@@ -266,7 +278,25 @@
 
 -(void)refreshPageSource
 {
-	_lastPageSource = [self.driver pageSource];
+	if ([self.currentWindow isEqualToString:@"native"])
+	{
+		_lastPageSource = [self.driver pageSource];
+	}
+	else
+	{
+		[self.driver executeScript:@"mobile: leaveWebView"];
+		NSDictionary *response = [self.driver executeScript:[NSString stringWithFormat:@"UIATarget.localTarget().frontMostApp().windows()[%@].getTree()", self.currentWindow]];
+		NSError *error;
+		NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[response objectForKey:@"value"]
+														   options:0
+															 error:&error];
+		if (! jsonData) {
+			NSLog(@"Got an error parsing webview source: %@", error);
+		} else {
+			_lastPageSource = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+		}
+		[self.driver setWindow:self.currentWindow];
+	}
 }
 
 -(void)refreshScreenshot
@@ -340,13 +370,38 @@
 
 #pragma mark - Misc
 
+-(void)refreshWindowList
+{
+	// adding this to stop an appium bug where asking for the window list multiple times hangs
+	if (self.windows != nil)
+	{
+		return;
+	}
+	
+	[self setWindows:[NSArray arrayWithObject:@"native"]];
+	if (self.model.developerMode)
+	{
+		[self setWindows:[self.windows arrayByAddingObject:@"0"]];
+		[self setWindows:[self.windows arrayByAddingObjectsFromArray:[self.driver allWindows]]];
+		for	(NSString *window in self.windows)
+		{
+			if ([window isEqualToString:self.selectedWindow])
+			{
+				return;
+			}
+		}
+		[self.driver executeScript:@"mobile: leaveWebView"];
+		[self setSelectedWindow:@"native"];
+	}
+}
+
 -(void) updateDetailsDisplay
 {
 	NSView *highlightView = _windowController.selectedElementHighlightView;
 	
 	if (_selection != nil)
 	{
-        NSString *newDetails = [NSString stringWithFormat:@"%@\nXPath string: %@", [_selection infoText], [self xPathForSelectedNode]];
+        NSString *newDetails = [NSString stringWithFormat:@"%@\nxpath: %@", [_selection infoText], [self xPathForSelectedNode]];
         [_windowController.detailsTextView setString:newDetails];
 	}
 	else
