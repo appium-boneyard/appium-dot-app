@@ -372,27 +372,18 @@
 
 -(void)refreshWindowList
 {
-	// adding this to stop an appium bug where asking for the window list multiple times hangs
-	if (self.windows != nil)
-	{
-		return;
-	}
-	
 	[self setWindows:[NSArray arrayWithObject:@"native"]];
-	if (self.model.developerMode)
+	[self setWindows:[self.windows arrayByAddingObject:@"0"]];
+	[self setWindows:[self.windows arrayByAddingObjectsFromArray:[self.driver allWindows]]];
+	for	(NSString *window in self.windows)
 	{
-		[self setWindows:[self.windows arrayByAddingObject:@"0"]];
-		[self setWindows:[self.windows arrayByAddingObjectsFromArray:[self.driver allWindows]]];
-		for	(NSString *window in self.windows)
+		if ([window isEqualToString:self.selectedWindow])
 		{
-			if ([window isEqualToString:self.selectedWindow])
-			{
-				return;
-			}
+			return;
 		}
-		[self.driver executeScript:@"mobile: leaveWebView"];
-		[self setSelectedWindow:@"native"];
 	}
+	[self.driver executeScript:@"mobile: leaveWebView"];
+	[self setSelectedWindow:@"native"];
 }
 
 -(void) updateDetailsDisplay
