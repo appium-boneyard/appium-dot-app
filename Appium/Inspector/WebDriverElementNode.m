@@ -275,22 +275,166 @@
 	{
 		NSString *type = [self.type stringByReplacingOccurrencesOfString:@"android.widget." withString:@""];
 		
-		if ([type isEqualToString:@"TextView"])
-			return @"text";
-		else if ([type isEqualToString:@"ListView"])
-			return @"list";
-		else if ([type isEqualToString:@"FrameLayout"])
-			return @"frame";
+		if ([type isEqualToString:@"AbsListView"])
+			return @"abslist";
+		else if ([type isEqualToString:@"AbsSeekBar"])
+			return @"absseek";
+		else if ([type isEqualToString:@"AbsSpinner"])
+			return @"absspinner";
+		else if ([type isEqualToString:@"AbsoluteLayout"])
+			return @"absolute";
+		else if ([type isEqualToString:@"AdapterViewAnimator"])
+			return @"adapterviewanimator";
+		else if ([type isEqualToString:@"AdapterViewFlipper"])
+			return @"adapterviewflipper";
+		else if ([type isEqualToString:@"AnalogClock"])
+			return @"analogclock";
+		else if ([type isEqualToString:@"AppWidgetHostView"])
+			return @"appwidgethost";
+		else if ([type isEqualToString:@"AutoCompleteTextView"])
+			return @"autocomplete";
+		else if ([type isEqualToString:@"Button"])
+			return @"button";
+		else if ([type isEqualToString:@"FragmentBreadCrumbs"])
+			return @"breadcrumbs";
+		else if ([type isEqualToString:@"CalendarView"])
+			return @"calendar";
+		else if ([type isEqualToString:@"CheckBox"])
+			return @"checkbox";
+		else if ([type isEqualToString:@"CheckedTextView"])
+			return @"checked";
+		else if ([type isEqualToString:@"Chronometer"])
+			return @"chronometer";
+		else if ([type isEqualToString:@"CompoundButton"])
+			return @"compound";
+		else if ([type isEqualToString:@"DatePicker"])
+			return @"datepicker";
+		else if ([type isEqualToString:@"DialerFilter"])
+			return @"dialerfilter";
+		else if ([type isEqualToString:@"DigitalClock"])
+			return @"digitalclock";
+		else if ([type isEqualToString:@"SlidingDrawer"])
+			return @"drawer";
+		else if ([type isEqualToString:@"ExpandableListView"])
+			return @"expandable";
+		else if ([type isEqualToString:@"ExtractEditText"])
+			return @"extract";
+		else if ([type isEqualToString:@"FragmentTabHost"])
+			return @"fragmenttabhost";
+		else if ([type isEqualToString:@"Gallery"])
+			return @"gallery";
+		else if ([type isEqualToString:@"GestureOverlayView"])
+			return @"gesture";
+		else if ([type isEqualToString:@"GLSurfaceView"])
+			return @"glsurface";
 		else if ([type isEqualToString:@"GridView"])
 			return @"grid";
+		else if ([type isEqualToString:@"GridLayout"])
+			return @"gridlayout";
+		else if ([type isEqualToString:@"HorizontalScrollView"])
+			return @"horizontal";
+		else if ([type isEqualToString:@"ImageView"])
+			return @"image";
+		else if ([type isEqualToString:@"ImageButton"])
+			return @"imagebutton";
+		else if ([type isEqualToString:@"ImageSwitcher"])
+			return @"imageswitcher";
+		else if ([type isEqualToString:@"KeyboardView"])
+			return @"keyboard";
+		else if ([type isEqualToString:@"LinearLayout"])
+			return @"linear";
+		else if ([type isEqualToString:@"ListView"])
+			return @"list";
+		else if ([type isEqualToString:@"MediaController"])
+			return @"media";
+		else if ([type isEqualToString:@"MediaRouteButton"])
+			return @"mediaroutebutton";
+		else if ([type isEqualToString:@"MultiAutoCompleteTextView"])
+			return @"multiautocomplete";
+		else if ([type isEqualToString:@"NumberPicker"])
+			return @"numberpicker";
+		else if ([type isEqualToString:@"PageTabStrip"])
+			return @"pagetabstrip";
+		else if ([type isEqualToString:@"PageTitleStrip"])
+			return @"pagetitlestrip";
+		else if ([type isEqualToString:@"ProgressBar"])
+			return @"progress";
+		else if ([type isEqualToString:@"QuickContactBadge"])
+			return @"quickcontactbadge";
+		else if ([type isEqualToString:@"RadioButton"])
+			return @"radio";
+		else if ([type isEqualToString:@"RadioGroup"])
+			return @"radiogroup";
+		else if ([type isEqualToString:@"RatingBar"])
+			return @"rating";
 		else if ([type isEqualToString:@"RelativeLayout"])
 			return @"relative";
-		else if ([type isEqualToString:@"UIATextView"])
-			return @"linear";
-		else if ([type isEqualToString:@"EditText"])
-			return @"textfield";
+		else if ([type isEqualToString:@"TableRow"])
+			return @"row";
+		else if ([type isEqualToString:@"RSSurfaceView"])
+			return @"rssurface";
+		else if ([type isEqualToString:@"RSTextureView"])
+			return @"rstexture";
 		else if ([type isEqualToString:@"ScrollView"])
 			return @"scroll";
+		else if ([type isEqualToString:@"SearchView"])
+			return @"search";
+		else if ([type isEqualToString:@"SeekBar"])
+			return @"seek";
+		else if ([type isEqualToString:@"Space"])
+			return @"space";
+		else if ([type isEqualToString:@"Spinner"])
+			return @"spinner";
+		else if ([type isEqualToString:@"StackView"])
+			return @"stack";
+		else if ([type isEqualToString:@"SurfaceView"])
+			return @"surface";
+		else if ([type isEqualToString:@"Switch"])
+			return @"switch";
+		else if ([type isEqualToString:@"TabHost"])
+			return @"tabhost";
+		else if ([type isEqualToString:@"TabWidget"])
+			return @"tabwidget";
+		else if ([type isEqualToString:@"TableLayout"])
+			return @"table";
+		else if ([type isEqualToString:@"TextView"])
+			return @"text";
+		else if ([type isEqualToString:@"TextClock"])
+			return @"textclock";
+		else if ([type isEqualToString:@"TextSwitcher"])
+			return @"textswitcher";
+		else if ([type isEqualToString:@"TextureView"])
+			return @"texture";
+		else if ([type isEqualToString:@"EditText"])
+			return @"textfield";
+		else if ([type isEqualToString:@"TimePicker"])
+			return @"timepicker";
+		else if ([type isEqualToString:@"ToggleButton"])
+			return @"toggle";
+		else if ([type isEqualToString:@"TwoLineListItem"])
+			return @"twolinelistitem";
+		else if ([type isEqualToString:@"VideoView"])
+			return @"video";
+		else if ([type isEqualToString:@"ViewAnimator"])
+			return @"viewanimator";
+		else if ([type isEqualToString:@"ViewFlipper"])
+			return @"viewflipper";
+		else if ([type isEqualToString:@"ViewGroup"])
+			return @"viewgroup";
+		else if ([type isEqualToString:@"ViewPager"])
+			return @"viewpager";
+		else if ([type isEqualToString:@"ViewStub"])
+			return @"viewstub";
+		else if ([type isEqualToString:@"ViewSwitcher"])
+			return @"viewswitcher";
+		else if ([type isEqualToString:@"WebView"])
+			return @"web";
+		else if ([type isEqualToString:@"FrameLayout"])
+			return @"window";
+		else if ([type isEqualToString:@"ZoomButton"])
+			return @"zoom";
+		else if ([type isEqualToString:@"ZoomControls"])
+			return @"zoomcontrols";
 		else
 			return self.type;
 	}
