@@ -605,7 +605,6 @@
 												<array class="NSMutableArray" key="NSSubviews"/>
 												<string key="NSFrame">{{275, 4}, {132, 32}}</string>
 												<reference key="NSSuperview" ref="648807293"/>
-												<reference key="NSNextKeyView" ref="416059153"/>
 												<string key="NSReuseIdentifierKey">_NS:9</string>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSButtonCell" key="NSCell" id="52702253">
@@ -3087,26 +3086,6 @@
 						</object>
 					</object>
 					<int key="connectionID">566</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">hidden: model.developerMode</string>
-						<reference key="source" ref="416059153"/>
-						<reference key="destination" ref="963484851"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="416059153"/>
-							<reference key="NSDestination" ref="963484851"/>
-							<string key="NSLabel">hidden: model.developerMode</string>
-							<string key="NSBinding">hidden</string>
-							<string key="NSKeyPath">model.developerMode</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSValueTransformerName</string>
-								<string key="NS.object.0">NSNegateBoolean</string>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">636</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">

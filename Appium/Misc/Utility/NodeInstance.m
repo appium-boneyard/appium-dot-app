@@ -30,7 +30,7 @@
             
             // download node
             NSString *nodeTarPath;
-            NSString *stringURL = @"http://nodejs.org/dist/v0.10.7/node-v0.10.7-darwin-x64.tar.gz";
+            NSString *stringURL = @"http://nodejs.org/dist/v0.10.9/node-v0.10.9-darwin-x64.tar.gz";
             NSLog(@"Download NodeJS binaries from \"%@.\"", stringURL);
             NSURL  *url = [NSURL URLWithString:stringURL];
             NSData *urlData = [NSData dataWithContentsOfURL:url];
@@ -58,13 +58,26 @@
 
 -(void) installPackage:(NSString*)packageName forceInstall:(BOOL)forceInstall
 {
-    
-    NSString *packagePath = [NSString stringWithFormat:@"%@/%@", _nodeRootPath, [NSString stringWithFormat:@"%@/%@", @"node_modules", packageName]];
+
+	NSString *nodeModulesDirectory = [NSString stringWithFormat:@"%@/%@", _nodeRootPath,@"node_modules"];
+    NSString *packagePath = [NSString stringWithFormat:@"%@/%@", nodeModulesDirectory, packageName];
     if (forceInstall || ![[NSFileManager defaultManager] fileExistsAtPath:packagePath])
     {
-        // install package
-        NSString *npmPath = [NSString stringWithFormat:@"%@/%@", _nodeRootPath, @"node/bin/npm"];
-        [Utility runTaskWithBinary:npmPath arguments:[NSArray arrayWithObjects: @"install", packageName, nil] path:_nodeRootPath];
+		// create node modules folder if it does not exist (so npm will install locally)
+		BOOL isDirectory;
+		if(![[NSFileManager defaultManager] fileExistsAtPath:nodeModulesDirectory isDirectory:&isDirectory])
+		{
+			if(![[NSFileManager defaultManager] createDirectoryAtPath:nodeModulesDirectory withIntermediateDirectories:YES attributes:nil error:NULL])
+			{
+				NSLog(@"Error: Create folder failed %@", nodeModulesDirectory);
+			}
+			else
+			{
+				// install package
+				NSString *npmPath = [NSString stringWithFormat:@"%@/%@", _nodeRootPath, @"node/bin/npm"];
+				[Utility runTaskWithBinary:npmPath arguments:[NSArray arrayWithObjects: @"install", packageName, nil] path:_nodeRootPath];
+			}
+		}
     }
 }
 
