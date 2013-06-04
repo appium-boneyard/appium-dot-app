@@ -126,7 +126,7 @@ put(\"y\", %@); \
 
 -(NSString*) sendKeys:(AppiumCodeMakerActionSendKeys*)action
 {
-	return [NSString stringWithFormat:@"%@wd.FindElement(%@).sendKeys(\"%@\");\n", self.indentation, [self locatorString:action.locator], [self escapeString:action.keys]];
+	return [NSString stringWithFormat:@"%@%@.sendKeys(\"%@\");\n", self.indentation, [self locatorString:action.locator], [self escapeString:action.keys]];
 }
 
 -(NSString*) shake:(AppiumCodeMakerActionShake*)action
@@ -151,7 +151,7 @@ put(\"duration\", %@); \
 
 -(NSString*) tap:(AppiumCodeMakerActionTap*)action
 {
-	return [NSString stringWithFormat:@"%@wd.click(%@);\n", self.indentation, [self locatorString:action.locator]];
+	return [NSString stringWithFormat:@"%@%@.click();\n", self.indentation, [self locatorString:action.locator]];
 }
 
 #pragma mark - Helper Methods
@@ -169,9 +169,9 @@ put(\"duration\", %@); \
 	switch(newLocator.locatorType)
 	{
 		case APPIUM_CODE_MAKER_LOCATOR_TYPE_NAME:
-			return [NSString stringWithFormat:@"By.Name(\"%@\")", [self escapeString:newLocator.locatorString]];
+			return [NSString stringWithFormat:@"wd.findElement(By.name(\"%@\"))", [self escapeString:newLocator.locatorString]];
 		case APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH:
-			return [NSString stringWithFormat:@"By.Xpath(\"%@\")", [self escapeString:newLocator.locatorString]];
+			return [NSString stringWithFormat:@"wd.findElement(By.xpath(\"%@\"))", [self escapeString:newLocator.locatorString]];
 		default: return nil;
 	}
 }
