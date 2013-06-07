@@ -26,6 +26,7 @@
 @property NSNumber *s_BreakOnNodeAppStart;
 @property NSString *s_BundleID;
 @property NSNumber *s_CheckForUpdates;
+@property NSString *s_CustomAndroidSDKPath;
 @property NSNumber *s_DeveloperMode;
 @property NSString *s_ExternalAppiumPackagePath;
 @property NSString *s_ExternalNodeJSBinaryPath;
@@ -36,6 +37,8 @@
 @property (readonly)NSString *s_LogText;
 @property NSNumber *s_NodeDebugPort;
 @property (readonly)NSString *s_NodePath;
+@property NSString *s_RobotAddress;
+@property NSNumber *s_RobotPort;
 @property NSNumber *s_Port;
 @property NSNumber *s_PrelaunchApp;
 @property NSNumber *s_ResetApplicationState;
@@ -48,6 +51,7 @@
 @property NSNumber *s_UseAppPath;
 @property NSNumber *s_UseAVD;
 @property NSNumber *s_UseBundleID;
+@property NSNumber *s_UseCustomAndroidSDKPath;
 @property NSNumber *s_UseExternalAppiumPackage;
 @property NSNumber *s_UseExternalNodeJSBinary;
 @property NSNumber *s_UseMobileSafari;
@@ -55,6 +59,7 @@
 @property NSNumber *s_UseNodeDebugger;
 @property NSNumber *s_UseQuietLogging;
 @property NSNumber *s_UseRemoteServer;
+@property NSNumber *s_UseRobot;
 @property NSNumber *s_UseUDID;
 
 @property (readonly) AppiumInspectorWindowController* s_InspectorWindow;

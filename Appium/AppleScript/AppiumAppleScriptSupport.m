@@ -99,11 +99,17 @@
 -(NSNumber*) s_DeveloperMode { return [NSNumber numberWithBool:[[self model] developerMode]]; }
 -(void) setS_DeveloperMode:(NSNumber *)s_DeveloperMode { [[self model] setDeveloperMode:[s_DeveloperMode boolValue]]; }
 
+-(NSString*) s_CustomAndroidSDKPath { return [[self model] customAndroidSDKPath];}
+-(void) setS_CustomAndroidSDKPath:(NSString *)s_CustomAndroidSDKPath { [[self model] setCustomAndroidSDKPath:s_CustomAndroidSDKPath]; }
+
 -(NSString*) s_ExternalAppiumPackagePath { return [[self model] externalAppiumPackagePath];}
 -(void) setS_ExternalAppiumPackagePath:(NSString *)s_ExternalAppiumPackagePath { [[self model] setExternalAppiumPackagePath:s_ExternalAppiumPackagePath]; }
 
 -(NSString*) s_ExternalNodeJSBinaryPath { return [[self model] externalNodeJSBinaryPath];}
 -(void) setS_ExternalNodeJSBinaryPath:(NSString *)s_ExternalNodeJSBinaryPath { [[self model] setExternalNodeJSBinaryPath:s_ExternalNodeJSBinaryPath]; }
+
+-(NSNumber*) s_UseCustomAndroidSDKPath { return [NSNumber numberWithBool:[[self model] useCustomAndroidSDKPath]]; }
+-(void) setS_UseCustomAndroidSDKPath:(NSNumber *)s_UseCustomAndroidSDKPath { [[self model] setUseCustomAndroidSDKPath:[s_UseCustomAndroidSDKPath boolValue]]; }
 
 -(NSNumber*) s_UseExternalAppiumPackage { return [NSNumber numberWithBool:[[self model] useExternalAppiumPackage]]; }
 -(void) setS_UseExternalAppiumPackage:(NSNumber *)s_UseExternalAppiumPackage { [[self model] setUseExternalAppiumPackage:[s_UseExternalAppiumPackage boolValue]]; }
@@ -125,6 +131,15 @@
 
 -(NSNumber*) s_UseQuietLogging { return [NSNumber numberWithBool:self.model.useQuietLogging];}
 -(void) setS_UseQuietLogging:(NSNumber *)s_UseQuietLogging { [[self model] setUseQuietLogging:[s_UseQuietLogging boolValue]]; }
+
+-(NSNumber*) s_UseRobot { return [NSNumber numberWithBool:self.model.useRobot];}
+-(void) setS_UseRobot:(NSNumber *)s_UseRobot { [[self model] setUseRobot:[s_UseRobot boolValue]]; }
+
+-(NSString*) s_RobotAddress { return [[self model] robotAddress]; }
+-(void) setS_RobotAddress:(NSString *)s_RobotAddress{ [[self model] setRobotAddress:s_RobotAddress]; }
+
+-(NSNumber*) s_RobotPort { return [NSNumber numberWithInt:[[[self model] robotPort] intValue]]; }
+-(void) setS_RobotPort:(NSNumber *)s_RobotPort { [[self model] setRobotPort:s_RobotPort]; }
 
 -(AppiumInspectorWindowController*) s_InspectorWindow
 {

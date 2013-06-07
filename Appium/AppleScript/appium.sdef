@@ -61,6 +61,9 @@
 			<property name="check for updates" code="apcu" description="true if appium will check for updates" type="boolean">
 				<cocoa key="s_CheckForUpdates"/>
 			</property>
+			<property name="custom android sdk path" code="acas" description="custom path to android sdk" type="text">
+				<cocoa key="s_CustomAndroidSDKPath"/>
+			</property>
 			<property name="developer mode" code="apdm" description="true if appium is in developer mode" type="boolean">
 				<cocoa key="s_DeveloperMode"/>
 			</property>
@@ -97,6 +100,12 @@
 			<property name="reset app state" code="aprs" description="true if warp application state will be reset after the session" type="boolean">
 				<cocoa key="s_ResetApplicationState"/>
 			</property>
+			<property name="robot address" code="amra" description="ip address for the robot" type="text">
+				<cocoa key="s_RobotAddress"/>
+			</property>
+			<property name="robot port" code="amrp" description="port for the robot" type="integer">
+				<cocoa key="s_RobotPort"/>
+			</property>
 			<property name="server address" code="amsa" description="ip address for the appium server" type="text">
 				<cocoa key="s_IPAddress"/>
 			</property>
@@ -124,6 +133,9 @@
 			<property name="use bundle id" code="aubi" description="true if appium is using the bundle id" type="boolean">
 				<cocoa key="s_UseBundleID"/>
 			</property>
+			<property name="use custom android sdk path" code="auca" description="true if a custom android sdk path with be used" type="boolean">
+				<cocoa key="s_UseCustomAndroidSDKPath"/>
+			</property>
 			<property name="use external appium package" code="auea" description="true if an external appium package path with be used" type="boolean">
 				<cocoa key="s_UseExternalAppiumPackage"/>
 			</property>
@@ -141,6 +153,9 @@
 			</property>
 			<property name="use node debugger" code="aund" description="true if appium will use node debugging" type="boolean">
 				<cocoa key="s_UseNodeDebugger"/>
+			</property>
+			<property name="use robot" code="apur" description="true if a robot will be used" type="boolean">
+				<cocoa key="s_UseRobot"/>
 			</property>
 			<property name="use quiet logging" code="auql" description="true if appium will use quiet logging" type="boolean">
 				<cocoa key="s_UseQuietLogging"/>
