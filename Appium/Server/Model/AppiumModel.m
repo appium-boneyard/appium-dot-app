@@ -78,6 +78,9 @@ BOOL _isServerListening;
 -(BOOL) checkForUpdates { return [_defaults boolForKey:APPIUM_PLIST_CHECK_FOR_UPDATES]; }
 -(void) setCheckForUpdates:(BOOL)checkForUpdates { [_defaults setBool:checkForUpdates forKey:APPIUM_PLIST_CHECK_FOR_UPDATES]; }
 
+-(NSString*) customAndroidSDKPath { return [_defaults stringForKey:APPIUM_PLIST_CUSTOM_ANDROID_SDK_PATH]; }
+-(void) setCustomAndroidSDKPath:(NSString *)customAndroidSDKPath { [_defaults setValue:customAndroidSDKPath forKey:APPIUM_PLIST_CUSTOM_ANDROID_SDK_PATH]; }
+
 -(NSString*) externalAppiumPackagePath { return [_defaults stringForKey:APPIUM_PLIST_EXTERNAL_APPIUM_PACKAGE_PATH]; }
 -(void) setExternalAppiumPackagePath:(NSString *)customAppiumPackagePath { [_defaults setValue:customAppiumPackagePath forKey:APPIUM_PLIST_EXTERNAL_APPIUM_PACKAGE_PATH]; }
 
@@ -178,10 +181,10 @@ BOOL _isServerListening;
 }
 
 -(BOOL) useBundleID { return [_defaults boolForKey:APPIUM_PLIST_USE_BUNDLEID]; }
--(void) setUseBundleID:(BOOL)useBundleID
-{
-	[_defaults setBool:useBundleID forKey:APPIUM_PLIST_USE_BUNDLEID];
-}
+-(void) setUseBundleID:(BOOL)useBundleID { [_defaults setBool:useBundleID forKey:APPIUM_PLIST_USE_BUNDLEID]; }
+
+-(BOOL) useCustomAndroidSDKPath { return [_defaults boolForKey:APPIUM_PLIST_USE_CUSTOM_ANDROID_SDK_PATH]; }
+-(void) setUseCustomAndroidSDKPath:(BOOL)useCustomAndroidSDKPath { [_defaults setBool:useCustomAndroidSDKPath forKey:APPIUM_PLIST_USE_CUSTOM_ANDROID_SDK_PATH]; }
 
 -(BOOL) useExternalAppiumPackage { return self.developerMode && [_defaults boolForKey:APPIUM_PLIST_USE_EXTERNAL_APPIUM_PACKAGE]; }
 -(void) setUseExternalAppiumPackage:(BOOL)useCustomAppiumPackage { [_defaults setBool:useCustomAppiumPackage forKey:APPIUM_PLIST_USE_EXTERNAL_APPIUM_PACKAGE]; }
@@ -265,6 +268,10 @@ BOOL _isServerListening;
 	else
 	{
 		nodeCommandString = [NSString stringWithFormat:@"%@/%@%@ server.js", [[NSBundle mainBundle]resourcePath], @"node/bin/node", nodeDebuggingArguments];
+	}
+	if (self.useCustomAndroidSDKPath)
+	{
+		nodeCommandString = [NSString stringWithFormat:@"export ANDROID_HOME=\"%@\"; %@", self.customAndroidSDKPath, nodeCommandString];
 	}
 	
 	if (![self.ipAddress isEqualTo:@"0.0.0.0"])

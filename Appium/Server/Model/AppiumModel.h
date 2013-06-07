@@ -41,6 +41,7 @@ typedef enum iOSOrientationTypes
 @property BOOL breakOnNodeApplicationStart;
 @property NSString *bundleID;
 @property BOOL checkForUpdates;
+@property NSString *customAndroidSDKPath;
 @property NSString *externalAppiumPackagePath;
 @property NSString *externalNodeJSBinaryPath;
 @property BOOL developerMode;
@@ -69,6 +70,7 @@ typedef enum iOSOrientationTypes
 @property BOOL useAppPath;
 @property BOOL useAVD;
 @property BOOL useBundleID;
+@property BOOL useCustomAndroidSDKPath;
 @property BOOL useExternalAppiumPackage;
 @property BOOL useExternalNodeJSBinary;
 @property BOOL useMobileSafari;

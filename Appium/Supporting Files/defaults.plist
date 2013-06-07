@@ -24,6 +24,8 @@
 	<true/>
 	<key>CodeMaker Language</key>
 	<string>Java</string>
+	<key>Custom Android SDK Path</key>
+	<string></string>
 	<key>Developer Mode</key>
 	<false/>
 	<key>Device</key>
@@ -79,6 +81,8 @@
 	<false/>
 	<key>Use CodeMaker Boilerplate</key>
 	<true/>
+	<key>Use Custom Android SDK Path</key>
+	<false/>
 	<key>Use External NodeJS Binary</key>
 	<false/>
 	<key>Use External Appium Package</key>
