@@ -41,6 +41,7 @@ typedef enum iOSOrientationTypes
 @property BOOL breakOnNodeApplicationStart;
 @property NSString *bundleID;
 @property BOOL checkForUpdates;
+@property NSString *customAndroidSDKPath;
 @property NSString *externalAppiumPackagePath;
 @property NSString *externalNodeJSBinaryPath;
 @property BOOL developerMode;
@@ -48,6 +49,8 @@ typedef enum iOSOrientationTypes
 @property NSString *deviceToForceString;
 @property BOOL forceDevice;
 @property BOOL forceOrientation;
+@property (readonly) BOOL isAndroid;
+@property (readonly) BOOL isIOS;
 @property BOOL isServerRunning;
 @property BOOL isServerListening;
 @property NSString *ipAddress;
@@ -61,6 +64,7 @@ typedef enum iOSOrientationTypes
 @property BOOL resetApplicationState;
 @property NSString *robotAddress;
 @property NSNumber *robotPort;
+@property NSNumber *selendroidPort;
 @property NSString *udid;
 @property BOOL useAndroidActivity;
 @property BOOL useAndroidDeviceReadyTimeout;
@@ -69,6 +73,7 @@ typedef enum iOSOrientationTypes
 @property BOOL useAppPath;
 @property BOOL useAVD;
 @property BOOL useBundleID;
+@property BOOL useCustomAndroidSDKPath;
 @property BOOL useExternalAppiumPackage;
 @property BOOL useExternalNodeJSBinary;
 @property BOOL useMobileSafari;
@@ -77,6 +82,7 @@ typedef enum iOSOrientationTypes
 @property BOOL useQuietLogging;
 @property BOOL useRemoteServer;
 @property BOOL useRobot;
+@property BOOL useSelendroidPort;
 @property BOOL useUDID;
 
 -(BOOL)killServer;

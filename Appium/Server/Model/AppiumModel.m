@@ -78,11 +78,14 @@ BOOL _isServerListening;
 -(BOOL) checkForUpdates { return [_defaults boolForKey:APPIUM_PLIST_CHECK_FOR_UPDATES]; }
 -(void) setCheckForUpdates:(BOOL)checkForUpdates { [_defaults setBool:checkForUpdates forKey:APPIUM_PLIST_CHECK_FOR_UPDATES]; }
 
+-(NSString*) customAndroidSDKPath { return [_defaults stringForKey:APPIUM_PLIST_CUSTOM_ANDROID_SDK_PATH]; }
+-(void) setCustomAndroidSDKPath:(NSString *)customAndroidSDKPath { [_defaults setValue:customAndroidSDKPath forKey:APPIUM_PLIST_CUSTOM_ANDROID_SDK_PATH]; }
+
 -(NSString*) externalAppiumPackagePath { return [_defaults stringForKey:APPIUM_PLIST_EXTERNAL_APPIUM_PACKAGE_PATH]; }
--(void) setExternalAppiumPackagePath:(NSString *)customAppiumPackagePath { [_defaults setValue:customAppiumPackagePath forKey:APPIUM_PLIST_EXTERNAL_APPIUM_PACKAGE_PATH]; }
+-(void) setExternalAppiumPackagePath:(NSString *)externalAppiumPackagePath { [_defaults setValue:externalAppiumPackagePath forKey:APPIUM_PLIST_EXTERNAL_APPIUM_PACKAGE_PATH]; }
 
 -(NSString*) externalNodeJSBinaryPath { return [_defaults stringForKey:APPIUM_PLIST_EXTERNAL_NODEJS_BINARY_PATH]; }
--(void) setExternalNodeJSBinaryPath:(NSString *)customNodeJSBinaryPath { [_defaults setValue:customNodeJSBinaryPath forKey:APPIUM_PLIST_EXTERNAL_NODEJS_BINARY_PATH]; }
+-(void) setExternalNodeJSBinaryPath:(NSString *)externalNodeJSBinaryPath { [_defaults setValue:externalNodeJSBinaryPath forKey:APPIUM_PLIST_EXTERNAL_NODEJS_BINARY_PATH]; }
 
 -(BOOL) developerMode { return [_defaults boolForKey:APPIUM_PLIST_DEVELOPER_MODE]; }
 -(void) setDeveloperMode:(BOOL)developerMode { [_defaults setBool:developerMode forKey:APPIUM_PLIST_DEVELOPER_MODE]; }
@@ -97,6 +100,9 @@ BOOL _isServerListening;
 
 -(BOOL) forceOrientation { return [_defaults boolForKey:APPIUM_PLIST_FORCE_ORIENTATION]; }
 -(void) setForceOrientation:(BOOL)forceOrientation { [_defaults setBool:forceOrientation forKey:APPIUM_PLIST_FORCE_ORIENTATION]; }
+
+-(BOOL) isAndroid { return self.platform == Platform_Android; }
+-(BOOL) isIOS { return self.platform == Platform_iOS; }
 
 -(BOOL) isServerRunning { return _isServerRunning; }
 -(void) setIsServerRunning:(BOOL)isServerRunning { _isServerRunning = isServerRunning; }
@@ -150,6 +156,9 @@ BOOL _isServerListening;
 -(NSNumber*) robotPort { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_ROBOT_PORT] intValue]]; }
 -(void) setRobotPort:(NSNumber *)robotPort { [[NSUserDefaults standardUserDefaults] setValue:robotPort forKey:APPIUM_PLIST_ROBOT_PORT]; }
 
+-(NSNumber*) selendroidPort { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_SELENDROID_PORT] intValue]]; }
+-(void) setSelendroidPort:(NSNumber *)selendroidPort{ [[NSUserDefaults standardUserDefaults] setValue:selendroidPort forKey:APPIUM_PLIST_SELENDROID_PORT]; }
+
 -(NSString*) udid {return [_defaults stringForKey:APPIUM_PLIST_UDID];}
 -(void) setUdid:(NSString *)udid { [ _defaults setValue:udid forKey:APPIUM_PLIST_UDID]; }
 
@@ -166,22 +175,16 @@ BOOL _isServerListening;
 -(void) setUseAndroidWaitActivity:(BOOL)useAndroidWaitActivity { [_defaults setBool:useAndroidWaitActivity forKey:APPIUM_PLIST_USE_ANDROID_WAIT_ACTIVITY]; }
 
 -(BOOL) useAppPath { return [_defaults boolForKey:APPIUM_PLIST_USE_APP_PATH]; }
--(void) setUseAppPath:(BOOL)useAppPath
-{
-	[_defaults setBool:useAppPath forKey:APPIUM_PLIST_USE_APP_PATH];
-}
+-(void) setUseAppPath:(BOOL)useAppPath { [_defaults setBool:useAppPath forKey:APPIUM_PLIST_USE_APP_PATH]; }
 
 -(BOOL) useAVD { return [_defaults boolForKey:APPIUM_PLIST_USE_AVD]; }
--(void) setUseAVD:(BOOL)useAVD
-{
-	[_defaults setBool:useAVD forKey:APPIUM_PLIST_USE_AVD];
-}
+-(void) setUseAVD:(BOOL)useAVD { [_defaults setBool:useAVD forKey:APPIUM_PLIST_USE_AVD]; }
 
 -(BOOL) useBundleID { return [_defaults boolForKey:APPIUM_PLIST_USE_BUNDLEID]; }
--(void) setUseBundleID:(BOOL)useBundleID
-{
-	[_defaults setBool:useBundleID forKey:APPIUM_PLIST_USE_BUNDLEID];
-}
+-(void) setUseBundleID:(BOOL)useBundleID { [_defaults setBool:useBundleID forKey:APPIUM_PLIST_USE_BUNDLEID]; }
+
+-(BOOL) useCustomAndroidSDKPath { return [_defaults boolForKey:APPIUM_PLIST_USE_CUSTOM_ANDROID_SDK_PATH]; }
+-(void) setUseCustomAndroidSDKPath:(BOOL)useCustomAndroidSDKPath { [_defaults setBool:useCustomAndroidSDKPath forKey:APPIUM_PLIST_USE_CUSTOM_ANDROID_SDK_PATH]; }
 
 -(BOOL) useExternalAppiumPackage { return self.developerMode && [_defaults boolForKey:APPIUM_PLIST_USE_EXTERNAL_APPIUM_PACKAGE]; }
 -(void) setUseExternalAppiumPackage:(BOOL)useCustomAppiumPackage { [_defaults setBool:useCustomAppiumPackage forKey:APPIUM_PLIST_USE_EXTERNAL_APPIUM_PACKAGE]; }
@@ -190,10 +193,7 @@ BOOL _isServerListening;
 -(void) setUseExternalNodeJSBinary:(BOOL)useCustomNodeJSBinary { [_defaults setBool:useCustomNodeJSBinary forKey:APPIUM_PLIST_USE_EXTERNAL_NODEJS_BINARY]; }
 
 -(BOOL) useMobileSafari { return [_defaults boolForKey:APPIUM_PLIST_USE_MOBILE_SAFARI]; }
--(void) setUseMobileSafari:(BOOL)useMobileSafari
-{
-	[_defaults setBool:useMobileSafari forKey:APPIUM_PLIST_USE_MOBILE_SAFARI];
-}
+-(void) setUseMobileSafari:(BOOL)useMobileSafari { [_defaults setBool:useMobileSafari forKey:APPIUM_PLIST_USE_MOBILE_SAFARI]; }
 
 -(BOOL) useNativeInstrumentsLib { return [_defaults boolForKey:APPIUM_PLIST_USE_NATIVE_INSTRUMENTS_LIB]; }
 -(void) setUseNativeInstrumentsLib:(BOOL)useInstrumentsWithoutDelay { [_defaults setBool:useInstrumentsWithoutDelay forKey:APPIUM_PLIST_USE_NATIVE_INSTRUMENTS_LIB]; }
@@ -204,13 +204,10 @@ BOOL _isServerListening;
 -(BOOL) useRobot { return [_defaults boolForKey:APPIUM_PLIST_USE_ROBOT]; }
 -(void) setUseRobot:(BOOL)useRobot { [_defaults setBool:useRobot forKey:APPIUM_PLIST_USE_ROBOT]; }
 
--(BOOL) useQuietLogging { return [_defaults boolForKey:APPIUM_PLIST_VERBOSE]; }
--(void) setUseQuietLogging:(BOOL)logVerbose { [_defaults setBool:logVerbose forKey:APPIUM_PLIST_VERBOSE]; }
+-(BOOL) useQuietLogging { return [_defaults boolForKey:APPIUM_PLIST_USE_QUIET_LOGGING]; }
+-(void) setUseQuietLogging:(BOOL)useQuietLogging { [_defaults setBool:useQuietLogging forKey:APPIUM_PLIST_USE_QUIET_LOGGING]; }
 
--(BOOL) useRemoteServer
-{
-	return [_defaults boolForKey:APPIUM_PLIST_USE_REMOTE_SERVER] && [self developerMode];
-}
+-(BOOL) useRemoteServer { return [_defaults boolForKey:APPIUM_PLIST_USE_REMOTE_SERVER] && [self developerMode]; }
 -(void) setUseRemoteServer:(BOOL)useRemoteServer
 {
 	[_defaults setBool:useRemoteServer forKey:APPIUM_PLIST_USE_REMOTE_SERVER];
@@ -221,11 +218,11 @@ BOOL _isServerListening;
 	[self setIsServerListening:useRemoteServer];
 }
 
+-(BOOL) useSelendroidPort { return [_defaults boolForKey:APPIUM_PLIST_USE_SELENDROID_PORT]; }
+-(void) setUseSelendroidPort:(BOOL)useSelendroidPort { [_defaults setBool:useSelendroidPort forKey:APPIUM_PLIST_USE_SELENDROID_PORT]; }
+
 -(BOOL) useUDID { return [_defaults boolForKey:APPIUM_PLIST_USE_UDID]; }
--(void) setUseUDID:(BOOL)useUDID
-{
-	[_defaults setBool:useUDID forKey:APPIUM_PLIST_USE_UDID];
-}
+-(void) setUseUDID:(BOOL)useUDID { [_defaults setBool:useUDID forKey:APPIUM_PLIST_USE_UDID]; }
 
 #pragma mark - Methods
 
@@ -265,6 +262,10 @@ BOOL _isServerListening;
 	else
 	{
 		nodeCommandString = [NSString stringWithFormat:@"%@/%@%@ server.js", [[NSBundle mainBundle]resourcePath], @"node/bin/node", nodeDebuggingArguments];
+	}
+	if (self.useCustomAndroidSDKPath)
+	{
+		nodeCommandString = [NSString stringWithFormat:@"export ANDROID_HOME=\"%@\"; %@", self.customAndroidSDKPath, nodeCommandString];
 	}
 	
 	if (![self.ipAddress isEqualTo:@"0.0.0.0"])
@@ -373,6 +374,10 @@ BOOL _isServerListening;
 		if (self.androidFullReset)
 		{
 			nodeCommandString = [nodeCommandString stringByAppendingString:@" --full-reset"];
+		}
+		if (self.useSelendroidPort)
+		{
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--selendroid-port", [self.selendroidPort intValue]];
 		}
     }
 	

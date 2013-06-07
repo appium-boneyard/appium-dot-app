@@ -24,6 +24,8 @@
 	<true/>
 	<key>CodeMaker Language</key>
 	<string>Java</string>
+	<key>Custom Android SDK Path</key>
+	<string></string>
 	<key>Developer Mode</key>
 	<false/>
 	<key>Device</key>
@@ -55,6 +57,8 @@
 	<string>0.0.0.0</string>
 	<key>Robot Port</key>
 	<real>4</real>
+	<key>Selendroid Port</key>
+	<integer>8080</integer>
 	<key>Server Address</key>
 	<string>0.0.0.0</string>
 	<key>Server Port</key>
@@ -79,6 +83,8 @@
 	<false/>
 	<key>Use CodeMaker Boilerplate</key>
 	<true/>
+	<key>Use Custom Android SDK Path</key>
+	<false/>
 	<key>Use External NodeJS Binary</key>
 	<false/>
 	<key>Use External Appium Package</key>
@@ -91,13 +97,15 @@
 	<false/>
 	<key>Use NodeJS Debugging</key>
 	<false/>
+	<key>Use Quiet Logging</key>
+	<false/>
 	<key>Use Robot</key>
+	<false/>
+	<key>Use Selendroid Port</key>
 	<false/>
 	<key>Use UDID</key>
 	<false/>
 	<key>Use XPath Only</key>
 	<false/>
-	<key>Verbose</key>
-	<true/>
 </dict>
 </plist>
