@@ -156,6 +156,9 @@ BOOL _isServerListening;
 -(NSNumber*) robotPort { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_ROBOT_PORT] intValue]]; }
 -(void) setRobotPort:(NSNumber *)robotPort { [[NSUserDefaults standardUserDefaults] setValue:robotPort forKey:APPIUM_PLIST_ROBOT_PORT]; }
 
+-(NSNumber*) selendroidPort { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_SELENDROID_PORT] intValue]]; }
+-(void) setSelendroidPort:(NSNumber *)selendroidPort{ [[NSUserDefaults standardUserDefaults] setValue:selendroidPort forKey:APPIUM_PLIST_SELENDROID_PORT]; }
+
 -(NSString*) udid {return [_defaults stringForKey:APPIUM_PLIST_UDID];}
 -(void) setUdid:(NSString *)udid { [ _defaults setValue:udid forKey:APPIUM_PLIST_UDID]; }
 
@@ -214,6 +217,9 @@ BOOL _isServerListening;
 	}
 	[self setIsServerListening:useRemoteServer];
 }
+
+-(BOOL) useSelendroidPort { return [_defaults boolForKey:APPIUM_PLIST_USE_SELENDROID_PORT]; }
+-(void) setUseSelendroidPort:(BOOL)useSelendroidPort { [_defaults setBool:useSelendroidPort forKey:APPIUM_PLIST_USE_SELENDROID_PORT]; }
 
 -(BOOL) useUDID { return [_defaults boolForKey:APPIUM_PLIST_USE_UDID]; }
 -(void) setUseUDID:(BOOL)useUDID { [_defaults setBool:useUDID forKey:APPIUM_PLIST_USE_UDID]; }
@@ -368,6 +374,10 @@ BOOL _isServerListening;
 		if (self.androidFullReset)
 		{
 			nodeCommandString = [nodeCommandString stringByAppendingString:@" --full-reset"];
+		}
+		if (self.useSelendroidPort)
+		{
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--selendroid-port", [self.selendroidPort intValue]];
 		}
     }
 	

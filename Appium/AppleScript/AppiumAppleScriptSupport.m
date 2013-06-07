@@ -102,6 +102,9 @@
 -(NSString*) s_CustomAndroidSDKPath { return [[self model] customAndroidSDKPath];}
 -(void) setS_CustomAndroidSDKPath:(NSString *)s_CustomAndroidSDKPath { [[self model] setCustomAndroidSDKPath:s_CustomAndroidSDKPath]; }
 
+-(NSNumber*) s_SelendroidPort { return [NSNumber numberWithInt:[[[self model] selendroidPort] intValue]]; }
+-(void) setS_SelendroidPort:(NSNumber *)s_SelendroidPort { [[self model] setSelendroidPort:s_SelendroidPort]; }
+
 -(NSString*) s_ExternalAppiumPackagePath { return [[self model] externalAppiumPackagePath];}
 -(void) setS_ExternalAppiumPackagePath:(NSString *)s_ExternalAppiumPackagePath { [[self model] setExternalAppiumPackagePath:s_ExternalAppiumPackagePath]; }
 
@@ -110,6 +113,9 @@
 
 -(NSNumber*) s_UseCustomAndroidSDKPath { return [NSNumber numberWithBool:[[self model] useCustomAndroidSDKPath]]; }
 -(void) setS_UseCustomAndroidSDKPath:(NSNumber *)s_UseCustomAndroidSDKPath { [[self model] setUseCustomAndroidSDKPath:[s_UseCustomAndroidSDKPath boolValue]]; }
+
+-(NSNumber*) s_UseCustomSelendroidPort { return [NSNumber numberWithBool:[[self model] useSelendroidPort]]; }
+-(void) setS_UseCustomSelendroidPort:(NSNumber *)s_UseCustomSelendroidPort { [[self model] setUseSelendroidPort:[s_UseCustomSelendroidPort boolValue]]; }
 
 -(NSNumber*) s_UseExternalAppiumPackage { return [NSNumber numberWithBool:[[self model] useExternalAppiumPackage]]; }
 -(void) setS_UseExternalAppiumPackage:(NSNumber *)s_UseExternalAppiumPackage { [[self model] setUseExternalAppiumPackage:[s_UseExternalAppiumPackage boolValue]]; }

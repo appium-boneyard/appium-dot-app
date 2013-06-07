@@ -39,6 +39,7 @@
 @property (readonly)NSString *s_NodePath;
 @property NSString *s_RobotAddress;
 @property NSNumber *s_RobotPort;
+@property NSNumber *s_SelendroidPort;
 @property NSNumber *s_Port;
 @property NSNumber *s_PrelaunchApp;
 @property NSNumber *s_ResetApplicationState;
@@ -52,6 +53,7 @@
 @property NSNumber *s_UseAVD;
 @property NSNumber *s_UseBundleID;
 @property NSNumber *s_UseCustomAndroidSDKPath;
+@property NSNumber *s_UseCustomSelendroidPort;
 @property NSNumber *s_UseExternalAppiumPackage;
 @property NSNumber *s_UseExternalNodeJSBinary;
 @property NSNumber *s_UseMobileSafari;
