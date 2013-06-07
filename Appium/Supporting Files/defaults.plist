@@ -95,13 +95,13 @@
 	<false/>
 	<key>Use NodeJS Debugging</key>
 	<false/>
+	<key>Use Quiet Logging</key>
+	<false/>
 	<key>Use Robot</key>
 	<false/>
 	<key>Use UDID</key>
 	<false/>
 	<key>Use XPath Only</key>
 	<false/>
-	<key>Verbose</key>
-	<true/>
 </dict>
 </plist>

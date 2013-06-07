@@ -82,10 +82,10 @@ BOOL _isServerListening;
 -(void) setCustomAndroidSDKPath:(NSString *)customAndroidSDKPath { [_defaults setValue:customAndroidSDKPath forKey:APPIUM_PLIST_CUSTOM_ANDROID_SDK_PATH]; }
 
 -(NSString*) externalAppiumPackagePath { return [_defaults stringForKey:APPIUM_PLIST_EXTERNAL_APPIUM_PACKAGE_PATH]; }
--(void) setExternalAppiumPackagePath:(NSString *)customAppiumPackagePath { [_defaults setValue:customAppiumPackagePath forKey:APPIUM_PLIST_EXTERNAL_APPIUM_PACKAGE_PATH]; }
+-(void) setExternalAppiumPackagePath:(NSString *)externalAppiumPackagePath { [_defaults setValue:externalAppiumPackagePath forKey:APPIUM_PLIST_EXTERNAL_APPIUM_PACKAGE_PATH]; }
 
 -(NSString*) externalNodeJSBinaryPath { return [_defaults stringForKey:APPIUM_PLIST_EXTERNAL_NODEJS_BINARY_PATH]; }
--(void) setExternalNodeJSBinaryPath:(NSString *)customNodeJSBinaryPath { [_defaults setValue:customNodeJSBinaryPath forKey:APPIUM_PLIST_EXTERNAL_NODEJS_BINARY_PATH]; }
+-(void) setExternalNodeJSBinaryPath:(NSString *)externalNodeJSBinaryPath { [_defaults setValue:externalNodeJSBinaryPath forKey:APPIUM_PLIST_EXTERNAL_NODEJS_BINARY_PATH]; }
 
 -(BOOL) developerMode { return [_defaults boolForKey:APPIUM_PLIST_DEVELOPER_MODE]; }
 -(void) setDeveloperMode:(BOOL)developerMode { [_defaults setBool:developerMode forKey:APPIUM_PLIST_DEVELOPER_MODE]; }
@@ -169,16 +169,10 @@ BOOL _isServerListening;
 -(void) setUseAndroidWaitActivity:(BOOL)useAndroidWaitActivity { [_defaults setBool:useAndroidWaitActivity forKey:APPIUM_PLIST_USE_ANDROID_WAIT_ACTIVITY]; }
 
 -(BOOL) useAppPath { return [_defaults boolForKey:APPIUM_PLIST_USE_APP_PATH]; }
--(void) setUseAppPath:(BOOL)useAppPath
-{
-	[_defaults setBool:useAppPath forKey:APPIUM_PLIST_USE_APP_PATH];
-}
+-(void) setUseAppPath:(BOOL)useAppPath { [_defaults setBool:useAppPath forKey:APPIUM_PLIST_USE_APP_PATH]; }
 
 -(BOOL) useAVD { return [_defaults boolForKey:APPIUM_PLIST_USE_AVD]; }
--(void) setUseAVD:(BOOL)useAVD
-{
-	[_defaults setBool:useAVD forKey:APPIUM_PLIST_USE_AVD];
-}
+-(void) setUseAVD:(BOOL)useAVD { [_defaults setBool:useAVD forKey:APPIUM_PLIST_USE_AVD]; }
 
 -(BOOL) useBundleID { return [_defaults boolForKey:APPIUM_PLIST_USE_BUNDLEID]; }
 -(void) setUseBundleID:(BOOL)useBundleID { [_defaults setBool:useBundleID forKey:APPIUM_PLIST_USE_BUNDLEID]; }
@@ -193,10 +187,7 @@ BOOL _isServerListening;
 -(void) setUseExternalNodeJSBinary:(BOOL)useCustomNodeJSBinary { [_defaults setBool:useCustomNodeJSBinary forKey:APPIUM_PLIST_USE_EXTERNAL_NODEJS_BINARY]; }
 
 -(BOOL) useMobileSafari { return [_defaults boolForKey:APPIUM_PLIST_USE_MOBILE_SAFARI]; }
--(void) setUseMobileSafari:(BOOL)useMobileSafari
-{
-	[_defaults setBool:useMobileSafari forKey:APPIUM_PLIST_USE_MOBILE_SAFARI];
-}
+-(void) setUseMobileSafari:(BOOL)useMobileSafari { [_defaults setBool:useMobileSafari forKey:APPIUM_PLIST_USE_MOBILE_SAFARI]; }
 
 -(BOOL) useNativeInstrumentsLib { return [_defaults boolForKey:APPIUM_PLIST_USE_NATIVE_INSTRUMENTS_LIB]; }
 -(void) setUseNativeInstrumentsLib:(BOOL)useInstrumentsWithoutDelay { [_defaults setBool:useInstrumentsWithoutDelay forKey:APPIUM_PLIST_USE_NATIVE_INSTRUMENTS_LIB]; }
@@ -207,13 +198,10 @@ BOOL _isServerListening;
 -(BOOL) useRobot { return [_defaults boolForKey:APPIUM_PLIST_USE_ROBOT]; }
 -(void) setUseRobot:(BOOL)useRobot { [_defaults setBool:useRobot forKey:APPIUM_PLIST_USE_ROBOT]; }
 
--(BOOL) useQuietLogging { return [_defaults boolForKey:APPIUM_PLIST_VERBOSE]; }
--(void) setUseQuietLogging:(BOOL)logVerbose { [_defaults setBool:logVerbose forKey:APPIUM_PLIST_VERBOSE]; }
+-(BOOL) useQuietLogging { return [_defaults boolForKey:APPIUM_PLIST_USE_QUIET_LOGGING]; }
+-(void) setUseQuietLogging:(BOOL)useQuietLogging { [_defaults setBool:useQuietLogging forKey:APPIUM_PLIST_USE_QUIET_LOGGING]; }
 
--(BOOL) useRemoteServer
-{
-	return [_defaults boolForKey:APPIUM_PLIST_USE_REMOTE_SERVER] && [self developerMode];
-}
+-(BOOL) useRemoteServer { return [_defaults boolForKey:APPIUM_PLIST_USE_REMOTE_SERVER] && [self developerMode]; }
 -(void) setUseRemoteServer:(BOOL)useRemoteServer
 {
 	[_defaults setBool:useRemoteServer forKey:APPIUM_PLIST_USE_REMOTE_SERVER];
@@ -225,10 +213,7 @@ BOOL _isServerListening;
 }
 
 -(BOOL) useUDID { return [_defaults boolForKey:APPIUM_PLIST_USE_UDID]; }
--(void) setUseUDID:(BOOL)useUDID
-{
-	[_defaults setBool:useUDID forKey:APPIUM_PLIST_USE_UDID];
-}
+-(void) setUseUDID:(BOOL)useUDID { [_defaults setBool:useUDID forKey:APPIUM_PLIST_USE_UDID]; }
 
 #pragma mark - Methods
 
