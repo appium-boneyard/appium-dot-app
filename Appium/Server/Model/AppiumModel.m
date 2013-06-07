@@ -7,6 +7,8 @@
 //
 
 #import "AppiumModel.h"
+
+#import <Foundation/Foundation.h>
 #import "AppiumAppDelegate.h"
 #import "Utility.h"
 #import "AppiumPreferencesFile.h"
@@ -415,17 +417,61 @@ BOOL _isServerListening;
 
 -(void) monitorListenStatus
 {
+	//uint pollInterval = self.isServerListening ? 30 : 1;
 	while(self.isServerRunning)
 	{
+		// poll with lsof command
+ 		
 		sleep(1);
 		NSString *output = [Utility runTaskWithBinary:@"/usr/sbin/lsof" arguments:[NSArray arrayWithObjects:@"-i", [NSString stringWithFormat:@":%@", self.port, nil], nil]];
 		BOOL newValue = ([output rangeOfString:@"LISTEN"].location != NSNotFound);
-		if (newValue == YES && self.isServerListening)
-		{
+	 	if (newValue == YES && self.isServerListening)
+	 	{
 			// sleep to avoid race condition where server is listening but not ready
-			sleep(1);
+		 	sleep(1);
 		}
 		[self setIsServerListening:newValue];
+
+		/*
+		
+		// poll with web requests
+		
+		sleep(pollInterval);
+		NSError *error = nil;
+		NSString *urlString = [NSString stringWithFormat:@"http://%@:%d/wd/hub/status", self.ipAddress, self.port.intValue];
+		NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:1];
+		
+		NSURLResponse *response;
+		NSData *urlData = [NSURLConnection sendSynchronousRequest:request
+												returningResponse:&response
+															error:&error];
+		if (error != nil && [error code] != 0)
+		{
+			[self setIsServerListening:NO];
+			pollInterval = 1;
+			continue;
+		}
+		
+		NSDictionary *json = [NSJSONSerialization JSONObjectWithData:urlData
+															 options: NSJSONReadingMutableContainers & NSJSONReadingMutableLeaves
+															   error: &error];
+		if (error != nil && [error code] != 0)
+		{
+			[self setIsServerListening:NO];
+			pollInterval = 1;
+			continue;
+		}
+		else
+		{
+			NSObject *statusObj = [json objectForKey:@"status"];
+			sleep(1); // sleep to avoid race condition where server is listening but not ready
+			[self setIsServerListening:statusObj != nil && [statusObj isKindOfClass:[NSNumber class]] && [((NSNumber*)statusObj) intValue] == 0];
+			pollInterval = MIN(2*pollInterval, 30); // sleep for longer
+			continue;
+		}
+		*/
+		
 	}
 	[self setIsServerListening:NO];
 }
