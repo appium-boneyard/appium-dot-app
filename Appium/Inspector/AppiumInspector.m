@@ -10,6 +10,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "AppiumAppDelegate.h"
+#import "AppiumModel.h"
 
 @interface AppiumInspector ()
     @property (readonly) SERemoteWebDriver *driver;
@@ -373,16 +374,19 @@
 -(void)refreshWindowList
 {
 	[self setWindows:[NSArray arrayWithObject:@"native"]];
-	[self setWindows:[self.windows arrayByAddingObject:@"0"]];
-	[self setWindows:[self.windows arrayByAddingObjectsFromArray:[self.driver allWindows]]];
-	for	(NSString *window in self.windows)
+	if (self.model.isIOS)
 	{
-		if ([window isEqualToString:self.selectedWindow])
+		[self setWindows:[self.windows arrayByAddingObject:@"0"]];
+		[self setWindows:[self.windows arrayByAddingObjectsFromArray:[self.driver allWindows]]];
+		for	(NSString *window in self.windows)
 		{
-			return;
+			if ([window isEqualToString:self.selectedWindow])
+			{
+				return;
+			}
 		}
+		[self.driver executeScript:@"mobile: leaveWebView"];
 	}
-	[self.driver executeScript:@"mobile: leaveWebView"];
 	[self setSelectedWindow:@"native"];
 }
 

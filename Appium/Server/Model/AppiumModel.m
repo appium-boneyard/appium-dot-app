@@ -101,6 +101,9 @@ BOOL _isServerListening;
 -(BOOL) forceOrientation { return [_defaults boolForKey:APPIUM_PLIST_FORCE_ORIENTATION]; }
 -(void) setForceOrientation:(BOOL)forceOrientation { [_defaults setBool:forceOrientation forKey:APPIUM_PLIST_FORCE_ORIENTATION]; }
 
+-(BOOL) isAndroid { return self.platform == Platform_Android; }
+-(BOOL) isIOS { return self.platform == Platform_iOS; }
+
 -(BOOL) isServerRunning { return _isServerRunning; }
 -(void) setIsServerRunning:(BOOL)isServerRunning { _isServerRunning = isServerRunning; }
 

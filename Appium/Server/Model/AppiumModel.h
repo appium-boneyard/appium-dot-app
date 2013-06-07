@@ -49,6 +49,8 @@ typedef enum iOSOrientationTypes
 @property NSString *deviceToForceString;
 @property BOOL forceDevice;
 @property BOOL forceOrientation;
+@property (readonly) BOOL isAndroid;
+@property (readonly) BOOL isIOS;
 @property BOOL isServerRunning;
 @property BOOL isServerListening;
 @property NSString *ipAddress;
