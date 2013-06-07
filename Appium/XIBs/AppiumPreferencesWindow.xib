@@ -44,7 +44,7 @@
 			<object class="NSWindowTemplate" id="1005">
 				<int key="NSWindowStyleMask">7</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{196, 240}, {449, 542}}</string>
+				<string key="NSWindowRect">{{196, 240}, {449, 533}}</string>
 				<int key="NSWTFlags">544735232</int>
 				<string key="NSWindowTitle">Appium Preferences</string>
 				<string key="NSWindowClass">NSWindow</string>
@@ -57,7 +57,7 @@
 						<object class="NSButton" id="116013523">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{18, 506}, {141, 18}}</string>
+							<string key="NSFrame">{{18, 497}, {141, 18}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="817804686"/>
@@ -93,7 +93,7 @@
 						<object class="NSButton" id="817804686">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{18, 486}, {112, 18}}</string>
+							<string key="NSFrame">{{18, 477}, {112, 18}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="705476032"/>
@@ -120,7 +120,7 @@
 						<object class="NSButton" id="705476032">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{18, 466}, {111, 18}}</string>
+							<string key="NSFrame">{{18, 457}, {111, 18}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="143369266"/>
@@ -147,7 +147,7 @@
 						<object class="NSButton" id="143369266">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{18, 446}, {287, 18}}</string>
+							<string key="NSFrame">{{18, 437}, {287, 18}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="1063783530"/>
@@ -174,7 +174,7 @@
 						<object class="NSButton" id="1063783530">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{18, 426}, {159, 18}}</string>
+							<string key="NSFrame">{{18, 417}, {159, 18}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="691238899"/>
@@ -201,7 +201,7 @@
 						<object class="NSButton" id="691238899">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{18, 404}, {125, 18}}</string>
+							<string key="NSFrame">{{18, 397}, {125, 18}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="672390050"/>
@@ -1105,7 +1105,7 @@
 							<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						</object>
 					</array>
-					<string key="NSFrameSize">{449, 542}</string>
+					<string key="NSFrameSize">{449, 533}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="116013523"/>
@@ -1912,9 +1912,7 @@
 							<reference ref="817804686"/>
 							<reference ref="705476032"/>
 							<reference ref="143369266"/>
-							<reference ref="1063783530"/>
 							<reference ref="116013523"/>
-							<reference ref="691238899"/>
 							<reference ref="221799974"/>
 							<reference ref="457615829"/>
 							<reference ref="602901332"/>
@@ -1945,6 +1943,8 @@
 							<reference ref="879472930"/>
 							<reference ref="1003314789"/>
 							<reference ref="676461030"/>
+							<reference ref="1063783530"/>
+							<reference ref="691238899"/>
 						</array>
 						<reference key="parent" ref="1005"/>
 						<string key="objectName">Main View</string>
