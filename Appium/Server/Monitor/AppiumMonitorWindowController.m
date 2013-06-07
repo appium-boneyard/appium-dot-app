@@ -89,6 +89,7 @@
         NSAttributedString *attributedString = [ANSIUtility processIncomingStream:string withPreviousAttributes:&previousAttributes];
         [self performSelectorOnMainThread:@selector(appendToLog:) withObject:attributedString waitUntilDone:YES];
     }
+	[serverStdOut closeFile];
 }
 
 -(void) errorLoop
@@ -103,6 +104,7 @@
         NSAttributedString *attributedString = [ANSIUtility processIncomingStream:string withPreviousAttributes:&previousAttributes];
         [self performSelectorOnMainThread:@selector(appendToLog:) withObject:attributedString waitUntilDone:YES];
     }
+	[serverStdErr closeFile];
 }
 
 -(void) appendToLog:(NSAttributedString*)string

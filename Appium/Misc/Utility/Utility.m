@@ -27,6 +27,7 @@
 	[androidHomeTask waitUntilExit];
 	NSFileHandle *stdOutHandle = [pipe fileHandleForReading];
     NSData *data = [stdOutHandle readDataToEndOfFile];
+	[stdOutHandle closeFile];
     NSString *androidHomePath = [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
 
 	// check platform-tools folder
@@ -56,6 +57,7 @@
 	[whichTask waitUntilExit];
 	stdOutHandle = [pipe fileHandleForReading];
     data = [stdOutHandle readDataToEndOfFile];
+	[stdOutHandle closeFile];
     androidBinaryPath = [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
 	if ([[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath])
 	{
@@ -85,6 +87,7 @@
     [task launch];
     NSFileHandle *stdOutHandle = [pipe fileHandleForReading];
     NSData *data = [stdOutHandle readDataToEndOfFile];
+	[stdOutHandle closeFile];
     NSString *output = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
 	if (APPIUM_DEBUG_LEVEL > 1)
 	{
