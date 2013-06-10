@@ -374,7 +374,7 @@
 -(void)refreshWindowList
 {
 	[self setWindows:[NSArray arrayWithObject:@"native"]];
-	if (self.model.isIOS)
+	if (self.model.isIOS && self.model.developerMode)
 	{
 		[self setWindows:[self.windows arrayByAddingObject:@"0"]];
 		[self setWindows:[self.windows arrayByAddingObjectsFromArray:[self.driver allWindows]]];

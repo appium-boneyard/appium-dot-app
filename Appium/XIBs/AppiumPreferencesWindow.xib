@@ -1110,7 +1110,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="116013523"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {2560, 1578}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<string key="NSFrameAutosaveName">AppiumPreferences</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
