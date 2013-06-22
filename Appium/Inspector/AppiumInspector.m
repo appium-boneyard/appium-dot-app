@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "AppiumAppDelegate.h"
 #import "AppiumModel.h"
+#import "AppiumPreferencesFile.h"
 
 @interface AppiumInspector ()
     @property (readonly) SERemoteWebDriver *driver;
@@ -22,8 +23,6 @@
 {
     self = [super init];
     if (self) {
-        _showDisabled = YES;
-        _showInvisible = YES;
 		self.currentWindow = @"native";
 		_selectedWindow = @"native";
         [self setDomIsPopulating:NO];
@@ -37,19 +36,19 @@
 #pragma mark - Public Properties
 -(AppiumModel*) model { return ((AppiumAppDelegate*)[[NSApplication sharedApplication] delegate]).model; }
 
--(NSNumber*) showDisabled { return [NSNumber numberWithBool:_showDisabled]; }
+-(NSNumber*) showDisabled { return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:APPIUM_PLIST_INSPECTOR_SHOWS_DISABLED_ELEMENTS]]; }
 
--(NSNumber*) showInvisible { return [NSNumber numberWithBool:_showInvisible]; }
+-(NSNumber*) showInvisible { return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:APPIUM_PLIST_INSPECTOR_SHOWS_INVISIBLE_ELEMENTS]]; }
 
 -(void) setShowDisabled:(NSNumber *)showDisabled
 {
-    _showDisabled = [showDisabled boolValue];
+    [[NSUserDefaults standardUserDefaults] setBool:[showDisabled boolValue] forKey:APPIUM_PLIST_INSPECTOR_SHOWS_DISABLED_ELEMENTS];
     [self performSelectorInBackground:@selector(populateDOM) withObject:nil];
 }
 
 -(void) setShowInvisible:(NSNumber *)showInvisible
 {
-    _showInvisible = [showInvisible boolValue];
+    [[NSUserDefaults standardUserDefaults] setBool:[showInvisible boolValue] forKey:APPIUM_PLIST_INSPECTOR_SHOWS_INVISIBLE_ELEMENTS];
     [self performSelectorInBackground:@selector(populateDOM) withObject:nil];
 }
 
@@ -78,7 +77,7 @@
 	NSError *e = nil;
 	NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData: [_lastPageSource dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: &e];
 	_browserRootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict parent:nil showDisabled:[self.showDisabled boolValue] showInvisible:[self.showInvisible boolValue]];
-    _rootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict parent:nil showDisabled:_showDisabled showInvisible:_showInvisible];
+    _rootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict parent:nil showDisabled:[self.showDisabled boolValue] showInvisible:[self.showInvisible boolValue]];
     [_windowController.browser performSelectorOnMainThread:@selector(loadColumnZero) withObject:nil waitUntilDone:YES];
 	_selection = nil;
 	_selectedIndexes = [NSMutableArray new];
