@@ -23,8 +23,6 @@
 
 @private
 	IBOutlet AppiumInspectorWindowController *_windowController;
-	BOOL _showDisabled;
-    BOOL _showInvisible;
 	WebDriverElementNode *_rootNode;
     WebDriverElementNode *_browserRootNode;
 	NSMutableArray *_selectedIndexes;

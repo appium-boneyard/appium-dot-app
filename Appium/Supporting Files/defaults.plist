@@ -43,6 +43,10 @@
 	<false/>
 	<key>Force Orientation</key>
 	<false/>
+	<key>Inspector Shows Disabled Elements</key>
+	<true/>
+	<key>Inspector Shows Invisible Elements</key>
+	<true/>
 	<key>Keep Artifacts</key>
 	<true/>
 	<key>NodeJS Debug Port</key>
