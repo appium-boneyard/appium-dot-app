@@ -17,7 +17,7 @@
 @class AppiumModel;
 @class NodeInstance;
 
-@interface AppiumMonitorWindowController : NSWindowController {
+@interface AppiumMonitorWindowController : NSWindowController<NSWindowDelegate> {
     @private
     AppiumMenuBarManager *_menuBarManager;
     AppiumInspectorWindowController *_inspectorWindow;

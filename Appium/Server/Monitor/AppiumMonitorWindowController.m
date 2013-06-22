@@ -32,8 +32,6 @@
     return self;
 }
 
--(AppiumModel*) model { return [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] model]; }
-
 -(void) windowDidLoad
 {
     [super windowDidLoad];
@@ -41,6 +39,12 @@
 	[[self model] addObserver:_menuBarManager forKeyPath:@"isServerRunning" options:NSKeyValueObservingOptionNew context:NULL];
 	[self performSelectorInBackground:@selector(loadAVDs) withObject:nil];
 }
+
+- (void)windowWillClose:(NSNotification *)notification {
+    [[NSApplication sharedApplication] terminate:self];
+}
+
+-(AppiumModel*) model { return [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] model]; }
 
 -(void) loadAVDs
 {
