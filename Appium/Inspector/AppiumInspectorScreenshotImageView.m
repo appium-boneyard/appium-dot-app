@@ -139,6 +139,7 @@
 	self.xBorder = 0.0f;
 	self.yBorder = 0.0f;
 	
+    // determine borders
 	if (newImage.size.width > newImage.size.height)
 	{
 		self.maxHeight = newImage.size.height * (self.bounds.size.width / newImage.size.width);
@@ -149,6 +150,12 @@
 		self.maxWidth = newImage.size.width * (self.bounds.size.height / newImage.size.height);
 		self.xBorder = (self.bounds.size.width - self.maxWidth) / 2.0f;
 	}
+    
+    // add factor of 2 to screenshot scalar to account for retina display based coordinates
+    if (self.inspector.model.isIOS && newImage.size.width > 480.0f)
+    {
+        self.screenshotScalar *= 2.0f;
+    }
 }
 
 -(void)mouseUp:(NSEvent *)event
