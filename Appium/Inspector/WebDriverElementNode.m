@@ -196,11 +196,11 @@
 {
 	if (self.platform == Platform_iOS)
 	{
-		return [NSString stringWithFormat:@"name: %@\ntype: %@\nvalue: %@\nlabel: %@\nenabled: %@\nvisible: %@\nvalid: %@", self.name, self.type, self.value, self.label, (self.enabled ? @"true" : @"false"),(self.visible ? @"true" : @"false"),(self.valid ? @"true" : @"false")];
+		return [NSString stringWithFormat:@"name: %@\ntype: %@\nvalue: %@\nlabel: %@\nenabled: %@\nvisible: %@\nvalid: %@\nlocation: %@\nsize: %@", self.name, self.type, self.value, self.label, (self.enabled ? @"true" : @"false"),(self.visible ? @"true" : @"false"),(self.valid ? @"true" : @"false"), NSStringFromPoint(self.rect.origin), NSStringFromSize(self.rect.size)];
 	}
 	else
 	{
-		return [NSString stringWithFormat:@"content-desc: %@\nclass: %@\ntext: %@\nindex: %@\nenabled: %@\nclickable: %@", self.contentDesc, self.type, self.text,[NSString stringWithFormat:@"%lu", (u_long)self.index], (self.enabled ? @"true" : @"false"),(self.clickable ? @"true" : @"false")];
+		return [NSString stringWithFormat:@"content-desc: %@\nclass: %@\ntext: %@\nindex: %@\nenabled: %@\nclickable: %@\nlocation: %@\nsize: %@", self.contentDesc, self.type, self.text,[NSString stringWithFormat:@"%lu", (u_long)self.index], (self.enabled ? @"true" : @"false"),(self.clickable ? @"true" : @"false"), NSStringFromPoint(self.rect.origin), NSStringFromSize(self.rect.size)];
 	}
 }
 
