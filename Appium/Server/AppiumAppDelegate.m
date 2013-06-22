@@ -38,6 +38,10 @@
     [self.model killServer];
 }
 
+-(BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)app {
+    return YES;
+}
+
 #pragma mark - Preferences
 
 -(IBAction) displayPreferences:(id)sender
