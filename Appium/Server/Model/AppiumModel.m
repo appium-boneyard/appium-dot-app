@@ -230,9 +230,6 @@ BOOL _isServerListening;
 
 -(BOOL)killServer
 {
-    NSString* script = [NSString stringWithFormat: @"kill `lsof -t -i:%@`", self.port];
-    system([script UTF8String]);
-
     if (self.serverTask != nil && [self.serverTask isRunning])
     {
         [self.serverTask terminate];
@@ -244,6 +241,9 @@ BOOL _isServerListening;
 
 -(BOOL)startServer
 {
+    NSString* script = [NSString stringWithFormat: @"kill `lsof -t -i:%@`", self.port];
+    system([script UTF8String]);
+    
     if ([self killServer])
     {
         return NO;
