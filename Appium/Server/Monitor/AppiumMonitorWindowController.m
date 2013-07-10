@@ -73,6 +73,10 @@
 
 - (IBAction) launchButtonClicked:(id)sender
 {
+    //Code to free the port.
+    NSString* script = [NSString stringWithFormat: @"killall node"];
+    system([script UTF8String]);
+    
     if ([self.model startServer])
     {
         [self performSelectorInBackground:@selector(errorLoop) withObject:nil];
