@@ -435,6 +435,10 @@
 			return @"zoom";
 		else if ([type isEqualToString:@"ZoomControls"])
 			return @"zoomcontrols";
+        else if ([type isEqualToString:@"AdapterView"])
+            return @"adapterview";
+        else if ([type isEqualToString:@"android.view.View"])
+            return @"view";
 		else
 			return self.type;
 	}
