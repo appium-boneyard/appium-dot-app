@@ -1485,6 +1485,22 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: model.useAndroidDeviceReadyTimeout</string>
+						<reference key="source" ref="935789834"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="935789834"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">enabled: model.useAndroidDeviceReadyTimeout</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">model.useAndroidDeviceReadyTimeout</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">494</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: model.forceOrientation</string>
 						<reference key="source" ref="520225072"/>
 						<reference key="destination" ref="1001"/>
@@ -2525,7 +2541,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">492</int>
+			<int key="maxID">494</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
