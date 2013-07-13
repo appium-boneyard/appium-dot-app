@@ -33,6 +33,10 @@ typedef enum iOSOrientationTypes
 @property NSString *androidActivity;
 @property NSNumber *androidDeviceReadyTimeout;
 @property BOOL androidFullReset;
+@property NSString *androidKeyAlias;
+@property NSString *androidKeyPassword;
+@property NSString *androidKeystorePath;
+@property NSString *androidKeystorePassword;
 @property NSString *androidPackage;
 @property NSString *androidWaitActivity;
 @property NSString *appPath;
@@ -55,9 +59,13 @@ typedef enum iOSOrientationTypes
 @property BOOL isServerListening;
 @property NSString *ipAddress;
 @property BOOL keepArtifacts;
+@property BOOL killProcessesUsingPort;
+@property NSString *logFile;
+@property NSString *logWebHook;
 @property NSNumber *nodeDebugPort;
 @property iOSOrientation orientationToForce;
 @property NSString* orientationToForceString;
+@property BOOL overrideExistingSessions;
 @property Platform platform;
 @property NSNumber *port;
 @property BOOL prelaunchApp;
@@ -65,9 +73,11 @@ typedef enum iOSOrientationTypes
 @property NSString *robotAddress;
 @property NSNumber *robotPort;
 @property NSNumber *selendroidPort;
+@property NSString *seleniumGridConfigFile;
 @property NSString *udid;
 @property BOOL useAndroidActivity;
 @property BOOL useAndroidDeviceReadyTimeout;
+@property BOOL useAndroidKeystore;
 @property BOOL useAndroidPackage;
 @property BOOL useAndroidWaitActivity;
 @property BOOL useAppPath;
@@ -76,6 +86,8 @@ typedef enum iOSOrientationTypes
 @property BOOL useCustomAndroidSDKPath;
 @property BOOL useExternalAppiumPackage;
 @property BOOL useExternalNodeJSBinary;
+@property BOOL useLogFile;
+@property BOOL useLogWebHook;
 @property BOOL useMobileSafari;
 @property BOOL useNativeInstrumentsLib;
 @property BOOL useNodeDebugging;
@@ -83,6 +95,7 @@ typedef enum iOSOrientationTypes
 @property BOOL useRemoteServer;
 @property BOOL useRobot;
 @property BOOL useSelendroidPort;
+@property BOOL useSeleniumGridConfigFile;
 @property BOOL useUDID;
 
 -(BOOL)killServer;
