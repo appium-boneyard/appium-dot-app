@@ -8,6 +8,14 @@
 	<integer>5</integer>
 	<key>Android Full Reset</key>
 	<false/>
+	<key>Android Key Alias</key>
+	<string></string>
+	<key>Android Key Password</key>
+	<string></string>
+	<key>Android Keystore Password</key>
+	<string></string>
+	<key>Android Keystore Path</key>
+	<string>/Users/me/.android/debug.keystore</string>
 	<key>Android Package</key>
 	<string></string>
 	<key>Android Wait Activity</key>
@@ -49,10 +57,18 @@
 	<true/>
 	<key>Keep Artifacts</key>
 	<true/>
+	<key>Kill Processes Using Port</key>
+	<true/>
+	<key>Log File</key>
+	<string>/tmp/appium.log</string>
+	<key>Log Webhook</key>
+	<string>localhost:9876</string>
 	<key>NodeJS Debug Port</key>
 	<integer>5858</integer>
 	<key>Orientation</key>
 	<string>Portrait</string>
+	<key>Override Existing Sessions</key>
+	<false/>
 	<key>Prelaunch</key>
 	<false/>
 	<key>Reset Application State</key>
@@ -63,6 +79,8 @@
 	<real>4</real>
 	<key>Selendroid Port</key>
 	<integer>8080</integer>
+	<key>Selenium Grid Config File</key>
+	<string>/Users/me/nodeconfig.json</string>
 	<key>Server Address</key>
 	<string>0.0.0.0</string>
 	<key>Server Port</key>
@@ -74,6 +92,8 @@
 	<key>Use Android Activity</key>
 	<false/>
 	<key>Use Android Device Ready Timeout</key>
+	<false/>
+	<key>Use Android Keystore</key>
 	<false/>
 	<key>Use Android Package</key>
 	<false/>
@@ -93,6 +113,10 @@
 	<false/>
 	<key>Use External Appium Package</key>
 	<false/>
+	<key>Use Log File</key>
+	<false/>
+	<key>Use Log Webhook</key>
+	<false/>
 	<key>Use Remote Server</key>
 	<false/>
 	<key>Use Mobile Safari</key>
@@ -106,6 +130,8 @@
 	<key>Use Robot</key>
 	<false/>
 	<key>Use Selendroid Port</key>
+	<false/>
+	<key>Use Selenium Grid Config File</key>
 	<false/>
 	<key>Use UDID</key>
 	<false/>
