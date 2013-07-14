@@ -129,12 +129,12 @@
 -(void) exitWait
 {
     [self.model.serverTask waitUntilExit];
-    [[self model] setIsServerRunning:NO];
+    [self.model setIsServerRunning:NO];
 }
 
 -(IBAction)chooseFile:(id)sender
 {
-	NSString *selectedApp = [[self model] appPath];
+	NSString *selectedApp = [self.model appPath];
 	
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
 	[openDlg setShowsHiddenFiles:YES];
@@ -154,7 +154,7 @@
     if ([openDlg runModal] == NSOKButton)
     {
 		selectedApp = [[[openDlg URLs] objectAtIndex:0] path];
-		[[self model] setAppPath:selectedApp];
+		[self.model setAppPath:selectedApp];
     }
 }
 
