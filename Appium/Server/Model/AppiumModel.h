@@ -46,12 +46,12 @@ typedef enum iOSOrientationTypes
 @property NSString *bundleID;
 @property BOOL checkForUpdates;
 @property NSString *customAndroidSDKPath;
-@property BOOL enableAppiumInspectorWindowSupport;
-@property NSString *externalAppiumPackagePath;
-@property NSString *externalNodeJSBinaryPath;
 @property BOOL developerMode;
 @property iOSAutomationDevice deviceToForce;
 @property NSString *deviceToForceString;
+@property BOOL enableAppiumInspectorWindowSupport;
+@property NSString *externalAppiumPackagePath;
+@property NSString *externalNodeJSBinaryPath;
 @property BOOL forceDevice;
 @property BOOL forceOrientation;
 @property (readonly) BOOL isAndroid;
