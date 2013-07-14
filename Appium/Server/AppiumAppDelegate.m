@@ -119,6 +119,9 @@
     [[self mainWindowController] performSelectorOnMainThread:@selector(showWindow:) withObject:self waitUntilDone:YES];
     [[[self mainWindowController] window] performSelectorOnMainThread:@selector(makeKeyAndOrderFront:) withObject:self waitUntilDone:YES];
 
+    // check for authorization
+    [self performSelectorOnMainThread:@selector(checkForAuthorization) withObject:nil waitUntilDone:YES];
+    
     // check for updates
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Check For Updates"])
     {
@@ -126,7 +129,39 @@
     }
 }
 
--(IBAction)checkForUpdates:(id)sender
+-(void) checkForAuthorization
+{
+    // check if /etc/authorization is set up correctly
+    NSMutableDictionary* authorizationPlist = [[NSMutableDictionary alloc] initWithContentsOfFile:  @"/etc/authorization"];
+    NSMutableDictionary *rightPlist = [authorizationPlist valueForKey:@"rights"];
+    NSMutableDictionary *taskportDebugRights = [rightPlist valueForKey:@"system.privilege.taskport"];
+    BOOL authorized = [[taskportDebugRights valueForKey:@"allow-root"] boolValue];
+    
+    if (!authorized)
+    {
+        NSAlert *alert = [NSAlert new];
+        [alert setMessageText:@"Appium is not authorized to run the iOS Simulator"];
+        [alert setInformativeText:@"Would you like to authorize it now?"];
+        [alert addButtonWithTitle:@"No"];
+        [alert addButtonWithTitle:@"Yes"];
+        if ([alert runModal] == NSAlertSecondButtonReturn)
+        {
+            // write out the new /etc/authorization to /tmp/
+            [taskportDebugRights setValue:[NSNumber numberWithBool:YES] forKey:@"allow-root"];
+            [authorizationPlist writeToFile:  @"/tmp/appium_authorization" atomically: YES];
+            
+            // install the new /etc/authorization
+            NSString *authorizeScriptPath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], @"Authorize.applescript"];
+            NSTask *authorizeTask = [NSTask new];
+            [authorizeTask setLaunchPath:@"/bin/sh"];
+            [authorizeTask setArguments:[NSArray arrayWithObjects: @"-c",[NSString stringWithFormat:@"rm -f /tmp/appium-authorize /tmp/appium-authorize.applescript /tmp/authorization.backup; cp /etc/authorization /tmp/authorization.backup; cp \"%@\" /tmp/appium-authorize.applescript; cp /usr/bin/osascript /tmp/appium-authorize; /tmp/appium-authorize /tmp/appium-authorize.applescript", authorizeScriptPath], nil]];
+            [authorizeTask launch];
+            [authorizeTask waitUntilExit];
+        }
+    }
+}
+
+-(IBAction) checkForUpdates:(id)sender
 {
 	[_updater performSelectorInBackground:@selector(checkForUpdates:) withObject:sender];
 }
