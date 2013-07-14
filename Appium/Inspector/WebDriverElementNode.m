@@ -217,7 +217,7 @@
 		else if ([self.type isEqualToString:@"UIAButton"])
 			return @"button";
 		else if ([self.type isEqualToString:@"UIAElement"])
-			return @"*";
+			return @"element";
 		else if ([self.type isEqualToString:@"UIAImage"])
 			return @"image";
 		else if ([self.type isEqualToString:@"UIALink"])
