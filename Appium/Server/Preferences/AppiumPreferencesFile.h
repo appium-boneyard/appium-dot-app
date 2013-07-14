@@ -24,6 +24,7 @@
 #define APPIUM_PLIST_CUSTOM_ANDROID_SDK_PATH @"Custom Android SDK Path"
 #define APPIUM_PLIST_DEVICE @"Device"
 #define APPIUM_PLIST_DEVELOPER_MODE @"Developer Mode"
+#define APPIUM_PLIST_ENABLE_APPIUM_INSPECTOR_WINDOW_SUPPORT @"Enable Appium Inspector Window Support"
 #define APPIUM_PLIST_EXTERNAL_APPIUM_PACKAGE_PATH @"External Appium Package Path"
 #define APPIUM_PLIST_EXTERNAL_NODEJS_BINARY_PATH @"External NodeJS Binary Path"
 #define APPIUM_PLIST_FORCE_DEVICE @"Force Device"

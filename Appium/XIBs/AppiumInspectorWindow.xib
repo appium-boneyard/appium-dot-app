@@ -3107,43 +3107,23 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">hidden: model.isAndroid</string>
-						<reference key="source" ref="416059153"/>
-						<reference key="destination" ref="963484851"/>
-						<object class="NSNibBindingConnector" key="connector" id="434246098">
-							<reference key="NSSource" ref="416059153"/>
-							<reference key="NSDestination" ref="963484851"/>
-							<string key="NSLabel">hidden: model.isAndroid</string>
-							<string key="NSBinding">hidden</string>
-							<string key="NSKeyPath">model.isAndroid</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">643</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">hidden2: model.developerMode</string>
+						<string key="label">hidden: model.enableAppiumInspectorWindowSupport</string>
 						<reference key="source" ref="416059153"/>
 						<reference key="destination" ref="963484851"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="416059153"/>
 							<reference key="NSDestination" ref="963484851"/>
-							<string key="NSLabel">hidden2: model.developerMode</string>
-							<string key="NSBinding">hidden2</string>
-							<string key="NSKeyPath">model.developerMode</string>
-							<dictionary key="NSOptions">
-								<integer value="-1" key="NSMultipleValuesPlaceholder"/>
-								<integer value="-1" key="NSNoSelectionPlaceholder"/>
-								<integer value="-1" key="NSNotApplicablePlaceholder"/>
-								<integer value="-1" key="NSNullPlaceholder"/>
-								<string key="NSValueTransformerName">NSNegateBoolean</string>
-							</dictionary>
-							<reference key="NSPreviousConnector" ref="434246098"/>
+							<string key="NSLabel">hidden: model.enableAppiumInspectorWindowSupport</string>
+							<string key="NSBinding">hidden</string>
+							<string key="NSKeyPath">model.enableAppiumInspectorWindowSupport</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">645</int>
+					<int key="connectionID">648</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -3225,8 +3205,8 @@
 							<reference ref="88647852"/>
 							<reference ref="32328844"/>
 							<reference ref="70881741"/>
-							<reference ref="416059153"/>
 							<reference ref="675653408"/>
+							<reference ref="416059153"/>
 						</array>
 						<reference key="parent" ref="1005"/>
 						<string key="objectName">Main View</string>
@@ -4383,7 +4363,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">645</int>
+			<int key="maxID">648</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

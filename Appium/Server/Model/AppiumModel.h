@@ -46,6 +46,7 @@ typedef enum iOSOrientationTypes
 @property NSString *bundleID;
 @property BOOL checkForUpdates;
 @property NSString *customAndroidSDKPath;
+@property BOOL enableAppiumInspectorWindowSupport;
 @property NSString *externalAppiumPackagePath;
 @property NSString *externalNodeJSBinaryPath;
 @property BOOL developerMode;

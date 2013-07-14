@@ -187,6 +187,60 @@
 												</object>
 												<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 											</object>
+											<object class="NSButton" id="673273813">
+												<reference key="NSNextResponder" ref="238485667"/>
+												<int key="NSvFlags">268</int>
+												<string key="NSFrame">{{15, 159}, {367, 18}}</string>
+												<reference key="NSSuperview" ref="238485667"/>
+												<reference key="NSWindow"/>
+												<reference key="NSNextKeyView" ref="772362306"/>
+												<string key="NSReuseIdentifierKey">_NS:9</string>
+												<bool key="NSEnabled">YES</bool>
+												<object class="NSButtonCell" key="NSCell" id="1033731391">
+													<int key="NSCellFlags">-2080374784</int>
+													<int key="NSCellFlags2">268435456</int>
+													<string key="NSContents">Kill Processes Using Appium Server Port Before Launch</string>
+													<reference key="NSSupport" ref="125642889"/>
+													<string key="NSCellIdentifier">_NS:9</string>
+													<reference key="NSControlView" ref="673273813"/>
+													<int key="NSButtonFlags">1211912448</int>
+													<int key="NSButtonFlags2">2</int>
+													<reference key="NSNormalImage" ref="163578353"/>
+													<reference key="NSAlternateImage" ref="279632499"/>
+													<string key="NSAlternateContents"/>
+													<string key="NSKeyEquivalent"/>
+													<int key="NSPeriodicDelay">200</int>
+													<int key="NSPeriodicInterval">25</int>
+												</object>
+												<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+											</object>
+											<object class="NSButton" id="772362306">
+												<reference key="NSNextResponder" ref="238485667"/>
+												<int key="NSvFlags">268</int>
+												<string key="NSFrame">{{15, 139}, {303, 18}}</string>
+												<reference key="NSSuperview" ref="238485667"/>
+												<reference key="NSWindow"/>
+												<reference key="NSNextKeyView" ref="1021061362"/>
+												<string key="NSReuseIdentifierKey">_NS:9</string>
+												<bool key="NSEnabled">YES</bool>
+												<object class="NSButtonCell" key="NSCell" id="99081367">
+													<int key="NSCellFlags">67108864</int>
+													<int key="NSCellFlags2">268435456</int>
+													<string key="NSContents">Enable Window Selector in Appium Inspector</string>
+													<reference key="NSSupport" ref="125642889"/>
+													<string key="NSCellIdentifier">_NS:9</string>
+													<reference key="NSControlView" ref="772362306"/>
+													<int key="NSButtonFlags">1211912448</int>
+													<int key="NSButtonFlags2">2</int>
+													<reference key="NSNormalImage" ref="163578353"/>
+													<reference key="NSAlternateImage" ref="279632499"/>
+													<string key="NSAlternateContents"/>
+													<string key="NSKeyEquivalent"/>
+													<int key="NSPeriodicDelay">200</int>
+													<int key="NSPeriodicInterval">25</int>
+												</object>
+												<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
+											</object>
 											<object class="NSBox" id="1021061362">
 												<reference key="NSNextResponder" ref="238485667"/>
 												<int key="NSvFlags">12</int>
@@ -268,7 +322,7 @@
 														<string key="NSReuseIdentifierKey">_NS:11</string>
 													</object>
 												</array>
-												<string key="NSFrame">{{14, 91}, {383, 62}}</string>
+												<string key="NSFrame">{{14, 71}, {383, 62}}</string>
 												<reference key="NSSuperview" ref="238485667"/>
 												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="369136383"/>
@@ -294,33 +348,6 @@
 												<int key="NSBoxType">0</int>
 												<int key="NSTitlePosition">2</int>
 												<bool key="NSTransparent">NO</bool>
-											</object>
-											<object class="NSButton" id="673273813">
-												<reference key="NSNextResponder" ref="238485667"/>
-												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{15, 159}, {367, 18}}</string>
-												<reference key="NSSuperview" ref="238485667"/>
-												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="1021061362"/>
-												<string key="NSReuseIdentifierKey">_NS:9</string>
-												<bool key="NSEnabled">YES</bool>
-												<object class="NSButtonCell" key="NSCell" id="1033731391">
-													<int key="NSCellFlags">-2080374784</int>
-													<int key="NSCellFlags2">268435456</int>
-													<string key="NSContents">Kill Processes Using Appium Server Port Before Launch</string>
-													<reference key="NSSupport" ref="125642889"/>
-													<string key="NSCellIdentifier">_NS:9</string>
-													<reference key="NSControlView" ref="673273813"/>
-													<int key="NSButtonFlags">1211912448</int>
-													<int key="NSButtonFlags2">2</int>
-													<reference key="NSNormalImage" ref="163578353"/>
-													<reference key="NSAlternateImage" ref="279632499"/>
-													<string key="NSAlternateContents"/>
-													<string key="NSKeyEquivalent"/>
-													<int key="NSPeriodicDelay">200</int>
-													<int key="NSPeriodicInterval">25</int>
-												</object>
-												<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 											</object>
 										</array>
 										<string key="NSFrame">{{10, 33}, {403, 260}}</string>
@@ -1046,7 +1073,6 @@
 																<int key="NSvFlags">268</int>
 																<string key="NSFrame">{{261, 14}, {102, 22}}</string>
 																<reference key="NSSuperview" ref="155081706"/>
-																<reference key="NSNextKeyView" ref="140350563"/>
 																<string key="NSReuseIdentifierKey">_NS:9</string>
 																<bool key="NSEnabled">YES</bool>
 																<object class="NSTextFieldCell" key="NSCell" id="869818529">
@@ -2613,6 +2639,22 @@
 					</object>
 					<int key="connectionID">551</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: model.enableAppiumInspectorWindowSupport</string>
+						<reference key="source" ref="772362306"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="772362306"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">value: model.enableAppiumInspectorWindowSupport</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">model.enableAppiumInspectorWindowSupport</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">606</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -2887,8 +2929,9 @@
 							<reference ref="143369266"/>
 							<reference ref="116013523"/>
 							<reference ref="1021061362"/>
-							<reference ref="673273813"/>
 							<reference ref="353622160"/>
+							<reference ref="673273813"/>
+							<reference ref="772362306"/>
 						</array>
 						<reference key="parent" ref="744586824"/>
 						<string key="objectName">General Settings View</string>
@@ -3441,6 +3484,7 @@
 							<reference ref="1033731391"/>
 						</array>
 						<reference key="parent" ref="238485667"/>
+						<string key="objectName">Kill Processes Using Server Port Checkbox</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">601</int>
@@ -3460,6 +3504,20 @@
 						<int key="objectID">17</int>
 						<reference key="object" ref="867099298"/>
 						<reference key="parent" ref="705476032"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">602</int>
+						<reference key="object" ref="772362306"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="99081367"/>
+						</array>
+						<reference key="parent" ref="238485667"/>
+						<string key="objectName">Enable Window Selector In Appium Inspector Checkbox</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">603</int>
+						<reference key="object" ref="99081367"/>
+						<reference key="parent" ref="772362306"/>
 					</object>
 				</array>
 			</object>
@@ -3578,6 +3636,8 @@
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="600.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="601.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="602.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="603.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="67.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="68.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3587,7 +3647,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">601</int>
+			<int key="maxID">606</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
