@@ -239,7 +239,7 @@
 		else if ([self.type isEqualToString:@"UIASecureTextField"])
 			return @"secure";
 		else if ([self.type isEqualToString:@"UIASegmentedControl"])
-			return @"segemented";
+			return @"segmented";
 		else if ([self.type isEqualToString:@"UIASlider"])
 			return @"slider";
 		else if ([self.type isEqualToString:@"UIAStaticText"])
