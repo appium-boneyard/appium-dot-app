@@ -106,7 +106,7 @@ NSString* upgradeUrl;
     [mainWindowController.model killServer];
     
     AppiumInstallationWindowController *installationWindow = [[AppiumInstallationWindowController alloc] initWithWindowNibName:@"AppiumInstallationWindow"];
-    [[mainWindowController window] close];
+    [[mainWindowController window] orderOut:nil];
     [installationWindow performSelectorOnMainThread:@selector(showWindow:) withObject:self waitUntilDone:YES];
     [[installationWindow window] makeKeyAndOrderFront:self];
     [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Downloading Appium.app..." waitUntilDone:YES];
