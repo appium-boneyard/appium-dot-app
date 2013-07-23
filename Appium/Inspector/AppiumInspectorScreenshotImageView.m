@@ -152,9 +152,41 @@
 	}
     
     // add factor of 2 to screenshot scalar to account for retina display based coordinates
-    if (self.inspector.model.isIOS && newImage.size.width > 480.0f)
+    if (self.inspector.model.isIOS)
     {
-        self.screenshotScalar *= 2.0f;
+     
+        // check for retina devices
+        if (newImage.size.width == 640 && newImage.size.height == 960)
+        {
+            // portrait 3.5" iphone with retina display
+            self.screenshotScalar *= 2.0f;
+        }
+        else if (newImage.size.width == 960 && newImage.size.height == 640)
+        {
+            // landscape 3.5" iphone with retina display
+            self.screenshotScalar *= 2.0f;
+        }
+        else if (newImage.size.width == 640 && newImage.size.height == 1136)
+        {
+            // portrait 4" iphone with retina display
+            self.screenshotScalar *= 2.0f;
+        }
+        else if (newImage.size.width == 1136 && newImage.size.height == 640)
+        {
+            // landscape 4" iphone with retina display
+            self.screenshotScalar *= 2.0f;
+        }
+        else if (newImage.size.width == 1536 && newImage.size.height == 2048)
+        {
+            // portrait ipad with retina display
+            self.screenshotScalar *= 2.0f;
+        }
+        else if (newImage.size.width == 2048 && newImage.size.height == 1536)
+        {
+            // landscape ipad with retina display
+            self.screenshotScalar *= 2.0f;
+        }
+        
     }
 }
 
