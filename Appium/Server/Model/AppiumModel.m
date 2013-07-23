@@ -25,14 +25,23 @@ BOOL _isServerListening;
 {
     self = [super init];
     if (self) {
+		
+		// initialize settings
 		NSString *filePath = [[NSBundle mainBundle] pathForResource:@"defaults" ofType:@"plist"];
 		NSDictionary *settingsDict = [NSDictionary dictionaryWithContentsOfFile:filePath];
 		[[NSUserDefaults standardUserDefaults] registerDefaults:settingsDict];
 		[[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:settingsDict];
 		_defaults = [NSUserDefaults standardUserDefaults];
+
+		// initialize members
 		_isServerRunning = NO;
 		_isServerListening = [self useRemoteServer];
 		[self setAvailableAVDs:[NSArray new]];
+		
+		// update keystore path to match current user
+		if ([self.androidKeystorePath hasPrefix:@"/Users/me/"]) {
+			[self setAndroidKeystorePath:[self.androidKeystorePath stringByReplacingOccurrencesOfString:@"/Users/me" withString:NSHomeDirectory()]];
+		}
     }
     return self;
 }
