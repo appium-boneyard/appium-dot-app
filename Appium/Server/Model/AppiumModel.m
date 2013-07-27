@@ -41,9 +41,13 @@ BOOL _isServerListening;
         [self setAvailableActivities:[NSArray new]];
 		
 		// update keystore path to match current user
-		if ([self.androidKeystorePath hasPrefix:@"/Users/me/"]) {
+		if ([self.androidKeystorePath hasPrefix:@"/Users/me/"])
+        {
 			[self setAndroidKeystorePath:[self.androidKeystorePath stringByReplacingOccurrencesOfString:@"/Users/me" withString:NSHomeDirectory()]];
 		}
+        
+        // asynchronous initilizations
+        [self performSelectorInBackground:@selector(refreshAVDs) withObject:nil];
     }
     return self;
 }
@@ -620,6 +624,31 @@ BOOL _isServerListening;
         }
     }
     [self setAvailableActivities:activities];
+}
+
+-(void) refreshAVDs
+{
+	NSString *androidBinaryPath = [Utility pathToAndroidBinary:@"android"];
+    
+	if (androidBinaryPath == nil)
+		return;
+	
+	NSString *avdString = [Utility runTaskWithBinary:androidBinaryPath arguments:[NSArray arrayWithObjects:@"list", @"avd", @"-c", nil]];
+	NSMutableArray *avds = [NSMutableArray new];
+	NSArray *avdList = [avdString componentsSeparatedByString:@"\n"];
+	for (NSString *avd in avdList)
+	{
+		if (avd.length > 0)
+		{
+			[avds addObject:avd];
+		}
+	}
+	
+	[self setAvailableAVDs:avds];
+	if (avds.count > 0)
+	{
+		[self setAvd:[avds objectAtIndex:0]];
+	}
 }
 
 
