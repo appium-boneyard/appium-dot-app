@@ -8,6 +8,7 @@
 
 #import "NodeInstance.h"
 
+#import "AppiumGlobals.h"
 #import "Utility.h"
 
 @implementation NodeInstance
@@ -30,7 +31,7 @@
             
             // download node
             NSString *nodeTarPath;
-            NSString *stringURL = @"http://nodejs.org/dist/v0.10.13/node-v0.10.13-darwin-x64.tar.gz";
+            NSString *stringURL = NODE_JS_DOWNLOAD_URL;
             NSLog(@"Download NodeJS binaries from \"%@.\"", stringURL);
             NSURL  *url = [NSURL URLWithString:stringURL];
             NSData *urlData = [NSData dataWithContentsOfURL:url];
