@@ -11,11 +11,16 @@
 @interface AppiumInspectorScreenshotImageView ()
 
 @property (readonly) AppiumInspector *inspector;
+@property IBOutlet NSButton *rotationButton;
+@property NSImage *originalImage;
 @property CGFloat screenshotScalar;
 @property CGFloat xBorder;
 @property CGFloat yBorder;
 @property CGFloat maxWidth;
 @property CGFloat maxHeight;
+@property int rotation;
+
+-(NSImage*) rotateImage:(NSImage *)image byAngle:(int)degrees;
 
 @end
 
@@ -34,7 +39,7 @@
     self = [self init];
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code here.
+		self.rotation = 0;
     }
     
     return self;
@@ -131,7 +136,13 @@
 
 -(void)setImage:(NSImage *)newImage
 {
-	[super setImage:newImage];
+	[self setOriginalImage:newImage];
+	[self setUpScreenshotView:newImage];
+}
+
+-(void) setUpScreenshotView:(NSImage *)newImage
+{
+	[super setImage:[self rotateImage:newImage byAngle:self.rotation]];
 	
 	self.screenshotScalar = self.bounds.size.height / newImage.size.height;
 	self.maxWidth = self.bounds.size.width;
@@ -154,7 +165,7 @@
     // add factor of 2 to screenshot scalar to account for retina display based coordinates
     if (self.inspector.model.isIOS)
     {
-     
+		
         // check for retina devices
         if (newImage.size.width == 640 && newImage.size.height == 960)
         {
@@ -223,5 +234,44 @@
 	newPoint.x = (relativePoint.x - self.xBorder) / self.screenshotScalar;
 	newPoint.y = (self.maxHeight - (relativePoint.y - self.yBorder)) / self.screenshotScalar;
 	return newPoint;
+}
+
+#pragma mark - Helpers
+-(IBAction) toggleRotation:(id)sender
+{
+	self.rotation -= 90;
+	if (self.rotation <= -360)
+	{
+		self.rotation = 0;
+	}
+	[self.rotationButton setTitle:[NSString stringWithFormat:@"%dº", -1 * self.rotation]];
+	[self setUpScreenshotView:self.originalImage];
+}
+
+-(NSImage*) rotateImage:(NSImage *)image byAngle:(int)degrees
+{
+	if (degrees == 0)
+	{
+		return image;
+	}
+	else
+	{
+		NSSize beforeSize = [image size];
+		NSSize afterSize = degrees == 90 || degrees == -90 ? NSMakeSize(beforeSize.height, beforeSize.width) : beforeSize;
+		NSImage* newImage = [[NSImage alloc] initWithSize:afterSize];
+		NSAffineTransform* trans = [NSAffineTransform transform];
+		
+		[newImage lockFocus];
+		[trans translateXBy:afterSize.width * 0.5 yBy:afterSize.height * 0.5];
+		[trans rotateByDegrees:degrees];
+		[trans translateXBy:-beforeSize.width * 0.5 yBy:-beforeSize.height * 0.5];
+		[trans set];
+		[image drawAtPoint:NSZeroPoint
+				  fromRect:NSMakeRect(0, 0, beforeSize.width, beforeSize.height)
+				 operation:NSCompositeCopy
+				  fraction:1.0];
+		[newImage unlockFocus];
+		return newImage;
+	}
 }
 @end
