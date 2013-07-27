@@ -78,6 +78,7 @@ BOOL _isServerListening;
 -(NSString*) appPath { return [_defaults stringForKey:APPIUM_PLIST_APP_PATH];}
 -(void) setAppPath:(NSString *)appPath
 {
+    [_defaults setValue:appPath forKey:APPIUM_PLIST_APP_PATH];
     if ([appPath hasSuffix:@"app"] || [appPath hasSuffix:@"ipa"] || [appPath hasSuffix:@"zip"])
     {
         [self setPlatform:Platform_iOS];
@@ -86,7 +87,6 @@ BOOL _isServerListening;
     {
         [self setPlatform:Platform_Android];
     }
-    [_defaults setValue:appPath forKey:APPIUM_PLIST_APP_PATH];
 }
 
 -(NSString*) avd { return [_defaults stringForKey:APPIUM_PLIST_AVD]; }
@@ -289,6 +289,7 @@ BOOL _isServerListening;
 
 -(BOOL)startServer
 {
+    int myPid = (self.serverTask != nil) ? self.serverTask.processIdentifier : -1;
     if ([self killServer])
     {
         return NO;
@@ -297,8 +298,12 @@ BOOL _isServerListening;
     // kill any processes using the appium server port
     if (self.killProcessesUsingPort)
     {
-        NSString* script = [NSString stringWithFormat: @"kill `lsof -t -i:%@`", self.port];
-        system([script UTF8String]);
+        NSNumber *procPid = [Utility getPidListeningOnPort:self.port];
+        if (procPid != nil && myPid != [procPid intValue])
+        {
+            NSString* script = [NSString stringWithFormat: @"kill `lsof -t -i:%@`", self.port];
+            system([script UTF8String]);
+        }
     }
     
 	// build arguments
@@ -502,22 +507,41 @@ BOOL _isServerListening;
 	//uint pollInterval = self.isServerListening ? 30 : 1;
 	while(self.isServerRunning)
 	{
-		// poll with lsof command
- 		
-		sleep(1);
-		NSString *output = [Utility runTaskWithBinary:@"/usr/sbin/lsof" arguments:[NSArray arrayWithObjects:@"-i", [NSString stringWithFormat:@":%@", self.port, nil], nil]];
-		BOOL newValue = ([output rangeOfString:@"LISTEN"].location != NSNotFound);
-	 	if (newValue == YES && self.isServerListening)
+        // OPTION #1
+        // poll with sockets api
+        /*
+		sleep(.5);
+        BOOL newValue = [Utility checkIfTCPPortIsInUse:[self.port shortValue] atAddress:[self.ipAddress UTF8String]];
+        if (newValue == YES && self.isServerListening)
 	 	{
 			// sleep to avoid race condition where server is listening but not ready
 		 	sleep(1);
 		}
 		[self setIsServerListening:newValue];
+        */
+        
+        
+        // OPTION #2
+        // poll with lsof command
 
-		/*
-		
+        // space out the checks by 1 second
+		sleep(1);
+        
+        // check if there is a process listening on the port
+        NSNumber *pidOnPort = [Utility getPidListeningOnPort:self.port];
+        BOOL newValue = pidOnPort != nil;
+        
+        // set the value
+	 	if (newValue == YES && !self.isServerListening)
+	 	{
+			// sleep to avoid race condition where server is listening but not ready
+		 	sleep(1);
+		}
+		[self setIsServerListening:newValue];
+        
+        // OPTION #3
 		// poll with web requests
-		
+        /*
 		sleep(pollInterval);
 		NSError *error = nil;
 		NSString *urlString = [NSString stringWithFormat:@"http://%@:%d/wd/hub/status", self.ipAddress, self.port.intValue];

@@ -10,6 +10,9 @@
 
 #import "AppiumGlobals.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+
 @implementation Utility
 
 +(NSString*) pathToAndroidBinary:(NSString*)binaryName
@@ -99,6 +102,30 @@
 +(NSString*) runTaskWithBinary:(NSString*)binary arguments:(NSArray*)args
 {
     return [self runTaskWithBinary:binary arguments:args path:nil];
+}
+
++(NSNumber*) getPidListeningOnPort:(NSNumber*)port
+{
+    FILE *fp;
+    char line[1035];
+    NSString *lsofCmd = [NSString stringWithFormat: @"/usr/sbin/lsof -t -i :%d", [port intValue]];
+    NSNumber * pid = nil;
+    
+    // open the command for reading
+    fp = popen([lsofCmd UTF8String], "r");
+    if (fp != NULL)
+    {
+        // read the output line by line
+        while (fgets(line, sizeof(line)-1, fp) != NULL)
+        {
+            NSString *lineString = [[NSString stringWithUTF8String:line] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+            NSNumberFormatter *f = [NSNumberFormatter new];
+            [f setNumberStyle:NSNumberFormatterDecimalStyle];
+            NSNumber * myNumber = [f numberFromString:lineString];
+            pid = myNumber != nil ? myNumber : pid;
+        }
+    }
+    return pid;
 }
 
 @end
