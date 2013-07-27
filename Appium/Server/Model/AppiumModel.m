@@ -11,6 +11,7 @@
 #import <Foundation/Foundation.h>
 #import "AppiumAppDelegate.h"
 #import "AppiumPreferencesFile.h"
+#import "NSString+trimLeadingWhitespace.h"
 #import "Utility.h"
 
 #pragma  mark - Model
@@ -37,6 +38,7 @@ BOOL _isServerListening;
 		_isServerRunning = NO;
 		_isServerListening = [self useRemoteServer];
 		[self setAvailableAVDs:[NSArray new]];
+        [self setAvailableActivities:[NSArray new]];
 		
 		// update keystore path to match current user
 		if ([self.androidKeystorePath hasPrefix:@"/Users/me/"]) {
@@ -171,6 +173,7 @@ BOOL _isServerListening;
     if ([self.appPath hasSuffix:@".apk"])
     {
         [self setPlatform:Platform_Android];
+        [self refreshAvailableActivities];
     }
     return [_defaults integerForKey:APPIUM_PLIST_TAB_STATE] == APPIUM_PLIST_TAB_STATE_ANDROID ? Platform_Android : Platform_iOS;
 }
@@ -581,5 +584,43 @@ BOOL _isServerListening;
 	}
 	[self setIsServerListening:NO];
 }
+
+-(void) refreshAvailableActivities
+{
+    NSString *androidBinaryPath = [Utility pathToAndroidBinary:@"aapt"];
+    
+	if (androidBinaryPath == nil)
+		return;
+	
+    // get the xml dump from aapt
+	NSString *aaptString = [Utility runTaskWithBinary:androidBinaryPath arguments:[NSArray arrayWithObjects:@"dump", @"xmltree", self.appPath, @"AndroidManifest.xml", nil]];
+    
+    // read line by line
+    NSArray *aaptLines = [aaptString componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    NSMutableArray *activities = [NSMutableArray new];
+    BOOL currentElementIsActivity;
+    for (int i=0; i < aaptLines.count; i++)
+    {
+        NSString *line = [((NSString*)[aaptLines objectAtIndex:i]) stringByTrimmingLeadingWhitespace];
+        
+        // determine when an activity element has started or ended
+        if ([line hasPrefix:@"E:"])
+        {
+            currentElementIsActivity = [line hasPrefix:@"E: activity (line="];
+        }
+        
+        // determine when the activity name has appeared
+        if (currentElementIsActivity && [line hasPrefix:@"A: android:name("])
+        {
+            NSArray *lineComponents = [line componentsSeparatedByString:@"\""];
+            if (lineComponents.count >= 3)
+            {
+                [activities addObject:(NSString*)[lineComponents objectAtIndex:1]];
+            }
+        }
+    }
+    [self setAvailableActivities:activities];
+}
+
 
 @end

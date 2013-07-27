@@ -41,6 +41,7 @@ typedef enum iOSOrientationTypes
 @property NSString *androidWaitActivity;
 @property NSString *appPath;
 @property NSArray *availableAVDs;
+@property NSArray *availableActivities;
 @property NSString *avd;
 @property BOOL breakOnNodeApplicationStart;
 @property NSString *bundleID;
@@ -99,7 +100,8 @@ typedef enum iOSOrientationTypes
 @property BOOL useSeleniumGridConfigFile;
 @property BOOL useUDID;
 
--(BOOL)killServer;
--(BOOL)startServer;
+-(BOOL) killServer;
+-(BOOL) startServer;
+-(void) refreshAvailableActivities;
 
 @end

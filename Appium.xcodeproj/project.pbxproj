@@ -15,6 +15,7 @@
 		3643D93B1742912E0048F9DA /* Selenium.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 36A1A000173FFF34002717C2 /* Selenium.framework */; };
 		364C076816E94B1A0093011E /* AppiumMenuBarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 364C076716E94B1A0093011E /* AppiumMenuBarManager.m */; };
 		3652B34416E4287600BDE3E4 /* AppiumLaunchButtonTextTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3652B34316E4287600BDE3E4 /* AppiumLaunchButtonTextTransformer.m */; };
+		36580CB217A4543A004C2D94 /* NSString+TrimLeadingWhitespace.m in Sources */ = {isa = PBXBuildFile; fileRef = 36580CB117A4543A004C2D94 /* NSString+TrimLeadingWhitespace.m */; };
 		365A2D7E16E3C847007BADF9 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 365A2D7D16E3C847007BADF9 /* Utility.m */; };
 		365A2D8416E3DF48007BADF9 /* ANSIUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 365A2D8316E3DF48007BADF9 /* ANSIUtility.m */; };
 		365A2D8716E3E67B007BADF9 /* NodeInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 365A2D8616E3E67B007BADF9 /* NodeInstance.m */; };
@@ -131,6 +132,8 @@
 		364C076716E94B1A0093011E /* AppiumMenuBarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumMenuBarManager.m; sourceTree = "<group>"; };
 		3652B34216E4287600BDE3E4 /* AppiumLaunchButtonTextTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumLaunchButtonTextTransformer.h; sourceTree = "<group>"; };
 		3652B34316E4287600BDE3E4 /* AppiumLaunchButtonTextTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumLaunchButtonTextTransformer.m; sourceTree = "<group>"; };
+		36580CB017A4543A004C2D94 /* NSString+TrimLeadingWhitespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TrimLeadingWhitespace.h"; path = "Utility/NSString+TrimLeadingWhitespace.h"; sourceTree = "<group>"; };
+		36580CB117A4543A004C2D94 /* NSString+TrimLeadingWhitespace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TrimLeadingWhitespace.m"; path = "Utility/NSString+TrimLeadingWhitespace.m"; sourceTree = "<group>"; };
 		365A2D7C16E3C847007BADF9 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utility.h; path = Utility/Utility.h; sourceTree = "<group>"; };
 		365A2D7D16E3C847007BADF9 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utility.m; path = Utility/Utility.m; sourceTree = "<group>"; };
 		365A2D8216E3DF48007BADF9 /* ANSIUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ANSIUtility.h; path = Utility/ANSIUtility.h; sourceTree = "<group>"; };
@@ -433,6 +436,8 @@
 				365A2D8316E3DF48007BADF9 /* ANSIUtility.m */,
 				365A2D8516E3E67B007BADF9 /* NodeInstance.h */,
 				365A2D8616E3E67B007BADF9 /* NodeInstance.m */,
+				36580CB017A4543A004C2D94 /* NSString+TrimLeadingWhitespace.h */,
+				36580CB117A4543A004C2D94 /* NSString+TrimLeadingWhitespace.m */,
 				365A2D7C16E3C847007BADF9 /* Utility.h */,
 				365A2D7D16E3C847007BADF9 /* Utility.m */,
 			);
@@ -771,6 +776,7 @@
 				366DFB75173D552800B451A6 /* AppiumInspectorWindowAppleScript.m in Sources */,
 				36FA922C174037FD00699A6B /* AppiumCodeMakerActionScrollTo.m in Sources */,
 				36E849A617930CA600BFB002 /* Authorize.applescript in Sources */,
+				36580CB217A4543A004C2D94 /* NSString+TrimLeadingWhitespace.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
