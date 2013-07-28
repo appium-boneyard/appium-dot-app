@@ -70,19 +70,26 @@
 #pragma mark - Tree Operations
 -(void)populateDOM
 {
+	NSError *e = nil;
     [self performSelectorOnMainThread:@selector(setDomIsPopulatingToYes) withObject:nil waitUntilDone:YES];
-	[self refreshPageSource];
+	[self refreshPageSource:&e];
     [self refreshScreenshot];
 	[self refreshWindowList];
-	NSError *e = nil;
-	NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData: [_lastPageSource dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: &e];
-	_browserRootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict parent:nil showDisabled:[self.showDisabled boolValue] showInvisible:[self.showInvisible boolValue]];
-    _rootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict parent:nil showDisabled:[self.showDisabled boolValue] showInvisible:[self.showInvisible boolValue]];
-    [_windowController.browser performSelectorOnMainThread:@selector(loadColumnZero) withObject:nil waitUntilDone:YES];
-	_selection = nil;
-	_selectedIndexes = [NSMutableArray new];
-    [self performSelectorOnMainThread:@selector(updateDetailsDisplay) withObject:nil waitUntilDone:YES];
-    [self performSelectorOnMainThread:@selector(setDomIsPopulatingToNo) withObject:nil waitUntilDone:YES];
+
+    if (e) {
+        NSAlert *alert = [NSAlert alertWithError:e];
+        [alert runModal];
+        [_windowController close];
+    } else {
+        NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData: [_lastPageSource dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: &e];
+        _browserRootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict parent:nil showDisabled:[self.showDisabled boolValue] showInvisible:[self.showInvisible boolValue]];
+        _rootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict parent:nil showDisabled:[self.showDisabled boolValue] showInvisible:[self.showInvisible boolValue]];
+        [_windowController.browser performSelectorOnMainThread:@selector(loadColumnZero) withObject:nil waitUntilDone:YES];
+        _selection = nil;
+        _selectedIndexes = [NSMutableArray new];
+        [self performSelectorOnMainThread:@selector(updateDetailsDisplay) withObject:nil waitUntilDone:YES];
+        [self performSelectorOnMainThread:@selector(setDomIsPopulatingToNo) withObject:nil waitUntilDone:YES];
+    }
 }
 
 -(void)setSelectedNode:(WebDriverElementNode*)node
@@ -276,22 +283,23 @@
     [self performSelectorInBackground:@selector(populateDOM) withObject:nil];
 }
 
--(void)refreshPageSource
+-(void)refreshPageSource:(NSError **)error
 {
+    NSError *lastError = self.driver.lastError;
 	if ([self.currentWindow isEqualToString:@"native"])
 	{
 		_lastPageSource = [self.driver pageSource];
+        *error = self.driver.lastError != lastError ? self.driver.lastError : nil;
 	}
 	else
 	{
 		[self.driver executeScript:@"mobile: leaveWebView"];
 		NSDictionary *response = [self.driver executeScript:[NSString stringWithFormat:@"UIATarget.localTarget().frontMostApp().windows()[%@].getTree()", self.currentWindow]];
-		NSError *error;
 		NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[response objectForKey:@"value"]
 														   options:0
-															 error:&error];
+															 error:error];
 		if (! jsonData) {
-			NSLog(@"Got an error parsing webview source: %@", error);
+			NSLog(@"Got an error parsing webview source: %@", *error);
 		} else {
 			_lastPageSource = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 		}
