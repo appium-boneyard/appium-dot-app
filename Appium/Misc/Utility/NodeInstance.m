@@ -28,7 +28,7 @@
         if (![[NSFileManager defaultManager] fileExistsAtPath:nodePath])
         {
             [[NSFileManager defaultManager ] createDirectoryAtPath: nodePath withIntermediateDirectories: YES attributes: nil error: NULL ];
-            
+
             // download node
             NSString *nodeTarPath;
             NSString *stringURL = NODE_JS_DOWNLOAD_URL;
@@ -41,7 +41,7 @@
             }
             nodeTarPath = [NSString stringWithFormat:@"%@/%@", _nodeRootPath,@"node.tar"];
             [urlData writeToFile:nodeTarPath atomically:YES];
-            
+
             // extract node
             [Utility runTaskWithBinary:@"/usr/bin/tar" arguments:[NSArray arrayWithObjects: @"--strip-components", @"1", @"-zxvf", nodeTarPath, @"-C", @"./node", nil] path:_nodeRootPath];
 			[[NSFileManager defaultManager] removeItemAtPath:nodeTarPath error:NULL];

@@ -23,14 +23,14 @@
 {
 	// create model
 	[self setModel:[AppiumModel new]];
-	
+
     // create main monitor window
     [self setMainWindowController:[[AppiumMonitorWindowController alloc] initWithWindowNibName:@"AppiumMonitorWindow"]];
 	_updater = [[AppiumUpdater alloc] initWithAppiumMonitorWindowController:[self mainWindowController]];
 
     // install anything that's missing
     [self performSelectorInBackground:@selector(install) withObject:nil];
-    
+
 }
 
 -(void)applicationWillTerminate:(NSNotification *)notification
@@ -54,7 +54,7 @@
 													 name:NSWindowWillCloseNotification
 												   object:[_preferencesWindow window]];
 	}
-	
+
 	[_preferencesWindow showWindow:self];
 	[[_preferencesWindow window] makeKeyAndOrderFront:self];
 }
@@ -77,7 +77,7 @@
 													 name:NSWindowWillCloseNotification
 												   object:[self.inspectorWindow window]];
 	}
-	
+
 	[self.inspectorWindow showWindow:self];
 	[[self.inspectorWindow window] makeKeyAndOrderFront:self];
 }
@@ -96,7 +96,7 @@
     NSString *nodeRootPath = [[NSBundle mainBundle] resourcePath];
     BOOL installationRequired = ![NodeInstance instanceExistsAtPath:nodeRootPath];
     installationRequired |= ![NodeInstance packageIsInstalledAtPath:nodeRootPath withName:@"appium"];
-    
+
     if (installationRequired)
     {
         // install software
@@ -114,14 +114,14 @@
         // create node instance
         [[self mainWindowController] setNode:[[NodeInstance alloc] initWithPath:nodeRootPath]];
     }
-    
+
     // show main monitor window
     [[self mainWindowController] performSelectorOnMainThread:@selector(showWindow:) withObject:self waitUntilDone:YES];
     [[[self mainWindowController] window] performSelectorOnMainThread:@selector(makeKeyAndOrderFront:) withObject:self waitUntilDone:YES];
 
     // check for authorization
     [self performSelectorOnMainThread:@selector(checkForAuthorization) withObject:nil waitUntilDone:YES];
-    
+
     // check for updates
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Check For Updates"])
     {
@@ -136,7 +136,7 @@
     NSMutableDictionary *rightPlist = [authorizationPlist valueForKey:@"rights"];
     NSMutableDictionary *taskportDebugRights = [rightPlist valueForKey:@"system.privilege.taskport"];
     BOOL authorized = [[taskportDebugRights valueForKey:@"allow-root"] boolValue];
-    
+
     if (!authorized)
     {
         NSAlert *alert = [NSAlert new];
@@ -149,7 +149,7 @@
             // write out the new /etc/authorization to /tmp/
             [taskportDebugRights setValue:[NSNumber numberWithBool:YES] forKey:@"allow-root"];
             [authorizationPlist writeToFile:  @"/tmp/appium_authorization" atomically: YES];
-            
+
             // install the new /etc/authorization
             NSString *authorizeScriptPath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], @"Authorize.applescript"];
             NSTask *authorizeTask = [NSTask new];

@@ -26,7 +26,7 @@
 #pragma mark - NSCoding Implementation
 -(id) initWithCoder:(NSCoder *)aDecoder
 {
-    if(self = [super init]) 
+    if(self = [super init])
     {
         self.locatorType = [aDecoder decodeIntForKey:@"locatorType"];
         self.locatorString = [aDecoder decodeObjectForKey:@"locatorString"];
@@ -34,7 +34,7 @@
     }
     return self;
 }
-                                          
+
 -(void) encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeInt:self.locatorType forKey:@"locatorType"];
@@ -56,7 +56,7 @@
 	{
 		return [self byXPath];
 	}
-	
+
     switch(self.locatorType)
     {
         case APPIUM_CODE_MAKER_LOCATOR_TYPE_NAME:

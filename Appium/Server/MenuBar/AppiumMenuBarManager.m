@@ -25,7 +25,7 @@
 		[iconImage setSize:newSize];
 		[_item setImage:iconImage];
 		[_item setHighlightMode:YES];
-		
+
 		// add menu
 		[_item setMenu:[NSMenu new]];
 		[self installServerOffMenu:[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController]];
@@ -75,7 +75,7 @@
 	[startServerItem setHidden:NO];
 	[startServerItem setAction:@selector(launchButtonClicked:)];
     [startServerItem setTarget:mainWindowController];
-	
+
     [[_item menu] removeAllItems];
     [[_item menu] addItem:startServerItem];
 }

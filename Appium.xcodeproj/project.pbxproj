@@ -516,7 +516,6 @@
 		36CEB7BF16E3662E00B5B100 = {
 			isa = PBXGroup;
 			children = (
-				36A7C8EB17A485C9007F15AB /* ScriptingBridge.framework */,
 				36CEB7D116E3662E00B5B100 /* Appium */,
 				36CEB7D216E3662E00B5B100 /* Supporting Files */,
 				3614B1701719F43700A72D99 /* XIBs */,
@@ -538,6 +537,7 @@
 		36CEB7CA16E3662E00B5B100 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				36A7C8EB17A485C9007F15AB /* ScriptingBridge.framework */,
 				369ED810171DA81E000A7A4E /* MGSFragaria.framework */,
 				36CEB7CB16E3662E00B5B100 /* Cocoa.framework */,
 				3695E3C216FD08C800AD1544 /* QuartzCore.framework */,

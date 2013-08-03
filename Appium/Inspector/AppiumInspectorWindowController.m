@@ -25,13 +25,13 @@
 		{
 			return [self closeWithError:@"Could not connect to Appium Server"];
 		}
-		
+
         NSArray *sessions = [self.driver allSessions];
 		if (self.driver == nil || sessions == nil)
 		{
 			return [self closeWithError:@"Could not get list of sessions from Appium Server"];
 		}
-        
+
 		// get session to use
 		if (sessions.count > 0)
         {
@@ -52,12 +52,12 @@
 				return [self closeWithError:@"Could not start a new session"];
 			}
         }
-		
-		
+
+
 		// set 15 minute timeout so Appium will not close prematurely
 		NSArray *timeoutArgs = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys: [NSNumber numberWithInteger:900], @"timeout", nil],nil];
 		[_driver executeScript:@"mobile: setCommandTimeout" arguments:timeoutArgs];
-        
+
         // detect the current platform
         if ([[self.driver.session.capabilities.browserName lowercaseString] isEqualToString:@"ios"])
         {
@@ -76,14 +76,14 @@
             [model setPlatform:Platform_Android];
         }
     }
-    
+
     return self;
 }
 
 -(void) windowDidLoad
 {
     [super windowDidLoad];
-    
+
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
 

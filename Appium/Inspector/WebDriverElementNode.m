@@ -30,7 +30,7 @@
         _showDisabled = showDisabled;
         _showInvisible = showInvisible;
 		[self setParent:parent];
-		
+
 		if ([_jsonDict.allKeys containsObject:@"@enabled"])
 		{
 			// Android Node
@@ -52,7 +52,7 @@
 			[self setClickable:[[_jsonDict objectForKey:@"@clickable"] boolValue]];
 			[self setFocused:[[_jsonDict objectForKey:@"@focused"] boolValue]];
 			[self setChecked:[[_jsonDict objectForKey:@"@checked"] boolValue]];
-			
+
 			NSString *bounds = [_jsonDict objectForKey:@"@bounds"];
 			NSError *error;
 			NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\[(\\d+),(\\d+)\\]\\[(\\d+),(\\d+)\\]" options:NSRegularExpressionCaseInsensitive error:&error];
@@ -64,7 +64,7 @@
 				float x2 = [[[NSNumberFormatter new] numberFromString:[bounds substringWithRange:[firstResult rangeAtIndex:3]]] floatValue];
 				float y2 = [[[NSNumberFormatter new] numberFromString:[bounds substringWithRange:[firstResult rangeAtIndex:4]]] floatValue];
 
-			[self setRect:NSMakeRect(x1, y1, x2-x1, y2-y1)];
+				[self setRect:NSMakeRect(x1, y1, x2-x1, y2-y1)];
 			}
 			_children = [NSMutableArray new];
 			_visibleChildren = [NSMutableArray new];
@@ -78,7 +78,7 @@
 			{
 				jsonItems = [NSArray arrayWithObject:nodes];
 			}
-			
+
 			for(int i=0; i <jsonItems.count; i++)
 			{
 				WebDriverElementNode* child = [[WebDriverElementNode alloc] initWithJSONDict:[jsonItems objectAtIndex:i] parent:self showDisabled:_showDisabled showInvisible:_showInvisible];
@@ -108,7 +108,7 @@
 			long width = [[size valueForKey:@"width"] longValue];
 			long height = [[size valueForKey:@"height"] longValue];
 			[self setRect:NSMakeRect((float)x, (float)y, (float)width, (float)height)];
-			
+
 			_children = [NSMutableArray new];
 			_visibleChildren = [NSMutableArray new];
 			NSArray *jsonItems = [_jsonDict objectForKey:@"children"];
@@ -274,7 +274,7 @@
 	else
 	{
 		NSString *type = [self.type stringByReplacingOccurrencesOfString:@"android.widget." withString:@""];
-		
+
 		if ([type isEqualToString:@"AbsListView"])
 			return @"abslist";
 		else if ([type isEqualToString:@"AbsSeekBar"])

@@ -24,12 +24,12 @@
         self.canUndo = NO;
         self.canRedo = NO;
 		_plugins = [[NSDictionary alloc] initWithObjectsAndKeys:
-						[[AppiumCodeMakerCSharpPlugin alloc] initWithCodeMaker:self], @"C#",
-						[[AppiumCodeMakerJavaPlugin alloc] initWithCodeMaker:self], @"Java",
-						[[AppiumCodeMakerObjectiveCPlugin alloc] initWithCodeMaker:self], @"Objective-C",
-						[[AppiumCodeMakerPythonPlugin alloc] initWithCodeMaker:self], @"Python",
-						[[AppiumCodeMakerRubyPlugin alloc] initWithCodeMaker:self], @"Ruby",
-						nil];
+					[[AppiumCodeMakerCSharpPlugin alloc] initWithCodeMaker:self], @"C#",
+					[[AppiumCodeMakerJavaPlugin alloc] initWithCodeMaker:self], @"Java",
+					[[AppiumCodeMakerObjectiveCPlugin alloc] initWithCodeMaker:self], @"Objective-C",
+					[[AppiumCodeMakerPythonPlugin alloc] initWithCodeMaker:self], @"Python",
+					[[AppiumCodeMakerRubyPlugin alloc] initWithCodeMaker:self], @"Ruby",
+					nil];
     }
     return self;
 }
@@ -66,7 +66,7 @@
 	[self setActivePlugin:(AppiumCodeMakerPlugin*)[_plugins objectForKey:syntaxDefinition]];
 	[[NSUserDefaults standardUserDefaults] setObject:syntaxDefinition forKey:APPIUM_PLIST_CODEMAKER_LANGUAGE];
 	[_fragaria setObject:syntaxDefinition forKey:MGSFOSyntaxDefinitionName];
-	
+
 }
 
 -(void) setUseBoilerPlate:(NSNumber *)useBoilerPlate
@@ -110,7 +110,7 @@
     [self setCanUndo:NO];
     [self setCanRedo:NO];
 	[self renderAll];
-	
+
 }
 
 -(void) undoLast

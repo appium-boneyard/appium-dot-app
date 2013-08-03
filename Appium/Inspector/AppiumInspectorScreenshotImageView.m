@@ -41,7 +41,7 @@
     if (self) {
 		self.rotation = 0;
     }
-    
+
     return self;
 }
 
@@ -52,7 +52,7 @@
 -(void) drawRect:(NSRect)dirtyRect
 {
 	[super drawRect:dirtyRect];
-	
+
 	// draw line from points tapped on screen
 	if (_windowController.swipePopoverViewController.popover.isShown || _windowController.preciseTapPopoverViewController.popover.isShown)
 	{
@@ -62,7 +62,7 @@
 			CGFloat beginY = self.beginPoint.pointValue.y-2.0f;
 			CGFloat endX = self.endPoint.pointValue.x+2.0f;
 			CGFloat endY = self.endPoint.pointValue.y-2.0f;
-			
+
 			NSPoint beginPoint = NSMakePoint(beginX, beginY);
 			NSPoint endPoint = NSMakePoint(endX, endY);
 			NSBezierPath *line = [NSBezierPath bezierPath];
@@ -73,7 +73,7 @@
 			[line setLineCapStyle:NSRoundLineCapStyle];
 			[line stroke];
 		}
-		
+
 		if (self.beginPoint != nil)
 		{
 			// draw a point at the end
@@ -99,34 +99,34 @@
 			// draw a line between the start and end
 			double slope, cosy, siny;
 			double halfWidth = 2;
-			
+
 			CGPoint start = CGPointMake(self.beginPoint.pointValue.x, self.beginPoint.pointValue.y);
 			CGPoint end = CGPointMake(self.endPoint.pointValue.x, self.endPoint.pointValue.y);
-			
+
 			slope = atan2((start.y - end.y), (start.x - end.x));
 			cosy = cos(slope);
 			siny = sin(slope);
-			
+
 			CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort];
-			
+
 			CGGradientRef myGradient;
 			CGColorSpaceRef myColorspace;
 			size_t num_locations = 2;
 			CGFloat locations[2] = { 0.0, 1.0 };
 			CGFloat components[8] = { 0.0, 1.0, 0.0, 1.0,  // green
 				1.0, 0.0, 0.0, 1.0 }; // red
-			
+
 			myColorspace = CGColorSpaceCreateDeviceRGB();
 			myGradient = CGGradientCreateWithColorComponents (myColorspace, components, locations, num_locations);
 
-			
+
 			CGContextMoveToPoint(context, start.x - halfWidth*siny , start.y + halfWidth*cosy);
 			CGContextAddLineToPoint(context, end.x - halfWidth*siny , end.y + halfWidth*cosy);
 			CGContextAddLineToPoint(context, end.x + halfWidth*siny , end.y - halfWidth*cosy);
 			CGContextAddLineToPoint(context, start.x + halfWidth*siny, start.y - halfWidth*cosy);
 			CGContextAddLineToPoint(context, start.x - halfWidth*siny , start.y + halfWidth*cosy);
 			CGContextClip(context);
-			
+
 			CGContextDrawLinearGradient (context, myGradient, start, end, 0);
 			CGColorSpaceRelease( myColorspace );
 			CGGradientRelease (myGradient);
@@ -143,13 +143,13 @@
 -(void) setUpScreenshotView:(NSImage *)newImage
 {
 	[super setImage:[self rotateImage:newImage byAngle:self.rotation]];
-	
+
 	self.screenshotScalar = self.bounds.size.height / newImage.size.height;
 	self.maxWidth = self.bounds.size.width;
 	self.maxHeight = self.bounds.size.height;
 	self.xBorder = 0.0f;
 	self.yBorder = 0.0f;
-	
+
     // determine borders
 	if (newImage.size.width > newImage.size.height)
 	{
@@ -161,11 +161,11 @@
 		self.maxWidth = newImage.size.width * (self.bounds.size.height / newImage.size.height);
 		self.xBorder = (self.bounds.size.width - self.maxWidth) / 2.0f;
 	}
-    
+
     // add factor of 2 to screenshot scalar to account for retina display based coordinates
     if (self.inspector.model.isIOS)
     {
-		
+
         // check for retina devices
         if (newImage.size.width == 640 && newImage.size.height == 960)
         {
@@ -197,7 +197,7 @@
             // landscape ipad with retina display
             self.screenshotScalar *= 2.0f;
         }
-        
+
     }
 }
 
@@ -260,7 +260,7 @@
 		NSSize afterSize = degrees == 90 || degrees == -90 ? NSMakeSize(beforeSize.height, beforeSize.width) : beforeSize;
 		NSImage* newImage = [[NSImage alloc] initWithSize:afterSize];
 		NSAffineTransform* trans = [NSAffineTransform transform];
-		
+
 		[newImage lockFocus];
 		[trans translateXBy:afterSize.width * 0.5 yBy:afterSize.height * 0.5];
 		[trans rotateByDegrees:degrees];
