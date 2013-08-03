@@ -28,7 +28,7 @@
     if (self) {
 		// initialization code here
     }
-    
+
     return self;
 }
 
@@ -46,7 +46,7 @@
 -(AppiumModel*) model { return [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] model]; }
 
 - (IBAction) launchButtonClicked:(id)sender
-{    
+{
     if ([self.model startServer])
     {
         [self performSelectorInBackground:@selector(errorLoop) withObject:nil];
@@ -62,7 +62,7 @@
     while(self.model.serverTask.isRunning)
     {
         NSData *data = [serverStdOut availableData];
-        
+
         NSString *string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
         NSAttributedString *attributedString = [ANSIUtility processIncomingStream:string withPreviousAttributes:&previousAttributes];
         [self performSelectorOnMainThread:@selector(appendToLog:) withObject:attributedString waitUntilDone:YES];
@@ -77,7 +77,7 @@
 	while(self.model.serverTask.isRunning)
     {
         NSData *data = [serverStdErr availableData];
-        
+
         NSString *string = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
         NSAttributedString *attributedString = [ANSIUtility processIncomingStream:string withPreviousAttributes:&previousAttributes];
         [self performSelectorOnMainThread:@selector(appendToLog:) withObject:attributedString waitUntilDone:YES];
@@ -90,9 +90,9 @@
     [[self.logTextView textStorage] beginEditing];
     [[self.logTextView textStorage] appendAttributedString:string];
     [[self.logTextView textStorage] endEditing];
-    
+
     NSRange range = NSMakeRange ([[self.logTextView string] length], 0);
-    
+
     [self.logTextView scrollRangeToVisible: range];
 }
 
@@ -105,7 +105,7 @@
 -(IBAction)chooseFile:(id)sender
 {
 	NSString *selectedApp = [self.model appPath];
-	
+
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
 	[openDlg setShowsHiddenFiles:YES];
 	[openDlg setAllowedFileTypes:[NSArray arrayWithObjects:@"app", @"apk", @"zip", @"ipa", nil]];

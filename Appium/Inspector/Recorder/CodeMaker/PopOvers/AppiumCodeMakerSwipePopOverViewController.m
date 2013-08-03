@@ -20,7 +20,7 @@
     if (self) {
 		[self reset];
     }
-    
+
     return self;
 }
 
@@ -111,12 +111,12 @@
 
 -(void) popoverWillShow:(NSNotification *)notification
 {
-	
+
 }
 
 -(void) popoverWillClose:(NSNotification *)notification
 {
-	
+
 }
 
 @end

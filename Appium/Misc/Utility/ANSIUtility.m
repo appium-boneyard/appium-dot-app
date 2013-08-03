@@ -22,9 +22,9 @@
         [attributedResult addAttributes:*attrs range:NSMakeRange(0, [string length])];
         return attributedResult;
     }
-    
+
     NSError *error = nil;
-        
+
     error = nil;
     NSRegularExpression *colorRegex = [NSRegularExpression regularExpressionWithPattern:@"\\e.(\\d{1,1};)??(\\d{1,2}m)" options:NSRegularExpressionUseUnixLineSeparators error:&error];
     if(error){
@@ -32,10 +32,10 @@
     }
     NSArray *matches = [colorRegex matchesInString:string options:NSMatchingReportProgress range:NSMakeRange(0, [string length])];
     NSString *colorStrippedString = [colorRegex stringByReplacingMatchesInString:string options:NSMatchingReportCompletion range:NSMakeRange(0,[string length]) withTemplate:@""];
-    
+
     NSMutableAttributedString *attributedResult = [[NSMutableAttributedString alloc] initWithString:[colorStrippedString stringByAppendingString:@"\r\n"]];
     [attributedResult addAttributes:*attrs range:NSMakeRange(0, [colorStrippedString length])];
-    
+
     NSInteger offset = 2;
     for(int i=0;i<[matches count];i++){
         NSTextCheckingResult *result = [matches objectAtIndex:i];

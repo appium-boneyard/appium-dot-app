@@ -67,7 +67,7 @@ NSString* upgradeUrl;
     NSString *latestVersion = [jsonDictionary objectForKey:@"latest"];
     upgradeUrl = [jsonDictionary objectForKey:@"url"];
 	NSArray *notUpgradableVersions = [jsonDictionary objectForKey:@"do-not-upgrade"];
-	
+
 	// check if this version is currently the latest
     if (![myVersion isEqualToString:latestVersion])
     {
@@ -104,13 +104,13 @@ NSString* upgradeUrl;
 -(void)doAppUpgradeInstall
 {
     [mainWindowController.model killServer];
-    
+
     AppiumInstallationWindowController *installationWindow = [[AppiumInstallationWindowController alloc] initWithWindowNibName:@"AppiumInstallationWindow"];
     [[mainWindowController window] orderOut:nil];
     [installationWindow performSelectorOnMainThread:@selector(showWindow:) withObject:self waitUntilDone:YES];
     [[installationWindow window] makeKeyAndOrderFront:self];
     [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Downloading Appium.app..." waitUntilDone:YES];
-    
+
     // download latest appium.app
     NSLog(@"Downloading Appium app from \"%@.\"", upgradeUrl);
     NSURL  *url = [NSURL URLWithString:upgradeUrl];
@@ -119,18 +119,18 @@ NSString* upgradeUrl;
     {
         return;
     }
-    
+
 	NSString *dmgPath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath],@"appium.dmg"];
 	NSString *destinationPath = [[[NSBundle mainBundle] bundlePath] stringByDeletingLastPathComponent];
     [urlData writeToFile:dmgPath atomically:YES];
-    
+
 	NSString *upgradeScriptPath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], @"Upgrade.applescript"];
     NSTask *restartTask = [NSTask new];
     [restartTask setLaunchPath:@"/bin/sh"];
     [restartTask setArguments:[NSArray arrayWithObjects: @"-c",[NSString stringWithFormat:@"sleep 2; rm -f /tmp/appium-updater /tmp/appium-upgrade.applescript /tmp/appium.dmg; cp \"%@\" /tmp/appium-upgrade.applescript; cp \"%@\" /tmp/appium.dmg; cp /usr/bin/osascript /tmp/appium-updater; /tmp/appium-updater /tmp/appium-upgrade.applescript \"/tmp/appium.dmg\" \"/Volumes/Appium\" \"/Volumes/Appium/Appium.app\" \"%@\" \"%@\" ; open \"%@\"", upgradeScriptPath, dmgPath, [[NSBundle mainBundle] bundlePath], destinationPath, [[NSBundle mainBundle] bundlePath] ], nil]];
     [restartTask launch];
     [[NSApplication sharedApplication] terminate:nil];
-	
+
 }
 
 #pragma mark - Appium Package Update
@@ -150,7 +150,7 @@ NSString* upgradeUrl;
     NSDictionary *jsonDictionary = (NSDictionary *)jsonObject;
     NSString *latestVersion = [jsonDictionary objectForKey:@"version"];
     NSString *myVersion;
-    
+
     // check the local copy of appium
     NSString *packagePath = [NSString stringWithFormat:@"%@/%@", [[mainWindowController node] pathtoPackage:@"appium"], @"package.json"];
     if ([[NSFileManager defaultManager] fileExistsAtPath: packagePath])
@@ -191,7 +191,7 @@ NSString* upgradeUrl;
     [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Updating Appium Package..." waitUntilDone:YES];
 
     [[mainWindowController node] installPackage:@"appium" forceInstall:YES];
-	
+
     [[mainWindowController window] makeKeyAndOrderFront:self];
     [installationWindow close];
     NSAlert *upgradeCompleteAlert = [NSAlert new];

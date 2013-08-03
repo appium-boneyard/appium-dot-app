@@ -26,7 +26,7 @@ BOOL _isServerListening;
 {
     self = [super init];
     if (self) {
-		
+
 		// initialize settings
 		NSString *filePath = [[NSBundle mainBundle] pathForResource:@"defaults" ofType:@"plist"];
 		NSDictionary *settingsDict = [NSDictionary dictionaryWithContentsOfFile:filePath];
@@ -39,13 +39,13 @@ BOOL _isServerListening;
 		_isServerListening = [self useRemoteServer];
 		[self setAvailableAVDs:[NSArray new]];
         [self setAvailableActivities:[NSArray new]];
-		
+
 		// update keystore path to match current user
 		if ([self.androidKeystorePath hasPrefix:@"/Users/me/"])
         {
 			[self setAndroidKeystorePath:[self.androidKeystorePath stringByReplacingOccurrencesOfString:@"/Users/me" withString:NSHomeDirectory()]];
 		}
-        
+
         // asynchronous initilizations
         [self performSelectorInBackground:@selector(refreshAVDs) withObject:nil];
     }
@@ -301,7 +301,7 @@ BOOL _isServerListening;
     {
         return NO;
     }
-    
+
     // kill any processes using the appium server port
     if (self.killProcessesUsingPort)
     {
@@ -312,7 +312,7 @@ BOOL _isServerListening;
             system([script UTF8String]);
         }
     }
-    
+
 	// build arguments
 	NSString *nodeDebuggingArguments = @"";
 	if (self.useNodeDebugging)
@@ -336,7 +336,7 @@ BOOL _isServerListening;
 	{
 		nodeCommandString = [NSString stringWithFormat:@"export ANDROID_HOME=\"%@\"; %@", self.customAndroidSDKPath, nodeCommandString];
 	}
-	
+
 	if (![self.ipAddress isEqualTo:@"0.0.0.0"])
     {
 		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--address", self.ipAddress];
@@ -353,7 +353,7 @@ BOOL _isServerListening;
 		}
 		else
 		{
-		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--app", [self.appPath stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--app", [self.appPath stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
 		}
     }
 	else if (self.useBundleID)
@@ -380,7 +380,7 @@ BOOL _isServerListening;
     {
         nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--nodeconfig", [self.seleniumGridConfigFile stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
     }
-    
+
     // logging preferences
 	if (self.useQuietLogging)
     {
@@ -398,7 +398,7 @@ BOOL _isServerListening;
     {
         nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--webhook", self.logWebHook];
     }
-    
+
     // iOS preferences
     if (self.platform == Platform_iOS)
     {
@@ -433,7 +433,7 @@ BOOL _isServerListening;
 			nodeCommandString = [nodeCommandString stringByAppendingString:@" --safari"];
 		}
     }
-    
+
     // Android preferences
     if (self.platform == Platform_Android)
     {
@@ -465,7 +465,7 @@ BOOL _isServerListening;
 		{
 			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--selendroid-port", [self.selendroidPort intValue]];
 		}
-        
+
         // Android keystore preferences
         if (self.useAndroidKeystore)
         {
@@ -476,14 +476,14 @@ BOOL _isServerListening;
             nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--key-password", [self.androidKeyPassword stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
         }
     }
-	
+
 	// Robot preferences
 	if (self.useRobot)
     {
 		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--robot-address", self.robotAddress];
 		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--robot-port", [self.robotPort intValue]];
 	}
-	
+
 	[self setServerTask:[NSTask new]];
 	if (self.useExternalAppiumPackage)
 	{
@@ -495,13 +495,13 @@ BOOL _isServerListening;
 	}
     [self.serverTask setLaunchPath:@"/bin/bash"];
     [self.serverTask setArguments: [NSArray arrayWithObjects: @"-l",
-							   @"-c", nodeCommandString, nil]];
-	
+									@"-c", nodeCommandString, nil]];
+
 	// redirect i/o
     [self.serverTask setStandardOutput:[NSPipe pipe]];
 	[self.serverTask setStandardError:[NSPipe pipe]];
     [self.serverTask setStandardInput:[NSPipe pipe]];
-    
+
 	// launch
     [self.serverTask launch];
     [self setIsServerRunning:self.serverTask.isRunning];
@@ -517,27 +517,27 @@ BOOL _isServerListening;
         // OPTION #1
         // poll with sockets api
         /*
-		sleep(.5);
-        BOOL newValue = [Utility checkIfTCPPortIsInUse:[self.port shortValue] atAddress:[self.ipAddress UTF8String]];
-        if (newValue == YES && self.isServerListening)
-	 	{
-			// sleep to avoid race condition where server is listening but not ready
-		 	sleep(1);
-		}
-		[self setIsServerListening:newValue];
-        */
-        
-        
+		 sleep(.5);
+		 BOOL newValue = [Utility checkIfTCPPortIsInUse:[self.port shortValue] atAddress:[self.ipAddress UTF8String]];
+		 if (newValue == YES && self.isServerListening)
+		 {
+		 // sleep to avoid race condition where server is listening but not ready
+		 sleep(1);
+		 }
+		 [self setIsServerListening:newValue];
+		 */
+
+
         // OPTION #2
         // poll with lsof command
 
         // space out the checks by 1 second
 		sleep(1);
-        
+
         // check if there is a process listening on the port
         NSNumber *pidOnPort = [Utility getPidListeningOnPort:self.port];
         BOOL newValue = pidOnPort != nil;
-        
+
         // set the value
 	 	if (newValue == YES && !self.isServerListening)
 	 	{
@@ -545,46 +545,46 @@ BOOL _isServerListening;
 		 	sleep(1);
 		}
 		[self setIsServerListening:newValue];
-        
+
         // OPTION #3
 		// poll with web requests
         /*
-		sleep(pollInterval);
-		NSError *error = nil;
-		NSString *urlString = [NSString stringWithFormat:@"http://%@:%d/wd/hub/status", self.ipAddress, self.port.intValue];
-		NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:1];
-		
-		NSURLResponse *response;
-		NSData *urlData = [NSURLConnection sendSynchronousRequest:request
-												returningResponse:&response
-															error:&error];
-		if (error != nil && [error code] != 0)
-		{
-			[self setIsServerListening:NO];
-			pollInterval = 1;
-			continue;
-		}
-		
-		NSDictionary *json = [NSJSONSerialization JSONObjectWithData:urlData
-															 options: NSJSONReadingMutableContainers & NSJSONReadingMutableLeaves
-															   error: &error];
-		if (error != nil && [error code] != 0)
-		{
-			[self setIsServerListening:NO];
-			pollInterval = 1;
-			continue;
-		}
-		else
-		{
-			NSObject *statusObj = [json objectForKey:@"status"];
-			sleep(1); // sleep to avoid race condition where server is listening but not ready
-			[self setIsServerListening:statusObj != nil && [statusObj isKindOfClass:[NSNumber class]] && [((NSNumber*)statusObj) intValue] == 0];
-			pollInterval = MIN(2*pollInterval, 30); // sleep for longer
-			continue;
-		}
-		*/
-		
+		 sleep(pollInterval);
+		 NSError *error = nil;
+		 NSString *urlString = [NSString stringWithFormat:@"http://%@:%d/wd/hub/status", self.ipAddress, self.port.intValue];
+		 NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+		 NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:1];
+
+		 NSURLResponse *response;
+		 NSData *urlData = [NSURLConnection sendSynchronousRequest:request
+		 returningResponse:&response
+		 error:&error];
+		 if (error != nil && [error code] != 0)
+		 {
+		 [self setIsServerListening:NO];
+		 pollInterval = 1;
+		 continue;
+		 }
+
+		 NSDictionary *json = [NSJSONSerialization JSONObjectWithData:urlData
+		 options: NSJSONReadingMutableContainers & NSJSONReadingMutableLeaves
+		 error: &error];
+		 if (error != nil && [error code] != 0)
+		 {
+		 [self setIsServerListening:NO];
+		 pollInterval = 1;
+		 continue;
+		 }
+		 else
+		 {
+		 NSObject *statusObj = [json objectForKey:@"status"];
+		 sleep(1); // sleep to avoid race condition where server is listening but not ready
+		 [self setIsServerListening:statusObj != nil && [statusObj isKindOfClass:[NSNumber class]] && [((NSNumber*)statusObj) intValue] == 0];
+		 pollInterval = MIN(2*pollInterval, 30); // sleep for longer
+		 continue;
+		 }
+		 */
+
 	}
 	[self setIsServerListening:NO];
 }
@@ -592,13 +592,13 @@ BOOL _isServerListening;
 -(void) refreshAvailableActivities
 {
     NSString *androidBinaryPath = [Utility pathToAndroidBinary:@"aapt"];
-    
+
 	if (androidBinaryPath == nil)
 		return;
-	
+
     // get the xml dump from aapt
 	NSString *aaptString = [Utility runTaskWithBinary:androidBinaryPath arguments:[NSArray arrayWithObjects:@"dump", @"xmltree", self.appPath, @"AndroidManifest.xml", nil]];
-    
+
     // read line by line
     NSArray *aaptLines = [aaptString componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     NSMutableArray *activities = [NSMutableArray new];
@@ -606,13 +606,13 @@ BOOL _isServerListening;
     for (int i=0; i < aaptLines.count; i++)
     {
         NSString *line = [((NSString*)[aaptLines objectAtIndex:i]) stringByTrimmingLeadingWhitespace];
-        
+
         // determine when an activity element has started or ended
         if ([line hasPrefix:@"E:"])
         {
             currentElementIsActivity = [line hasPrefix:@"E: activity (line="];
         }
-        
+
         // determine when the activity name has appeared
         if (currentElementIsActivity && [line hasPrefix:@"A: android:name("])
         {
@@ -629,10 +629,10 @@ BOOL _isServerListening;
 -(void) refreshAVDs
 {
 	NSString *androidBinaryPath = [Utility pathToAndroidBinary:@"android"];
-    
+
 	if (androidBinaryPath == nil)
 		return;
-	
+
 	NSString *avdString = [Utility runTaskWithBinary:androidBinaryPath arguments:[NSArray arrayWithObjects:@"list", @"avd", @"-c", nil]];
 	NSMutableArray *avds = [NSMutableArray new];
 	NSArray *avdList = [avdString componentsSeparatedByString:@"\n"];
@@ -643,7 +643,7 @@ BOOL _isServerListening;
 			[avds addObject:avd];
 		}
 	}
-	
+
 	[self setAvailableAVDs:avds];
 	if (avds.count > 0)
 	{

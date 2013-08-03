@@ -14,7 +14,7 @@
 #import "AppiumPreferencesFile.h"
 
 @interface AppiumInspector ()
-    @property (readonly) SERemoteWebDriver *driver;
+@property (readonly) SERemoteWebDriver *driver;
 @end
 
 @implementation AppiumInspector
@@ -103,7 +103,7 @@
 		currentNode = currentNode.parent;
 		[nodes addObject:currentNode];
 	}
-	
+
 	// get the indexes from the root to the node
 	NSMutableArray *nodePath = [NSMutableArray new];
 	for(NSInteger i=nodes.count-1; i > 0; i--)
@@ -119,7 +119,7 @@
 			}
 		}
 	}
-	
+
 	// build index set
 	NSIndexPath *indexPath = [NSIndexPath new];
 	for(int i=0; i <nodePath.count; i++)
@@ -135,7 +135,7 @@
 		}
 		[self setSelectedNode:[NSIndexSet indexSetWithIndex:[[nodePath objectAtIndex:i] integerValue]] inColumn:i];
 	}
-	
+
 	// select
 	_selection = node;
 	[_windowController.browser setSelectionIndexPath:indexPath];
@@ -152,10 +152,10 @@
 		if (result != nil)
 			return result;
 	}
-	
+
 	if (NSPointInRect(point, node.rect))
 		return node;
-	
+
 	return nil;
 }
 
@@ -195,7 +195,7 @@
             {
                 return nil;
             }
-			
+
         }
     }
     return result;
@@ -212,7 +212,7 @@
         WebDriverElementNode *currentNode = [parentNode.visibleChildren objectAtIndex:[[_selectedIndexes objectAtIndex:i] integerValue]];
         if (currentNode == _selection)
             foundNode = YES;
-        
+
         // build xpath
         [xPath appendString:@"/"];
         [xPath appendString:currentNode.typeShortcut];
@@ -230,7 +230,7 @@
 			if (node == selectedNodeAtLevel)
 				break;
         }
-        
+
         [xPath appendString:[NSString stringWithFormat:@"[%ld]", nodeTypeCount]];
         parentNode = currentNode;
     }
@@ -357,7 +357,7 @@
 		{
 			parentNode = [parentNode.visibleChildren objectAtIndex:[[_selectedIndexes objectAtIndex:i] integerValue]];
 		}
-		
+
 		// find the element
         _selection = [parentNode.visibleChildren objectAtIndex:[proposedSelectionIndexes firstIndex]];
 		if (_selectedIndexes.count < column+1)
@@ -400,7 +400,7 @@
 -(void) updateDetailsDisplay
 {
 	NSView *highlightView = _windowController.selectedElementHighlightView;
-	
+
 	if (_selection != nil)
 	{
         NSString *newDetails = [NSString stringWithFormat:@"%@\nxpath: %@", [_selection infoText], [self xPathForSelectedNode]];
@@ -410,7 +410,7 @@
 	{
         [_windowController.detailsTextView setString:@""];
 	}
-	
+
 	if (_selection != nil)
     {
         if (!highlightView.layer) {
@@ -432,7 +432,7 @@
 			}
             highlightView.layer.borderColor = redCGColor;
         }
-		
+
         CGRect viewRect = [_windowController.screenshotImageView convertSeleniumRectToViewRect:[_selection rect]];
         highlightView.frame = viewRect;
         [highlightView setHidden:NO];

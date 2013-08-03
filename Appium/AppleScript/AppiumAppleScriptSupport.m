@@ -152,7 +152,7 @@
         return [NSNumber numberWithBool:NO];
     [[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] launchButtonClicked:nil];
     return [NSNumber numberWithBool:YES];
-    
+
 }
 
 - (NSNumber*) s_StopServer: (NSScriptCommand*)command

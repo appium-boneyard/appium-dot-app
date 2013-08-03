@@ -51,7 +51,7 @@
 	AppiumCodeMakerAction *another = [[AppiumCodeMakerAction alloc] init];
 	[another setActionType:self.actionType];
 	[another setParams:[self.params copyWithZone:zone]];
-									  
+
 
 	return another;
 }

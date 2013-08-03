@@ -39,19 +39,19 @@
 	{
 		return androidBinaryPath;
 	}
-	
+
 	// check tools folder
 	androidBinaryPath = [[androidHomePath stringByAppendingPathComponent:@"tools"] stringByAppendingPathComponent:binaryName];
 	if ([[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath])
 	{
 		return androidBinaryPath;
 	}
-	
+
 	// try using the which command
 	NSTask *whichTask = [NSTask new];
     [whichTask setLaunchPath:@"/bin/bash"];
     [whichTask setArguments: [NSArray arrayWithObjects: @"-l",
-									@"-c", [NSString stringWithFormat:@"which %@", binaryName], nil]];
+							  @"-c", [NSString stringWithFormat:@"which %@", binaryName], nil]];
 	pipe = [NSPipe pipe];
     [whichTask setStandardOutput:pipe];
 	[whichTask setStandardError:[NSPipe pipe]];
@@ -66,7 +66,7 @@
 	{
 		return androidBinaryPath;
 	}
-	
+
 	return nil;
 }
 
@@ -77,7 +77,7 @@
     {
         [task setCurrentDirectoryPath:path];
     }
-    
+
     [task setLaunchPath:binary];
     [task setArguments:args];
     NSPipe *pipe = [NSPipe pipe];
@@ -110,7 +110,7 @@
     char line[1035];
     NSString *lsofCmd = [NSString stringWithFormat: @"/usr/sbin/lsof -t -i :%d", [port intValue]];
     NSNumber * pid = nil;
-    
+
     // open the command for reading
     fp = popen([lsofCmd UTF8String], "r");
     if (fp != NULL)
