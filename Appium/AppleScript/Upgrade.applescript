@@ -13,7 +13,7 @@ on run argv
 	end try
 	do shell script "hdiutil attach \"" & dmgPath & "\""
 	do shell script "rm -rf " & "\"" & appPath & "/\"" with administrator privileges
-	do shell script "cp -R \"" & source & "\" \"" & destination & "\"" with administrator privileges
+	do shell script "cp -R \"" & source & "\" \"" & destination & "\""
 	do shell script "hdiutil detach \"" & mountPath & "\""
 	do shell script "rm -f /tmp/appium-updater"
 end run
