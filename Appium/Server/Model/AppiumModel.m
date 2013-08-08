@@ -593,55 +593,71 @@ BOOL _isServerListening;
 {
     NSString *androidBinaryPath = [Utility pathToAndroidBinary:@"aapt"];
 
-	if (androidBinaryPath == nil)
+	if (androidBinaryPath == nil || ![[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath])
+	{
 		return;
+	}
+	@try
+	{
+		// get the xml dump from aapt
+		NSString *aaptString = [Utility runTaskWithBinary:androidBinaryPath arguments:[NSArray arrayWithObjects:@"dump", @"xmltree", self.appPath, @"AndroidManifest.xml", nil]];
 
-    // get the xml dump from aapt
-	NSString *aaptString = [Utility runTaskWithBinary:androidBinaryPath arguments:[NSArray arrayWithObjects:@"dump", @"xmltree", self.appPath, @"AndroidManifest.xml", nil]];
+		// read line by line
+		NSArray *aaptLines = [aaptString componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+		NSMutableArray *activities = [NSMutableArray new];
+		BOOL currentElementIsActivity;
+		for (int i=0; i < aaptLines.count; i++)
+		{
+			NSString *line = [((NSString*)[aaptLines objectAtIndex:i]) stringByTrimmingLeadingWhitespace];
 
-    // read line by line
-    NSArray *aaptLines = [aaptString componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-    NSMutableArray *activities = [NSMutableArray new];
-    BOOL currentElementIsActivity;
-    for (int i=0; i < aaptLines.count; i++)
-    {
-        NSString *line = [((NSString*)[aaptLines objectAtIndex:i]) stringByTrimmingLeadingWhitespace];
+			// determine when an activity element has started or ended
+			if ([line hasPrefix:@"E:"])
+			{
+				currentElementIsActivity = [line hasPrefix:@"E: activity (line="];
+			}
 
-        // determine when an activity element has started or ended
-        if ([line hasPrefix:@"E:"])
-        {
-            currentElementIsActivity = [line hasPrefix:@"E: activity (line="];
-        }
-
-        // determine when the activity name has appeared
-        if (currentElementIsActivity && [line hasPrefix:@"A: android:name("])
-        {
-            NSArray *lineComponents = [line componentsSeparatedByString:@"\""];
-            if (lineComponents.count >= 3)
-            {
-                [activities addObject:(NSString*)[lineComponents objectAtIndex:1]];
-            }
-        }
-    }
-    [self setAvailableActivities:activities];
+			// determine when the activity name has appeared
+			if (currentElementIsActivity && [line hasPrefix:@"A: android:name("])
+			{
+				NSArray *lineComponents = [line componentsSeparatedByString:@"\""];
+				if (lineComponents.count >= 3)
+				{
+					[activities addObject:(NSString*)[lineComponents objectAtIndex:1]];
+				}
+			}
+		}
+		[self setAvailableActivities:activities];
+	}
+	@catch (NSException *exception) {
+		NSLog(@"Could not list Android Activities: %@", exception);
+	}
 }
 
 -(void) refreshAVDs
 {
 	NSString *androidBinaryPath = [Utility pathToAndroidBinary:@"android"];
 
-	if (androidBinaryPath == nil)
-		return;
-
-	NSString *avdString = [Utility runTaskWithBinary:androidBinaryPath arguments:[NSArray arrayWithObjects:@"list", @"avd", @"-c", nil]];
-	NSMutableArray *avds = [NSMutableArray new];
-	NSArray *avdList = [avdString componentsSeparatedByString:@"\n"];
-	for (NSString *avd in avdList)
+	if (androidBinaryPath == nil || ![[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath])
 	{
-		if (avd.length > 0)
+		return;
+	}
+	
+	NSMutableArray *avds = [NSMutableArray new];
+
+	@try
+	{
+		NSString *avdString = [Utility runTaskWithBinary:androidBinaryPath arguments:[NSArray arrayWithObjects:@"list", @"avd", @"-c", nil]];
+		NSArray *avdList = [avdString componentsSeparatedByString:@"\n"];
+		for (NSString *avd in avdList)
 		{
-			[avds addObject:avd];
+			if (avd.length > 0)
+			{
+				[avds addObject:avd];
+			}
 		}
+	}
+	@catch (NSException *exception) {
+		NSLog(@"Could not list Android AVDs: %@", exception);
 	}
 
 	[self setAvailableAVDs:avds];
