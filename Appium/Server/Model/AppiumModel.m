@@ -326,11 +326,15 @@ BOOL _isServerListening;
 	NSString *nodeCommandString;
 	if (self.useExternalAppiumPackage)
 	{
-		nodeCommandString = [NSString stringWithFormat:@"%@%@ server.js", self.externalNodeJSBinaryPath, nodeDebuggingArguments];
+        // Insert single quote for fixing space problem between folder name 
+        
+		nodeCommandString = [NSString stringWithFormat:@"'%@'%@ server.js", self.externalNodeJSBinaryPath, nodeDebuggingArguments];
 	}
 	else
 	{
-		nodeCommandString = [NSString stringWithFormat:@"%@/%@%@ server.js", [[NSBundle mainBundle]resourcePath], @"node/bin/node", nodeDebuggingArguments];
+         // Insert single quote for fixing space problem between folder name 
+        
+		nodeCommandString = [NSString stringWithFormat:@"'%@'%@ server.js", self.externalNodeJSBinaryPath, nodeDebuggingArguments];
 	}
 	if (self.useCustomAndroidSDKPath)
 	{
