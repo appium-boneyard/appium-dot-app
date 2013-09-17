@@ -90,7 +90,7 @@
 	<key>Tab State</key>
 	<integer>0</integer>
 	<key>UDID</key>
-	<string></string>
+	<string>auto</string>
 	<key>Use Android Activity</key>
 	<false/>
 	<key>Use Android Device Ready Timeout</key>
