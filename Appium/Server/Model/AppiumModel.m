@@ -324,17 +324,14 @@ BOOL _isServerListening;
 		}
 	}
 	NSString *nodeCommandString;
-	if (self.useExternalAppiumPackage)
+	if (self.useExternalNodeJSBinary)
 	{
-        // Insert single quote for fixing space problem between folder name 
-        
 		nodeCommandString = [NSString stringWithFormat:@"'%@'%@ server.js", self.externalNodeJSBinaryPath, nodeDebuggingArguments];
 	}
 	else
 	{
-         // Insert single quote for fixing space problem between folder name 
-        
-		nodeCommandString = [NSString stringWithFormat:@"'%@'%@ server.js", self.externalNodeJSBinaryPath, nodeDebuggingArguments];
+		nodeCommandString = [NSString stringWithFormat:@"'%@%@'%@ server.js", [[NSBundle mainBundle]resourcePath], @"/node/bin/node", nodeDebuggingArguments];
+		
 	}
 	if (self.useCustomAndroidSDKPath)
 	{
