@@ -40,7 +40,7 @@
 			<property name="android device ready timeout" code="amdt" description="time to allow for an android device to become ready" type="integer">
 				<cocoa key="s_AndroidDeviceReadyTimeout"/>
 			</property>
-            <property name="android key alias" code="akka" description="android key alias" type="text">
+			<property name="android key alias" code="akka" description="android key alias" type="text">
 				<cocoa key="s_AndroidKeyAlias"/>
 			</property>
 			<property name="android key password" code="akkp" description="android key password" type="text">
@@ -94,28 +94,28 @@
 			<property name="keep artifacts" code="apka" description="true if artifacts will be kept after the session" type="boolean">
 				<cocoa key="s_KeepArtifacts"/>
 			</property>
-            <property name="kill processes using port" code="amkp" description="true if appium will kill processes using the server port before launching the server" type="boolean">
+			<property name="kill processes using port" code="amkp" description="true if appium will kill processes using the server port before launching the server" type="boolean">
 				<cocoa key="s_KillProcessesUsingPort"/>
 			</property>
-            <property name="inspector window" code="apiw" description="appium inpsector window" type="inspector window controller" access="r">
+			<property name="inspector window" code="apiw" description="appium inpsector window" type="inspector window controller" access="r">
 				<cocoa key="s_InspectorWindow"/>
 			</property>
 			<property name="launch avd" code="alav" description="true if appium should launch an avd" type="boolean">
 				<cocoa key="s_UseAVD"/>
 			</property>
-            <property name="log file" code="amlf" description="path to the log file appium will use" type="text">
+			<property name="log file" code="amlf" description="path to the log file appium will use" type="text">
 				<cocoa key="s_LogFile"/>
 			</property>
 			<property name="log text" code="amlt" description="text from the appium log" type="text" access="r">
 				<cocoa key="s_LogText"/>
 			</property>
-            <property name="log to file" code="aulf" description="true if appium will log to a file" type="boolean">
+			<property name="log to file" code="aulf" description="true if appium will log to a file" type="boolean">
 				<cocoa key="s_UseLogFile"/>
 			</property>
 			<property name="log to webhook" code="aulw" description="true if appium will log to a webhook" type="boolean">
 				<cocoa key="s_UseLogWebhook"/>
 			</property>
-            <property name="log webhook" code="amlw" description="webhook to which appium will log" type="text">
+			<property name="log webhook" code="amlw" description="webhook to which appium will log" type="text">
 				<cocoa key="s_LogWebhook"/>
 			</property>
 			<property name="node debug port" code="amnd" description="port for the nodeJS debugger" type="integer">
@@ -124,7 +124,7 @@
 			<property name="node path" code="amnp" description="path to nodejs binary" type="text" access="r">
 				<cocoa key="s_NodePath"/>
 			</property>
-            <property name="override existing sessions" code="amos" description="true if appium should override existing sessions when launching the server" type="boolean">
+			<property name="override existing sessions" code="amos" description="true if appium should override existing sessions when launching the server" type="boolean">
 				<cocoa key="s_OverrideExistingSessions"/>
 			</property>
 			<property name="prelaunch application" code="appa" description="true if the application will prelaunch" type="boolean">
@@ -145,7 +145,7 @@
 			<property name="selendroid port" code="asdp" description="port for the selendroid server" type="integer">
 				<cocoa key="s_SelendroidPort"/>
 			</property>
-            <property name="selenium grid config file" code="asgc" description="path to the selenium grid config file for appium" type="text">
+			<property name="selenium grid config file" code="asgc" description="path to the selenium grid config file for appium" type="text">
 				<cocoa key="s_SeleniumGridConfigFile"/>
 			</property>
 			<property name="server port" code="amsp" description="port for the appium server" type="integer">
@@ -172,13 +172,13 @@
 			<property name="use bundle id" code="aubi" description="true if appium is using the bundle id" type="boolean">
 				<cocoa key="s_UseBundleID"/>
 			</property>
-            <property name="use custom android keystore" code="auck" description="true if appium will sign the app with a user specified keystore" type="boolean">
+			<property name="use custom android keystore" code="auck" description="true if appium will sign the app with a user specified keystore" type="boolean">
 				<cocoa key="s_UseAndroidKeystore"/>
 			</property>
 			<property name="use custom android sdk path" code="auca" description="true if a custom android sdk path with be used" type="boolean">
 				<cocoa key="s_UseCustomAndroidSDKPath"/>
 			</property>
-            <property name="use custom selendroid port" code="ausp" description="true if a custom selendroid port is supplied" type="boolean">
+			<property name="use custom selendroid port" code="ausp" description="true if a custom selendroid port is supplied" type="boolean">
 				<cocoa key="s_UseCustomSelendroidPort"/>
 			</property>
 			<property name="use external appium package" code="auea" description="true if an external appium package path with be used" type="boolean">
@@ -208,11 +208,14 @@
 			<property name="use remote server" code="aurs" description="true if appium will use a remote server" type="boolean">
 				<cocoa key="s_UseRemoteServer"/>
 			</property>
-            <property name="use selenium grid config file" code="augc" description="true if appium will use a selenium grid config file" type="boolean">
+			<property name="use selenium grid config file" code="augc" description="true if appium will use a selenium grid config file" type="boolean">
 				<cocoa key="s_UseSeleniumGridConfigFile"/>
 			</property>
 			<property name="use UDID" code="apuu" description="true if the udid is being used" type="boolean">
 				<cocoa key="s_UseUDID"/>
+			</property>
+			<property name="xcode path" code="axcp" description="path to xcode application that will be used by appium" type="text" access="r">
+				<cocoa key="s_XcodePath"/>
 			</property>
 			<responds-to command="clear log">
 				<cocoa method="s_ClearLog:"/>
