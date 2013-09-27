@@ -99,6 +99,7 @@ typedef enum iOSOrientationTypes
 @property BOOL useSelendroidPort;
 @property BOOL useSeleniumGridConfigFile;
 @property BOOL useUDID;
+@property NSString *xcodePath;
 
 -(BOOL) killServer;
 -(BOOL) startServer;

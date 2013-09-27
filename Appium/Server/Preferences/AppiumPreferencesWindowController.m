@@ -42,6 +42,32 @@
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
 
+-(IBAction)chooseXcodePath:(id)sender
+{
+	NSString *selectedApp = [self.model xcodePath];
+	
+    NSOpenPanel* openDlg = [NSOpenPanel openPanel];
+	[openDlg setShowsHiddenFiles:YES];
+	[openDlg setAllowedFileTypes:[NSArray arrayWithObjects:@"app", nil]];
+    [openDlg setCanChooseFiles:YES];
+    [openDlg setCanChooseDirectories:NO];
+    [openDlg setPrompt:@"Select Xcode Application"];
+	if (selectedApp == nil || [selectedApp isEqualToString:@"/"])
+	{
+	    [openDlg setDirectoryURL:[NSURL fileURLWithPath:NSHomeDirectory()]];
+	}
+	else
+	{
+		[openDlg setDirectoryURL:[NSURL fileURLWithPath:[selectedApp stringByDeletingLastPathComponent]]];
+	}
+	
+    if ([openDlg runModal] == NSOKButton)
+    {
+		selectedApp = [[[openDlg URLs] objectAtIndex:0] path];
+		[self.model setXcodePath:selectedApp];
+    }
+}
+
 - (AppiumModel*) model { return [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] model]; }
 
 @end

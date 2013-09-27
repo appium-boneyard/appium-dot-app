@@ -74,6 +74,7 @@
 -(NSNumber*) s_UseSeleniumGridConfigFile { return [NSNumber numberWithBool:self.model.useSeleniumGridConfigFile];}
 -(NSNumber*) s_UseUDID { return [NSNumber numberWithBool:self.model.useUDID]; }
 -(NSNumber*) s_Port { return [NSNumber numberWithInt:[self.model.port intValue]]; }
+-(NSString*) s_XcodePath { return self.model.xcodePath; }
 
 # pragma mark - Setters
 
@@ -132,6 +133,7 @@
 -(void) setS_UseSeleniumGridConfigFile:(NSNumber *)s_UseSeleniumGridConfigFile { [self.model setUseSeleniumGridConfigFile:[s_UseSeleniumGridConfigFile boolValue]]; }
 -(void) setS_UseUDID:(NSNumber *)s_UseUDID { [self.model setUseUDID:[s_UseUDID boolValue]]; }
 -(void) setS_Port:(NSNumber *)s_Port { [self.model setPort:s_Port]; }
+-(void) setS_XcodePath:(NSString *)s_XcodePath { [self.model setXcodePath:s_XcodePath]; }
 
 -(AppiumInspectorWindowController*) s_InspectorWindow
 {

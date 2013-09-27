@@ -281,6 +281,35 @@ BOOL _isServerListening;
 -(BOOL) useUDID { return [_defaults boolForKey:APPIUM_PLIST_USE_UDID]; }
 -(void) setUseUDID:(BOOL)useUDID { [_defaults setBool:useUDID forKey:APPIUM_PLIST_USE_UDID]; }
 
+-(NSString*) xcodePath
+{
+	@try
+	{
+		NSString *path = [Utility runTaskWithBinary:@"/usr/bin/xcode-select" arguments:[NSArray arrayWithObject:@"--print-path"]];
+		path = [path stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+		if ([path hasSuffix:@"/Contents/Developer"])
+		{
+			path = [path substringWithRange:NSMakeRange(0, path.length - @"/Contents/Developer".length)];
+		}
+		return path;
+	}
+	@catch (NSException *exception) {
+		return @"/";
+	}
+}
+
+-(void) setXcodePath:(NSString *)xcodePath
+{
+	NSAppleScript	*xcodeSelectScript;
+	NSMutableDictionary *errorDict = [NSMutableDictionary new];
+	xcodeSelectScript = [[NSAppleScript alloc] initWithSource:
+								[NSString stringWithFormat:@"do shell script \"/usr/bin/xcode-select --switch \\\"%@\\\"\" with administrator privileges", xcodePath]];
+	[[xcodeSelectScript executeAndReturnError:&errorDict] stringValue];
+
+	// update xcode path
+	NSLog(@"New Xcode Path: %@", self.xcodePath);
+}
+
 #pragma mark - Methods
 
 -(BOOL)killServer

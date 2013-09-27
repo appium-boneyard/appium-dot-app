@@ -76,6 +76,7 @@
 @property NSNumber *s_UseRobot;
 @property NSNumber *s_UseSeleniumGridConfigFile;
 @property NSNumber *s_UseUDID;
+@property NSString *s_XcodePath;
 
 @property (readonly) AppiumInspectorWindowController* s_InspectorWindow;
 
