@@ -7,11 +7,54 @@
 //
 
 #import "Utility.h"
-
 #import "AppiumGlobals.h"
 
 #include <stdio.h>
 #include <stdlib.h>
+#define READ 0
+#define WRITE 1
+
+pid_t
+popen2(const char *command, int *infp, int *outfp)
+{
+    int p_stdin[2], p_stdout[2];
+    pid_t pid;
+	
+    if (pipe(p_stdin) != 0 || pipe(p_stdout) != 0)
+        return -1;
+	
+    pid = fork();
+	
+    if (pid < 0)
+        return pid;
+    else if (pid == 0)
+    {
+        close(p_stdin[WRITE]);
+        dup2(p_stdin[READ], READ);
+        close(p_stdout[READ]);
+        dup2(p_stdout[WRITE], WRITE);
+		close(p_stdout[READ]);
+		close(p_stdin[WRITE]);
+		
+        execl("/bin/sh", "sh", "-c", command, NULL);
+        perror("execl");
+        exit(1);
+    }
+	
+    if (infp == NULL)
+        close(p_stdin[WRITE]);
+    else
+        *infp = p_stdin[WRITE];
+	
+    if (outfp == NULL)
+        close(p_stdout[READ]);
+    else
+        *outfp = p_stdout[READ];
+	
+	close(p_stdin[READ]);
+	close(p_stdout[WRITE]);
+    return pid;
+}
 
 @implementation Utility
 
@@ -106,25 +149,25 @@
 
 +(NSNumber*) getPidListeningOnPort:(NSNumber*)port
 {
-    FILE *fp;
+    int fpIn, fpOut;
     char line[1035];
     NSString *lsofCmd = [NSString stringWithFormat: @"/usr/sbin/lsof -t -i :%d", [port intValue]];
-    NSNumber * pid = nil;
+    NSNumber *pid = nil;
+	pid_t lsofProcPid;
 
     // open the command for reading
-    fp = popen([lsofCmd UTF8String], "r");
-    if (fp != NULL)
+    lsofProcPid = popen2([lsofCmd UTF8String], &fpIn, &fpOut);
+    if (lsofProcPid > 0)
     {
         // read the output line by line
-        while (fgets(line, sizeof(line)-1, fp) != NULL)
-        {
-            NSString *lineString = [[NSString stringWithUTF8String:line] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-            NSNumberFormatter *f = [NSNumberFormatter new];
-            [f setNumberStyle:NSNumberFormatterDecimalStyle];
-            NSNumber * myNumber = [f numberFromString:lineString];
-            pid = myNumber != nil ? myNumber : pid;
-        }
-    }
+	    read(fpOut, line, 1035);
+        NSString *lineString = [[NSString stringWithUTF8String:line] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        NSNumberFormatter *f = [NSNumberFormatter new];
+        [f setNumberStyle:NSNumberFormatterDecimalStyle];
+        NSNumber * myNumber = [f numberFromString:lineString];
+        pid = myNumber != nil ? myNumber : pid;
+		kill(lsofProcPid, 9);
+	}
     return pid;
 }
 
