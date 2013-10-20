@@ -355,11 +355,11 @@ BOOL _isServerListening;
 	NSString *nodeCommandString;
 	if (self.useExternalNodeJSBinary)
 	{
-		nodeCommandString = [NSString stringWithFormat:@"'%@'%@ server.js", self.externalNodeJSBinaryPath, nodeDebuggingArguments];
+		nodeCommandString = [NSString stringWithFormat:@"'%@'%@ lib/server/main.js", self.externalNodeJSBinaryPath, nodeDebuggingArguments];
 	}
 	else
 	{
-		nodeCommandString = [NSString stringWithFormat:@"'%@%@'%@ server.js", [[NSBundle mainBundle]resourcePath], @"/node/bin/node", nodeDebuggingArguments];
+		nodeCommandString = [NSString stringWithFormat:@"'%@%@'%@ lib/server/main.js", [[NSBundle mainBundle]resourcePath], @"/node/bin/node", nodeDebuggingArguments];
 		
 	}
 	if (self.useCustomAndroidSDKPath)
