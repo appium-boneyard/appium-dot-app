@@ -132,7 +132,9 @@
 -(void) checkForAuthorization
 {
     // check if /etc/authorization is set up correctly
-    NSMutableDictionary* authorizationPlist = [[NSMutableDictionary alloc] initWithContentsOfFile:  @"/etc/authorization"];
+	NSString *authorizationPath = [[NSFileManager defaultManager] fileExistsAtPath:@"/System/Library/Security/authorization.plist"] ? @"/System/Library/Security/authorization.plist" : @"/etc/authorization";
+
+    NSMutableDictionary* authorizationPlist = [[NSMutableDictionary alloc] initWithContentsOfFile:  authorizationPath];
     NSMutableDictionary *rightPlist = [authorizationPlist valueForKey:@"rights"];
     NSMutableDictionary *taskportDebugRights = [rightPlist valueForKey:@"system.privilege.taskport"];
     BOOL authorized = [[taskportDebugRights valueForKey:@"allow-root"] boolValue];
@@ -154,7 +156,7 @@
             NSString *authorizeScriptPath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], @"Authorize.applescript"];
             NSTask *authorizeTask = [NSTask new];
             [authorizeTask setLaunchPath:@"/bin/sh"];
-            [authorizeTask setArguments:[NSArray arrayWithObjects: @"-c",[NSString stringWithFormat:@"rm -f /tmp/appium-authorize /tmp/appium-authorize.applescript /tmp/authorization.backup; cp /etc/authorization /tmp/authorization.backup; cp \"%@\" /tmp/appium-authorize.applescript; cp /usr/bin/osascript /tmp/appium-authorize; /tmp/appium-authorize /tmp/appium-authorize.applescript", authorizeScriptPath], nil]];
+            [authorizeTask setArguments:[NSArray arrayWithObjects: @"-c",[NSString stringWithFormat:@"rm -f /tmp/appium-authorize /tmp/appium-authorize.applescript /tmp/authorization.backup; cp \"%@\" /tmp/authorization.backup; cp \"%@\" /tmp/appium-authorize.applescript; cp /usr/bin/osascript /tmp/appium-authorize; /tmp/appium-authorize /tmp/appium-authorize.applescript \"%@\"", authorizationPath, authorizeScriptPath, authorizationPath], nil]];
             [authorizeTask launch];
             [authorizeTask waitUntilExit];
         }
