@@ -137,7 +137,11 @@ BOOL _isServerListening;
 -(BOOL) isIOS { return self.platform == Platform_iOS; }
 
 -(BOOL) isServerRunning { return _isServerRunning; }
--(void) setIsServerRunning:(BOOL)isServerRunning { _isServerRunning = isServerRunning; }
+-(void) setIsServerRunning:(BOOL)isServerRunning
+{
+	_isServerRunning = isServerRunning;
+	_isServerListening = isServerRunning ? _isServerListening : NO;
+}
 
 -(BOOL) isServerListening { return _isServerListening; }
 -(void) setIsServerListening:(BOOL)isServerListening { _isServerListening = isServerListening; }
@@ -339,6 +343,7 @@ BOOL _isServerListening;
         {
             NSString* script = [NSString stringWithFormat: @"kill `lsof -t -i:%@`", self.port];
             system([script UTF8String]);
+			system([@"killall -z lsof" UTF8String]);
         }
     }
 
@@ -541,7 +546,7 @@ BOOL _isServerListening;
 
 -(void) monitorListenStatus
 {
-	//uint pollInterval = self.isServerListening ? 30 : 1;
+	uint pollInterval = self.isServerListening ? 60 : 1;
 	while(self.isServerRunning)
 	{
         // OPTION #1
@@ -561,6 +566,7 @@ BOOL _isServerListening;
         // OPTION #2
         // poll with lsof command
 
+		/*
         // space out the checks by 1 second
 		sleep(1);
 
@@ -575,10 +581,11 @@ BOOL _isServerListening;
 		 	sleep(1);
 		}
 		[self setIsServerListening:newValue];
+		 */
 
         // OPTION #3
 		// poll with web requests
-        /*
+
 		 sleep(pollInterval);
 		 NSError *error = nil;
 		 NSString *urlString = [NSString stringWithFormat:@"http://%@:%d/wd/hub/status", self.ipAddress, self.port.intValue];
@@ -591,9 +598,9 @@ BOOL _isServerListening;
 		 error:&error];
 		 if (error != nil && [error code] != 0)
 		 {
-		 [self setIsServerListening:NO];
-		 pollInterval = 1;
-		 continue;
+			 [self setIsServerListening:NO];
+			 pollInterval = 1;
+			 continue;
 		 }
 
 		 NSDictionary *json = [NSJSONSerialization JSONObjectWithData:urlData
@@ -601,19 +608,19 @@ BOOL _isServerListening;
 		 error: &error];
 		 if (error != nil && [error code] != 0)
 		 {
-		 [self setIsServerListening:NO];
-		 pollInterval = 1;
-		 continue;
+			 [self setIsServerListening:NO];
+			 pollInterval = 1;
+			 continue;
 		 }
 		 else
 		 {
-		 NSObject *statusObj = [json objectForKey:@"status"];
-		 sleep(1); // sleep to avoid race condition where server is listening but not ready
-		 [self setIsServerListening:statusObj != nil && [statusObj isKindOfClass:[NSNumber class]] && [((NSNumber*)statusObj) intValue] == 0];
-		 pollInterval = MIN(2*pollInterval, 30); // sleep for longer
-		 continue;
+			 NSObject *statusObj = [json objectForKey:@"status"];
+			 sleep(1); // sleep to avoid race condition where server is listening but not ready
+			 [self setIsServerListening:statusObj != nil && [statusObj isKindOfClass:[NSNumber class]] && [((NSNumber*)statusObj) intValue] == 0];
+			 pollInterval = MIN(10*pollInterval, 60); // sleep for longer
+			 continue;
 		 }
-		 */
+
 
 	}
 	[self setIsServerListening:NO];
