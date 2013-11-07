@@ -410,9 +410,9 @@ BOOL _isServerListening;
     {
 		nodeCommandString = [nodeCommandString stringByAppendingString:@" --no-reset"];
     }
-    if (!self.overrideExistingSessions)
+    if (self.overrideExistingSessions)
     {
-        nodeCommandString = [nodeCommandString stringByAppendingString:@" --no-session-override"];
+        nodeCommandString = [nodeCommandString stringByAppendingString:@" --session-override"];
     }
     if (self.useSeleniumGridConfigFile)
     {
