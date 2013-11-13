@@ -22,6 +22,8 @@
 	<string></string>
 	<key>App Path</key>
 	<string>/</string>
+	<key>Authorized iOS</key>
+	<false/>
 	<key>AVD</key>
 	<string></string>
 	<key>Break On NodeJS Application Start</key>

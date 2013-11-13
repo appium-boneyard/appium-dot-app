@@ -40,6 +40,7 @@ typedef enum iOSOrientationTypes
 @property NSString *androidPackage;
 @property NSString *androidWaitActivity;
 @property NSString *appPath;
+@property BOOL authorizediOS;
 @property NSArray *availableAVDs;
 @property NSArray *availableActivities;
 @property NSString *avd;

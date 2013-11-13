@@ -131,36 +131,28 @@
 
 -(void) checkForAuthorization
 {
-    // check if /etc/authorization is set up correctly
-	NSString *authorizationPath = [[NSFileManager defaultManager] fileExistsAtPath:@"/System/Library/Security/authorization.plist"] ? @"/System/Library/Security/authorization.plist" : @"/etc/authorization";
-
-    NSMutableDictionary* authorizationPlist = [[NSMutableDictionary alloc] initWithContentsOfFile:  authorizationPath];
-    NSMutableDictionary *rightPlist = [authorizationPlist valueForKey:@"rights"];
-    NSMutableDictionary *taskportDebugRights = [rightPlist valueForKey:@"system.privilege.taskport"];
-    BOOL authorized = [[taskportDebugRights valueForKey:@"allow-root"] boolValue];
-
-    if (!authorized)
-    {
-        NSAlert *alert = [NSAlert new];
+	if (!self.model.authorizediOS)
+	{
+		NSAlert *alert = [NSAlert new];
         [alert setMessageText:@"Appium is not authorized to run the iOS Simulator"];
         [alert setInformativeText:@"Would you like to authorize it now?"];
+		[alert addButtonWithTitle:@"Do Not Ask Again"];
         [alert addButtonWithTitle:@"No"];
-        [alert addButtonWithTitle:@"Yes"];
-        if ([alert runModal] == NSAlertSecondButtonReturn)
-        {
-            // write out the new /etc/authorization to /tmp/
-            [taskportDebugRights setValue:[NSNumber numberWithBool:YES] forKey:@"allow-root"];
-            [authorizationPlist writeToFile:  @"/tmp/appium_authorization" atomically: YES];
-
-            // install the new /etc/authorization
-            NSString *authorizeScriptPath = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] resourcePath], @"Authorize.applescript"];
-            NSTask *authorizeTask = [NSTask new];
-            [authorizeTask setLaunchPath:@"/bin/sh"];
-            [authorizeTask setArguments:[NSArray arrayWithObjects: @"-c",[NSString stringWithFormat:@"rm -f /tmp/appium-authorize /tmp/appium-authorize.applescript /tmp/authorization.backup; cp \"%@\" /tmp/authorization.backup; cp \"%@\" /tmp/appium-authorize.applescript; cp /usr/bin/osascript /tmp/appium-authorize; /tmp/appium-authorize /tmp/appium-authorize.applescript \"%@\"", authorizationPath, authorizeScriptPath, authorizationPath], nil]];
-            [authorizeTask launch];
-            [authorizeTask waitUntilExit];
-        }
-    }
+		[alert addButtonWithTitle:@"Yes"];
+		NSModalResponse response = [alert runModal];
+		if (response == NSAlertThirdButtonReturn)
+		{
+			NSString *nodePath = [self.mainWindowController.node pathToNodeBinary];
+			NSString *appiumPath = [self.mainWindowController.node pathtoPackage:@"appium"];
+			NSString *authorizePath = [NSString stringWithFormat:@"%@/%@", appiumPath, @"bin/authorize-ios.js", nil];
+			[Utility runTaskWithBinary:nodePath arguments:[NSArray arrayWithObjects:authorizePath, nil] path:appiumPath];
+			[self.model setAuthorizediOS:YES];
+		}
+		else if (response == NSAlertFirstButtonReturn)
+		{
+			[self.model setAuthorizediOS:YES];
+		}
+	}
 }
 
 -(IBAction) checkForUpdates:(id)sender

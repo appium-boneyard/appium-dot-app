@@ -95,6 +95,9 @@ BOOL _isServerListening;
     }
 }
 
+-(BOOL) authorizediOS { return [_defaults boolForKey:APPIUM_PLIST_AUTHORIZED_IOS]; }
+-(void) setAuthorizediOS:(BOOL)authorizediOS { [_defaults setBool:authorizediOS forKey:APPIUM_PLIST_AUTHORIZED_IOS]; }
+
 -(NSString*) avd { return [_defaults stringForKey:APPIUM_PLIST_AVD]; }
 -(void) setAvd:(NSString *)avd { [_defaults setValue:avd forKey:APPIUM_PLIST_AVD]; }
 

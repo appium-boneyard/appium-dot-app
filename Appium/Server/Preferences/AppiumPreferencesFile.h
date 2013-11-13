@@ -16,6 +16,7 @@
 #define APPIUM_PLIST_ANDROID_PACKAGE @"Android Package"
 #define APPIUM_PLIST_ANDROID_WAIT_ACTIVITY @"Android Wait Activity"
 #define APPIUM_PLIST_APP_PATH @"App Path"
+#define APPIUM_PLIST_AUTHORIZED_IOS @"Authorized iOS"
 #define APPIUM_PLIST_AVD @"AVD"
 #define APPIUM_PLIST_BREAK_ON_NODEJS_APP_START @"Break On NodeJS Application Start"
 #define APPIUM_PLIST_BUNDLEID @"BundleID"
