@@ -30,6 +30,7 @@ typedef enum iOSOrientationTypes
 
 @property NSTask *serverTask;
 
+@property (readonly) NSArray *allCalendarFormats;
 @property NSString *androidActivity;
 @property NSNumber *androidDeviceReadyTimeout;
 @property BOOL androidFullReset;
@@ -46,6 +47,7 @@ typedef enum iOSOrientationTypes
 @property NSString *avd;
 @property BOOL breakOnNodeApplicationStart;
 @property NSString *bundleID;
+@property NSString *calendarToForce;
 @property BOOL checkForUpdates;
 @property NSString *customAndroidSDKPath;
 @property BOOL developerMode;
@@ -54,7 +56,10 @@ typedef enum iOSOrientationTypes
 @property BOOL enableAppiumInspectorWindowSupport;
 @property NSString *externalAppiumPackagePath;
 @property NSString *externalNodeJSBinaryPath;
+@property BOOL forceCalendar;
 @property BOOL forceDevice;
+@property BOOL forceLanguage;
+@property BOOL forceLocale;
 @property BOOL forceOrientation;
 @property (readonly) BOOL isAndroid;
 @property (readonly) BOOL isIOS;
@@ -63,6 +68,8 @@ typedef enum iOSOrientationTypes
 @property NSString *ipAddress;
 @property BOOL keepArtifacts;
 @property BOOL killProcessesUsingPort;
+@property NSString *languageToForce;
+@property NSString *localeToForce;
 @property NSString *logFile;
 @property NSString *logWebHook;
 @property NSNumber *nodeDebugPort;

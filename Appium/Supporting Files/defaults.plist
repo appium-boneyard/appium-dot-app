@@ -30,6 +30,8 @@
 	<false/>
 	<key>BundleID</key>
 	<string></string>
+	<key>Calendar Format</key>
+	<string>gregorian</string>
 	<key>Check For Updates</key>
 	<true/>
 	<key>CodeMaker Language</key>
@@ -63,6 +65,10 @@
 	<true/>
 	<key>Kill Processes Using Port</key>
 	<true/>
+	<key>Language</key>
+	<string>en</string>
+	<key>Locale</key>
+	<string>en_US</string>
 	<key>Log File</key>
 	<string>/tmp/appium.log</string>
 	<key>Log Webhook</key>

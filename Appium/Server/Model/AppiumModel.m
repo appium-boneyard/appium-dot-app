@@ -54,6 +54,8 @@ BOOL _isServerListening;
 
 #pragma mark - Properties
 
+-(NSArray*) allCalendarFormats { return [NSArray arrayWithObjects:@"gregorian", @"japanese", @"buddhist", nil]; }
+
 -(NSString*) androidActivity { return [_defaults stringForKey:APPIUM_PLIST_ANDROID_ACTIVITY]; }
 -(void) setAndroidActivity:(NSString *)androidActivity { [_defaults setValue:androidActivity forKey:APPIUM_PLIST_ANDROID_ACTIVITY]; }
 
@@ -107,6 +109,9 @@ BOOL _isServerListening;
 -(NSString*) bundleID { return [_defaults stringForKey:APPIUM_PLIST_BUNDLEID]; }
 -(void) setBundleID:(NSString *)bundleID { [_defaults setValue:bundleID forKey:APPIUM_PLIST_BUNDLEID]; }
 
+-(NSString*) calendarToForce { return [_defaults stringForKey:APPIUM_PLIST_CALENDAR_FORMAT]; }
+-(void) setCalendarToForce:(NSString *)calendarToForce { [_defaults setValue:calendarToForce forKey:APPIUM_PLIST_CALENDAR_FORMAT]; }
+
 -(BOOL) checkForUpdates { return [_defaults boolForKey:APPIUM_PLIST_CHECK_FOR_UPDATES]; }
 -(void) setCheckForUpdates:(BOOL)checkForUpdates { [_defaults setBool:checkForUpdates forKey:APPIUM_PLIST_CHECK_FOR_UPDATES]; }
 
@@ -130,8 +135,17 @@ BOOL _isServerListening;
 -(NSString*) deviceToForceString { return [[_defaults valueForKey:APPIUM_PLIST_DEVICE] isEqualToString:APPIUM_PLIST_FORCE_DEVICE_IPAD] ? APPIUM_PLIST_FORCE_DEVICE_IPAD : APPIUM_PLIST_FORCE_DEVICE_IPHONE ; }
 -(void) setDeviceToForceString:(NSString *)deviceToForceString { [_defaults setValue:deviceToForceString forKey:APPIUM_PLIST_DEVICE]; }
 
+-(BOOL) forceCalendar { return [_defaults boolForKey:APPIUM_PLIST_FORCE_CALENDAR]; }
+-(void) setForceCalendar:(BOOL)forceCalendar { [_defaults setBool:forceCalendar forKey:APPIUM_PLIST_FORCE_CALENDAR]; }
+
 -(BOOL) forceDevice { return [_defaults boolForKey:APPIUM_PLIST_FORCE_DEVICE]; }
 -(void) setForceDevice:(BOOL)forceDevice { [_defaults setBool:forceDevice forKey:APPIUM_PLIST_FORCE_DEVICE]; }
+
+-(BOOL) forceLanguage { return [_defaults boolForKey:APPIUM_PLIST_FORCE_LANGUAGE]; }
+-(void) setForceLanguage:(BOOL)forceLanguage { [_defaults setBool:forceLanguage forKey:APPIUM_PLIST_FORCE_LANGUAGE]; }
+
+-(BOOL) forceLocale { return [_defaults boolForKey:APPIUM_PLIST_FORCE_LOCALE]; }
+-(void) setForceLocale:(BOOL)forceLocale { [_defaults setBool:forceLocale forKey:APPIUM_PLIST_FORCE_LOCALE]; }
 
 -(BOOL) forceOrientation { return [_defaults boolForKey:APPIUM_PLIST_FORCE_ORIENTATION]; }
 -(void) setForceOrientation:(BOOL)forceOrientation { [_defaults setBool:forceOrientation forKey:APPIUM_PLIST_FORCE_ORIENTATION]; }
@@ -157,6 +171,12 @@ BOOL _isServerListening;
 
 -(BOOL) killProcessesUsingPort { return [_defaults boolForKey:APPIUM_PLIST_KILL_PROCESSES_USING_PORT]; }
 -(void) setKillProcessesUsingPort:(BOOL)killProcessesUsingPort { [_defaults setBool:killProcessesUsingPort forKey:APPIUM_PLIST_KILL_PROCESSES_USING_PORT];}
+
+-(NSString*) languageToForce { return [_defaults stringForKey:APPIUM_PLIST_LANGUAGE]; }
+-(void) setLanguageToForce:(NSString *)languageToForce { [_defaults setValue:languageToForce forKey:APPIUM_PLIST_LANGUAGE]; }
+
+-(NSString*) localeToForce { return [_defaults stringForKey:APPIUM_PLIST_LOCALE]; }
+-(void) setLocaleToForce:(NSString *)localeToForce { [_defaults setValue:localeToForce forKey:APPIUM_PLIST_LOCALE]; }
 
 -(NSString*) logFile { return [_defaults stringForKey:APPIUM_PLIST_LOG_FILE]; }
 -(void) setLogFile:(NSString *)logFile { [_defaults setValue:logFile forKey:APPIUM_PLIST_LOG_FILE]; }
@@ -447,6 +467,10 @@ BOOL _isServerListening;
         {
 			nodeCommandString = [nodeCommandString stringByAppendingString:@" --native-instruments-lib"];
         }
+		if (self.forceCalendar)
+        {
+			nodeCommandString = [nodeCommandString stringByAppendingString:[NSString stringWithFormat:@" --calendar %@", self.calendarToForce]];
+        }
         if (self.forceDevice)
         {
             if (self.deviceToForce == iOSAutomationDevice_iPhone)
@@ -457,6 +481,14 @@ BOOL _isServerListening;
             {
 				nodeCommandString = [nodeCommandString stringByAppendingString:@" --force-ipad"];
             }
+        }
+		if (self.forceLanguage)
+        {
+			nodeCommandString = [nodeCommandString stringByAppendingString:[NSString stringWithFormat:@" --language %@", self.languageToForce]];
+        }
+		if (self.forceLocale)
+        {
+			nodeCommandString = [nodeCommandString stringByAppendingString:[NSString stringWithFormat:@" --locale %@", self.localeToForce]];
         }
 		if (self.forceOrientation)
         {
