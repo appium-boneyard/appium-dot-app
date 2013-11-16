@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A2093" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -29,7 +29,7 @@
                             <tabViewItem label="General" identifier="" id="503" userLabel="General Settings Tab">
                                 <view key="view" id="504" userLabel="General Settings View">
                                     <rect key="frame" x="10" y="33" width="403" height="260"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button id="10" userLabel="Check For Updates Checkbox">
                                             <rect key="frame" x="15" y="241" width="141" height="18"/>
@@ -124,12 +124,12 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
-                                                            <binding destination="-2" name="enabled" keyPath="model.useSeleniumGridConfigFile" id="551"/>
                                                             <binding destination="-2" name="value" keyPath="model.seleniumGridConfigFile" id="610">
                                                                 <dictionary key="options">
                                                                     <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                                                 </dictionary>
                                                             </binding>
+                                                            <binding destination="-2" name="enabled" keyPath="model.useSeleniumGridConfigFile" id="551"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -187,12 +187,12 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="-2" name="enabled" keyPath="model.useLogFile" id="563"/>
                                                 <binding destination="-2" name="value" keyPath="model.logFile" id="611">
                                                     <dictionary key="options">
                                                         <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                                     </dictionary>
                                                 </binding>
+                                                <binding destination="-2" name="enabled" keyPath="model.useLogFile" id="563"/>
                                             </connections>
                                         </textField>
                                         <button id="538" userLabel="Log To Webhook Checkbox">
@@ -215,12 +215,12 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="-2" name="enabled" keyPath="model.useLogWebHook" id="572"/>
                                                 <binding destination="-2" name="value" keyPath="model.logWebHook" id="612">
                                                     <dictionary key="options">
                                                         <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                                     </dictionary>
                                                 </binding>
+                                                <binding destination="-2" name="enabled" keyPath="model.useLogWebHook" id="572"/>
                                             </connections>
                                         </textField>
                                     </subviews>
@@ -287,8 +287,8 @@
                                                         <connections>
                                                             <binding destination="-2" name="value" keyPath="model.xcodePath" id="627">
                                                                 <dictionary key="options">
-                                                                    <bool key="NSValidatesImmediately" value="YES"/>
                                                                     <bool key="NSConditionallySetsEnabled" value="NO"/>
+                                                                    <bool key="NSValidatesImmediately" value="YES"/>
                                                                     <string key="NSValueTransformerName">AppiumAppPathTransformer</string>
                                                                 </dictionary>
                                                             </binding>
@@ -352,6 +352,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </comboBoxCell>
                                             <connections>
+                                                <binding destination="-2" name="enabled" keyPath="model.forceCalendar" id="S4i-hq-Vay"/>
                                                 <binding destination="-2" name="contentValues" keyPath="model.allCalendarFormats" id="Pd9-bv-bwU"/>
                                                 <binding destination="-2" name="value" keyPath="model.calendarToForce" previousBinding="Pd9-bv-bwU" id="crv-p3-aPm"/>
                                             </connections>
@@ -365,6 +366,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <binding destination="-2" name="enabled" keyPath="model.forceLanguage" id="Vjq-nj-uiF"/>
                                                 <binding destination="-2" name="value" keyPath="model.languageToForce" id="HeX-Pr-c3a"/>
                                             </connections>
                                         </textField>
@@ -377,6 +379,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <binding destination="-2" name="enabled" keyPath="model.forceLocale" id="BSN-A8-tUK"/>
                                                 <binding destination="-2" name="value" keyPath="model.localeToForce" id="LbR-KB-8wp"/>
                                             </connections>
                                         </textField>
@@ -419,12 +422,12 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="-2" name="enabled" keyPath="model.useCustomAndroidSDKPath" id="465"/>
                                                 <binding destination="-2" name="value" keyPath="model.customAndroidSDKPath" id="462">
                                                     <dictionary key="options">
                                                         <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                                     </dictionary>
                                                 </binding>
+                                                <binding destination="-2" name="enabled" keyPath="model.useCustomAndroidSDKPath" id="465"/>
                                             </connections>
                                         </textField>
                                         <button id="276" userLabel="Use Device Ready Timeout Checkbox">
@@ -453,12 +456,12 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="-2" name="enabled" keyPath="model.useAndroidDeviceReadyTimeout" id="494"/>
                                                 <binding destination="-2" name="value" keyPath="model.androidDeviceReadyTimeout" id="301">
                                                     <dictionary key="options">
                                                         <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                                     </dictionary>
                                                 </binding>
+                                                <binding destination="-2" name="enabled" keyPath="model.useAndroidDeviceReadyTimeout" id="494"/>
                                             </connections>
                                         </textField>
                                         <button id="466" userLabel="Use Selendroid Port Checkbox">
@@ -481,13 +484,13 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="-2" name="enabled" keyPath="model.useSelendroidPort" id="492"/>
                                                 <binding destination="-2" name="value" keyPath="model.selendroidPort" id="490">
                                                     <dictionary key="options">
                                                         <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                                         <string key="NSValueTransformerName">AppiumPortTransformer</string>
                                                     </dictionary>
                                                 </binding>
+                                                <binding destination="-2" name="enabled" keyPath="model.useSelendroidPort" id="492"/>
                                             </connections>
                                         </textField>
                                         <box autoresizesSubviews="NO" title="Keystore Settings" borderType="line" id="515" userLabel="Custom Keystore Settings Box">
@@ -515,12 +518,12 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
-                                                            <binding destination="-2" name="enabled" keyPath="model.useAndroidKeystore" id="593"/>
                                                             <binding destination="-2" name="value" keyPath="model.androidKeystorePath" id="613">
                                                                 <dictionary key="options">
                                                                     <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                                                 </dictionary>
                                                             </binding>
+                                                            <binding destination="-2" name="enabled" keyPath="model.useAndroidKeystore" id="593"/>
                                                         </connections>
                                                     </textField>
                                                     <textField verticalHuggingPriority="750" id="516" userLabel="Keystore Password Label">
@@ -541,12 +544,12 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
-                                                            <binding destination="-2" name="enabled" keyPath="model.useAndroidKeystore" id="596"/>
                                                             <binding destination="-2" name="value" keyPath="model.androidKeystorePassword" id="614">
                                                                 <dictionary key="options">
                                                                     <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                                                 </dictionary>
                                                             </binding>
+                                                            <binding destination="-2" name="enabled" keyPath="model.useAndroidKeystore" id="596"/>
                                                         </connections>
                                                     </textField>
                                                     <textField verticalHuggingPriority="750" id="520" userLabel="Key Alias Label">
@@ -567,12 +570,12 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
-                                                            <binding destination="-2" name="enabled" keyPath="model.useAndroidKeystore" id="597"/>
                                                             <binding destination="-2" name="value" keyPath="model.androidKeyAlias" id="615">
                                                                 <dictionary key="options">
                                                                     <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                                                 </dictionary>
                                                             </binding>
+                                                            <binding destination="-2" name="enabled" keyPath="model.useAndroidKeystore" id="597"/>
                                                         </connections>
                                                     </textField>
                                                     <textField verticalHuggingPriority="750" id="525" userLabel="Key Password Label">
@@ -593,12 +596,12 @@
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
-                                                            <binding destination="-2" name="enabled" keyPath="model.useAndroidKeystore" id="599"/>
                                                             <binding destination="-2" name="value" keyPath="model.androidKeyPassword" id="616">
                                                                 <dictionary key="options">
                                                                     <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                                                 </dictionary>
                                                             </binding>
+                                                            <binding destination="-2" name="enabled" keyPath="model.useAndroidKeystore" id="599"/>
                                                         </connections>
                                                     </textField>
                                                     <button id="509" userLabel="Specify Custom Keystore Settings Checkbox">
@@ -658,8 +661,8 @@
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                     <connections>
-                                        <binding destination="-2" name="enabled" keyPath="model.useRobot" id="441"/>
                                         <binding destination="-2" name="value" keyPath="model.robotAddress" id="436"/>
+                                        <binding destination="-2" name="enabled" keyPath="model.useRobot" id="441"/>
                                     </connections>
                                 </textField>
                                 <textField verticalHuggingPriority="750" id="431" userLabel="Robot Port Label">
@@ -680,12 +683,12 @@
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                     <connections>
-                                        <binding destination="-2" name="enabled" keyPath="model.useRobot" id="443"/>
                                         <binding destination="-2" name="value" keyPath="model.robotPort" id="482">
                                             <dictionary key="options">
                                                 <string key="NSValueTransformerName">AppiumPortTransformer</string>
                                             </dictionary>
                                         </binding>
+                                        <binding destination="-2" name="enabled" keyPath="model.useRobot" id="443"/>
                                     </connections>
                                 </textField>
                             </subviews>
@@ -732,18 +735,18 @@
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                     <connections>
+                                        <binding destination="-2" name="enabled" keyPath="model.developerMode" id="166"/>
+                                        <binding destination="-2" name="value" keyPath="model.externalNodeJSBinaryPath" id="175">
+                                            <dictionary key="options">
+                                                <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                            </dictionary>
+                                        </binding>
                                         <binding destination="-2" name="enabled2" keyPath="model.useExternalNodeJSBinary" previousBinding="166" id="170">
                                             <dictionary key="options">
                                                 <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                 <integer key="NSNoSelectionPlaceholder" value="-1"/>
                                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                 <integer key="NSNullPlaceholder" value="-1"/>
-                                            </dictionary>
-                                        </binding>
-                                        <binding destination="-2" name="enabled" keyPath="model.developerMode" id="166"/>
-                                        <binding destination="-2" name="value" keyPath="model.externalNodeJSBinaryPath" id="175">
-                                            <dictionary key="options">
-                                                <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                             </dictionary>
                                         </binding>
                                     </connections>
@@ -769,18 +772,18 @@
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                     <connections>
+                                        <binding destination="-2" name="enabled" keyPath="model.developerMode" id="168"/>
+                                        <binding destination="-2" name="value" keyPath="model.externalAppiumPackagePath" id="176">
+                                            <dictionary key="options">
+                                                <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                            </dictionary>
+                                        </binding>
                                         <binding destination="-2" name="enabled2" keyPath="model.useExternalAppiumPackage" previousBinding="168" id="172">
                                             <dictionary key="options">
                                                 <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                 <integer key="NSNoSelectionPlaceholder" value="-1"/>
                                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                 <integer key="NSNullPlaceholder" value="-1"/>
-                                            </dictionary>
-                                        </binding>
-                                        <binding destination="-2" name="enabled" keyPath="model.developerMode" id="168"/>
-                                        <binding destination="-2" name="value" keyPath="model.externalAppiumPackagePath" id="176">
-                                            <dictionary key="options">
-                                                <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                             </dictionary>
                                         </binding>
                                     </connections>
@@ -806,14 +809,6 @@
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                     <connections>
-                                        <binding destination="-2" name="enabled2" keyPath="model.useNodeDebugging" previousBinding="480" id="481">
-                                            <dictionary key="options">
-                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                <integer key="NSNullPlaceholder" value="-1"/>
-                                            </dictionary>
-                                        </binding>
                                         <binding destination="-2" name="enabled" keyPath="model.developerMode" id="480">
                                             <dictionary key="options">
                                                 <string key="NSValueTransformerName">AppiumPortTransformer</string>
@@ -823,6 +818,14 @@
                                             <dictionary key="options">
                                                 <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                                 <string key="NSValueTransformerName">AppiumPortTransformer</string>
+                                            </dictionary>
+                                        </binding>
+                                        <binding destination="-2" name="enabled2" keyPath="model.useNodeDebugging" previousBinding="480" id="481">
+                                            <dictionary key="options">
+                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                <integer key="NSNullPlaceholder" value="-1"/>
                                             </dictionary>
                                         </binding>
                                     </connections>
@@ -835,6 +838,8 @@
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                     <connections>
+                                        <binding destination="-2" name="value" keyPath="model.breakOnNodeApplicationStart" id="415"/>
+                                        <binding destination="-2" name="enabled" keyPath="model.developerMode" id="417"/>
                                         <binding destination="-2" name="enabled2" keyPath="model.useNodeDebugging" previousBinding="417" id="419">
                                             <dictionary key="options">
                                                 <integer key="NSNotApplicablePlaceholder" value="-1"/>
@@ -843,8 +848,6 @@
                                                 <integer key="NSNullPlaceholder" value="-1"/>
                                             </dictionary>
                                         </binding>
-                                        <binding destination="-2" name="enabled" keyPath="model.developerMode" id="417"/>
-                                        <binding destination="-2" name="value" keyPath="model.breakOnNodeApplicationStart" id="415"/>
                                     </connections>
                                 </button>
                             </subviews>
