@@ -130,9 +130,10 @@ BOOL _isServerListening;
 -(BOOL) developerMode { return [_defaults boolForKey:APPIUM_PLIST_DEVELOPER_MODE]; }
 -(void) setDeveloperMode:(BOOL)developerMode { [_defaults setBool:developerMode forKey:APPIUM_PLIST_DEVELOPER_MODE]; }
 
--(iOSAutomationDevice) deviceToForce { return [[_defaults stringForKey:APPIUM_PLIST_DEVICE] isEqualToString:APPIUM_PLIST_FORCE_DEVICE_IPAD] ? iOSAutomationDevice_iPad : iOSAutomationDevice_iPhone; }
--(void) setDeviceToForce:(iOSAutomationDevice)deviceToForce {[self setDeviceToForceString:(deviceToForce == iOSAutomationDevice_iPad ? APPIUM_PLIST_FORCE_DEVICE_IPAD : APPIUM_PLIST_FORCE_DEVICE_IPHONE)]; }
--(NSString*) deviceToForceString { return [[_defaults valueForKey:APPIUM_PLIST_DEVICE] isEqualToString:APPIUM_PLIST_FORCE_DEVICE_IPAD] ? APPIUM_PLIST_FORCE_DEVICE_IPAD : APPIUM_PLIST_FORCE_DEVICE_IPHONE ; }
+-(iOSAutomationDevice) deviceToForce { return [[_defaults stringForKey:APPIUM_PLIST_DEVICE] hasPrefix:@"iPad"] ? iOSAutomationDevice_iPad : iOSAutomationDevice_iPhone; }
+-(void) setDeviceToForce:(iOSAutomationDevice)deviceToForce { [self setDeviceToForceString:(deviceToForce == iOSAutomationDevice_iPad ? @"iPad Retina" : @"iPhone Retina (4-inch)")];}
+
+-(NSString*) deviceToForceString { return [_defaults valueForKey:APPIUM_PLIST_DEVICE]; }
 -(void) setDeviceToForceString:(NSString *)deviceToForceString { [_defaults setValue:deviceToForceString forKey:APPIUM_PLIST_DEVICE]; }
 
 -(BOOL) forceCalendar { return [_defaults boolForKey:APPIUM_PLIST_FORCE_CALENDAR]; }
@@ -473,14 +474,7 @@ BOOL _isServerListening;
         }
         if (self.forceDevice)
         {
-            if (self.deviceToForce == iOSAutomationDevice_iPhone)
-            {
-				nodeCommandString = [nodeCommandString stringByAppendingString:@" --force-iphone"];
-            }
-            else if (self.deviceToForce == iOSAutomationDevice_iPad)
-            {
-				nodeCommandString = [nodeCommandString stringByAppendingString:@" --force-ipad"];
-            }
+			nodeCommandString = [nodeCommandString stringByAppendingString:[NSString stringWithFormat:@" --device-name \"%@\"", self.deviceToForceString]];
         }
 		if (self.forceLanguage)
         {

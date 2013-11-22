@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A2093" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
@@ -150,10 +150,10 @@
                             <binding destination="-2" name="value" keyPath="model.useAppPath" id="1219"/>
                             <binding destination="-2" name="enabled2" keyPath="model.useRemoteServer" previousBinding="1217" id="1342">
                                 <dictionary key="options">
-                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                    <integer key="NSNullPlaceholder" value="-1"/>
                                     <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                     <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                    <integer key="NSNullPlaceholder" value="-1"/>
+                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                     <string key="NSValueTransformerName">NSNegateBoolean</string>
                                 </dictionary>
                             </binding>
@@ -183,10 +183,10 @@
                             </binding>
                             <binding destination="-2" name="enabled3" keyPath="model.useRemoteServer" previousBinding="1223" id="1345">
                                 <dictionary key="options">
-                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                    <integer key="NSNullPlaceholder" value="-1"/>
                                     <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                     <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                    <integer key="NSNullPlaceholder" value="-1"/>
+                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                     <string key="NSValueTransformerName">NSNegateBoolean</string>
                                 </dictionary>
                             </binding>
@@ -202,17 +202,17 @@
                         <connections>
                             <binding destination="-2" name="value" keyPath="model.appPath" id="1293">
                                 <dictionary key="options">
-                                    <bool key="NSConditionallySetsEnabled" value="NO"/>
                                     <bool key="NSValidatesImmediately" value="YES"/>
+                                    <bool key="NSConditionallySetsEnabled" value="NO"/>
                                     <string key="NSValueTransformerName">AppiumAppPathTransformer</string>
                                 </dictionary>
                             </binding>
                             <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="1228" id="1230">
                                 <dictionary key="options">
-                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                    <integer key="NSNullPlaceholder" value="-1"/>
                                     <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                     <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                    <integer key="NSNullPlaceholder" value="-1"/>
+                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                     <string key="NSValueTransformerName">NSNegateBoolean</string>
                                 </dictionary>
                             </binding>
@@ -244,10 +244,10 @@
                                                 </binding>
                                                 <binding destination="-2" name="enabled2" keyPath="model.useRemoteServer" previousBinding="1233" id="1360">
                                                     <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
                                                 </binding>
@@ -255,7 +255,7 @@
                                             </connections>
                                         </button>
                                         <textField verticalHuggingPriority="750" id="1156" userLabel="UDID TextField">
-                                            <rect key="frame" x="76" y="38" width="291" height="22"/>
+                                            <rect key="frame" x="76" y="38" width="233" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="1157">
                                                 <font key="font" metaFont="system"/>
@@ -275,10 +275,10 @@
                                                 </binding>
                                                 <binding destination="-2" name="enabled3" keyPath="model.useRemoteServer" previousBinding="1239" id="1372">
                                                     <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
                                                 </binding>
@@ -293,7 +293,7 @@
                                             </connections>
                                         </textField>
                                         <button id="519" userLabel="Force Device Checkbox">
-                                            <rect key="frame" x="373" y="39" width="102" height="18"/>
+                                            <rect key="frame" x="315" y="39" width="102" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Force Device" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="520">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -308,17 +308,17 @@
                                                 </binding>
                                                 <binding destination="-2" name="enabled2" keyPath="model.useRemoteServer" previousBinding="1242" id="1363">
                                                     <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
                                                 </binding>
                                             </connections>
                                         </button>
                                         <comboBox verticalHuggingPriority="750" id="518" userLabel="Device ComboBox">
-                                            <rect key="frame" x="481" y="36" width="125" height="26"/>
+                                            <rect key="frame" x="423" y="34" width="183" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="521">
                                                 <font key="font" metaFont="system"/>
@@ -346,10 +346,10 @@
                                                 </binding>
                                                 <binding destination="-2" name="enabled3" keyPath="model.useRemoteServer" previousBinding="1248" id="1375">
                                                     <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
                                                 </binding>
@@ -379,17 +379,17 @@
                                                 <binding destination="-2" name="value" keyPath="model.useBundleID" id="1283"/>
                                                 <binding destination="-2" name="enabled2" keyPath="model.useRemoteServer" previousBinding="1250" id="1366">
                                                     <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
                                                 </binding>
                                             </connections>
                                         </button>
                                         <textField verticalHuggingPriority="750" id="1178" userLabel="BundleID TextField">
-                                            <rect key="frame" x="100" y="8" width="267" height="22"/>
+                                            <rect key="frame" x="100" y="8" width="209" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="1179">
                                                 <font key="font" metaFont="system"/>
@@ -417,17 +417,17 @@
                                                 </binding>
                                                 <binding destination="-2" name="enabled3" keyPath="model.useRemoteServer" previousBinding="1288" id="1378">
                                                     <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
                                                 </binding>
                                             </connections>
                                         </textField>
                                         <button id="1195" userLabel="Use Mobile Safari Checkbox">
-                                            <rect key="frame" x="373" y="10" width="131" height="18"/>
+                                            <rect key="frame" x="315" y="9" width="131" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Use Mobile Safari" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1196">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -442,10 +442,10 @@
                                                 <binding destination="-2" name="value" keyPath="model.useMobileSafari" id="1290"/>
                                                 <binding destination="-2" name="enabled2" keyPath="model.useRemoteServer" previousBinding="1256" id="1369">
                                                     <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
                                                 </binding>
@@ -475,10 +475,10 @@
                                                 <binding destination="-2" name="value" keyPath="model.useAndroidPackage" id="1259"/>
                                                 <binding destination="-2" name="enabled2" keyPath="model.useRemoteServer" previousBinding="1260" id="1348">
                                                     <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
                                                 </binding>
@@ -513,10 +513,10 @@
                                                 </binding>
                                                 <binding destination="-2" name="enabled3" keyPath="model.useRemoteServer" previousBinding="1267" id="1351">
                                                     <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
                                                 </binding>
@@ -538,10 +538,10 @@
                                                 <binding destination="-2" name="value" keyPath="model.useAndroidActivity" id="1270"/>
                                                 <binding destination="-2" name="enabled2" keyPath="model.useRemoteServer" previousBinding="1271" id="1354">
                                                     <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
                                                 </binding>
@@ -576,10 +576,10 @@
                                                 </binding>
                                                 <binding destination="-2" name="enabled3" keyPath="model.useRemoteServer" previousBinding="1278" id="1357">
                                                     <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
                                                 </binding>
@@ -601,10 +601,10 @@
                                                 <binding destination="-2" name="value" keyPath="model.useAVD" id="1412"/>
                                                 <binding destination="-2" name="enabled2" keyPath="model.useRemoteServer" previousBinding="1408" id="1409">
                                                     <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
                                                 </binding>
@@ -636,10 +636,10 @@
                                                 </binding>
                                                 <binding destination="-2" name="enabled2" keyPath="model.useRemoteServer" previousBinding="1414" id="1417">
                                                     <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
                                                 </binding>
@@ -661,10 +661,10 @@
                                                 <binding destination="-2" name="value" keyPath="model.useAndroidWaitActivity" id="1400"/>
                                                 <binding destination="-2" name="enabled2" keyPath="model.useRemoteServer" previousBinding="1391" id="1392">
                                                     <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
                                                 </binding>
@@ -699,10 +699,10 @@
                                                 </binding>
                                                 <binding destination="-2" name="enabled3" keyPath="model.useRemoteServer" previousBinding="1403" id="1404">
                                                     <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
                                                         <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
                                                 </binding>
@@ -720,17 +720,17 @@
                         <rect key="frame" x="20" y="50" width="626" height="264"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="LtR-VR-wie">
-                            <rect key="frame" x="1" y="1" width="624" height="262"/>
+                            <rect key="frame" x="1" y="1" width="609" height="262"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" spellingCorrection="YES" smartInsertDelete="YES" id="29">
-                                    <rect key="frame" x="0.0" y="0.0" width="624" height="262"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="609" height="262"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <size key="minSize" width="624" height="262"/>
+                                    <size key="minSize" width="609" height="262"/>
                                     <size key="maxSize" width="684" height="10000000"/>
                                     <color key="insertionPointColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    <size key="minSize" width="624" height="262"/>
+                                    <size key="minSize" width="609" height="262"/>
                                     <size key="maxSize" width="684" height="10000000"/>
                                 </textView>
                             </subviews>
@@ -741,7 +741,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="27">
-                            <rect key="frame" x="609" y="1" width="16" height="262"/>
+                            <rect key="frame" x="610" y="1" width="15" height="262"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>

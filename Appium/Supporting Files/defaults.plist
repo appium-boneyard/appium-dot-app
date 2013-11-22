@@ -45,7 +45,12 @@
 	<key>Devices</key>
 	<array>
 		<string>iPhone</string>
+		<string>iPhone Retina (3.5-inch)</string>
+		<string>iPhone Retina (4-inch)</string>
+		<string>iPhone Retina (4-inch 64-bit)</string>
 		<string>iPad</string>
+		<string>iPad Retina</string>
+		<string>iPad Retina (64-bit)</string>
 	</array>
 	<key>Enable Appium Inspector Window Support</key>
 	<false/>
