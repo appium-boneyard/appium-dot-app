@@ -11,6 +11,7 @@
 #import "AppiumMenuBarManager.h"
 #import "AppiumModel.h"
 #import "NodeInstance.h"
+#import "SocketIO.h"
 
 @class AppiumInspectorWindowController;
 @class AppiumMenuBarManager;
@@ -30,5 +31,6 @@
 -(IBAction) clearLog:(id)sender;
 -(IBAction) launchButtonClicked:(id)sender;
 -(IBAction) displayInspector:(id)sender;
+-(IBAction) doctorButtonClicked:(id)sender;
 
 @end

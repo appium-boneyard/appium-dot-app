@@ -12,6 +12,8 @@
 #import "AppiumAppDelegate.h"
 #import "AppiumPreferencesFile.h"
 #import "NSString+trimLeadingWhitespace.h"
+#import "SBJsonParser.h"
+#import "SocketIOPacket.h"
 #import "Utility.h"
 
 #pragma  mark - Model
@@ -39,6 +41,7 @@ BOOL _isServerListening;
 		_isServerListening = [self useRemoteServer];
 		[self setAvailableAVDs:[NSArray new]];
         [self setAvailableActivities:[NSArray new]];
+        [self setDoctorSocketIsConnected:NO];
 
 		// update keystore path to match current user
 		if ([self.androidKeystorePath hasPrefix:@"/Users/me/"])
@@ -576,6 +579,58 @@ BOOL _isServerListening;
     return self.isServerRunning;
 }
 
+-(BOOL) startDoctor {
+    [self setServerTask:[NSTask new]];
+	NSString *nodeCommandString;
+	if (self.useExternalNodeJSBinary)
+	{
+		nodeCommandString = [NSString stringWithFormat:@"'%@' bin/appium-doctor.js --port 4722", self.externalNodeJSBinaryPath];
+	}
+	else
+	{
+		nodeCommandString = [NSString stringWithFormat:@"'%@%@' bin/appium-doctor.js --port 4722", [[NSBundle mainBundle]resourcePath], @"/node/bin/node"];
+		
+	}
+    
+	if (self.useExternalAppiumPackage)
+	{
+		[self.serverTask setCurrentDirectoryPath:self.externalAppiumPackagePath];
+	}
+	else
+	{
+		[self.serverTask setCurrentDirectoryPath:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle]resourcePath], @"node_modules/appium"]];
+	}
+    [self.serverTask setLaunchPath:@"/bin/bash"];
+    [self.serverTask setArguments: [NSArray arrayWithObjects: @"-l",
+									@"-c", nodeCommandString, nil]];
+    
+	// redirect i/o
+    [self.serverTask setStandardOutput:[NSPipe pipe]];
+	[self.serverTask setStandardError:[NSPipe pipe]];
+    [self.serverTask setStandardInput:[NSPipe pipe]];
+    
+	// launch
+    [self.serverTask launch];
+    [self setIsServerRunning:self.serverTask.isRunning];
+    
+    self.doctorSocket = [[SocketIO alloc] initWithDelegate:self];
+    [self performSelector:@selector(connectDoctorSocketIO:) withObject:[NSNumber numberWithInt:0] afterDelay:1];
+    return self.serverTask.isRunning;
+}
+
+-(void) connectDoctorSocketIO:(NSNumber*)attemptNumber
+{
+    if (!self.doctorSocketIsConnected)
+    {
+        [self.doctorSocket connectToHost:@"localhost" onPort:4722];
+    
+        if ([attemptNumber intValue] < 5)
+        {
+            [self performSelector:@selector(connectDoctorSocketIO:) withObject:[NSNumber numberWithInt:[attemptNumber intValue] + 1] afterDelay:0];
+        }
+    }
+}
+
 -(void) monitorListenStatus
 {
 	uint pollInterval = self.isServerListening ? 60 : 1;
@@ -736,5 +791,59 @@ BOOL _isServerListening;
 	}
 }
 
+#pragma mark - SocketIODelegateImplementation
+
+- (void) socketIODidConnect:(SocketIO *)socket
+{
+    NSLog(@"Connected");
+    [self setDoctorSocketIsConnected:YES];
+    
+}
+
+- (void) socketIODidDisconnect:(SocketIO *)socket disconnectedWithError:(NSError *)error
+{
+    NSLog(@"Disconnected w/ Error: %@", error);
+    [self setDoctorSocketIsConnected:NO];
+    [self setIsServerListening:NO];
+}
+
+- (void) socketIO:(SocketIO *)socket didReceiveEvent:(SocketIOPacket *)packet
+{
+    SBJsonParser *jsonParser = [SBJsonParser new];
+    NSDictionary *event = [jsonParser objectWithString:packet.data];
+    NSString *eventName = [event objectForKey:@"name"];
+    NSDictionary *eventArgs = [[event objectForKey:@"args"] objectAtIndex:0];
+    
+    if ([eventName isEqualToString:@"welcome"]) {
+        NSLog(@"Welcome");
+    } else if ([eventName isEqualToString:@"alert"]) {
+        NSString *questionTitle = [eventArgs objectForKey:@"title"];
+        NSString *questionMessage = [eventArgs objectForKey:@"message"];
+        NSArray *choices = [eventArgs objectForKey:@"choices"];
+        
+        NSAlert *questionAlert = [NSAlert new];
+        [questionAlert setMessageText:questionTitle];
+        [questionAlert setInformativeText:questionMessage];
+        for (NSString *choice in choices) {
+            [questionAlert addButtonWithTitle:choice];
+        }
+
+        NSModalResponse response = [questionAlert runModal];
+        NSString *selection = [choices objectAtIndex:response-1000];
+        NSDictionary *answer = [NSDictionary dictionaryWithObjectsAndKeys:selection, @"selection", [eventArgs objectForKey:@"cbIndex"], @"cbIndex", nil];
+        [self.doctorSocket sendEvent:@"answer" withData:answer];
+    } else if ([eventName isEqualToString:@"done"]) {
+        [self.doctorSocket disconnect];
+        self.doctorSocket = nil;
+        [self.serverTask terminate];
+    }
+}
+
+- (void) socketIO:(SocketIO *)socket onError:(NSError *)err
+{
+    NSLog(@"Error: %@", err);
+    self.doctorSocket = nil;
+    [self.serverTask terminate];
+}
 
 @end

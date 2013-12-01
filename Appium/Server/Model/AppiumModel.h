@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SocketIO.h"
 
 typedef enum platformTypes
 {
@@ -26,7 +27,9 @@ typedef enum iOSOrientationTypes
 	iOSOrientation_Landscape
 } iOSOrientation;
 
-@interface AppiumModel : NSObject
+@class SocketIO;
+
+@interface AppiumModel : NSObject<SocketIODelegate>
 
 @property NSTask *serverTask;
 
@@ -53,6 +56,8 @@ typedef enum iOSOrientationTypes
 @property BOOL developerMode;
 @property iOSAutomationDevice deviceToForce;
 @property NSString *deviceToForceString;
+@property SocketIO *doctorSocket;
+@property BOOL doctorSocketIsConnected;
 @property BOOL enableAppiumInspectorWindowSupport;
 @property NSString *externalAppiumPackagePath;
 @property NSString *externalNodeJSBinaryPath;
@@ -111,6 +116,7 @@ typedef enum iOSOrientationTypes
 
 -(BOOL) killServer;
 -(BOOL) startServer;
+-(BOOL) startDoctor;
 -(void) refreshAvailableActivities;
 
 @end

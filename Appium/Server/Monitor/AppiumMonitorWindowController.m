@@ -47,7 +47,17 @@
 
 - (IBAction) launchButtonClicked:(id)sender
 {
-    if ([self.model startServer])
+    if (!self.model.doctorSocketIsConnected && [self.model startServer])
+    {
+        [self performSelectorInBackground:@selector(errorLoop) withObject:nil];
+        [self performSelectorInBackground:@selector(readLoop) withObject:nil];
+        [self performSelectorInBackground:@selector(exitWait) withObject:nil];
+    }
+}
+
+-(IBAction)doctorButtonClicked:(id)sender
+{
+    if ([self.model startDoctor])
     {
         [self performSelectorInBackground:@selector(errorLoop) withObject:nil];
         [self performSelectorInBackground:@selector(readLoop) withObject:nil];
