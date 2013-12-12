@@ -20,6 +20,7 @@
     if (self) {
 
         AppiumModel *model = [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] model];
+        
         self.driver = [[SERemoteWebDriver alloc] initWithServerAddress:[model ipAddress] port:[[model port] integerValue]];
 		if (self.driver == nil)
 		{
@@ -83,8 +84,9 @@
 -(void) windowDidLoad
 {
     [super windowDidLoad];
-
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    
+    // fix crash for pulse animation on record button
+    [self.recordButton setLayerUsesCoreImageFilters:YES];
 }
 
 -(void) awakeFromNib
