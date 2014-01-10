@@ -172,9 +172,9 @@ try:\n", self.model.appPath, self.model.ipAddress, self.model.port];
 	switch(newLocator.locatorType)
 	{
 		case APPIUM_CODE_MAKER_LOCATOR_TYPE_NAME:
-			return [NSString stringWithFormat:@"wd.find_elements_by_name(\"%@\")", [self escapeString:newLocator.locatorString]];
+			return [NSString stringWithFormat:@"wd.find_element_by_name(\"%@\")", [self escapeString:newLocator.locatorString]];
 		case APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH:
-			return [NSString stringWithFormat:@"wd.find_elements_by_xpath(\"%@\")", [self escapeString:newLocator.locatorString]];
+			return [NSString stringWithFormat:@"wd.find_element_by_xpath(\"%@\")", [self escapeString:newLocator.locatorString]];
 		default: return nil;
 	}
 }
