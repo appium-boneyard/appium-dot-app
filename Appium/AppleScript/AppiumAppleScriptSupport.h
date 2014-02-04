@@ -34,6 +34,8 @@
 @property NSNumber *s_DeveloperMode;
 @property NSString *s_ExternalAppiumPackagePath;
 @property NSString *s_ExternalNodeJSBinaryPath;
+@property NSString *s_Language;
+@property NSString *s_Locale;
 @property NSString *s_IPAddress;
 @property (readonly) NSNumber *s_IsServerListening;
 @property (readonly) NSNumber *s_IsServerRunning;
@@ -66,6 +68,8 @@
 @property NSNumber *s_UseCustomSelendroidPort;
 @property NSNumber *s_UseExternalAppiumPackage;
 @property NSNumber *s_UseExternalNodeJSBinary;
+@property NSNumber *s_UseLanguage;
+@property NSNumber *s_UseLocale;
 @property NSNumber *s_UseLogFile;
 @property NSNumber *s_UseLogWebhook;
 @property NSNumber *s_UseMobileSafari;
