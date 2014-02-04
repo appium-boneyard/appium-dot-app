@@ -38,6 +38,8 @@
 -(NSNumber*) s_IsServerRunning { return [NSNumber numberWithBool:self.model.isServerRunning]; }
 -(NSNumber*) s_KeepArtifacts { return [NSNumber numberWithBool:self.model.keepArtifacts]; }
 -(NSNumber*) s_KillProcessesUsingPort { return [NSNumber numberWithBool:self.model.killProcessesUsingPort]; }
+-(NSString*) s_Language { return self.model.languageToForce; }
+-(NSString*) s_Locale { return self.model.localeToForce; }
 -(NSString*) s_LogFile { return self.model.logFile; }
 -(NSString*) s_LogWebhook { return self.model.logWebHook; }
 -(NSNumber*) s_NodeDebugPort { return [NSNumber numberWithInt:[self.model.nodeDebugPort intValue]]; }
@@ -63,6 +65,8 @@
 -(NSNumber*) s_UseCustomSelendroidPort { return [NSNumber numberWithBool:self.model.useSelendroidPort]; }
 -(NSNumber*) s_UseExternalAppiumPackage { return [NSNumber numberWithBool:self.model.useExternalAppiumPackage]; }
 -(NSNumber*) s_UseExternalNodeJSBinary { return [NSNumber numberWithBool:self.model.useExternalNodeJSBinary]; }
+-(NSNumber*) s_UseLanguage { return [NSNumber numberWithBool:self.model.forceLanguage]; }
+-(NSNumber*) s_UseLocale { return [NSNumber numberWithBool:self.model.forceLocale]; }
 -(NSNumber*) s_UseLogFile { return [NSNumber numberWithBool:self.model.useLogFile]; }
 -(NSNumber*) s_UseLogWebhook { return [NSNumber numberWithBool:self.model.useLogWebHook]; }
 -(NSNumber*) s_UseMobileSafari { return [NSNumber numberWithBool:self.model.useMobileSafari]; }
@@ -98,6 +102,8 @@
 -(void) setS_IPAddress:(NSString *)s_IPAddress { [self.model setIpAddress:s_IPAddress]; }
 -(void) setS_KeepArtifacts:(NSNumber *)s_KeepArtifacts{	[self.model setKeepArtifacts:[s_KeepArtifacts boolValue]]; }
 -(void) setS_KillProcessesUsingPort:(NSNumber *)s_KillProcessesUsingPort { [self.model setKillProcessesUsingPort:[s_KillProcessesUsingPort boolValue]]; }
+-(void) setS_Language:(NSString *)s_Language { [self.model setLanguageToForce:s_Language]; }
+-(void) setS_Locale:(NSString *)s_Locale { [self.model setLocaleToForce:s_Locale]; }
 -(void) setS_LogFile:(NSString *)s_LogFile { [self.model setLogFile:s_LogFile]; }
 -(void) setS_LogWebhook:(NSString *)s_LogWebhook { [self.model setLogWebHook:s_LogWebhook]; }
 -(void) setS_NodeDebugPort:(NSNumber *)s_NodeDebugPort { [self.model setNodeDebugPort:s_NodeDebugPort]; }
@@ -122,6 +128,8 @@
 -(void) setS_UseCustomSelendroidPort:(NSNumber *)s_UseCustomSelendroidPort { [self.model setUseSelendroidPort:[s_UseCustomSelendroidPort boolValue]]; }
 -(void) setS_UseExternalAppiumPackage:(NSNumber *)s_UseExternalAppiumPackage { [self.model setUseExternalAppiumPackage:[s_UseExternalAppiumPackage boolValue]]; }
 -(void) setS_UseExternalNodeJSBinary:(NSNumber *)s_UseExternalNodeJSBinary { [self.model setUseExternalNodeJSBinary:[s_UseExternalNodeJSBinary boolValue]]; }
+-(void) setS_UseLanguage:(NSNumber *)s_UseLanguage { [self.model setForceLanguage:[s_UseLanguage boolValue]]; }
+-(void) setS_UseLocale:(NSNumber *)s_UseLocale { [self.model setForceLocale:[s_UseLocale boolValue]]; }
 -(void) setS_UseLogFile:(NSNumber *)s_UseLogFile { [self.model setUseLogFile:[s_UseLogFile boolValue]]; }
 -(void) setS_UseLogWebhook:(NSNumber *)s_UseLogWebhook { [self.model setUseLogWebHook:[s_UseLogWebhook boolValue]]; }
 -(void) setS_UseMobileSafari:(NSNumber *)s_UseMobileSafari { [self.model setUseMobileSafari:[s_UseMobileSafari boolValue]]; }

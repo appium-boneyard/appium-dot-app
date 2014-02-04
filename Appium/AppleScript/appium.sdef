@@ -85,6 +85,21 @@
 			<property name="external node path" code="aenp" description="path to external node binaries" type="text">
 				<cocoa key="s_ExternalNodeJSBinaryPath"/>
 			</property>
+			<property name="force language" code="afla" description="true if the language should be force" type="boolean">
+				<cocoa key="s_UseLanguage"/>
+			</property>
+			<property name="force locale" code="aflo" description="true if the locale should be force" type="boolean">
+				<cocoa key="s_UseLocale"/>
+			</property>
+			<property name="language" code="alaf" description="language to foce" type="text">
+				<cocoa key="s_Language"/>
+			</property>
+			<property name="locale" code="alof" description="locale to force" type="text">
+				<cocoa key="s_Locale"/>
+			</property>
+			<property name="use android activity" code="auaa" description="true if an android activity is supplied" type="boolean">
+				<cocoa key="s_UseAndroidActivity"/>
+			</property>
 			<property name="is server listening" code="amsl" description="true if the appium server is listening" type="boolean" access="r">
 				<cocoa key="s_IsServerListening"/>
 			</property>
