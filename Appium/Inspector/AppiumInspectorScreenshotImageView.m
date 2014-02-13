@@ -144,7 +144,6 @@
 {
 	[super setImage:[self rotateImage:newImage byAngle:self.rotation]];
 
-	self.screenshotScalar = self.bounds.size.height / newImage.size.height;
 	self.maxWidth = self.bounds.size.width;
 	self.maxHeight = self.bounds.size.height;
 	self.xBorder = 0.0f;
@@ -155,11 +154,13 @@
 	{
 		self.maxHeight = newImage.size.height * (self.bounds.size.width / newImage.size.width);
 		self.yBorder  = (self.bounds.size.height - self.maxHeight) / 2.0f;
+		self.screenshotScalar = self.bounds.size.width / newImage.size.width;
 	}
 	else
 	{
 		self.maxWidth = newImage.size.width * (self.bounds.size.height / newImage.size.height);
 		self.xBorder = (self.bounds.size.width - self.maxWidth) / 2.0f;
+		self.screenshotScalar = self.bounds.size.height / newImage.size.height;
 	}
 
     // add factor of 2 to screenshot scalar to account for retina display based coordinates
@@ -213,7 +214,7 @@
 {
 	NSPoint viewPoint = NSMakePoint(0,0);
 	viewPoint.x = self.xBorder + (point.x * self.screenshotScalar);
-	viewPoint.y = self.maxHeight - (self.yBorder  + (point.y * self.screenshotScalar));
+	viewPoint.y = self.yBorder + (self.maxHeight - point.y * self.screenshotScalar);
 	return viewPoint;
 }
 
@@ -223,7 +224,7 @@
 	viewRect.size.width *= self.screenshotScalar;
 	viewRect.size.height *= self.screenshotScalar;
 	viewRect.origin.x = self.xBorder + (rect.origin.x * self.screenshotScalar);
-	viewRect.origin.y = self.maxHeight - (self.yBorder  + ((rect.origin.y + rect.size.height) * self.screenshotScalar));
+	viewRect.origin.y = self.yBorder + (self.maxHeight - (rect.origin.y + rect.size.height) * self.screenshotScalar);
 	return viewRect;
 }
 
