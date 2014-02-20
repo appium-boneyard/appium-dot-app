@@ -155,9 +155,9 @@ nil], nil]];\n", [args objectForKey:@"touchCount"], [args objectForKey:@"startX"
 	switch(newLocator.locatorType)
 	{
 		case APPIUM_CODE_MAKER_LOCATOR_TYPE_NAME:
-			return [NSString stringWithFormat:@"[SEBY name:@\"%@\"]", [self escapeString:newLocator.locatorString]];
+			return [NSString stringWithFormat:@"[SEBy name:@\"%@\"]", [self escapeString:newLocator.locatorString]];
 		case APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH:
-			return [NSString stringWithFormat:@"[SEBY xPath:@\"%@\"]", [self escapeString:newLocator.locatorString]];
+			return [NSString stringWithFormat:@"[SEBy xPath:@\"%@\"]", [self escapeString:newLocator.locatorString]];
 		default: return nil;
 	}
 }
