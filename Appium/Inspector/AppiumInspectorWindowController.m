@@ -47,6 +47,8 @@
         {
 			// create a new session if one does not already exist
             SECapabilities *capabilities = [SECapabilities new];
+            [capabilities addCapabilityForKey:@"device" andValue:model.deviceToForceString];
+
             [self.driver startSessionWithDesiredCapabilities:capabilities requiredCapabilities:nil];
 			if (self.driver == nil || self.driver.session == nil || self.driver.session.sessionId == nil)
 			{
