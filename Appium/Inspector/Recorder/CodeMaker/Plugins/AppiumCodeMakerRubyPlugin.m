@@ -52,12 +52,13 @@ capabilities = {\n\
 \t'browserName' => 'iOS',\n\
 \t'platform' => 'Mac',\n\
 \t'version' => '6.1',\n\
+\t'device' => '%@',\n\
 \t'app' => '%@'\n\
 }\n\
 \n\
 server_url = \"http://%@:%@/wd/hub\"\n\
 \n\
-@wd = Selenium::WebDriver.for(:remote, :desired_capabilities => capabilities, :url => server_url)\n", self.model.appPath, self.model.ipAddress, self.model.port];
+@wd = Selenium::WebDriver.for(:remote, :desired_capabilities => capabilities, :url => server_url)\n", self.model.deviceToForceString, self.model.appPath, self.model.ipAddress, self.model.port];
 }
 
 -(NSString*) postCodeBoilerplate

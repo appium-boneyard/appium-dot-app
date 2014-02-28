@@ -68,9 +68,10 @@ namespace AppiumTests {\n\
 \t\t\tcapabilities.SetCapability(\"browserName\", \"iOS\");\n\
 \t\t\tcapabilities.SetCapability(\"platform\", \"Mac\");\n\
 \t\t\tcapabilities.SetCapability(\"version\", \"6.1\");\n\
+\t\t\tcapabilities.SetCapability(\"device\", \"%@\");\n\
 \t\t\tcapabilities.SetCapability(\"app\", \"%@\");\n\
 \t\t\tRemoteWebDriver wd = new RemoteWebDriver(new Uri(\"http://%@:%@/wd/hub\"), capabilities);\n\
-\t\t\ttry {\n", self.model.appPath, self.model.ipAddress, self.model.port];
+\t\t\ttry {\n", self.model.deviceToForceString, self.model.appPath, self.model.ipAddress, self.model.port];
 }
 
 -(NSString*) postCodeBoilerplate
