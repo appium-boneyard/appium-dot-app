@@ -61,9 +61,10 @@
 \t[caps setPlatform:@\"Mac\"];\n\
 \t[caps setBrowserName:@\"iOS\"];\n\
 \t[caps setVersion:@\"6.1\"];\n\
+\t[caps addCapabilityForKey:@\"device\" andValue:@\"%@\"];\n\
 \t[caps addCapabilityForKey:@\"app\" andValue:@\"%@\"];\n\
 \tNSError *error;\n\
-\tSERemoteWebDriver *wd = [[SERemoteWebDriver alloc] initWithServerAddress:@\"%@\" port:%@ desiredCapabilities:caps requiredCapabilities:nil error:&error];\n", self.model.appPath, self.model.ipAddress, self.model.port];}
+\tSERemoteWebDriver *wd = [[SERemoteWebDriver alloc] initWithServerAddress:@\"%@\" port:%@ desiredCapabilities:caps requiredCapabilities:nil error:&error];\n", self.model.deviceToForceString, self.model.appPath, self.model.ipAddress, self.model.port];}
 
 -(NSString*) postCodeBoilerplate
 {

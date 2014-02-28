@@ -72,9 +72,10 @@ public class {scriptName} {\n\
 \t\tcapabilities.setCapability(CapabilityType.BROWSER_NAME, \"iOS\");\n\
 \t\tcapabilities.setCapability(CapabilityType.VERSION, \"6.1\");\n\
 \t\tcapabilities.setCapability(CapabilityType.PLATFORM, \"Mac\");\n\
+\t\tcapabilities.setCapability(\"device\", \"%@\");\n\
 \t\tcapabilities.setCapability(\"app\", \"%@\");\n\
 \t\twd = new RemoteWebDriver(new URL(\"http://%@:%@/wd/hub\"), capabilities);\n\
-\t\twd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);\n", self.model.appPath, self.model.ipAddress, self.model.port];
+\t\twd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);\n", self.model.deviceToForceString, self.model.appPath, self.model.ipAddress, self.model.port];
 }
 
 -(NSString*) postCodeBoilerplate

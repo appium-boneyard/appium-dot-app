@@ -68,6 +68,7 @@ desired_caps = {}\n\
 desired_caps['browserName'] = 'iOS'\n\
 desired_caps['platform'] = 'Mac'\n\
 desired_caps['version'] = '6.1'\n\
+desired_caps['device'] = '%@'\n\
 desired_caps['app'] = os.path.abspath('%@')\n\
 \n\
 wd = webdriver.Remote('http://%@:%@/wd/hub', desired_caps)\n\
@@ -80,7 +81,7 @@ def is_alert_present(wd):\n\
 \texcept:\n\
 \t\treturn False\n\
 \n\
-try:\n", self.model.appPath, self.model.ipAddress, self.model.port];
+try:\n", self.model.deviceToForceString, self.model.appPath, self.model.ipAddress, self.model.port];
 }
 
 -(NSString*) postCodeBoilerplate
