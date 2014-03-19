@@ -106,7 +106,7 @@
         [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Installing NodeJS..." waitUntilDone:YES];
         [[self mainWindowController] setNode:[[NodeInstance alloc] initWithPath:nodeRootPath]];
         [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Installing Appium..." waitUntilDone:YES];
-        [[[self mainWindowController] node] installPackage:@"appium" forceInstall:NO];
+        [[[self mainWindowController] node] installPackage:@"appium" atVersion:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] forceInstall:NO];
         [[installationWindow window] performSelectorOnMainThread:@selector(close) withObject:nil waitUntilDone:YES];
     }
     else
