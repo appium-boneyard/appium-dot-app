@@ -190,7 +190,7 @@ NSString* upgradeUrl;
     [[mainWindowController window] orderOut:self];
     [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Updating Appium Package..." waitUntilDone:YES];
 
-    [[mainWindowController node] installPackage:@"appium" forceInstall:YES];
+    [[mainWindowController node] installPackage:@"appium" atVersion:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] forceInstall:YES];
 
     [[mainWindowController window] makeKeyAndOrderFront:self];
     [installationWindow close];

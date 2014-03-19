@@ -19,7 +19,7 @@
 +(BOOL) instanceExistsAtPath:(NSString*)rootPath;
 +(BOOL) packageIsInstalledAtPath:(NSString*)rootPath withName:(NSString*)packageName;
 
--(void) installPackage:(NSString*)packageName forceInstall:(BOOL)forceInstall;
+-(void) installPackage:(NSString*)packageName atVersion:(NSString*)version forceInstall:(BOOL)forceInstall;
 -(NSString*) pathtoPackage:(NSString*)packageName;
 
 @end

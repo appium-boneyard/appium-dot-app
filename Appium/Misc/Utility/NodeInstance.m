@@ -57,7 +57,7 @@
     return [NSString stringWithFormat:@"%@/%@", _nodeRootPath, @"node/bin/node"];
 }
 
--(void) installPackage:(NSString*)packageName forceInstall:(BOOL)forceInstall
+-(void) installPackage:(NSString*)packageName atVersion:(NSString*)version forceInstall:(BOOL)forceInstall
 {
 
 	NSString *nodeModulesDirectory = [NSString stringWithFormat:@"%@/%@", _nodeRootPath,@"node_modules"];
@@ -76,7 +76,8 @@
 			{
 				// install package
 				NSString *npmPath = [NSString stringWithFormat:@"%@/%@", _nodeRootPath, @"node/bin/npm"];
-				[Utility runTaskWithBinary:npmPath arguments:[NSArray arrayWithObjects: @"install", packageName, nil] path:_nodeRootPath];
+				NSString *packageArg = [NSString stringWithFormat:@"%@%@", packageName, version ? [NSString stringWithFormat:@"%@%@", @"@", version] : @""];
+				[Utility runTaskWithBinary:npmPath arguments:[NSArray arrayWithObjects: @"install", packageArg, nil] path:_nodeRootPath];
 			}
 		}
     }
