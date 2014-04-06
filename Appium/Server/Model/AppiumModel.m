@@ -412,14 +412,7 @@ BOOL _isServerListening;
     }
     if (self.useAppPath)
     {
-		if ([self.appPath hasSuffix:@"ipa"])
-		{
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--ipa", [self.appPath stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
-		}
-		else
-		{
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--app", [self.appPath stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
-		}
+        nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", ([self.appPath hasSuffix:@"ipa"]) ? @"--ipa" : @"--app", self.appPath];
     }
 	else if (self.useBundleID)
     {
