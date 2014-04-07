@@ -81,6 +81,7 @@ typedef enum AppiumOrientation AppiumOrientation;
 @property NSInteger serverPort;  // port for the appium server
 @property (copy) NSString *UDID;  // device udid
 @property BOOL useAndroidActivity;  // true if an android activity is supplied
+@property BOOL useAndroidBrowser;  // true if appium will use the android browser
 @property BOOL useAndroidDeviceReadyTimeout;  // true if an android device wait timeout will be used
 @property BOOL useAndroidPackage;  // true if an android package is supplied
 @property BOOL useAndroidWaitActivity;  // true if an android wait activity is supplied

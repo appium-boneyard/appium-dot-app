@@ -478,6 +478,15 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
+                                                <binding destination="-2" name="enabled3" keyPath="self.model.useAndroidBrowser" previousBinding="1348" id="WGx-La-uDB">
+                                                    <dictionary key="options">
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                    </dictionary>
+                                                </binding>
                                                 <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="1260">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
@@ -496,7 +505,7 @@
                                             </connections>
                                         </button>
                                         <textField verticalHuggingPriority="750" id="810" userLabel="Package TextField">
-                                            <rect key="frame" x="95" y="38" width="212" height="22"/>
+                                            <rect key="frame" x="95" y="38" width="168" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="811">
                                                 <font key="font" metaFont="system"/>
@@ -504,6 +513,15 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <binding destination="-2" name="enabled4" keyPath="self.model.useAndroidBrowser" previousBinding="1351" id="j6Z-qh-7NA">
+                                                    <dictionary key="options">
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                    </dictionary>
+                                                </binding>
                                                 <binding destination="-2" name="value" keyPath="model.androidPackage" id="1262">
                                                     <dictionary key="options">
                                                         <bool key="NSContinuouslyUpdatesValue" value="YES"/>
@@ -534,13 +552,22 @@
                                             </connections>
                                         </textField>
                                         <button id="791" userLabel="Use Activity Checkbox">
-                                            <rect key="frame" x="322" y="39" width="69" height="18"/>
+                                            <rect key="frame" x="269" y="39" width="69" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Activity" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="792">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
+                                                <binding destination="-2" name="enabled3" keyPath="self.model.useAndroidBrowser" previousBinding="1354" id="pQ6-zc-xPL">
+                                                    <dictionary key="options">
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                    </dictionary>
+                                                </binding>
                                                 <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="1271">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
@@ -559,7 +586,7 @@
                                             </connections>
                                         </button>
                                         <textField verticalHuggingPriority="750" id="825" userLabel="Activity TextField">
-                                            <rect key="frame" x="397" y="38" width="212" height="22"/>
+                                            <rect key="frame" x="344" y="38" width="108" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="827">
                                                 <font key="font" metaFont="system"/>
@@ -567,6 +594,15 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
+                                                <binding destination="-2" name="enabled4" keyPath="self.model.useAndroidBrowser" previousBinding="1357" id="SaY-Ay-OLb">
+                                                    <dictionary key="options">
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                    </dictionary>
+                                                </binding>
                                                 <binding destination="-2" name="value" keyPath="model.androidActivity" id="1273">
                                                     <dictionary key="options">
                                                         <bool key="NSContinuouslyUpdatesValue" value="YES"/>
@@ -679,6 +715,31 @@
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
                                                 </binding>
+                                            </connections>
+                                        </button>
+                                        <button id="IF0-5X-WzW" userLabel="Use Android Browser Checkbox">
+                                            <rect key="frame" x="458" y="39" width="153" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Use Android Browser" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="BEy-l8-kfz">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <binding destination="-2" name="enabled2" keyPath="model.useRemoteServer" previousBinding="gKO-Ye-dHY" id="Rkb-N6-S8G">
+                                                    <dictionary key="options">
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                    </dictionary>
+                                                </binding>
+                                                <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="gKO-Ye-dHY">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                    </dictionary>
+                                                </binding>
+                                                <binding destination="-2" name="value" keyPath="model.useAndroidBrowser" id="QYL-4E-g6a"/>
                                             </connections>
                                         </button>
                                         <textField verticalHuggingPriority="750" id="1393" userLabel="Wait Activity TextField">

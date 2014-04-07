@@ -91,6 +91,7 @@ typedef enum iOSOrientationTypes
 @property NSString *seleniumGridConfigFile;
 @property NSString *udid;
 @property BOOL useAndroidActivity;
+@property BOOL useAndroidBrowser;
 @property BOOL useAndroidDeviceReadyTimeout;
 @property BOOL useAndroidKeystore;
 @property BOOL useAndroidPackage;

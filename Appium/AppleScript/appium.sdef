@@ -100,6 +100,9 @@
 			<property name="use android activity" code="auaa" description="true if an android activity is supplied" type="boolean">
 				<cocoa key="s_UseAndroidActivity"/>
 			</property>
+			<property name="use android browser" code="auab" description="true if appium will use android browser" type="boolean">
+				<cocoa key="s_UseAndroidBrowser"/>
+			</property>
 			<property name="is server listening" code="amsl" description="true if the appium server is listening" type="boolean" access="r">
 				<cocoa key="s_IsServerListening"/>
 			</property>
