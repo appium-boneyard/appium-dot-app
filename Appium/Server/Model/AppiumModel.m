@@ -244,6 +244,9 @@ BOOL _isServerListening;
 -(BOOL) useAndroidActivity { return [_defaults boolForKey:APPIUM_PLIST_USE_ANDROID_ACTIVITY]; }
 -(void) setUseAndroidActivity:(BOOL)useAndroidActivity { [_defaults setBool:useAndroidActivity forKey:APPIUM_PLIST_USE_ANDROID_ACTIVITY]; }
 
+-(BOOL) useAndroidBrowser { return [_defaults boolForKey:APPIUM_PLIST_USE_ANDROID_BROWSER]; }
+-(void) setUseAndroidBrowser:(BOOL)useAndroidBrowser { [_defaults setBool:useAndroidBrowser forKey:APPIUM_PLIST_USE_ANDROID_BROWSER]; }
+
 -(BOOL) useAndroidDeviceReadyTimeout { return [_defaults boolForKey:APPIUM_PLIST_USE_ANDROID_DEVICE_READY_TIMEOUT]; }
 -(void) setUseAndroidDeviceReadyTimeout:(BOOL)useAndroidDeviceReadyTimeout { [_defaults setBool:useAndroidDeviceReadyTimeout forKey:APPIUM_PLIST_USE_ANDROID_DEVICE_READY_TIMEOUT]; }
 
@@ -500,14 +503,21 @@ BOOL _isServerListening;
     // Android preferences
     if (self.platform == Platform_Android)
     {
-        if (self.useAndroidPackage)
-        {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--app-pkg", self.androidPackage];
-        }
-        if (self.useAndroidActivity)
-        {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--app-activity", self.androidActivity];
-        }
+		if (self.useAndroidBrowser)
+		{
+			nodeCommandString = [nodeCommandString stringByAppendingString:@" --app browser"];
+		}
+		else
+		{
+			if (self.useAndroidPackage)
+			{
+				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--app-pkg", self.androidPackage];
+			}
+			if (self.useAndroidActivity)
+			{
+				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--app-activity", self.androidActivity];
+			}
+		}
 		if (self.useAndroidDeviceReadyTimeout)
         {
 			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--device-ready-timeout", [self.androidDeviceReadyTimeout intValue]];

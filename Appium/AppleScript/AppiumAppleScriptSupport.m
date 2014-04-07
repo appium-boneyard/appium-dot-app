@@ -53,6 +53,7 @@
 -(NSString*) s_SeleniumGridConfigFile { return self.model.seleniumGridConfigFile; }
 -(NSString*) s_UDID { return self.model.udid; }
 -(NSNumber*) s_UseAndroidActivity { return [NSNumber numberWithBool:self.model.useAndroidActivity]; }
+-(NSNumber*) s_UseAndroidBrowser { return [NSNumber numberWithBool:self.model.useAndroidBrowser]; }
 -(NSNumber*) s_UseAndroidDeviceReadyTimeout { return [NSNumber numberWithBool:self.model.useAndroidDeviceReadyTimeout]; }
 -(NSNumber*) s_UseAndroidFullReset { return [NSNumber numberWithBool:self.model.androidFullReset]; }
 -(NSNumber*) s_UseAndroidKeystore { return [NSNumber numberWithBool:self.model.useAndroidKeystore]; }
@@ -116,6 +117,7 @@
 -(void) setS_SeleniumGridConfigFile:(NSString *)s_SeleniumGridConfigFile { [self.model setSeleniumGridConfigFile:s_SeleniumGridConfigFile]; }
 -(void) setS_UDID:(NSString *)s_UDID { [self.model setUdid:s_UDID]; }
 -(void) setS_UseAndroidActivity:(NSNumber *)s_UseAndroidActivity { [self.model setUseAndroidActivity:[s_UseAndroidActivity boolValue]]; }
+-(void) setS_UseAndroidBrowser:(NSNumber *)s_UseAndroidBrowser { [self.model setUseAndroidBrowser:[s_UseAndroidBrowser boolValue]]; }
 -(void) setS_UseAndroidDeviceReadyTimeout:(NSNumber *)s_UseAndroidDeviceReadyTimeout { [self.model setUseAndroidDeviceReadyTimeout:[s_UseAndroidDeviceReadyTimeout boolValue]]; }
 -(void) setS_UseAndroidFullReset:(NSNumber *)s_UseFastReset { [self.model setAndroidFullReset:[s_UseFastReset boolValue]]; }
 -(void) setS_UseAndroidKeystore:(NSNumber *)s_UseAndroidKeystore { [self.model setUseAndroidKeystore:[s_UseAndroidKeystore boolValue]]; }

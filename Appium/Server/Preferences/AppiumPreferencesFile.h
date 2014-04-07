@@ -62,6 +62,7 @@
 #define APPIUM_PLIST_SERVER_PORT @"Server Port"
 #define APPIUM_PLIST_UDID @"UDID"
 #define APPIUM_PLIST_USE_ANDROID_ACTIVITY @"Use Android Activity"
+#define APPIUM_PLIST_USE_ANDROID_BROWSER @"Use Android Browser"
 #define APPIUM_PLIST_USE_ANDROID_DEVICE_READY_TIMEOUT @"Use Android Device Ready Timeout"
 #define APPIUM_PLIST_USE_ANDROID_KEYSTORE @"Use Android Keystore"
 #define APPIUM_PLIST_USE_ANDROID_PACKAGE @"Use Android Package"

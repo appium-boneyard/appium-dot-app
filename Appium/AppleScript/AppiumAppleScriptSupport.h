@@ -56,6 +56,7 @@
 @property NSNumber *s_ResetApplicationState;
 @property NSString *s_UDID;
 @property NSNumber *s_UseAndroidActivity;
+@property NSNumber *s_UseAndroidBrowser;
 @property NSNumber *s_UseAndroidDeviceReadyTimeout;
 @property NSNumber *s_UseAndroidFullReset;
 @property NSNumber *s_UseAndroidKeystore;
