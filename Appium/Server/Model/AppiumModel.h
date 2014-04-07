@@ -53,6 +53,7 @@ typedef enum iOSOrientationTypes
 @property NSString *calendarToForce;
 @property BOOL checkForUpdates;
 @property NSString *customAndroidSDKPath;
+@property NSString *customFlags;
 @property BOOL developerMode;
 @property iOSAutomationDevice deviceToForce;
 @property NSString *deviceToForceString;
@@ -100,6 +101,7 @@ typedef enum iOSOrientationTypes
 @property BOOL useAVD;
 @property BOOL useBundleID;
 @property BOOL useCustomAndroidSDKPath;
+@property BOOL useCustomFlags;
 @property BOOL useExternalAppiumPackage;
 @property BOOL useExternalNodeJSBinary;
 @property BOOL useLogFile;

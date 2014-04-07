@@ -76,6 +76,9 @@
 			<property name="custom android sdk path" code="acas" description="custom path to android sdk" type="text">
 				<cocoa key="s_CustomAndroidSDKPath"/>
 			</property>
+			<property name="custom flags" code="acsf" description="custom server flags" type="text">
+				<cocoa key="s_CustomFlags"/>
+			</property>
 			<property name="developer mode" code="apdm" description="true if appium is in developer mode" type="boolean">
 				<cocoa key="s_DeveloperMode"/>
 			</property>
@@ -195,6 +198,9 @@
 			</property>
 			<property name="use custom android sdk path" code="auca" description="true if a custom android sdk path with be used" type="boolean">
 				<cocoa key="s_UseCustomAndroidSDKPath"/>
+			</property>
+			<property name="use custom flags" code="aucf" description="true if custom server flags will be used" type="boolean">
+				<cocoa key="s_UseCustomFlags"/>
 			</property>
 			<property name="use custom selendroid port" code="ausp" description="true if a custom selendroid port is supplied" type="boolean">
 				<cocoa key="s_UseCustomSelendroidPort"/>

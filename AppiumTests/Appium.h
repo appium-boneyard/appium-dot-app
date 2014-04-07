@@ -54,6 +54,7 @@ typedef enum AppiumOrientation AppiumOrientation;
 @property (copy) NSString *bundleId;  // bundle id
 @property BOOL checkForUpdates;  // true if appium will check for updates
 @property (copy) NSString *customAndroidSdkPath;  // custom path to android sdk
+@property (copy) NSString *customFlags;  // custom server flags
 @property BOOL developerMode;  // true if appium is in developer mode
 @property (copy) NSString *externalAppiumPackagePath;  // path to external appium package
 @property (copy) NSString *externalNodePath;  // path to external node binaries
@@ -89,6 +90,7 @@ typedef enum AppiumOrientation AppiumOrientation;
 @property BOOL useBundleId;  // true if appium is using the bundle id
 @property BOOL useCustomAndroidKeystore;  // true if appium will sign the app with a user specified keystore
 @property BOOL useCustomAndroidSdkPath;  // true if a custom android sdk path with be used
+@property BOOL useCustomFlags;  // true if custom server flags will be used
 @property BOOL useCustomSelendroidPort;  // true if a custom selendroid port is supplied
 @property BOOL useExternalAppiumPackage;  // true if an external appium package path with be used
 @property BOOL useExternalNodePath;  // true if an external nodeJS binary path with be used

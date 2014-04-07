@@ -30,6 +30,7 @@
 -(NSString*) s_BundleID { return self.model.bundleID;}
 -(NSNumber*) s_CheckForUpdates { return [NSNumber numberWithBool:self.model.checkForUpdates]; }
 -(NSString*) s_CustomAndroidSDKPath { return self.model.customAndroidSDKPath;}
+-(NSString*) s_CustomFlags { return self.model.customFlags; }
 -(NSNumber*) s_DeveloperMode { return [NSNumber numberWithBool:self.model.developerMode]; }
 -(NSString*) s_ExternalAppiumPackagePath { return self.model.externalAppiumPackagePath; }
 -(NSString*) s_ExternalNodeJSBinaryPath { return self.model.externalNodeJSBinaryPath; }
@@ -63,6 +64,7 @@
 -(NSNumber*) s_UseAVD { return [NSNumber numberWithBool:self.model.useAVD]; }
 -(NSNumber*) s_UseBundleID { return [NSNumber numberWithBool:self.model.useBundleID]; }
 -(NSNumber*) s_UseCustomAndroidSDKPath { return [NSNumber numberWithBool:self.model.useCustomAndroidSDKPath]; }
+-(NSNumber*) s_UseCustomFlags { return [NSNumber numberWithBool:self.model.useCustomFlags]; }
 -(NSNumber*) s_UseCustomSelendroidPort { return [NSNumber numberWithBool:self.model.useSelendroidPort]; }
 -(NSNumber*) s_UseExternalAppiumPackage { return [NSNumber numberWithBool:self.model.useExternalAppiumPackage]; }
 -(NSNumber*) s_UseExternalNodeJSBinary { return [NSNumber numberWithBool:self.model.useExternalNodeJSBinary]; }
@@ -97,6 +99,7 @@
 -(void) setS_BundleID:(NSString *)s_BundleID { [self.model setBundleID:s_BundleID]; }
 -(void) setS_CheckForUpdates:(NSNumber *)s_CheckForUpdates { [self.model setCheckForUpdates:[s_CheckForUpdates boolValue]]; }
 -(void) setS_CustomAndroidSDKPath:(NSString *)s_CustomAndroidSDKPath { [self.model setCustomAndroidSDKPath:s_CustomAndroidSDKPath]; }
+-(void) setS_CustomFlags:(NSString *)s_CustomFlags { [self.model setCustomFlags:s_CustomFlags]; }
 -(void) setS_DeveloperMode:(NSNumber *)s_DeveloperMode { [self.model setDeveloperMode:[s_DeveloperMode boolValue]]; }
 -(void) setS_ExternalAppiumPackagePath:(NSString *)s_ExternalAppiumPackagePath { [self.model setExternalAppiumPackagePath:s_ExternalAppiumPackagePath]; }
 -(void) setS_ExternalNodeJSBinaryPath:(NSString *)s_ExternalNodeJSBinaryPath { [self.model setExternalNodeJSBinaryPath:s_ExternalNodeJSBinaryPath]; }
@@ -127,6 +130,7 @@
 -(void) setS_UseAVD:(NSNumber *)s_UseAVD { [self.model setUseAVD:[s_UseAVD boolValue]]; }
 -(void) setS_UseBundleID:(NSNumber *)s_UseBundleID { [self.model setUseBundleID:[s_UseBundleID boolValue]]; }
 -(void) setS_UseCustomAndroidSDKPath:(NSNumber *)s_UseCustomAndroidSDKPath { [self.model setUseCustomAndroidSDKPath:[s_UseCustomAndroidSDKPath boolValue]]; }
+-(void) setS_UseCustomFlags:(NSNumber *)s_UseCustomFlags { [self.model setUseCustomFlags:[s_UseCustomFlags boolValue]]; }
 -(void) setS_UseCustomSelendroidPort:(NSNumber *)s_UseCustomSelendroidPort { [self.model setUseSelendroidPort:[s_UseCustomSelendroidPort boolValue]]; }
 -(void) setS_UseExternalAppiumPackage:(NSNumber *)s_UseExternalAppiumPackage { [self.model setUseExternalAppiumPackage:[s_UseExternalAppiumPackage boolValue]]; }
 -(void) setS_UseExternalNodeJSBinary:(NSNumber *)s_UseExternalNodeJSBinary { [self.model setUseExternalNodeJSBinary:[s_UseExternalNodeJSBinary boolValue]]; }

@@ -121,6 +121,9 @@ BOOL _isServerListening;
 -(NSString*) customAndroidSDKPath { return [_defaults stringForKey:APPIUM_PLIST_CUSTOM_ANDROID_SDK_PATH]; }
 -(void) setCustomAndroidSDKPath:(NSString *)customAndroidSDKPath { [_defaults setValue:customAndroidSDKPath forKey:APPIUM_PLIST_CUSTOM_ANDROID_SDK_PATH]; }
 
+-(NSString*) customFlags { return [_defaults stringForKey:APPIUM_PLIST_CUSTOM_FLAGS]; }
+-(void) setCustomFlags:(NSString *)customFlags { [_defaults setValue:customFlags forKey:APPIUM_PLIST_CUSTOM_FLAGS]; }
+
 -(BOOL) enableAppiumInspectorWindowSupport { return [_defaults boolForKey:APPIUM_PLIST_ENABLE_APPIUM_INSPECTOR_WINDOW_SUPPORT]; }
 -(void) setEnableAppiumInspectorWindowSupport:(BOOL)enableAppiumInspectorWindowSupport { [_defaults setBool:enableAppiumInspectorWindowSupport forKey:APPIUM_PLIST_ENABLE_APPIUM_INSPECTOR_WINDOW_SUPPORT]; }
 
@@ -270,6 +273,9 @@ BOOL _isServerListening;
 
 -(BOOL) useCustomAndroidSDKPath { return [_defaults boolForKey:APPIUM_PLIST_USE_CUSTOM_ANDROID_SDK_PATH]; }
 -(void) setUseCustomAndroidSDKPath:(BOOL)useCustomAndroidSDKPath { [_defaults setBool:useCustomAndroidSDKPath forKey:APPIUM_PLIST_USE_CUSTOM_ANDROID_SDK_PATH]; }
+
+-(BOOL) useCustomFlags { return [_defaults boolForKey:APPIUM_PLIST_USE_CUSTOM_FLAGS]; }
+-(void) setUseCustomFlags:(BOOL)useCustomFlags { [_defaults setBool:useCustomFlags forKey:APPIUM_PLIST_USE_CUSTOM_FLAGS]; }
 
 -(BOOL) useExternalAppiumPackage { return self.developerMode && [_defaults boolForKey:APPIUM_PLIST_USE_EXTERNAL_APPIUM_PACKAGE]; }
 -(void) setUseExternalAppiumPackage:(BOOL)useCustomAppiumPackage { [_defaults setBool:useCustomAppiumPackage forKey:APPIUM_PLIST_USE_EXTERNAL_APPIUM_PACKAGE]; }
@@ -555,6 +561,12 @@ BOOL _isServerListening;
     {
 		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--robot-address", self.robotAddress];
 		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--robot-port", [self.robotPort intValue]];
+	}
+
+	// Custom flags
+	if (self.useCustomFlags && self.customFlags != nil)
+	{
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@", self.customFlags];
 	}
 
 	[self setServerTask:[NSTask new]];
