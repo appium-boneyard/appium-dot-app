@@ -57,6 +57,7 @@
 @property NSString *contentDesc;
 @property NSString *package;
 @property NSString *text;
+@property NSString *resourceId;
 @property BOOL clickable;
 @property BOOL focused;
 @property BOOL checked;

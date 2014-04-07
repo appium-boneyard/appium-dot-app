@@ -52,6 +52,8 @@
 			[self setClickable:[[_jsonDict objectForKey:@"@clickable"] boolValue]];
 			[self setFocused:[[_jsonDict objectForKey:@"@focused"] boolValue]];
 			[self setChecked:[[_jsonDict objectForKey:@"@checked"] boolValue]];
+			[self setFocusable:[[_jsonDict objectForKey:@"@focusable"] boolValue]];
+			[self setResourceId:[_jsonDict objectForKey:@"@resource-id"]];
 
 			NSString *bounds = [_jsonDict objectForKey:@"@bounds"];
 			NSError *error;
@@ -200,7 +202,7 @@
 	}
 	else
 	{
-		return [NSString stringWithFormat:@"content-desc: %@\nclass: %@\ntext: %@\nindex: %@\nenabled: %@\nclickable: %@\nlocation: %@\nsize: %@", self.contentDesc, self.type, self.text,[NSString stringWithFormat:@"%lu", (u_long)self.index], (self.enabled ? @"true" : @"false"),(self.clickable ? @"true" : @"false"), NSStringFromPoint(self.rect.origin), NSStringFromSize(self.rect.size)];
+		return [NSString stringWithFormat:@"content-desc: %@\nclass: %@\ntext: %@\nindex: %@\nenabled: %@\nclickable: %@\nlocation: %@\nsize: %@\ncheckable: %@\nchecked: %@\nfocusable: %@\nfocused: %@\nlong-clickable: %@\npackage: %@\npassword: %@\nresource-id: %@\nscrollable: %@\nselected: %@", self.contentDesc, self.type, self.text,[NSString stringWithFormat:@"%lu", (u_long)self.index], (self.enabled ? @"true" : @"false"),(self.clickable ? @"true" : @"false"), NSStringFromPoint(self.rect.origin), NSStringFromSize(self.rect.size), (self.checkable ? @"true" : @"false"), (self.checked ? @"true" : @"false"), (self.focusable ? @"true" : @"false"), (self.focused ? @"true" : @"false"), (self.longClickable ? @"true" : @"false"), self.package, (self.password ? @"true" : @"false"), self.resourceId, (self.scrollable ? @"true" : @"false"), (self.selected ? @"true" : @"false")];
 	}
 }
 
