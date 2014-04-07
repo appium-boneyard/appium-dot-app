@@ -31,6 +31,7 @@
 @property NSString *s_BundleID;
 @property NSNumber *s_CheckForUpdates;
 @property NSString *s_CustomAndroidSDKPath;
+@property NSString *s_CustomFlags;
 @property NSNumber *s_DeveloperMode;
 @property NSString *s_ExternalAppiumPackagePath;
 @property NSString *s_ExternalNodeJSBinaryPath;
@@ -66,6 +67,7 @@
 @property NSNumber *s_UseAVD;
 @property NSNumber *s_UseBundleID;
 @property NSNumber *s_UseCustomAndroidSDKPath;
+@property NSNumber *s_UseCustomFlags;
 @property NSNumber *s_UseCustomSelendroidPort;
 @property NSNumber *s_UseExternalAppiumPackage;
 @property NSNumber *s_UseExternalNodeJSBinary;
