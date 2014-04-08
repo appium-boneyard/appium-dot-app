@@ -656,6 +656,7 @@
 				36CEB7C916E3662E00B5B100 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		36CEB7C916E3662E00B5B100 /* Products */ = {
 			isa = PBXGroup;
