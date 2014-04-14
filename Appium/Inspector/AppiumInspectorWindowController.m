@@ -22,6 +22,7 @@
         AppiumModel *model = [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] model];
         
         self.driver = [[SERemoteWebDriver alloc] initWithServerAddress:[model ipAddress] port:[[model port] integerValue]];
+		
 		if (self.driver == nil)
 		{
 			return [self closeWithError:@"Could not connect to Appium Server"];
@@ -46,8 +47,8 @@
         if (sessions.count == 0 || self.driver.session == nil || self.driver.session.capabilities.platform == nil)
         {
 			// create a new session if one does not already exist
-            SECapabilities *capabilities = [SECapabilities new];
-            [capabilities addCapabilityForKey:@"device" andValue:model.deviceToForceString];
+			SECapabilities *capabilities = [SECapabilities new];
+            [capabilities addCapabilityForKey:@"platformName" andValue:model.isAndroid ? @"Android" : @"iOS"];
 
             [self.driver startSessionWithDesiredCapabilities:capabilities requiredCapabilities:nil];
 			if (self.driver == nil || self.driver.session == nil || self.driver.session.sessionId == nil)
