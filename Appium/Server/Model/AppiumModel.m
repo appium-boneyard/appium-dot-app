@@ -775,8 +775,11 @@ BOOL _isServerListening;
 -(void) refreshAVDs
 {
 	NSString *androidBinaryPath = [Utility pathToAndroidBinary:@"android"];
-
-	if (androidBinaryPath == nil || ![[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath])
+    NSString *vBoxManagePath = [Utility pathToVBoxManageBinary];
+    // have to have either "android" or "vboxmanage" available
+    BOOL hasAndroid = androidBinaryPath != nil && [[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath];
+    BOOL hasVBoxManage = vBoxManagePath != nil && [[NSFileManager defaultManager] fileExistsAtPath:vBoxManagePath];
+	if ( !hasAndroid && !hasVBoxManage)
 	{
 		return;
 	}
@@ -785,15 +788,37 @@ BOOL _isServerListening;
 
 	@try
 	{
-		NSString *avdString = [Utility runTaskWithBinary:androidBinaryPath arguments:[NSArray arrayWithObjects:@"list", @"avd", @"-c", nil]];
-		NSArray *avdList = [avdString componentsSeparatedByString:@"\n"];
-		for (NSString *avd in avdList)
-		{
-			if (avd.length > 0)
-			{
-				[avds addObject:avd];
-			}
-		}
+        // check android avd first
+        if (hasAndroid)
+        {
+            NSString *avdString = [Utility runTaskWithBinary:androidBinaryPath arguments:[NSArray arrayWithObjects:@"list", @"avd", @"-c", nil]];
+            NSArray *avdList = [avdString componentsSeparatedByString:@"\n"];
+            for (NSString *avd in avdList)
+            {
+                if (avd.length > 0)
+                {
+                    [avds addObject:avd];
+                }
+            }
+        }
+        if (hasVBoxManage)
+        {
+            NSString *vBoxManageString = [Utility runTaskWithBinary:vBoxManagePath arguments:[NSArray arrayWithObjects:@"list", @"vms", nil]];
+            NSArray *gmList = [vBoxManageString componentsSeparatedByString:@"\n"];
+            for (NSString *gm in gmList)
+            {
+                NSRange startQuote = [gm rangeOfString:@"\""];
+                if (startQuote.location != NSNotFound)
+                {
+                    NSRange endQuote = [gm rangeOfString:@"\"" options:NSBackwardsSearch];
+                    if (endQuote.location != NSNotFound && endQuote.location > startQuote.location)
+                    {
+                        NSString *gmAvd = [gm substringWithRange:NSMakeRange(startQuote.location + 1, endQuote.location-1)];
+                        [avds addObject:gmAvd];
+                    }
+                }
+            }
+        }
 	}
 	@catch (NSException *exception) {
 		NSLog(@"Could not list Android AVDs: %@", exception);
