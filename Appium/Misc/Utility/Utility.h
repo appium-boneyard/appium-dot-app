@@ -14,5 +14,6 @@
 +(NSString*) runTaskWithBinary:(NSString*)binary arguments:(NSArray*)args path:(NSString*)path;
 +(NSString*) runTaskWithBinary:(NSString*)binary arguments:(NSArray*)args;
 +(NSNumber*) getPidListeningOnPort:(NSNumber*)port;
++(NSString*) pathToVBoxManageBinary;
 
 @end
