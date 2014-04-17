@@ -22,40 +22,41 @@
 {
 	if (self = [super init])
 	{
-		if([jsonDict objectForKey:@"hierarchy"] != nil)
+		while([jsonDict objectForKey:@"hierarchy"] != nil || [@"hierarchy" isEqualToString:[jsonDict objectForKey:@"tag"]])
 		{
-			jsonDict = [[jsonDict objectForKey:@"hierarchy"] objectForKey:@"node"];
+			jsonDict = [(NSArray*)[jsonDict objectForKey:@"children"] objectAtIndex:0];
 		}
+
 		_jsonDict = jsonDict;
         _showDisabled = showDisabled;
         _showInvisible = showInvisible;
 		[self setParent:parent];
 
-		if ([_jsonDict.allKeys containsObject:@"@enabled"])
+		if ([_jsonDict.allKeys containsObject:@"content-desc"])
 		{
 			// Android Node
 			[self setPlatform:Platform_Android];
-			[self setEnabled:[[_jsonDict objectForKey:@"@enabled"] boolValue]];
-			[self setVisible:[[_jsonDict objectForKey:@"@clickable"] boolValue]];
-			[self setType:[_jsonDict objectForKey:@"@class"]];
-			[self setValue:[_jsonDict objectForKey:@"@text"]];
-			[self setText:[_jsonDict objectForKey:@"@text"]];
-			[self setIndex:[(NSString*)[_jsonDict objectForKey:@"@index"] integerValue]];
-			[self setName:[_jsonDict objectForKey:@"@content-desc"]];
-			[self setContentDesc:[_jsonDict objectForKey:@"@content-desc"]];
-			[self setCheckable:[[_jsonDict objectForKey:@"@checkable"] boolValue]];
-			[self setPackage:[_jsonDict objectForKey:@"@package"]];
-			[self setScrollable:[[_jsonDict objectForKey:@"@scrollable"] boolValue]];
-			[self setPassword:[[_jsonDict objectForKey:@"@password"] boolValue]];
-			[self setLongClickable:[[_jsonDict objectForKey:@"@long-clickable"] boolValue]];
-			[self setSelected:[[_jsonDict objectForKey:@"@selected"] boolValue]];
-			[self setClickable:[[_jsonDict objectForKey:@"@clickable"] boolValue]];
-			[self setFocused:[[_jsonDict objectForKey:@"@focused"] boolValue]];
-			[self setChecked:[[_jsonDict objectForKey:@"@checked"] boolValue]];
-			[self setFocusable:[[_jsonDict objectForKey:@"@focusable"] boolValue]];
-			[self setResourceId:[_jsonDict objectForKey:@"@resource-id"]];
+			[self setEnabled:[[_jsonDict objectForKey:@"enabled"] boolValue]];
+			[self setVisible:[[_jsonDict objectForKey:@"clickable"] boolValue]];
+			[self setType:[_jsonDict objectForKey:@"tag"]];
+			[self setValue:[_jsonDict objectForKey:@"text"]];
+			[self setText:[_jsonDict objectForKey:@"text"]];
+			[self setIndex:[(NSString*)[_jsonDict objectForKey:@"index"] integerValue]];
+			[self setName:[_jsonDict objectForKey:@"content-desc"]];
+			[self setContentDesc:[_jsonDict objectForKey:@"content-desc"]];
+			[self setCheckable:[[_jsonDict objectForKey:@"checkable"] boolValue]];
+			[self setPackage:[_jsonDict objectForKey:@"package"]];
+			[self setScrollable:[[_jsonDict objectForKey:@"scrollable"] boolValue]];
+			[self setPassword:[[_jsonDict objectForKey:@"password"] boolValue]];
+			[self setLongClickable:[[_jsonDict objectForKey:@"long-clickable"] boolValue]];
+			[self setSelected:[[_jsonDict objectForKey:@"selected"] boolValue]];
+			[self setClickable:[[_jsonDict objectForKey:@"clickable"] boolValue]];
+			[self setFocused:[[_jsonDict objectForKey:@"focused"] boolValue]];
+			[self setChecked:[[_jsonDict objectForKey:@"checked"] boolValue]];
+			[self setFocusable:[[_jsonDict objectForKey:@"focusable"] boolValue]];
+			[self setResourceId:[_jsonDict objectForKey:@"resource-id"]];
 
-			NSString *bounds = [_jsonDict objectForKey:@"@bounds"];
+			NSString *bounds = [_jsonDict objectForKey:@"bounds"];
 			NSError *error;
 			NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\[(\\d+),(\\d+)\\]\\[(\\d+),(\\d+)\\]" options:NSRegularExpressionCaseInsensitive error:&error];
 			NSTextCheckingResult *firstResult = [regex firstMatchInString:bounds options:0 range:NSMakeRange(0, [bounds length])];
@@ -70,7 +71,7 @@
 			}
 			_children = [NSMutableArray new];
 			_visibleChildren = [NSMutableArray new];
-			NSObject *nodes = [_jsonDict objectForKey:@"node"];
+			NSObject *nodes = [_jsonDict objectForKey:@"children"];
 			NSArray *jsonItems = [NSArray new];
 			if([nodes isKindOfClass:[NSArray class]])
 			{
@@ -99,16 +100,13 @@
 			[self setVisible:[[_jsonDict valueForKey:@"visible"] boolValue]];
 			[self setValid:[[_jsonDict valueForKey:@"valid"] boolValue]];
 			[self setLabel:[_jsonDict valueForKey:@"label"]];
-			[self setType:[_jsonDict valueForKey:@"type"]];
+			[self setType:[_jsonDict valueForKey:@"tag"]];
 			[self setValue:[_jsonDict valueForKey:@"value"]];
 			[self setName:[_jsonDict valueForKey:@"name"]];
-			NSDictionary *rect = [_jsonDict valueForKey:@"rect"];
-			NSDictionary *origin = [rect valueForKey:@"origin"];
-			NSDictionary *size = [rect valueForKey:@"size"];
-			long x = [[origin valueForKey:@"x"] longValue];
-			long y = [[origin valueForKey:@"y"] longValue];
-			long width = [[size valueForKey:@"width"] longValue];
-			long height = [[size valueForKey:@"height"] longValue];
+			float x = [[_jsonDict valueForKey:@"x"] floatValue];
+			float y = [[_jsonDict valueForKey:@"y"] floatValue];
+			float width = [[_jsonDict valueForKey:@"width"] floatValue];
+			float height = [[_jsonDict valueForKey:@"height"] floatValue];
 			[self setRect:NSMakeRect((float)x, (float)y, (float)width, (float)height)];
 
 			_children = [NSMutableArray new];
