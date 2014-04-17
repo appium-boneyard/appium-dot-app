@@ -12,6 +12,7 @@
 #import "AppiumAppDelegate.h"
 #import "AppiumModel.h"
 #import "AppiumPreferencesFile.h"
+#import "XMLReader.h"
 
 @interface AppiumInspector ()
 @property (readonly) SERemoteWebDriver *driver;
@@ -81,7 +82,7 @@
         [alert runModal];
         [_windowController close];
     } else {
-        NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData: [_lastPageSource dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: &e];
+		NSDictionary *jsonDict = [XMLReader dictionaryForXMLString:_lastPageSource error:&e];
         _browserRootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict parent:nil showDisabled:[self.showDisabled boolValue] showInvisible:[self.showInvisible boolValue]];
         _rootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict parent:nil showDisabled:[self.showDisabled boolValue] showInvisible:[self.showInvisible boolValue]];
         [_windowController.browser performSelectorOnMainThread:@selector(loadColumnZero) withObject:nil waitUntilDone:YES];

@@ -92,6 +92,7 @@
 		36FF07AD171743AC009ED9E2 /* AppiumCodeMakerLocator.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF07AC171743AC009ED9E2 /* AppiumCodeMakerLocator.m */; };
 		36FF07B0171747C4009ED9E2 /* AppiumCodeMakerJavaPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF07AF171747C4009ED9E2 /* AppiumCodeMakerJavaPlugin.m */; };
 		36FF07B317174936009ED9E2 /* AppiumCodeMakerRubyPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF07B217174935009ED9E2 /* AppiumCodeMakerRubyPlugin.m */; };
+		36FF20D61900222400008A7D /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF20D51900222400008A7D /* XMLReader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -301,6 +302,8 @@
 		36FF07AF171747C4009ED9E2 /* AppiumCodeMakerJavaPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerJavaPlugin.m; path = Plugins/AppiumCodeMakerJavaPlugin.m; sourceTree = "<group>"; };
 		36FF07B117174935009ED9E2 /* AppiumCodeMakerRubyPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerRubyPlugin.h; path = Plugins/AppiumCodeMakerRubyPlugin.h; sourceTree = "<group>"; };
 		36FF07B217174935009ED9E2 /* AppiumCodeMakerRubyPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerRubyPlugin.m; path = Plugins/AppiumCodeMakerRubyPlugin.m; sourceTree = "<group>"; };
+		36FF20D41900222400008A7D /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReader.h; path = Utility/XMLReader.h; sourceTree = "<group>"; };
+		36FF20D51900222400008A7D /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReader.m; path = Utility/XMLReader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -576,6 +579,8 @@
 				36580CB117A4543A004C2D94 /* NSString+TrimLeadingWhitespace.m */,
 				365A2D7C16E3C847007BADF9 /* Utility.h */,
 				365A2D7D16E3C847007BADF9 /* Utility.m */,
+				36FF20D41900222400008A7D /* XMLReader.h */,
+				36FF20D51900222400008A7D /* XMLReader.m */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -916,6 +921,7 @@
 				36FF07B0171747C4009ED9E2 /* AppiumCodeMakerJavaPlugin.m in Sources */,
 				36FF07B317174936009ED9E2 /* AppiumCodeMakerRubyPlugin.m in Sources */,
 				3618718D171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.m in Sources */,
+				36FF20D61900222400008A7D /* XMLReader.m in Sources */,
 				36683069184A5DB500C1A91D /* SBJsonStreamParserState.m in Sources */,
 				3668306A184A5DB500C1A91D /* SBJsonStreamTokeniser.m in Sources */,
 				36C9479C1719D0CB008DE83F /* AppiumRecorder.m in Sources */,
