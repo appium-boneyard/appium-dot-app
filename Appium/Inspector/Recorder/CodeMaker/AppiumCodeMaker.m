@@ -38,7 +38,7 @@
 {
 	_fragaria = [[MGSFragaria alloc] init];
 	[_fragaria setObject:self forKey:MGSFODelegate];
-	[self setSyntaxDefinition:[[NSUserDefaults standardUserDefaults] stringForKey:APPIUM_PLIST_CODEMAKER_LANGUAGE]];
+	[self setSyntaxDefinition:[[NSUserDefaults standardUserDefaults] stringForKey:APPIUM_PLIST_INSPECTOR_CODEMAKER_LANGUAGE]];
 	[_fragaria embedInView:_contentView];
 	[_fragaria setObject:[NSNumber numberWithBool:YES] forKey:MGSFOIsSyntaxColoured];
 	[_fragaria setObject:[NSNumber numberWithBool:YES] forKey:MGSFOShowLineNumberGutter];
@@ -50,8 +50,8 @@
 -(AppiumCodeMakerPlugin*) activePlugin { return _activePlugin; }
 -(NSArray*) allPlugins { return [_plugins allKeys]; }
 -(NSString*) syntaxDefinition { return _activePlugin.name; }
--(NSNumber*) useBoilerPlate { return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:APPIUM_PLIST_USE_CODEMAKER_BOILERPLATE]]; }
--(NSNumber*) useXPathOnly { return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:APPIUM_PLIST_USE_XPATH_ONLY]]; }
+-(NSNumber*) useBoilerPlate { return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:APPIUM_PLIST_INSPECTOR_USES_CODEMAKER_BOILERPLATE]]; }
+-(NSNumber*) useXPathOnly { return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:APPIUM_PLIST_INSPECTOR_USES_XPATH_ONLY]]; }
 
 
 -(void) setActivePlugin:(AppiumCodeMakerPlugin*)plugin
@@ -64,20 +64,20 @@
 -(void)setSyntaxDefinition:(NSString *)syntaxDefinition
 {
 	[self setActivePlugin:(AppiumCodeMakerPlugin*)[_plugins objectForKey:syntaxDefinition]];
-	[[NSUserDefaults standardUserDefaults] setObject:syntaxDefinition forKey:APPIUM_PLIST_CODEMAKER_LANGUAGE];
+	[[NSUserDefaults standardUserDefaults] setObject:syntaxDefinition forKey:APPIUM_PLIST_INSPECTOR_CODEMAKER_LANGUAGE];
 	[_fragaria setObject:syntaxDefinition forKey:MGSFOSyntaxDefinitionName];
 
 }
 
 -(void) setUseBoilerPlate:(NSNumber *)useBoilerPlate
 {
-	[[NSUserDefaults standardUserDefaults] setBool:[useBoilerPlate boolValue] forKey:APPIUM_PLIST_USE_CODEMAKER_BOILERPLATE];
+	[[NSUserDefaults standardUserDefaults] setBool:[useBoilerPlate boolValue] forKey:APPIUM_PLIST_INSPECTOR_USES_CODEMAKER_BOILERPLATE];
 	[self renderAll];
 }
 
 -(void) setUseXPathOnly:(NSNumber *)useXPathOnly
 {
-	[[NSUserDefaults standardUserDefaults] setBool:[useXPathOnly boolValue] forKey:APPIUM_PLIST_USE_XPATH_ONLY];
+	[[NSUserDefaults standardUserDefaults] setBool:[useXPathOnly boolValue] forKey:APPIUM_PLIST_INSPECTOR_USES_XPATH_ONLY];
 	[self renderAll];
 }
 

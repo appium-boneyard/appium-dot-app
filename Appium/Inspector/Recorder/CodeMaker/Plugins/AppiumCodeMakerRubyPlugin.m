@@ -40,7 +40,7 @@ capabilities = {\n\
 \n\
 server_url = \"http://%@:%@/wd/hub\"\n\
 \n\
-wd = Selenium::WebDriver.for(:remote, :desired_capabilities => capabilities, :url => server_url)\n", self.model.appPath, self.model.androidPackage, self.model.androidActivity, self.model.ipAddress, self.model.port];
+wd = Selenium::WebDriver.for(:remote, :desired_capabilities => capabilities, :url => server_url)\n", self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.serverAddress, self.model.serverPort];
 }
 
 -(NSString*) preCodeBoilerplateiOS
@@ -58,7 +58,7 @@ capabilities = {\n\
 \n\
 server_url = \"http://%@:%@/wd/hub\"\n\
 \n\
-@wd = Selenium::WebDriver.for(:remote, :desired_capabilities => capabilities, :url => server_url)\n", self.model.deviceToForceString, self.model.appPath, self.model.ipAddress, self.model.port];
+@wd = Selenium::WebDriver.for(:remote, :desired_capabilities => capabilities, :url => server_url)\n", self.model.iOS.deviceName, self.model.iOS.appPath, self.model.serverAddress, self.model.serverPort];
 }
 
 -(NSString*) postCodeBoilerplate
