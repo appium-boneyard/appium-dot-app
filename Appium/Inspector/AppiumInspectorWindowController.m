@@ -21,7 +21,7 @@
 
         AppiumModel *model = [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] model];
         
-        self.driver = [[SERemoteWebDriver alloc] initWithServerAddress:[model ipAddress] port:[[model port] integerValue]];
+        self.driver = [[SERemoteWebDriver alloc] initWithServerAddress:model.serverAddress port:[model.serverPort integerValue]];
 		
 		if (self.driver == nil)
 		{
