@@ -27,7 +27,7 @@
     WebDriverElementNode *_browserRootNode;
 	NSMutableArray *_selectedIndexes;
 	NSString *_lastPageSource;
-	NSString *_selectedWindow;
+	NSString *_selectedContext;
 }
 
 @property (readonly) AppiumModel *model;
@@ -35,9 +35,9 @@
 @property NSNumber *showDisabled;
 @property NSNumber *showInvisible;
 @property BOOL domIsPopulating;
-@property NSArray *windows;
-@property NSString *currentWindow;
-@property NSString *selectedWindow;
+@property NSArray *contexts;
+@property NSString *currentContext;
+@property NSString *selectedContext;
 
 -(SEWebElement*) elementForSelectedNode;
 -(NSString*) xPathForSelectedNode;
