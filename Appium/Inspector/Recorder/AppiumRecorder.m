@@ -42,30 +42,30 @@
 }
 
 #pragma mark - Actions
--(IBAction) changeWindow:(id)sender
+-(IBAction) changeContext:(id)sender
 {
-	NSString *oldWindow = _windowController.inspector.currentWindow;
-	NSString *newWindow = _windowController.inspector.selectedWindow;
-	[_windowController.inspector setCurrentWindow:newWindow];
+	NSString *oldContext = _windowController.inspector.currentContext;
+	NSString *newContext = _windowController.inspector.selectedContext;
+	[_windowController.inspector setCurrentContext:newContext];
 
-	if ([newWindow isEqualToString:oldWindow])
+	if ([newContext isEqualToString:oldContext])
 	{
 		return;
 	}
-	if(([oldWindow isEqualToString:@"0"] && [newWindow isEqualToString:@"native"])
-	   || ([oldWindow isEqualToString:@"native"] && [newWindow isEqualToString:@"0"]))
+	if(([oldContext isEqualToString:@""] && [newContext isEqualToString:@"no context"])
+	   || ([oldContext isEqualToString:@"no context"] && [newContext isEqualToString:@""]))
 	{
 		[self.inspector refresh:sender];
 		return;
 	}
 
-	if ([newWindow isEqualToString:@"native"] || [newWindow isEqualToString:@"0"])
+	if ([newContext isEqualToString:@"no context"] || [newContext isEqualToString:@""])
 	{
-		[self.driver executeScript:@"mobile: leaveWebView"];
+		[self.driver setContext:@"no context"];
 	}
 	else
 	{
-		[self.driver setWindow:newWindow];
+		[self.driver setContext:newContext];
 	}
 	[self.inspector refresh:sender];
 }

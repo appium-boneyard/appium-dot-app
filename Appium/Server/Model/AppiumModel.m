@@ -124,9 +124,6 @@ BOOL _isServerListening;
 -(NSString*) customFlags { return [_defaults stringForKey:APPIUM_PLIST_CUSTOM_FLAGS]; }
 -(void) setCustomFlags:(NSString *)customFlags { [_defaults setValue:customFlags forKey:APPIUM_PLIST_CUSTOM_FLAGS]; }
 
--(BOOL) enableAppiumInspectorWindowSupport { return [_defaults boolForKey:APPIUM_PLIST_ENABLE_APPIUM_INSPECTOR_WINDOW_SUPPORT]; }
--(void) setEnableAppiumInspectorWindowSupport:(BOOL)enableAppiumInspectorWindowSupport { [_defaults setBool:enableAppiumInspectorWindowSupport forKey:APPIUM_PLIST_ENABLE_APPIUM_INSPECTOR_WINDOW_SUPPORT]; }
-
 -(NSString*) externalAppiumPackagePath { return [_defaults stringForKey:APPIUM_PLIST_EXTERNAL_APPIUM_PACKAGE_PATH]; }
 -(void) setExternalAppiumPackagePath:(NSString *)externalAppiumPackagePath { [_defaults setValue:externalAppiumPackagePath forKey:APPIUM_PLIST_EXTERNAL_APPIUM_PACKAGE_PATH]; }
 
