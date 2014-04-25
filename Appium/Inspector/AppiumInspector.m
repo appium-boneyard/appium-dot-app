@@ -216,7 +216,7 @@
 
         // build xpath
         [xPath appendString:@"/"];
-        [xPath appendString:currentNode.typeShortcut];
+        [xPath appendString:currentNode.type];
         NSInteger nodeTypeCount = 0;
         for(int j=0; j < parentNode.children.count ; j++)
         {

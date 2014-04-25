@@ -39,7 +39,6 @@
 @property NSString *name;
 @property NSRect rect;
 @property NSString *type;
-@property (readonly) NSString *typeShortcut;
 @property (readonly) NSString* infoText;
 
 #pragma mark - iOS-Specific properties
