@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="AppiumInspectorWindowController">
@@ -40,7 +40,7 @@
             </connections>
         </customObject>
         <userDefaultsController representsSharedInstance="YES" id="85"/>
-        <window title="Appium Inspector" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" wantsToBeColor="NO" frameAutosaveName="AppiumInspector" animationBehavior="default" id="1" userLabel="Appium Inspector Window">
+        <window title="Appium Inspector" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" frameAutosaveName="AppiumInspector" animationBehavior="default" id="1" userLabel="Appium Inspector Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="864" height="552"/>
@@ -129,12 +129,12 @@
                         <rect key="frame" x="540" y="501" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <connections>
-                            <binding destination="26" name="animate" keyPath="domIsPopulating" id="113"/>
                             <binding destination="26" name="hidden" keyPath="domIsPopulating" id="111">
                                 <dictionary key="options">
                                     <string key="NSValueTransformerName">NSNegateBoolean</string>
                                 </dictionary>
                             </binding>
+                            <binding destination="26" name="animate" keyPath="domIsPopulating" id="113"/>
                         </connections>
                     </progressIndicator>
                     <browser verticalHuggingPriority="750" allowsExpansionToolTips="YES" enabled="YES" hasHorizontalScroller="YES" allowsEmptySelection="YES" defaultColumnWidth="100" minColumnWidth="100" maxVisibleColumns="3" titled="YES" separatesColumns="YES" allowsTypeSelect="YES" columnResizingType="auto" id="6" userLabel="DOM Browser">
@@ -214,17 +214,17 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="scrollTo:" target="357" id="583"/>
-                                                <binding destination="26" name="enabled2" keyPath="domIsPopulating" previousBinding="619" id="620">
+                                                <binding destination="26" name="enabled" keyPath="domIsPopulating" id="619">
                                                     <dictionary key="options">
-                                                        <integer key="NSNullPlaceholder" value="-1"/>
-                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
                                                 </binding>
-                                                <binding destination="26" name="enabled" keyPath="domIsPopulating" id="619">
+                                                <binding destination="26" name="enabled2" keyPath="domIsPopulating" previousBinding="619" id="620">
                                                     <dictionary key="options">
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
                                                 </binding>
@@ -329,10 +329,10 @@
                                                 <action selector="comment:" target="357" id="362"/>
                                                 <binding destination="26" name="enabled2" keyPath="domIsPopulating" previousBinding="397" id="398">
                                                     <dictionary key="options">
-                                                        <integer key="NSNullPlaceholder" value="-1"/>
-                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
                                                         <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
                                                 </binding>
@@ -454,17 +454,17 @@
                                     <rect key="frame" x="18" y="14" width="208" height="145"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="qlf-i6-ziQ">
-                                        <rect key="frame" x="1" y="1" width="191" height="143"/>
+                                        <rect key="frame" x="1" y="1" width="206" height="143"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <textView editable="NO" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" spellingCorrection="YES" smartInsertDelete="YES" id="30">
-                                                <rect key="frame" x="0.0" y="0.0" width="191" height="143"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="206" height="143"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <size key="minSize" width="191" height="143"/>
+                                                <size key="minSize" width="206" height="143"/>
                                                 <size key="maxSize" width="463" height="10000000"/>
                                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                <size key="minSize" width="191" height="143"/>
+                                                <size key="minSize" width="206" height="143"/>
                                                 <size key="maxSize" width="463" height="10000000"/>
                                             </textView>
                                         </subviews>
@@ -475,7 +475,7 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="32">
-                                        <rect key="frame" x="192" y="1" width="15" height="143"/>
+                                        <rect key="frame" x="191" y="1" width="16" height="143"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                 </scrollView>
@@ -499,7 +499,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="push" title="C#" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="193" id="191">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="192">
                             <items>
                                 <menuItem title="C#" state="on" id="193"/>
@@ -634,7 +634,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="push" title="1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="238" id="236">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="menu"/>
                         <menu key="menu" title="Fingers Menu" id="237" userLabel="Fingers Menu">
                             <items>
                                 <menuItem title="1" state="on" id="238"/>
@@ -756,12 +756,12 @@
                 <popUpButton verticalHuggingPriority="750" id="540" userLabel="Taps Pop Up Button">
                     <rect key="frame" x="86" y="103" width="50" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="push" title="1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="541">
+                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="541">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="menu"/>
                         <menu key="menu" title="Fingers Menu" id="542" userLabel="Fingers Menu">
                             <items>
-                                <menuItem title="1" state="on" id="543"/>
+                                <menuItem title="1" id="543"/>
                                 <menuItem title="2" id="544"/>
                                 <menuItem title="3" id="545"/>
                             </items>
@@ -783,12 +783,12 @@
                 <popUpButton verticalHuggingPriority="750" id="484" userLabel="Fingers Pop Up Button">
                     <rect key="frame" x="86" y="77" width="50" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="push" title="1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="499">
+                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="499">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="menu"/>
                         <menu key="menu" title="Fingers Menu" id="500" userLabel="Fingers Menu">
                             <items>
-                                <menuItem title="1" state="on" id="504"/>
+                                <menuItem title="1" id="504"/>
                                 <menuItem title="2" id="503"/>
                                 <menuItem title="3" id="502"/>
                                 <menuItem title="4" id="501">

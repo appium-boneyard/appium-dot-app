@@ -58,8 +58,8 @@
 			<property name="android wait activity" code="apwa" description="name of android activity to wait for" type="text">
 				<cocoa key="s_AndroidWaitActivity"/>
 			</property>
-			<property name="app path" code="amap" description="path to mobile application" type="text">
-				<cocoa key="s_AppPath"/>
+			<property name="android app path" code="amap" description="path to mobile application" type="text">
+				<cocoa key="s_AndroidAppPath"/>
 			</property>
 			<property name="avd name" code="aavd" description="name of avd" type="text">
 				<cocoa key="s_AVD"/>
@@ -240,6 +240,81 @@
 			</property>
 			<property name="xcode path" code="axcp" description="path to xcode application that will be used by appium" type="text" access="r">
 				<cocoa key="s_XcodePath"/>
+			</property>
+			<property name="android automation name" code="anan" description="type of android automation to use, either Appium or Selendroid" type="text">
+				<cocoa key="s_AndroidAutomationName"/>
+			</property>
+			<property name="boostrap port" code="aabp" description="port to run appium&apos;s android bootstrap on" type="number">
+				<cocoa key="s_AndroidBootstrapPort"/>
+			</property>
+			<property name="android coverage class" code="aacc" description="fully qualified instrumentation class for android" type="text">
+				<cocoa key="s_AndroidCoverageClass"/>
+			</property>
+			<property name="android platform name" code="aapn" description="platform name for Android, either Android or FirefoxOS" type="text">
+				<cocoa key="s_AndroidPlatformName"/>
+			</property>
+			<property name="android platform version" code="aapv" description="platform version for android (e.g. 4.4.2)" type="text">
+				<cocoa key="s_AndroidPlatformVersion"/>
+			</property>
+			<property name="android wait package" code="aawp" description="android package to wait for" type="text">
+				<cocoa key="s_AndroidWaitPackage"/>
+			</property>
+			<property name="avd arguments" code="aava" description="arguments to supply when launching an avd" type="text">
+				<cocoa key="s_AVDArguments"/>
+			</property>
+			<property name="backend retries" code="aibr" description="number of times to attempt to relaunch instruments" type="number">
+				<cocoa key="s_BackendRetries"/>
+			</property>
+			<property name="custom tracetemplate path" code="actp" description="path to a .tracetemplate file to be used with Appium in place of the default" type="text">
+				<cocoa key="s_CustomTraceTemplatePath"/>
+			</property>
+			<property name="force quit instruments" code="afqi" description="true if the watcher process shoudl run and force-quit instruments when it becomes unresponsive" type="boolean">
+				<cocoa key="s_ForceKillInstruments"/>
+			</property>
+			<property name="instruments launch timeout" code="ailt" description="amount of time in milliseconds to wait for instruments to launch" type="number">
+				<cocoa key="s_InstrumentsLaunchTimeout"/>
+			</property>
+			<property name="s_iOSAppPath" code="aiap" description="path to the iOS application to be run with appium" type="text">
+				<cocoa key="s_iOSAppPath"/>
+			</property>
+			<property name="ios platform version" code="aipv" description="version of ios to be used (e.g. 7.1)" type="text">
+				<cocoa key="s_iOSPlatformVersion"/>
+			</property>
+			<property name="show ios simulator log" code="asil" description="true if the ios simulator log output should be included alongside regular output" type="boolean">
+				<cocoa key="s_ShowiOSSimulatorLog"/>
+			</property>
+			<property name="use bootstrap port" code="aubp" description="true if the custom bootstrap port should be used" type="boolean">
+				<cocoa key="s_UseAndroidBootstrapPort"/>
+			</property>
+			<property name="use android coverage class" code="auac" description="true if the android coverage class should be used" type="boolean">
+				<cocoa key="s_UseAndroidCoverageClass"/>
+			</property>
+			<property name="use no android reset" code="anar" description="true if no android reset should be used" type="boolean">
+				<cocoa key="s_UseAndroidNoReset"/>
+			</property>
+			<property name="use avd arguments" code="uava" description="true if avd arguments should be used" type="boolean">
+				<cocoa key="s_UseAVDArguments"/>
+			</property>
+			<property name="use backend retries" code="aubr" description="true if backend retries should be used" type="boolean">
+				<cocoa key="s_UseBackendRetries"/>
+			</property>
+			<property name="use custom tracetemplate path" code="auct" description="true if a custom tracetemplate path should be used" type="boolean">
+				<cocoa key="s_UseCustomTraceTemplatePath"/>
+			</property>
+			<property name="use instruments launch timeout" code="auit" description="true if the instruments launch timeout should be used" type="boolean">
+				<cocoa key="s_UseInstrumentsLaunchTimeout"/>
+			</property>
+			<property name="use full ios reset" code="ufir" description="true if a full ios reset should be performed" type="boolean">
+				<cocoa key="s_UseiOSFullReset"/>
+			</property>
+			<property name="use no ios reset" code="unir" description="true if no ios reset should be used" type="boolean">
+				<cocoa key="s_UseiOSNoReset"/>
+			</property>
+			<property name="use log colors" code="aulc" description="true if log colors should be used" type="boolean">
+				<cocoa key="s_UseLogColors"/>
+			</property>
+			<property name="use log timestamps" code="ault" description="true if log timestamps should be used" type="boolean">
+				<cocoa key="s_UseLogTimestamps"/>
 			</property>
 			<responds-to command="clear log">
 				<cocoa method="s_ClearLog:"/>

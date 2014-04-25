@@ -28,7 +28,6 @@ BOOL _isServerListening;
 {
     self = [super init];
     if (self) {
-
 		// initialize settings
 		NSString *filePath = [[NSBundle mainBundle] pathForResource:@"defaults" ofType:@"plist"];
 		NSDictionary *settingsDict = [NSDictionary dictionaryWithContentsOfFile:filePath];
@@ -36,90 +35,26 @@ BOOL _isServerListening;
 		[[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:settingsDict];
 		_defaults = [NSUserDefaults standardUserDefaults];
 
+		// create submodels
+	    [self setAndroid:[[AppiumAndroidSettingsModel alloc] initWithDefaults:_defaults]];
+		[self setIOS:[[AppiumiOSSettingsModel alloc] initWithDefaults:_defaults]];
+		
 		// initialize members
 		_isServerRunning = NO;
 		_isServerListening = [self useRemoteServer];
-		[self setAvailableAVDs:[NSArray new]];
-        [self setAvailableActivities:[NSArray new]];
         [self setDoctorSocketIsConnected:NO];
-
-		// update keystore path to match current user
-		if ([self.androidKeystorePath hasPrefix:@"/Users/me/"])
-        {
-			[self setAndroidKeystorePath:[self.androidKeystorePath stringByReplacingOccurrencesOfString:@"/Users/me" withString:NSHomeDirectory()]];
-		}
-
-        // asynchronous initilizations
-        [self performSelectorInBackground:@selector(refreshAVDs) withObject:nil];
     }
     return self;
 }
 
 #pragma mark - Properties
 
--(NSArray*) allCalendarFormats { return [NSArray arrayWithObjects:@"gregorian", @"japanese", @"buddhist", nil]; }
-
--(NSString*) androidActivity { return [_defaults stringForKey:APPIUM_PLIST_ANDROID_ACTIVITY]; }
--(void) setAndroidActivity:(NSString *)androidActivity { [_defaults setValue:androidActivity forKey:APPIUM_PLIST_ANDROID_ACTIVITY]; }
-
--(NSNumber*) androidDeviceReadyTimeout { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_ANDROID_DEVICE_READY_TIMEOUT] intValue]]; }
--(void) setAndroidDeviceReadyTimeout:(NSNumber *)androidDeviceReadyTimeout { [[NSUserDefaults standardUserDefaults] setValue:androidDeviceReadyTimeout forKey:APPIUM_PLIST_ANDROID_DEVICE_READY_TIMEOUT]; }
-
--(BOOL) androidFullReset { return [_defaults boolForKey:APPIUM_PLIST_ANDROID_FULL_RESET]; }
--(void) setAndroidFullReset:(BOOL)fastReset { [_defaults setBool:fastReset forKey:APPIUM_PLIST_ANDROID_FULL_RESET]; }
-
--(NSString*) androidKeyAlias { return [_defaults stringForKey:APPIUM_PLIST_ANDROID_KEY_ALIAS]; }
--(void) setAndroidKeyAlias:(NSString *)androidKeyAlias { [_defaults setValue:androidKeyAlias forKey:APPIUM_PLIST_ANDROID_KEY_ALIAS]; }
-
--(NSString*) androidKeyPassword { return [_defaults stringForKey:APPIUM_PLIST_ANDROID_KEY_PASSWORD]; }
--(void) setAndroidKeyPassword:(NSString *)androidKeyPassword { [_defaults setValue:androidKeyPassword forKey:APPIUM_PLIST_ANDROID_KEY_PASSWORD]; }
-
--(NSString*) androidKeystorePassword { return [_defaults stringForKey:APPIUM_PLIST_ANDROID_KEYSTORE_PASSWORD]; }
--(void) setAndroidKeystorePassword:(NSString *)androidKeystorePassword { [_defaults setValue:androidKeystorePassword forKey:APPIUM_PLIST_ANDROID_KEYSTORE_PASSWORD]; }
-
--(NSString*) androidKeystorePath { return [_defaults stringForKey:APPIUM_PLIST_ANDROID_KEYSTORE_PATH]; }
--(void) setAndroidKeystorePath:(NSString *)androidKeystorePath { [_defaults setValue:androidKeystorePath forKey:APPIUM_PLIST_ANDROID_KEYSTORE_PATH]; }
-
--(NSString*) androidPackage { return [_defaults stringForKey:APPIUM_PLIST_ANDROID_PACKAGE]; }
--(void) setAndroidPackage:(NSString *)androidPackage { [_defaults setValue:androidPackage forKey:APPIUM_PLIST_ANDROID_PACKAGE]; }
-
--(NSString*) androidWaitActivity { return [_defaults stringForKey:APPIUM_PLIST_ANDROID_WAIT_ACTIVITY]; }
--(void) setAndroidWaitActivity:(NSString *)androidWaitActivity { [_defaults setValue:androidWaitActivity forKey:APPIUM_PLIST_ANDROID_WAIT_ACTIVITY]; }
-
--(NSString*) appPath { return [_defaults stringForKey:APPIUM_PLIST_APP_PATH];}
--(void) setAppPath:(NSString *)appPath
-{
-    [_defaults setValue:appPath forKey:APPIUM_PLIST_APP_PATH];
-    if ([appPath hasSuffix:@"app"] || [appPath hasSuffix:@"ipa"] || [appPath hasSuffix:@"zip"])
-    {
-        [self setPlatform:Platform_iOS];
-    }
-    if ([appPath hasSuffix:@"apk"])
-    {
-        [self setPlatform:Platform_Android];
-    }
-}
-
--(BOOL) authorizediOS { return [_defaults boolForKey:APPIUM_PLIST_AUTHORIZED_IOS]; }
--(void) setAuthorizediOS:(BOOL)authorizediOS { [_defaults setBool:authorizediOS forKey:APPIUM_PLIST_AUTHORIZED_IOS]; }
-
--(NSString*) avd { return [_defaults stringForKey:APPIUM_PLIST_AVD]; }
--(void) setAvd:(NSString *)avd { [_defaults setValue:avd forKey:APPIUM_PLIST_AVD]; }
 
 -(BOOL) breakOnNodeApplicationStart { return self.developerMode && self.useNodeDebugging && [_defaults boolForKey:APPIUM_PLIST_BREAK_ON_NODEJS_APP_START]; }
 -(void) setBreakOnNodeApplicationStart:(BOOL)breakOnNodeApplicationStart { [_defaults setBool:breakOnNodeApplicationStart forKey:APPIUM_PLIST_BREAK_ON_NODEJS_APP_START]; }
 
--(NSString*) bundleID { return [_defaults stringForKey:APPIUM_PLIST_BUNDLEID]; }
--(void) setBundleID:(NSString *)bundleID { [_defaults setValue:bundleID forKey:APPIUM_PLIST_BUNDLEID]; }
-
--(NSString*) calendarToForce { return [_defaults stringForKey:APPIUM_PLIST_CALENDAR_FORMAT]; }
--(void) setCalendarToForce:(NSString *)calendarToForce { [_defaults setValue:calendarToForce forKey:APPIUM_PLIST_CALENDAR_FORMAT]; }
-
 -(BOOL) checkForUpdates { return [_defaults boolForKey:APPIUM_PLIST_CHECK_FOR_UPDATES]; }
 -(void) setCheckForUpdates:(BOOL)checkForUpdates { [_defaults setBool:checkForUpdates forKey:APPIUM_PLIST_CHECK_FOR_UPDATES]; }
-
--(NSString*) customAndroidSDKPath { return [_defaults stringForKey:APPIUM_PLIST_CUSTOM_ANDROID_SDK_PATH]; }
--(void) setCustomAndroidSDKPath:(NSString *)customAndroidSDKPath { [_defaults setValue:customAndroidSDKPath forKey:APPIUM_PLIST_CUSTOM_ANDROID_SDK_PATH]; }
 
 -(NSString*) customFlags { return [_defaults stringForKey:APPIUM_PLIST_CUSTOM_FLAGS]; }
 -(void) setCustomFlags:(NSString *)customFlags { [_defaults setValue:customFlags forKey:APPIUM_PLIST_CUSTOM_FLAGS]; }
@@ -133,29 +68,14 @@ BOOL _isServerListening;
 -(BOOL) developerMode { return [_defaults boolForKey:APPIUM_PLIST_DEVELOPER_MODE]; }
 -(void) setDeveloperMode:(BOOL)developerMode { [_defaults setBool:developerMode forKey:APPIUM_PLIST_DEVELOPER_MODE]; }
 
--(iOSAutomationDevice) deviceToForce { return [[_defaults stringForKey:APPIUM_PLIST_DEVICE] hasPrefix:@"iPad"] ? iOSAutomationDevice_iPad : iOSAutomationDevice_iPhone; }
--(void) setDeviceToForce:(iOSAutomationDevice)deviceToForce { [self setDeviceToForceString:(deviceToForce == iOSAutomationDevice_iPad ? @"iPad Retina" : @"iPhone Retina (4-inch)")];}
-
--(NSString*) deviceToForceString { return [_defaults valueForKey:APPIUM_PLIST_DEVICE]; }
--(void) setDeviceToForceString:(NSString *)deviceToForceString { [_defaults setValue:deviceToForceString forKey:APPIUM_PLIST_DEVICE]; }
-
--(BOOL) forceCalendar { return [_defaults boolForKey:APPIUM_PLIST_FORCE_CALENDAR]; }
--(void) setForceCalendar:(BOOL)forceCalendar { [_defaults setBool:forceCalendar forKey:APPIUM_PLIST_FORCE_CALENDAR]; }
-
--(BOOL) forceDevice { return [_defaults boolForKey:APPIUM_PLIST_FORCE_DEVICE]; }
--(void) setForceDevice:(BOOL)forceDevice { [_defaults setBool:forceDevice forKey:APPIUM_PLIST_FORCE_DEVICE]; }
-
--(BOOL) forceLanguage { return [_defaults boolForKey:APPIUM_PLIST_FORCE_LANGUAGE]; }
--(void) setForceLanguage:(BOOL)forceLanguage { [_defaults setBool:forceLanguage forKey:APPIUM_PLIST_FORCE_LANGUAGE]; }
-
--(BOOL) forceLocale { return [_defaults boolForKey:APPIUM_PLIST_FORCE_LOCALE]; }
--(void) setForceLocale:(BOOL)forceLocale { [_defaults setBool:forceLocale forKey:APPIUM_PLIST_FORCE_LOCALE]; }
-
--(BOOL) forceOrientation { return [_defaults boolForKey:APPIUM_PLIST_FORCE_ORIENTATION]; }
--(void) setForceOrientation:(BOOL)forceOrientation { [_defaults setBool:forceOrientation forKey:APPIUM_PLIST_FORCE_ORIENTATION]; }
-
 -(BOOL) isAndroid { return self.platform == Platform_Android; }
+-(void) setIsAndroid:(BOOL)isAndroid {
+	[self setPlatform: isAndroid ? Platform_Android : Platform_iOS];
+}
 -(BOOL) isIOS { return self.platform == Platform_iOS; }
+-(void) setIsIOS:(BOOL)isIOS {
+	[self setPlatform: isIOS ? Platform_iOS : Platform_Android];
+}
 
 -(BOOL) isServerRunning { return _isServerRunning; }
 -(void) setIsServerRunning:(BOOL)isServerRunning
@@ -167,23 +87,17 @@ BOOL _isServerListening;
 -(BOOL) isServerListening { return _isServerListening; }
 -(void) setIsServerListening:(BOOL)isServerListening { _isServerListening = isServerListening; }
 
--(NSString*) ipAddress { return [_defaults stringForKey:APPIUM_PLIST_SERVER_ADDRESS]; }
--(void) setIpAddress:(NSString *)ipAddress { [_defaults setValue:ipAddress forKey:APPIUM_PLIST_SERVER_ADDRESS]; }
-
--(BOOL) keepArtifacts { return [_defaults boolForKey:APPIUM_PLIST_KEEP_ARTIFACTS]; }
--(void) setKeepArtifacts:(BOOL)keepArtifacts { [_defaults setBool:keepArtifacts forKey:APPIUM_PLIST_KEEP_ARTIFACTS];}
-
 -(BOOL) killProcessesUsingPort { return [_defaults boolForKey:APPIUM_PLIST_KILL_PROCESSES_USING_PORT]; }
 -(void) setKillProcessesUsingPort:(BOOL)killProcessesUsingPort { [_defaults setBool:killProcessesUsingPort forKey:APPIUM_PLIST_KILL_PROCESSES_USING_PORT];}
 
--(NSString*) languageToForce { return [_defaults stringForKey:APPIUM_PLIST_LANGUAGE]; }
--(void) setLanguageToForce:(NSString *)languageToForce { [_defaults setValue:languageToForce forKey:APPIUM_PLIST_LANGUAGE]; }
-
--(NSString*) localeToForce { return [_defaults stringForKey:APPIUM_PLIST_LOCALE]; }
--(void) setLocaleToForce:(NSString *)localeToForce { [_defaults setValue:localeToForce forKey:APPIUM_PLIST_LOCALE]; }
+-(BOOL) logColors { return [_defaults boolForKey:APPIUM_PLIST_LOG_COLORS]; }
+-(void) setLogColors:(BOOL)logColors { [_defaults setBool:logColors forKey:APPIUM_PLIST_LOG_COLORS]; }
 
 -(NSString*) logFile { return [_defaults stringForKey:APPIUM_PLIST_LOG_FILE]; }
 -(void) setLogFile:(NSString *)logFile { [_defaults setValue:logFile forKey:APPIUM_PLIST_LOG_FILE]; }
+
+-(BOOL) logTimestamps { return [_defaults boolForKey:APPIUM_PLIST_LOG_TIMESTAMPS]; }
+-(void) setLogTimestamps:(BOOL)logTimestamps { [_defaults setBool:logTimestamps forKey:APPIUM_PLIST_LOG_TIMESTAMPS]; }
 
 -(NSString*) logWebHook { return [_defaults stringForKey:APPIUM_PLIST_LOG_WEBHOOK]; }
 -(void) setLogWebHook:(NSString *)logWebHook { [_defaults setValue:logWebHook forKey:APPIUM_PLIST_LOG_WEBHOOK]; }
@@ -191,40 +105,21 @@ BOOL _isServerListening;
 -(NSNumber*) nodeDebugPort { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_NODEJS_DEBUG_PORT] intValue]]; }
 -(void) setNodeDebugPort:(NSNumber *)nodeDebugPort { [[NSUserDefaults standardUserDefaults] setValue:nodeDebugPort forKey:APPIUM_PLIST_NODEJS_DEBUG_PORT]; }
 
--(iOSOrientation) orientationToForce { return [[_defaults stringForKey:APPIUM_PLIST_ORIENTATION] isEqualToString:APPIUM_PLIST_FORCE_ORIENTATION_LANDSCAPE] ? iOSOrientation_Landscape : iOSOrientation_Portrait; }
--(void) setOrientationToForce:(iOSOrientation)orientationToForce {[self setOrientationToForceString:(orientationToForce == iOSOrientation_Landscape ? APPIUM_PLIST_FORCE_ORIENTATION_LANDSCAPE : APPIUM_PLIST_FORCE_ORIENTATION_PORTRAIT)]; }
--(NSString*) orientationToForceString { return [[_defaults valueForKey:APPIUM_PLIST_ORIENTATION] isEqualToString:APPIUM_PLIST_FORCE_ORIENTATION_LANDSCAPE] ? APPIUM_PLIST_FORCE_ORIENTATION_LANDSCAPE : APPIUM_PLIST_FORCE_ORIENTATION_PORTRAIT ; }
--(void) setOrientationToForceString:(NSString *)orientationToForceString { [_defaults setValue:orientationToForceString forKey:APPIUM_PLIST_ORIENTATION]; }
-
 -(BOOL) overrideExistingSessions { return [_defaults boolForKey:APPIUM_PLIST_OVERRIDE_EXISTING_SESSIONS]; }
 -(void) setOverrideExistingSessions:(BOOL)overrideExistingSessions { [_defaults setBool:overrideExistingSessions forKey:APPIUM_PLIST_OVERRIDE_EXISTING_SESSIONS]; }
 
+
 -(Platform)platform
 {
-    if (self.useAppPath)
-    {
-        if ([self.appPath hasSuffix:@".app"])
-        {
-            [self setPlatform:Platform_iOS];
-        }
-        if ([self.appPath hasSuffix:@".apk"])
-        {
-            [self setPlatform:Platform_Android];
-            [self refreshAvailableActivities];
-        }
-    }
-    return [_defaults integerForKey:APPIUM_PLIST_TAB_STATE] == APPIUM_PLIST_TAB_STATE_ANDROID ? Platform_Android : Platform_iOS;
+    return [_defaults boolForKey:APPIUM_PLIST_PLATFORM_IS_ANDROID] ? Platform_Android : Platform_iOS;
 }
--(void)setPlatform:(Platform)platform { [_defaults setInteger:(platform == Platform_Android ? APPIUM_PLIST_TAB_STATE_ANDROID : APPIUM_PLIST_TAB_STATE_IOS) forKey:APPIUM_PLIST_TAB_STATE]; }
+-(void)setPlatform:(Platform)platform {
+	[_defaults setBool:(platform == Platform_Android) forKey:APPIUM_PLIST_PLATFORM_IS_ANDROID];
+}
 
--(NSNumber*) port { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_SERVER_PORT] intValue]]; }
--(void) setPort:(NSNumber *)port { [[NSUserDefaults standardUserDefaults] setValue:port forKey:APPIUM_PLIST_SERVER_PORT]; }
 
--(BOOL) prelaunchApp { return [_defaults boolForKey:APPIUM_PLIST_PRELAUNCH]; }
--(void) setPrelaunchApp:(BOOL)preLaunchApp { [_defaults setBool:preLaunchApp forKey:APPIUM_PLIST_PRELAUNCH]; }
-
--(BOOL) resetApplicationState { return [_defaults boolForKey:APPIUM_PLIST_RESET_APPLICATION_STATE]; }
--(void) setResetApplicationState:(BOOL)resetApplicationState { [_defaults setBool:resetApplicationState forKey:APPIUM_PLIST_RESET_APPLICATION_STATE]; }
+-(BOOL) prelaunchApp { return [_defaults boolForKey:APPIUM_PLIST_PRELAUNCH_APPLICATION]; }
+-(void) setPrelaunchApp:(BOOL)preLaunchApp { [_defaults setBool:preLaunchApp forKey:APPIUM_PLIST_PRELAUNCH_APPLICATION]; }
 
 -(NSString*) robotAddress { return [_defaults stringForKey:APPIUM_PLIST_ROBOT_ADDRESS]; }
 -(void) setRobotAddress:(NSString *)robotAddress { [_defaults setValue:robotAddress forKey:APPIUM_PLIST_ROBOT_ADDRESS]; }
@@ -232,44 +127,14 @@ BOOL _isServerListening;
 -(NSNumber*) robotPort { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_ROBOT_PORT] intValue]]; }
 -(void) setRobotPort:(NSNumber *)robotPort { [[NSUserDefaults standardUserDefaults] setValue:robotPort forKey:APPIUM_PLIST_ROBOT_PORT]; }
 
--(NSNumber*) selendroidPort { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_SELENDROID_PORT] intValue]]; }
--(void) setSelendroidPort:(NSNumber *)selendroidPort{ [[NSUserDefaults standardUserDefaults] setValue:selendroidPort forKey:APPIUM_PLIST_SELENDROID_PORT]; }
-
 -(NSString*) seleniumGridConfigFile { return [_defaults stringForKey:APPIUM_PLIST_SELENIUM_GRID_CONFIG_FILE]; }
 -(void) setSeleniumGridConfigFile:(NSString *)seleniumGridConfigFile { [_defaults setValue:seleniumGridConfigFile forKey:APPIUM_PLIST_SELENIUM_GRID_CONFIG_FILE]; }
 
--(NSString*) udid {return [_defaults stringForKey:APPIUM_PLIST_UDID];}
--(void) setUdid:(NSString *)udid { [ _defaults setValue:udid forKey:APPIUM_PLIST_UDID]; }
+-(NSString*) serverAddress { return [_defaults stringForKey:APPIUM_PLIST_SERVER_ADDRESS]; }
+-(void) setServerAddress:(NSString *)serverAddress { [_defaults setValue:serverAddress forKey:APPIUM_PLIST_SERVER_ADDRESS]; }
 
--(BOOL) useAndroidActivity { return [_defaults boolForKey:APPIUM_PLIST_USE_ANDROID_ACTIVITY]; }
--(void) setUseAndroidActivity:(BOOL)useAndroidActivity { [_defaults setBool:useAndroidActivity forKey:APPIUM_PLIST_USE_ANDROID_ACTIVITY]; }
-
--(BOOL) useAndroidBrowser { return [_defaults boolForKey:APPIUM_PLIST_USE_ANDROID_BROWSER]; }
--(void) setUseAndroidBrowser:(BOOL)useAndroidBrowser { [_defaults setBool:useAndroidBrowser forKey:APPIUM_PLIST_USE_ANDROID_BROWSER]; }
-
--(BOOL) useAndroidDeviceReadyTimeout { return [_defaults boolForKey:APPIUM_PLIST_USE_ANDROID_DEVICE_READY_TIMEOUT]; }
--(void) setUseAndroidDeviceReadyTimeout:(BOOL)useAndroidDeviceReadyTimeout { [_defaults setBool:useAndroidDeviceReadyTimeout forKey:APPIUM_PLIST_USE_ANDROID_DEVICE_READY_TIMEOUT]; }
-
--(BOOL) useAndroidKeystore { return [_defaults boolForKey:APPIUM_PLIST_USE_ANDROID_KEYSTORE]; }
--(void) setUseAndroidKeystore:(BOOL)useAndroidKeystore { [_defaults setBool:useAndroidKeystore forKey:APPIUM_PLIST_USE_ANDROID_KEYSTORE]; }
-
--(BOOL) useAndroidPackage {	return [_defaults boolForKey:APPIUM_PLIST_USE_ANDROID_PACKAGE]; }
--(void) setUseAndroidPackage:(BOOL)useAndroidPackage { [_defaults setBool:useAndroidPackage forKey:APPIUM_PLIST_USE_ANDROID_PACKAGE]; }
-
--(BOOL) useAndroidWaitActivity { return [_defaults boolForKey:APPIUM_PLIST_USE_ANDROID_WAIT_ACTIVITY]; }
--(void) setUseAndroidWaitActivity:(BOOL)useAndroidWaitActivity { [_defaults setBool:useAndroidWaitActivity forKey:APPIUM_PLIST_USE_ANDROID_WAIT_ACTIVITY]; }
-
--(BOOL) useAppPath { return [_defaults boolForKey:APPIUM_PLIST_USE_APP_PATH]; }
--(void) setUseAppPath:(BOOL)useAppPath { [_defaults setBool:useAppPath forKey:APPIUM_PLIST_USE_APP_PATH]; }
-
--(BOOL) useAVD { return [_defaults boolForKey:APPIUM_PLIST_USE_AVD]; }
--(void) setUseAVD:(BOOL)useAVD { [_defaults setBool:useAVD forKey:APPIUM_PLIST_USE_AVD]; }
-
--(BOOL) useBundleID { return [_defaults boolForKey:APPIUM_PLIST_USE_BUNDLEID]; }
--(void) setUseBundleID:(BOOL)useBundleID { [_defaults setBool:useBundleID forKey:APPIUM_PLIST_USE_BUNDLEID]; }
-
--(BOOL) useCustomAndroidSDKPath { return [_defaults boolForKey:APPIUM_PLIST_USE_CUSTOM_ANDROID_SDK_PATH]; }
--(void) setUseCustomAndroidSDKPath:(BOOL)useCustomAndroidSDKPath { [_defaults setBool:useCustomAndroidSDKPath forKey:APPIUM_PLIST_USE_CUSTOM_ANDROID_SDK_PATH]; }
+-(NSNumber*) serverPort { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_SERVER_PORT] intValue]]; }
+-(void) setServerPort:(NSNumber *)serverPort { [[NSUserDefaults standardUserDefaults] setValue:serverPort forKey:APPIUM_PLIST_SERVER_PORT]; }
 
 -(BOOL) useCustomFlags { return [_defaults boolForKey:APPIUM_PLIST_USE_CUSTOM_FLAGS]; }
 -(void) setUseCustomFlags:(BOOL)useCustomFlags { [_defaults setBool:useCustomFlags forKey:APPIUM_PLIST_USE_CUSTOM_FLAGS]; }
@@ -286,22 +151,10 @@ BOOL _isServerListening;
 -(BOOL) useLogWebHook { return [_defaults boolForKey:APPIUM_PLIST_USE_LOG_WEBHOOK]; }
 -(void) setUseLogWebHook:(BOOL)useLogWebHook { [_defaults setBool:useLogWebHook forKey:APPIUM_PLIST_USE_LOG_WEBHOOK]; }
 
--(BOOL) useMobileSafari { return [_defaults boolForKey:APPIUM_PLIST_USE_MOBILE_SAFARI]; }
--(void) setUseMobileSafari:(BOOL)useMobileSafari { [_defaults setBool:useMobileSafari forKey:APPIUM_PLIST_USE_MOBILE_SAFARI]; }
-
--(BOOL) useNativeInstrumentsLib { return [_defaults boolForKey:APPIUM_PLIST_USE_NATIVE_INSTRUMENTS_LIB]; }
--(void) setUseNativeInstrumentsLib:(BOOL)useInstrumentsWithoutDelay { [_defaults setBool:useInstrumentsWithoutDelay forKey:APPIUM_PLIST_USE_NATIVE_INSTRUMENTS_LIB]; }
-
 -(BOOL) useNodeDebugging { return self.developerMode && [_defaults boolForKey:APPIUM_PLIST_USE_NODEJS_DEBUGGING]; }
 -(void) setUseNodeDebugging:(BOOL)useNodeDebugging { [_defaults setBool:useNodeDebugging forKey:APPIUM_PLIST_USE_NODEJS_DEBUGGING]; }
 
--(BOOL) useRobot { return [_defaults boolForKey:APPIUM_PLIST_USE_ROBOT]; }
--(void) setUseRobot:(BOOL)useRobot { [_defaults setBool:useRobot forKey:APPIUM_PLIST_USE_ROBOT]; }
-
--(BOOL) useQuietLogging { return [_defaults boolForKey:APPIUM_PLIST_USE_QUIET_LOGGING]; }
--(void) setUseQuietLogging:(BOOL)useQuietLogging { [_defaults setBool:useQuietLogging forKey:APPIUM_PLIST_USE_QUIET_LOGGING]; }
-
--(BOOL) useRemoteServer { return [_defaults boolForKey:APPIUM_PLIST_USE_REMOTE_SERVER] && [self developerMode]; }
+-(BOOL) useRemoteServer { return [_defaults boolForKey:APPIUM_PLIST_USE_REMOTE_SERVER]; }
 -(void) setUseRemoteServer:(BOOL)useRemoteServer
 {
 	[_defaults setBool:useRemoteServer forKey:APPIUM_PLIST_USE_REMOTE_SERVER];
@@ -312,43 +165,15 @@ BOOL _isServerListening;
 	[self setIsServerListening:useRemoteServer];
 }
 
--(BOOL) useSelendroidPort { return [_defaults boolForKey:APPIUM_PLIST_USE_SELENDROID_PORT]; }
--(void) setUseSelendroidPort:(BOOL)useSelendroidPort { [_defaults setBool:useSelendroidPort forKey:APPIUM_PLIST_USE_SELENDROID_PORT]; }
+-(BOOL) useRobot { return [_defaults boolForKey:APPIUM_PLIST_USE_ROBOT]; }
+-(void) setUseRobot:(BOOL)useRobot { [_defaults setBool:useRobot forKey:APPIUM_PLIST_USE_ROBOT]; }
+
+-(BOOL) useQuietLogging { return [_defaults boolForKey:APPIUM_PLIST_USE_QUIET_LOGGING]; }
+-(void) setUseQuietLogging:(BOOL)useQuietLogging { [_defaults setBool:useQuietLogging forKey:APPIUM_PLIST_USE_QUIET_LOGGING]; }
 
 -(BOOL) useSeleniumGridConfigFile { return [_defaults boolForKey:APPIUM_PLIST_USE_SELENIUM_GRID_CONFIG_FILE]; }
 -(void) setUseSeleniumGridConfigFile:(BOOL)useSeleniumGridConfigFile { [_defaults setBool:useSeleniumGridConfigFile forKey:APPIUM_PLIST_USE_SELENIUM_GRID_CONFIG_FILE]; }
 
--(BOOL) useUDID { return [_defaults boolForKey:APPIUM_PLIST_USE_UDID]; }
--(void) setUseUDID:(BOOL)useUDID { [_defaults setBool:useUDID forKey:APPIUM_PLIST_USE_UDID]; }
-
--(NSString*) xcodePath
-{
-	@try
-	{
-		NSString *path = [Utility runTaskWithBinary:@"/usr/bin/xcode-select" arguments:[NSArray arrayWithObject:@"--print-path"]];
-		path = [path stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-		if ([path hasSuffix:@"/Contents/Developer"])
-		{
-			path = [path substringWithRange:NSMakeRange(0, path.length - @"/Contents/Developer".length)];
-		}
-		return path;
-	}
-	@catch (NSException *exception) {
-		return @"/";
-	}
-}
-
--(void) setXcodePath:(NSString *)xcodePath
-{
-	NSAppleScript	*xcodeSelectScript;
-	NSMutableDictionary *errorDict = [NSMutableDictionary new];
-	xcodeSelectScript = [[NSAppleScript alloc] initWithSource:
-								[NSString stringWithFormat:@"do shell script \"/usr/bin/xcode-select --switch \\\"%@\\\"\" with administrator privileges", xcodePath]];
-	[[xcodeSelectScript executeAndReturnError:&errorDict] stringValue];
-
-	// update xcode path
-	NSLog(@"New Xcode Path: %@", self.xcodePath);
-}
 
 #pragma mark - Methods
 
@@ -374,200 +199,210 @@ BOOL _isServerListening;
     // kill any processes using the appium server port
     if (self.killProcessesUsingPort)
     {
-        NSNumber *procPid = [Utility getPidListeningOnPort:self.port];
+        NSNumber *procPid = [Utility getPidListeningOnPort:self.serverPort];
         if (procPid != nil && myPid != [procPid intValue])
         {
-            NSString* script = [NSString stringWithFormat: @"kill `lsof -t -i:%@`", self.port];
+            NSString* script = [NSString stringWithFormat: @"kill `lsof -t -i:%@`", self.serverPort];
             system([script UTF8String]);
 			system([@"killall -z lsof" UTF8String]);
         }
     }
 
-	// build arguments
 	NSString *nodeDebuggingArguments = @"";
-	if (self.useNodeDebugging)
-	{
+	if (self.useNodeDebugging) {
 		nodeDebuggingArguments = [nodeDebuggingArguments stringByAppendingString:[NSString stringWithFormat:@" --debug=%@", [self.nodeDebugPort stringValue]]];
-		if (self.breakOnNodeApplicationStart)
-		{
+		if (self.breakOnNodeApplicationStart) {
 			nodeDebuggingArguments = [nodeDebuggingArguments stringByAppendingString:@" --debug-brk"];
 		}
 	}
+	
 	NSString *nodeCommandString;
-	if (self.useExternalNodeJSBinary)
-	{
+	if (self.developerMode && self.useExternalNodeJSBinary) {
 		nodeCommandString = [NSString stringWithFormat:@"'%@'%@ lib/server/main.js", self.externalNodeJSBinaryPath, nodeDebuggingArguments];
-	}
-	else
-	{
+	} else {
 		nodeCommandString = [NSString stringWithFormat:@"'%@%@'%@ lib/server/main.js", [[NSBundle mainBundle]resourcePath], @"/node/bin/node", nodeDebuggingArguments];
-		
 	}
-	if (self.useCustomAndroidSDKPath)
-	{
-		nodeCommandString = [NSString stringWithFormat:@"export ANDROID_HOME=\"%@\"; %@", self.customAndroidSDKPath, nodeCommandString];
-	}
-
-	if (![self.ipAddress isEqualTo:@"0.0.0.0"])
-    {
-		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--address", self.ipAddress];
+	if (![self.serverAddress isEqualTo:@"0.0.0.0"]) {
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--address", self.serverAddress];
     }
-	if (![self.port isEqualTo:@"4723"])
-    {
-		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--port", [self.port stringValue]];
+	// TODO: Strcmp with int???
+	if (![self.serverPort isEqualTo:@"4723"]) {
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--port", [self.serverPort stringValue]];
     }
-    if (self.useAppPath)
-    {
-        nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", ([self.appPath hasSuffix:@"ipa"]) ? @"--ipa" : @"--app", self.appPath];
-    }
-	else if (self.useBundleID)
-    {
-		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--app", self.bundleID];
-    }
-	if (self.useUDID)
-    {
-		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--udid", self.udid];
-    }
-	if (self.prelaunchApp)
-    {
-		nodeCommandString = [nodeCommandString stringByAppendingString:@" --pre-launch"];
-    }
-	if (!self.resetApplicationState)
-    {
-		nodeCommandString = [nodeCommandString stringByAppendingString:@" --no-reset"];
-    }
-    if (self.overrideExistingSessions)
-    {
+    if (self.overrideExistingSessions) {
         nodeCommandString = [nodeCommandString stringByAppendingString:@" --session-override"];
     }
-    if (self.useSeleniumGridConfigFile)
-    {
-        nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--nodeconfig", [self.seleniumGridConfigFile stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
+	if (self.prelaunchApp) {
+		nodeCommandString = [nodeCommandString stringByAppendingString:@" --pre-launch"];
     }
-
-    // logging preferences
-	if (self.useQuietLogging)
-    {
-		nodeCommandString = [nodeCommandString stringByAppendingString:@" --quiet"];
+	if (!self.logColors) {
+        nodeCommandString = [nodeCommandString stringByAppendingString:@" --log-no-colors"];
     }
-    if (self.keepArtifacts)
-    {
-		nodeCommandString = [nodeCommandString stringByAppendingString:@" --keep-artifacts"];
-    }
-    if (self.useLogFile)
-    {
+	if (self.useLogFile) {
         nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--log", [self.logFile stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
     }
-    if (self.useLogWebHook)
-    {
+	if (self.logTimestamps) {
+        nodeCommandString = [nodeCommandString stringByAppendingString:@" --log-timestamp"];
+    }
+    if (self.useLogWebHook) {
         nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--webhook", self.logWebHook];
     }
-
-    // iOS preferences
-    if (self.platform == Platform_iOS)
-    {
-        if (self.useNativeInstrumentsLib)
-        {
-			nodeCommandString = [nodeCommandString stringByAppendingString:@" --native-instruments-lib"];
-        }
-		if (self.forceCalendar)
-        {
-			nodeCommandString = [nodeCommandString stringByAppendingString:[NSString stringWithFormat:@" --calendar %@", self.calendarToForce]];
-        }
-        if (self.forceDevice)
-        {
-			nodeCommandString = [nodeCommandString stringByAppendingString:[NSString stringWithFormat:@" --device-name \"%@\"", self.deviceToForceString]];
-        }
-		if (self.forceLanguage)
-        {
-			nodeCommandString = [nodeCommandString stringByAppendingString:[NSString stringWithFormat:@" --language %@", self.languageToForce]];
-        }
-		if (self.forceLocale)
-        {
-			nodeCommandString = [nodeCommandString stringByAppendingString:[NSString stringWithFormat:@" --locale %@", self.localeToForce]];
-        }
-		if (self.forceOrientation)
-        {
-            if (self.orientationToForce == iOSOrientation_Portrait)
-            {
-				nodeCommandString = [nodeCommandString stringByAppendingString:@" --orientation PORTRAIT"];
-            }
-            else if (self.orientationToForce == iOSOrientation_Landscape)
-            {
-				nodeCommandString = [nodeCommandString stringByAppendingString:@" --orientation LANDSCAPE"];
-            }
-        }
-		if (self.useMobileSafari)
-		{
-			nodeCommandString = [nodeCommandString stringByAppendingString:@" --safari"];
-		}
+	if (self.useQuietLogging) {
+		nodeCommandString = [nodeCommandString stringByAppendingString:@" --quiet"];
     }
-
-    // Android preferences
-    if (self.platform == Platform_Android)
-    {
-		if (self.useAndroidBrowser)
-		{
-			nodeCommandString = [nodeCommandString stringByAppendingString:@" --app browser"];
-		}
-		else
-		{
-			if (self.useAndroidPackage)
-			{
-				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--app-pkg", self.androidPackage];
-			}
-			if (self.useAndroidActivity)
-			{
-				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--app-activity", self.androidActivity];
-			}
-		}
-		if (self.useAndroidDeviceReadyTimeout)
-        {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--device-ready-timeout", [self.androidDeviceReadyTimeout intValue]];
-        }
-		if (self.useAndroidWaitActivity)
-        {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--app-wait-activity", self.androidWaitActivity];
-        }
-		if (self.useAVD)
-        {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ @%@", @"--avd", self.avd];
-        }
-		if (self.androidFullReset)
-		{
-			nodeCommandString = [nodeCommandString stringByAppendingString:@" --full-reset"];
-		}
-		if (self.useSelendroidPort)
-		{
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--selendroid-port", [self.selendroidPort intValue]];
-		}
-
-        // Android keystore preferences
-        if (self.useAndroidKeystore)
-        {
-            nodeCommandString = [nodeCommandString stringByAppendingString:@" --use-keystore"];
-            nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--keystore-path", [self.androidKeystorePath stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
-            nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--keystore-password", [self.androidKeystorePassword stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
-            nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--key-alias", [self.androidKeyAlias stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
-            nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--key-password", [self.androidKeyPassword stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
-        }
+    if (self.useSeleniumGridConfigFile) {
+        nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--nodeconfig", [self.seleniumGridConfigFile stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
     }
-
-	// Robot preferences
+	
+	// robot preferences
 	if (self.useRobot)
     {
 		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--robot-address", self.robotAddress];
 		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--robot-port", [self.robotPort intValue]];
 	}
-
-	// Custom flags
-	if (self.useCustomFlags && self.customFlags != nil)
+	
+	// developer preferences
+	if (self.developerMode && self.useCustomFlags && self.customFlags != nil)
 	{
 		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@", self.customFlags];
 	}
+	
+	// platform specific preferences
+	if (self.platform == Platform_Android) {
+		
+		  //////////////
+	     // Android ///
+	    //////////////
+		
+		// get version number from string
+		NSError *err;
+		NSRegularExpression *platformVersionNumberRegex = [NSRegularExpression regularExpressionWithPattern:@"\\d+\\.\\d\\.?\\d?" options:NSRegularExpressionCaseInsensitive error:&err];
+		NSRange rangeOfFirstMatch = [platformVersionNumberRegex rangeOfFirstMatchInString:self.android.platformVersion options:0 range:NSMakeRange(0, [self.android.platformVersion length])];
+		NSString *versionNumber = @"4.4";
+		if (!NSEqualRanges(rangeOfFirstMatch, NSMakeRange(NSNotFound, 0))) {
+			versionNumber = [self.android.platformVersion substringWithRange:rangeOfFirstMatch];
+		}
+		
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --automation-name %@ --platform-name %@ --platform-version %@", self.android.automationName, self.android.platformName, versionNumber];
+		if (self.android.useCustomSDKPath) {
+			nodeCommandString = [NSString stringWithFormat:@"export ANDROID_HOME=\"%@\"; %@", self.android.customSDKPath, nodeCommandString];
+		}
+		if (self.android.useAppPath || self.android.useBrowser) {
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --app \"%@\"", self.android.useBrowser ? @"browser" : self.android.appPath];
+		}
+		if (self.android.fullReset) {
+			nodeCommandString = [nodeCommandString stringByAppendingString:@" --full-reset"];
+		} else if (self.android.noReset) {
+			nodeCommandString = [nodeCommandString stringByAppendingString:@" --no-reset"];
+		}
+		if (self.android.useAVD) {
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ @%@", @"--avd", self.android.avd];
+			if (self.android.useAVDArguments) {
+				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--avd-args", self.android.avdArguments];
+			}
+		}
+		if (!self.android.useBrowser) {
+			if (self.android.useChromedriverPort) {
+				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--chromedriver-port", [self.android.chromedriverPort intValue]];
+			}
+			if (self.android.usePackage) {
+				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--app-pkg", self.android.package];
+			}
+			if (self.android.useActivity) {
+				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--app-activity", self.android.activity];
+			}
+			if (self.android.useWaitPackage) {
+				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--app-wait-package", self.android.waitPackage];
+			}
+			if (self.android.useWaitActivity) {
+				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--app-wait-activity", self.android.waitActivity];
+			}
+		}
+		if (self.android.useCoverageClass) {
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--coverage-class", self.android.coverageClass];
+		}
+		if (self.android.useDeviceReadyTimeout) {
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--device-ready-timeout", [self.android.deviceReadyTimeout intValue]];
+		}
+		if ([self.android.automationName isEqualToString:@"Selendroid"]) {
+			if (self.android.selendroidPort) {
+				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--selendroid-port", [self.android.selendroidPort intValue]];
+			}
+		} else if (self.android.useBootstrapPort) {
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--bootstrap-port", [self.android.bootstrapPort intValue]];
+		}
+		if (self.android.useKeystore)
+		{
+			nodeCommandString = [nodeCommandString stringByAppendingString:@" --use-keystore"];
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--keystore-path", [self.android.keystorePath stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--keystore-password", [self.android.keystorePassword stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--key-alias", [self.android.keyAlias stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--key-password", [self.android.keyPassword stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
+		}
+	} else if (self.platform == Platform_iOS) {
+		
+		  /////////
+		 // iOS //
+	    /////////
+		
+		if (self.iOS.useBundleID)
+		{
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --app \"%@\"", self.iOS.bundleID];
+		} else if (self.iOS.useAppPath) {
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", ([self.iOS.appPath hasSuffix:@"ipa"]) ? @"--ipa" : @"--app", self.iOS.appPath];
+		}
+		if (self.iOS.useUDID) {
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --udid %@", self.iOS.udid];
+		}
+		if (self.iOS.fullReset) {
+			nodeCommandString = [nodeCommandString stringByAppendingString:@" --full-reset"];
+		}
+		if (self.iOS.noReset) {
+			nodeCommandString = [nodeCommandString stringByAppendingString:@" --no-reset"];
+		}
+		if (self.iOS.notMerciful) {
+			nodeCommandString = [nodeCommandString stringByAppendingString:@" --force-quit-instruments"];
+		}
+		if (self.iOS.showSimulatorLog) {
+			nodeCommandString = [nodeCommandString stringByAppendingString:@" --show-sim-log"];
+        }
+		if (self.iOS.useBackendRetries) {
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --backend-retries %d", [self.iOS.backendRetries intValue]];
+        }
+		if (self.iOS.useCalendar) {
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --calendar %@", self.iOS.calendarFormat];
+        }
+		if (self.iOS.useCustomTraceTemplate) {
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --trace-template \"%@\"", self.iOS.customTraceTemplatePath];
+        }
+        if (self.iOS.useDefaultDevice) {
+			nodeCommandString = [nodeCommandString stringByAppendingString:@" --default-device"];
+		} else {
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --device-name \"%@\"", self.iOS.deviceName];
+        }
+		if (self.iOS.useLanguage) {
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --language %@", self.iOS.language];
+        }
+		if (self.iOS.useLaunchTimeout) {
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --launch-timeout %d", [self.iOS.launchTimeout intValue]];
+        }
+
+		if (self.iOS.useLocale) {
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --locale %@", self.iOS.locale];
+        }
+		if (self.iOS.useMobileSafari) {
+			nodeCommandString = [nodeCommandString stringByAppendingString:@" --safari"];
+		}
+        if (self.iOS.useNativeInstrumentsLibrary) {
+			nodeCommandString = [nodeCommandString stringByAppendingString:@" --native-instruments-lib"];
+        }
+		if (self.iOS.useOrientation) {
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@"%@ %@", @" --orientation ", [self.iOS.orientation capitalizedString]];
+        }
+	}
 
 	[self setServerTask:[NSTask new]];
-	if (self.useExternalAppiumPackage)
+	if (self.developerMode && self.useExternalAppiumPackage)
 	{
 		[self.serverTask setCurrentDirectoryPath:self.externalAppiumPackagePath];
 	}
@@ -687,7 +522,7 @@ BOOL _isServerListening;
 
 		 sleep(pollInterval);
 		 NSError *error = nil;
-		 NSString *urlString = [NSString stringWithFormat:@"http://%@:%d/wd/hub/status", self.ipAddress, self.port.intValue];
+		 NSString *urlString = [NSString stringWithFormat:@"http://%@:%d/wd/hub/status", self.serverAddress, self.serverPort.intValue];
 		 NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 		 NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:1];
 
@@ -723,109 +558,6 @@ BOOL _isServerListening;
 
 	}
 	[self setIsServerListening:NO];
-}
-
--(void) refreshAvailableActivities
-{
-    NSString *androidBinaryPath = [Utility pathToAndroidBinary:@"aapt"];
-
-	if (androidBinaryPath == nil || ![[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath])
-	{
-		return;
-	}
-	@try
-	{
-		// get the xml dump from aapt
-		NSString *aaptString = [Utility runTaskWithBinary:androidBinaryPath arguments:[NSArray arrayWithObjects:@"dump", @"xmltree", self.appPath, @"AndroidManifest.xml", nil]];
-
-		// read line by line
-		NSArray *aaptLines = [aaptString componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-		NSMutableArray *activities = [NSMutableArray new];
-		BOOL currentElementIsActivity;
-		for (int i=0; i < aaptLines.count; i++)
-		{
-			NSString *line = [((NSString*)[aaptLines objectAtIndex:i]) stringByTrimmingLeadingWhitespace];
-
-			// determine when an activity element has started or ended
-			if ([line hasPrefix:@"E:"])
-			{
-				currentElementIsActivity = [line hasPrefix:@"E: activity (line="];
-			}
-
-			// determine when the activity name has appeared
-			if (currentElementIsActivity && [line hasPrefix:@"A: android:name("])
-			{
-				NSArray *lineComponents = [line componentsSeparatedByString:@"\""];
-				if (lineComponents.count >= 3)
-				{
-					[activities addObject:(NSString*)[lineComponents objectAtIndex:1]];
-				}
-			}
-		}
-		[self setAvailableActivities:activities];
-	}
-	@catch (NSException *exception) {
-		NSLog(@"Could not list Android Activities: %@", exception);
-	}
-}
-
--(void) refreshAVDs
-{
-	NSString *androidBinaryPath = [Utility pathToAndroidBinary:@"android"];
-    NSString *vBoxManagePath = [Utility pathToVBoxManageBinary];
-    // have to have either "android" or "vboxmanage" available
-    BOOL hasAndroid = androidBinaryPath != nil && [[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath];
-    BOOL hasVBoxManage = vBoxManagePath != nil && [[NSFileManager defaultManager] fileExistsAtPath:vBoxManagePath];
-	if ( !hasAndroid && !hasVBoxManage)
-	{
-		return;
-	}
-	
-	NSMutableArray *avds = [NSMutableArray new];
-
-	@try
-	{
-        // check android avd first
-        if (hasAndroid)
-        {
-            NSString *avdString = [Utility runTaskWithBinary:androidBinaryPath arguments:[NSArray arrayWithObjects:@"list", @"avd", @"-c", nil]];
-            NSArray *avdList = [avdString componentsSeparatedByString:@"\n"];
-            for (NSString *avd in avdList)
-            {
-                if (avd.length > 0)
-                {
-                    [avds addObject:avd];
-                }
-            }
-        }
-        if (hasVBoxManage)
-        {
-            NSString *vBoxManageString = [Utility runTaskWithBinary:vBoxManagePath arguments:[NSArray arrayWithObjects:@"list", @"vms", nil]];
-            NSArray *gmList = [vBoxManageString componentsSeparatedByString:@"\n"];
-            for (NSString *gm in gmList)
-            {
-                NSRange startQuote = [gm rangeOfString:@"\""];
-                if (startQuote.location != NSNotFound)
-                {
-                    NSRange endQuote = [gm rangeOfString:@"\"" options:NSBackwardsSearch];
-                    if (endQuote.location != NSNotFound && endQuote.location > startQuote.location)
-                    {
-                        NSString *gmAvd = [gm substringWithRange:NSMakeRange(startQuote.location + 1, endQuote.location-1)];
-                        [avds addObject:gmAvd];
-                    }
-                }
-            }
-        }
-	}
-	@catch (NSException *exception) {
-		NSLog(@"Could not list Android AVDs: %@", exception);
-	}
-
-	[self setAvailableAVDs:avds];
-	if (avds.count > 0)
-	{
-		[self setAvd:[avds objectAtIndex:0]];
-	}
 }
 
 #pragma mark - SocketIODelegateImplementation

@@ -46,7 +46,7 @@
 \t[caps addCapabilityForKey:@\"app-package\" andValue:@\"%@\"];\n\
 \t[caps addCapabilityForKey:@\"app-activity\" andValue:@\"%@\"];\n\
 \tNSError *error;\n\
-\tSERemoteWebDriver *wd = [[SERemoteWebDriver alloc] initWithServerAddress:@\"%@\" port:%@ desiredCapabilities:caps requiredCapabilities:nil error:&error];\n", self.model.appPath, self.model.androidPackage, self.model.androidActivity, self.model.ipAddress, self.model.port];
+\tSERemoteWebDriver *wd = [[SERemoteWebDriver alloc] initWithServerAddress:@\"%@\" port:%@ desiredCapabilities:caps requiredCapabilities:nil error:&error];\n", self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.serverAddress, self.model.serverPort];
 }
 
 -(NSString*) preCodeBoilerplateiOS
@@ -64,7 +64,7 @@
 \t[caps addCapabilityForKey:@\"device\" andValue:@\"%@\"];\n\
 \t[caps addCapabilityForKey:@\"app\" andValue:@\"%@\"];\n\
 \tNSError *error;\n\
-\tSERemoteWebDriver *wd = [[SERemoteWebDriver alloc] initWithServerAddress:@\"%@\" port:%@ desiredCapabilities:caps requiredCapabilities:nil error:&error];\n", self.model.deviceToForceString, self.model.appPath, self.model.ipAddress, self.model.port];}
+\tSERemoteWebDriver *wd = [[SERemoteWebDriver alloc] initWithServerAddress:@\"%@\" port:%@ desiredCapabilities:caps requiredCapabilities:nil error:&error];\n", self.model.iOS.deviceName, self.model.iOS.appPath, self.model.serverAddress, self.model.serverPort];}
 
 -(NSString*) postCodeBoilerplate
 {

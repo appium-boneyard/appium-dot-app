@@ -363,18 +363,15 @@
 -(void)refreshContextList
 {
 	[self setContexts:[NSArray arrayWithObject:@"no context"]];
-	if (self.model.enableAppiumInspectorWindowSupport)
+	[self setContexts:[self.contexts arrayByAddingObjectsFromArray:[self.driver allContexts]]];
+	for	(NSString *context in self.contexts)
 	{
-		[self setContexts:[self.contexts arrayByAddingObjectsFromArray:[self.driver allContexts]]];
-		for	(NSString *context in self.contexts)
+		if ([context isEqualToString:self.selectedContext])
 		{
-			if ([context isEqualToString:self.selectedContext])
-			{
-				return;
-			}
+			return;
 		}
-		[self.driver executeScript:@"mobile: leaveWebView"];
 	}
+	[self.driver executeScript:@"mobile: leaveWebView"];
 	[self setSelectedContext:@"no context"];
 }
 

@@ -52,7 +52,7 @@
 #pragma mark - Other Methods
 -(SEBy*) by
 {
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:APPIUM_PLIST_USE_XPATH_ONLY])
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:APPIUM_PLIST_INSPECTOR_USES_XPATH_ONLY])
 	{
 		return [self byXPath];
 	}
