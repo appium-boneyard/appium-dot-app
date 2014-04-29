@@ -120,6 +120,16 @@ NSUserDefaults* _defaults;
 
 -(NSString*) platformVersion { return [_defaults stringForKey:APPIUM_PLIST_ANDROID_PLATFORM_VERSION]; }
 -(void) setPlatformVersion:(NSString *)platformVersion { [_defaults setValue:platformVersion forKey:APPIUM_PLIST_ANDROID_PLATFORM_VERSION]; }
+-(NSString*) platformVersionNumber {
+	NSError *err;
+	NSRegularExpression *platformVersionNumberRegex = [NSRegularExpression regularExpressionWithPattern:@"\\d+\\.\\d\\.?\\d?" options:NSRegularExpressionCaseInsensitive error:&err];
+	NSRange rangeOfFirstMatch = [platformVersionNumberRegex rangeOfFirstMatchInString:self.platformVersion options:0 range:NSMakeRange(0, [self.platformVersion length])];
+	NSString *versionNumber = @"4.4";
+	if (!NSEqualRanges(rangeOfFirstMatch, NSMakeRange(NSNotFound, 0))) {
+		versionNumber = [self.platformVersion substringWithRange:rangeOfFirstMatch];
+	}
+	return versionNumber;
+}
 
 -(NSNumber*) selendroidPort { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_ANDROID_SELENDROID_PORT] intValue]]; }
 -(void) setSelendroidPort:(NSNumber *)selendroidPort { [[NSUserDefaults standardUserDefaults] setValue:selendroidPort forKey:APPIUM_PLIST_ANDROID_SELENDROID_PORT]; }

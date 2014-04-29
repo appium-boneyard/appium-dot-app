@@ -275,15 +275,8 @@ BOOL _isServerListening;
 	    //////////////
 		
 		// get version number from string
-		NSError *err;
-		NSRegularExpression *platformVersionNumberRegex = [NSRegularExpression regularExpressionWithPattern:@"\\d+\\.\\d\\.?\\d?" options:NSRegularExpressionCaseInsensitive error:&err];
-		NSRange rangeOfFirstMatch = [platformVersionNumberRegex rangeOfFirstMatchInString:self.android.platformVersion options:0 range:NSMakeRange(0, [self.android.platformVersion length])];
-		NSString *versionNumber = @"4.4";
-		if (!NSEqualRanges(rangeOfFirstMatch, NSMakeRange(NSNotFound, 0))) {
-			versionNumber = [self.android.platformVersion substringWithRange:rangeOfFirstMatch];
-		}
 		
-		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --automation-name %@ --platform-name %@ --platform-version %@", self.android.automationName, self.android.platformName, versionNumber];
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --automation-name %@ --platform-name %@ --platform-version %@", self.android.automationName, self.android.platformName, self.android.platformVersionNumber];
 		if (self.android.useCustomSDKPath) {
 			nodeCommandString = [NSString stringWithFormat:@"export ANDROID_HOME=\"%@\"; %@", self.android.customSDKPath, nodeCommandString];
 		}

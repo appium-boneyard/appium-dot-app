@@ -35,6 +35,7 @@
 @property NSString *package;
 @property NSString *platformName;
 @property NSString *platformVersion;
+@property (readonly) NSString *platformVersionNumber;
 @property NSNumber *selendroidPort;
 @property BOOL useActivity;
 @property BOOL useAppPath;
