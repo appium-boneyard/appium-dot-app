@@ -48,7 +48,10 @@
         {
 			// create a new session if one does not already exist
 			SECapabilities *capabilities = [SECapabilities new];
-            [capabilities addCapabilityForKey:@"platformName" andValue:model.isAndroid ? @"Android" : @"iOS"];
+            [capabilities addCapabilityForKey:@"automationName" andValue:(model.isAndroid ? model.android.automationName : @"Appium")];
+            [capabilities addCapabilityForKey:@"platformName" andValue:(model.isAndroid ? model.android.platformName : @"iOS")];
+			[capabilities addCapabilityForKey:@"platformVersion" andValue:model.isAndroid ? model.android.platformVersionNumber : model.iOS.platformVersion];
+			[capabilities addCapabilityForKey:@"newCommandTimeout" andValue:@"999999"];
 
             [self.driver startSessionWithDesiredCapabilities:capabilities requiredCapabilities:nil];
 			if (self.driver == nil || self.driver.session == nil || self.driver.session.sessionId == nil)
@@ -56,11 +59,6 @@
 				return [self closeWithError:@"Could not start a new session"];
 			}
         }
-
-
-		// set 15 minute timeout so Appium will not close prematurely
-		NSArray *timeoutArgs = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys: [NSNumber numberWithInteger:900], @"timeout", nil],nil];
-		[_driver executeScript:@"mobile: setCommandTimeout" arguments:timeoutArgs];
 
         // detect the current platform
         if ([[self.driver.session.capabilities.browserName lowercaseString] isEqualToString:@"ios"])
