@@ -381,8 +381,11 @@
 
 	if (_selection != nil)
 	{
-        NSString *newDetails = [NSString stringWithFormat:@"%@\nxpath: %@", [_selection infoText], [self xPathForSelectedNode]];
-        [_windowController.detailsTextView setString:newDetails];
+        NSAttributedString *newDetails = [_selection infoTextWithXPath:[self xPathForSelectedNode]];
+        [_windowController.detailsTextView setString:@""];
+        [_windowController.detailsTextView.textStorage beginEditing];
+        [_windowController.detailsTextView.textStorage appendAttributedString:newDetails];
+        [_windowController.detailsTextView.textStorage endEditing];
 	}
 	else
 	{

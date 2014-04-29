@@ -39,7 +39,8 @@
 @property NSString *name;
 @property NSRect rect;
 @property NSString *type;
-@property (readonly) NSString* infoText;
+@property (readonly) NSAttributedString* infoText;
+-(NSAttributedString*) infoTextWithXPath:(NSString*)xpath;
 
 #pragma mark - iOS-Specific properties
 @property NSString *label;

@@ -10,6 +10,9 @@
 
 @implementation WebDriverElementNode
 
+#define BOLD_FONT [NSFont boldSystemFontOfSize:12.0f]
+#define REGULAR_FONT [NSFont systemFontOfSize:12.0f]
+
 -(id)init
 {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
@@ -192,16 +195,70 @@
 
 -(NSArray*) visibleChildren { return _visibleChildren; }
 
--(NSString*) infoText
+-(NSAttributedString*) infoText
 {
+	NSArray* items;
 	if (self.platform == Platform_iOS)
 	{
-		return [NSString stringWithFormat:@"name: %@\ntype: %@\nvalue: %@\nlabel: %@\nenabled: %@\nvisible: %@\nvalid: %@\nlocation: %@\nsize: %@", self.name, self.type, self.value, self.label, (self.enabled ? @"true" : @"false"),(self.visible ? @"true" : @"false"),(self.valid ? @"true" : @"false"), NSStringFromPoint(self.rect.origin), NSStringFromSize(self.rect.size)];
+		items = [NSArray arrayWithObjects:
+				 @"name:", [NSString stringWithFormat:@" %@\n", self.name],
+				 @"type:", [NSString stringWithFormat:@" %@\n", self.type],
+				 @"value:", [NSString stringWithFormat:@" %@\n", self.value],
+				 @"label:", [NSString stringWithFormat:@" %@\n", self.label],
+ 				 @"enabled:", [NSString stringWithFormat:@" %@\n", (self.enabled ? @"true" : @"false")],
+ 				 @"visible:", [NSString stringWithFormat:@" %@\n", (self.clickable ? @"true" : @"false")],
+  				 @"valid:", [NSString stringWithFormat:@" %@\n", (self.valid ? @"true" : @"false")],
+  				 @"location:", [NSString stringWithFormat:@" %@\n", NSStringFromPoint(self.rect.origin)],
+  				 @"size:", [NSString stringWithFormat:@" %@\n", NSStringFromSize(self.rect.size)],
+				 nil];
 	}
 	else
 	{
-		return [NSString stringWithFormat:@"content-desc: %@\nclass: %@\ntext: %@\nindex: %@\nenabled: %@\nclickable: %@\nlocation: %@\nsize: %@\ncheckable: %@\nchecked: %@\nfocusable: %@\nfocused: %@\nlong-clickable: %@\npackage: %@\npassword: %@\nresource-id: %@\nscrollable: %@\nselected: %@", self.contentDesc, self.type, self.text,[NSString stringWithFormat:@"%lu", (u_long)self.index], (self.enabled ? @"true" : @"false"),(self.clickable ? @"true" : @"false"), NSStringFromPoint(self.rect.origin), NSStringFromSize(self.rect.size), (self.checkable ? @"true" : @"false"), (self.checked ? @"true" : @"false"), (self.focusable ? @"true" : @"false"), (self.focused ? @"true" : @"false"), (self.longClickable ? @"true" : @"false"), self.package, (self.password ? @"true" : @"false"), self.resourceId, (self.scrollable ? @"true" : @"false"), (self.selected ? @"true" : @"false")];
+		items = [NSArray arrayWithObjects:
+				 @"content-desc:", [NSString stringWithFormat:@" %@\n", self.contentDesc],
+				 @"type:", [NSString stringWithFormat:@" %@\n", self.type],
+				 @"text:", [NSString stringWithFormat:@" %@\n", self.text],
+				 @"index:", [NSString stringWithFormat:@" %@\n", [NSString stringWithFormat:@"%lu", (u_long)self.index]],
+ 				 @"enabled:", [NSString stringWithFormat:@" %@\n", (self.enabled ? @"true" : @"false")],
+ 				 @"visible:", [NSString stringWithFormat:@" %@\n", (self.clickable ? @"true" : @"false")],
+  				 @"location:", [NSString stringWithFormat:@" %@\n", NSStringFromPoint(self.rect.origin)],
+  				 @"size:", [NSString stringWithFormat:@" %@\n", NSStringFromSize(self.rect.size)],
+  				 @"checkable:", [NSString stringWithFormat:@" %@\n", (self.checkable ? @"true" : @"false")],
+  				 @"checked:", [NSString stringWithFormat:@" %@\n", (self.checked ? @"true" : @"false")],
+  				 @"focusable:", [NSString stringWithFormat:@" %@\n", (self.focusable ? @"true" : @"false")],
+				 @"long-clickable:", [NSString stringWithFormat:@" %@\n", (self.longClickable ? @"true" : @"false")],
+ 				 @"package:", [NSString stringWithFormat:@" %@\n", self.package],
+ 				 @"password:", [NSString stringWithFormat:@" %@\n", (self.password ? @"true" : @"false")],
+ 				 @"resource-id:", [NSString stringWithFormat:@" %@\n", self.resourceId],
+ 				 @"scrollable:", [NSString stringWithFormat:@" %@\n", (self.scrollable ? @"true" : @"false")],
+ 				 @"selected:", [NSString stringWithFormat:@" %@\n", (self.selected ? @"true" : @"false")],
+				 nil];
 	}
+
+	NSMutableAttributedString *infoText = [NSMutableAttributedString new];
+	for (int i=0; i < [items count]; i++)
+	{
+
+		NSMutableAttributedString *newPiece = [[NSMutableAttributedString alloc] initWithString:[items objectAtIndex:i]];
+		[newPiece addAttribute:NSFontAttributeName value:((i%2 == 0) ? BOLD_FONT : REGULAR_FONT) range:NSMakeRange(0, [newPiece length])];
+		[infoText appendAttributedString:newPiece];
+	}
+	return infoText;
+}
+
+-(NSAttributedString*) infoTextWithXPath:(NSString*)xpath
+{
+
+	NSMutableAttributedString *infoText = [[NSMutableAttributedString alloc] initWithAttributedString:[self infoText]];
+	NSMutableAttributedString *xPathLabel = [[NSMutableAttributedString alloc] initWithString:@"xpath:"];
+	NSMutableAttributedString *xPathValue = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@\n", xpath]];
+	
+	[xPathLabel addAttribute:NSFontAttributeName value:BOLD_FONT range:NSMakeRange(0, [xPathLabel length])];
+	[xPathValue addAttribute:NSFontAttributeName value:REGULAR_FONT range:NSMakeRange(0, [xPathValue length])];
+	[xPathLabel appendAttributedString:xPathValue];
+	[infoText appendAttributedString:xPathLabel];
+	return infoText;
+	
 }
 
 @end
