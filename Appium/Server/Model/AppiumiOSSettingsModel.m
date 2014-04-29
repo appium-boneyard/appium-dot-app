@@ -42,7 +42,7 @@ NSUserDefaults* _defaults;
 -(NSArray*) allLocales {
 	return [NSArray arrayWithObjects:@"ar_AE", @"ar_BH", @"ar_DZ", @"ar_EG", @"ar_IQ", @"ar_JO", @"ar_LB", @"ar_LY", @"ar_MA", @"ar_OM", @"ar_QA", @"ar_SA", @"ar_SY",
 			@"ar_TN", @"ca_ES", @"cs_CZ", @"da_DK", @"de_AT", @"de_CH", @"de_DE", @"de_LU", @"el_CY", @"el_GR", @"en_AU", @"en_CA", @"en_GB", @"en_IE", @"en_IN",
-			@"en_NZ" @"en_SG", @"en-US", @"en_ZH", @"es_AR", @"es_BO", @"es_CL", @"es_CO", @"es_CR", @"es_DO", @"es_EC", @"es_ES", @"es_GT", @"es_HN", @"es_MX",
+			@"en_NZ", @"en_SG", @"en-US", @"en_ZH", @"es_AR", @"es_BO", @"es_CL", @"es_CO", @"es_CR", @"es_DO", @"es_EC", @"es_ES", @"es_GT", @"es_HN", @"es_MX",
 			@"es_NI", @"es_PA", @"es_PE", @"es_PR", @"es_PY", @"es_US", @"es_UG", @"es_VE", @"fi_FI", @"fr_BE", @"fr_CA", @"fr_FR", @"fr_LU", @"fr_CS", @"he_IL",
 			@"hr_HR", @"hu_HU", @"it_CH", @"it_IT", @"ja_JP", @"ko_KR", @"ms_MY", @"nb_NO", @"nl_BE", @"nl_NL" @"pl_PL", @"pt_BR", @"pt_PT", @"ro_RO", @"ru_RU",
 			@"sk_SK", @"sv_SE", @"th_TH", @"tr_TR", @"uk-UA", @"vi_VN", @"zh_CN", @"zh_HK", @"zh_SG", @"zh_TW", nil];
