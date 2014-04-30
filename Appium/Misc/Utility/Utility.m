@@ -94,16 +94,26 @@ popen2(const char *command, int *infp, int *outfp)
 		return androidBinaryPath;
 	}
 	
+	
+	
 	// check build-tools folders
-	androidBinaryPath = [[[androidHomePath stringByAppendingPathComponent:@"build-tools"] stringByAppendingPathComponent:@"18.0.1"] stringByAppendingPathComponent:binaryName];
-	if ([[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath])
+	NSString *buildToolsDirectory = [androidHomePath stringByAppendingPathComponent:@"build-tools"];
+	NSEnumerator* enumerator = [[[[NSFileManager defaultManager] enumeratorAtPath:buildToolsDirectory] allObjects] reverseObjectEnumerator];
+	NSString *buildToolsSubDirectory;
+	while (buildToolsSubDirectory = [enumerator nextObject])
 	{
-		return androidBinaryPath;
-	}
-	androidBinaryPath = [[[androidHomePath stringByAppendingPathComponent:@"build-tools"] stringByAppendingPathComponent:@"17.0.0"] stringByAppendingPathComponent:binaryName];
-	if ([[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath])
-	{
-		return androidBinaryPath;
+		buildToolsSubDirectory = [buildToolsDirectory stringByAppendingPathComponent:buildToolsSubDirectory];
+		BOOL isDirectory = NO;
+		if ([[NSFileManager defaultManager] fileExistsAtPath:buildToolsSubDirectory isDirectory: &isDirectory])
+		{
+			if (isDirectory) {
+				androidBinaryPath = [buildToolsSubDirectory stringByAppendingPathComponent:binaryName];
+				if ([[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath])
+				{
+					return androidBinaryPath;
+				}
+			}
+		}
 	}
 
 	// try using the which command
