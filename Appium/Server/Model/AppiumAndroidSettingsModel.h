@@ -17,6 +17,7 @@
 @property NSString *appPath;
 @property NSString *automationName;
 @property NSArray *availableActivities;
+@property NSArray *availablePackages;
 @property NSArray *availableAVDs;
 @property NSString *avd;
 @property NSString *avdArguments;
@@ -56,7 +57,7 @@
 @property NSString *waitPackage;
 
 -(id) initWithDefaults:(NSUserDefaults*)defaults;
--(void) refreshAvailableActivities;
+-(void) refreshAvailableActivitiesAndPackages;
 -(void) refreshAVDs;
 
 @end
