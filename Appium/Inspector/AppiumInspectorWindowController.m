@@ -60,23 +60,22 @@
 			}
         }
 
-        // detect the current platform
-        if ([[self.driver.session.capabilities.browserName lowercaseString] isEqualToString:@"ios"])
-        {
-            [model setPlatform:Platform_iOS];
-        }
-        if ([[self.driver.session.capabilities.browserName lowercaseString] isEqualToString:@"android"])
-        {
-            [model setPlatform:Platform_Android];
-        }
-        if ([[self.driver.session.capabilities.browserName lowercaseString] isEqualToString:@"selendroid"])
-        {
-            [model setPlatform:Platform_Android];
-        }
-        if ([[[self.driver.session.capabilities getCapabilityForKey:@"device"] lowercaseString] isEqualToString:@"android"])
-        {
-            [model setPlatform:Platform_Android];
-        }
+        // detect the current platform (if using a remote server)
+		if (model.useRemoteServer)
+		{
+			if ([[self.driver.session.capabilities.platformName lowercaseString] isEqualToString:@"ios"])
+			{
+				[model setPlatform:Platform_iOS];
+			}
+			else if ([[self.driver.session.capabilities.platformName lowercaseString] isEqualToString:@"android"])
+			{
+				[model setPlatform:Platform_Android];
+			}
+			else if ([[self.driver.session.capabilities.platformName lowercaseString] isEqualToString:@"selendroid"])
+			{
+				[model setPlatform:Platform_Android];
+			}
+		}
     }
 
     return self;
