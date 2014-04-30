@@ -32,6 +32,7 @@ NSUserDefaults* _defaults;
 	
 		// asynchronous initilizations
 		[self performSelectorInBackground:@selector(refreshAVDs) withObject:nil];
+		[self performSelectorInBackground:@selector(refreshAvailableActivities) withObject:nil];
 	}
 	return self;
 }
@@ -68,7 +69,11 @@ NSUserDefaults* _defaults;
 -(void) setAutomationName:(NSString *)automationName { [_defaults setValue:automationName forKey:APPIUM_PLIST_ANDROID_AUTOMATION_NAME]; }
 
 -(NSString*) appPath { return [_defaults stringForKey:APPIUM_PLIST_ANDROID_APP_PATH]; }
--(void) setAppPath:(NSString *)appPath { [_defaults setValue:appPath forKey:APPIUM_PLIST_ANDROID_APP_PATH]; }
+-(void) setAppPath:(NSString *)appPath
+{
+	[_defaults setValue:appPath forKey:APPIUM_PLIST_ANDROID_APP_PATH];
+	[self performSelectorInBackground:@selector(refreshAvailableActivities) withObject:nil];
+}
 
 -(NSString*) avd { return [_defaults stringForKey:APPIUM_PLIST_ANDROID_AVD]; }
 -(void) setAvd:(NSString *)avd { [_defaults setValue:avd forKey:APPIUM_PLIST_ANDROID_AVD]; }
@@ -113,7 +118,11 @@ NSUserDefaults* _defaults;
 -(void) setNoReset:(BOOL)noReset { [_defaults setBool:noReset forKey:APPIUM_PLIST_ANDROID_NO_RESET]; }
 
 -(NSString*) package { return [_defaults stringForKey:APPIUM_PLIST_ANDROID_PACKAGE]; }
--(void) setPackage:(NSString *)package { [_defaults setValue:package forKey:APPIUM_PLIST_ANDROID_PACKAGE]; }
+-(void) setPackage:(NSString *)package
+{
+	[_defaults setValue:package forKey:APPIUM_PLIST_ANDROID_PACKAGE];
+	[self performSelectorInBackground:@selector(refreshAvailableActivities) withObject:nil];
+}
 
 -(NSString*) platformName { return [_defaults stringForKey:APPIUM_PLIST_ANDROID_PLATFORM_NAME]; }
 -(void) setPlatformName:(NSString *)platformName { [_defaults setValue:platformName forKey:APPIUM_PLIST_ANDROID_PLATFORM_NAME]; }
@@ -190,7 +199,7 @@ NSUserDefaults* _defaults;
 
 -(void) refreshAvailableActivities
 {
-    NSString *androidBinaryPath = [Utility pathToAndroidBinary:@"aapt"];
+    NSString *androidBinaryPath = [Utility pathToAndroidBinary:@"aapt" atSDKPath:self.useCustomSDKPath ? self.customSDKPath : nil];
 	
 	if (androidBinaryPath == nil || ![[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath])
 	{
@@ -234,7 +243,7 @@ NSUserDefaults* _defaults;
 
 -(void) refreshAVDs
 {
-	NSString *androidBinaryPath = [Utility pathToAndroidBinary:@"android"];
+	NSString *androidBinaryPath = [Utility pathToAndroidBinary:@"android" atSDKPath:self.useCustomSDKPath ? self.customSDKPath : nil];
 	
 	if (androidBinaryPath == nil || ![[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath])
 	{
