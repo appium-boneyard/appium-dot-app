@@ -38,6 +38,7 @@
 	
 	_menuBarManager = [AppiumMenuBarManager new];
 	[[self model] addObserver:_menuBarManager forKeyPath:@"isServerRunning" options:NSKeyValueObservingOptionNew context:NULL];
+
 }
 
 - (void)windowWillClose:(NSNotification *)notification {
