@@ -201,7 +201,7 @@ NSUserDefaults* _defaults;
 {
     NSString *androidBinaryPath = [Utility pathToAndroidBinary:@"aapt" atSDKPath:self.useCustomSDKPath ? self.customSDKPath : nil];
 	
-	if (androidBinaryPath == nil || ![[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath])
+	if (androidBinaryPath == nil || ![[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath] || !self.useAppPath || self.appPath == nil || ![[NSFileManager defaultManager] fileExistsAtPath:self.appPath])
 	{
 		return;
 	}
