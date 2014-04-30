@@ -23,6 +23,7 @@ NSUserDefaults* _defaults;
 		_defaults = defaults;
 		[self setAvailableAVDs:[NSArray new]];
         [self setAvailableActivities:[NSArray new]];
+		[self setAvailablePackages:[NSArray new]];
 		
 		// update keystore path to match current user
 		if ([self.keystorePath hasPrefix:@"/Users/me/"])
@@ -32,7 +33,7 @@ NSUserDefaults* _defaults;
 	
 		// asynchronous initilizations
 		[self performSelectorInBackground:@selector(refreshAVDs) withObject:nil];
-		[self performSelectorInBackground:@selector(refreshAvailableActivities) withObject:nil];
+		[self performSelectorInBackground:@selector(refreshAvailableActivitiesAndPackages) withObject:nil];
 	}
 	return self;
 }
@@ -72,7 +73,7 @@ NSUserDefaults* _defaults;
 -(void) setAppPath:(NSString *)appPath
 {
 	[_defaults setValue:appPath forKey:APPIUM_PLIST_ANDROID_APP_PATH];
-	[self performSelectorInBackground:@selector(refreshAvailableActivities) withObject:nil];
+	[self performSelectorInBackground:@selector(refreshAvailableActivitiesAndPackages) withObject:nil];
 }
 
 -(NSString*) avd { return [_defaults stringForKey:APPIUM_PLIST_ANDROID_AVD]; }
@@ -118,11 +119,7 @@ NSUserDefaults* _defaults;
 -(void) setNoReset:(BOOL)noReset { [_defaults setBool:noReset forKey:APPIUM_PLIST_ANDROID_NO_RESET]; }
 
 -(NSString*) package { return [_defaults stringForKey:APPIUM_PLIST_ANDROID_PACKAGE]; }
--(void) setPackage:(NSString *)package
-{
-	[_defaults setValue:package forKey:APPIUM_PLIST_ANDROID_PACKAGE];
-	[self performSelectorInBackground:@selector(refreshAvailableActivities) withObject:nil];
-}
+-(void) setPackage:(NSString *)package { [_defaults setValue:package forKey:APPIUM_PLIST_ANDROID_PACKAGE]; }
 
 -(NSString*) platformName { return [_defaults stringForKey:APPIUM_PLIST_ANDROID_PLATFORM_NAME]; }
 -(void) setPlatformName:(NSString *)platformName { [_defaults setValue:platformName forKey:APPIUM_PLIST_ANDROID_PLATFORM_NAME]; }
@@ -197,7 +194,7 @@ NSUserDefaults* _defaults;
 
 #pragma mark - Methods
 
--(void) refreshAvailableActivities
+-(void) refreshAvailableActivitiesAndPackages
 {
     NSString *androidBinaryPath = [Utility pathToAndroidBinary:@"aapt" atSDKPath:self.useCustomSDKPath ? self.customSDKPath : nil];
 	
@@ -213,6 +210,7 @@ NSUserDefaults* _defaults;
 		// read line by line
 		NSArray *aaptLines = [aaptString componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
 		NSMutableArray *activities = [NSMutableArray new];
+		NSMutableArray *packages = [NSMutableArray new];
 		BOOL currentElementIsActivity;
 		for (int i=0; i < aaptLines.count; i++)
 		{
@@ -233,8 +231,19 @@ NSUserDefaults* _defaults;
 					[activities addObject:(NSString*)[lineComponents objectAtIndex:1]];
 				}
 			}
+			
+			// detect packages
+			if ([line hasPrefix:@"A: package="])
+			{
+				NSArray *lineComponents = [line componentsSeparatedByString:@"\""];
+				if (lineComponents.count >= 3)
+				{
+					[packages addObject:(NSString*)[lineComponents objectAtIndex:1]];
+				}
+			}
 		}
 		[self setAvailableActivities:activities];
+		[self setAvailablePackages:packages];
 	}
 	@catch (NSException *exception) {
 		NSLog(@"Could not list Android Activities: %@", exception);
