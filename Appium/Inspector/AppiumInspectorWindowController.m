@@ -100,6 +100,59 @@
 	[self.bottomDrawer.contentView setAutoresizingMask:NSViewHeightSizable];
 }
 
+-(IBAction)locatorSearchButtonClicked:(id)sender {
+	
+	[self.findElementButton setEnabled:NO];
+	@try {
+		SEBy *locator = nil;
+		if ([self.inspector.selectedLocatorStrategy isEqualToString:@"accessibility id"]) {
+			locator = [SEBy accessibilityId:self.inspector.suppliedLocator];
+		} else if ([self.inspector.selectedLocatorStrategy isEqualToString:@"android uiautomator"]) {
+			locator = [SEBy androidUIAutomator:self.inspector.suppliedLocator];
+		} else if ([self.inspector.selectedLocatorStrategy isEqualToString:@"class name"]) {
+			locator = [SEBy className:self.inspector.suppliedLocator];
+		} else if ([self.inspector.selectedLocatorStrategy isEqualToString:@"id"]) {
+			locator = [SEBy idString:self.inspector.suppliedLocator];
+		} else if ([self.inspector.selectedLocatorStrategy isEqualToString:@"ios uiautomation"]) {
+			locator = [SEBy iOSUIAutomation:self.inspector.suppliedLocator];
+		} else if ([self.inspector.selectedLocatorStrategy isEqualToString:@"name"]) {
+			locator = [SEBy name:self.inspector.suppliedLocator];
+		} else if ([self.inspector.selectedLocatorStrategy isEqualToString:@"xpath"]) {
+			locator = [SEBy xPath:self.inspector.suppliedLocator];
+		}
+		
+		// try to get the element
+		SEWebElement *element = nil;
+		NSRect rect;
+		
+		if (locator != nil) {
+			element = [self.driver findElementBy:locator];
+			if (element.opaqueId != nil) {
+				NSPoint origin = element.location;
+				NSSize size = element.size;
+				rect = NSMakeRect(origin.x, origin.y, size.width, size.height);
+			}
+		}
+		
+		// display an alert saying the element was not found
+		if (element == nil || element.opaqueId == nil) {
+			// element was not found, show an alert
+			NSAlert *alert = [NSAlert new];
+			alert.messageText = @"No Matching Element Was Found";
+			alert.informativeText = [NSString stringWithFormat:@"An element could not be found using the locator value \"%@\" and the locator strategy \"%@\"", self.inspector.suppliedLocator, self.inspector.selectedLocatorStrategy];
+			[alert runModal];
+		} else {
+			[self.inspector selectNodeWithRect:rect fromNode:nil];
+		}
+	}
+	@catch (NSException *exception) {
+		NSLog(@"Could not locate element: %@" , exception);
+	}
+	@finally {
+		[self.findElementButton setEnabled:YES];
+	}
+}
+
 -(id) closeWithError:(NSString*)informativeText
 {
 	NSAlert *alert = [NSAlert new];

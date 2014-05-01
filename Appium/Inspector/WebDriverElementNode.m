@@ -104,6 +104,7 @@
 			[self setValid:[[_jsonDict valueForKey:@"valid"] boolValue]];
 			[self setLabel:[_jsonDict valueForKey:@"label"]];
 			[self setType:[_jsonDict valueForKey:@"tag"]];
+			[self setPath:[_jsonDict valueForKey:@"path"]];
 			[self setValue:[_jsonDict valueForKey:@"value"]];
 			[self setName:[_jsonDict valueForKey:@"name"]];
 			float x = [[_jsonDict valueForKey:@"x"] floatValue];
