@@ -39,6 +39,7 @@
 @property NSString *name;
 @property NSRect rect;
 @property NSString *type;
+@property NSString *path;
 @property (readonly) NSAttributedString* infoText;
 -(NSAttributedString*) infoTextWithXPath:(NSString*)xpath;
 

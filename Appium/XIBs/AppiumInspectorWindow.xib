@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="AppiumInspectorWindowController">
@@ -10,6 +10,7 @@
                 <outlet property="bottomDrawerContentView" destination="133" id="346"/>
                 <outlet property="browser" destination="6" id="347"/>
                 <outlet property="detailsTextView" destination="30" id="348"/>
+                <outlet property="findElementButton" destination="QAL-3Y-DWz" id="RoS-gF-4ja"/>
                 <outlet property="inspector" destination="26" id="349"/>
                 <outlet property="preciseTapButton" destination="433" id="531"/>
                 <outlet property="preciseTapPopoverViewController" destination="448" id="530"/>
@@ -221,10 +222,10 @@
                                                 </binding>
                                                 <binding destination="26" name="enabled2" keyPath="domIsPopulating" previousBinding="619" id="620">
                                                     <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                         <integer key="NSNullPlaceholder" value="-1"/>
+                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
                                                 </binding>
@@ -268,7 +269,7 @@
                             <tabViewItem label="Text" identifier="2" id="443" userLabel="Text Tab">
                                 <view key="view" id="444">
                                     <rect key="frame" x="10" y="33" width="418" height="65"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" id="97" userLabel="Actions Box TextField">
                                             <rect key="frame" x="17" y="40" width="384" height="22"/>
@@ -329,10 +330,10 @@
                                                 <action selector="comment:" target="357" id="362"/>
                                                 <binding destination="26" name="enabled2" keyPath="domIsPopulating" previousBinding="397" id="398">
                                                     <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                         <integer key="NSNullPlaceholder" value="-1"/>
+                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
                                                 </binding>
@@ -347,10 +348,85 @@
                                     </subviews>
                                 </view>
                             </tabViewItem>
+                            <tabViewItem label="Locators" identifier="" id="73g-pF-4nF">
+                                <view key="view" id="gm2-9i-R2p">
+                                    <rect key="frame" x="10" y="33" width="418" height="65"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="0gu-mb-9j3" userLabel="Value Label">
+                                            <rect key="frame" x="34" y="43" width="39" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Value" id="Tzw-jX-MQ6">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField verticalHuggingPriority="750" id="yzy-oT-MDo" userLabel="Value Text Field">
+                                            <rect key="frame" x="78" y="40" width="323" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="gBV-aq-NQL">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <connections>
+                                                <binding destination="26" name="value" keyPath="self.suppliedLocator" id="vrk-39-kfZ">
+                                                    <dictionary key="options">
+                                                        <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                        <bool key="NSValidatesImmediately" value="YES"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="1tv-ci-y8k" userLabel="Strategy Text Field">
+                                            <rect key="frame" x="19" y="12" width="56" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Strategy" id="z7K-Cw-ZSZ">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <comboBox verticalHuggingPriority="750" id="mM3-ea-JOG" userLabel="Strategy Combo Box">
+                                            <rect key="frame" x="78" y="8" width="163" height="26"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="BIJ-IW-zCZ">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </comboBoxCell>
+                                            <connections>
+                                                <binding destination="26" name="contentValues" keyPath="allLocatorStrategies" id="xUt-kG-SEk"/>
+                                                <binding destination="26" name="value" keyPath="self.selectedLocatorStrategy" previousBinding="xUt-kG-SEk" id="n8g-4s-bew"/>
+                                            </connections>
+                                        </comboBox>
+                                        <button verticalHuggingPriority="750" id="QAL-3Y-DWz" userLabel="Search Button">
+                                            <rect key="frame" x="328" y="5" width="82" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="push" title="Search" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QzJ-NE-N0r">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                        <button verticalHuggingPriority="750" id="w64-8V-5y3" userLabel="Search Button">
+                                            <rect key="frame" x="328" y="5" width="82" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="push" title="Search" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lbx-ZQ-VG6">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="locatorSearchButtonClicked:" target="-2" id="Fpj-GN-KZl"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </view>
+                            </tabViewItem>
                             <tabViewItem label="Misc" identifier="" id="446" userLabel="Misc Tab">
                                 <view key="view" id="447">
                                     <rect key="frame" x="10" y="33" width="418" height="65"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" id="296" userLabel="Accept Button">
                                             <rect key="frame" x="-2" y="34" width="124" height="32"/>
@@ -454,17 +530,17 @@
                                     <rect key="frame" x="18" y="14" width="208" height="145"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="qlf-i6-ziQ">
-                                        <rect key="frame" x="1" y="1" width="206" height="143"/>
+                                        <rect key="frame" x="1" y="1" width="191" height="143"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <textView editable="NO" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" spellingCorrection="YES" smartInsertDelete="YES" id="30">
-                                                <rect key="frame" x="0.0" y="0.0" width="206" height="143"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="191" height="143"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <size key="minSize" width="206" height="143"/>
+                                                <size key="minSize" width="191" height="143"/>
                                                 <size key="maxSize" width="463" height="10000000"/>
                                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                <size key="minSize" width="206" height="143"/>
+                                                <size key="minSize" width="191" height="143"/>
                                                 <size key="maxSize" width="463" height="10000000"/>
                                             </textView>
                                         </subviews>
@@ -475,7 +551,7 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="32">
-                                        <rect key="frame" x="191" y="1" width="16" height="143"/>
+                                        <rect key="frame" x="192" y="1" width="15" height="143"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                 </scrollView>

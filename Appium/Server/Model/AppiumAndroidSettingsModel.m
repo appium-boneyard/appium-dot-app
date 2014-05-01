@@ -196,12 +196,17 @@ NSUserDefaults* _defaults;
 
 -(void) refreshAvailableActivitiesAndPackages
 {
-    NSString *androidBinaryPath = [Utility pathToAndroidBinary:@"aapt" atSDKPath:self.useCustomSDKPath ? self.customSDKPath : nil];
-	
-	if (androidBinaryPath == nil || ![[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath] || !self.useAppPath || self.appPath == nil || ![[NSFileManager defaultManager] fileExistsAtPath:self.appPath])
-	{
+	// do not load if no app path is provided
+	if (self.appPath == nil || ![[NSFileManager defaultManager] fileExistsAtPath:self.appPath]) {
 		return;
 	}
+	
+	// do not load if aapt cannot be found
+    NSString *androidBinaryPath = [Utility pathToAndroidBinary:@"aapt" atSDKPath:self.useCustomSDKPath ? self.customSDKPath : nil];
+	if (androidBinaryPath == nil || ![[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath]) {
+		return;
+	}
+	
 	@try
 	{
 		// get the xml dump from aapt

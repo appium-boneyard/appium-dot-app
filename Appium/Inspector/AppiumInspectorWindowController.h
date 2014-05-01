@@ -34,5 +34,6 @@
     @property IBOutlet NSButton *preciseTapButton;
     @property IBOutlet AppiumCodeMakerSwipePopOverViewController *swipePopoverViewController;
     @property IBOutlet NSButton *swipeButton;
+	@property IBOutlet NSButton *findElementButton;
 	@property NSString *syntaxDefinition;
 @end

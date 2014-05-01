@@ -100,6 +100,72 @@
 	[self.bottomDrawer.contentView setAutoresizingMask:NSViewHeightSizable];
 }
 
+-(IBAction)locatorSearchButtonClicked:(id)sender {
+	
+	[self.findElementButton setEnabled:NO];
+	@try {
+		SEBy *locator = nil;
+		if ([self.inspector.selectedLocatorStrategy isEqualToString:@"accessibility id"]) {
+			locator = [SEBy accessibilityId:self.inspector.suppliedLocator];
+		} else if ([self.inspector.selectedLocatorStrategy isEqualToString:@"android uiautomator"]) {
+			locator = [SEBy androidUIAutomator:self.inspector.suppliedLocator];
+		} else if ([self.inspector.selectedLocatorStrategy isEqualToString:@"class name"]) {
+			locator = [SEBy className:self.inspector.suppliedLocator];
+		} else if ([self.inspector.selectedLocatorStrategy isEqualToString:@"id"]) {
+			locator = [SEBy idString:self.inspector.suppliedLocator];
+		} else if ([self.inspector.selectedLocatorStrategy isEqualToString:@"ios uiautomation"]) {
+			locator = [SEBy iOSUIAutomation:self.inspector.suppliedLocator];
+		} else if ([self.inspector.selectedLocatorStrategy isEqualToString:@"name"]) {
+			locator = [SEBy name:self.inspector.suppliedLocator];
+		} else if ([self.inspector.selectedLocatorStrategy isEqualToString:@"xpath"]) {
+			locator = [SEBy xPath:self.inspector.suppliedLocator];
+		}
+		
+		NSMutableArray *elements = [NSMutableArray new];
+		SEWebElement *element = nil;
+		NSRect rect;
+		NSString *className;
+
+		// find elements and grab identifying information
+		if (locator != nil) {
+			[elements addObjectsFromArray:[self.driver findElementsBy:locator]];
+			if ([elements count] == 1) {
+				element = (SEWebElement*)[elements objectAtIndex:0];
+				if (element.opaqueId != nil) {
+					NSPoint origin = element.location;
+					NSSize size = element.size;
+					rect = NSMakeRect(origin.x, origin.y, size.width, size.height);
+					className = element.tagName;
+				}
+			}
+		}
+		
+		if (element == nil || element.opaqueId == nil) {
+			NSAlert *alert = [NSAlert new];
+			if (elements.count > 1) {
+				// multiple elements were found, show an alert
+				alert.messageText = @"Multiple Elements Were Found";
+				alert.informativeText = [NSString stringWithFormat:@"%ld elements were found using the locator value \"%@\" and the locator strategy \"%@\"", elements.count, self.inspector.suppliedLocator, self.inspector.selectedLocatorStrategy];
+			} else {
+			// element was not found, show an alert
+			alert.messageText = @"No Matching Elements Were Found";
+			alert.informativeText = [NSString stringWithFormat:@"An element could not be found using the locator value \"%@\" and the locator strategy \"%@\"", self.inspector.suppliedLocator, self.inspector.selectedLocatorStrategy];
+			}
+			[alert runModal];
+
+		} else {
+			// select the node that was found
+			[self.inspector selectNodeWithRect:rect className:className fromNode:nil];
+		}
+	}
+	@catch (NSException *exception) {
+		NSLog(@"Could not locate element: %@" , exception);
+	}
+	@finally {
+		[self.findElementButton setEnabled:YES];
+	}
+}
+
 -(id) closeWithError:(NSString*)informativeText
 {
 	NSAlert *alert = [NSAlert new];

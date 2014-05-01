@@ -26,7 +26,9 @@
     if (self) {
 		self.currentContext = @"no context";
 		_selectedContext = @"no context";
-        [self setDomIsPopulating:NO];
+        self.domIsPopulating = NO;
+		self.selectedLocatorStrategy = @"xpath";
+		self.suppliedLocator = @"";
     }
     return self;
 }
@@ -160,6 +162,24 @@
 	return nil;
 }
 
+-(BOOL) selectNodeWithRect:(NSRect)rect className:(NSString*)className fromNode:(WebDriverElementNode*)node {
+	if (!node) {
+		node = _rootNode;
+	}
+	if (NSEqualRects(node.rect, rect) && [node.type isEqualToString:className]) {
+		[self setSelectedNode:node];
+		return YES;
+	} else {
+		WebDriverElementNode *childNode;
+		for (childNode in node.children) {
+			if ([self selectNodeWithRect:rect className:className fromNode:childNode]) {
+				return YES;
+			}
+		}
+	}
+	return NO;
+}
+
 -(void) selectNodeNearestPoint:(NSPoint)point
 {
 	WebDriverElementNode *node = [self findDisplayedNodeForPoint:point node:_rootNode];
@@ -277,6 +297,8 @@
 		return [[AppiumCodeMakerLocator alloc] initWithLocatorType:APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH locatorString:xPath xPath:xPath];
 	}
 }
+
+-(NSArray*) allLocatorStrategies { return [NSArray arrayWithObjects: @"accessibility id", @"android uiautomator", @"class name", @"id", @"ios uiautomation", @"name", @"xpath", nil]; }
 
 #pragma mark - Inspector Operations
 -(IBAction)refresh:(id)sender
