@@ -124,6 +124,7 @@
 		// try to get the element
 		SEWebElement *element = nil;
 		NSRect rect;
+		NSString *className;
 		
 		if (locator != nil) {
 			element = [self.driver findElementBy:locator];
@@ -131,6 +132,7 @@
 				NSPoint origin = element.location;
 				NSSize size = element.size;
 				rect = NSMakeRect(origin.x, origin.y, size.width, size.height);
+				className = element.tagName;
 			}
 		}
 		
@@ -142,7 +144,7 @@
 			alert.informativeText = [NSString stringWithFormat:@"An element could not be found using the locator value \"%@\" and the locator strategy \"%@\"", self.inspector.suppliedLocator, self.inspector.selectedLocatorStrategy];
 			[alert runModal];
 		} else {
-			[self.inspector selectNodeWithRect:rect fromNode:nil];
+			[self.inspector selectNodeWithRect:rect className:className fromNode:nil];
 		}
 	}
 	@catch (NSException *exception) {

@@ -51,7 +51,7 @@
 -(SEWebElement*) elementForSelectedNode;
 -(NSString*) xPathForSelectedNode;
 -(AppiumCodeMakerLocator*) locatorForSelectedNode;
--(BOOL) selectNodeWithRect:(NSRect)rect fromNode:(WebDriverElementNode*)node;
+-(BOOL) selectNodeWithRect:(NSRect)rect className:(NSString*)className fromNode:(WebDriverElementNode*)node;
 
 -(void) handleClickAt:(NSPoint)windowPoint seleniumPoint:(NSPoint)seleniumPoint;
 -(IBAction) refresh:(id)sender;

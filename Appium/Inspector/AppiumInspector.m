@@ -162,17 +162,17 @@
 	return nil;
 }
 
--(BOOL) selectNodeWithRect:(NSRect)rect fromNode:(WebDriverElementNode*) node {
+-(BOOL) selectNodeWithRect:(NSRect)rect className:(NSString*)className fromNode:(WebDriverElementNode*)node {
 	if (!node) {
 		node = _rootNode;
 	}
-	if (NSEqualRects(node.rect, rect)) {
+	if (NSEqualRects(node.rect, rect) && [node.type isEqualToString:className]) {
 		[self setSelectedNode:node];
 		return YES;
 	} else {
 		WebDriverElementNode *childNode;
 		for (childNode in node.children) {
-			if ([self selectNodeWithRect:rect fromNode:childNode]) {
+			if ([self selectNodeWithRect:rect className:className fromNode:childNode]) {
 				return YES;
 			}
 		}
