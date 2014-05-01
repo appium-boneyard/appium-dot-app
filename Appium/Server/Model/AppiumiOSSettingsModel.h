@@ -52,15 +52,3 @@
 -(id) initWithDefaults:(NSUserDefaults*)defaults;
 
 @end
-
-typedef enum iOSAutomationDeviceTypes
-{
-	iOSAutomationDevice_iPhone,
-	iOSAutomationDevice_iPad
-} iOSAutomationDevice;
-
-typedef enum iOSOrientationTypes
-{
-	iOSOrientation_Portrait,
-	iOSOrientation_Landscape
-} iOSOrientation;
