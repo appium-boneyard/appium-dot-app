@@ -92,6 +92,7 @@
 		36CEB7EB16E3662E00B5B100 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36CEB7CB16E3662E00B5B100 /* Cocoa.framework */; };
 		36CEB7F316E3662E00B5B100 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 36CEB7F116E3662E00B5B100 /* InfoPlist.strings */; };
 		36D17E2916F144E600DC5797 /* Upgrade.applescript in Resources */ = {isa = PBXBuildFile; fileRef = 36D17E2816F144E600DC5797 /* Upgrade.applescript */; };
+		36EFD44B1912AF2E0069FC1C /* doctor.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EFD44A1912AF2E0069FC1C /* doctor.png */; };
 		36F5FA2C16F4E87F007751D6 /* Selenium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F5FA2B16F4E87E007751D6 /* Selenium.framework */; };
 		36FA922C174037FD00699A6B /* AppiumCodeMakerActionScrollTo.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA922B174037FD00699A6B /* AppiumCodeMakerActionScrollTo.m */; };
 		36FF07AD171743AC009ED9E2 /* AppiumCodeMakerLocator.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF07AC171743AC009ED9E2 /* AppiumCodeMakerLocator.m */; };
@@ -313,6 +314,7 @@
 		36CEB7F416E3662E00B5B100 /* AppiumTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppiumTests.h; sourceTree = "<group>"; };
 		36CEB7F516E3662E00B5B100 /* AppiumTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppiumTests.m; sourceTree = "<group>"; };
 		36D17E2816F144E600DC5797 /* Upgrade.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = Upgrade.applescript; sourceTree = "<group>"; };
+		36EFD44A1912AF2E0069FC1C /* doctor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doctor.png; sourceTree = "<group>"; };
 		36F5FA2B16F4E87E007751D6 /* Selenium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Selenium.framework; path = Frameworks/Selenium.framework; sourceTree = "<group>"; };
 		36FA922A174037FD00699A6B /* AppiumCodeMakerActionScrollTo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerActionScrollTo.h; sourceTree = "<group>"; };
 		36FA922B174037FD00699A6B /* AppiumCodeMakerActionScrollTo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerActionScrollTo.m; sourceTree = "<group>"; };
@@ -750,11 +752,12 @@
 				36B901841907208F00AE40E8 /* Automator.icns */,
 				36B9018219071F0000AE40E8 /* apple.png */,
 				36B9017C19071DEF00AE40E8 /* android.png */,
-				36A765A516F01C7C002A7D6A /* appium.icns */,
 				36CEB7D316E3662E00B5B100 /* Appium-Info.plist */,
 				36CEB7D916E3662E00B5B100 /* Appium-Prefix.pch */,
 				36CEB7DA16E3662E00B5B100 /* Credits.rtf */,
 				36B2F18516E6379C008764E0 /* defaults.plist */,
+				36EFD44A1912AF2E0069FC1C /* doctor.png */,
+				36A765A516F01C7C002A7D6A /* appium.icns */,
 				36CEB7D416E3662E00B5B100 /* InfoPlist.strings */,
 				36CEB7D716E3662E00B5B100 /* main.m */,
 			);
@@ -897,6 +900,7 @@
 				3612E5F816E5B6520050CF0A /* appium.sdef in Resources */,
 				36B2F18616E6379C008764E0 /* defaults.plist in Resources */,
 				36A765A616F01C7C002A7D6A /* appium.icns in Resources */,
+				36EFD44B1912AF2E0069FC1C /* doctor.png in Resources */,
 				36CD44EF16F0D5C300194193 /* AppiumInspectorWindow.xib in Resources */,
 				36B9018319071F0000AE40E8 /* apple.png in Resources */,
 				36D17E2916F144E600DC5797 /* Upgrade.applescript in Resources */,
