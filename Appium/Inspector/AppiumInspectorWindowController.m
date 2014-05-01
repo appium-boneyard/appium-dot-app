@@ -121,29 +121,40 @@
 			locator = [SEBy xPath:self.inspector.suppliedLocator];
 		}
 		
-		// try to get the element
+		NSMutableArray *elements = [NSMutableArray new];
 		SEWebElement *element = nil;
 		NSRect rect;
 		NSString *className;
-		
+
+		// find elements and grab identifying information
 		if (locator != nil) {
-			element = [self.driver findElementBy:locator];
-			if (element.opaqueId != nil) {
-				NSPoint origin = element.location;
-				NSSize size = element.size;
-				rect = NSMakeRect(origin.x, origin.y, size.width, size.height);
-				className = element.tagName;
+			[elements addObjectsFromArray:[self.driver findElementsBy:locator]];
+			if ([elements count] == 1) {
+				element = (SEWebElement*)[elements objectAtIndex:0];
+				if (element.opaqueId != nil) {
+					NSPoint origin = element.location;
+					NSSize size = element.size;
+					rect = NSMakeRect(origin.x, origin.y, size.width, size.height);
+					className = element.tagName;
+				}
 			}
 		}
 		
-		// display an alert saying the element was not found
 		if (element == nil || element.opaqueId == nil) {
-			// element was not found, show an alert
 			NSAlert *alert = [NSAlert new];
-			alert.messageText = @"No Matching Element Was Found";
+			if (elements.count > 1) {
+				// multiple elements were found, show an alert
+				alert.messageText = @"Multiple Elements Were Found";
+				alert.informativeText = [NSString stringWithFormat:@"%ld elements were found using the locator value \"%@\" and the locator strategy \"%@\"", elements.count, self.inspector.suppliedLocator, self.inspector.selectedLocatorStrategy];
+			} else {
+			// element was not found, show an alert
+			alert.messageText = @"No Matching Elements Were Found";
 			alert.informativeText = [NSString stringWithFormat:@"An element could not be found using the locator value \"%@\" and the locator strategy \"%@\"", self.inspector.suppliedLocator, self.inspector.selectedLocatorStrategy];
+			}
 			[alert runModal];
+
 		} else {
+			// select the node that was found
 			[self.inspector selectNodeWithRect:rect className:className fromNode:nil];
 		}
 	}
