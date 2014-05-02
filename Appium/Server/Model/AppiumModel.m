@@ -347,8 +347,9 @@ BOOL _isServerListening;
 		 // iOS //
 	    /////////
 		
-		if (self.iOS.useBundleID)
-		{
+		if (self.iOS.useMobileSafari) {
+			nodeCommandString = [nodeCommandString stringByAppendingString:@" --safari"];
+		} else if (self.iOS.useBundleID) {
 			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --app \"%@\"", self.iOS.bundleID];
 		} else if (self.iOS.useAppPath) {
 			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", ([self.iOS.appPath hasSuffix:@"ipa"]) ? @"--ipa" : @"--app", self.iOS.appPath];
@@ -392,9 +393,7 @@ BOOL _isServerListening;
 		if (self.iOS.useLocale) {
 			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --locale %@", self.iOS.locale];
         }
-		if (self.iOS.useMobileSafari) {
-			nodeCommandString = [nodeCommandString stringByAppendingString:@" --safari"];
-		}
+
         if (self.iOS.useNativeInstrumentsLibrary) {
 			nodeCommandString = [nodeCommandString stringByAppendingString:@" --native-instruments-lib"];
         }

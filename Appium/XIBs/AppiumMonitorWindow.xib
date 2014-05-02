@@ -1830,15 +1830,6 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="-2" name="enabled3" keyPath="model.iOS.useAppPath" previousBinding="1369" id="joi-0h-Hut">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
                                     <binding destination="-2" name="value" keyPath="model.iOS.useMobileSafari" id="0nS-nj-Lp9"/>
                                     <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="1256">
                                         <dictionary key="options">
@@ -1915,33 +1906,19 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </comboBoxCell>
                                 <connections>
+                                    <binding destination="-2" name="enabled2" keyPath="model.useRemoteServer" previousBinding="oyQ-M6-4Zr" id="t52-07-7Rq">
+                                        <dictionary key="options">
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="oyQ-M6-4Zr"/>
                                     <binding destination="-2" name="contentValues" keyPath="model.iOS.allDevices" id="fnM-jh-xjZ"/>
                                     <binding destination="-2" name="value" keyPath="model.iOS.deviceName" previousBinding="fnM-jh-xjZ" id="8kw-qa-xHi">
                                         <dictionary key="options">
                                             <bool key="NSContinuouslyUpdatesValue" value="YES"/>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="-2" name="enabled2" keyPath="model.iOS.useDefaultDevice" previousBinding="1245" id="vwc-Ux-xcV">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="1245">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="-2" name="enabled3" keyPath="model.useRemoteServer" previousBinding="vwc-Ux-xcV" id="O8z-ZO-HWp">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
