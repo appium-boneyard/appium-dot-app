@@ -896,7 +896,11 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="-2" name="value" keyPath="model.android.deviceReadyTimeout" id="ufr-Lr-BSb"/>
+                                    <binding destination="-2" name="value" keyPath="model.android.deviceReadyTimeout" id="XQa-Xx-oEg">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">AppiumPortTransformer</string>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="-2" name="enabled" keyPath="model.android.useDeviceReadyTimeout" id="Xhh-vU-8uC"/>
                                     <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="Xhh-vU-8uC" id="iIp-64-ux4">
                                         <dictionary key="options">
@@ -1826,15 +1830,6 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="-2" name="enabled3" keyPath="model.iOS.useAppPath" previousBinding="1369" id="joi-0h-Hut">
-                                        <dictionary key="options">
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
                                     <binding destination="-2" name="value" keyPath="model.iOS.useMobileSafari" id="0nS-nj-Lp9"/>
                                     <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="1256">
                                         <dictionary key="options">
@@ -1911,33 +1906,15 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </comboBoxCell>
                                 <connections>
+                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="ATf-SN-mcO">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="-2" name="contentValues" keyPath="model.iOS.allDevices" id="fnM-jh-xjZ"/>
                                     <binding destination="-2" name="value" keyPath="model.iOS.deviceName" previousBinding="fnM-jh-xjZ" id="8kw-qa-xHi">
                                         <dictionary key="options">
                                             <bool key="NSContinuouslyUpdatesValue" value="YES"/>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="-2" name="enabled2" keyPath="model.iOS.useDefaultDevice" previousBinding="1245" id="vwc-Ux-xcV">
-                                        <dictionary key="options">
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="1245">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="-2" name="enabled3" keyPath="model.useRemoteServer" previousBinding="vwc-Ux-xcV" id="O8z-ZO-HWp">
-                                        <dictionary key="options">
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -2500,7 +2477,11 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="-2" name="value" keyPath="model.iOS.launchTimeout" id="C3x-sk-BCj"/>
+                                    <binding destination="-2" name="value" keyPath="model.iOS.launchTimeout" id="FVb-pc-YCC">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">AppiumPortTransformer</string>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="-2" name="enabled" keyPath="model.iOS.useLaunchTimeout" id="du0-AB-A0V"/>
                                     <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="du0-AB-A0V" id="xDI-0n-3IU">
                                         <dictionary key="options">
@@ -2682,11 +2663,11 @@
             <accessibility description="iOSSettingsView"/>
         </customView>
         <customView id="lfV-Jy-qRr" userLabel="General Settings View">
-            <rect key="frame" x="0.0" y="0.0" width="417" height="404"/>
+            <rect key="frame" x="0.0" y="0.0" width="417" height="426"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="pFP-rp-D7j" userLabel="General Settings Label">
-                    <rect key="frame" x="17" y="367" width="107" height="17"/>
+                    <rect key="frame" x="17" y="389" width="107" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="General Settings" id="Svf-QT-oNe">
                         <font key="font" metaFont="system"/>
@@ -2695,14 +2676,14 @@
                     </textFieldCell>
                 </textField>
                 <box autoresizesSubviews="NO" title="Server" borderType="line" id="ATX-v7-2MS" userLabel="Selenium Grid Configuration Box">
-                    <rect key="frame" x="17" y="131" width="383" height="228"/>
+                    <rect key="frame" x="17" y="131" width="383" height="250"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView">
-                        <rect key="frame" x="1" y="1" width="381" height="212"/>
+                        <rect key="frame" x="1" y="1" width="381" height="234"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" id="FDV-95-hxi" userLabel="Server Address Label">
-                                <rect key="frame" x="16" y="183" width="103" height="17"/>
+                                <rect key="frame" x="16" y="205" width="103" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Server Address:" id="jRS-qk-Od7">
                                     <font key="font" metaFont="system"/>
@@ -2711,7 +2692,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" id="SH6-Jj-OPa" userLabel="Server Address Text Field">
-                                <rect key="frame" x="124" y="180" width="139" height="22"/>
+                                <rect key="frame" x="124" y="202" width="139" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="" drawsBackground="YES" id="Yw9-MF-Wa1">
                                     <font key="font" metaFont="system"/>
@@ -2732,7 +2713,7 @@
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" id="Ivs-JD-riO" userLabel="Server Port Label">
-                                <rect key="frame" x="268" y="183" width="34" height="17"/>
+                                <rect key="frame" x="268" y="205" width="34" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Port:" id="fhn-Yk-D3z">
                                     <font key="font" metaFont="system"/>
@@ -2741,7 +2722,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" id="KQj-a9-wcj" userLabel="Server Port TextField">
-                                <rect key="frame" x="307" y="180" width="56" height="22"/>
+                                <rect key="frame" x="307" y="202" width="56" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="" drawsBackground="YES" id="L0h-t9-HWT">
                                     <font key="font" metaFont="system"/>
@@ -2763,7 +2744,7 @@
                                 </connections>
                             </textField>
                             <button id="PTI-zo-d1Z" userLabel="Check For Updates Check Box">
-                                <rect key="frame" x="17" y="154" width="141" height="18"/>
+                                <rect key="frame" x="16" y="176" width="141" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Check For Updates" bezelStyle="regularSquare" imagePosition="left" inset="2" id="fMn-od-fZ6">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2778,7 +2759,7 @@
                                 </connections>
                             </button>
                             <button id="B1W-Xl-Uhw" userLabel="Prelaunch Simulator Check Box">
-                                <rect key="frame" x="17" y="134" width="159" height="18"/>
+                                <rect key="frame" x="16" y="156" width="159" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Prelaunch Application" bezelStyle="regularSquare" imagePosition="left" inset="2" id="OO9-qZ-yN8">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2807,7 +2788,7 @@
                                 </connections>
                             </button>
                             <button id="4ra-ha-6Wc" userLabel="Override Existing Sessions Check Box">
-                                <rect key="frame" x="17" y="114" width="189" height="18"/>
+                                <rect key="frame" x="16" y="136" width="189" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Override Existing Sessions" bezelStyle="regularSquare" imagePosition="left" inset="2" id="4s1-dV-deD">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2832,7 +2813,7 @@
                                 </connections>
                             </button>
                             <button id="8mN-9r-PAu" userLabel="Kill Processes Using Server Port Check Box">
-                                <rect key="frame" x="17" y="94" width="313" height="18"/>
+                                <rect key="frame" x="16" y="116" width="313" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Kill Processes Using Server Port Before Launch" bezelStyle="regularSquare" imagePosition="left" inset="2" id="J1x-eY-CQO">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2857,7 +2838,7 @@
                                 </connections>
                             </button>
                             <button id="xRB-51-7z3" userLabel="Use Remote Server Check Box">
-                                <rect key="frame" x="17" y="74" width="140" height="18"/>
+                                <rect key="frame" x="16" y="96" width="140" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Use Remote Server" bezelStyle="regularSquare" imagePosition="left" inset="2" id="hqA-y1-b8I">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2876,8 +2857,83 @@
                                     </binding>
                                 </connections>
                             </button>
+                            <button id="sbb-m1-Yhu" userLabel="New Command Timeout Check Box">
+                                <rect key="frame" x="16" y="75" width="174" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="New Command Timeout" bezelStyle="regularSquare" imagePosition="left" inset="2" id="X7n-YM-eRp">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="6IC-0L-KB8">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="value" keyPath="model.useNewCommandTimeout" id="hsh-ya-Djz"/>
+                                    <binding destination="-2" name="enabled2" keyPath="model.useRemoteServer" previousBinding="6IC-0L-KB8" id="BJc-os-CFh">
+                                        <dictionary key="options">
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </button>
+                            <textField verticalHuggingPriority="750" id="4J5-px-Mzo" userLabel="New Command Timeout Text Field">
+                                <rect key="frame" x="192" y="73" width="58" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="6QL-X5-x0B">
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" minimumFractionDigits="0" maximumFractionDigits="3" id="ONE-FB-y4D">
+                                        <real key="roundingIncrement" value="0.0"/>
+                                        <metadata>
+                                            <bool key="localizesFormat" value="YES"/>
+                                        </metadata>
+                                    </numberFormatter>
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="FlR-a6-QzQ" id="qb5-nw-Z6m">
+                                        <dictionary key="options">
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="value" keyPath="model.newCommandTimeout" id="J7R-7a-jpK">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">AppiumPortTransformer</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="enabled" keyPath="model.useNewCommandTimeout" id="FlR-a6-QzQ"/>
+                                    <binding destination="-2" name="enabled3" keyPath="model.useRemoteServer" previousBinding="qb5-nw-Z6m" id="Ju1-LU-yli">
+                                        <dictionary key="options">
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="C4X-At-PAz" userLabel="Units (s) Label">
+                                <rect key="frame" x="255" y="76" width="11" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="s" id="JLQ-EX-PHO">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <button id="6Y2-jA-Dso" userLabel="Use Selenium Grid Configuration File CheckBox">
-                                <rect key="frame" x="17" y="42" width="254" height="18"/>
+                                <rect key="frame" x="16" y="42" width="254" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Selenium Grid Configuration File" bezelStyle="regularSquare" imagePosition="left" inset="2" id="D5V-id-qXJ">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2901,7 +2957,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" id="hrK-Em-SQy" userLabel="Selenium Grid Config File Path TextField">
-                                <rect key="frame" x="19" y="14" width="344" height="22"/>
+                                <rect key="frame" x="18" y="14" width="344" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="rsW-Kl-rfl">
                                     <font key="font" metaFont="system"/>

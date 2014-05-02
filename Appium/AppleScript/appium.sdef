@@ -139,6 +139,9 @@
 			<property name="log webhook" code="amlw" description="webhook to which appium will log" type="text">
 				<cocoa key="s_LogWebhook"/>
 			</property>
+			<property name="new command timeout" code="anct" description="new command timeout" type="integer">
+				<cocoa key="s_NewCommandTimeout"/>
+			</property>
 			<property name="node debug port" code="amnd" description="port for the nodeJS debugger" type="integer">
 				<cocoa key="s_NodeDebugPort"/>
 			</property>
@@ -219,6 +222,9 @@
 			</property>
 			<property name="use native instruments library" code="apni" description="true if the native instruments library will be used" type="boolean">
 				<cocoa key="s_UseNativeInstrumentsLibrary"/>
+			</property>
+			<property name="use new command timeout" code="unct" description="true if appium will use the new command timeout" type="boolean">
+				<cocoa key="s_UseNewCommandTimeout"/>
 			</property>
 			<property name="use node debugger" code="aund" description="true if appium will use node debugging" type="boolean">
 				<cocoa key="s_UseNodeDebugger"/>

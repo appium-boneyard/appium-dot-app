@@ -168,8 +168,10 @@
 	<false/>
 	<key>Log Webhook</key>
 	<string>localhost:9876</string>
+	<key>New Command Timeout</key>
+	<integer>7200</integer>
 	<key>NodeJS Debug Port</key>
-	<integer>5858</integer>
+	<real>5858</real>
 	<key>Override Existing Sessions</key>
 	<false/>
 	<key>Platform is Android</key>
@@ -200,6 +202,8 @@
 	<false/>
 	<key>Use Log Webhook</key>
 	<false/>
+	<key>Use New Command Timeout</key>
+	<true/>
 	<key>Use NodeJS Debugging</key>
 	<false/>
 	<key>Use Quiet Logging</key>

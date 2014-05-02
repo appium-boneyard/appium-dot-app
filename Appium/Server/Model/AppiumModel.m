@@ -102,6 +102,9 @@ BOOL _isServerListening;
 -(NSString*) logWebHook { return [_defaults stringForKey:APPIUM_PLIST_LOG_WEBHOOK]; }
 -(void) setLogWebHook:(NSString *)logWebHook { [_defaults setValue:logWebHook forKey:APPIUM_PLIST_LOG_WEBHOOK]; }
 
+-(NSNumber*) newCommandTimeout { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_NEW_COMMAND_TIMEOUT] intValue]]; }
+-(void) setNewCommandTimeout:(NSNumber *)newCommandTimeout { [[NSUserDefaults standardUserDefaults] setValue:newCommandTimeout forKey:APPIUM_PLIST_NEW_COMMAND_TIMEOUT]; }
+
 -(NSNumber*) nodeDebugPort { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_NODEJS_DEBUG_PORT] intValue]]; }
 -(void) setNodeDebugPort:(NSNumber *)nodeDebugPort { [[NSUserDefaults standardUserDefaults] setValue:nodeDebugPort forKey:APPIUM_PLIST_NODEJS_DEBUG_PORT]; }
 
@@ -150,6 +153,9 @@ BOOL _isServerListening;
 
 -(BOOL) useLogWebHook { return [_defaults boolForKey:APPIUM_PLIST_USE_LOG_WEBHOOK]; }
 -(void) setUseLogWebHook:(BOOL)useLogWebHook { [_defaults setBool:useLogWebHook forKey:APPIUM_PLIST_USE_LOG_WEBHOOK]; }
+
+-(BOOL) useNewCommandTimeout { return [_defaults boolForKey:APPIUM_PLIST_USE_NEW_COMMAND_TIMEOUT]; }
+-(void) setUseNewCommandTimeout:(BOOL)useNewCommandTimeout { [_defaults setBool:useNewCommandTimeout forKey:APPIUM_PLIST_USE_NEW_COMMAND_TIMEOUT]; }
 
 -(BOOL) useNodeDebugging { return self.developerMode && [_defaults boolForKey:APPIUM_PLIST_USE_NODEJS_DEBUGGING]; }
 -(void) setUseNodeDebugging:(BOOL)useNodeDebugging { [_defaults setBool:useNodeDebugging forKey:APPIUM_PLIST_USE_NODEJS_DEBUGGING]; }
@@ -229,6 +235,9 @@ BOOL _isServerListening;
 	if (![self.serverPort isEqualTo:@"4723"]) {
 		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--port", [self.serverPort stringValue]];
     }
+	if (self.useNewCommandTimeout) {
+	nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --command-timeout %d", [self.newCommandTimeout intValue]];
+	}
     if (self.overrideExistingSessions) {
         nodeCommandString = [nodeCommandString stringByAppendingString:@" --session-override"];
     }
@@ -310,6 +319,8 @@ BOOL _isServerListening;
 			if (self.android.useWaitActivity) {
 				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--app-wait-activity", self.android.waitActivity];
 			}
+		} else {
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--browser-name", @"Chrome"];
 		}
 		if (self.android.useCoverageClass) {
 			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--coverage-class", self.android.coverageClass];
@@ -338,8 +349,10 @@ BOOL _isServerListening;
 		 // iOS //
 	    /////////
 		
-		if (self.iOS.useBundleID)
-		{
+		if (self.iOS.useMobileSafari) {
+			nodeCommandString = [nodeCommandString stringByAppendingString:@" --safari"];
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--browser-name", @"Safari"];
+		} else if (self.iOS.useBundleID) {
 			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --app \"%@\"", self.iOS.bundleID];
 		} else if (self.iOS.useAppPath) {
 			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", ([self.iOS.appPath hasSuffix:@"ipa"]) ? @"--ipa" : @"--app", self.iOS.appPath];
@@ -383,9 +396,7 @@ BOOL _isServerListening;
 		if (self.iOS.useLocale) {
 			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --locale %@", self.iOS.locale];
         }
-		if (self.iOS.useMobileSafari) {
-			nodeCommandString = [nodeCommandString stringByAppendingString:@" --safari"];
-		}
+
         if (self.iOS.useNativeInstrumentsLibrary) {
 			nodeCommandString = [nodeCommandString stringByAppendingString:@" --native-instruments-lib"];
         }
