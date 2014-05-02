@@ -58,6 +58,7 @@
 @property NSString *s_LogFile;
 @property (readonly)NSString *s_LogText;
 @property NSString *s_LogWebhook;
+@property NSNumber *s_NewCommandTimeout;
 @property NSNumber *s_NodeDebugPort;
 @property (readonly)NSString *s_NodePath;
 @property NSNumber *s_OverrideExistingSessions;
@@ -101,6 +102,7 @@
 @property NSNumber *s_UseLogWebhook;
 @property NSNumber *s_UseMobileSafari;
 @property NSNumber *s_UseNativeInstrumentsLibrary;
+@property NSNumber *s_UseNewCommandTimeout;
 @property NSNumber *s_UseNodeDebugger;
 @property NSNumber *s_UseQuietLogging;
 @property NSNumber *s_UseRemoteServer;

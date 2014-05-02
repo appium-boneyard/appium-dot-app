@@ -44,6 +44,7 @@ typedef enum platformTypes
 @property NSString *logFile;
 @property BOOL logTimestamps;
 @property NSString *logWebHook;
+@property NSNumber *newCommandTimeout;
 @property NSNumber *nodeJSDebugPort;
 @property BOOL overrideExistingSessions;
 @property Platform platform;
@@ -58,6 +59,7 @@ typedef enum platformTypes
 @property BOOL useExternalNodeJSBinary;
 @property BOOL useLogFile;
 @property BOOL useLogWebHook;
+@property BOOL useNewCommandTimeout;
 @property BOOL useNodeDebugging;
 @property BOOL useQuietLogging;
 @property BOOL useRemoteServer;

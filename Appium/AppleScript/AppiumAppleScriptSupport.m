@@ -56,6 +56,7 @@
 -(NSString*) s_Locale { return self.model.iOS.locale; }
 -(NSString*) s_LogFile { return self.model.logFile; }
 -(NSString*) s_LogWebhook { return self.model.logWebHook; }
+-(NSNumber*) s_NewCommandTimeout { return [NSNumber numberWithInt:[self.model.newCommandTimeout intValue]]; }
 -(NSNumber*) s_NodeDebugPort { return [NSNumber numberWithInt:[self.model.nodeJSDebugPort intValue]]; }
 -(NSString*) s_NodePath { return [[[(AppiumAppDelegate*)[[NSApplication sharedApplication]delegate] mainWindowController] node] pathToNodeBinary]; }
 -(NSNumber*) s_OverrideExistingSessions { return [NSNumber numberWithBool:self.model.overrideExistingSessions]; }
@@ -98,6 +99,7 @@
 -(NSNumber*) s_UseLogWebhook { return [NSNumber numberWithBool:self.model.useLogWebHook]; }
 -(NSNumber*) s_UseMobileSafari { return [NSNumber numberWithBool:self.model.iOS.useMobileSafari]; }
 -(NSNumber*) s_UseNativeInstrumentsLibrary { return [NSNumber numberWithBool:self.model.iOS.useNativeInstrumentsLibrary]; }
+-(NSNumber*) s_UseNewCommandTimeout { return [NSNumber numberWithBool:self.model.useNewCommandTimeout]; }
 -(NSNumber*) s_UseNodeDebugger { return [NSNumber numberWithBool:self.model.useNodeDebugging]; }
 -(NSNumber*) s_UseQuietLogging { return [NSNumber numberWithBool:self.model.useQuietLogging];}
 -(NSNumber*) s_UseRemoteServer { return [NSNumber numberWithBool:self.model.useRemoteServer]; }
@@ -147,6 +149,7 @@
 -(void) setS_Locale:(NSString *)s_Locale { [self.model.iOS setLocale:s_Locale]; }
 -(void) setS_LogFile:(NSString *)s_LogFile { [self.model setLogFile:s_LogFile]; }
 -(void) setS_LogWebhook:(NSString *)s_LogWebhook { [self.model setLogWebHook:s_LogWebhook]; }
+-(void) setS_NewCommandTimeout:(NSNumber *)s_NewCommandTimeout { [self.model setNewCommandTimeout:s_NewCommandTimeout]; }
 -(void) setS_NodeDebugPort:(NSNumber *)s_NodeDebugPort { [self.model setNodeJSDebugPort:s_NodeDebugPort]; }
 -(void) setS_OverrideExistingSessions:(NSNumber *)s_OverrideExistingSessions { [self.model setOverrideExistingSessions:[s_OverrideExistingSessions boolValue]]; }
 -(void) setS_PrelaunchApp:(NSNumber *)s_PreLaunchApp { [self.model setPrelaunchApp:[s_PreLaunchApp boolValue]]; }
@@ -188,6 +191,7 @@
 -(void) setS_UseLogWebhook:(NSNumber *)s_UseLogWebhook { [self.model setUseLogWebHook:[s_UseLogWebhook boolValue]]; }
 -(void) setS_UseMobileSafari:(NSNumber *)s_UseMobileSafari { [self.model.iOS setUseMobileSafari:[s_UseMobileSafari boolValue]]; }
 -(void) setS_UseNativeInstrumentsLibrary:(NSNumber *)s_UseInstrumentsWithoutDelay { [self.model.iOS setUseNativeInstrumentsLibrary:[s_UseInstrumentsWithoutDelay boolValue]]; }
+-(void) setS_UseNewCommandTimeout:(NSNumber *)s_UseNewCommandTimeout { [self.model setUseNewCommandTimeout:[s_UseNewCommandTimeout boolValue]]; }
 -(void) setS_UseNodeDebugger:(NSNumber *)s_UseNodeDebugger { [self.model setUseNodeDebugging:[s_UseNodeDebugger boolValue]]; }
 -(void) setS_UseQuietLogging:(NSNumber *)s_UseQuietLogging { [self.model setUseQuietLogging:[s_UseQuietLogging boolValue]]; }
 -(void) setS_UseRemoteServer:(NSNumber *)s_UseRemoteServer { [self.model setUseRemoteServer:[s_UseRemoteServer boolValue]]; }
