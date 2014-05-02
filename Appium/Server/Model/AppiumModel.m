@@ -319,6 +319,8 @@ BOOL _isServerListening;
 			if (self.android.useWaitActivity) {
 				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--app-wait-activity", self.android.waitActivity];
 			}
+		} else {
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--browser-name", @"Chrome"];
 		}
 		if (self.android.useCoverageClass) {
 			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--coverage-class", self.android.coverageClass];
@@ -349,6 +351,7 @@ BOOL _isServerListening;
 		
 		if (self.iOS.useMobileSafari) {
 			nodeCommandString = [nodeCommandString stringByAppendingString:@" --safari"];
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--browser-name", @"Safari"];
 		} else if (self.iOS.useBundleID) {
 			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --app \"%@\"", self.iOS.bundleID];
 		} else if (self.iOS.useAppPath) {
