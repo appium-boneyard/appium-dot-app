@@ -47,6 +47,7 @@
 @property BOOL useChromedriverPort;
 @property BOOL useCoverageClass;
 @property BOOL useCustomSDKPath;
+@property BOOL useDeviceName;
 @property BOOL useDeviceReadyTimeout;
 @property BOOL useKeystore;
 @property BOOL usePackage;

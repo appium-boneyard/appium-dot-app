@@ -325,6 +325,9 @@ BOOL _isServerListening;
 		if (self.android.useCoverageClass) {
 			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--coverage-class", self.android.coverageClass];
 		}
+		if (self.android.useDeviceName) {
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --device-name \"%@\"", self.android.deviceName];
+		}
 		if (self.android.useDeviceReadyTimeout) {
 			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--device-ready-timeout", [self.android.deviceReadyTimeout intValue]];
 		}

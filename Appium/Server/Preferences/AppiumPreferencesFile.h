@@ -28,6 +28,7 @@
 #define APPIUM_PLIST_ANDROID_USE_CHROMEDRIVER_PORT @"Android Use Chromedriver Port"
 #define APPIUM_PLIST_ANDROID_USE_COVERAGE_CLASS @"Android Use Coverage Class"
 #define APPIUM_PLIST_ANDROID_USE_CUSTOM_SDK_PATH @"Android Use Custom SDK Path"
+#define APPIUM_PLIST_ANDROID_USE_DEVICE_NAME @"Android Use Device Name"
 #define APPIUM_PLIST_ANDROID_USE_DEVICE_READY_TIMEOUT @"Android Use Device Ready Timeout"
 #define APPIUM_PLIST_ANDROID_USE_KEYSTORE @"Android Use Keystore"
 #define APPIUM_PLIST_ANDROID_USE_PACKAGE @"Android Use Package"
