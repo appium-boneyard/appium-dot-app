@@ -181,6 +181,9 @@
 			<property name="use android activity" code="auaa" description="true if an android activity is supplied" type="boolean">
 				<cocoa key="s_UseAndroidActivity"/>
 			</property>
+			<property name="use android device name" code="audn" description="true if an android device name will be used" type="boolean">
+				<cocoa key="s_UseAndroidDeviceName"/>
+			</property>
 			<property name="use android device ready timeout" code="audt" description="true if an android device wait timeout will be used" type="boolean">
 				<cocoa key="s_UseAndroidDeviceReadyTimeout"/>
 			</property>

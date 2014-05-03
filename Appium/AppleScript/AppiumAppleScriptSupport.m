@@ -71,6 +71,7 @@
 -(NSNumber*) s_UseAndroidBootstrapPort { return [NSNumber numberWithBool:self.model.android.useBootstrapPort]; }
 -(NSNumber*) s_UseAndroidBrowser { return [NSNumber numberWithBool:self.model.android.useBrowser]; }
 -(NSNumber*) s_UseAndroidCoverageClass { return [NSNumber numberWithBool:self.model.android.useCoverageClass]; }
+-(NSNumber*) s_UseAndroidDeviceName { return [NSNumber numberWithBool:self.model.android.useDeviceName]; }
 -(NSNumber*) s_UseAndroidDeviceReadyTimeout { return [NSNumber numberWithBool:self.model.android.useDeviceReadyTimeout]; }
 -(NSNumber*) s_UseAndroidFullReset { return [NSNumber numberWithBool:self.model.android.fullReset]; }
 -(NSNumber*) s_UseAndroidKeystore { return [NSNumber numberWithBool:self.model.android.useKeystore]; }
@@ -163,6 +164,7 @@
 -(void) setS_UseAndroidBootstrapPort:(NSNumber *)s_UseAndroidBootstrapPort { [self.model.android setUseBootstrapPort:[s_UseAndroidBootstrapPort boolValue]]; }
 -(void) setS_UseAndroidBrowser:(NSNumber *)s_UseAndroidBrowser { [self.model.android setUseBrowser:[s_UseAndroidBrowser boolValue]]; }
 -(void) setS_UseAndroidCoverageClass:(NSNumber *)s_UseAndroidCoverageClass { [self.model.android setUseCoverageClass:[s_UseAndroidCoverageClass boolValue]]; }
+-(void) setS_UseAndroidDeviceName:(NSNumber *)s_UseAndroidDeviceName { [self.model.android setUseDeviceName:[s_UseAndroidDeviceName boolValue]]; }
 -(void) setS_UseAndroidDeviceReadyTimeout:(NSNumber *)s_UseAndroidDeviceReadyTimeout { [self.model.android setUseDeviceReadyTimeout:[s_UseAndroidDeviceReadyTimeout boolValue]]; }
 -(void) setS_UseAndroidFullReset:(NSNumber *)s_UseFastReset { [self.model.android setFullReset:[s_UseFastReset boolValue]]; }
 -(void) setS_UseAndroidKeystore:(NSNumber *)s_UseAndroidKeystore { [self.model.android setUseKeystore:[s_UseAndroidKeystore boolValue]]; }

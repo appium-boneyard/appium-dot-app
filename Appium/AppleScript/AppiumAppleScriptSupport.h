@@ -74,6 +74,7 @@
 @property NSNumber *s_UseAndroidBootstrapPort;
 @property NSNumber *s_UseAndroidBrowser;
 @property NSNumber *s_UseAndroidCoverageClass;
+@property NSNumber *s_UseAndroidDeviceName;
 @property NSNumber *s_UseAndroidDeviceReadyTimeout;
 @property NSNumber *s_UseAndroidFullReset;
 @property NSNumber *s_UseAndroidKeystore;

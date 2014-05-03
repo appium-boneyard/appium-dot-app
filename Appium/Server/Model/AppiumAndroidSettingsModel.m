@@ -167,6 +167,9 @@ NSUserDefaults* _defaults;
 -(BOOL) useCustomSDKPath { return [_defaults boolForKey:APPIUM_PLIST_ANDROID_USE_CUSTOM_SDK_PATH]; }
 -(void) setUseCustomSDKPath:(BOOL)useCustomSDKPath { [_defaults setBool:useCustomSDKPath forKey:APPIUM_PLIST_ANDROID_USE_CUSTOM_SDK_PATH]; }
 
+-(BOOL) useDeviceName { return [_defaults boolForKey:APPIUM_PLIST_ANDROID_USE_DEVICE_NAME]; }
+-(void) setUseDeviceName:(BOOL)useDeviceName { [_defaults setBool:useDeviceName forKey:APPIUM_PLIST_ANDROID_USE_DEVICE_NAME]; }
+
 -(BOOL) useDeviceReadyTimeout { return [_defaults boolForKey:APPIUM_PLIST_ANDROID_USE_DEVICE_READY_TIMEOUT]; }
 -(void) setUseDeviceReadyTimeout:(BOOL)useDeviceReadyTimeout { [_defaults setBool:useDeviceReadyTimeout forKey:APPIUM_PLIST_ANDROID_USE_DEVICE_READY_TIMEOUT]; }
 

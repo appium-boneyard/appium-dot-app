@@ -35,7 +35,7 @@
 	<key>Android Package</key>
 	<string></string>
 	<key>Android Platform Name</key>
-	<string></string>
+	<string>Android</string>
 	<key>Android Platform Version</key>
 	<string>4.4</string>
 	<key>Android Selendroid port</key>
@@ -57,6 +57,8 @@
 	<key>Android Use Coverage Class</key>
 	<false/>
 	<key>Android Use Custom SDK Path</key>
+	<false/>
+	<key>Android Use Device Name</key>
 	<false/>
 	<key>Android Use Device Ready Timeout</key>
 	<false/>

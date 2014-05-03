@@ -52,6 +52,8 @@
             [capabilities addCapabilityForKey:@"platformName" andValue:(model.isAndroid ? model.android.platformName : @"iOS")];
 			[capabilities addCapabilityForKey:@"platformVersion" andValue:model.isAndroid ? model.android.platformVersionNumber : model.iOS.platformVersion];
 			[capabilities addCapabilityForKey:@"newCommandTimeout" andValue:@"999999"];
+			if ( (model.isAndroid && model.android.useDeviceName) || (model.isIOS && !model.iOS.useDefaultDevice))
+			[capabilities addCapabilityForKey:@"deviceName" andValue:model.isAndroid ? model.android.deviceName : model.iOS.deviceName];
 
             [self.driver startSessionWithDesiredCapabilities:capabilities requiredCapabilities:nil];
 			if (self.driver == nil || self.driver.session == nil || self.driver.session.sessionId == nil)
