@@ -393,7 +393,6 @@
 			return;
 		}
 	}
-	[self.driver executeScript:@"mobile: leaveWebView"];
 	[self setSelectedContext:@"no context"];
 }
 
