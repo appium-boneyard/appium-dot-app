@@ -358,7 +358,7 @@ BOOL _isServerListening;
 		} else if (self.iOS.useBundleID) {
 			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --app \"%@\"", self.iOS.bundleID];
 		} else if (self.iOS.useAppPath) {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", ([self.iOS.appPath hasSuffix:@"ipa"]) ? @"--ipa" : @"--app", self.iOS.appPath];
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --app \"%@\"", self.iOS.appPath];
 		}
 		if (self.iOS.useUDID) {
 			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --udid %@", self.iOS.udid];
