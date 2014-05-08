@@ -68,6 +68,7 @@
 -(NSNumber*) s_ShowiOSSimulatorLog { return [NSNumber numberWithBool:self.model.iOS.showSimulatorLog]; }
 -(NSString*) s_UDID { return self.model.iOS.udid; }
 -(NSNumber*) s_UseAndroidActivity { return [NSNumber numberWithBool:self.model.android.useActivity]; }
+-(NSNumber*) s_UseAndroidAppPath { return [NSNumber numberWithBool:self.model.android.useAppPath]; }
 -(NSNumber*) s_UseAndroidBootstrapPort { return [NSNumber numberWithBool:self.model.android.useBootstrapPort]; }
 -(NSNumber*) s_UseAndroidBrowser { return [NSNumber numberWithBool:self.model.android.useBrowser]; }
 -(NSNumber*) s_UseAndroidCoverageClass { return [NSNumber numberWithBool:self.model.android.useCoverageClass]; }
@@ -78,7 +79,6 @@
 -(NSNumber*) s_UseAndroidNoReset { return [NSNumber numberWithBool:self.model.android.noReset]; }
 -(NSNumber*) s_UseAndroidPackage { return [NSNumber numberWithBool:self.model.android.usePackage]; }
 -(NSNumber*) s_UseAndroidWaitActivity { return [NSNumber numberWithBool:self.model.android.useWaitActivity]; }
--(NSNumber*) s_UseAppPath { return [NSNumber numberWithBool:self.model.iOS.useAppPath]; }
 -(NSNumber*) s_UseAVD { return [NSNumber numberWithBool:self.model.android.useAVD]; }
 -(NSNumber*) s_UseAVDArguments { return [NSNumber numberWithBool:self.model.android.useAVDArguments]; }
 -(NSNumber*) s_UseBackendRetries { return [NSNumber numberWithBool:self.model.iOS.useBackendRetries]; }
@@ -90,6 +90,7 @@
 -(NSNumber*) s_UseExternalAppiumPackage { return [NSNumber numberWithBool:self.model.useExternalAppiumPackage]; }
 -(NSNumber*) s_UseExternalNodeJSBinary { return [NSNumber numberWithBool:self.model.useExternalNodeJSBinary]; }
 -(NSNumber*) s_UseInstrumentsLaunchTimeout { return [NSNumber numberWithBool:self.model.iOS.useLaunchTimeout]; }
+-(NSNumber*) s_UseiOSAppPath { return [NSNumber numberWithBool:self.model.iOS.useAppPath]; }
 -(NSNumber*) s_UseiOSFullReset { return [NSNumber numberWithBool:self.model.iOS.fullReset]; }
 -(NSNumber*) s_UseiOSNoReset { return [NSNumber numberWithBool:self.model.iOS.noReset]; }
 -(NSNumber*) s_UseLanguage { return [NSNumber numberWithBool:self.model.iOS.useLanguage]; }
@@ -171,7 +172,7 @@
 -(void) setS_UseAndroidNoReset:(NSNumber *)s_UseNoReset { [self.model.android setNoReset:[s_UseNoReset boolValue]]; }
 -(void) setS_UseAndroidPackage:(NSNumber *)s_UseAndroidPackage { [self.model.android setUsePackage:[s_UseAndroidPackage boolValue]]; }
 -(void) setS_UseAndroidWaitActivity:(NSNumber *)s_UseAndroidWaitActivity { [self.model.android setUseWaitActivity:[s_UseAndroidWaitActivity boolValue]]; }
--(void) setS_UseAppPath:(NSNumber *)s_UseAppPath { [self.model.iOS setUseAppPath:[s_UseAppPath boolValue]]; }
+-(void) setS_UseAndroidAppPath:(NSNumber *)s_UseAndroidAppPath { [self.model.android setUseAppPath:[s_UseAndroidAppPath boolValue]]; }
 -(void) setS_UseAVD:(NSNumber *)s_UseAVD { [self.model.android setUseAVD:[s_UseAVD boolValue]]; }
 -(void) setS_UseAVDArguments:(NSNumber *)s_UseAVDArguments { [self.model.android setUseAVDArguments:[s_UseAVDArguments boolValue]]; }
 -(void) setS_UseBackendRetries:(NSNumber *)s_UseBackendRetries { [self.model.iOS setUseBackendRetries:[s_UseBackendRetries boolValue]]; }
@@ -183,6 +184,7 @@
 -(void) setS_UseExternalAppiumPackage:(NSNumber *)s_UseExternalAppiumPackage { [self.model setUseExternalAppiumPackage:[s_UseExternalAppiumPackage boolValue]]; }
 -(void) setS_UseExternalNodeJSBinary:(NSNumber *)s_UseExternalNodeJSBinary { [self.model setUseExternalNodeJSBinary:[s_UseExternalNodeJSBinary boolValue]]; }
 -(void) setS_UseInstrumentsLaunchTimeout:(NSNumber *)s_UseInstrumentsLaunchTimeout { [self.model.iOS setUseLaunchTimeout:[s_UseInstrumentsLaunchTimeout boolValue]]; }
+-(void) setS_UseiOSAppPath:(NSNumber *)s_UseiOSAppPath { [self.model.iOS setUseAppPath:[s_UseiOSAppPath boolValue]]; }
 -(void) setS_UseiOSFullReset:(NSNumber *)s_UseiOSFullReset { [self.model.iOS setFullReset:[s_UseiOSFullReset boolValue]]; }
 -(void) setS_UseiOSNoReset:(NSNumber *)s_UseiOSNoReset { [self.model.iOS setNoReset:[s_UseiOSNoReset boolValue]]; }
 -(void) setS_UseLanguage:(NSNumber *)s_UseLanguage { [self.model.iOS setUseLanguage:[s_UseLanguage boolValue]]; }

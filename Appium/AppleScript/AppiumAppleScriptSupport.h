@@ -71,6 +71,7 @@
 @property NSNumber *s_ShowiOSSimulatorLog;
 @property NSString *s_UDID;
 @property NSNumber *s_UseAndroidActivity;
+@property NSNumber *s_UseAndroidAppPath;
 @property NSNumber *s_UseAndroidBootstrapPort;
 @property NSNumber *s_UseAndroidBrowser;
 @property NSNumber *s_UseAndroidCoverageClass;
@@ -81,7 +82,6 @@
 @property NSNumber *s_UseAndroidNoReset;
 @property NSNumber *s_UseAndroidPackage;
 @property NSNumber *s_UseAndroidWaitActivity;
-@property NSNumber *s_UseAppPath;
 @property NSNumber *s_UseAVD;
 @property NSNumber *s_UseAVDArguments;
 @property NSNumber *s_UseBackendRetries;
@@ -93,6 +93,7 @@
 @property NSNumber *s_UseExternalAppiumPackage;
 @property NSNumber *s_UseExternalNodeJSBinary;
 @property NSNumber *s_UseInstrumentsLaunchTimeout;
+@property NSNumber *s_UseiOSAppPath;
 @property NSNumber *s_UseiOSFullReset;
 @property NSNumber *s_UseiOSNoReset;
 @property NSNumber *s_UseLanguage;
