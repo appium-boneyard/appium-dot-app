@@ -280,7 +280,7 @@
 			<property name="instruments launch timeout" code="ailt" description="amount of time in milliseconds to wait for instruments to launch" type="number">
 				<cocoa key="s_InstrumentsLaunchTimeout"/>
 			</property>
-			<property name="s_iOSAppPath" code="aiap" description="path to the iOS application to be run with appium" type="text">
+			<property name="ios app path" code="aiap" description="path to the iOS application to be run with appium" type="text">
 				<cocoa key="s_iOSAppPath"/>
 			</property>
 			<property name="ios platform version" code="aipv" description="version of ios to be used (e.g. 7.1)" type="text">
