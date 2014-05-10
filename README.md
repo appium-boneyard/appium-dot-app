@@ -110,7 +110,7 @@ Preferences can be accessed by clicking on the appropriate button in the main wi
  * **Use Remote Server Checkbox**: Used to connect Appium Inpector to a server that is already running.
  * **Check For Updates**: Appium will automatically check for updates when starting.
  * **Quiet Logging**: Appium will log out limited information.
- * **Keep Artifactes**: Appium will keep artifacts like `.trace` files around after a session has ended.
+ * **Keep Artifacts**: Appium will keep artifacts like `.trace` files around after a session has ended.
  * **Reset Application State After Each Session**: Appium will reset application state (e.g. delete user plists)
    after each session.
  * **Prelaunch Application**: Appium will prelaunch the application before beginning to listen for WebDriver
