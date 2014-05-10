@@ -100,9 +100,6 @@
 			<property name="locale" code="alof" description="locale to force" type="text">
 				<cocoa key="s_Locale"/>
 			</property>
-			<property name="use android activity" code="auaa" description="true if an android activity is supplied" type="boolean">
-				<cocoa key="s_UseAndroidActivity"/>
-			</property>
 			<property name="use android browser" code="auab" description="true if appium will use android browser" type="boolean">
 				<cocoa key="s_UseAndroidBrowser"/>
 			</property>
@@ -193,8 +190,8 @@
 			<property name="use android wait activity" code="auaw" description="true if an android wait activity is supplied" type="boolean">
 				<cocoa key="s_UseAndroidWaitActivity"/>
 			</property>
-			<property name="use app path" code="apua" description="true if the app path is being used" type="boolean">
-				<cocoa key="s_UseAppPath"/>
+			<property name="use android app path" code="uaap" description="true if the app path is being used" type="boolean">
+				<cocoa key="s_UseAndroidAppPath"/>
 			</property>
 			<property name="use bundle id" code="aubi" description="true if appium is using the bundle id" type="boolean">
 				<cocoa key="s_UseBundleID"/>
@@ -283,7 +280,7 @@
 			<property name="instruments launch timeout" code="ailt" description="amount of time in milliseconds to wait for instruments to launch" type="number">
 				<cocoa key="s_InstrumentsLaunchTimeout"/>
 			</property>
-			<property name="s_iOSAppPath" code="aiap" description="path to the iOS application to be run with appium" type="text">
+			<property name="ios app path" code="aiap" description="path to the iOS application to be run with appium" type="text">
 				<cocoa key="s_iOSAppPath"/>
 			</property>
 			<property name="ios platform version" code="aipv" description="version of ios to be used (e.g. 7.1)" type="text">
@@ -324,6 +321,9 @@
 			</property>
 			<property name="use log timestamps" code="ault" description="true if log timestamps should be used" type="boolean">
 				<cocoa key="s_UseLogTimestamps"/>
+			</property>
+			<property name="use ios app path" code="auia" description="true if the app path is being used" type="boolean">
+				<cocoa key="s_UseiOSAppPath"/>
 			</property>
 			<responds-to command="clear log">
 				<cocoa method="s_ClearLog:"/>
