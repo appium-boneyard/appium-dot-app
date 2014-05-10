@@ -76,7 +76,7 @@
                             <button toolTip="General Settings" id="nTF-89-OOV" userLabel="General Settings Button" customClass="AppiumMonitorWindowPopOverButton">
                                 <rect key="frame" x="110" y="28" width="52" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="NSPreferencesGeneral" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" id="pKj-N7-wu7">
+                                <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="settings" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" id="pKj-N7-wu7">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -88,7 +88,7 @@
                             <button toolTip="Developer Settings" id="RLj-er-2g4" userLabel="Developer Settings Button" customClass="AppiumMonitorWindowPopOverButton">
                                 <rect key="frame" x="166" y="28" width="52" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="NSUser" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" id="gsJ-aC-Tgs">
+                                <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="dev-settings" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" id="gsJ-aC-Tgs">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -100,7 +100,7 @@
                             <button toolTip="Robot Settings" id="MPC-8q-i8X" userLabel="Robot Settings Button" customClass="AppiumMonitorWindowPopOverButton">
                                 <rect key="frame" x="222" y="28" width="52" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="Automator" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" id="4rl-rw-UXu">
+                                <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="robot" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" id="4rl-rw-UXu">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -112,7 +112,7 @@
                             <button id="1306" userLabel="Inspector Button">
                                 <rect key="frame" x="436" y="28" width="52" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="NSInfo" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1307">
+                                <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="inspector" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1307">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="16" name="LucidaGrande"/>
                                 </buttonCell>
@@ -124,7 +124,7 @@
                             <button id="R6H-hG-Zs6" userLabel="Doctor Button">
                                 <rect key="frame" x="492" y="28" width="52" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="doctor" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pxc-gf-7en">
+                                <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="doctor" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pxc-gf-7en">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="16" name="LucidaGrande"/>
                                 </buttonCell>
@@ -223,7 +223,7 @@
                     <button verticalHuggingPriority="750" id="158" userLabel="Clear Log Console Button">
                         <rect key="frame" x="596" y="17" width="52" height="42"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
-                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="NSStopProgressTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="159">
+                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="trash" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="159">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -1083,12 +1083,12 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
+                                    <binding destination="-2" name="value" keyPath="model.android.useDeviceName" id="1yx-DQ-Orq"/>
                                     <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="6dW-tP-ZTa">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.android.useDeviceName" id="1yx-DQ-Orq"/>
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" id="arj-Qu-5db" userLabel="Device Name Text Field">
@@ -1100,6 +1100,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <binding destination="-2" name="value" keyPath="model.android.deviceName" id="h44-6p-0mX"/>
                                     <binding destination="-2" name="enabled2" keyPath="model.android.useDeviceName" previousBinding="mI0-H4-TkG" id="pbc-pq-68D">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -1113,7 +1114,6 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.android.deviceName" id="h44-6p-0mX"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -1903,12 +1903,12 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="g9N-o8-Xiu">
+                                    <binding destination="-2" name="value" keyPath="model.iOS.useDefaultDevice" id="70q-s4-sf2">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.iOS.useDefaultDevice" id="70q-s4-sf2">
+                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="g9N-o8-Xiu">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
@@ -1924,6 +1924,12 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </comboBoxCell>
                                 <connections>
+                                    <binding destination="-2" name="contentValues" keyPath="model.iOS.allDevices" id="fnM-jh-xjZ"/>
+                                    <binding destination="-2" name="value" keyPath="model.iOS.deviceName" previousBinding="fnM-jh-xjZ" id="8kw-qa-xHi">
+                                        <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="-2" name="enabled2" keyPath="model.iOS.useDefaultDevice" previousBinding="ATf-SN-mcO" id="5AC-AN-Whi">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -1931,12 +1937,6 @@
                                             <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                             <integer key="NSNullPlaceholder" value="-1"/>
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="-2" name="contentValues" keyPath="model.iOS.allDevices" id="fnM-jh-xjZ"/>
-                                    <binding destination="-2" name="value" keyPath="model.iOS.deviceName" previousBinding="fnM-jh-xjZ" id="8kw-qa-xHi">
-                                        <dictionary key="options">
-                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                         </dictionary>
                                     </binding>
                                     <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="ATf-SN-mcO">
@@ -3711,13 +3711,13 @@
         </customView>
     </objects>
     <resources>
-        <image name="Automator" width="32" height="32"/>
-        <image name="NSInfo" width="32" height="32"/>
-        <image name="NSPreferencesGeneral" width="32" height="32"/>
-        <image name="NSStopProgressTemplate" width="11" height="11"/>
-        <image name="NSUser" width="32" height="32"/>
-        <image name="android" width="256" height="256"/>
-        <image name="apple" width="256" height="256"/>
-        <image name="doctor" width="128" height="128"/>
+        <image name="android" width="137" height="137"/>
+        <image name="apple" width="137" height="137"/>
+        <image name="dev-settings" width="144" height="144"/>
+        <image name="doctor" width="20.803611755371094" height="20.803611755371094"/>
+        <image name="inspector" width="173" height="173"/>
+        <image name="robot" width="20.803611755371094" height="20.803611755371094"/>
+        <image name="settings" width="155" height="155"/>
+        <image name="trash" width="144" height="144"/>
     </resources>
 </document>
