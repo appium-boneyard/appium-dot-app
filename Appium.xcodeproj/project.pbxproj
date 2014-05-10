@@ -16,6 +16,13 @@
 		36442F3E19081ACA00C2AED7 /* AppiumAndroidSettingsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36442F3D19081ACA00C2AED7 /* AppiumAndroidSettingsModel.m */; };
 		36442F4319081B3A00C2AED7 /* AppiumiOSSettingsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36442F4219081B3A00C2AED7 /* AppiumiOSSettingsModel.m */; };
 		364C076816E94B1A0093011E /* AppiumMenuBarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 364C076716E94B1A0093011E /* AppiumMenuBarManager.m */; };
+		364EED3B191EDE6F00AB4439 /* dev-settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 364EED3A191EDE6F00AB4439 /* dev-settings.png */; };
+		364EED47191EDF6C00AB4439 /* android.png in Resources */ = {isa = PBXBuildFile; fileRef = 364EED46191EDF6C00AB4439 /* android.png */; };
+		364EED49191EDF9100AB4439 /* apple.png in Resources */ = {isa = PBXBuildFile; fileRef = 364EED48191EDF9100AB4439 /* apple.png */; };
+		364EED4F191EDFFF00AB4439 /* inspector.png in Resources */ = {isa = PBXBuildFile; fileRef = 364EED4E191EDFFF00AB4439 /* inspector.png */; };
+		364EED53191EE04A00AB4439 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 364EED52191EE04A00AB4439 /* settings.png */; };
+		364EED55191EE07000AB4439 /* trash.png in Resources */ = {isa = PBXBuildFile; fileRef = 364EED54191EE07000AB4439 /* trash.png */; };
+		364EED59191EE27000AB4439 /* robot.png in Resources */ = {isa = PBXBuildFile; fileRef = 364EED58191EE27000AB4439 /* robot.png */; };
 		3652B34416E4287600BDE3E4 /* AppiumLaunchButtonTextTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3652B34316E4287600BDE3E4 /* AppiumLaunchButtonTextTransformer.m */; };
 		36580CB217A4543A004C2D94 /* NSString+TrimLeadingWhitespace.m in Sources */ = {isa = PBXBuildFile; fileRef = 36580CB117A4543A004C2D94 /* NSString+TrimLeadingWhitespace.m */; };
 		365A2D7E16E3C847007BADF9 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 365A2D7D16E3C847007BADF9 /* Utility.m */; };
@@ -64,11 +71,9 @@
 		36ADA116172093D200D4287B /* AppiumCodeMakerPreciseTapPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36ADA115172093D200D4287B /* AppiumCodeMakerPreciseTapPopoverViewController.m */; };
 		36ADA119172098FA00D4287B /* AppiumCodeMakerActionPreciseTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 36ADA118172098FA00D4287B /* AppiumCodeMakerActionPreciseTap.m */; };
 		36B2F18616E6379C008764E0 /* defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 36B2F18516E6379C008764E0 /* defaults.plist */; };
-		36B9017D19071DEF00AE40E8 /* android.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B9017C19071DEF00AE40E8 /* android.png */; };
-		36B9018319071F0000AE40E8 /* apple.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B9018219071F0000AE40E8 /* apple.png */; };
-		36B901851907208F00AE40E8 /* Automator.icns in Resources */ = {isa = PBXBuildFile; fileRef = 36B901841907208F00AE40E8 /* Automator.icns */; };
 		36B901891907221000AE40E8 /* AppiumMonitorWindowPopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B901881907221000AE40E8 /* AppiumMonitorWindowPopOverViewController.m */; };
 		36BA17BB16E81BF30041DD86 /* AppiumAppPathTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BA17BA16E81BF30041DD86 /* AppiumAppPathTransformer.m */; };
+		36BA3A1D191EE417007FA51B /* doctor.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BA3A1C191EE417007FA51B /* doctor.png */; };
 		36BBC4CE1737334C006A83D7 /* AppiumCodeMakerObjectiveCPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BBC4CD1737334C006A83D7 /* AppiumCodeMakerObjectiveCPlugin.m */; };
 		36BF1D66171B434C00C2CF01 /* AppiumCodeMakerActionTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BF1D65171B434C00C2CF01 /* AppiumCodeMakerActionTap.m */; };
 		36BF1D69171B4C1000C2CF01 /* AppiumCodeMakerActionSendKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BF1D68171B4C1000C2CF01 /* AppiumCodeMakerActionSendKeys.m */; };
@@ -92,7 +97,6 @@
 		36CEB7EB16E3662E00B5B100 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36CEB7CB16E3662E00B5B100 /* Cocoa.framework */; };
 		36CEB7F316E3662E00B5B100 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 36CEB7F116E3662E00B5B100 /* InfoPlist.strings */; };
 		36D17E2916F144E600DC5797 /* Upgrade.applescript in Resources */ = {isa = PBXBuildFile; fileRef = 36D17E2816F144E600DC5797 /* Upgrade.applescript */; };
-		36EFD44B1912AF2E0069FC1C /* doctor.png in Resources */ = {isa = PBXBuildFile; fileRef = 36EFD44A1912AF2E0069FC1C /* doctor.png */; };
 		36F5FA2C16F4E87F007751D6 /* Selenium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F5FA2B16F4E87E007751D6 /* Selenium.framework */; };
 		36FA922C174037FD00699A6B /* AppiumCodeMakerActionScrollTo.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA922B174037FD00699A6B /* AppiumCodeMakerActionScrollTo.m */; };
 		36FF07AD171743AC009ED9E2 /* AppiumCodeMakerLocator.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF07AC171743AC009ED9E2 /* AppiumCodeMakerLocator.m */; };
@@ -173,6 +177,13 @@
 		36442F4219081B3A00C2AED7 /* AppiumiOSSettingsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumiOSSettingsModel.m; sourceTree = "<group>"; };
 		364C076616E94B1A0093011E /* AppiumMenuBarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumMenuBarManager.h; sourceTree = "<group>"; };
 		364C076716E94B1A0093011E /* AppiumMenuBarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumMenuBarManager.m; sourceTree = "<group>"; };
+		364EED3A191EDE6F00AB4439 /* dev-settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dev-settings.png"; sourceTree = "<group>"; };
+		364EED46191EDF6C00AB4439 /* android.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = android.png; sourceTree = "<group>"; };
+		364EED48191EDF9100AB4439 /* apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = apple.png; sourceTree = "<group>"; };
+		364EED4E191EDFFF00AB4439 /* inspector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inspector.png; sourceTree = "<group>"; };
+		364EED52191EE04A00AB4439 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		364EED54191EE07000AB4439 /* trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash.png; sourceTree = "<group>"; };
+		364EED58191EE27000AB4439 /* robot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = robot.png; sourceTree = "<group>"; };
 		3652B34216E4287600BDE3E4 /* AppiumLaunchButtonTextTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumLaunchButtonTextTransformer.h; sourceTree = "<group>"; };
 		3652B34316E4287600BDE3E4 /* AppiumLaunchButtonTextTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumLaunchButtonTextTransformer.m; sourceTree = "<group>"; };
 		36580CB017A4543A004C2D94 /* NSString+TrimLeadingWhitespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TrimLeadingWhitespace.h"; path = "Utility/NSString+TrimLeadingWhitespace.h"; sourceTree = "<group>"; };
@@ -261,13 +272,11 @@
 		36ADA117172098FA00D4287B /* AppiumCodeMakerActionPreciseTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerActionPreciseTap.h; sourceTree = "<group>"; };
 		36ADA118172098FA00D4287B /* AppiumCodeMakerActionPreciseTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerActionPreciseTap.m; sourceTree = "<group>"; };
 		36B2F18516E6379C008764E0 /* defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = defaults.plist; sourceTree = "<group>"; };
-		36B9017C19071DEF00AE40E8 /* android.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = android.png; sourceTree = "<group>"; };
-		36B9018219071F0000AE40E8 /* apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = apple.png; sourceTree = "<group>"; };
-		36B901841907208F00AE40E8 /* Automator.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Automator.icns; sourceTree = "<group>"; };
 		36B901871907221000AE40E8 /* AppiumMonitorWindowPopOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumMonitorWindowPopOverViewController.h; sourceTree = "<group>"; };
 		36B901881907221000AE40E8 /* AppiumMonitorWindowPopOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumMonitorWindowPopOverViewController.m; sourceTree = "<group>"; };
 		36BA17B916E81BF30041DD86 /* AppiumAppPathTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumAppPathTransformer.h; sourceTree = "<group>"; };
 		36BA17BA16E81BF30041DD86 /* AppiumAppPathTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumAppPathTransformer.m; sourceTree = "<group>"; };
+		36BA3A1C191EE417007FA51B /* doctor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doctor.png; sourceTree = "<group>"; };
 		36BBC4CC1737334C006A83D7 /* AppiumCodeMakerObjectiveCPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerObjectiveCPlugin.h; path = Plugins/AppiumCodeMakerObjectiveCPlugin.h; sourceTree = "<group>"; };
 		36BBC4CD1737334C006A83D7 /* AppiumCodeMakerObjectiveCPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerObjectiveCPlugin.m; path = Plugins/AppiumCodeMakerObjectiveCPlugin.m; sourceTree = "<group>"; };
 		36BF1D64171B434C00C2CF01 /* AppiumCodeMakerActionTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerActionTap.h; sourceTree = "<group>"; };
@@ -314,7 +323,6 @@
 		36CEB7F416E3662E00B5B100 /* AppiumTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppiumTests.h; sourceTree = "<group>"; };
 		36CEB7F516E3662E00B5B100 /* AppiumTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppiumTests.m; sourceTree = "<group>"; };
 		36D17E2816F144E600DC5797 /* Upgrade.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = Upgrade.applescript; sourceTree = "<group>"; };
-		36EFD44A1912AF2E0069FC1C /* doctor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doctor.png; sourceTree = "<group>"; };
 		36F5FA2B16F4E87E007751D6 /* Selenium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Selenium.framework; path = Frameworks/Selenium.framework; sourceTree = "<group>"; };
 		36FA922A174037FD00699A6B /* AppiumCodeMakerActionScrollTo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerActionScrollTo.h; sourceTree = "<group>"; };
 		36FA922B174037FD00699A6B /* AppiumCodeMakerActionScrollTo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerActionScrollTo.m; sourceTree = "<group>"; };
@@ -473,6 +481,21 @@
 				36FF07AC171743AC009ED9E2 /* AppiumCodeMakerLocator.m */,
 			);
 			path = CodeMaker;
+			sourceTree = "<group>";
+		};
+		364EED37191EDDB300AB4439 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				364EED46191EDF6C00AB4439 /* android.png */,
+				364EED48191EDF9100AB4439 /* apple.png */,
+				364EED3A191EDE6F00AB4439 /* dev-settings.png */,
+				36BA3A1C191EE417007FA51B /* doctor.png */,
+				364EED4E191EDFFF00AB4439 /* inspector.png */,
+				364EED58191EE27000AB4439 /* robot.png */,
+				364EED52191EE04A00AB4439 /* settings.png */,
+				364EED54191EE07000AB4439 /* trash.png */,
+			);
+			name = icons;
 			sourceTree = "<group>";
 		};
 		3652B34116E4285900BDE3E4 /* NSValueTransformers */ = {
@@ -749,14 +772,11 @@
 		36CEB7D216E3662E00B5B100 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				36B901841907208F00AE40E8 /* Automator.icns */,
-				36B9018219071F0000AE40E8 /* apple.png */,
-				36B9017C19071DEF00AE40E8 /* android.png */,
+				364EED37191EDDB300AB4439 /* icons */,
 				36CEB7D316E3662E00B5B100 /* Appium-Info.plist */,
 				36CEB7D916E3662E00B5B100 /* Appium-Prefix.pch */,
 				36CEB7DA16E3662E00B5B100 /* Credits.rtf */,
 				36B2F18516E6379C008764E0 /* defaults.plist */,
-				36EFD44A1912AF2E0069FC1C /* doctor.png */,
 				36A765A516F01C7C002A7D6A /* appium.icns */,
 				36CEB7D416E3662E00B5B100 /* InfoPlist.strings */,
 				36CEB7D716E3662E00B5B100 /* main.m */,
@@ -891,19 +911,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				36CEB7D616E3662E00B5B100 /* InfoPlist.strings in Resources */,
-				36B901851907208F00AE40E8 /* Automator.icns in Resources */,
 				36CEB7DC16E3662E00B5B100 /* Credits.rtf in Resources */,
+				364EED47191EDF6C00AB4439 /* android.png in Resources */,
+				364EED49191EDF9100AB4439 /* apple.png in Resources */,
+				364EED4F191EDFFF00AB4439 /* inspector.png in Resources */,
+				364EED53191EE04A00AB4439 /* settings.png in Resources */,
 				36CEB7E216E3662E00B5B100 /* MainMenu.xib in Resources */,
-				36B9017D19071DEF00AE40E8 /* android.png in Resources */,
+				364EED55191EE07000AB4439 /* trash.png in Resources */,
+				36BA3A1D191EE417007FA51B /* doctor.png in Resources */,
 				3695CAB116E3FCAE003697A9 /* AppiumInstallationWindow.xib in Resources */,
 				36AA8D7016E40B28007472C1 /* AppiumMonitorWindow.xib in Resources */,
 				3612E5F816E5B6520050CF0A /* appium.sdef in Resources */,
+				364EED59191EE27000AB4439 /* robot.png in Resources */,
 				36B2F18616E6379C008764E0 /* defaults.plist in Resources */,
 				36A765A616F01C7C002A7D6A /* appium.icns in Resources */,
-				36EFD44B1912AF2E0069FC1C /* doctor.png in Resources */,
 				36CD44EF16F0D5C300194193 /* AppiumInspectorWindow.xib in Resources */,
-				36B9018319071F0000AE40E8 /* apple.png in Resources */,
 				36D17E2916F144E600DC5797 /* Upgrade.applescript in Resources */,
+				364EED3B191EDE6F00AB4439 /* dev-settings.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
