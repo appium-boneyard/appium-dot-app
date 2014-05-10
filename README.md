@@ -46,7 +46,7 @@ To install:
    session is complete.
  * **No Reset**: Prevent the device from being reset.
 * **Launch Device**
- * **Launch AVD**: Name of the avd to launch.
+ * **Launch AVD**: Name of the AVD to launch.
  * **Device Ready Timeout**: Timeout in seconds while waiting for device to become ready.
  * **Arguments**: Additional emulator arguments to launch the avd.
 * **Capabilities**
@@ -106,11 +106,11 @@ Preferences can be accessed by clicking on the appropriate button in the main wi
 
 * **Server**
  * **Server Address**: The IP address on which you want the Appium server to run (127.0.0.1 is localhost).
- * **Port**: The port on which the Appium server will listen for WebDriver commands (4723 is the default),
+ * **Port**: The port on which the Appium server will listen for WebDriver commands (4723 is the default).
  * **Use Remote Server Checkbox**: Used to connect Appium Inpector to a server that is already running.
- * **Check For Updates**: Appium will automatically check for updates upon boot.
+ * **Check For Updates**: Appium will automatically check for updates when starting.
  * **Quiet Logging**: Appium will log out limited information.
- * **Keep Artifactes**: Appium will keep artifacts like .trace files around after a session has ended.
+ * **Keep Artifactes**: Appium will keep artifacts like `.trace` files around after a session has ended.
  * **Reset Application State After Each Session**: Appium will reset application state (e.g. delete user plists)
    after each session.
  * **Prelaunch Application**: Appium will prelaunch the application before beginning to listen for WebDriver
@@ -146,7 +146,7 @@ Appium must be running with an app open for inspector to work. Otherwise, it wil
 
 * **Show Invisible Filter**: Elements which are not visible will be displayed in the DOM 3-column-view.
 * **Show Disabled Filter**: Elements which are not enabled will be displayed in the DOM 3-column-view.
-* **Record Button**: Opens the recording Panel and starts recording actions performed using controls in the Appium.
+* **Record Button**: Opens the recording Panel and starts recording actions performed using controls in the Appium
   Inspector.
 * **Refresh Button**: Refreshes the DOM 3-column view and the screenshot.
 * **Screenshot Area**: Displays the last screenshot taken for the app. You can click this area to select elements
