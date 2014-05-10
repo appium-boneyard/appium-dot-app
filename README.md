@@ -1,5 +1,6 @@
 An OS X GUI for Appium
 =======================
+[![Build Status](https://travis-ci.org/appium/appium-dot-app.svg?branch=master)](https://travis-ci.org/appium/appium-dot-app)
 
 To install:
 
