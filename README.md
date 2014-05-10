@@ -2,6 +2,9 @@ An OS X GUI for Appium
 =======================
 [![Build Status](https://travis-ci.org/appium/appium-dot-app.svg?branch=master)](https://travis-ci.org/appium/appium-dot-app)
 
+If you are new to Appium then please see the [Getting started guide](http://appium.io/getting-started.html) for more information
+about the project.
+
 To install:
 
 1. Download the [latest version](https://bitbucket.org/appium/appium.app/downloads/appium.dmg) from [Appium.io](http://appium.io/).
