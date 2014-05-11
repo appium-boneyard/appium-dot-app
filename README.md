@@ -22,13 +22,13 @@ To install:
 * **Settings Button**: Displays the General settings.
 * **Developer Button**: Displays the Developer settings.
 * **Robot Button**: Displays the Robot settings.
-* **Inspector (i) Button**: Launches the Appium Inspector.
-* **Doctor (+) Button**: Launches the Appium doctor.
+* **Inspector Button**: Launches the Appium Inspector.
+* **Doctor Button**: Launches the Appium doctor.
 * **Launch / Stop Button**: Launches or stops the Appium server.
  When the checkbox is checked this will be provided to the server so that all connections will launch this application.
  You only need to supply a path here if you are using the pre-launch preference or if you do not want to supply it as
  part of the capabilities object when you connect.
-* **Clear (x) Button**: Clears the display of all log data.
+* **Clear Button**: Clears the display of all log data.
 
 ### Android Settings
 
@@ -138,7 +138,7 @@ Preferences can be accessed by clicking on the appropriate button in the main wi
 
 ## Inspector / Recorder
 
-Inspector can be accessed by clicking the blue "i" next to the launch button once the Appium server has launched.
+Inspector can be accessed by clicking the magnifying glass next to the launch button once the Appium server has launched.
 Appium must be running with an app open for inspector to work. Otherwise, it will not work.
 ![Appium Inspector](/README-files/images/inspector.png "Appium Inspector")
 
