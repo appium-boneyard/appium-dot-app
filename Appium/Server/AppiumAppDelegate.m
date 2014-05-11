@@ -137,6 +137,14 @@
 	[_updater performSelectorInBackground:@selector(checkForUpdates:) withObject:sender];
 }
 
+-(IBAction) resetPreferences:(id)sender {
+	[_model reset];
+}
+
+-(IBAction) showHelp:(id)sender {
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://appium.io/documentation.html?lang=en"]];
+}
+
 -(void) restart
 {
     NSTask *restartTask = [NSTask new];
