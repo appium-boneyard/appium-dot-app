@@ -194,7 +194,7 @@
                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="5" userLabel="Log Console Text View">
                         <rect key="frame" x="20" y="64" width="626" height="426"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <clipView key="contentView" id="LtR-VR-wie">
+                        <clipView key="contentView" id="LtR-VR-wie" customClass="AppiumLogClipView">
                             <rect key="frame" x="1" y="1" width="624" height="424"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>

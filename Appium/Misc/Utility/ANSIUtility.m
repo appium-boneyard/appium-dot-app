@@ -75,7 +75,9 @@
         [dict setObject:[NSColor whiteColor] forKey:NSForegroundColorAttributeName];
     }
     if(nil == [dict objectForKey:NSBackgroundColorAttributeName] || overwrite){
-        [dict setObject:[NSColor blackColor] forKey:NSBackgroundColorAttributeName];
+        //[dict setObject:[NSColor blackColor] forKey:NSBackgroundColorAttributeName];
+		// use clear instead so it doesn't block the background image
+		[dict setObject:[NSColor clearColor] forKey:NSBackgroundColorAttributeName];
     }
     if(nil == [dict objectForKey:NSFontAttributeName] || overwrite){
         [dict setObject:[NSFont fontWithName:@"Menlo" size:kFontSize] forKey:NSFontAttributeName];
@@ -128,7 +130,8 @@
             return [NSColor whiteColor];
             break;
         default:
-            return [NSColor blackColor];
+			// use instead of black so the background is draw correctly
+            return [NSColor clearColor];
             break;
     }
 }

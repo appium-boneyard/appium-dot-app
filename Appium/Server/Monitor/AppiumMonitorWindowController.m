@@ -7,7 +7,6 @@
 //
 
 #import "AppiumMonitorWindowController.h"
-
 #import "AppiumAppDelegate.h"
 #import "ANSIUtility.h"
 #import "Utility.h"
@@ -36,6 +35,10 @@
 {
     [super windowDidLoad];
 	
+	// set background to clear
+	[_logTextView setBackgroundColor:[NSColor clearColor]];
+	
+	// launch the menu bar icon
 	_menuBarManager = [AppiumMenuBarManager new];
 	[[self model] addObserver:_menuBarManager forKeyPath:@"isServerRunning" options:NSKeyValueObservingOptionNew context:NULL];
 
