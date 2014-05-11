@@ -37,9 +37,9 @@
 	<key>Android Platform Name</key>
 	<string>Android</string>
 	<key>Android Platform Version</key>
-	<string>4.4</string>
+	<string>4.4 KitKat (API Level 19)</string>
 	<key>Android Selendroid port</key>
-	<integer>8080</integer>
+	<real>8080</real>
 	<key>Android Use Activity</key>
 	<false/>
 	<key>Android Use App Path</key>
@@ -145,7 +145,7 @@
 	<key>iOS Use Custom Trace Template</key>
 	<false/>
 	<key>iOS Use Default Device</key>
-	<false/>
+	<true/>
 	<key>iOS Use Language</key>
 	<false/>
 	<key>iOS Use Launch Timeout</key>

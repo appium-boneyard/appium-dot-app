@@ -69,5 +69,6 @@ typedef enum platformTypes
 -(BOOL) killServer;
 -(BOOL) startServer;
 -(BOOL) startDoctor;
+-(void) reset;
 
 @end

@@ -291,4 +291,9 @@
 	}
 }
 
+-(void) s_ResetPreferences:(NSScriptCommand *)command
+{
+	[self.model reset];
+}
+
 @end

@@ -97,6 +97,7 @@
 		36CEB7EB16E3662E00B5B100 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36CEB7CB16E3662E00B5B100 /* Cocoa.framework */; };
 		36CEB7F316E3662E00B5B100 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 36CEB7F116E3662E00B5B100 /* InfoPlist.strings */; };
 		36D17E2916F144E600DC5797 /* Upgrade.applescript in Resources */ = {isa = PBXBuildFile; fileRef = 36D17E2816F144E600DC5797 /* Upgrade.applescript */; };
+		36D66777191FC8CE0088C110 /* NSObject+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D66776191FC8CE0088C110 /* NSObject+Properties.m */; };
 		36F5FA2C16F4E87F007751D6 /* Selenium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F5FA2B16F4E87E007751D6 /* Selenium.framework */; };
 		36FA922C174037FD00699A6B /* AppiumCodeMakerActionScrollTo.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA922B174037FD00699A6B /* AppiumCodeMakerActionScrollTo.m */; };
 		36FF07AD171743AC009ED9E2 /* AppiumCodeMakerLocator.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF07AC171743AC009ED9E2 /* AppiumCodeMakerLocator.m */; };
@@ -323,6 +324,8 @@
 		36CEB7F416E3662E00B5B100 /* AppiumTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppiumTests.h; sourceTree = "<group>"; };
 		36CEB7F516E3662E00B5B100 /* AppiumTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppiumTests.m; sourceTree = "<group>"; };
 		36D17E2816F144E600DC5797 /* Upgrade.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = Upgrade.applescript; sourceTree = "<group>"; };
+		36D66775191FC8CE0088C110 /* NSObject+Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+Properties.h"; path = "Utility/NSObject+Properties.h"; sourceTree = "<group>"; };
+		36D66776191FC8CE0088C110 /* NSObject+Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Properties.m"; path = "Utility/NSObject+Properties.m"; sourceTree = "<group>"; };
 		36F5FA2B16F4E87E007751D6 /* Selenium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Selenium.framework; path = Frameworks/Selenium.framework; sourceTree = "<group>"; };
 		36FA922A174037FD00699A6B /* AppiumCodeMakerActionScrollTo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerActionScrollTo.h; sourceTree = "<group>"; };
 		36FA922B174037FD00699A6B /* AppiumCodeMakerActionScrollTo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerActionScrollTo.m; sourceTree = "<group>"; };
@@ -628,6 +631,8 @@
 				365A2D7D16E3C847007BADF9 /* Utility.m */,
 				36FF20D41900222400008A7D /* XMLReader.h */,
 				36FF20D51900222400008A7D /* XMLReader.m */,
+				36D66775191FC8CE0088C110 /* NSObject+Properties.h */,
+				36D66776191FC8CE0088C110 /* NSObject+Properties.m */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -1020,6 +1025,7 @@
 				36BF83771738787E00FF4234 /* AppiumCodeMakerActionShake.m in Sources */,
 				3668307E184A5DC000C1A91D /* SocketIOTransportXHR.m in Sources */,
 				3668307C184A5DC000C1A91D /* SocketIOPacket.m in Sources */,
+				36D66777191FC8CE0088C110 /* NSObject+Properties.m in Sources */,
 				3668307A184A5DC000C1A91D /* SocketIO.m in Sources */,
 				3668306E184A5DB500C1A91D /* SBJsonWriter.m in Sources */,
 				366DFB75173D552800B451A6 /* AppiumInspectorWindowAppleScript.m in Sources */,
