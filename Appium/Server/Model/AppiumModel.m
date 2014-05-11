@@ -15,6 +15,7 @@
 #import "SBJsonParser.h"
 #import "SocketIOPacket.h"
 #import "Utility.h"
+#import "NSObject+Properties.h"
 
 #pragma  mark - Model
 
@@ -620,6 +621,36 @@ BOOL _isServerListening;
     NSLog(@"Error: %@", err);
     self.doctorSocket = nil;
     [self.serverTask terminate];
+}
+
+-(void) reset
+{
+	NSString *prefsPath = [[NSBundle mainBundle] pathForResource:@"defaults" ofType:@"plist"];
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	
+	if ([[NSFileManager defaultManager] fileExistsAtPath:prefsPath]) {
+
+		// grab values that should not be reset
+		BOOL hasAuthorizediOS = self.iOS.authorized;
+		BOOL checkForUodates = self.checkForUpdates;
+		
+		// read the defaults.plist file and reset all the values
+		NSDictionary *defaultPrefs = [[NSDictionary alloc] initWithContentsOfFile:prefsPath];
+		for(NSString *key in defaultPrefs) {
+			NSObject *value = [defaultPrefs objectForKey:key];
+			[defaults setObject:value forKey:key];
+		}
+		
+		// set back values that should not be reset
+		[self.iOS setAuthorized:hasAuthorizediOS];
+		[self setCheckForUpdates:checkForUodates];
+	}
+	
+	// update the bindings through notifications
+	for (NSString *propName in [self allPropertyNames]) {
+		[self willChangeValueForKey:propName];
+		[self didChangeValueForKey:propName];
+	}
 }
 
 @end

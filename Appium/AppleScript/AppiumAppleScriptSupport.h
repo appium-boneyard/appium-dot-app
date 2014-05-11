@@ -122,5 +122,6 @@
 -(NSNumber*) s_StartServer: (NSScriptCommand*)command;
 -(NSNumber*) s_StopServer: (NSScriptCommand*)command;
 -(void) s_UsePlatform: (NSScriptCommand*)command;
+-(void) s_ResetPreferences: (NSScriptCommand*)command;
 
 @end

@@ -343,6 +343,9 @@
 			<responds-to command="use platform">
 				<cocoa method="s_UsePlatform:"/>
 			</responds-to>
+			<responds-to command="reset preferences">
+				<cocoa method="s_ResetPreferences:"/>
+			</responds-to>
 		</class>
 		<class name="inspector window controller" code="caiw" description="Appium Inspector Window">
 			<cocoa class="AppiumInspectorWindowController"/>
@@ -366,5 +369,6 @@
 		<command name="use platform" code="appmusep" description="sets the platform">
 			<direct-parameter description="platform to use" type="platform"/>
 		</command>
+		<command name="reset preferences" code="appmrstp" description="resets the preferences to their default values"/>
 	</suite>
 </dictionary>
