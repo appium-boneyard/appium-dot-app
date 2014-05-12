@@ -99,7 +99,6 @@
 		36D17E2916F144E600DC5797 /* Upgrade.applescript in Resources */ = {isa = PBXBuildFile; fileRef = 36D17E2816F144E600DC5797 /* Upgrade.applescript */; };
 		36D66777191FC8CE0088C110 /* NSObject+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D66776191FC8CE0088C110 /* NSObject+Properties.m */; };
 		36F1DE43191FE67300FC65AC /* logTextViewBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 36F1DE42191FE67300FC65AC /* logTextViewBg.png */; };
-		36F1DE46191FEB7600FC65AC /* AppiumLogClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F1DE45191FEB7600FC65AC /* AppiumLogClipView.m */; };
 		36F5FA2C16F4E87F007751D6 /* Selenium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F5FA2B16F4E87E007751D6 /* Selenium.framework */; };
 		36FA922C174037FD00699A6B /* AppiumCodeMakerActionScrollTo.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA922B174037FD00699A6B /* AppiumCodeMakerActionScrollTo.m */; };
 		36FF07AD171743AC009ED9E2 /* AppiumCodeMakerLocator.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF07AC171743AC009ED9E2 /* AppiumCodeMakerLocator.m */; };
@@ -329,8 +328,6 @@
 		36D66775191FC8CE0088C110 /* NSObject+Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+Properties.h"; path = "Utility/NSObject+Properties.h"; sourceTree = "<group>"; };
 		36D66776191FC8CE0088C110 /* NSObject+Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Properties.m"; path = "Utility/NSObject+Properties.m"; sourceTree = "<group>"; };
 		36F1DE42191FE67300FC65AC /* logTextViewBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logTextViewBg.png; sourceTree = "<group>"; };
-		36F1DE44191FEB7600FC65AC /* AppiumLogClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumLogClipView.h; sourceTree = "<group>"; };
-		36F1DE45191FEB7600FC65AC /* AppiumLogClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumLogClipView.m; sourceTree = "<group>"; };
 		36F5FA2B16F4E87E007751D6 /* Selenium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Selenium.framework; path = Frameworks/Selenium.framework; sourceTree = "<group>"; };
 		36FA922A174037FD00699A6B /* AppiumCodeMakerActionScrollTo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerActionScrollTo.h; sourceTree = "<group>"; };
 		36FA922B174037FD00699A6B /* AppiumCodeMakerActionScrollTo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerActionScrollTo.m; sourceTree = "<group>"; };
@@ -408,8 +405,6 @@
 		3614B16D1719F35400A72D99 /* Monitor */ = {
 			isa = PBXGroup;
 			children = (
-				36F1DE44191FEB7600FC65AC /* AppiumLogClipView.h */,
-				36F1DE45191FEB7600FC65AC /* AppiumLogClipView.m */,
 				36B90186190721F000AE40E8 /* PopOvers */,
 				36AA8D6C16E40B28007472C1 /* AppiumMonitorWindowController.h */,
 				36AA8D6D16E40B28007472C1 /* AppiumMonitorWindowController.m */,
@@ -1040,7 +1035,6 @@
 				366DFB75173D552800B451A6 /* AppiumInspectorWindowAppleScript.m in Sources */,
 				36A0138B19076BDB00952D9B /* AppiumMonitorWindowPopOverButton.m in Sources */,
 				36683085184A5DCE00C1A91D /* SRWebSocket.m in Sources */,
-				36F1DE46191FEB7600FC65AC /* AppiumLogClipView.m in Sources */,
 				36FA922C174037FD00699A6B /* AppiumCodeMakerActionScrollTo.m in Sources */,
 				36580CB217A4543A004C2D94 /* NSString+TrimLeadingWhitespace.m in Sources */,
 				36683068184A5DB500C1A91D /* SBJsonStreamParserAdapter.m in Sources */,
