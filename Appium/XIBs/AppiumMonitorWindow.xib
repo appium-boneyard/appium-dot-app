@@ -109,7 +109,7 @@
                                     <outlet property="popoverController" destination="Vql-EG-AP5" id="J7l-2g-KR9"/>
                                 </connections>
                             </button>
-                            <button id="1306" userLabel="Inspector Button">
+                            <button toolTip="Inspector" id="1306" userLabel="Inspector Button">
                                 <rect key="frame" x="436" y="28" width="52" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="inspector" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1307">
@@ -121,7 +121,7 @@
                                     <action selector="displayInspector:" target="-2" id="1379"/>
                                 </connections>
                             </button>
-                            <button id="R6H-hG-Zs6" userLabel="Doctor Button">
+                            <button toolTip="Doctor" id="R6H-hG-Zs6" userLabel="Doctor Button">
                                 <rect key="frame" x="492" y="28" width="52" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="doctor" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pxc-gf-7en">
@@ -133,7 +133,7 @@
                                     <action selector="doctorButtonClicked:" target="-2" id="hyc-fO-4cT"/>
                                 </connections>
                             </button>
-                            <button id="276" userLabel="Launch Button">
+                            <button toolTip="Launch" id="276" userLabel="Launch Button">
                                 <rect key="frame" x="548" y="28" width="80" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" title="Launch" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="277">
@@ -220,7 +220,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <button verticalHuggingPriority="750" id="158" userLabel="Clear Log Console Button">
+                    <button toolTip="Clear Log" verticalHuggingPriority="750" id="158" userLabel="Clear Log Console Button">
                         <rect key="frame" x="596" y="17" width="52" height="42"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                         <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="trash" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="159">
