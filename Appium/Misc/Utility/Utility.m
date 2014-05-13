@@ -171,23 +171,4 @@ popen2(const char *command, int *infp, int *outfp)
     return pid;
 }
 
-+(NSString*) pathToVBoxManageBinary
-{
-	NSTask *vBoxManageTask = [NSTask new];
-    [vBoxManageTask setLaunchPath:@"/bin/bash"];
-    [vBoxManageTask setArguments: [NSArray arrayWithObjects: @"-l",
-									@"-c", @"which vboxmanage", nil]];
-	NSPipe *pipe = [NSPipe pipe];
-    [vBoxManageTask setStandardOutput:pipe];
-	[vBoxManageTask setStandardError:[NSPipe pipe]];
-    [vBoxManageTask setStandardInput:[NSPipe pipe]];
-    [vBoxManageTask launch];
-	[vBoxManageTask waitUntilExit];
-	NSFileHandle *stdOutHandle = [pipe fileHandleForReading];
-    NSData *data = [stdOutHandle readDataToEndOfFile];
-	[stdOutHandle closeFile];
-    NSString *vBoxManagePath = [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    return vBoxManagePath;
-}
-
 @end
