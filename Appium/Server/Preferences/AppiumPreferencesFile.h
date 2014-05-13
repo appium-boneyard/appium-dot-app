@@ -1,3 +1,5 @@
+#define DEFAULTS [NSUserDefaults standardUserDefaults]
+
 #define APPIUM_PLIST_ANDROID_ACTIVITY @"Android Activity"
 #define APPIUM_PLIST_ANDROID_APP_PATH @"Android App Path"
 #define APPIUM_PLIST_ANDROID_AUTOMATION_NAME @"Android Automation Name"

@@ -10,17 +10,16 @@
 #import "AppiumPreferencesFile.h"
 #import "Utility.h"
 
-NSUserDefaults* _defaults;
-
 @implementation AppiumiOSSettingsModel
 
--(id) initWithDefaults:(NSUserDefaults*)defaults {
-	self = [super init];
-    if (self) {
-		// initialize
-		_defaults = defaults;
-	}
-	return self;
+-(NSScriptObjectSpecifier*) objectSpecifier
+{
+	NSScriptClassDescription *containerClassDesc = (NSScriptClassDescription *)
+    [NSScriptClassDescription classDescriptionForClass:[NSApp class]];
+	return [[NSNameSpecifier alloc]
+			initWithContainerClassDescription:containerClassDesc
+			containerSpecifier:nil key:@"iOS"
+			name:@"ios settings"];
 }
 
 #pragma mark - Properties
@@ -52,101 +51,106 @@ NSUserDefaults* _defaults;
 	return [NSArray arrayWithObjects:@"7.1.1", @"7.1", @"7.0.6", @"7.0.5", @"7.0.4", @"7.0.3", @"7.0.2", @"7.0.1", @"7.0", @"6.1", @"6.0", nil];
 }
 
--(NSString*) appPath { return [_defaults stringForKey:APPIUM_PLIST_IOS_APP_PATH]; }
--(void) setAppPath:(NSString *)appPath { [_defaults setValue:appPath forKey:APPIUM_PLIST_IOS_APP_PATH]; }
+-(NSString*) appPath { return [DEFAULTS stringForKey:APPIUM_PLIST_IOS_APP_PATH]; }
+-(void) setAppPath:(NSString *)appPath { [DEFAULTS setValue:appPath forKey:APPIUM_PLIST_IOS_APP_PATH]; }
 
--(BOOL) authorized { return [_defaults boolForKey:APPIUM_PLIST_IOS_AUTHORIZED]; }
--(void) setAuthorized:(BOOL)authorized { [_defaults setBool:authorized forKey:APPIUM_PLIST_IOS_AUTHORIZED]; }
+-(BOOL) authorized { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_AUTHORIZED]; }
+-(void) setAuthorized:(BOOL)authorized { [DEFAULTS setBool:authorized forKey:APPIUM_PLIST_IOS_AUTHORIZED]; }
 
--(NSNumber*) backendRetries { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_IOS_BACKEND_RETRIES] intValue]]; }
--(void) setBackendRetries:(NSNumber *)backendRetries { [_defaults setValue:backendRetries forKey:APPIUM_PLIST_IOS_BACKEND_RETRIES]; }
+-(NSNumber*) backendRetries { return [NSNumber numberWithInt:[[DEFAULTS stringForKey:APPIUM_PLIST_IOS_BACKEND_RETRIES] intValue]]; }
+-(void) setBackendRetries:(NSNumber *)backendRetries { [DEFAULTS setValue:backendRetries forKey:APPIUM_PLIST_IOS_BACKEND_RETRIES]; }
 
--(NSString*) bundleID { return [_defaults stringForKey:APPIUM_PLIST_IOS_BUNDLEID]; }
--(void) setBundleID:(NSString *)bundleID { [_defaults setValue:bundleID forKey:APPIUM_PLIST_IOS_BUNDLEID]; }
+-(NSString*) bundleID { return [DEFAULTS stringForKey:APPIUM_PLIST_IOS_BUNDLEID]; }
+-(void) setBundleID:(NSString *)bundleID { [DEFAULTS setValue:bundleID forKey:APPIUM_PLIST_IOS_BUNDLEID]; }
 
--(NSString*) calendarFormat { return [_defaults stringForKey:APPIUM_PLIST_IOS_CALENDAR_FORMAT]; }
--(void) setCalendarFormat:(NSString *)calendarFormat { [_defaults setValue:calendarFormat forKey:APPIUM_PLIST_IOS_CALENDAR_FORMAT]; }
+-(NSString*) calendarFormat { return [DEFAULTS stringForKey:APPIUM_PLIST_IOS_CALENDAR_FORMAT]; }
+-(void) setCalendarFormat:(NSString *)calendarFormat { [DEFAULTS setValue:calendarFormat forKey:APPIUM_PLIST_IOS_CALENDAR_FORMAT]; }
 
--(NSString*) customTraceTemplatePath { return [_defaults stringForKey:APPIUM_PLIST_IOS_CUSTOM_TRACE_TEMPLATE_PATH]; }
--(void) setCustomTraceTemplatePath:(NSString *)customTraceTemplatePath { [_defaults setValue:customTraceTemplatePath forKey:APPIUM_PLIST_IOS_CUSTOM_TRACE_TEMPLATE_PATH]; }
+-(NSString*) customTraceTemplatePath { return [DEFAULTS stringForKey:APPIUM_PLIST_IOS_CUSTOM_TRACE_TEMPLATE_PATH]; }
+-(void) setCustomTraceTemplatePath:(NSString *)customTraceTemplatePath { [DEFAULTS setValue:customTraceTemplatePath forKey:APPIUM_PLIST_IOS_CUSTOM_TRACE_TEMPLATE_PATH]; }
 
--(NSString*) deviceName { return [_defaults stringForKey:APPIUM_PLIST_IOS_DEVICE_NAME]; }
--(void) setDeviceName:(NSString *)deviceName { [_defaults setValue:deviceName forKey:APPIUM_PLIST_IOS_DEVICE_NAME]; }
+-(NSString*) deviceName { return [DEFAULTS stringForKey:APPIUM_PLIST_IOS_DEVICE_NAME]; }
+-(void) setDeviceName:(NSString *)deviceName { [DEFAULTS setValue:deviceName forKey:APPIUM_PLIST_IOS_DEVICE_NAME]; }
 
--(BOOL) fullReset { return [_defaults boolForKey:APPIUM_PLIST_IOS_FULL_RESET]; }
--(void) setFullReset:(BOOL)fullReset { [_defaults setBool:fullReset forKey:APPIUM_PLIST_IOS_FULL_RESET]; }
+-(BOOL) fullReset { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_FULL_RESET]; }
+-(void) setFullReset:(BOOL)fullReset { [DEFAULTS setBool:fullReset forKey:APPIUM_PLIST_IOS_FULL_RESET]; }
 
--(BOOL) keepArtifacts { return [_defaults boolForKey:APPIUM_PLIST_IOS_KEEP_ARTIFACTS]; }
--(void) setKeepArtifacts:(BOOL)keepArtifacts { [_defaults setBool:keepArtifacts forKey:APPIUM_PLIST_IOS_KEEP_ARTIFACTS]; }
+-(BOOL) keepArtifacts { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_KEEP_ARTIFACTS]; }
+-(void) setKeepArtifacts:(BOOL)keepArtifacts { [DEFAULTS setBool:keepArtifacts forKey:APPIUM_PLIST_IOS_KEEP_ARTIFACTS]; }
 
--(BOOL) keepKeychains { return [_defaults boolForKey:APPIUM_PLIST_IOS_KEEP_KEYCHAINS]; }
--(void) setKeepKeychains:(BOOL)keepKeychains { [_defaults setBool:keepKeychains forKey:APPIUM_PLIST_IOS_KEEP_KEYCHAINS]; }
+-(BOOL) keepKeychains { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_KEEP_KEYCHAINS]; }
+-(void) setKeepKeychains:(BOOL)keepKeychains { [DEFAULTS setBool:keepKeychains forKey:APPIUM_PLIST_IOS_KEEP_KEYCHAINS]; }
 
--(NSString*) language { return [_defaults stringForKey:APPIUM_PLIST_IOS_LANGUAGE]; }
--(void) setLanguage:(NSString *)language { [_defaults setValue:language forKey:APPIUM_PLIST_IOS_LANGUAGE]; }
+-(NSString*) language { return [DEFAULTS stringForKey:APPIUM_PLIST_IOS_LANGUAGE]; }
+-(void) setLanguage:(NSString *)language { [DEFAULTS setValue:language forKey:APPIUM_PLIST_IOS_LANGUAGE]; }
 
--(NSNumber*) launchTimeout { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_IOS_LAUNCH_TIMEOUT] intValue]]; }
--(void) setLaunchTimeout:(NSNumber *)launchTimeout { [_defaults setValue:launchTimeout forKey:APPIUM_PLIST_IOS_LAUNCH_TIMEOUT]; }
+-(NSNumber*) launchTimeout { return [NSNumber numberWithInt:[[DEFAULTS stringForKey:APPIUM_PLIST_IOS_LAUNCH_TIMEOUT] intValue]]; }
+-(void) setLaunchTimeout:(NSNumber *)launchTimeout { [DEFAULTS setValue:launchTimeout forKey:APPIUM_PLIST_IOS_LAUNCH_TIMEOUT]; }
 
--(NSString*) locale { return [_defaults stringForKey:APPIUM_PLIST_IOS_LOCALE]; }
--(void) setLocale:(NSString *)locale { [_defaults setValue:locale forKey:APPIUM_PLIST_IOS_LOCALE]; }
+-(NSString*) locale { return [DEFAULTS stringForKey:APPIUM_PLIST_IOS_LOCALE]; }
+-(void) setLocale:(NSString *)locale { [DEFAULTS setValue:locale forKey:APPIUM_PLIST_IOS_LOCALE]; }
 
--(BOOL) noReset { return [_defaults boolForKey:APPIUM_PLIST_IOS_NO_RESET]; }
--(void) setNoReset:(BOOL)noReset { [_defaults setBool:noReset forKey:APPIUM_PLIST_IOS_NO_RESET]; }
+-(BOOL) noReset { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_NO_RESET]; }
+-(void) setNoReset:(BOOL)noReset { [DEFAULTS setBool:noReset forKey:APPIUM_PLIST_IOS_NO_RESET]; }
 
--(BOOL) notMerciful { return [_defaults boolForKey:APPIUM_PLIST_IOS_NOT_MERICIFUL]; }
--(void) setNotMerciful:(BOOL)notMerciful { [_defaults setBool:notMerciful forKey:APPIUM_PLIST_IOS_NOT_MERICIFUL]; }
+-(BOOL) notMerciful { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_NOT_MERICIFUL]; }
+-(void) setNotMerciful:(BOOL)notMerciful { [DEFAULTS setBool:notMerciful forKey:APPIUM_PLIST_IOS_NOT_MERICIFUL]; }
 
--(NSString*) orientation { return [_defaults stringForKey:APPIUM_PLIST_IOS_ORIENTATION]; }
--(void) setOrientation:(NSString *)orientation { [_defaults setValue:orientation forKey:APPIUM_PLIST_IOS_ORIENTATION]; }
+-(NSString*) orientation { return [DEFAULTS stringForKey:APPIUM_PLIST_IOS_ORIENTATION]; }
+-(void) setOrientation:(NSString *)orientation { [DEFAULTS setValue:orientation forKey:APPIUM_PLIST_IOS_ORIENTATION]; }
 
--(NSString*) platformVersion { return [_defaults stringForKey:APPIUM_PLIST_IOS_PLATFORM_VERSION]; }
--(void) setPlatformVersion:(NSString *)platformVersion { [_defaults setValue:platformVersion forKey:APPIUM_PLIST_IOS_PLATFORM_VERSION]; }
+-(NSString*) platformVersion { return [DEFAULTS stringForKey:APPIUM_PLIST_IOS_PLATFORM_VERSION]; }
+-(void) setPlatformVersion:(NSString *)platformVersion { [DEFAULTS setValue:platformVersion forKey:APPIUM_PLIST_IOS_PLATFORM_VERSION]; }
 
--(BOOL) showSimulatorLog { return [_defaults boolForKey:APPIUM_PLIST_IOS_SHOW_SIMULATOR_LOG]; }
--(void) setShowSimulatorLog:(BOOL)showSimulatorLog { [_defaults setBool:showSimulatorLog forKey:APPIUM_PLIST_IOS_SHOW_SIMULATOR_LOG]; }
+-(BOOL) showSimulatorLog { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_SHOW_SIMULATOR_LOG]; }
+-(void) setShowSimulatorLog:(BOOL)showSimulatorLog { [DEFAULTS setBool:showSimulatorLog forKey:APPIUM_PLIST_IOS_SHOW_SIMULATOR_LOG]; }
 
--(NSString*) udid { return [_defaults stringForKey:APPIUM_PLIST_IOS_UDID]; }
--(void) setUdid:(NSString *)udid { [_defaults setValue:udid forKey:APPIUM_PLIST_IOS_UDID]; }
+-(NSString*) udid { return [DEFAULTS stringForKey:APPIUM_PLIST_IOS_UDID]; }
+-(void) setUdid:(NSString *)udid { [DEFAULTS setValue:udid forKey:APPIUM_PLIST_IOS_UDID]; }
 
--(BOOL) useAppPath { return [_defaults boolForKey:APPIUM_PLIST_IOS_USE_APP_PATH]; }
--(void) setUseAppPath:(BOOL)useAppPath { [_defaults setBool:useAppPath forKey:APPIUM_PLIST_IOS_USE_APP_PATH]; }
+-(BOOL) useAppPath { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_USE_APP_PATH]; }
+-(void) setUseAppPath:(BOOL)useAppPath { [DEFAULTS setBool:useAppPath forKey:APPIUM_PLIST_IOS_USE_APP_PATH]; }
 
--(BOOL) useBackendRetries { return [_defaults boolForKey:APPIUM_PLIST_IOS_USE_BACKEND_RETRIES]; }
--(void) setUseBackendRetries:(BOOL)useBackendRetries { [_defaults setBool:useBackendRetries forKey:APPIUM_PLIST_IOS_USE_BACKEND_RETRIES]; }
+-(BOOL) useBackendRetries { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_USE_BACKEND_RETRIES]; }
+-(void) setUseBackendRetries:(BOOL)useBackendRetries { [DEFAULTS setBool:useBackendRetries forKey:APPIUM_PLIST_IOS_USE_BACKEND_RETRIES]; }
 
--(BOOL) useBundleID { return [_defaults boolForKey:APPIUM_PLIST_IOS_USE_BUNDLEID]; }
--(void) setUseBundleID:(BOOL)useBundleID { [_defaults setBool:useBundleID forKey:APPIUM_PLIST_IOS_USE_BUNDLEID]; }
+-(BOOL) useBundleID { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_USE_BUNDLEID]; }
+-(void) setUseBundleID:(BOOL)useBundleID { [DEFAULTS setBool:useBundleID forKey:APPIUM_PLIST_IOS_USE_BUNDLEID]; }
 
--(BOOL) useCalendar { return [_defaults boolForKey:APPIUM_PLIST_IOS_USE_CALENDAR]; }
--(void) setUseCalendar:(BOOL)useCalendar { [_defaults setBool:useCalendar forKey:APPIUM_PLIST_IOS_USE_CALENDAR]; }
+-(BOOL) useCalendar { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_USE_CALENDAR]; }
+-(void) setUseCalendar:(BOOL)useCalendar { [DEFAULTS setBool:useCalendar forKey:APPIUM_PLIST_IOS_USE_CALENDAR]; }
 
--(BOOL) useCustomTraceTemplate { return [_defaults boolForKey:APPIUM_PLIST_IOS_USE_CUSTOM_TRACE_TEMPLATE]; }
--(void) setUseCustomTraceTemplate:(BOOL)useCustomTraceTemplate { [_defaults setBool:useCustomTraceTemplate forKey:APPIUM_PLIST_IOS_USE_CUSTOM_TRACE_TEMPLATE]; }
+-(BOOL) useCustomTraceTemplate { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_USE_CUSTOM_TRACE_TEMPLATE]; }
+-(void) setUseCustomTraceTemplate:(BOOL)useCustomTraceTemplate { [DEFAULTS setBool:useCustomTraceTemplate forKey:APPIUM_PLIST_IOS_USE_CUSTOM_TRACE_TEMPLATE]; }
 
--(BOOL) useDefaultDevice { return [_defaults boolForKey:APPIUM_PLIST_IOS_USE_DEFAULT_DEVICE]; }
--(void) setUseDefaultDevice:(BOOL)useDefaultDevice { [_defaults setBool:useDefaultDevice forKey:APPIUM_PLIST_IOS_USE_DEFAULT_DEVICE]; }
+-(BOOL) useDefaultDevice { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_USE_DEFAULT_DEVICE]; }
+-(void) setUseDefaultDevice:(BOOL)useDefaultDevice { [DEFAULTS setBool:useDefaultDevice forKey:APPIUM_PLIST_IOS_USE_DEFAULT_DEVICE]; }
 
--(BOOL) useLanguage { return [_defaults boolForKey:APPIUM_PLIST_IOS_USE_LANGUAGE]; }
--(void) setUseLanguage:(BOOL)useLanguage { [_defaults setBool:useLanguage forKey:APPIUM_PLIST_IOS_USE_LANGUAGE]; }
+-(BOOL) useDeviceName { return !self.useDefaultDevice; }
+-(void) setUseDeviceName:(BOOL)useDeviceName {
+	[self setUseDefaultDevice:!useDeviceName];
+}
 
--(BOOL) useLaunchTimeout { return [_defaults boolForKey:APPIUM_PLIST_IOS_USE_LAUNCH_TIMEOUT]; }
--(void) setUseLaunchTimeout:(BOOL)useLaunchTimeout { [_defaults setBool:useLaunchTimeout forKey:APPIUM_PLIST_IOS_USE_LAUNCH_TIMEOUT]; }
+-(BOOL) useLanguage { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_USE_LANGUAGE]; }
+-(void) setUseLanguage:(BOOL)useLanguage { [DEFAULTS setBool:useLanguage forKey:APPIUM_PLIST_IOS_USE_LANGUAGE]; }
 
--(BOOL) useLocale { return [_defaults boolForKey:APPIUM_PLIST_IOS_USE_LOCALE]; }
--(void) setUseLocale:(BOOL)useLocale { [_defaults setBool:useLocale forKey:APPIUM_PLIST_IOS_USE_LOCALE]; }
+-(BOOL) useLaunchTimeout { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_USE_LAUNCH_TIMEOUT]; }
+-(void) setUseLaunchTimeout:(BOOL)useLaunchTimeout { [DEFAULTS setBool:useLaunchTimeout forKey:APPIUM_PLIST_IOS_USE_LAUNCH_TIMEOUT]; }
 
--(BOOL) useMobileSafari { return [_defaults boolForKey:APPIUM_PLIST_IOS_USE_MOBILE_SAFARI]; }
--(void) setUseMobileSafari:(BOOL)useMobileSafari { [_defaults setBool:useMobileSafari forKey:APPIUM_PLIST_IOS_USE_MOBILE_SAFARI]; }
+-(BOOL) useLocale { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_USE_LOCALE]; }
+-(void) setUseLocale:(BOOL)useLocale { [DEFAULTS setBool:useLocale forKey:APPIUM_PLIST_IOS_USE_LOCALE]; }
 
--(BOOL) useNativeInstrumentsLibrary { return [_defaults boolForKey:APPIUM_PLIST_IOS_USE_NATIVE_INSTRUMENTS_LIBRARY]; }
--(void) setUseNativeInstrumentsLibrary:(BOOL)useNativeInstrumentsLibrary { [_defaults setBool:useNativeInstrumentsLibrary forKey:APPIUM_PLIST_IOS_USE_NATIVE_INSTRUMENTS_LIBRARY]; }
+-(BOOL) useMobileSafari { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_USE_MOBILE_SAFARI]; }
+-(void) setUseMobileSafari:(BOOL)useMobileSafari { [DEFAULTS setBool:useMobileSafari forKey:APPIUM_PLIST_IOS_USE_MOBILE_SAFARI]; }
 
--(BOOL) useOrientation { return [_defaults boolForKey:APPIUM_PLIST_IOS_USE_ORIENTATION]; }
--(void) setUseOrientation:(BOOL)useOrientation { [_defaults setBool:useOrientation forKey:APPIUM_PLIST_IOS_USE_ORIENTATION]; }
+-(BOOL) useNativeInstrumentsLibrary { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_USE_NATIVE_INSTRUMENTS_LIBRARY]; }
+-(void) setUseNativeInstrumentsLibrary:(BOOL)useNativeInstrumentsLibrary { [DEFAULTS setBool:useNativeInstrumentsLibrary forKey:APPIUM_PLIST_IOS_USE_NATIVE_INSTRUMENTS_LIBRARY]; }
 
--(BOOL) useUDID { return [_defaults boolForKey:APPIUM_PLIST_IOS_USE_UDID]; }
--(void) setUseUDID:(BOOL)useUDID { [_defaults setBool:useUDID forKey:APPIUM_PLIST_IOS_USE_UDID]; }
+-(BOOL) useOrientation { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_USE_ORIENTATION]; }
+-(void) setUseOrientation:(BOOL)useOrientation { [DEFAULTS setBool:useOrientation forKey:APPIUM_PLIST_IOS_USE_ORIENTATION]; }
+
+-(BOOL) useUDID { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_USE_UDID]; }
+-(void) setUseUDID:(BOOL)useUDID { [DEFAULTS setBool:useUDID forKey:APPIUM_PLIST_IOS_USE_UDID]; }
 
 
 #pragma mark - Methods

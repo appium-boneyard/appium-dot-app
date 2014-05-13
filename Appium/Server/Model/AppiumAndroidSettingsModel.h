@@ -57,7 +57,6 @@
 @property NSString *waitActivity;
 @property NSString *waitPackage;
 
--(id) initWithDefaults:(NSUserDefaults*)defaults;
 -(void) refreshAvailableActivitiesAndPackages;
 -(void) refreshAVDs;
 
