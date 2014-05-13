@@ -675,7 +675,7 @@
                 </textField>
                 <customView id="410">
                     <rect key="frame" x="0.0" y="0.0" width="864" height="195"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                 </customView>
             </subviews>
         </customView>
