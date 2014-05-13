@@ -299,7 +299,7 @@ BOOL _isServerListening;
 			nodeCommandString = [nodeCommandString stringByAppendingString:@" --no-reset"];
 		}
 		if (self.android.useAVD) {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ @%@", @"--avd", self.android.avd];
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"@%@\"", @"--avd", self.android.avd];
 			if (self.android.useAVDArguments) {
 				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--avd-args", self.android.avdArguments];
 			}

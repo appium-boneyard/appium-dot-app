@@ -261,8 +261,12 @@ NSUserDefaults* _defaults;
 -(void) refreshAVDs
 {
 	NSString *androidBinaryPath = [Utility pathToAndroidBinary:@"android" atSDKPath:self.useCustomSDKPath ? self.customSDKPath : nil];
+    NSString *vBoxManagePath = [Utility pathToVBoxManageBinary];
+    // have to have either "android" or "vboxmanage" available
+    BOOL hasAndroid = androidBinaryPath != nil && [[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath];
+    BOOL hasVBoxManage = vBoxManagePath != nil && [[NSFileManager defaultManager] fileExistsAtPath:vBoxManagePath];
 	
-	if (androidBinaryPath == nil || ![[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath])
+	if ( !hasAndroid && !hasVBoxManage)
 	{
 		return;
 	}
@@ -271,14 +275,37 @@ NSUserDefaults* _defaults;
 	
 	@try
 	{
-		NSString *avdString = [Utility runTaskWithBinary:androidBinaryPath arguments:[NSArray arrayWithObjects:@"list", @"avd", @"-c", nil]];
-		NSArray *avdList = [avdString componentsSeparatedByString:@"\n"];
-		for (NSString *avd in avdList)
+        // check android avd first
+		if (hasAndroid)
 		{
-			if (avd.length > 0)
+			NSString *avdString = [Utility runTaskWithBinary:androidBinaryPath arguments:[NSArray arrayWithObjects:@"list", @"avd", @"-c", nil]];
+			NSArray *avdList = [avdString componentsSeparatedByString:@"\n"];
+			for (NSString *avd in avdList)
 			{
-				[avds addObject:avd];
+				if (avd.length > 0)
+				{
+					[avds addObject:avd];
+				}
 			}
+		}
+		// now try genymotion
+		if (hasVBoxManage)
+		{
+            NSString *vBoxManageString = [Utility runTaskWithBinary:vBoxManagePath arguments:[NSArray arrayWithObjects:@"list", @"vms", nil]];
+            NSArray *gmList = [vBoxManageString componentsSeparatedByString:@"\n"];
+            for (NSString *gm in gmList)
+            {
+                NSRange startQuote = [gm rangeOfString:@"\""];
+                if (startQuote.location != NSNotFound)
+                {
+                    NSRange endQuote = [gm rangeOfString:@"\"" options:NSBackwardsSearch];
+                    if (endQuote.location != NSNotFound && endQuote.location > startQuote.location)
+                    {
+                        NSString *gmAvd = [gm substringWithRange:NSMakeRange(startQuote.location + 1, endQuote.location-1)];
+                        [avds addObject:gmAvd];
+                    }
+                }
+            }
 		}
 	}
 	@catch (NSException *exception) {

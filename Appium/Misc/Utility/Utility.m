@@ -202,7 +202,7 @@ popen2(const char *command, int *infp, int *outfp)
 	NSTask *vBoxManageTask = [NSTask new];
     [vBoxManageTask setLaunchPath:@"/bin/bash"];
     [vBoxManageTask setArguments: [NSArray arrayWithObjects: @"-l",
-									@"-c", @"which vboxmanage", nil]];
+								   @"-c", @"which vboxmanage", nil]];
 	NSPipe *pipe = [NSPipe pipe];
     [vBoxManageTask setStandardOutput:pipe];
 	[vBoxManageTask setStandardError:[NSPipe pipe]];
