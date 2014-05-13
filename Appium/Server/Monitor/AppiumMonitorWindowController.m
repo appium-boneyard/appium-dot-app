@@ -7,7 +7,6 @@
 //
 
 #import "AppiumMonitorWindowController.h"
-
 #import "AppiumAppDelegate.h"
 #import "ANSIUtility.h"
 #import "Utility.h"
@@ -35,8 +34,11 @@
 -(void) windowDidLoad
 {
     [super windowDidLoad];
+	
+	// launch the menu bar icon
 	_menuBarManager = [AppiumMenuBarManager new];
 	[[self model] addObserver:_menuBarManager forKeyPath:@"isServerRunning" options:NSKeyValueObservingOptionNew context:NULL];
+
 }
 
 - (void)windowWillClose:(NSNotification *)notification {
@@ -49,6 +51,7 @@
 {
     if (!self.model.doctorSocketIsConnected && [self.model startServer])
     {
+		[self closeAllPopovers];
         [self performSelectorInBackground:@selector(errorLoop) withObject:nil];
         [self performSelectorInBackground:@selector(readLoop) withObject:nil];
         [self performSelectorInBackground:@selector(exitWait) withObject:nil];
@@ -59,6 +62,7 @@
 {
     if ([self.model startDoctor])
     {
+		[self closeAllPopovers];
         [self performSelectorInBackground:@selector(errorLoop) withObject:nil];
         [self performSelectorInBackground:@selector(readLoop) withObject:nil];
         [self performSelectorInBackground:@selector(exitWait) withObject:nil];
@@ -112,16 +116,16 @@
     [self.model setIsServerRunning:NO];
 }
 
--(IBAction)chooseFile:(id)sender
+-(IBAction)chooseAndroidApp:(id)sender
 {
-	NSString *selectedApp = [self.model appPath];
+	NSString *selectedApp = self.model.android.appPath;
 
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
 	[openDlg setShowsHiddenFiles:YES];
-	[openDlg setAllowedFileTypes:[NSArray arrayWithObjects:@"app", @"apk", @"zip", @"ipa", nil]];
+	[openDlg setAllowedFileTypes:[NSArray arrayWithObjects:@"apk", @"zip", nil]];
     [openDlg setCanChooseFiles:YES];
     [openDlg setCanChooseDirectories:NO];
-    [openDlg setPrompt:@"Select"];
+    [openDlg setPrompt:@"Select Android Application"];
 	if (selectedApp == nil || [selectedApp isEqualToString:@"/"])
 	{
 	    [openDlg setDirectoryURL:[NSURL fileURLWithPath:NSHomeDirectory()]];
@@ -134,7 +138,59 @@
     if ([openDlg runModal] == NSOKButton)
     {
 		selectedApp = [[[openDlg URLs] objectAtIndex:0] path];
-		[self.model setAppPath:selectedApp];
+		[self.model.android setAppPath:selectedApp];
+    }
+}
+
+-(IBAction)chooseiOSApp:(id)sender
+{
+	NSString *selectedApp = self.model.iOS.appPath;
+	
+    NSOpenPanel* openDlg = [NSOpenPanel openPanel];
+	[openDlg setShowsHiddenFiles:YES];
+	[openDlg setAllowedFileTypes:[NSArray arrayWithObjects:@"app", @"zip", @"ipa", nil]];
+    [openDlg setCanChooseFiles:YES];
+    [openDlg setCanChooseDirectories:NO];
+    [openDlg setPrompt:@"Select iOS Application"];
+	if (selectedApp == nil || [selectedApp isEqualToString:@"/"])
+	{
+	    [openDlg setDirectoryURL:[NSURL fileURLWithPath:NSHomeDirectory()]];
+	}
+	else
+	{
+		[openDlg setDirectoryURL:[NSURL fileURLWithPath:[selectedApp stringByDeletingLastPathComponent]]];
+	}
+	
+    if ([openDlg runModal] == NSOKButton)
+    {
+		selectedApp = [[[openDlg URLs] objectAtIndex:0] path];
+		[self.model.iOS setAppPath:selectedApp];
+    }
+}
+
+-(IBAction)chooseiOSTraceTemplate:(id)sender
+{
+	NSString *selectedTemplate = self.model.iOS.customTraceTemplatePath;
+	
+    NSOpenPanel* openDlg = [NSOpenPanel openPanel];
+	[openDlg setShowsHiddenFiles:YES];
+	[openDlg setAllowedFileTypes:[NSArray arrayWithObjects:@"tracetemplate", nil]];
+    [openDlg setCanChooseFiles:YES];
+    [openDlg setCanChooseDirectories:NO];
+    [openDlg setPrompt:@"Select Instruments Trace Templates"];
+	if (selectedTemplate == nil || [selectedTemplate isEqualToString:@"/"])
+	{
+	    [openDlg setDirectoryURL:[NSURL fileURLWithPath:NSHomeDirectory()]];
+	}
+	else
+	{
+		[openDlg setDirectoryURL:[NSURL fileURLWithPath:[selectedTemplate stringByDeletingLastPathComponent]]];
+	}
+	
+    if ([openDlg runModal] == NSOKButton)
+    {
+		selectedTemplate = [[[openDlg URLs] objectAtIndex:0] path];
+		[self.model.iOS setCustomTraceTemplatePath:selectedTemplate];
     }
 }
 
@@ -146,6 +202,41 @@
 -(IBAction)displayInspector:(id)sender
 {
 	[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] displayInspector:nil];
+}
+
+-(IBAction)chooseXcodePath:(id)sender
+{
+	NSString *selectedApp = self.model.iOS.xcodePath;
+	
+    NSOpenPanel* openDlg = [NSOpenPanel openPanel];
+	[openDlg setShowsHiddenFiles:YES];
+	[openDlg setAllowedFileTypes:[NSArray arrayWithObjects:@"app", nil]];
+    [openDlg setCanChooseFiles:YES];
+    [openDlg setCanChooseDirectories:NO];
+    [openDlg setPrompt:@"Select Xcode Application"];
+	if (selectedApp == nil || [selectedApp isEqualToString:@"/"])
+	{
+	    [openDlg setDirectoryURL:[NSURL fileURLWithPath:NSHomeDirectory()]];
+	}
+	else
+	{
+		[openDlg setDirectoryURL:[NSURL fileURLWithPath:[selectedApp stringByDeletingLastPathComponent]]];
+	}
+	
+    if ([openDlg runModal] == NSOKButton)
+    {
+		selectedApp = [[[openDlg URLs] objectAtIndex:0] path];
+		[self.model.iOS setXcodePath:selectedApp];
+    }
+}
+
+-(void) closeAllPopovers
+{
+	for(NSView* button in [buttonBarView subviews]) {
+		if ([button isKindOfClass:[AppiumMonitorWindowPopOverButton class]]) {
+			[((AppiumMonitorWindowPopOverButton*)button).popoverController close];
+		}
+	}
 }
 
 @end

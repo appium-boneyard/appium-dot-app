@@ -10,6 +10,9 @@
 
 @implementation WebDriverElementNode
 
+#define BOLD_FONT [NSFont boldSystemFontOfSize:12.0f]
+#define REGULAR_FONT [NSFont systemFontOfSize:12.0f]
+
 -(id)init
 {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
@@ -22,40 +25,41 @@
 {
 	if (self = [super init])
 	{
-		if([jsonDict objectForKey:@"hierarchy"] != nil)
+		while([jsonDict objectForKey:@"hierarchy"] != nil || [@"hierarchy" isEqualToString:[jsonDict objectForKey:@"tag"]])
 		{
-			jsonDict = [[jsonDict objectForKey:@"hierarchy"] objectForKey:@"node"];
+			jsonDict = [(NSArray*)[jsonDict objectForKey:@"children"] objectAtIndex:0];
 		}
+
 		_jsonDict = jsonDict;
         _showDisabled = showDisabled;
         _showInvisible = showInvisible;
 		[self setParent:parent];
 
-		if ([_jsonDict.allKeys containsObject:@"@enabled"])
+		if ([_jsonDict.allKeys containsObject:@"content-desc"])
 		{
 			// Android Node
 			[self setPlatform:Platform_Android];
-			[self setEnabled:[[_jsonDict objectForKey:@"@enabled"] boolValue]];
-			[self setVisible:[[_jsonDict objectForKey:@"@clickable"] boolValue]];
-			[self setType:[_jsonDict objectForKey:@"@class"]];
-			[self setValue:[_jsonDict objectForKey:@"@text"]];
-			[self setText:[_jsonDict objectForKey:@"@text"]];
-			[self setIndex:[(NSString*)[_jsonDict objectForKey:@"@index"] integerValue]];
-			[self setName:[_jsonDict objectForKey:@"@content-desc"]];
-			[self setContentDesc:[_jsonDict objectForKey:@"@content-desc"]];
-			[self setCheckable:[[_jsonDict objectForKey:@"@checkable"] boolValue]];
-			[self setPackage:[_jsonDict objectForKey:@"@package"]];
-			[self setScrollable:[[_jsonDict objectForKey:@"@scrollable"] boolValue]];
-			[self setPassword:[[_jsonDict objectForKey:@"@password"] boolValue]];
-			[self setLongClickable:[[_jsonDict objectForKey:@"@long-clickable"] boolValue]];
-			[self setSelected:[[_jsonDict objectForKey:@"@selected"] boolValue]];
-			[self setClickable:[[_jsonDict objectForKey:@"@clickable"] boolValue]];
-			[self setFocused:[[_jsonDict objectForKey:@"@focused"] boolValue]];
-			[self setChecked:[[_jsonDict objectForKey:@"@checked"] boolValue]];
-			[self setFocusable:[[_jsonDict objectForKey:@"@focusable"] boolValue]];
-			[self setResourceId:[_jsonDict objectForKey:@"@resource-id"]];
+			[self setEnabled:[[_jsonDict objectForKey:@"enabled"] boolValue]];
+			[self setVisible:[[_jsonDict objectForKey:@"clickable"] boolValue]];
+			[self setType:[_jsonDict objectForKey:@"tag"]];
+			[self setValue:[_jsonDict objectForKey:@"text"]];
+			[self setText:[_jsonDict objectForKey:@"text"]];
+			[self setIndex:[(NSString*)[_jsonDict objectForKey:@"index"] integerValue]];
+			[self setName:[_jsonDict objectForKey:@"content-desc"]];
+			[self setContentDesc:[_jsonDict objectForKey:@"content-desc"]];
+			[self setCheckable:[[_jsonDict objectForKey:@"checkable"] boolValue]];
+			[self setPackage:[_jsonDict objectForKey:@"package"]];
+			[self setScrollable:[[_jsonDict objectForKey:@"scrollable"] boolValue]];
+			[self setPassword:[[_jsonDict objectForKey:@"password"] boolValue]];
+			[self setLongClickable:[[_jsonDict objectForKey:@"long-clickable"] boolValue]];
+			[self setSelected:[[_jsonDict objectForKey:@"selected"] boolValue]];
+			[self setClickable:[[_jsonDict objectForKey:@"clickable"] boolValue]];
+			[self setFocused:[[_jsonDict objectForKey:@"focused"] boolValue]];
+			[self setChecked:[[_jsonDict objectForKey:@"checked"] boolValue]];
+			[self setFocusable:[[_jsonDict objectForKey:@"focusable"] boolValue]];
+			[self setResourceId:[_jsonDict objectForKey:@"resource-id"]];
 
-			NSString *bounds = [_jsonDict objectForKey:@"@bounds"];
+			NSString *bounds = [_jsonDict objectForKey:@"bounds"];
 			NSError *error;
 			NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\[(\\d+),(\\d+)\\]\\[(\\d+),(\\d+)\\]" options:NSRegularExpressionCaseInsensitive error:&error];
 			NSTextCheckingResult *firstResult = [regex firstMatchInString:bounds options:0 range:NSMakeRange(0, [bounds length])];
@@ -70,7 +74,7 @@
 			}
 			_children = [NSMutableArray new];
 			_visibleChildren = [NSMutableArray new];
-			NSObject *nodes = [_jsonDict objectForKey:@"node"];
+			NSObject *nodes = [_jsonDict objectForKey:@"children"];
 			NSArray *jsonItems = [NSArray new];
 			if([nodes isKindOfClass:[NSArray class]])
 			{
@@ -99,16 +103,14 @@
 			[self setVisible:[[_jsonDict valueForKey:@"visible"] boolValue]];
 			[self setValid:[[_jsonDict valueForKey:@"valid"] boolValue]];
 			[self setLabel:[_jsonDict valueForKey:@"label"]];
-			[self setType:[_jsonDict valueForKey:@"type"]];
+			[self setType:[_jsonDict valueForKey:@"tag"]];
+			[self setPath:[_jsonDict valueForKey:@"path"]];
 			[self setValue:[_jsonDict valueForKey:@"value"]];
 			[self setName:[_jsonDict valueForKey:@"name"]];
-			NSDictionary *rect = [_jsonDict valueForKey:@"rect"];
-			NSDictionary *origin = [rect valueForKey:@"origin"];
-			NSDictionary *size = [rect valueForKey:@"size"];
-			long x = [[origin valueForKey:@"x"] longValue];
-			long y = [[origin valueForKey:@"y"] longValue];
-			long width = [[size valueForKey:@"width"] longValue];
-			long height = [[size valueForKey:@"height"] longValue];
+			float x = [[_jsonDict valueForKey:@"x"] floatValue];
+			float y = [[_jsonDict valueForKey:@"y"] floatValue];
+			float width = [[_jsonDict valueForKey:@"width"] floatValue];
+			float height = [[_jsonDict valueForKey:@"height"] floatValue];
 			[self setRect:NSMakeRect((float)x, (float)y, (float)width, (float)height)];
 
 			_children = [NSMutableArray new];
@@ -152,7 +154,7 @@
 			label = self.text;
 		}
 	}
-    return [NSString stringWithFormat:@"[%@] %@", self.typeShortcut, label];
+    return [NSString stringWithFormat:@"[%@] %@", self.type, label];
 }
 
 -(NSArray*) children
@@ -194,256 +196,70 @@
 
 -(NSArray*) visibleChildren { return _visibleChildren; }
 
--(NSString*) infoText
+-(NSAttributedString*) infoText
 {
+	NSArray* items;
 	if (self.platform == Platform_iOS)
 	{
-		return [NSString stringWithFormat:@"name: %@\ntype: %@\nvalue: %@\nlabel: %@\nenabled: %@\nvisible: %@\nvalid: %@\nlocation: %@\nsize: %@", self.name, self.type, self.value, self.label, (self.enabled ? @"true" : @"false"),(self.visible ? @"true" : @"false"),(self.valid ? @"true" : @"false"), NSStringFromPoint(self.rect.origin), NSStringFromSize(self.rect.size)];
+		items = [NSArray arrayWithObjects:
+				 @"name:", [NSString stringWithFormat:@" %@\n", self.name],
+				 @"type:", [NSString stringWithFormat:@" %@\n", self.type],
+				 @"value:", [NSString stringWithFormat:@" %@\n", self.value],
+				 @"label:", [NSString stringWithFormat:@" %@\n", self.label],
+ 				 @"enabled:", [NSString stringWithFormat:@" %@\n", (self.enabled ? @"true" : @"false")],
+ 				 @"visible:", [NSString stringWithFormat:@" %@\n", (self.clickable ? @"true" : @"false")],
+  				 @"valid:", [NSString stringWithFormat:@" %@\n", (self.valid ? @"true" : @"false")],
+  				 @"location:", [NSString stringWithFormat:@" %@\n", NSStringFromPoint(self.rect.origin)],
+  				 @"size:", [NSString stringWithFormat:@" %@\n", NSStringFromSize(self.rect.size)],
+				 nil];
 	}
 	else
 	{
-		return [NSString stringWithFormat:@"content-desc: %@\nclass: %@\ntext: %@\nindex: %@\nenabled: %@\nclickable: %@\nlocation: %@\nsize: %@\ncheckable: %@\nchecked: %@\nfocusable: %@\nfocused: %@\nlong-clickable: %@\npackage: %@\npassword: %@\nresource-id: %@\nscrollable: %@\nselected: %@", self.contentDesc, self.type, self.text,[NSString stringWithFormat:@"%lu", (u_long)self.index], (self.enabled ? @"true" : @"false"),(self.clickable ? @"true" : @"false"), NSStringFromPoint(self.rect.origin), NSStringFromSize(self.rect.size), (self.checkable ? @"true" : @"false"), (self.checked ? @"true" : @"false"), (self.focusable ? @"true" : @"false"), (self.focused ? @"true" : @"false"), (self.longClickable ? @"true" : @"false"), self.package, (self.password ? @"true" : @"false"), self.resourceId, (self.scrollable ? @"true" : @"false"), (self.selected ? @"true" : @"false")];
+		items = [NSArray arrayWithObjects:
+				 @"content-desc:", [NSString stringWithFormat:@" %@\n", self.contentDesc],
+				 @"type:", [NSString stringWithFormat:@" %@\n", self.type],
+				 @"text:", [NSString stringWithFormat:@" %@\n", self.text],
+				 @"index:", [NSString stringWithFormat:@" %@\n", [NSString stringWithFormat:@"%lu", (u_long)self.index]],
+ 				 @"enabled:", [NSString stringWithFormat:@" %@\n", (self.enabled ? @"true" : @"false")],
+ 				 @"visible:", [NSString stringWithFormat:@" %@\n", (self.clickable ? @"true" : @"false")],
+  				 @"location:", [NSString stringWithFormat:@" %@\n", NSStringFromPoint(self.rect.origin)],
+  				 @"size:", [NSString stringWithFormat:@" %@\n", NSStringFromSize(self.rect.size)],
+  				 @"checkable:", [NSString stringWithFormat:@" %@\n", (self.checkable ? @"true" : @"false")],
+  				 @"checked:", [NSString stringWithFormat:@" %@\n", (self.checked ? @"true" : @"false")],
+  				 @"focusable:", [NSString stringWithFormat:@" %@\n", (self.focusable ? @"true" : @"false")],
+				 @"long-clickable:", [NSString stringWithFormat:@" %@\n", (self.longClickable ? @"true" : @"false")],
+ 				 @"package:", [NSString stringWithFormat:@" %@\n", self.package],
+ 				 @"password:", [NSString stringWithFormat:@" %@\n", (self.password ? @"true" : @"false")],
+ 				 @"resource-id:", [NSString stringWithFormat:@" %@\n", self.resourceId],
+ 				 @"scrollable:", [NSString stringWithFormat:@" %@\n", (self.scrollable ? @"true" : @"false")],
+ 				 @"selected:", [NSString stringWithFormat:@" %@\n", (self.selected ? @"true" : @"false")],
+				 nil];
 	}
+
+	NSMutableAttributedString *infoText = [NSMutableAttributedString new];
+	for (int i=0; i < [items count]; i++)
+	{
+
+		NSMutableAttributedString *newPiece = [[NSMutableAttributedString alloc] initWithString:[items objectAtIndex:i]];
+		[newPiece addAttribute:NSFontAttributeName value:((i%2 == 0) ? BOLD_FONT : REGULAR_FONT) range:NSMakeRange(0, [newPiece length])];
+		[infoText appendAttributedString:newPiece];
+	}
+	return infoText;
 }
 
--(NSString*) typeShortcut
+-(NSAttributedString*) infoTextWithXPath:(NSString*)xpath
 {
-	if (self.platform == Platform_iOS)
-	{
-		if ([self.type isEqualToString:@"UIAActionSheet"])
-			return @"actionsheet";
-		else if ([self.type isEqualToString:@"UIAActivityIndicator"])
-			return @"activityIndicator";
-		else if ([self.type isEqualToString:@"UIAAlert"])
-			return @"alert";
-		else if ([self.type isEqualToString:@"UIAButton"])
-			return @"button";
-		else if ([self.type isEqualToString:@"UIAElement"])
-			return @"element";
-		else if ([self.type isEqualToString:@"UIAImage"])
-			return @"image";
-		else if ([self.type isEqualToString:@"UIALink"])
-			return @"link";
-		else if ([self.type isEqualToString:@"UIAPageIndicator"])
-			return @"pageIndicator";
-		else if ([self.type isEqualToString:@"UIAPicker"])
-			return @"picker";
-		else if ([self.type isEqualToString:@"UIAPickerWheel"])
-			return @"pickerwheel";
-		else if ([self.type isEqualToString:@"UIAPopover"])
-			return @"popover";
-		else if ([self.type isEqualToString:@"UIAProgressIndicator"])
-			return @"progress";
-		else if ([self.type isEqualToString:@"UIAScrollView"])
-			return @"scrollview";
-		else if ([self.type isEqualToString:@"UIASearchBar"])
-			return @"searchbar";
-		else if ([self.type isEqualToString:@"UIASecureTextField"])
-			return @"secure";
-		else if ([self.type isEqualToString:@"UIASegmentedControl"])
-			return @"segmented";
-		else if ([self.type isEqualToString:@"UIASlider"])
-			return @"slider";
-		else if ([self.type isEqualToString:@"UIAStaticText"])
-			return @"text";
-		else if ([self.type isEqualToString:@"UIAStatusBar"])
-			return @"statusbar";
-		else if ([self.type isEqualToString:@"UIASwitch"])
-			return @"switch";
-		else if ([self.type isEqualToString:@"UIATabBar"])
-			return @"tabbar";
-		else if ([self.type isEqualToString:@"UIATableView"])
-			return @"tableview";
-		else if ([self.type isEqualToString:@"UIATableCell"])
-			return @"cell";
-		else if ([self.type isEqualToString:@"UIATableGroup"])
-			return @"group";
-		else if ([self.type isEqualToString:@"UIATextField"])
-			return @"textfield";
-		else if ([self.type isEqualToString:@"UIATextView"])
-			return @"textview";
-		else if ([self.type isEqualToString:@"UIAToolbar"])
-			return @"toolbar";
-		else if ([self.type isEqualToString:@"UIAWebView"])
-			return @"webview";
-		else if ([self.type isEqualToString:@"UIAWindow"])
-			return @"window";
-		else if ([self.type isEqualToString:@"UIANavigationBar"])
-			return @"navigationBar";
-		else
-			return self.type;
-	}
-	else
-	{
-		NSString *type = [self.type stringByReplacingOccurrencesOfString:@"android.widget." withString:@""];
 
-		if ([type isEqualToString:@"AbsListView"])
-			return @"abslist";
-		else if ([type isEqualToString:@"AbsSeekBar"])
-			return @"absseek";
-		else if ([type isEqualToString:@"AbsSpinner"])
-			return @"absspinner";
-		else if ([type isEqualToString:@"AbsoluteLayout"])
-			return @"absolute";
-		else if ([type isEqualToString:@"AdapterViewAnimator"])
-			return @"adapterviewanimator";
-		else if ([type isEqualToString:@"AdapterViewFlipper"])
-			return @"adapterviewflipper";
-		else if ([type isEqualToString:@"AnalogClock"])
-			return @"analogclock";
-		else if ([type isEqualToString:@"AppWidgetHostView"])
-			return @"appwidgethost";
-		else if ([type isEqualToString:@"AutoCompleteTextView"])
-			return @"autocomplete";
-		else if ([type isEqualToString:@"Button"])
-			return @"button";
-		else if ([type isEqualToString:@"FragmentBreadCrumbs"])
-			return @"breadcrumbs";
-		else if ([type isEqualToString:@"CalendarView"])
-			return @"calendar";
-		else if ([type isEqualToString:@"CheckBox"])
-			return @"checkbox";
-		else if ([type isEqualToString:@"CheckedTextView"])
-			return @"checked";
-		else if ([type isEqualToString:@"Chronometer"])
-			return @"chronometer";
-		else if ([type isEqualToString:@"CompoundButton"])
-			return @"compound";
-		else if ([type isEqualToString:@"DatePicker"])
-			return @"datepicker";
-		else if ([type isEqualToString:@"DialerFilter"])
-			return @"dialerfilter";
-		else if ([type isEqualToString:@"DigitalClock"])
-			return @"digitalclock";
-		else if ([type isEqualToString:@"SlidingDrawer"])
-			return @"drawer";
-		else if ([type isEqualToString:@"ExpandableListView"])
-			return @"expandable";
-		else if ([type isEqualToString:@"ExtractEditText"])
-			return @"extract";
-		else if ([type isEqualToString:@"FragmentTabHost"])
-			return @"fragmenttabhost";
-		else if ([type isEqualToString:@"Gallery"])
-			return @"gallery";
-		else if ([type isEqualToString:@"GestureOverlayView"])
-			return @"gesture";
-		else if ([type isEqualToString:@"GLSurfaceView"])
-			return @"glsurface";
-		else if ([type isEqualToString:@"GridView"])
-			return @"grid";
-		else if ([type isEqualToString:@"GridLayout"])
-			return @"gridlayout";
-		else if ([type isEqualToString:@"HorizontalScrollView"])
-			return @"horizontal";
-		else if ([type isEqualToString:@"ImageView"])
-			return @"image";
-		else if ([type isEqualToString:@"ImageButton"])
-			return @"imagebutton";
-		else if ([type isEqualToString:@"ImageSwitcher"])
-			return @"imageswitcher";
-		else if ([type isEqualToString:@"KeyboardView"])
-			return @"keyboard";
-		else if ([type isEqualToString:@"LinearLayout"])
-			return @"linear";
-		else if ([type isEqualToString:@"ListView"])
-			return @"list";
-		else if ([type isEqualToString:@"MediaController"])
-			return @"media";
-		else if ([type isEqualToString:@"MediaRouteButton"])
-			return @"mediaroutebutton";
-		else if ([type isEqualToString:@"MultiAutoCompleteTextView"])
-			return @"multiautocomplete";
-		else if ([type isEqualToString:@"NumberPicker"])
-			return @"numberpicker";
-		else if ([type isEqualToString:@"PageTabStrip"])
-			return @"pagetabstrip";
-		else if ([type isEqualToString:@"PageTitleStrip"])
-			return @"pagetitlestrip";
-		else if ([type isEqualToString:@"ProgressBar"])
-			return @"progress";
-		else if ([type isEqualToString:@"QuickContactBadge"])
-			return @"quickcontactbadge";
-		else if ([type isEqualToString:@"RadioButton"])
-			return @"radio";
-		else if ([type isEqualToString:@"RadioGroup"])
-			return @"radiogroup";
-		else if ([type isEqualToString:@"RatingBar"])
-			return @"rating";
-		else if ([type isEqualToString:@"RelativeLayout"])
-			return @"relative";
-		else if ([type isEqualToString:@"TableRow"])
-			return @"row";
-		else if ([type isEqualToString:@"RSSurfaceView"])
-			return @"rssurface";
-		else if ([type isEqualToString:@"RSTextureView"])
-			return @"rstexture";
-		else if ([type isEqualToString:@"ScrollView"])
-			return @"scroll";
-		else if ([type isEqualToString:@"SearchView"])
-			return @"search";
-		else if ([type isEqualToString:@"SeekBar"])
-			return @"seek";
-		else if ([type isEqualToString:@"Space"])
-			return @"space";
-		else if ([type isEqualToString:@"Spinner"])
-			return @"spinner";
-		else if ([type isEqualToString:@"StackView"])
-			return @"stack";
-		else if ([type isEqualToString:@"SurfaceView"])
-			return @"surface";
-		else if ([type isEqualToString:@"Switch"])
-			return @"switch";
-		else if ([type isEqualToString:@"TabHost"])
-			return @"tabhost";
-		else if ([type isEqualToString:@"TabWidget"])
-			return @"tabwidget";
-		else if ([type isEqualToString:@"TableLayout"])
-			return @"table";
-		else if ([type isEqualToString:@"TextView"])
-			return @"text";
-		else if ([type isEqualToString:@"TextClock"])
-			return @"textclock";
-		else if ([type isEqualToString:@"TextSwitcher"])
-			return @"textswitcher";
-		else if ([type isEqualToString:@"TextureView"])
-			return @"texture";
-		else if ([type isEqualToString:@"EditText"])
-			return @"textfield";
-		else if ([type isEqualToString:@"TimePicker"])
-			return @"timepicker";
-		else if ([type isEqualToString:@"ToggleButton"])
-			return @"toggle";
-		else if ([type isEqualToString:@"TwoLineListItem"])
-			return @"twolinelistitem";
-		else if ([type isEqualToString:@"VideoView"])
-			return @"video";
-		else if ([type isEqualToString:@"ViewAnimator"])
-			return @"viewanimator";
-		else if ([type isEqualToString:@"ViewFlipper"])
-			return @"viewflipper";
-		else if ([type isEqualToString:@"ViewGroup"])
-			return @"viewgroup";
-		else if ([type isEqualToString:@"ViewPager"])
-			return @"viewpager";
-		else if ([type isEqualToString:@"ViewStub"])
-			return @"viewstub";
-		else if ([type isEqualToString:@"ViewSwitcher"])
-			return @"viewswitcher";
-		else if ([type isEqualToString:@"WebView"])
-			return @"web";
-		else if ([type isEqualToString:@"FrameLayout"])
-			return @"window";
-		else if ([type isEqualToString:@"ZoomButton"])
-			return @"zoom";
-		else if ([type isEqualToString:@"ZoomControls"])
-			return @"zoomcontrols";
-        else if ([type isEqualToString:@"AdapterView"])
-            return @"adapterview";
-        else if ([type isEqualToString:@"android.view.View"])
-            return @"view";
-		else
-			return self.type;
-	}
+	NSMutableAttributedString *infoText = [[NSMutableAttributedString alloc] initWithAttributedString:[self infoText]];
+	NSMutableAttributedString *xPathLabel = [[NSMutableAttributedString alloc] initWithString:@"xpath:"];
+	NSMutableAttributedString *xPathValue = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@" %@\n", xpath]];
+	
+	[xPathLabel addAttribute:NSFontAttributeName value:BOLD_FONT range:NSMakeRange(0, [xPathLabel length])];
+	[xPathValue addAttribute:NSFontAttributeName value:REGULAR_FONT range:NSMakeRange(0, [xPathValue length])];
+	[xPathLabel appendAttributedString:xPathValue];
+	[infoText appendAttributedString:xPathLabel];
+	return infoText;
+	
 }
 
 @end

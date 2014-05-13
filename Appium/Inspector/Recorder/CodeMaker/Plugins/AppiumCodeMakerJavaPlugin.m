@@ -52,7 +52,7 @@ public class {scriptName} {\n\
 \t\tcapabilities.setCapability(\"app-package\", \"%@\");\n\
 \t\tcapabilities.setCapability(\"app-activity\", \"%@\");\n\
 \t\twd = new RemoteWebDriver(new URL(\"http://%@:%@/wd/hub\"), capabilities);\n\
-\t\twd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);\n", self.model.appPath, self.model.androidPackage, self.model.androidActivity, self.model.ipAddress, self.model.port];
+\t\twd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);\n", self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.serverAddress, self.model.serverPort];
 }
 
 -(NSString*) preCodeBoilerplateiOS
@@ -75,7 +75,7 @@ public class {scriptName} {\n\
 \t\tcapabilities.setCapability(\"device\", \"%@\");\n\
 \t\tcapabilities.setCapability(\"app\", \"%@\");\n\
 \t\twd = new RemoteWebDriver(new URL(\"http://%@:%@/wd/hub\"), capabilities);\n\
-\t\twd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);\n", self.model.deviceToForceString, self.model.appPath, self.model.ipAddress, self.model.port];
+\t\twd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);\n", self.model.iOS.deviceName, self.model.iOS.appPath, self.model.serverAddress, self.model.serverPort];
 }
 
 -(NSString*) postCodeBoilerplate

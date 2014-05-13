@@ -12,6 +12,7 @@
 #import "AppiumAppDelegate.h"
 #import "AppiumModel.h"
 #import "AppiumPreferencesFile.h"
+#import "XMLReader.h"
 
 @interface AppiumInspector ()
 @property (readonly) SERemoteWebDriver *driver;
@@ -23,9 +24,11 @@
 {
     self = [super init];
     if (self) {
-		self.currentWindow = @"native";
-		_selectedWindow = @"native";
-        [self setDomIsPopulating:NO];
+		self.currentContext = @"no context";
+		_selectedContext = @"no context";
+        self.domIsPopulating = NO;
+		self.selectedLocatorStrategy = @"xpath";
+		self.suppliedLocator = @"";
     }
     return self;
 }
@@ -61,9 +64,9 @@
     [self setDomIsPopulating:NO];
 }
 
--(NSString*)selectedWindow { return _selectedWindow; };
--(void) setSelectedWindow:(NSString *)selectedWindow {
-	_selectedWindow = selectedWindow;
+-(NSString*)selectedContext { return _selectedContext; };
+-(void) setSelectedContext:(NSString *)selectedContext {
+	_selectedContext = selectedContext;
 }
 
 
@@ -74,14 +77,14 @@
     [self performSelectorOnMainThread:@selector(setDomIsPopulatingToYes) withObject:nil waitUntilDone:YES];
 	[self refreshPageSource:&e];
     [self refreshScreenshot];
-	[self refreshWindowList];
+	[self refreshContextList];
 
     if (e) {
         NSAlert *alert = [NSAlert alertWithError:e];
         [alert runModal];
         [_windowController close];
     } else {
-        NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData: [_lastPageSource dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: &e];
+		NSDictionary *jsonDict = [XMLReader dictionaryForXMLString:_lastPageSource error:&e];
         _browserRootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict parent:nil showDisabled:[self.showDisabled boolValue] showInvisible:[self.showInvisible boolValue]];
         _rootNode = [[WebDriverElementNode alloc] initWithJSONDict:jsonDict parent:nil showDisabled:[self.showDisabled boolValue] showInvisible:[self.showInvisible boolValue]];
         [_windowController.browser performSelectorOnMainThread:@selector(loadColumnZero) withObject:nil waitUntilDone:YES];
@@ -159,6 +162,24 @@
 	return nil;
 }
 
+-(BOOL) selectNodeWithRect:(NSRect)rect className:(NSString*)className fromNode:(WebDriverElementNode*)node {
+	if (!node) {
+		node = _rootNode;
+	}
+	if (NSEqualRects(node.rect, rect) && [node.type isEqualToString:className]) {
+		[self setSelectedNode:node];
+		return YES;
+	} else {
+		WebDriverElementNode *childNode;
+		for (childNode in node.children) {
+			if ([self selectNodeWithRect:rect className:className fromNode:childNode]) {
+				return YES;
+			}
+		}
+	}
+	return NO;
+}
+
 -(void) selectNodeNearestPoint:(NSPoint)point
 {
 	WebDriverElementNode *node = [self findDisplayedNodeForPoint:point node:_rootNode];
@@ -215,7 +236,7 @@
 
         // build xpath
         [xPath appendString:@"/"];
-        [xPath appendString:currentNode.typeShortcut];
+        [xPath appendString:currentNode.type];
         NSInteger nodeTypeCount = 0;
         for(int j=0; j < parentNode.children.count ; j++)
         {
@@ -277,6 +298,8 @@
 	}
 }
 
+-(NSArray*) allLocatorStrategies { return [NSArray arrayWithObjects: @"accessibility id", @"android uiautomator", @"class name", @"id", @"ios uiautomation", @"name", @"xpath", nil]; }
+
 #pragma mark - Inspector Operations
 -(IBAction)refresh:(id)sender
 {
@@ -285,26 +308,7 @@
 
 -(void)refreshPageSource:(NSError **)error
 {
-    NSError *lastError = self.driver.lastError;
-	if ([self.currentWindow isEqualToString:@"native"])
-	{
-		_lastPageSource = [self.driver pageSource];
-        *error = self.driver.lastError != lastError ? self.driver.lastError : nil;
-	}
-	else
-	{
-		[self.driver executeScript:@"mobile: leaveWebView"];
-		NSDictionary *response = [self.driver executeScript:[NSString stringWithFormat:@"UIATarget.localTarget().frontMostApp().windows()[%@].getTree()", self.currentWindow]];
-		NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[response objectForKey:@"value"]
-														   options:0
-															 error:error];
-		if (! jsonData) {
-			NSLog(@"Got an error parsing webview source: %@", *error);
-		} else {
-			_lastPageSource = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-		}
-		[self.driver setWindow:self.currentWindow];
-	}
+	_lastPageSource = [self.driver pageSource];
 }
 
 -(void)refreshScreenshot
@@ -378,23 +382,18 @@
 
 #pragma mark - Misc
 
--(void)refreshWindowList
+-(void)refreshContextList
 {
-	[self setWindows:[NSArray arrayWithObject:@"native"]];
-	if (self.model.enableAppiumInspectorWindowSupport)
+	[self setContexts:[NSArray arrayWithObject:@"no context"]];
+	[self setContexts:[self.contexts arrayByAddingObjectsFromArray:[self.driver allContexts]]];
+	for	(NSString *context in self.contexts)
 	{
-		[self setWindows:[self.windows arrayByAddingObject:@"0"]];
-		[self setWindows:[self.windows arrayByAddingObjectsFromArray:[self.driver allWindows]]];
-		for	(NSString *window in self.windows)
+		if ([context isEqualToString:self.selectedContext])
 		{
-			if ([window isEqualToString:self.selectedWindow])
-			{
-				return;
-			}
+			return;
 		}
-		[self.driver executeScript:@"mobile: leaveWebView"];
 	}
-	[self setSelectedWindow:@"native"];
+	[self setSelectedContext:@"no context"];
 }
 
 -(void) updateDetailsDisplay
@@ -403,8 +402,11 @@
 
 	if (_selection != nil)
 	{
-        NSString *newDetails = [NSString stringWithFormat:@"%@\nxpath: %@", [_selection infoText], [self xPathForSelectedNode]];
-        [_windowController.detailsTextView setString:newDetails];
+        NSAttributedString *newDetails = [_selection infoTextWithXPath:[self xPathForSelectedNode]];
+        [_windowController.detailsTextView setString:@""];
+        [_windowController.detailsTextView.textStorage beginEditing];
+        [_windowController.detailsTextView.textStorage appendAttributedString:newDetails];
+        [_windowController.detailsTextView.textStorage endEditing];
 	}
 	else
 	{

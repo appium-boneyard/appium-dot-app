@@ -26,49 +26,57 @@
 -(NSString*) preCodeBoilerplateAndroid
 {
     return [NSString stringWithFormat:@"require 'rubygems'\n\
-require 'selenium-webdriver'\
+require 'appium_lib'\
 \n\
 capabilities = {\n\
-\tdevice' => 'Android',\n\
-\t'browserName' => '',\n\
-\t'platform' => 'Mac',\n\
-\t'version' => '4.2',\n\
-\t'app' => '%@'\n\
-\t'app-package' => '%@'\n\
-\t'app-activity' => '%@'\n\
+\tdeviceName: 'Android',\n\
+\tplatformName: 'Android',\n\
+\tplatformVersion: '4.2',\n\
+\tapp: '%@',\n\
+\t:'app-package' => '%@',\n\
+\t:'app-activity' => '%@'\n\
 }\n\
 \n\
 server_url = \"http://%@:%@/wd/hub\"\n\
 \n\
-wd = Selenium::WebDriver.for(:remote, :desired_capabilities => capabilities, :url => server_url)\n", self.model.appPath, self.model.androidPackage, self.model.androidActivity, self.model.ipAddress, self.model.port];
+Appium::Driver.new(caps: capabilities).start_driver\n\
+Appium.promote_appium_methods Object\n\
+\n ", self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.serverAddress, self.model.serverPort];
 }
 
 -(NSString*) preCodeBoilerplateiOS
 {
     return [NSString stringWithFormat:@"require 'rubygems'\n\
-require 'selenium-webdriver'\
+require 'appium_lib'\
 \n\
 capabilities = {\n\
-\t'browserName' => 'iOS',\n\
-\t'platform' => 'Mac',\n\
-\t'version' => '6.1',\n\
-\t'device' => '%@',\n\
-\t'app' => '%@'\n\
+\tdeviceName: '%@',\n\
+\tplatformName: 'iOS',\n\
+\tplatformVersion: '7.1',\n\
+\tapp: '%@'\n\
 }\n\
 \n\
 server_url = \"http://%@:%@/wd/hub\"\n\
 \n\
-@wd = Selenium::WebDriver.for(:remote, :desired_capabilities => capabilities, :url => server_url)\n", self.model.deviceToForceString, self.model.appPath, self.model.ipAddress, self.model.port];
+Appium::Driver.new(caps: capabilities).start_driver\n\
+Appium.promote_appium_methods Object\n\
+\n", self.model.iOS.deviceName, self.model.iOS.appPath, self.model.serverAddress, self.model.serverPort];
 }
 
 -(NSString*) postCodeBoilerplate
 {
-    return @"wd.quit\n";
+    return @"driver_quit\n";
 }
 
--(NSString*) acceptAlert {return [self commentWithString:APPIUM_CODE_MAKER_PLUGIN_METHOD_NYI_STRING];}
+-(NSString*) acceptAlert
+{
+	return @"alert_accept\n";
+}
 
--(NSString*) dismissAlert {return [self commentWithString:APPIUM_CODE_MAKER_PLUGIN_METHOD_NYI_STRING];}
+-(NSString*) dismissAlert
+{
+	return @"alert_dismiss\n";
+}
 
 -(NSString*) comment:(AppiumCodeMakerActionComment*)action
 {
@@ -82,19 +90,20 @@ server_url = \"http://%@:%@/wd/hub\"\n\
 
 -(NSString*) executeScript:(AppiumCodeMakerActionExecuteScript*)action
 {
-    return [NSString stringWithFormat:@"@wd.execute_script \"%@\"\n", [self escapeString:action.script]];
+    return [NSString stringWithFormat:@"execute_script \"%@\"\n", [self escapeString:action.script]];
 }
 
 -(NSString*) preciseTap:(AppiumCodeMakerActionPreciseTap*)action
 {
     NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
-    return [NSString stringWithFormat:@"@wd.execute_script 'mobile: tap', \
-:tapCount => %@, \
-:touchCount => %@, \
-:duration => %@, \
+    return [NSString stringWithFormat:@"Appium::TouchAction.new \
 :x => %@, \
-:y => %@\n",
-            [args objectForKey:@"tapCount"], [args objectForKey:@"touchCount"], [args objectForKey:@"duration"], [args objectForKey:@"x"], [args objectForKey:@"y"]];
+:y => %@, \
+:fingers => %@, \
+:tapCount => %@, \
+:duration => %@\n",
+            [args objectForKey:@"x"], [args objectForKey:@"y"], [args objectForKey:@"touchCount"],
+				[args objectForKey:@"tapCount"], [args objectForKey:@"duration"]];
 }
 
 -(NSString*) sendKeys:(AppiumCodeMakerActionSendKeys*)action
@@ -104,20 +113,21 @@ server_url = \"http://%@:%@/wd/hub\"\n\
 
 -(NSString*) shake:(AppiumCodeMakerActionShake*)action
 {
-    return [NSString stringWithFormat:@"@wd.execute_script \"mobile: shake\"\n"];
+    return [NSString stringWithFormat:@"shake\n"];
 }
 
 -(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action
 {
     NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
-    return [NSString stringWithFormat:@"@wd.execute_script 'mobile: swipe', \
+    return [NSString stringWithFormat:@"swipe \
+:start_x => %@, \
+:start_x => %@, \
+:end_x => %@, \
+:end_y => %@, \
 :touchCount => %@, \
-:startX => %@, \
-:startY => %@, \
-:endX => %@, \
-:endY => %@, \
 :duration => %@\n",
-            [args objectForKey:@"touchCount"], [args objectForKey:@"startX"], [args objectForKey:@"startY"], [args objectForKey:@"endX"], [args objectForKey:@"endY"], [args objectForKey:@"duration"]];
+            [args objectForKey:@"startX"], [args objectForKey:@"startY"], [args objectForKey:@"endX"],
+				[args objectForKey:@"endY"], [args objectForKey:@"touchCount"], [args objectForKey:@"duration"]];
 }
 
 -(NSString*) tap:(AppiumCodeMakerActionTap*)action
@@ -138,9 +148,9 @@ server_url = \"http://%@:%@/wd/hub\"\n\
 	switch(newLocator.locatorType)
 	{
 		case APPIUM_CODE_MAKER_LOCATOR_TYPE_NAME:
-			return [NSString stringWithFormat:@"wd.find_element(:name, \"%@\")", [self escapeString:newLocator.locatorString]];
+			return [NSString stringWithFormat:@"find_element(:name, \"%@\")", [self escapeString:newLocator.locatorString]];
 		case APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH:
-			return [NSString stringWithFormat:@"wd.find_element(:xpath, \"%@\")", [self escapeString:newLocator.locatorString]];
+			return [NSString stringWithFormat:@"find_element(:xpath, \"%@\")", [self escapeString:newLocator.locatorString]];
 		default: return nil;
 	}
 }

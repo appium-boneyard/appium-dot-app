@@ -4,6 +4,22 @@
 <dict>
 	<key>Android Activity</key>
 	<string></string>
+	<key>Android App Path</key>
+	<string></string>
+	<key>Android Automation Name</key>
+	<string>Appium</string>
+	<key>Android AVD</key>
+	<string></string>
+	<key>Android AVD Arguments</key>
+	<string></string>
+	<key>Android Bootstrap Port</key>
+	<integer>4724</integer>
+	<key>Android Chromedriver Port</key>
+	<real>9515</real>
+	<key>Android Coverage Class</key>
+	<string></string>
+	<key>Android Device Name</key>
+	<string></string>
 	<key>Android Device Ready Timeout</key>
 	<integer>5</integer>
 	<key>Android Full Reset</key>
@@ -18,73 +34,151 @@
 	<string>/Users/me/.android/debug.keystore</string>
 	<key>Android Package</key>
 	<string></string>
-	<key>Android Wait Activity</key>
-	<string></string>
-	<key>App Path</key>
-	<string>/</string>
-	<key>Authorized iOS</key>
+	<key>Android Platform Name</key>
+	<string>Android</string>
+	<key>Android Platform Version</key>
+	<string>4.4 KitKat (API Level 19)</string>
+	<key>Android Selendroid port</key>
+	<real>8080</real>
+	<key>Android Use Activity</key>
 	<false/>
-	<key>AVD</key>
+	<key>Android Use App Path</key>
+	<false/>
+	<key>Android Use AVD</key>
+	<false/>
+	<key>Android Use AVD Arguments</key>
+	<false/>
+	<key>Android Use Android Browser</key>
+	<false/>
+	<key>Android Use Bootstrap Port</key>
+	<false/>
+	<key>Android Use Chromedriver Port</key>
+	<false/>
+	<key>Android Use Coverage Class</key>
+	<false/>
+	<key>Android Use Custom SDK Path</key>
+	<false/>
+	<key>Android Use Device Name</key>
+	<false/>
+	<key>Android Use Device Ready Timeout</key>
+	<false/>
+	<key>Android Use Keystore</key>
+	<false/>
+	<key>Android Use Package</key>
+	<false/>
+	<key>Android Use Selendroid Port</key>
+	<false/>
+	<key>Android Use Wait Activity</key>
+	<false/>
+	<key>Android Use Wait Package</key>
+	<false/>
+	<key>Android Wait Activity</key>
 	<string></string>
 	<key>Break On NodeJS Application Start</key>
 	<false/>
-	<key>BundleID</key>
-	<string></string>
-	<key>Calendar Format</key>
-	<string>gregorian</string>
 	<key>Check For Updates</key>
 	<true/>
-	<key>CodeMaker Language</key>
-	<string>Java</string>
-	<key>Custom Android SDK Path</key>
+	<key>Custom Flags</key>
 	<string></string>
 	<key>Developer Mode</key>
-	<false/>
-	<key>Device</key>
-	<string>iPad</string>
-	<key>Devices</key>
-	<array>
-		<string>iPhone</string>
-		<string>iPhone Retina (3.5-inch)</string>
-		<string>iPhone Retina (4-inch)</string>
-		<string>iPhone Retina (4-inch 64-bit)</string>
-		<string>iPad</string>
-		<string>iPad Retina</string>
-		<string>iPad Retina (64-bit)</string>
-	</array>
-	<key>Enable Appium Inspector Window Support</key>
 	<false/>
 	<key>External Appium Package Path</key>
 	<string>/Users/me/appium</string>
 	<key>External NodeJS Binary Path</key>
 	<string>/usr/local/bin/node</string>
-	<key>Force Device</key>
-	<false/>
-	<key>Force Orientation</key>
-	<false/>
+	<key>Inspector CodeMaker Language</key>
+	<string>Java</string>
 	<key>Inspector Shows Disabled Elements</key>
 	<true/>
 	<key>Inspector Shows Invisible Elements</key>
 	<true/>
-	<key>Keep Artifacts</key>
+	<key>Inspector Uses CodeMaker Boilerplate</key>
 	<true/>
-	<key>Kill Processes Using Port</key>
-	<true/>
-	<key>Language</key>
+	<key>Inspector Uses XPath Only</key>
+	<false/>
+	<key>iOS App Path</key>
+	<string></string>
+	<key>iOS Authorized</key>
+	<false/>
+	<key>iOS Backend Retries</key>
+	<integer>3</integer>
+	<key>iOS BundleID</key>
+	<string></string>
+	<key>iOS Calendar Format</key>
+	<string>gregorian</string>
+	<key>iOS Custom Trace Template Path</key>
+	<string></string>
+	<key>iOS Device Name</key>
+	<string>iPhone</string>
+	<key>iOS Full Reset</key>
+	<false/>
+	<key>iOS Keep Artifacts</key>
+	<false/>
+	<key>iOS Keep Keychains</key>
+	<false/>
+	<key>iOS Language</key>
 	<string>en</string>
-	<key>Locale</key>
+	<key>iOS Launch Timeout</key>
+	<integer>90000</integer>
+	<key>iOS Locale</key>
 	<string>en_US</string>
+	<key>iOS No Reset</key>
+	<false/>
+	<key>iOS Not Merciful</key>
+	<false/>
+	<key>iOS Orientation</key>
+	<string></string>
+	<key>iOS Platform Version</key>
+	<string>7.1</string>
+	<key>iOS Show Simulator Log</key>
+	<true/>
+	<key>iOS UDID</key>
+	<string></string>
+	<key>iOS Use App Path</key>
+	<false/>
+	<key>iOS Use Backend Retries</key>
+	<string></string>
+	<key>iOS Use BundleID</key>
+	<false/>
+	<key>iOS Use Calendar</key>
+	<false/>
+	<key>iOS Use Custom Trace Template</key>
+	<false/>
+	<key>iOS Use Default Device</key>
+	<true/>
+	<key>iOS Use Language</key>
+	<false/>
+	<key>iOS Use Launch Timeout</key>
+	<false/>
+	<key>iOS Use Locale</key>
+	<false/>
+	<key>iOS Use Mobile Safari</key>
+	<false/>
+	<key>iOS Use Native Instruments Library</key>
+	<false/>
+	<key>iOS Use Orientation</key>
+	<false/>
+	<key>iOS Use UDID</key>
+	<false/>
+	<key>Kill Processes Using Port</key>
+	<false/>
+	<key>Log Colors</key>
+	<true/>
 	<key>Log File</key>
 	<string>/tmp/appium.log</string>
+	<key>Log Timestamps</key>
+	<false/>
 	<key>Log Webhook</key>
 	<string>localhost:9876</string>
+	<key>New Command Timeout</key>
+	<integer>7200</integer>
 	<key>NodeJS Debug Port</key>
-	<integer>5858</integer>
-	<key>Orientation</key>
-	<string>Portrait</string>
+	<real>5858</real>
 	<key>Override Existing Sessions</key>
 	<false/>
-	<key>Prelaunch</key>
+	<key>Platform is Android</key>
+	<false/>
+	<key>Prelaunch Application</key>
 	<false/>
 	<key>Reset Application State</key>
 	<true/>
@@ -92,37 +186,13 @@
 	<string>0.0.0.0</string>
 	<key>Robot Port</key>
 	<real>4</real>
-	<key>Selendroid Port</key>
-	<integer>8080</integer>
-	<key>Selenium Grid Config File</key>
+	<key>Selenium Grid Configuration File</key>
 	<string>/Users/me/nodeconfig.json</string>
 	<key>Server Address</key>
 	<string>0.0.0.0</string>
 	<key>Server Port</key>
 	<integer>4723</integer>
-	<key>Tab State</key>
-	<integer>0</integer>
-	<key>UDID</key>
-	<string>auto</string>
-	<key>Use Android Activity</key>
-	<false/>
-	<key>Use Android Device Ready Timeout</key>
-	<false/>
-	<key>Use Android Keystore</key>
-	<false/>
-	<key>Use Android Package</key>
-	<false/>
-	<key>Use Android Wait Activity</key>
-	<false/>
-	<key>Use App Path</key>
-	<false/>
-	<key>Use AVD</key>
-	<false/>
-	<key>Use BundleID</key>
-	<false/>
-	<key>Use CodeMaker Boilerplate</key>
-	<true/>
-	<key>Use Custom Android SDK Path</key>
+	<key>Use Custom Flags</key>
 	<false/>
 	<key>Use External NodeJS Binary</key>
 	<false/>
@@ -130,27 +200,21 @@
 	<false/>
 	<key>Use Log File</key>
 	<false/>
+	<key>Use Log Timestamps</key>
+	<false/>
 	<key>Use Log Webhook</key>
 	<false/>
-	<key>Use Remote Server</key>
-	<false/>
-	<key>Use Mobile Safari</key>
-	<false/>
-	<key>Use Native Instruments Lib</key>
-	<false/>
+	<key>Use New Command Timeout</key>
+	<true/>
 	<key>Use NodeJS Debugging</key>
 	<false/>
 	<key>Use Quiet Logging</key>
 	<false/>
+	<key>Use Remote Server</key>
+	<false/>
 	<key>Use Robot</key>
 	<false/>
-	<key>Use Selendroid Port</key>
-	<false/>
 	<key>Use Selenium Grid Config File</key>
-	<false/>
-	<key>Use UDID</key>
-	<false/>
-	<key>Use XPath Only</key>
 	<false/>
 </dict>
 </plist>

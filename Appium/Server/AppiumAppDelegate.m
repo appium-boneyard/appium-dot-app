@@ -10,7 +10,6 @@
 
 #import "AppiumInspectorWindowController.h"
 #import "AppiumInstallationWindowController.h"
-#import "AppiumPreferencesWindowController.h"
 #import "AppiumUpdater.h"
 #import "NodeInstance.h"
 #import "Utility.h"
@@ -40,29 +39,6 @@
 
 -(BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)app {
     return YES;
-}
-
-#pragma mark - Preferences
-
--(IBAction) displayPreferences:(id)sender
-{
-	if (_preferencesWindow == nil)
-	{
-		_preferencesWindow = [[AppiumPreferencesWindowController alloc] initWithWindowNibName:@"AppiumPreferencesWindow"];
-		[[NSNotificationCenter defaultCenter] addObserver:self
-												 selector:@selector(preferenceWindowWillClose:)
-													 name:NSWindowWillCloseNotification
-												   object:[_preferencesWindow window]];
-	}
-
-	[_preferencesWindow showWindow:self];
-	[[_preferencesWindow window] makeKeyAndOrderFront:self];
-}
-
-- (void)preferenceWindowWillClose:(NSNotification *)notification
-{
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowWillCloseNotification object:[_preferencesWindow window]];
-	_preferencesWindow = nil;
 }
 
 #pragma mark - Inspector
@@ -106,7 +82,8 @@
         [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Installing NodeJS..." waitUntilDone:YES];
         [[self mainWindowController] setNode:[[NodeInstance alloc] initWithPath:nodeRootPath]];
         [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Installing Appium..." waitUntilDone:YES];
-        [[[self mainWindowController] node] installPackage:@"appium" atVersion:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] forceInstall:NO];
+        NSString *appiumVersion = [[[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] componentsSeparatedByString:@" "] objectAtIndex:0];
+		[[[self mainWindowController] node] installPackage:@"appium" atVersion:appiumVersion forceInstall:NO];
         [[installationWindow window] performSelectorOnMainThread:@selector(close) withObject:nil waitUntilDone:YES];
     }
     else
@@ -131,7 +108,7 @@
 
 -(void) checkForAuthorization
 {
-	if (!self.model.authorizediOS)
+	if (!self.model.iOS.authorized)
 	{
 		NSAlert *alert = [NSAlert new];
         [alert setMessageText:@"Appium is not authorized to run the iOS Simulator"];
@@ -146,11 +123,11 @@
 			NSString *appiumPath = [self.mainWindowController.node pathtoPackage:@"appium"];
 			NSString *authorizePath = [NSString stringWithFormat:@"%@/%@", appiumPath, @"bin/authorize-ios.js", nil];
 			[Utility runTaskWithBinary:nodePath arguments:[NSArray arrayWithObjects:authorizePath, nil] path:appiumPath];
-			[self.model setAuthorizediOS:YES];
+			[self.model.iOS setAuthorized:YES];
 		}
 		else if (response == NSAlertFirstButtonReturn)
 		{
-			[self.model setAuthorizediOS:YES];
+			[self.model.iOS setAuthorized:YES];
 		}
 	}
 }
@@ -158,6 +135,14 @@
 -(IBAction) checkForUpdates:(id)sender
 {
 	[_updater performSelectorInBackground:@selector(checkForUpdates:) withObject:sender];
+}
+
+-(IBAction) resetPreferences:(id)sender {
+	[_model reset];
+}
+
+-(IBAction) showHelp:(id)sender {
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://appium.io/documentation.html?lang=en"]];
 }
 
 -(void) restart

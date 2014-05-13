@@ -58,24 +58,28 @@ popen2(const char *command, int *infp, int *outfp)
 
 @implementation Utility
 
-+(NSString*) pathToAndroidBinary:(NSString*)binaryName
++(NSString*) pathToAndroidBinary:(NSString*)binaryName atSDKPath:(NSString*)sdkPath
 {
-	// get the path to $ANDROID_HOME
-	NSTask *androidHomeTask = [NSTask new];
-    [androidHomeTask setLaunchPath:@"/bin/bash"];
-    [androidHomeTask setArguments: [NSArray arrayWithObjects: @"-l",
+	NSString *androidHomePath = sdkPath;
+	// get the path to $ANDROID_HOME if an sdk path is not supplied
+	if (!androidHomePath)
+	{
+		NSTask *androidHomeTask = [NSTask new];
+		[androidHomeTask setLaunchPath:@"/bin/bash"];
+		[androidHomeTask setArguments: [NSArray arrayWithObjects: @"-l",
 									@"-c", @"echo $ANDROID_HOME", nil]];
-	NSPipe *pipe = [NSPipe pipe];
-    [androidHomeTask setStandardOutput:pipe];
-	[androidHomeTask setStandardError:[NSPipe pipe]];
-    [androidHomeTask setStandardInput:[NSPipe pipe]];
-    [androidHomeTask launch];
-	[androidHomeTask waitUntilExit];
-	NSFileHandle *stdOutHandle = [pipe fileHandleForReading];
-    NSData *data = [stdOutHandle readDataToEndOfFile];
-	[stdOutHandle closeFile];
-    NSString *androidHomePath = [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-
+		NSPipe *pipe = [NSPipe pipe];
+		[androidHomeTask setStandardOutput:pipe];
+		[androidHomeTask setStandardError:[NSPipe pipe]];
+		[androidHomeTask setStandardInput:[NSPipe pipe]];
+		[androidHomeTask launch];
+		[androidHomeTask waitUntilExit];
+		NSFileHandle *stdOutHandle = [pipe fileHandleForReading];
+		NSData *data = [stdOutHandle readDataToEndOfFile];
+		[stdOutHandle closeFile];
+		androidHomePath = [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+	}
+	
 	// check platform-tools folder
 	NSString *androidBinaryPath = [[androidHomePath stringByAppendingPathComponent:@"platform-tools"] stringByAppendingPathComponent:binaryName];
 	if ([[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath])
@@ -89,20 +93,42 @@ popen2(const char *command, int *infp, int *outfp)
 	{
 		return androidBinaryPath;
 	}
+	
+	
+	
+	// check build-tools folders
+	NSString *buildToolsDirectory = [androidHomePath stringByAppendingPathComponent:@"build-tools"];
+	NSEnumerator* enumerator = [[[[NSFileManager defaultManager] enumeratorAtPath:buildToolsDirectory] allObjects] reverseObjectEnumerator];
+	NSString *buildToolsSubDirectory;
+	while (buildToolsSubDirectory = [enumerator nextObject])
+	{
+		buildToolsSubDirectory = [buildToolsDirectory stringByAppendingPathComponent:buildToolsSubDirectory];
+		BOOL isDirectory = NO;
+		if ([[NSFileManager defaultManager] fileExistsAtPath:buildToolsSubDirectory isDirectory: &isDirectory])
+		{
+			if (isDirectory) {
+				androidBinaryPath = [buildToolsSubDirectory stringByAppendingPathComponent:binaryName];
+				if ([[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath])
+				{
+					return androidBinaryPath;
+				}
+			}
+		}
+	}
 
 	// try using the which command
 	NSTask *whichTask = [NSTask new];
     [whichTask setLaunchPath:@"/bin/bash"];
     [whichTask setArguments: [NSArray arrayWithObjects: @"-l",
 							  @"-c", [NSString stringWithFormat:@"which %@", binaryName], nil]];
-	pipe = [NSPipe pipe];
+	NSPipe *pipe = [NSPipe pipe];
     [whichTask setStandardOutput:pipe];
 	[whichTask setStandardError:[NSPipe pipe]];
     [whichTask setStandardInput:[NSPipe pipe]];
     [whichTask launch];
 	[whichTask waitUntilExit];
-	stdOutHandle = [pipe fileHandleForReading];
-    data = [stdOutHandle readDataToEndOfFile];
+	NSFileHandle *stdOutHandle = [pipe fileHandleForReading];
+    NSData *data = [stdOutHandle readDataToEndOfFile];
 	[stdOutHandle closeFile];
     androidBinaryPath = [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
 	if ([[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath])
@@ -169,6 +195,25 @@ popen2(const char *command, int *infp, int *outfp)
 		kill(lsofProcPid, 9);
 	}
     return pid;
+}
+
++(NSString*) pathToVBoxManageBinary
+{
+	NSTask *vBoxManageTask = [NSTask new];
+    [vBoxManageTask setLaunchPath:@"/bin/bash"];
+    [vBoxManageTask setArguments: [NSArray arrayWithObjects: @"-l",
+								   @"-c", @"which vboxmanage", nil]];
+	NSPipe *pipe = [NSPipe pipe];
+    [vBoxManageTask setStandardOutput:pipe];
+	[vBoxManageTask setStandardError:[NSPipe pipe]];
+    [vBoxManageTask setStandardInput:[NSPipe pipe]];
+    [vBoxManageTask launch];
+	[vBoxManageTask waitUntilExit];
+	NSFileHandle *stdOutHandle = [pipe fileHandleForReading];
+    NSData *data = [stdOutHandle readDataToEndOfFile];
+	[stdOutHandle closeFile];
+    NSString *vBoxManagePath = [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    return vBoxManagePath;
 }
 
 @end

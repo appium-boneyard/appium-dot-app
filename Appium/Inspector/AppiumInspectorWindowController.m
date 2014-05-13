@@ -21,7 +21,8 @@
 
         AppiumModel *model = [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] model];
         
-        self.driver = [[SERemoteWebDriver alloc] initWithServerAddress:[model ipAddress] port:[[model port] integerValue]];
+        self.driver = [[SERemoteWebDriver alloc] initWithServerAddress:model.serverAddress port:[model.serverPort integerValue]];
+		
 		if (self.driver == nil)
 		{
 			return [self closeWithError:@"Could not connect to Appium Server"];
@@ -46,8 +47,13 @@
         if (sessions.count == 0 || self.driver.session == nil || self.driver.session.capabilities.platform == nil)
         {
 			// create a new session if one does not already exist
-            SECapabilities *capabilities = [SECapabilities new];
-            [capabilities addCapabilityForKey:@"device" andValue:model.deviceToForceString];
+			SECapabilities *capabilities = [SECapabilities new];
+            [capabilities addCapabilityForKey:@"automationName" andValue:(model.isAndroid ? model.android.automationName : @"Appium")];
+            [capabilities addCapabilityForKey:@"platformName" andValue:(model.isAndroid ? model.android.platformName : @"iOS")];
+			[capabilities addCapabilityForKey:@"platformVersion" andValue:model.isAndroid ? model.android.platformVersionNumber : model.iOS.platformVersion];
+			[capabilities addCapabilityForKey:@"newCommandTimeout" andValue:@"999999"];
+			if ( (model.isAndroid && model.android.useDeviceName) || (model.isIOS && !model.iOS.useDefaultDevice))
+			[capabilities addCapabilityForKey:@"deviceName" andValue:model.isAndroid ? model.android.deviceName : model.iOS.deviceName];
 
             [self.driver startSessionWithDesiredCapabilities:capabilities requiredCapabilities:nil];
 			if (self.driver == nil || self.driver.session == nil || self.driver.session.sessionId == nil)
@@ -56,28 +62,22 @@
 			}
         }
 
-
-		// set 15 minute timeout so Appium will not close prematurely
-		NSArray *timeoutArgs = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys: [NSNumber numberWithInteger:900], @"timeout", nil],nil];
-		[_driver executeScript:@"mobile: setCommandTimeout" arguments:timeoutArgs];
-
-        // detect the current platform
-        if ([[self.driver.session.capabilities.browserName lowercaseString] isEqualToString:@"ios"])
-        {
-            [model setPlatform:Platform_iOS];
-        }
-        if ([[self.driver.session.capabilities.browserName lowercaseString] isEqualToString:@"android"])
-        {
-            [model setPlatform:Platform_Android];
-        }
-        if ([[self.driver.session.capabilities.browserName lowercaseString] isEqualToString:@"selendroid"])
-        {
-            [model setPlatform:Platform_Android];
-        }
-        if ([[[self.driver.session.capabilities getCapabilityForKey:@"device"] lowercaseString] isEqualToString:@"android"])
-        {
-            [model setPlatform:Platform_Android];
-        }
+        // detect the current platform (if using a remote server)
+		if (model.useRemoteServer)
+		{
+			if ([[self.driver.session.capabilities.platformName lowercaseString] isEqualToString:@"ios"])
+			{
+				[model setPlatform:Platform_iOS];
+			}
+			else if ([[self.driver.session.capabilities.platformName lowercaseString] isEqualToString:@"android"])
+			{
+				[model setPlatform:Platform_Android];
+			}
+			else if ([[self.driver.session.capabilities.platformName lowercaseString] isEqualToString:@"selendroid"])
+			{
+				[model setPlatform:Platform_Android];
+			}
+		}
     }
 
     return self;
@@ -100,6 +100,72 @@
     [self.bottomDrawer setMinContentSize:contentSize];
 	[self.bottomDrawer setContentView:self.bottomDrawerContentView];
 	[self.bottomDrawer.contentView setAutoresizingMask:NSViewHeightSizable];
+}
+
+-(IBAction)locatorSearchButtonClicked:(id)sender {
+	
+	[self.findElementButton setEnabled:NO];
+	@try {
+		SEBy *locator = nil;
+		if ([self.inspector.selectedLocatorStrategy isEqualToString:@"accessibility id"]) {
+			locator = [SEBy accessibilityId:self.inspector.suppliedLocator];
+		} else if ([self.inspector.selectedLocatorStrategy isEqualToString:@"android uiautomator"]) {
+			locator = [SEBy androidUIAutomator:self.inspector.suppliedLocator];
+		} else if ([self.inspector.selectedLocatorStrategy isEqualToString:@"class name"]) {
+			locator = [SEBy className:self.inspector.suppliedLocator];
+		} else if ([self.inspector.selectedLocatorStrategy isEqualToString:@"id"]) {
+			locator = [SEBy idString:self.inspector.suppliedLocator];
+		} else if ([self.inspector.selectedLocatorStrategy isEqualToString:@"ios uiautomation"]) {
+			locator = [SEBy iOSUIAutomation:self.inspector.suppliedLocator];
+		} else if ([self.inspector.selectedLocatorStrategy isEqualToString:@"name"]) {
+			locator = [SEBy name:self.inspector.suppliedLocator];
+		} else if ([self.inspector.selectedLocatorStrategy isEqualToString:@"xpath"]) {
+			locator = [SEBy xPath:self.inspector.suppliedLocator];
+		}
+		
+		NSMutableArray *elements = [NSMutableArray new];
+		SEWebElement *element = nil;
+		NSRect rect;
+		NSString *className;
+
+		// find elements and grab identifying information
+		if (locator != nil) {
+			[elements addObjectsFromArray:[self.driver findElementsBy:locator]];
+			if ([elements count] == 1) {
+				element = (SEWebElement*)[elements objectAtIndex:0];
+				if (element.opaqueId != nil) {
+					NSPoint origin = element.location;
+					NSSize size = element.size;
+					rect = NSMakeRect(origin.x, origin.y, size.width, size.height);
+					className = element.tagName;
+				}
+			}
+		}
+		
+		if (element == nil || element.opaqueId == nil) {
+			NSAlert *alert = [NSAlert new];
+			if (elements.count > 1) {
+				// multiple elements were found, show an alert
+				alert.messageText = @"Multiple Elements Were Found";
+				alert.informativeText = [NSString stringWithFormat:@"%ld elements were found using the locator value \"%@\" and the locator strategy \"%@\"", elements.count, self.inspector.suppliedLocator, self.inspector.selectedLocatorStrategy];
+			} else {
+			// element was not found, show an alert
+			alert.messageText = @"No Matching Elements Were Found";
+			alert.informativeText = [NSString stringWithFormat:@"An element could not be found using the locator value \"%@\" and the locator strategy \"%@\"", self.inspector.suppliedLocator, self.inspector.selectedLocatorStrategy];
+			}
+			[alert runModal];
+
+		} else {
+			// select the node that was found
+			[self.inspector selectNodeWithRect:rect className:className fromNode:nil];
+		}
+	}
+	@catch (NSException *exception) {
+		NSLog(@"Could not locate element: %@" , exception);
+	}
+	@finally {
+		[self.findElementButton setEnabled:YES];
+	}
 }
 
 -(id) closeWithError:(NSString*)informativeText

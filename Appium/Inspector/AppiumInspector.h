@@ -27,21 +27,31 @@
     WebDriverElementNode *_browserRootNode;
 	NSMutableArray *_selectedIndexes;
 	NSString *_lastPageSource;
-	NSString *_selectedWindow;
+	NSString *_selectedContext;
 }
 
+// dom hierarchy properties
 @property (readonly) AppiumModel *model;
 @property WebDriverElementNode *selection;
 @property NSNumber *showDisabled;
 @property NSNumber *showInvisible;
 @property BOOL domIsPopulating;
-@property NSArray *windows;
-@property NSString *currentWindow;
-@property NSString *selectedWindow;
 
+// context properties
+@property NSArray *contexts;
+@property NSString *currentContext;
+@property NSString *selectedContext;
+
+// locator search properties
+@property NSString *selectedLocatorStrategy;
+@property NSString *suppliedLocator;
+@property (readonly) NSArray *allLocatorStrategies;
+
+// selected node properties
 -(SEWebElement*) elementForSelectedNode;
 -(NSString*) xPathForSelectedNode;
 -(AppiumCodeMakerLocator*) locatorForSelectedNode;
+-(BOOL) selectNodeWithRect:(NSRect)rect className:(NSString*)className fromNode:(WebDriverElementNode*)node;
 
 -(void) handleClickAt:(NSPoint)windowPoint seleniumPoint:(NSPoint)seleniumPoint;
 -(IBAction) refresh:(id)sender;
