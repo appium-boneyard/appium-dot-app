@@ -54,7 +54,7 @@ def is_alert_present(wd):\n\
 \texcept:\n\
 \t\treturn False\n\
 \n\
-try:\n", self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.serverAddress, self.model.serverPort];
+try:\n", self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.general.serverAddress, self.model.general.serverPort];
 }
 
 -(NSString*) preCodeBoilerplateiOS
@@ -81,7 +81,7 @@ def is_alert_present(wd):\n\
 \texcept:\n\
 \t\treturn False\n\
 \n\
-try:\n", self.model.iOS.deviceName, self.model.iOS.appPath, self.model.serverAddress, self.model.serverPort];;
+try:\n", self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.serverAddress, self.model.general.serverPort];;
 }
 
 -(NSString*) postCodeBoilerplate

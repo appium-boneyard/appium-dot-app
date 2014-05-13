@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Appium. All rights reserved.
 //
 
-#import "AppiumInspectorWindowAppleScript.h"
+#import "AppiumInspectorWindow+AppleScript.h"
 
 @implementation AppiumInspectorWindowController (AppleScriptSupport)
 

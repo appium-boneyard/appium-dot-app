@@ -19,7 +19,6 @@
 
 #pragma  mark - Model
 
-NSUserDefaults* _defaults;
 BOOL _isServerRunning;
 BOOL _isServerListening;
 
@@ -34,40 +33,23 @@ BOOL _isServerListening;
 		NSDictionary *settingsDict = [NSDictionary dictionaryWithContentsOfFile:filePath];
 		[[NSUserDefaults standardUserDefaults] registerDefaults:settingsDict];
 		[[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:settingsDict];
-		_defaults = [NSUserDefaults standardUserDefaults];
 
 		// create submodels
-	    [self setAndroid:[[AppiumAndroidSettingsModel alloc] initWithDefaults:_defaults]];
-		[self setIOS:[[AppiumiOSSettingsModel alloc] initWithDefaults:_defaults]];
+	    [self setAndroid:[AppiumAndroidSettingsModel new]];
+		[self setDeveloper:[AppiumDeveloperSettingsModel new]];
+		[self setGeneral:[AppiumGeneralSettingsModel new]];
+		[self setIOS:[AppiumiOSSettingsModel new]];
+		[self setRobot:[AppiumRobotSettingsModel new]];
 		
 		// initialize members
 		_isServerRunning = NO;
-		_isServerListening = [self useRemoteServer];
+		_isServerListening = self.general.useRemoteServer;
         [self setDoctorSocketIsConnected:NO];
     }
     return self;
 }
 
 #pragma mark - Properties
-
-
--(BOOL) breakOnNodeApplicationStart { return self.developerMode && self.useNodeDebugging && [_defaults boolForKey:APPIUM_PLIST_BREAK_ON_NODEJS_APP_START]; }
--(void) setBreakOnNodeApplicationStart:(BOOL)breakOnNodeApplicationStart { [_defaults setBool:breakOnNodeApplicationStart forKey:APPIUM_PLIST_BREAK_ON_NODEJS_APP_START]; }
-
--(BOOL) checkForUpdates { return [_defaults boolForKey:APPIUM_PLIST_CHECK_FOR_UPDATES]; }
--(void) setCheckForUpdates:(BOOL)checkForUpdates { [_defaults setBool:checkForUpdates forKey:APPIUM_PLIST_CHECK_FOR_UPDATES]; }
-
--(NSString*) customFlags { return [_defaults stringForKey:APPIUM_PLIST_CUSTOM_FLAGS]; }
--(void) setCustomFlags:(NSString *)customFlags { [_defaults setValue:customFlags forKey:APPIUM_PLIST_CUSTOM_FLAGS]; }
-
--(NSString*) externalAppiumPackagePath { return [_defaults stringForKey:APPIUM_PLIST_EXTERNAL_APPIUM_PACKAGE_PATH]; }
--(void) setExternalAppiumPackagePath:(NSString *)externalAppiumPackagePath { [_defaults setValue:externalAppiumPackagePath forKey:APPIUM_PLIST_EXTERNAL_APPIUM_PACKAGE_PATH]; }
-
--(NSString*) externalNodeJSBinaryPath { return [_defaults stringForKey:APPIUM_PLIST_EXTERNAL_NODEJS_BINARY_PATH]; }
--(void) setExternalNodeJSBinaryPath:(NSString *)externalNodeJSBinaryPath { [_defaults setValue:externalNodeJSBinaryPath forKey:APPIUM_PLIST_EXTERNAL_NODEJS_BINARY_PATH]; }
-
--(BOOL) developerMode { return [_defaults boolForKey:APPIUM_PLIST_DEVELOPER_MODE]; }
--(void) setDeveloperMode:(BOOL)developerMode { [_defaults setBool:developerMode forKey:APPIUM_PLIST_DEVELOPER_MODE]; }
 
 -(BOOL) isAndroid { return self.platform == Platform_Android; }
 -(void) setIsAndroid:(BOOL)isAndroid {
@@ -88,99 +70,14 @@ BOOL _isServerListening;
 -(BOOL) isServerListening { return _isServerListening; }
 -(void) setIsServerListening:(BOOL)isServerListening { _isServerListening = isServerListening; }
 
--(BOOL) killProcessesUsingPort { return [_defaults boolForKey:APPIUM_PLIST_KILL_PROCESSES_USING_PORT]; }
--(void) setKillProcessesUsingPort:(BOOL)killProcessesUsingPort { [_defaults setBool:killProcessesUsingPort forKey:APPIUM_PLIST_KILL_PROCESSES_USING_PORT];}
-
--(BOOL) logColors { return [_defaults boolForKey:APPIUM_PLIST_LOG_COLORS]; }
--(void) setLogColors:(BOOL)logColors { [_defaults setBool:logColors forKey:APPIUM_PLIST_LOG_COLORS]; }
-
--(NSString*) logFile { return [_defaults stringForKey:APPIUM_PLIST_LOG_FILE]; }
--(void) setLogFile:(NSString *)logFile { [_defaults setValue:logFile forKey:APPIUM_PLIST_LOG_FILE]; }
-
--(BOOL) logTimestamps { return [_defaults boolForKey:APPIUM_PLIST_LOG_TIMESTAMPS]; }
--(void) setLogTimestamps:(BOOL)logTimestamps { [_defaults setBool:logTimestamps forKey:APPIUM_PLIST_LOG_TIMESTAMPS]; }
-
--(NSString*) logWebHook { return [_defaults stringForKey:APPIUM_PLIST_LOG_WEBHOOK]; }
--(void) setLogWebHook:(NSString *)logWebHook { [_defaults setValue:logWebHook forKey:APPIUM_PLIST_LOG_WEBHOOK]; }
-
--(NSNumber*) newCommandTimeout { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_NEW_COMMAND_TIMEOUT] intValue]]; }
--(void) setNewCommandTimeout:(NSNumber *)newCommandTimeout { [[NSUserDefaults standardUserDefaults] setValue:newCommandTimeout forKey:APPIUM_PLIST_NEW_COMMAND_TIMEOUT]; }
-
--(NSNumber*) nodeDebugPort { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_NODEJS_DEBUG_PORT] intValue]]; }
--(void) setNodeDebugPort:(NSNumber *)nodeDebugPort { [[NSUserDefaults standardUserDefaults] setValue:nodeDebugPort forKey:APPIUM_PLIST_NODEJS_DEBUG_PORT]; }
-
--(BOOL) overrideExistingSessions { return [_defaults boolForKey:APPIUM_PLIST_OVERRIDE_EXISTING_SESSIONS]; }
--(void) setOverrideExistingSessions:(BOOL)overrideExistingSessions { [_defaults setBool:overrideExistingSessions forKey:APPIUM_PLIST_OVERRIDE_EXISTING_SESSIONS]; }
-
 
 -(Platform)platform
 {
-    return [_defaults boolForKey:APPIUM_PLIST_PLATFORM_IS_ANDROID] ? Platform_Android : Platform_iOS;
+    return [DEFAULTS boolForKey:APPIUM_PLIST_PLATFORM_IS_ANDROID] ? Platform_Android : Platform_iOS;
 }
 -(void)setPlatform:(Platform)platform {
-	[_defaults setBool:(platform == Platform_Android) forKey:APPIUM_PLIST_PLATFORM_IS_ANDROID];
+	[DEFAULTS setBool:(platform == Platform_Android) forKey:APPIUM_PLIST_PLATFORM_IS_ANDROID];
 }
-
-
--(BOOL) prelaunchApp { return [_defaults boolForKey:APPIUM_PLIST_PRELAUNCH_APPLICATION]; }
--(void) setPrelaunchApp:(BOOL)preLaunchApp { [_defaults setBool:preLaunchApp forKey:APPIUM_PLIST_PRELAUNCH_APPLICATION]; }
-
--(NSString*) robotAddress { return [_defaults stringForKey:APPIUM_PLIST_ROBOT_ADDRESS]; }
--(void) setRobotAddress:(NSString *)robotAddress { [_defaults setValue:robotAddress forKey:APPIUM_PLIST_ROBOT_ADDRESS]; }
-
--(NSNumber*) robotPort { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_ROBOT_PORT] intValue]]; }
--(void) setRobotPort:(NSNumber *)robotPort { [[NSUserDefaults standardUserDefaults] setValue:robotPort forKey:APPIUM_PLIST_ROBOT_PORT]; }
-
--(NSString*) seleniumGridConfigFile { return [_defaults stringForKey:APPIUM_PLIST_SELENIUM_GRID_CONFIG_FILE]; }
--(void) setSeleniumGridConfigFile:(NSString *)seleniumGridConfigFile { [_defaults setValue:seleniumGridConfigFile forKey:APPIUM_PLIST_SELENIUM_GRID_CONFIG_FILE]; }
-
--(NSString*) serverAddress { return [_defaults stringForKey:APPIUM_PLIST_SERVER_ADDRESS]; }
--(void) setServerAddress:(NSString *)serverAddress { [_defaults setValue:serverAddress forKey:APPIUM_PLIST_SERVER_ADDRESS]; }
-
--(NSNumber*) serverPort { return [NSNumber numberWithInt:[[_defaults stringForKey:APPIUM_PLIST_SERVER_PORT] intValue]]; }
--(void) setServerPort:(NSNumber *)serverPort { [[NSUserDefaults standardUserDefaults] setValue:serverPort forKey:APPIUM_PLIST_SERVER_PORT]; }
-
--(BOOL) useCustomFlags { return [_defaults boolForKey:APPIUM_PLIST_USE_CUSTOM_FLAGS]; }
--(void) setUseCustomFlags:(BOOL)useCustomFlags { [_defaults setBool:useCustomFlags forKey:APPIUM_PLIST_USE_CUSTOM_FLAGS]; }
-
--(BOOL) useExternalAppiumPackage { return self.developerMode && [_defaults boolForKey:APPIUM_PLIST_USE_EXTERNAL_APPIUM_PACKAGE]; }
--(void) setUseExternalAppiumPackage:(BOOL)useCustomAppiumPackage { [_defaults setBool:useCustomAppiumPackage forKey:APPIUM_PLIST_USE_EXTERNAL_APPIUM_PACKAGE]; }
-
--(BOOL) useExternalNodeJSBinary { return self.developerMode && [_defaults boolForKey:APPIUM_PLIST_USE_EXTERNAL_NODEJS_BINARY]; }
--(void) setUseExternalNodeJSBinary:(BOOL)useCustomNodeJSBinary { [_defaults setBool:useCustomNodeJSBinary forKey:APPIUM_PLIST_USE_EXTERNAL_NODEJS_BINARY]; }
-
--(BOOL) useLogFile { return [_defaults boolForKey:APPIUM_PLIST_USE_LOG_FILE]; }
--(void) setUseLogFile:(BOOL)useLogFile { [_defaults setBool:useLogFile forKey:APPIUM_PLIST_USE_LOG_FILE]; }
-
--(BOOL) useLogWebHook { return [_defaults boolForKey:APPIUM_PLIST_USE_LOG_WEBHOOK]; }
--(void) setUseLogWebHook:(BOOL)useLogWebHook { [_defaults setBool:useLogWebHook forKey:APPIUM_PLIST_USE_LOG_WEBHOOK]; }
-
--(BOOL) useNewCommandTimeout { return [_defaults boolForKey:APPIUM_PLIST_USE_NEW_COMMAND_TIMEOUT]; }
--(void) setUseNewCommandTimeout:(BOOL)useNewCommandTimeout { [_defaults setBool:useNewCommandTimeout forKey:APPIUM_PLIST_USE_NEW_COMMAND_TIMEOUT]; }
-
--(BOOL) useNodeDebugging { return self.developerMode && [_defaults boolForKey:APPIUM_PLIST_USE_NODEJS_DEBUGGING]; }
--(void) setUseNodeDebugging:(BOOL)useNodeDebugging { [_defaults setBool:useNodeDebugging forKey:APPIUM_PLIST_USE_NODEJS_DEBUGGING]; }
-
--(BOOL) useRemoteServer { return [_defaults boolForKey:APPIUM_PLIST_USE_REMOTE_SERVER]; }
--(void) setUseRemoteServer:(BOOL)useRemoteServer
-{
-	[_defaults setBool:useRemoteServer forKey:APPIUM_PLIST_USE_REMOTE_SERVER];
-	if (useRemoteServer)
-	{
-		[self killServer];
-	}
-	[self setIsServerListening:useRemoteServer];
-}
-
--(BOOL) useRobot { return [_defaults boolForKey:APPIUM_PLIST_USE_ROBOT]; }
--(void) setUseRobot:(BOOL)useRobot { [_defaults setBool:useRobot forKey:APPIUM_PLIST_USE_ROBOT]; }
-
--(BOOL) useQuietLogging { return [_defaults boolForKey:APPIUM_PLIST_USE_QUIET_LOGGING]; }
--(void) setUseQuietLogging:(BOOL)useQuietLogging { [_defaults setBool:useQuietLogging forKey:APPIUM_PLIST_USE_QUIET_LOGGING]; }
-
--(BOOL) useSeleniumGridConfigFile { return [_defaults boolForKey:APPIUM_PLIST_USE_SELENIUM_GRID_CONFIG_FILE]; }
--(void) setUseSeleniumGridConfigFile:(BOOL)useSeleniumGridConfigFile { [_defaults setBool:useSeleniumGridConfigFile forKey:APPIUM_PLIST_USE_SELENIUM_GRID_CONFIG_FILE]; }
-
 
 #pragma mark - Methods
 
@@ -204,77 +101,77 @@ BOOL _isServerListening;
     }
 
     // kill any processes using the appium server port
-    if (self.killProcessesUsingPort)
+    if (self.general.killProcessesUsingPort)
     {
-        NSNumber *procPid = [Utility getPidListeningOnPort:self.serverPort];
+        NSNumber *procPid = [Utility getPidListeningOnPort:self.general.serverPort];
         if (procPid != nil && myPid != [procPid intValue])
         {
-            NSString* script = [NSString stringWithFormat: @"kill `lsof -t -i:%@`", self.serverPort];
+            NSString* script = [NSString stringWithFormat: @"kill `lsof -t -i:%@`", self.general.serverPort];
             system([script UTF8String]);
 			system([@"killall -z lsof" UTF8String]);
         }
     }
 
 	NSString *nodeDebuggingArguments = @"";
-	if (self.useNodeDebugging) {
-		nodeDebuggingArguments = [nodeDebuggingArguments stringByAppendingString:[NSString stringWithFormat:@" --debug=%@", [self.nodeDebugPort stringValue]]];
-		if (self.breakOnNodeApplicationStart) {
+	if (self.developer.useNodeDebugging) {
+		nodeDebuggingArguments = [nodeDebuggingArguments stringByAppendingString:[NSString stringWithFormat:@" --debug=%@", [self.developer.nodeJSDebugPort stringValue]]];
+		if (self.developer.breakOnNodeApplicationStart) {
 			nodeDebuggingArguments = [nodeDebuggingArguments stringByAppendingString:@" --debug-brk"];
 		}
 	}
 	
 	NSString *nodeCommandString;
-	if (self.developerMode && self.useExternalNodeJSBinary) {
-		nodeCommandString = [NSString stringWithFormat:@"'%@'%@ lib/server/main.js", self.externalNodeJSBinaryPath, nodeDebuggingArguments];
+	if (self.developer.developerMode && self.developer.useExternalNodeJSBinary) {
+		nodeCommandString = [NSString stringWithFormat:@"'%@'%@ lib/server/main.js", self.developer.externalNodeJSBinaryPath, nodeDebuggingArguments];
 	} else {
 		nodeCommandString = [NSString stringWithFormat:@"'%@%@'%@ lib/server/main.js", [[NSBundle mainBundle]resourcePath], @"/node/bin/node", nodeDebuggingArguments];
 	}
-	if (![self.serverAddress isEqualTo:@"0.0.0.0"]) {
-		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--address", self.serverAddress];
+	if (![self.general.serverAddress isEqualTo:@"0.0.0.0"]) {
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--address", self.general.serverAddress];
     }
 	// TODO: Strcmp with int???
-	if (![self.serverPort isEqualTo:@"4723"]) {
-		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--port", [self.serverPort stringValue]];
+	if (![self.general.serverPort isEqualTo:@"4723"]) {
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--port", [self.general.serverPort stringValue]];
     }
-	if (self.useNewCommandTimeout) {
-	nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --command-timeout %d", [self.newCommandTimeout intValue]];
+	if (self.general.useCommandTimeout) {
+	nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --command-timeout %d", [self.general.commandTimeout intValue]];
 	}
-    if (self.overrideExistingSessions) {
+    if (self.general.overrideExistingSessions) {
         nodeCommandString = [nodeCommandString stringByAppendingString:@" --session-override"];
     }
-	if (self.prelaunchApp) {
+	if (self.general.prelaunchApp) {
 		nodeCommandString = [nodeCommandString stringByAppendingString:@" --pre-launch"];
     }
-	if (!self.logColors) {
+	if (!self.general.logColors) {
         nodeCommandString = [nodeCommandString stringByAppendingString:@" --log-no-colors"];
     }
-	if (self.useLogFile) {
-        nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--log", [self.logFile stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
+	if (self.general.useLogFile) {
+        nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--log", [self.general.logFile stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
     }
-	if (self.logTimestamps) {
+	if (self.general.logTimestamps) {
         nodeCommandString = [nodeCommandString stringByAppendingString:@" --log-timestamp"];
     }
-    if (self.useLogWebHook) {
-        nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--webhook", self.logWebHook];
+    if (self.general.useLogWebHook) {
+        nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--webhook", self.general.logWebHook];
     }
-	if (self.useQuietLogging) {
+	if (self.general.useQuietLogging) {
 		nodeCommandString = [nodeCommandString stringByAppendingString:@" --quiet"];
     }
-    if (self.useSeleniumGridConfigFile) {
-        nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--nodeconfig", [self.seleniumGridConfigFile stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
+    if (self.general.useSeleniumGridConfigFile) {
+        nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--nodeconfig", [self.general.seleniumGridConfigFile stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
     }
 	
 	// robot preferences
-	if (self.useRobot)
+	if (self.robot.useRobot)
     {
-		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--robot-address", self.robotAddress];
-		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--robot-port", [self.robotPort intValue]];
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--robot-address", self.robot.robotAddress];
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--robot-port", [self.robot.robotPort intValue]];
 	}
 	
 	// developer preferences
-	if (self.developerMode && self.useCustomFlags && self.customFlags != nil)
+	if (self.developer.developerMode && self.developer.useCustomFlags && self.developer.customFlags != nil)
 	{
-		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@", self.customFlags];
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@", self.developer.customFlags];
 	}
 	
 	// platform specific preferences
@@ -410,9 +307,9 @@ BOOL _isServerListening;
 	}
 
 	[self setServerTask:[NSTask new]];
-	if (self.developerMode && self.useExternalAppiumPackage)
+	if (self.developer.developerMode && self.developer.useExternalAppiumPackage)
 	{
-		[self.serverTask setCurrentDirectoryPath:self.externalAppiumPackagePath];
+		[self.serverTask setCurrentDirectoryPath:self.developer.externalAppiumPackagePath];
 	}
 	else
 	{
@@ -437,9 +334,9 @@ BOOL _isServerListening;
 -(BOOL) startDoctor {
     [self setServerTask:[NSTask new]];
 	NSString *nodeCommandString;
-	if (self.useExternalNodeJSBinary)
+	if (self.developer.useExternalNodeJSBinary)
 	{
-		nodeCommandString = [NSString stringWithFormat:@"'%@' bin/appium-doctor.js --port 4722", self.externalNodeJSBinaryPath];
+		nodeCommandString = [NSString stringWithFormat:@"'%@' bin/appium-doctor.js --port 4722", self.developer.externalNodeJSBinaryPath];
 	}
 	else
 	{
@@ -447,9 +344,9 @@ BOOL _isServerListening;
 		
 	}
     
-	if (self.useExternalAppiumPackage)
+	if (self.developer.useExternalAppiumPackage)
 	{
-		[self.serverTask setCurrentDirectoryPath:self.externalAppiumPackagePath];
+		[self.serverTask setCurrentDirectoryPath:self.developer.externalAppiumPackagePath];
 	}
 	else
 	{
@@ -530,7 +427,7 @@ BOOL _isServerListening;
 
 		 sleep(pollInterval);
 		 NSError *error = nil;
-		 NSString *urlString = [NSString stringWithFormat:@"http://%@:%d/wd/hub/status", self.serverAddress, self.serverPort.intValue];
+		 NSString *urlString = [NSString stringWithFormat:@"http://%@:%d/wd/hub/status", self.general.serverAddress, self.general.serverPort.intValue];
 		 NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 		 NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:1];
 
@@ -632,7 +529,7 @@ BOOL _isServerListening;
 
 		// grab values that should not be reset
 		BOOL hasAuthorizediOS = self.iOS.authorized;
-		BOOL checkForUodates = self.checkForUpdates;
+		BOOL checkForUodates = self.general.checkForUpdates;
 		
 		// read the defaults.plist file and reset all the values
 		NSDictionary *defaultPrefs = [[NSDictionary alloc] initWithContentsOfFile:prefsPath];
@@ -643,7 +540,7 @@ BOOL _isServerListening;
 		
 		// set back values that should not be reset
 		[self.iOS setAuthorized:hasAuthorizediOS];
-		[self setCheckForUpdates:checkForUodates];
+		[self.general setCheckForUpdates:checkForUodates];
 	}
 	
 	// update the bindings through notifications

@@ -40,6 +40,7 @@
 @property BOOL useCalendar;
 @property BOOL useCustomTraceTemplate;
 @property BOOL useDefaultDevice;
+@property BOOL useDeviceName;
 @property BOOL useLanguage;
 @property BOOL useLaunchTimeout;
 @property BOOL useLocale;
@@ -48,7 +49,5 @@
 @property BOOL useOrientation;
 @property BOOL useUDID;
 @property NSString *xcodePath;
-
--(id) initWithDefaults:(NSUserDefaults*)defaults;
 
 @end

@@ -21,7 +21,7 @@
 
         AppiumModel *model = [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] model];
         
-        self.driver = [[SERemoteWebDriver alloc] initWithServerAddress:model.serverAddress port:[model.serverPort integerValue]];
+        self.driver = [[SERemoteWebDriver alloc] initWithServerAddress:model.general.serverAddress port:[model.general.serverPort integerValue]];
 		
 		if (self.driver == nil)
 		{
@@ -63,7 +63,7 @@
         }
 
         // detect the current platform (if using a remote server)
-		if (model.useRemoteServer)
+		if (model.general.useRemoteServer)
 		{
 			if ([[self.driver.session.capabilities.platformName lowercaseString] isEqualToString:@"ios"])
 			{

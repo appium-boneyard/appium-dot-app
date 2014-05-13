@@ -41,7 +41,7 @@ server_url = \"http://%@:%@/wd/hub\"\n\
 \n\
 Appium::Driver.new(caps: capabilities).start_driver\n\
 Appium.promote_appium_methods Object\n\
-\n ", self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.serverAddress, self.model.serverPort];
+\n ", self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.general.serverAddress, self.model.general.serverPort];
 }
 
 -(NSString*) preCodeBoilerplateiOS
@@ -60,7 +60,7 @@ server_url = \"http://%@:%@/wd/hub\"\n\
 \n\
 Appium::Driver.new(caps: capabilities).start_driver\n\
 Appium.promote_appium_methods Object\n\
-\n", self.model.iOS.deviceName, self.model.iOS.appPath, self.model.serverAddress, self.model.serverPort];
+\n", self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.serverAddress, self.model.general.serverPort];
 }
 
 -(NSString*) postCodeBoilerplate

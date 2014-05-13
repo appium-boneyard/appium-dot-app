@@ -49,7 +49,7 @@ namespace AppiumTests {\n\
 \t\t\tcapabilities.SetCapability(\"app-package\", \"%@\");\n\
 \t\t\tcapabilities.SetCapability(\"app-activity\", \"%@\");\n\
 \t\t\tRemoteWebDriver wd = new RemoteWebDriver(new Uri(\"http://%@:%@/wd/hub\"), capabilities);\n\
-\t\t\ttry {\n", self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.serverAddress, self.model.serverPort];
+\t\t\ttry {\n", self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.general.serverAddress, self.model.general.serverPort];
 
 }
 
@@ -71,7 +71,7 @@ namespace AppiumTests {\n\
 \t\t\tcapabilities.SetCapability(\"device\", \"%@\");\n\
 \t\t\tcapabilities.SetCapability(\"app\", \"%@\");\n\
 \t\t\tRemoteWebDriver wd = new RemoteWebDriver(new Uri(\"http://%@:%@/wd/hub\"), capabilities);\n\
-\t\t\ttry {\n", self.model.iOS.deviceName, self.model.iOS.appPath, self.model.serverAddress, self.model.serverPort];
+\t\t\ttry {\n", self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.serverAddress, self.model.general.serverPort];
 }
 
 -(NSString*) postCodeBoilerplate

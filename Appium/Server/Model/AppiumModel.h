@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "AppiumAndroidSettingsModel.h"
 #import "AppiumiOSSettingsModel.h"
+#import "AppiumDeveloperSettingsModel.h"
+#import "AppiumGeneralSettingsModel.h"
+#import "AppiumRobotSettingsModel.h"
 #import "SocketIO.h"
 
 typedef enum platformTypes
@@ -24,47 +27,18 @@ typedef enum platformTypes
 @property NSTask *serverTask;
 
 @property AppiumAndroidSettingsModel *android;
+@property AppiumDeveloperSettingsModel *developer;
+@property AppiumGeneralSettingsModel *general;
 @property AppiumiOSSettingsModel *iOS;
+@property AppiumRobotSettingsModel *robot;
 
-@property BOOL breakOnNodeApplicationStart;
-@property BOOL checkForUpdates;
-@property NSNumber *commandTimeout;
-@property NSString *customFlags;
-@property BOOL developerMode;
 @property SocketIO *doctorSocket;
 @property BOOL doctorSocketIsConnected;
-@property NSString *externalAppiumPackagePath;
-@property NSString *externalNodeJSBinaryPath;
 @property BOOL isAndroid;
 @property BOOL isIOS;
 @property BOOL isServerRunning;
 @property BOOL isServerListening;
-@property BOOL killProcessesUsingPort;
-@property BOOL logColors;
-@property NSString *logFile;
-@property BOOL logTimestamps;
-@property NSString *logWebHook;
-@property NSNumber *newCommandTimeout;
-@property NSNumber *nodeJSDebugPort;
-@property BOOL overrideExistingSessions;
 @property Platform platform;
-@property BOOL prelaunchApp;
-@property NSString *robotAddress;
-@property NSNumber *robotPort;
-@property NSString *seleniumGridConfigFile;
-@property NSString *serverAddress;
-@property NSNumber *serverPort;
-@property BOOL useCustomFlags;
-@property BOOL useExternalAppiumPackage;
-@property BOOL useExternalNodeJSBinary;
-@property BOOL useLogFile;
-@property BOOL useLogWebHook;
-@property BOOL useNewCommandTimeout;
-@property BOOL useNodeDebugging;
-@property BOOL useQuietLogging;
-@property BOOL useRemoteServer;
-@property BOOL useRobot;
-@property BOOL useSeleniumGridConfigFile;
 
 -(BOOL) killServer;
 -(BOOL) startServer;
