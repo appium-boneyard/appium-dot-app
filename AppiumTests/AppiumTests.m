@@ -50,7 +50,7 @@ SystemEventsApplication *SystemEvents;
 
 - (void)testNotRunningUponLaunch
 {
-    STAssertEquals([Appium isServerRunning], NO, @"Verifying Appium server is not running on launch.");
+    XCTAssertEqual([Appium isServerRunning], NO, @"Verifying Appium server is not running on launch.");
 }
 
 @end

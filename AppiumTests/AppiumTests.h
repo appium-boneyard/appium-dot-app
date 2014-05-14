@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Appium. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface AppiumTests : SenTestCase
+@interface AppiumTests : XCTestCase
 
 @end
