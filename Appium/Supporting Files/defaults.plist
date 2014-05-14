@@ -86,6 +86,8 @@
 	<string>/Users/me/appium</string>
 	<key>External NodeJS Binary Path</key>
 	<string>/usr/local/bin/node</string>
+	<key>Force Scroll Log</key>
+	<false/>
 	<key>Inspector CodeMaker Language</key>
 	<string>Java</string>
 	<key>Inspector Shows Disabled Elements</key>
