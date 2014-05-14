@@ -17,7 +17,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "36CEB7E716E3662E00B5B100"
-               BuildableName = "AppiumTests.octest"
+               BuildableName = "AppiumTests.xctest"
                BlueprintName = "AppiumTests"
                ReferencedContainer = "container:Appium.xcodeproj">
             </BuildableReference>
