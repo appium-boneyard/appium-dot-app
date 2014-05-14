@@ -122,6 +122,8 @@ Preferences can be accessed by clicking on the appropriate button in the main wi
  * **Show Timestamps**: Show timestamps in console output.
  * **Log to File**: Send log output to this file.
  * **Log to WebHook**: Send log output to this HTTP listener.
+ * **Force Scroll Log to Bottom**: Force the log to scroll to the bottom when there is new output, regardless of
+   the position.
 
 ### Developer Settings
 
