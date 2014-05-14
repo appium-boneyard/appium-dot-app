@@ -101,14 +101,23 @@
 
 -(void) appendToLog:(NSAttributedString*)string
 {
-	// Check if the scroll position is within 30 pixels of the bottom of the view
-	BOOL scrolledToBottom = (((self.logTextView.visibleRect.origin.y + self.logTextView.superview.frame.size.height) - self.logTextView.bounds.size.height) >= -30.0f);
+	BOOL scrollToBottom;
+	
+	if (!self.model.general.forceScrollLog)
+	{
+		// Check if the scroll position is within 30 pixels of the bottom of the view
+		scrollToBottom = (((self.logTextView.visibleRect.origin.y + self.logTextView.superview.frame.size.height) - self.logTextView.bounds.size.height) >= -30.0f);
+	}
+	else
+	{
+		scrollToBottom = YES;
+	}
 	
     [[self.logTextView textStorage] beginEditing];
     [[self.logTextView textStorage] appendAttributedString:string];
     [[self.logTextView textStorage] endEditing];
 	
-	if (scrolledToBottom)
+	if (scrollToBottom)
 	{
 		NSRange range = NSMakeRange ([[self.logTextView string] length], 0);
 	

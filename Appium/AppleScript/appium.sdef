@@ -242,6 +242,9 @@
 			<property name="log webhook" code="gs08" type="text">
 				<cocoa key="logWebHook"/>
 			</property>
+			<property name="force scroll log" code="gs09" type="boolean">
+				<cocoa key="forceScrollLog"/>
+			</property>
 			<property name="override existing sessions" code="gs09" type="boolean">
 				<cocoa key="overrideExistingSessions"/>
 			</property>

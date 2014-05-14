@@ -47,6 +47,9 @@
 -(NSString*) logWebHook { return [DEFAULTS stringForKey:APPIUM_PLIST_LOG_WEBHOOK]; }
 -(void) setLogWebHook:(NSString *)logWebHook { [DEFAULTS setValue:logWebHook forKey:APPIUM_PLIST_LOG_WEBHOOK]; }
 
+-(BOOL) forceScrollLog { return [DEFAULTS boolForKey:APPIUM_PLIST_LOG_FORCE_SCROLL]; }
+-(void) setForceScrollLog:(BOOL)forceScrollLog { [DEFAULTS setBool:forceScrollLog forKey:APPIUM_PLIST_LOG_FORCE_SCROLL]; }
+
 -(BOOL) overrideExistingSessions { return [DEFAULTS boolForKey:APPIUM_PLIST_OVERRIDE_EXISTING_SESSIONS]; }
 -(void) setOverrideExistingSessions:(BOOL)overrideExistingSessions { [DEFAULTS setBool:overrideExistingSessions forKey:APPIUM_PLIST_OVERRIDE_EXISTING_SESSIONS]; }
 
