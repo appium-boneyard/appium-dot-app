@@ -41,15 +41,15 @@ namespace AppiumTests {\n\
 \tpublic class RecordedTest {\n\
 \t\tstatic void Main(string[] args) {\n\
 \t\t\tDesiredCapabilities capabilities = new DesiredCapabilities();\n\
-\t\t\tcapabilities.SetCapability(\"device\", \"Android\");\n\
-\t\t\tcapabilities.SetCapability(\"browserName\", \"\");\n\
-\t\t\tcapabilities.SetCapability(\"platform\", \"Mac\");\n\
-\t\t\tcapabilities.SetCapability(\"version\", \"4.2\");\n\
+\t\t\tcapabilities.SetCapability(\"appium-version\", \"1.0\");\n\
+\t\t\tcapabilities.SetCapability(\"platformName\", \"%@\");\n\
+\t\t\tcapabilities.SetCapability(\"platformVersion\", \"%@\");\n\
+\t\t\tcapabilities.SetCapability(\"deviceName\", \"%@\");\n\
 \t\t\tcapabilities.SetCapability(\"app\", \"%@\");\n\
-\t\t\tcapabilities.SetCapability(\"app-package\", \"%@\");\n\
-\t\t\tcapabilities.SetCapability(\"app-activity\", \"%@\");\n\
+\t\t\tcapabilities.SetCapability(\"appPackage\", \"%@\");\n\
+\t\t\tcapabilities.SetCapability(\"appActivity\", \"%@\");\n\
 \t\t\tRemoteWebDriver wd = new RemoteWebDriver(new Uri(\"http://%@:%@/wd/hub\"), capabilities);\n\
-\t\t\ttry {\n", self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.general.serverAddress, self.model.general.serverPort];
+\t\t\ttry {\n", self.model.android.platformName, self.model.android.platformVersionNumber, self.model.android.deviceName, self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.general.serverAddress, self.model.general.serverPort];
 
 }
 
@@ -65,13 +65,13 @@ namespace AppiumTests {\n\
 \tpublic class RecordedTest {\n\
 \t\tstatic void Main(string[] args) {\n\
 \t\t\tDesiredCapabilities capabilities = new DesiredCapabilities();\n\
-\t\t\tcapabilities.SetCapability(\"browserName\", \"iOS\");\n\
-\t\t\tcapabilities.SetCapability(\"platform\", \"Mac\");\n\
-\t\t\tcapabilities.SetCapability(\"version\", \"6.1\");\n\
-\t\t\tcapabilities.SetCapability(\"device\", \"%@\");\n\
+\t\t\tcapabilities.SetCapability(\"appium-version\", \"1.0\");\n\
+\t\t\tcapabilities.SetCapability(\"platformName\", \"iOS\");\n\
+\t\t\tcapabilities.SetCapability(\"platformVersion\", \"%@\");\n\
+\t\t\tcapabilities.SetCapability(\"deviceName\", \"%@\");\n\
 \t\t\tcapabilities.SetCapability(\"app\", \"%@\");\n\
 \t\t\tRemoteWebDriver wd = new RemoteWebDriver(new Uri(\"http://%@:%@/wd/hub\"), capabilities);\n\
-\t\t\ttry {\n", self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.serverAddress, self.model.general.serverPort];
+\t\t\ttry {\n", self.model.iOS.platformVersion, self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.serverAddress, self.model.general.serverPort];
 }
 
 -(NSString*) postCodeBoilerplate
