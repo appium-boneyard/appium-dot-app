@@ -1,5 +1,5 @@
-An OS X GUI for Appium
-=======================
+# An OS X GUI for Appium
+
 [![Build Status](https://travis-ci.org/appium/appium-dot-app.svg?branch=master)](https://travis-ci.org/appium/appium-dot-app)
 
 If you are new to Appium then please see the [Getting started](http://appium.io/getting-started.html) guide for more information
