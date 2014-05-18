@@ -38,15 +38,15 @@
 -(void) run\n\
 {\n\
 \tSECapabilities *caps = [SECapabilities new];\n\
-\t[caps setPlatform:@\"Mac\"];\n\
-\t[caps setBrowserName:@\"\"];\n\
-\t[caps setVersion:@\"4.2\"];\n\
-\t[caps addCapabilityForKey:@\"device\" andValue:@\"Android\"];\n\
-\t[caps addCapabilityForKey:@\"app\" andValue:@\"%@\"];\n\
-\t[caps addCapabilityForKey:@\"app-package\" andValue:@\"%@\"];\n\
-\t[caps addCapabilityForKey:@\"app-activity\" andValue:@\"%@\"];\n\
+\t[caps addCapabilityForKey:@\"appium-version\" andValue:@\"1.0\"];\n\
+\t[caps setPlatformName:@\"%@\"];\n\
+\t[caps setPlatformVersion:@\"%@\"];\n\
+\t[caps setDeviceName:@\"%@\"];\n\
+\t[caps setApp:@\"%@\"];\n\
+\t[caps addCapabilityForKey:@\"appPackage\" andValue:@\"%@\"];\n\
+\t[caps addCapabilityForKey:@\"appActivity\" andValue:@\"%@\"];\n\
 \tNSError *error;\n\
-\tSERemoteWebDriver *wd = [[SERemoteWebDriver alloc] initWithServerAddress:@\"%@\" port:%@ desiredCapabilities:caps requiredCapabilities:nil error:&error];\n", self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.general.serverAddress, self.model.general.serverPort];
+\tSERemoteWebDriver *wd = [[SERemoteWebDriver alloc] initWithServerAddress:@\"%@\" port:%@ desiredCapabilities:caps requiredCapabilities:nil error:&error];\n", self.model.android.platformName, self.model.android.platformVersionNumber, self.model.android.deviceName, self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.general.serverAddress, self.model.general.serverPort];
 }
 
 -(NSString*) preCodeBoilerplateiOS
@@ -58,13 +58,13 @@
 -(void) run\n\
 {\n\
 \tSECapabilities *caps = [SECapabilities new];\n\
-\t[caps setPlatform:@\"Mac\"];\n\
-\t[caps setBrowserName:@\"iOS\"];\n\
-\t[caps setVersion:@\"6.1\"];\n\
-\t[caps addCapabilityForKey:@\"device\" andValue:@\"%@\"];\n\
-\t[caps addCapabilityForKey:@\"app\" andValue:@\"%@\"];\n\
+\t[caps addCapabilityForKey:@\"appium-version\" andValue:@\"1.0\"];\n\
+\t[caps setPlatformName:@\"iOS\"];\n\
+\t[caps setPlatformVersion:@\"%@\"];\n\
+\t[caps setDeviceName:@\"%@\"];\n\
+\t[caps setApp:@\"%@\"];\n\
 \tNSError *error;\n\
-\tSERemoteWebDriver *wd = [[SERemoteWebDriver alloc] initWithServerAddress:@\"%@\" port:%@ desiredCapabilities:caps requiredCapabilities:nil error:&error];\n", self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.serverAddress, self.model.general.serverPort];}
+\tSERemoteWebDriver *wd = [[SERemoteWebDriver alloc] initWithServerAddress:@\"%@\" port:%@ desiredCapabilities:caps requiredCapabilities:nil error:&error];\n", self.model.iOS.platformVersion, self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.serverAddress, self.model.general.serverPort];}
 
 -(NSString*) postCodeBoilerplate
 {
