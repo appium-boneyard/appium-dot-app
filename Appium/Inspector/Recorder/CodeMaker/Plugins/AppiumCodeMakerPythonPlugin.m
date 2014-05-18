@@ -37,12 +37,13 @@ import time\n\
 \n\
 success = True\n\
 desired_caps = {}\n\
-desired_caps['device'] = 'Android'\n\
-desired_caps['browserName'] = ''\n\
-desired_caps['version'] = '4.2'\n\
+desired_caps['appium-version'] = '1.0'\n\
+desired_caps['platformName'] = '%@'\n\
+desired_caps['platformVersion'] = '%@'\n\
+desired_caps['deviceName'] = '%@'\n\
 desired_caps['app'] = os.path.abspath('%@')\n\
-desired_caps['app-package'] = '%@'\n\
-desired_caps['app-activity'] = '%@'\n\
+desired_caps['appPackage'] = '%@'\n\
+desired_caps['appActivity'] = '%@'\n\
 \n\
     wd = webdriver.Remote('http://%@:%@/wd/hub', desired_caps)\n\
 wd.implicitly_wait(60)\n\
@@ -54,7 +55,7 @@ def is_alert_present(wd):\n\
 \texcept:\n\
 \t\treturn False\n\
 \n\
-try:\n", self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.general.serverAddress, self.model.general.serverPort];
+try:\n", self.model.android.platformName, self.model.android.platformVersionNumber, self.model.android.deviceName, self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.general.serverAddress, self.model.general.serverPort];
 }
 
 -(NSString*) preCodeBoilerplateiOS
@@ -65,10 +66,10 @@ import time\n\
 \n\
 success = True\n\
 desired_caps = {}\n\
-desired_caps['browserName'] = 'iOS'\n\
-desired_caps['platform'] = 'Mac'\n\
-desired_caps['version'] = '6.1'\n\
-desired_caps['device'] = '%@'\n\
+desired_caps['appium-version'] = '1.0'\n\
+desired_caps['platformName'] = 'iOS'\n\
+desired_caps['platformVersion'] = '%@'\n\
+desired_caps['deviceName'] = '%@'\n\
 desired_caps['app'] = os.path.abspath('%@')\n\
 \n\
 wd = webdriver.Remote('http://%@:%@/wd/hub', desired_caps)\n\
@@ -81,7 +82,7 @@ def is_alert_present(wd):\n\
 \texcept:\n\
 \t\treturn False\n\
 \n\
-try:\n", self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.serverAddress, self.model.general.serverPort];;
+try:\n", self.model.iOS.platformVersion, self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.serverAddress, self.model.general.serverPort];;
 }
 
 -(NSString*) postCodeBoilerplate
