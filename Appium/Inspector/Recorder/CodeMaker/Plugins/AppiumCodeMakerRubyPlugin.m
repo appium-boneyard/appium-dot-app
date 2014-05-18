@@ -29,19 +29,20 @@
 require 'appium_lib'\
 \n\
 capabilities = {\n\
-\tdeviceName: 'Android',\n\
-\tplatformName: 'Android',\n\
-\tplatformVersion: '4.2',\n\
+\t'appium-version': '1.0',\n\
+\tplatformName: '%@',\n\
+\tplatformVersion: '%@',\n\
+\tdeviceName: '%@',\n\
 \tapp: '%@',\n\
-\t:'app-package' => '%@',\n\
-\t:'app-activity' => '%@'\n\
+\t:'appPackage' => '%@',\n\
+\t:'appActivity' => '%@'\n\
 }\n\
 \n\
 server_url = \"http://%@:%@/wd/hub\"\n\
 \n\
 Appium::Driver.new(caps: capabilities).start_driver\n\
 Appium.promote_appium_methods Object\n\
-\n ", self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.general.serverAddress, self.model.general.serverPort];
+\n ", self.model.android.platformName, self.model.android.platformVersionNumber, self.model.android.deviceName, self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.general.serverAddress, self.model.general.serverPort];
 }
 
 -(NSString*) preCodeBoilerplateiOS
@@ -50,9 +51,10 @@ Appium.promote_appium_methods Object\n\
 require 'appium_lib'\
 \n\
 capabilities = {\n\
-\tdeviceName: '%@',\n\
+\t'appium-version': '1.0',\n\
 \tplatformName: 'iOS',\n\
-\tplatformVersion: '7.1',\n\
+\tplatformVersion: '%@',\n\
+\tdeviceName: '%@',\n\
 \tapp: '%@'\n\
 }\n\
 \n\
@@ -60,7 +62,7 @@ server_url = \"http://%@:%@/wd/hub\"\n\
 \n\
 Appium::Driver.new(caps: capabilities).start_driver\n\
 Appium.promote_appium_methods Object\n\
-\n", self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.serverAddress, self.model.general.serverPort];
+\n", self.model.iOS.platformVersion, self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.serverAddress, self.model.general.serverPort];
 }
 
 -(NSString*) postCodeBoilerplate
