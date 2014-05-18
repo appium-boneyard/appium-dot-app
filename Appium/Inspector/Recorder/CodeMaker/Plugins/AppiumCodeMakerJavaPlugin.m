@@ -32,50 +32,40 @@
 
 -(NSString*) preCodeBoilerplateAndroid
 {
-    return [NSString stringWithFormat:@"import java.util.concurrent.TimeUnit;\n\
-import java.util.Date;\n\
-import java.io.File;\n\
-import org.openqa.selenium.support.ui.Select;\n\
-import org.openqa.selenium.interactions.Actions;\n\
-import org.openqa.selenium.firefox.FirefoxDriver;\n\
-import org.openqa.selenium.*;\n\
-import static org.openqa.selenium.OutputType.*;\n\
+    return [NSString stringWithFormat:@"import io.appium.java_client.AppiumDriver;\n\
+import org.openqa.selenium.remote.DesiredCapabilities;\n\
+import java.net.URL;\n\
 \n\
 public class {scriptName} {\n\
 \tpublic static void main(String[] args) {\n\
 \t\tDesiredCapabilities capabilities = new DesiredCapabilities();\n\
-\t\tcapabilities.setCapability(\"device\", \"Android\");\n\
-\t\tcapabilities.setCapability(CapabilityType.BROWSER_NAME, \"\");\n\
-\t\tcapabilities.setCapability(CapabilityType.VERSION, \"4.2\");\n\
-\t\tcapabilities.setCapability(CapabilityType.PLATFORM, \"Mac\");\n\
+\t\tcapabilities.setCapability(\"appium-version\", \"1.0\");\n\
+\t\tcapabilities.setCapability(\"platformName\", \"%@\");\n\
+\t\tcapabilities.setCapability(\"platformVersion\", \"%@\");\n\
+\t\tcapabilities.setCapability(\"deviceName\", \"%@\");\n\
 \t\tcapabilities.setCapability(\"app\", \"%@\");\n\
-\t\tcapabilities.setCapability(\"app-package\", \"%@\");\n\
-\t\tcapabilities.setCapability(\"app-activity\", \"%@\");\n\
-\t\twd = new RemoteWebDriver(new URL(\"http://%@:%@/wd/hub\"), capabilities);\n\
-\t\twd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);\n", self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.general.serverAddress, self.model.general.serverPort];
+\t\tcapabilities.setCapability(\"appPackage\", \"%@\");\n\
+\t\tcapabilities.setCapability(\"appActivity\", \"%@\");\n\
+\t\twd = new AppiumDriver(new URL(\"http://%@:%@/wd/hub\"), capabilities);\n\
+\t\twd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);\n", self.model.android.platformName, self.model.android.platformVersionNumber, self.model.android.deviceName ,self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.general.serverAddress, self.model.general.serverPort];
 }
 
 -(NSString*) preCodeBoilerplateiOS
 {
-    return [NSString stringWithFormat:@"import java.util.concurrent.TimeUnit;\n\
-import java.util.Date;\n\
-import java.io.File;\n\
-import org.openqa.selenium.support.ui.Select;\n\
-import org.openqa.selenium.interactions.Actions;\n\
-import org.openqa.selenium.firefox.FirefoxDriver;\n\
-import org.openqa.selenium.*;\n\
-import static org.openqa.selenium.OutputType.*;\n\
+    return [NSString stringWithFormat:@"import io.appium.java_client.AppiumDriver;\n\
+import org.openqa.selenium.remote.DesiredCapabilities;\n\
+import java.net.URL;\n\
 \n\
 public class {scriptName} {\n\
 \tpublic static void main(String[] args) {\n\
 \t\tDesiredCapabilities capabilities = new DesiredCapabilities();\n\
-\t\tcapabilities.setCapability(CapabilityType.BROWSER_NAME, \"iOS\");\n\
-\t\tcapabilities.setCapability(CapabilityType.VERSION, \"6.1\");\n\
-\t\tcapabilities.setCapability(CapabilityType.PLATFORM, \"Mac\");\n\
-\t\tcapabilities.setCapability(\"device\", \"%@\");\n\
+\t\tcapabilities.setCapability(\"appium-version\", \"1.0\");\n\
+\t\tcapabilities.setCapability(\"platformName\", \"iOS\");\n\
+\t\tcapabilities.setCapability(\"platformVersion\", \"%@\");\n\
+\t\tcapabilities.setCapability(\"deviceName\", \"%@\");\n\
 \t\tcapabilities.setCapability(\"app\", \"%@\");\n\
-\t\twd = new RemoteWebDriver(new URL(\"http://%@:%@/wd/hub\"), capabilities);\n\
-\t\twd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);\n", self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.serverAddress, self.model.general.serverPort];
+\t\twd = new AppiumDriver(new URL(\"http://%@:%@/wd/hub\"), capabilities);\n\
+\t\twd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);\n", self.model.iOS.platformVersion, self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.serverAddress, self.model.general.serverPort];
 }
 
 -(NSString*) postCodeBoilerplate
