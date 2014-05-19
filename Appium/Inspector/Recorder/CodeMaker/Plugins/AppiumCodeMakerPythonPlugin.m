@@ -62,7 +62,7 @@ desired_caps['platformVersion'] = '%@'\n", self.model.android.platformName, self
 	}
 	
 	code = [code stringByAppendingFormat:@"\n\
-    wd = webdriver.Remote('http://%@:%@/wd/hub', desired_caps)\n\
+wd = webdriver.Remote('http://%@:%@/wd/hub', desired_caps)\n\
 wd.implicitly_wait(60)\n\
 \n\
 def is_alert_present(wd):\n\
