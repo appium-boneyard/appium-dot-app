@@ -43,6 +43,16 @@
     return [[[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] model] isServerListening];
 }
 
+-(NSString*) s_Platform {
+	if ([[[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] model] isAndroid]) {
+		return @"Android";
+	} else if ([[[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] model] isIOS]) {
+		return @"iOS";
+	} else {
+		return @"Unknown";
+	}
+}
+
 #pragma mark - Methods
 
 - (NSNumber*) s_StartServer: (NSScriptCommand*)command

@@ -48,9 +48,18 @@ SystemEventsApplication *SystemEvents;
     [super tearDown];
 }
 
-- (void)testNotRunningUponLaunch
-{
+- (void)testNotRunningUponLaunch {
     XCTAssertEqual([Appium isServerRunning], NO, @"Verifying Appium server is not running on launch.");
+}
+
+- (void)testPlatformToggle {
+	[Appium resetPreferences];
+	[Appium usePlatform:AppiumPlatformSettingIos];
+	XCTAssert([Appium.platform isEqualToString:@"iOS"], @"Verifying platform was set to iOS");
+	[Appium usePlatform:AppiumPlatformSettingAndroid];
+	XCTAssert([Appium.platform isEqualToString:@"Android"], @"Verifying platform was set to Android");
+	[Appium usePlatform:AppiumPlatformSettingIos];
+	XCTAssert([Appium.platform isEqualToString:@"iOS"], @"Verifying platform was set back to iOS");
 }
 
 @end

@@ -47,6 +47,9 @@
 			<property name="is server listening" code="as02" type="boolean" access="r">
 				<cocoa key="s_IsServerListening"/>
 			</property>
+			<property name="platform" code="aapm" type="text" access="r">
+				<cocoa key="s_Platform"/>
+			</property>
 			<responds-to command="clear log">
 				<cocoa method="s_ClearLog:"/>
 			</responds-to>

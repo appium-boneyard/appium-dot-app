@@ -25,6 +25,7 @@
 
 @property (readonly) AppiumInspectorWindowController* s_InspectorWindow;
 @property (readonly) NSString *s_LogText;
+@property (readonly) NSString *s_Platform;
 @property (readonly) BOOL s_IsServerRunning;
 @property (readonly) BOOL s_IsServerListening;
 
