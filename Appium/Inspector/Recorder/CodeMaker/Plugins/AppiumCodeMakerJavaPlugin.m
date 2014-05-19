@@ -20,10 +20,10 @@
 -(id) initWithCodeMaker:(AppiumCodeMaker*)codeMaker
 {
 	self = [super init];
-    if (self) {
-        [self setCodeMaker:codeMaker];
-    }
-    return self;
+	if (self) {
+		[self setCodeMaker:codeMaker];
+	}
+	return self;
 }
 
 
@@ -100,7 +100,7 @@ public class {scriptName} {\n\
 
 -(NSString*) postCodeBoilerplate
 {
-    return
+	return
 @"\t\twd.close();\n\
 \t}\n\
 }\n";
@@ -128,13 +128,13 @@ public class {scriptName} {\n\
 
 -(NSString*) executeScript:(AppiumCodeMakerActionExecuteScript*)action
 {
-    return [NSString stringWithFormat:@"%@(JavascriptExecutor)wd.executeScript(\"%@\", null);\n", self.indentation, [self escapeString:action.script]];
+	return [NSString stringWithFormat:@"%@(JavascriptExecutor)wd.executeScript(\"%@\", null);\n", self.indentation, [self escapeString:action.script]];
 }
 
 -(NSString*) preciseTap:(AppiumCodeMakerActionPreciseTap*)action
 {
-    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
-    return [NSString stringWithFormat:@"(JavascriptExecutor)wd.executeScript(\"mobile: tap\", \
+	NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+	return [NSString stringWithFormat:@"(JavascriptExecutor)wd.executeScript(\"mobile: tap\", \
 new HashMap<String, Double>() \
 {{ \
 put(\"tapCount\", %@); \
@@ -152,13 +152,13 @@ put(\"y\", %@); \
 
 -(NSString*) shake:(AppiumCodeMakerActionShake*)action
 {
-    return [NSString stringWithFormat:@"%@(JavascriptExecutor)wd.executeScript(\"mobile: shake\", null);\n", self.indentation];
+	return [NSString stringWithFormat:@"%@(JavascriptExecutor)wd.executeScript(\"mobile: shake\", null);\n", self.indentation];
 }
 
 -(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action
 {
-    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
-    return [NSString stringWithFormat:@"(JavascriptExecutor)wd.executeScript(\"mobile: swipe\", \
+	NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+	return [NSString stringWithFormat:@"(JavascriptExecutor)wd.executeScript(\"mobile: swipe\", \
 new HashMap<String, Double>() \
 {{ \
 put(\"touchCount\", %@); \
@@ -178,7 +178,7 @@ put(\"duration\", %@); \
 #pragma mark - Helper Methods
 -(NSString*) escapeString:(NSString *)string
 {
-    return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+	return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
 }
 
 -(NSString*) indentation { return [self.codeMaker.useBoilerPlate boolValue] ? @"\t\t" : @""; }

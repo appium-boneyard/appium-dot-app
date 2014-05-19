@@ -20,10 +20,10 @@
 -(id) initWithCodeMaker:(AppiumCodeMaker*)codeMaker
 {
 	self = [super init];
-    if (self) {
-        [self setCodeMaker:codeMaker];
-    }
-    return self;
+	if (self) {
+		[self setCodeMaker:codeMaker];
+	}
+	return self;
 }
 
 #pragma mark - AppiumCodeMakerPlugin Implementation
@@ -99,7 +99,7 @@
 
 -(NSString*) postCodeBoilerplate
 {
-    return
+	return
 @"}\n\
 \n\
 @end\n";
@@ -127,13 +127,13 @@
 
 -(NSString*) executeScript:(AppiumCodeMakerActionExecuteScript*)action
 {
-    return [NSString stringWithFormat:@"%@[wd executeScript:@\"%@\"];\n", self.indentation, [self escapeString:action.script]];
+	return [NSString stringWithFormat:@"%@[wd executeScript:@\"%@\"];\n", self.indentation, [self escapeString:action.script]];
 }
 
 -(NSString*) preciseTap:(AppiumCodeMakerActionPreciseTap*)action
 {
-    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
-    return [NSString stringWithFormat:@"\[wd executeScript:@\"mobile: tap\" arguments:\
+	NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+	return [NSString stringWithFormat:@"\[wd executeScript:@\"mobile: tap\" arguments:\
 [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys:\
 [NSNumber numberWithInteger:%@, @\"tapCount\", \
 [NSNumber numberWithInteger:%@, @\"touchCount\", \
@@ -150,13 +150,13 @@ nil], nil]];\n", [args objectForKey:@"tapCount"], [args objectForKey:@"touchCoun
 
 -(NSString*) shake:(AppiumCodeMakerActionShake*)action
 {
-    return [NSString stringWithFormat:@"%@[wd executeScript:@\"mobile: shake\"];\n", self.indentation];
+	return [NSString stringWithFormat:@"%@[wd executeScript:@\"mobile: shake\"];\n", self.indentation];
 }
 
 -(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action
 {
-    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
-    return [NSString stringWithFormat:@"\[wd executeScript:@\"mobile: swipe\" arguments:\
+	NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+	return [NSString stringWithFormat:@"\[wd executeScript:@\"mobile: swipe\" arguments:\
 [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys:\
 [NSNumber numberWithInteger:%@, @\"touchCount\", \
 [NSNumber numberWithFloat:%@f, @\"startX\", \
@@ -175,7 +175,7 @@ nil], nil]];\n", [args objectForKey:@"touchCount"], [args objectForKey:@"startX"
 #pragma mark - Helper Methods
 -(NSString*) escapeString:(NSString *)string
 {
-    return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+	return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
 }
 
 -(NSString*) indentation { return [self.codeMaker.useBoilerPlate boolValue] ? @"\t" : @""; }

@@ -20,10 +20,10 @@
 -(id) initWithCodeMaker:(AppiumCodeMaker*)codeMaker
 {
 	self = [super init];
-    if (self) {
-        [self setCodeMaker:codeMaker];
-    }
-    return self;
+	if (self) {
+		[self setCodeMaker:codeMaker];
+	}
+	return self;
 }
 
 #pragma mark - AppiumCodeMakerPlugin Implementation
@@ -105,7 +105,7 @@ namespace AppiumTests {\n\
 
 -(NSString*) postCodeBoilerplate
 {
-    return
+	return
 @"\t\t\t} finally { wd.Quit(); }\n\
 \t\t}\n\
 \n\
@@ -142,13 +142,13 @@ namespace AppiumTests {\n\
 
 -(NSString*) executeScript:(AppiumCodeMakerActionExecuteScript*)action
 {
-    return [NSString stringWithFormat:@"%@wd.ExecuteScript(\"%@\", null);\n", self.indentation, [self escapeString:action.script]];
+	return [NSString stringWithFormat:@"%@wd.ExecuteScript(\"%@\", null);\n", self.indentation, [self escapeString:action.script]];
 }
 
 -(NSString*) preciseTap:(AppiumCodeMakerActionPreciseTap*)action
 {
-    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
-    return [NSString stringWithFormat:@"wd.ExecuteScript(\"mobile: tap\", \
+	NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+	return [NSString stringWithFormat:@"wd.ExecuteScript(\"mobile: tap\", \
 new Dictionary<string, double>() \
 { \
 { \"tapCount\", %@ }, \
@@ -166,8 +166,8 @@ new Dictionary<string, double>() \
 
 -(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action
 {
-    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
-    return [NSString stringWithFormat:@"wd.ExecuteScript(\"mobile: swipe\", \
+	NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+	return [NSString stringWithFormat:@"wd.ExecuteScript(\"mobile: swipe\", \
 new Dictionary<string, double>() \
 { \
 { \"touchCount\", %@ }, \
@@ -181,7 +181,7 @@ new Dictionary<string, double>() \
 
 -(NSString*) shake:(AppiumCodeMakerActionShake*)action
 {
-    return [NSString stringWithFormat:@"%@wd.ExecuteScript(\"mobile: shake\", null);\n", self.indentation];
+	return [NSString stringWithFormat:@"%@wd.ExecuteScript(\"mobile: shake\", null);\n", self.indentation];
 }
 
 -(NSString*) tap:(AppiumCodeMakerActionTap*)action
@@ -192,7 +192,7 @@ new Dictionary<string, double>() \
 #pragma mark - Helper Methods
 -(NSString*) escapeString:(NSString *)string
 {
-    return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+	return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
 }
 
 -(NSString*) indentation { return [self.codeMaker.useBoilerPlate boolValue] ? @"\t\t\t\t" : @""; }

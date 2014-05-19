@@ -14,10 +14,10 @@
 -(id) initWithCodeMaker:(AppiumCodeMaker*)codeMaker
 {
 	self = [super init];
-    if (self) {
-        [self setCodeMaker:codeMaker];
-    }
-    return self;
+	if (self) {
+		[self setCodeMaker:codeMaker];
+	}
+	return self;
 }
 
 #pragma mark - AppiumCodeMakerPlugin Implementation
@@ -97,7 +97,7 @@ Appium.promote_appium_methods Object\n\
 
 -(NSString*) postCodeBoilerplate
 {
-    return @"driver_quit\n";
+	return @"driver_quit\n";
 }
 
 -(NSString*) acceptAlert
@@ -122,19 +122,19 @@ Appium.promote_appium_methods Object\n\
 
 -(NSString*) executeScript:(AppiumCodeMakerActionExecuteScript*)action
 {
-    return [NSString stringWithFormat:@"execute_script \"%@\"\n", [self escapeString:action.script]];
+	return [NSString stringWithFormat:@"execute_script \"%@\"\n", [self escapeString:action.script]];
 }
 
 -(NSString*) preciseTap:(AppiumCodeMakerActionPreciseTap*)action
 {
-    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
-    return [NSString stringWithFormat:@"Appium::TouchAction.new \
+	NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+	return [NSString stringWithFormat:@"Appium::TouchAction.new \
 :x => %@, \
 :y => %@, \
 :fingers => %@, \
 :tapCount => %@, \
 :duration => %@\n",
-            [args objectForKey:@"x"], [args objectForKey:@"y"], [args objectForKey:@"touchCount"],
+			[args objectForKey:@"x"], [args objectForKey:@"y"], [args objectForKey:@"touchCount"],
 				[args objectForKey:@"tapCount"], [args objectForKey:@"duration"]];
 }
 
@@ -145,20 +145,20 @@ Appium.promote_appium_methods Object\n\
 
 -(NSString*) shake:(AppiumCodeMakerActionShake*)action
 {
-    return [NSString stringWithFormat:@"shake\n"];
+	return [NSString stringWithFormat:@"shake\n"];
 }
 
 -(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action
 {
-    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
-    return [NSString stringWithFormat:@"swipe \
+	NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+	return [NSString stringWithFormat:@"swipe \
 :start_x => %@, \
 :start_x => %@, \
 :end_x => %@, \
 :end_y => %@, \
 :touchCount => %@, \
 :duration => %@\n",
-            [args objectForKey:@"startX"], [args objectForKey:@"startY"], [args objectForKey:@"endX"],
+			[args objectForKey:@"startX"], [args objectForKey:@"startY"], [args objectForKey:@"endX"],
 				[args objectForKey:@"endY"], [args objectForKey:@"touchCount"], [args objectForKey:@"duration"]];
 }
 
@@ -170,7 +170,7 @@ Appium.promote_appium_methods Object\n\
 #pragma mark - Helper Methods
 -(NSString*) escapeString:(NSString *)string
 {
-    return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+	return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
 }
 
 -(NSString*) locatorString:(AppiumCodeMakerLocator*)locator

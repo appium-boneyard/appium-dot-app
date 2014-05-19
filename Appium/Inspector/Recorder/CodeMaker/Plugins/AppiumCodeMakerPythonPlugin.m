@@ -20,10 +20,10 @@
 -(id) initWithCodeMaker:(AppiumCodeMaker*)codeMaker
 {
 	self = [super init];
-    if (self) {
-        [self setCodeMaker:codeMaker];
-    }
-    return self;
+	if (self) {
+		[self setCodeMaker:codeMaker];
+	}
+	return self;
 }
 
 #pragma mark - AppiumCodeMakerPlugin Implementation
@@ -117,7 +117,7 @@ try:\n", self.model.general.serverAddress, self.model.general.serverPort];
 
 -(NSString*) postCodeBoilerplate
 {
-    return
+	return
 @"finally:\n\
 \twd.quit()\n\
 \tif not success:\n\
@@ -146,13 +146,13 @@ try:\n", self.model.general.serverAddress, self.model.general.serverPort];
 
 -(NSString*) executeScript:(AppiumCodeMakerActionExecuteScript*)action
 {
-    return [NSString stringWithFormat:@"%@wd.execute_script(\"%@\", None);\n", self.indentation, [self escapeString:action.script]];
+	return [NSString stringWithFormat:@"%@wd.execute_script(\"%@\", None);\n", self.indentation, [self escapeString:action.script]];
 }
 
 -(NSString*) preciseTap:(AppiumCodeMakerActionPreciseTap*)action
 {
-    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
-    return [NSString stringWithFormat:@"wd.execute_script(\"mobile: tap\", {\
+	NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+	return [NSString stringWithFormat:@"wd.execute_script(\"mobile: tap\", {\
 \"tapCount\": %@, \
 \"touchCount\": %@, \
 \"duration\": %@, \
@@ -168,13 +168,13 @@ try:\n", self.model.general.serverAddress, self.model.general.serverPort];
 
 -(NSString*) shake:(AppiumCodeMakerActionShake*)action
 {
-    return [NSString stringWithFormat:@"%@wd.execute_script(\"mobile: shake\", None);\n", self.indentation];
+	return [NSString stringWithFormat:@"%@wd.execute_script(\"mobile: shake\", None);\n", self.indentation];
 }
 
 -(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action
 {
-    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
-    return [NSString stringWithFormat:@"wd.execute_script(\"mobile: swipe\", {\
+	NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+	return [NSString stringWithFormat:@"wd.execute_script(\"mobile: swipe\", {\
 \"touchCount\": %@ , \
 \"startX\": %@, \
 \"startY\": %@, \
@@ -192,7 +192,7 @@ try:\n", self.model.general.serverAddress, self.model.general.serverPort];
 #pragma mark - Helper Methods
 -(NSString*) escapeString:(NSString *)string
 {
-    return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+	return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
 }
 
 -(NSString*) indentation { return [self.codeMaker.useBoilerPlate boolValue] ? @"\t" : @""; }
