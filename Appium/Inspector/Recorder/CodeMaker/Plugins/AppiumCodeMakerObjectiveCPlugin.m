@@ -20,10 +20,10 @@
 -(id) initWithCodeMaker:(AppiumCodeMaker*)codeMaker
 {
 	self = [super init];
-    if (self) {
-        [self setCodeMaker:codeMaker];
-    }
-    return self;
+	if (self) {
+		[self setCodeMaker:codeMaker];
+	}
+	return self;
 }
 
 #pragma mark - AppiumCodeMakerPlugin Implementation
@@ -31,44 +31,75 @@
 
 -(NSString*) preCodeBoilerplateAndroid
 {
-    return [NSString stringWithFormat:@"#import <Selenium/SERemoteWebDriver.h>\n\
+	NSString *code = [NSString stringWithFormat:@"#import <Selenium/SERemoteWebDriver.h>\n\
 \n\
 @implementation SeleniumTest\n\
 \n\
 -(void) run\n\
 {\n\
 \tSECapabilities *caps = [SECapabilities new];\n\
-\t[caps setPlatform:@\"Mac\"];\n\
-\t[caps setBrowserName:@\"\"];\n\
-\t[caps setVersion:@\"4.2\"];\n\
-\t[caps addCapabilityForKey:@\"device\" andValue:@\"Android\"];\n\
-\t[caps addCapabilityForKey:@\"app\" andValue:@\"%@\"];\n\
-\t[caps addCapabilityForKey:@\"app-package\" andValue:@\"%@\"];\n\
-\t[caps addCapabilityForKey:@\"app-activity\" andValue:@\"%@\"];\n\
-\tNSError *error;\n\
-\tSERemoteWebDriver *wd = [[SERemoteWebDriver alloc] initWithServerAddress:@\"%@\" port:%@ desiredCapabilities:caps requiredCapabilities:nil error:&error];\n", self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.general.serverAddress, self.model.general.serverPort];
+\t[caps addCapabilityForKey:@\"appium-version\" andValue:@\"1.0\"];\n\
+\t[caps setPlatformName:@\"%@\"];\n\
+\t[caps setPlatformVersion:@\"%@\"];\n", self.model.android.platformName, self.model.android.platformVersionNumber];
+	
+	if ([self.model.android.deviceName length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t[caps setDeviceName:@\"%@\"];\n", self.model.android.deviceName];
+	}
+	
+	if ([self.model.android.appPath length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t[caps setApp:@\"%@\"];\n", self.model.android.appPath];
+	}
+	
+	if ([self.model.android.package length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t[caps addCapabilityForKey:@\"appPackage\" andValue:@\"%@\"];\n", self.model.android.package];
+	}
+	
+	if ([self.model.android.activity length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t[caps addCapabilityForKey:@\"appActivity\" andValue:@\"%@\"];\n", self.model.android.activity];
+	}
+	
+	code = [code stringByAppendingFormat:@"\tNSError *error;\n\
+\tSERemoteWebDriver *wd = [[SERemoteWebDriver alloc] initWithServerAddress:@\"%@\" port:%@ desiredCapabilities:caps requiredCapabilities:nil error:&error];\n", self.model.general.serverAddress, self.model.general.serverPort];
+	
+	return code;
 }
 
 -(NSString*) preCodeBoilerplateiOS
 {
-    return [NSString stringWithFormat:@"#import <Selenium/SERemoteWebDriver.h>\n\
+	NSString *code = [NSString stringWithFormat:@"#import <Selenium/SERemoteWebDriver.h>\n\
 \n\
 @implementation SeleniumTest\n\
 \n\
 -(void) run\n\
 {\n\
 \tSECapabilities *caps = [SECapabilities new];\n\
-\t[caps setPlatform:@\"Mac\"];\n\
-\t[caps setBrowserName:@\"iOS\"];\n\
-\t[caps setVersion:@\"6.1\"];\n\
-\t[caps addCapabilityForKey:@\"device\" andValue:@\"%@\"];\n\
-\t[caps addCapabilityForKey:@\"app\" andValue:@\"%@\"];\n\
-\tNSError *error;\n\
-\tSERemoteWebDriver *wd = [[SERemoteWebDriver alloc] initWithServerAddress:@\"%@\" port:%@ desiredCapabilities:caps requiredCapabilities:nil error:&error];\n", self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.serverAddress, self.model.general.serverPort];}
+\t[caps addCapabilityForKey:@\"appium-version\" andValue:@\"1.0\"];\n\
+\t[caps setPlatformName:@\"iOS\"];\n\
+\t[caps setPlatformVersion:@\"%@\"];\n", self.model.iOS.platformVersion];
+	
+	if ([self.model.iOS.deviceName length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t[caps setDeviceName:@\"%@\"];\n", self.model.iOS.deviceName];
+	}
+	
+	if ([self.model.iOS.appPath length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t[caps setApp:@\"%@\"];\n", self.model.iOS.appPath];
+	}
+	
+	code = [code stringByAppendingFormat:@"\tNSError *error;\n\
+\tSERemoteWebDriver *wd = [[SERemoteWebDriver alloc] initWithServerAddress:@\"%@\" port:%@ desiredCapabilities:caps requiredCapabilities:nil error:&error];\n", self.model.general.serverAddress, self.model.general.serverPort];
+	
+	return code;
+}
 
 -(NSString*) postCodeBoilerplate
 {
-    return
+	return
 @"}\n\
 \n\
 @end\n";
@@ -96,13 +127,13 @@
 
 -(NSString*) executeScript:(AppiumCodeMakerActionExecuteScript*)action
 {
-    return [NSString stringWithFormat:@"%@[wd executeScript:@\"%@\"];\n", self.indentation, [self escapeString:action.script]];
+	return [NSString stringWithFormat:@"%@[wd executeScript:@\"%@\"];\n", self.indentation, [self escapeString:action.script]];
 }
 
 -(NSString*) preciseTap:(AppiumCodeMakerActionPreciseTap*)action
 {
-    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
-    return [NSString stringWithFormat:@"\[wd executeScript:@\"mobile: tap\" arguments:\
+	NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+	return [NSString stringWithFormat:@"\[wd executeScript:@\"mobile: tap\" arguments:\
 [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys:\
 [NSNumber numberWithInteger:%@, @\"tapCount\", \
 [NSNumber numberWithInteger:%@, @\"touchCount\", \
@@ -119,13 +150,13 @@ nil], nil]];\n", [args objectForKey:@"tapCount"], [args objectForKey:@"touchCoun
 
 -(NSString*) shake:(AppiumCodeMakerActionShake*)action
 {
-    return [NSString stringWithFormat:@"%@[wd executeScript:@\"mobile: shake\"];\n", self.indentation];
+	return [NSString stringWithFormat:@"%@[wd executeScript:@\"mobile: shake\"];\n", self.indentation];
 }
 
 -(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action
 {
-    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
-    return [NSString stringWithFormat:@"\[wd executeScript:@\"mobile: swipe\" arguments:\
+	NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+	return [NSString stringWithFormat:@"\[wd executeScript:@\"mobile: swipe\" arguments:\
 [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys:\
 [NSNumber numberWithInteger:%@, @\"touchCount\", \
 [NSNumber numberWithFloat:%@f, @\"startX\", \
@@ -144,7 +175,7 @@ nil], nil]];\n", [args objectForKey:@"touchCount"], [args objectForKey:@"startX"
 #pragma mark - Helper Methods
 -(NSString*) escapeString:(NSString *)string
 {
-    return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+	return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
 }
 
 -(NSString*) indentation { return [self.codeMaker.useBoilerPlate boolValue] ? @"\t" : @""; }

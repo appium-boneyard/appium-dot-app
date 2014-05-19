@@ -20,10 +20,10 @@
 -(id) initWithCodeMaker:(AppiumCodeMaker*)codeMaker
 {
 	self = [super init];
-    if (self) {
-        [self setCodeMaker:codeMaker];
-    }
-    return self;
+	if (self) {
+		[self setCodeMaker:codeMaker];
+	}
+	return self;
 }
 
 #pragma mark - AppiumCodeMakerPlugin Implementation
@@ -31,7 +31,7 @@
 
 -(NSString*) preCodeBoilerplateAndroid
 {
-    return [NSString stringWithFormat: @"using OpenQA.Selenium;\n\
+	NSString *code = [NSString stringWithFormat:@"using OpenQA.Selenium;\n\
 using OpenQA.Selenium.Remote;\n\
 using OpenQA.Selenium.Support.UI;\n\
 using System;\n\
@@ -41,21 +41,39 @@ namespace AppiumTests {\n\
 \tpublic class RecordedTest {\n\
 \t\tstatic void Main(string[] args) {\n\
 \t\t\tDesiredCapabilities capabilities = new DesiredCapabilities();\n\
-\t\t\tcapabilities.SetCapability(\"device\", \"Android\");\n\
-\t\t\tcapabilities.SetCapability(\"browserName\", \"\");\n\
-\t\t\tcapabilities.SetCapability(\"platform\", \"Mac\");\n\
-\t\t\tcapabilities.SetCapability(\"version\", \"4.2\");\n\
-\t\t\tcapabilities.SetCapability(\"app\", \"%@\");\n\
-\t\t\tcapabilities.SetCapability(\"app-package\", \"%@\");\n\
-\t\t\tcapabilities.SetCapability(\"app-activity\", \"%@\");\n\
-\t\t\tRemoteWebDriver wd = new RemoteWebDriver(new Uri(\"http://%@:%@/wd/hub\"), capabilities);\n\
-\t\t\ttry {\n", self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.general.serverAddress, self.model.general.serverPort];
+\t\t\tcapabilities.SetCapability(\"appium-version\", \"1.0\");\n\
+\t\t\tcapabilities.SetCapability(\"platformName\", \"%@\");\n\
+\t\t\tcapabilities.SetCapability(\"platformVersion\", \"%@\");\n", self.model.android.platformName, self.model.android.platformVersionNumber];
+	
+	if ([self.model.android.deviceName length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t\t\tcapabilities.SetCapability(\"deviceName\", \"%@\");\n", self.model.android.deviceName];
+	}
+	
+	if ([self.model.android.appPath length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t\t\tcapabilities.SetCapability(\"app\", \"%@\");\n", self.model.android.appPath];
+	}
+	
+	if ([self.model.android.package length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t\t\tcapabilities.SetCapability(\"appPackage\", \"%@\");\n", self.model.android.package];
+	}
+	
+	if ([self.model.android.activity length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t\t\tcapabilities.SetCapability(\"appActivity\", \"%@\");\n", self.model.android.activity];
+	}
+	
+	code = [code stringByAppendingFormat:@"\t\t\tRemoteWebDriver wd = new RemoteWebDriver(new Uri(\"http://%@:%@/wd/hub\"), capabilities);\n\
+\t\t\ttry {\n", self.model.general.serverAddress, self.model.general.serverPort];
 
+	return code;
 }
 
 -(NSString*) preCodeBoilerplateiOS
 {
-    return [NSString stringWithFormat: @"using OpenQA.Selenium;\n\
+	NSString *code = [NSString stringWithFormat: @"using OpenQA.Selenium;\n\
 using OpenQA.Selenium.Remote;\n\
 using OpenQA.Selenium.Support.UI;\n\
 using System;\n\
@@ -65,18 +83,29 @@ namespace AppiumTests {\n\
 \tpublic class RecordedTest {\n\
 \t\tstatic void Main(string[] args) {\n\
 \t\t\tDesiredCapabilities capabilities = new DesiredCapabilities();\n\
-\t\t\tcapabilities.SetCapability(\"browserName\", \"iOS\");\n\
-\t\t\tcapabilities.SetCapability(\"platform\", \"Mac\");\n\
-\t\t\tcapabilities.SetCapability(\"version\", \"6.1\");\n\
-\t\t\tcapabilities.SetCapability(\"device\", \"%@\");\n\
-\t\t\tcapabilities.SetCapability(\"app\", \"%@\");\n\
-\t\t\tRemoteWebDriver wd = new RemoteWebDriver(new Uri(\"http://%@:%@/wd/hub\"), capabilities);\n\
-\t\t\ttry {\n", self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.serverAddress, self.model.general.serverPort];
+\t\t\tcapabilities.SetCapability(\"appium-version\", \"1.0\");\n\
+\t\t\tcapabilities.SetCapability(\"platformName\", \"iOS\");\n\
+\t\t\tcapabilities.SetCapability(\"platformVersion\", \"%@\");\n", self.model.iOS.platformVersion];
+		
+	if ([self.model.iOS.deviceName length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t\t\tcapabilities.SetCapability(\"deviceName\", \"%@\");\n", self.model.iOS.deviceName];
+	}
+	
+	if ([self.model.iOS.appPath length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t\t\tcapabilities.SetCapability(\"app\", \"%@\");\n", self.model.iOS.appPath];
+	}
+	
+	code = [code stringByAppendingFormat:@"\t\t\tRemoteWebDriver wd = new RemoteWebDriver(new Uri(\"http://%@:%@/wd/hub\"), capabilities);\n\
+\t\t\ttry {\n", self.model.general.serverAddress, self.model.general.serverPort];
+	
+	return code;
 }
 
 -(NSString*) postCodeBoilerplate
 {
-    return
+	return
 @"\t\t\t} finally { wd.Quit(); }\n\
 \t\t}\n\
 \n\
@@ -113,13 +142,13 @@ namespace AppiumTests {\n\
 
 -(NSString*) executeScript:(AppiumCodeMakerActionExecuteScript*)action
 {
-    return [NSString stringWithFormat:@"%@wd.ExecuteScript(\"%@\", null);\n", self.indentation, [self escapeString:action.script]];
+	return [NSString stringWithFormat:@"%@wd.ExecuteScript(\"%@\", null);\n", self.indentation, [self escapeString:action.script]];
 }
 
 -(NSString*) preciseTap:(AppiumCodeMakerActionPreciseTap*)action
 {
-    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
-    return [NSString stringWithFormat:@"wd.ExecuteScript(\"mobile: tap\", \
+	NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+	return [NSString stringWithFormat:@"wd.ExecuteScript(\"mobile: tap\", \
 new Dictionary<string, double>() \
 { \
 { \"tapCount\", %@ }, \
@@ -137,8 +166,8 @@ new Dictionary<string, double>() \
 
 -(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action
 {
-    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
-    return [NSString stringWithFormat:@"wd.ExecuteScript(\"mobile: swipe\", \
+	NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+	return [NSString stringWithFormat:@"wd.ExecuteScript(\"mobile: swipe\", \
 new Dictionary<string, double>() \
 { \
 { \"touchCount\", %@ }, \
@@ -152,7 +181,7 @@ new Dictionary<string, double>() \
 
 -(NSString*) shake:(AppiumCodeMakerActionShake*)action
 {
-    return [NSString stringWithFormat:@"%@wd.ExecuteScript(\"mobile: shake\", null);\n", self.indentation];
+	return [NSString stringWithFormat:@"%@wd.ExecuteScript(\"mobile: shake\", null);\n", self.indentation];
 }
 
 -(NSString*) tap:(AppiumCodeMakerActionTap*)action
@@ -163,7 +192,7 @@ new Dictionary<string, double>() \
 #pragma mark - Helper Methods
 -(NSString*) escapeString:(NSString *)string
 {
-    return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+	return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
 }
 
 -(NSString*) indentation { return [self.codeMaker.useBoilerPlate boolValue] ? @"\t\t\t\t" : @""; }

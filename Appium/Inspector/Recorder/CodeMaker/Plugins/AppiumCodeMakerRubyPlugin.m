@@ -14,10 +14,10 @@
 -(id) initWithCodeMaker:(AppiumCodeMaker*)codeMaker
 {
 	self = [super init];
-    if (self) {
-        [self setCodeMaker:codeMaker];
-    }
-    return self;
+	if (self) {
+		[self setCodeMaker:codeMaker];
+	}
+	return self;
 }
 
 #pragma mark - AppiumCodeMakerPlugin Implementation
@@ -25,47 +25,79 @@
 
 -(NSString*) preCodeBoilerplateAndroid
 {
-    return [NSString stringWithFormat:@"require 'rubygems'\n\
+	NSString *code = [NSString stringWithFormat:@"require 'rubygems'\n\
 require 'appium_lib'\
 \n\
 capabilities = {\n\
-\tdeviceName: 'Android',\n\
-\tplatformName: 'Android',\n\
-\tplatformVersion: '4.2',\n\
-\tapp: '%@',\n\
-\t:'app-package' => '%@',\n\
-\t:'app-activity' => '%@'\n\
-}\n\
+\t'appium-version': '1.0',\n\
+\t'platformName': '%@',\n\
+\t'platformVersion': '%@',\n", self.model.android.platformName, self.model.android.platformVersionNumber];
+	
+	if ([self.model.android.deviceName length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t'deviceName': '%@',\n", self.model.android.deviceName];
+	}
+	
+	if ([self.model.android.appPath length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t'app': '%@',\n", self.model.android.appPath];
+	}
+	
+	if ([self.model.android.package length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t'appPackage' => '%@',\n", self.model.android.package];
+	}
+	
+	if ([self.model.android.activity length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t'appActivity' => '%@'\n", self.model.android.activity];
+	}
+	
+	code = [code stringByAppendingFormat:@"}\n\
 \n\
 server_url = \"http://%@:%@/wd/hub\"\n\
 \n\
 Appium::Driver.new(caps: capabilities).start_driver\n\
 Appium.promote_appium_methods Object\n\
-\n ", self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.general.serverAddress, self.model.general.serverPort];
+\n ", self.model.general.serverAddress, self.model.general.serverPort];
+	
+	return code;
 }
 
 -(NSString*) preCodeBoilerplateiOS
 {
-    return [NSString stringWithFormat:@"require 'rubygems'\n\
+	NSString *code = [NSString stringWithFormat:@"require 'rubygems'\n\
 require 'appium_lib'\
 \n\
 capabilities = {\n\
-\tdeviceName: '%@',\n\
-\tplatformName: 'iOS',\n\
-\tplatformVersion: '7.1',\n\
-\tapp: '%@'\n\
-}\n\
+\t'appium-version': '1.0',\n\
+\t'platformName': 'iOS',\n\
+\t'platformVersion': '%@',\n", self.model.iOS.platformVersion];
+	
+	if ([self.model.android.deviceName length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t'deviceName': '%@',\n", self.model.android.deviceName];
+	}
+	
+	if ([self.model.android.appPath length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t'app': '%@'\n", self.model.android.appPath];
+	}
+	
+	code = [code stringByAppendingFormat:@"}\n\
 \n\
 server_url = \"http://%@:%@/wd/hub\"\n\
 \n\
 Appium::Driver.new(caps: capabilities).start_driver\n\
 Appium.promote_appium_methods Object\n\
-\n", self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.serverAddress, self.model.general.serverPort];
+\n", self.model.general.serverAddress, self.model.general.serverPort];
+	
+	return code;
 }
 
 -(NSString*) postCodeBoilerplate
 {
-    return @"driver_quit\n";
+	return @"driver_quit\n";
 }
 
 -(NSString*) acceptAlert
@@ -90,19 +122,19 @@ Appium.promote_appium_methods Object\n\
 
 -(NSString*) executeScript:(AppiumCodeMakerActionExecuteScript*)action
 {
-    return [NSString stringWithFormat:@"execute_script \"%@\"\n", [self escapeString:action.script]];
+	return [NSString stringWithFormat:@"execute_script \"%@\"\n", [self escapeString:action.script]];
 }
 
 -(NSString*) preciseTap:(AppiumCodeMakerActionPreciseTap*)action
 {
-    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
-    return [NSString stringWithFormat:@"Appium::TouchAction.new \
+	NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+	return [NSString stringWithFormat:@"Appium::TouchAction.new \
 :x => %@, \
 :y => %@, \
 :fingers => %@, \
 :tapCount => %@, \
 :duration => %@\n",
-            [args objectForKey:@"x"], [args objectForKey:@"y"], [args objectForKey:@"touchCount"],
+			[args objectForKey:@"x"], [args objectForKey:@"y"], [args objectForKey:@"touchCount"],
 				[args objectForKey:@"tapCount"], [args objectForKey:@"duration"]];
 }
 
@@ -113,20 +145,20 @@ Appium.promote_appium_methods Object\n\
 
 -(NSString*) shake:(AppiumCodeMakerActionShake*)action
 {
-    return [NSString stringWithFormat:@"shake\n"];
+	return [NSString stringWithFormat:@"shake\n"];
 }
 
 -(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action
 {
-    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
-    return [NSString stringWithFormat:@"swipe \
+	NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+	return [NSString stringWithFormat:@"swipe \
 :start_x => %@, \
 :start_x => %@, \
 :end_x => %@, \
 :end_y => %@, \
 :touchCount => %@, \
 :duration => %@\n",
-            [args objectForKey:@"startX"], [args objectForKey:@"startY"], [args objectForKey:@"endX"],
+			[args objectForKey:@"startX"], [args objectForKey:@"startY"], [args objectForKey:@"endX"],
 				[args objectForKey:@"endY"], [args objectForKey:@"touchCount"], [args objectForKey:@"duration"]];
 }
 
@@ -138,7 +170,7 @@ Appium.promote_appium_methods Object\n\
 #pragma mark - Helper Methods
 -(NSString*) escapeString:(NSString *)string
 {
-    return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+	return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
 }
 
 -(NSString*) locatorString:(AppiumCodeMakerLocator*)locator

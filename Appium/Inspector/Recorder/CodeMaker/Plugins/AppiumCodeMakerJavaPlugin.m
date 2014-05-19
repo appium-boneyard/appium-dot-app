@@ -20,10 +20,10 @@
 -(id) initWithCodeMaker:(AppiumCodeMaker*)codeMaker
 {
 	self = [super init];
-    if (self) {
-        [self setCodeMaker:codeMaker];
-    }
-    return self;
+	if (self) {
+		[self setCodeMaker:codeMaker];
+	}
+	return self;
 }
 
 
@@ -32,55 +32,75 @@
 
 -(NSString*) preCodeBoilerplateAndroid
 {
-    return [NSString stringWithFormat:@"import java.util.concurrent.TimeUnit;\n\
-import java.util.Date;\n\
-import java.io.File;\n\
-import org.openqa.selenium.support.ui.Select;\n\
-import org.openqa.selenium.interactions.Actions;\n\
-import org.openqa.selenium.firefox.FirefoxDriver;\n\
-import org.openqa.selenium.*;\n\
-import static org.openqa.selenium.OutputType.*;\n\
+	NSString *code = [NSString stringWithFormat:@"import io.appium.java_client.AppiumDriver;\n\
+import org.openqa.selenium.remote.DesiredCapabilities;\n\
+import java.net.URL;\n\
 \n\
 public class {scriptName} {\n\
 \tpublic static void main(String[] args) {\n\
 \t\tDesiredCapabilities capabilities = new DesiredCapabilities();\n\
-\t\tcapabilities.setCapability(\"device\", \"Android\");\n\
-\t\tcapabilities.setCapability(CapabilityType.BROWSER_NAME, \"\");\n\
-\t\tcapabilities.setCapability(CapabilityType.VERSION, \"4.2\");\n\
-\t\tcapabilities.setCapability(CapabilityType.PLATFORM, \"Mac\");\n\
-\t\tcapabilities.setCapability(\"app\", \"%@\");\n\
-\t\tcapabilities.setCapability(\"app-package\", \"%@\");\n\
-\t\tcapabilities.setCapability(\"app-activity\", \"%@\");\n\
-\t\twd = new RemoteWebDriver(new URL(\"http://%@:%@/wd/hub\"), capabilities);\n\
-\t\twd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);\n", self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.general.serverAddress, self.model.general.serverPort];
+\t\tcapabilities.setCapability(\"appium-version\", \"1.0\");\n\
+\t\tcapabilities.setCapability(\"platformName\", \"%@\");\n\
+\t\tcapabilities.setCapability(\"platformVersion\", \"%@\");\n", self.model.android.platformName, self.model.android.platformVersionNumber];
+	
+	if ([self.model.android.deviceName length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t\tcapabilities.setCapability(\"deviceName\", \"%@\");\n", self.model.android.deviceName];
+	}
+	
+	if ([self.model.android.appPath length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t\tcapabilities.setCapability(\"app\", \"%@\");\n", self.model.android.appPath];
+	}
+	
+	if ([self.model.android.package length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t\tcapabilities.setCapability(\"appPackage\", \"%@\");\n", self.model.android.package];
+	}
+	
+	if ([self.model.android.activity length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t\tcapabilities.setCapability(\"appActivity\", \"%@\");\n", self.model.android.activity];
+	}
+	
+	code = [code stringByAppendingFormat:@"\t\twd = new AppiumDriver(new URL(\"http://%@:%@/wd/hub\"), capabilities);\n\
+\t\twd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);\n", self.model.general.serverAddress, self.model.general.serverPort];
+	
+	return code;
 }
 
 -(NSString*) preCodeBoilerplateiOS
 {
-    return [NSString stringWithFormat:@"import java.util.concurrent.TimeUnit;\n\
-import java.util.Date;\n\
-import java.io.File;\n\
-import org.openqa.selenium.support.ui.Select;\n\
-import org.openqa.selenium.interactions.Actions;\n\
-import org.openqa.selenium.firefox.FirefoxDriver;\n\
-import org.openqa.selenium.*;\n\
-import static org.openqa.selenium.OutputType.*;\n\
+	NSString *code = [NSString stringWithFormat:@"import io.appium.java_client.AppiumDriver;\n\
+import org.openqa.selenium.remote.DesiredCapabilities;\n\
+import java.net.URL;\n\
 \n\
 public class {scriptName} {\n\
 \tpublic static void main(String[] args) {\n\
 \t\tDesiredCapabilities capabilities = new DesiredCapabilities();\n\
-\t\tcapabilities.setCapability(CapabilityType.BROWSER_NAME, \"iOS\");\n\
-\t\tcapabilities.setCapability(CapabilityType.VERSION, \"6.1\");\n\
-\t\tcapabilities.setCapability(CapabilityType.PLATFORM, \"Mac\");\n\
-\t\tcapabilities.setCapability(\"device\", \"%@\");\n\
-\t\tcapabilities.setCapability(\"app\", \"%@\");\n\
-\t\twd = new RemoteWebDriver(new URL(\"http://%@:%@/wd/hub\"), capabilities);\n\
-\t\twd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);\n", self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.serverAddress, self.model.general.serverPort];
+\t\tcapabilities.setCapability(\"appium-version\", \"1.0\");\n\
+\t\tcapabilities.setCapability(\"platformName\", \"iOS\");\n\
+\t\tcapabilities.setCapability(\"platformVersion\", \"%@\");\n", self.model.iOS.platformVersion];
+	
+	if ([self.model.iOS.deviceName length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t\tcapabilities.setCapability(\"deviceName\", \"%@\");\n", self.model.iOS.deviceName];
+	}
+	
+	if ([self.model.iOS.appPath length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t\tcapabilities.setCapability(\"app\", \"%@\");\n", self.model.iOS.appPath];
+	}
+	
+	code = [code stringByAppendingFormat:@"\t\twd = new AppiumDriver(new URL(\"http://%@:%@/wd/hub\"), capabilities);\n\
+\t\twd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);\n", self.model.general.serverAddress, self.model.general.serverPort];
+	
+	return code;
 }
 
 -(NSString*) postCodeBoilerplate
 {
-    return
+	return
 @"\t\twd.close();\n\
 \t}\n\
 }\n";
@@ -108,13 +128,13 @@ public class {scriptName} {\n\
 
 -(NSString*) executeScript:(AppiumCodeMakerActionExecuteScript*)action
 {
-    return [NSString stringWithFormat:@"%@(JavascriptExecutor)wd.executeScript(\"%@\", null);\n", self.indentation, [self escapeString:action.script]];
+	return [NSString stringWithFormat:@"%@(JavascriptExecutor)wd.executeScript(\"%@\", null);\n", self.indentation, [self escapeString:action.script]];
 }
 
 -(NSString*) preciseTap:(AppiumCodeMakerActionPreciseTap*)action
 {
-    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
-    return [NSString stringWithFormat:@"(JavascriptExecutor)wd.executeScript(\"mobile: tap\", \
+	NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+	return [NSString stringWithFormat:@"(JavascriptExecutor)wd.executeScript(\"mobile: tap\", \
 new HashMap<String, Double>() \
 {{ \
 put(\"tapCount\", %@); \
@@ -132,13 +152,13 @@ put(\"y\", %@); \
 
 -(NSString*) shake:(AppiumCodeMakerActionShake*)action
 {
-    return [NSString stringWithFormat:@"%@(JavascriptExecutor)wd.executeScript(\"mobile: shake\", null);\n", self.indentation];
+	return [NSString stringWithFormat:@"%@(JavascriptExecutor)wd.executeScript(\"mobile: shake\", null);\n", self.indentation];
 }
 
 -(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action
 {
-    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
-    return [NSString stringWithFormat:@"(JavascriptExecutor)wd.executeScript(\"mobile: swipe\", \
+	NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+	return [NSString stringWithFormat:@"(JavascriptExecutor)wd.executeScript(\"mobile: swipe\", \
 new HashMap<String, Double>() \
 {{ \
 put(\"touchCount\", %@); \
@@ -158,7 +178,7 @@ put(\"duration\", %@); \
 #pragma mark - Helper Methods
 -(NSString*) escapeString:(NSString *)string
 {
-    return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+	return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
 }
 
 -(NSString*) indentation { return [self.codeMaker.useBoilerPlate boolValue] ? @"\t\t" : @""; }

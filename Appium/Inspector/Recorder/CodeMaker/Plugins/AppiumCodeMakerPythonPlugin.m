@@ -20,10 +20,10 @@
 -(id) initWithCodeMaker:(AppiumCodeMaker*)codeMaker
 {
 	self = [super init];
-    if (self) {
-        [self setCodeMaker:codeMaker];
-    }
-    return self;
+	if (self) {
+		[self setCodeMaker:codeMaker];
+	}
+	return self;
 }
 
 #pragma mark - AppiumCodeMakerPlugin Implementation
@@ -31,46 +31,37 @@
 
 -(NSString*) preCodeBoilerplateAndroid
 {
-    return [NSString stringWithFormat:@"from selenium.webdriver.firefox.webdriver import WebDriver\n\
+	NSString *code = [NSString stringWithFormat:@"from selenium.webdriver.firefox.webdriver import WebDriver\n\
 from selenium.webdriver.common.action_chains import ActionChains\n\
 import time\n\
 \n\
 success = True\n\
 desired_caps = {}\n\
-desired_caps['device'] = 'Android'\n\
-desired_caps['browserName'] = ''\n\
-desired_caps['version'] = '4.2'\n\
-desired_caps['app'] = os.path.abspath('%@')\n\
-desired_caps['app-package'] = '%@'\n\
-desired_caps['app-activity'] = '%@'\n\
-\n\
-    wd = webdriver.Remote('http://%@:%@/wd/hub', desired_caps)\n\
-wd.implicitly_wait(60)\n\
-\n\
-def is_alert_present(wd):\n\
-\ttry:\n\
-\t\twd.switch_to_alert().text\n\
-\t\treturn True\n\
-\texcept:\n\
-\t\treturn False\n\
-\n\
-try:\n", self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.general.serverAddress, self.model.general.serverPort];
-}
-
--(NSString*) preCodeBoilerplateiOS
-{
-    return [NSString stringWithFormat:@"from selenium.webdriver.firefox.webdriver import WebDriver\n\
-from selenium.webdriver.common.action_chains import ActionChains\n\
-import time\n\
-\n\
-success = True\n\
-desired_caps = {}\n\
-desired_caps['browserName'] = 'iOS'\n\
-desired_caps['platform'] = 'Mac'\n\
-desired_caps['version'] = '6.1'\n\
-desired_caps['device'] = '%@'\n\
-desired_caps['app'] = os.path.abspath('%@')\n\
-\n\
+desired_caps['appium-version'] = '1.0'\n\
+desired_caps['platformName'] = '%@'\n\
+desired_caps['platformVersion'] = '%@'\n", self.model.android.platformName, self.model.android.platformVersionNumber];
+	
+	if ([self.model.android.deviceName length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"desired_caps['deviceName'] = '%@'\n", self.model.android.deviceName];
+	}
+	
+	if ([self.model.android.appPath length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"desired_caps['app'] = os.path.abspath('%@')\n", self.model.android.appPath];
+	}
+	
+	if ([self.model.android.package length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"desired_caps['appPackage'] = '%@'\n", self.model.android.package];
+	}
+	
+	if ([self.model.android.activity length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"desired_caps['appActivity'] = '%@'\n", self.model.android.activity];
+	}
+	
+	code = [code stringByAppendingFormat:@"\n\
 wd = webdriver.Remote('http://%@:%@/wd/hub', desired_caps)\n\
 wd.implicitly_wait(60)\n\
 \n\
@@ -81,12 +72,52 @@ def is_alert_present(wd):\n\
 \texcept:\n\
 \t\treturn False\n\
 \n\
-try:\n", self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.serverAddress, self.model.general.serverPort];;
+try:\n", self.model.general.serverAddress, self.model.general.serverPort];
+	
+	return code;
+}
+
+-(NSString*) preCodeBoilerplateiOS
+{
+	NSString *code = [NSString stringWithFormat:@"from selenium.webdriver.firefox.webdriver import WebDriver\n\
+from selenium.webdriver.common.action_chains import ActionChains\n\
+import time\n\
+\n\
+success = True\n\
+desired_caps = {}\n\
+desired_caps['appium-version'] = '1.0'\n\
+desired_caps['platformName'] = 'iOS'\n\
+desired_caps['platformVersion'] = '%@'\n", self.model.iOS.platformVersion];
+	
+	if ([self.model.iOS.deviceName length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"desired_caps['deviceName'] = '%@'\n", self.model.iOS.deviceName];
+	}
+	
+	if ([self.model.iOS.appPath length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"desired_caps['app'] = os.path.abspath('%@')\n", self.model.iOS.appPath];
+	}
+	
+	code = [code stringByAppendingFormat:@"\n\
+wd = webdriver.Remote('http://%@:%@/wd/hub', desired_caps)\n\
+wd.implicitly_wait(60)\n\
+\n\
+def is_alert_present(wd):\n\
+\ttry:\n\
+\t\twd.switch_to_alert().text\n\
+\t\treturn True\n\
+\texcept:\n\
+\t\treturn False\n\
+\n\
+try:\n", self.model.general.serverAddress, self.model.general.serverPort];
+	
+	return code;
 }
 
 -(NSString*) postCodeBoilerplate
 {
-    return
+	return
 @"finally:\n\
 \twd.quit()\n\
 \tif not success:\n\
@@ -115,13 +146,13 @@ try:\n", self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.s
 
 -(NSString*) executeScript:(AppiumCodeMakerActionExecuteScript*)action
 {
-    return [NSString stringWithFormat:@"%@wd.execute_script(\"%@\", None);\n", self.indentation, [self escapeString:action.script]];
+	return [NSString stringWithFormat:@"%@wd.execute_script(\"%@\", None);\n", self.indentation, [self escapeString:action.script]];
 }
 
 -(NSString*) preciseTap:(AppiumCodeMakerActionPreciseTap*)action
 {
-    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
-    return [NSString stringWithFormat:@"wd.execute_script(\"mobile: tap\", {\
+	NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+	return [NSString stringWithFormat:@"wd.execute_script(\"mobile: tap\", {\
 \"tapCount\": %@, \
 \"touchCount\": %@, \
 \"duration\": %@, \
@@ -137,13 +168,13 @@ try:\n", self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.s
 
 -(NSString*) shake:(AppiumCodeMakerActionShake*)action
 {
-    return [NSString stringWithFormat:@"%@wd.execute_script(\"mobile: shake\", None);\n", self.indentation];
+	return [NSString stringWithFormat:@"%@wd.execute_script(\"mobile: shake\", None);\n", self.indentation];
 }
 
 -(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action
 {
-    NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
-    return [NSString stringWithFormat:@"wd.execute_script(\"mobile: swipe\", {\
+	NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
+	return [NSString stringWithFormat:@"wd.execute_script(\"mobile: swipe\", {\
 \"touchCount\": %@ , \
 \"startX\": %@, \
 \"startY\": %@, \
@@ -161,7 +192,7 @@ try:\n", self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.s
 #pragma mark - Helper Methods
 -(NSString*) escapeString:(NSString *)string
 {
-    return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+	return [string stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
 }
 
 -(NSString*) indentation { return [self.codeMaker.useBoilerPlate boolValue] ? @"\t" : @""; }
