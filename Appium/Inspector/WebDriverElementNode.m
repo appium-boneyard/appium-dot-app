@@ -180,7 +180,7 @@
 #pragma mark - Additional Properties
 -(BOOL) shouldDisplay
 {
-	if ((_showInvisible || self.visible) && (_showDisabled || self.enabled))
+	if ((_showInvisible || self.visible || self.platform == Platform_Android) && (_showDisabled || self.enabled))
 		return YES;
     if ([self isLeaf])
 		return NO;
