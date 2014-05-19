@@ -31,7 +31,7 @@
 
 -(NSString*) preCodeBoilerplateAndroid
 {
-    return [NSString stringWithFormat:@"#import <Selenium/SERemoteWebDriver.h>\n\
+	NSString *code = [NSString stringWithFormat:@"#import <Selenium/SERemoteWebDriver.h>\n\
 \n\
 @implementation SeleniumTest\n\
 \n\
@@ -40,18 +40,37 @@
 \tSECapabilities *caps = [SECapabilities new];\n\
 \t[caps addCapabilityForKey:@\"appium-version\" andValue:@\"1.0\"];\n\
 \t[caps setPlatformName:@\"%@\"];\n\
-\t[caps setPlatformVersion:@\"%@\"];\n\
-\t[caps setDeviceName:@\"%@\"];\n\
-\t[caps setApp:@\"%@\"];\n\
-\t[caps addCapabilityForKey:@\"appPackage\" andValue:@\"%@\"];\n\
-\t[caps addCapabilityForKey:@\"appActivity\" andValue:@\"%@\"];\n\
-\tNSError *error;\n\
-\tSERemoteWebDriver *wd = [[SERemoteWebDriver alloc] initWithServerAddress:@\"%@\" port:%@ desiredCapabilities:caps requiredCapabilities:nil error:&error];\n", self.model.android.platformName, self.model.android.platformVersionNumber, self.model.android.deviceName, self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.general.serverAddress, self.model.general.serverPort];
+\t[caps setPlatformVersion:@\"%@\"];\n", self.model.android.platformName, self.model.android.platformVersionNumber];
+	
+	if ([self.model.android.deviceName length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t[caps setDeviceName:@\"%@\"];\n", self.model.android.deviceName];
+	}
+	
+	if ([self.model.android.appPath length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t[caps setApp:@\"%@\"];\n", self.model.android.appPath];
+	}
+	
+	if ([self.model.android.package length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t[caps addCapabilityForKey:@\"appPackage\" andValue:@\"%@\"];\n", self.model.android.package];
+	}
+	
+	if ([self.model.android.activity length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t[caps addCapabilityForKey:@\"appActivity\" andValue:@\"%@\"];\n", self.model.android.activity];
+	}
+	
+	code = [code stringByAppendingFormat:@"\tNSError *error;\n\
+\tSERemoteWebDriver *wd = [[SERemoteWebDriver alloc] initWithServerAddress:@\"%@\" port:%@ desiredCapabilities:caps requiredCapabilities:nil error:&error];\n", self.model.general.serverAddress, self.model.general.serverPort];
+	
+	return code;
 }
 
 -(NSString*) preCodeBoilerplateiOS
 {
-    return [NSString stringWithFormat:@"#import <Selenium/SERemoteWebDriver.h>\n\
+	NSString *code = [NSString stringWithFormat:@"#import <Selenium/SERemoteWebDriver.h>\n\
 \n\
 @implementation SeleniumTest\n\
 \n\
@@ -60,11 +79,23 @@
 \tSECapabilities *caps = [SECapabilities new];\n\
 \t[caps addCapabilityForKey:@\"appium-version\" andValue:@\"1.0\"];\n\
 \t[caps setPlatformName:@\"iOS\"];\n\
-\t[caps setPlatformVersion:@\"%@\"];\n\
-\t[caps setDeviceName:@\"%@\"];\n\
-\t[caps setApp:@\"%@\"];\n\
-\tNSError *error;\n\
-\tSERemoteWebDriver *wd = [[SERemoteWebDriver alloc] initWithServerAddress:@\"%@\" port:%@ desiredCapabilities:caps requiredCapabilities:nil error:&error];\n", self.model.iOS.platformVersion, self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.serverAddress, self.model.general.serverPort];}
+\t[caps setPlatformVersion:@\"%@\"];\n", self.model.iOS.platformVersion];
+	
+	if ([self.model.iOS.deviceName length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t[caps setDeviceName:@\"%@\"];\n", self.model.iOS.deviceName];
+	}
+	
+	if ([self.model.iOS.appPath length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t[caps setApp:@\"%@\"];\n", self.model.iOS.appPath];
+	}
+	
+	code = [code stringByAppendingFormat:@"\tNSError *error;\n\
+\tSERemoteWebDriver *wd = [[SERemoteWebDriver alloc] initWithServerAddress:@\"%@\" port:%@ desiredCapabilities:caps requiredCapabilities:nil error:&error];\n", self.model.general.serverAddress, self.model.general.serverPort];
+	
+	return code;
+}
 
 -(NSString*) postCodeBoilerplate
 {

@@ -32,7 +32,7 @@
 
 -(NSString*) preCodeBoilerplateAndroid
 {
-    return [NSString stringWithFormat:@"import io.appium.java_client.AppiumDriver;\n\
+	NSString *code = [NSString stringWithFormat:@"import io.appium.java_client.AppiumDriver;\n\
 import org.openqa.selenium.remote.DesiredCapabilities;\n\
 import java.net.URL;\n\
 \n\
@@ -41,18 +41,37 @@ public class {scriptName} {\n\
 \t\tDesiredCapabilities capabilities = new DesiredCapabilities();\n\
 \t\tcapabilities.setCapability(\"appium-version\", \"1.0\");\n\
 \t\tcapabilities.setCapability(\"platformName\", \"%@\");\n\
-\t\tcapabilities.setCapability(\"platformVersion\", \"%@\");\n\
-\t\tcapabilities.setCapability(\"deviceName\", \"%@\");\n\
-\t\tcapabilities.setCapability(\"app\", \"%@\");\n\
-\t\tcapabilities.setCapability(\"appPackage\", \"%@\");\n\
-\t\tcapabilities.setCapability(\"appActivity\", \"%@\");\n\
-\t\twd = new AppiumDriver(new URL(\"http://%@:%@/wd/hub\"), capabilities);\n\
-\t\twd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);\n", self.model.android.platformName, self.model.android.platformVersionNumber, self.model.android.deviceName ,self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.general.serverAddress, self.model.general.serverPort];
+\t\tcapabilities.setCapability(\"platformVersion\", \"%@\");\n", self.model.android.platformName, self.model.android.platformVersionNumber];
+	
+	if ([self.model.android.deviceName length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t\tcapabilities.setCapability(\"deviceName\", \"%@\");\n", self.model.android.deviceName];
+	}
+	
+	if ([self.model.android.appPath length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t\tcapabilities.setCapability(\"app\", \"%@\");\n", self.model.android.appPath];
+	}
+	
+	if ([self.model.android.package length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t\tcapabilities.setCapability(\"appPackage\", \"%@\");\n", self.model.android.package];
+	}
+	
+	if ([self.model.android.activity length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t\tcapabilities.setCapability(\"appActivity\", \"%@\");\n", self.model.android.activity];
+	}
+	
+	code = [code stringByAppendingFormat:@"\t\twd = new AppiumDriver(new URL(\"http://%@:%@/wd/hub\"), capabilities);\n\
+\t\twd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);\n", self.model.general.serverAddress, self.model.general.serverPort];
+	
+	return code;
 }
 
 -(NSString*) preCodeBoilerplateiOS
 {
-    return [NSString stringWithFormat:@"import io.appium.java_client.AppiumDriver;\n\
+	NSString *code = [NSString stringWithFormat:@"import io.appium.java_client.AppiumDriver;\n\
 import org.openqa.selenium.remote.DesiredCapabilities;\n\
 import java.net.URL;\n\
 \n\
@@ -61,11 +80,22 @@ public class {scriptName} {\n\
 \t\tDesiredCapabilities capabilities = new DesiredCapabilities();\n\
 \t\tcapabilities.setCapability(\"appium-version\", \"1.0\");\n\
 \t\tcapabilities.setCapability(\"platformName\", \"iOS\");\n\
-\t\tcapabilities.setCapability(\"platformVersion\", \"%@\");\n\
-\t\tcapabilities.setCapability(\"deviceName\", \"%@\");\n\
-\t\tcapabilities.setCapability(\"app\", \"%@\");\n\
-\t\twd = new AppiumDriver(new URL(\"http://%@:%@/wd/hub\"), capabilities);\n\
-\t\twd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);\n", self.model.iOS.platformVersion, self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.serverAddress, self.model.general.serverPort];
+\t\tcapabilities.setCapability(\"platformVersion\", \"%@\");\n", self.model.iOS.platformVersion];
+	
+	if ([self.model.iOS.deviceName length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t\tcapabilities.setCapability(\"deviceName\", \"%@\");\n", self.model.iOS.deviceName];
+	}
+	
+	if ([self.model.iOS.appPath length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t\tcapabilities.setCapability(\"app\", \"%@\");\n", self.model.iOS.appPath];
+	}
+	
+	code = [code stringByAppendingFormat:@"\t\twd = new AppiumDriver(new URL(\"http://%@:%@/wd/hub\"), capabilities);\n\
+\t\twd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);\n", self.model.general.serverAddress, self.model.general.serverPort];
+	
+	return code;
 }
 
 -(NSString*) postCodeBoilerplate

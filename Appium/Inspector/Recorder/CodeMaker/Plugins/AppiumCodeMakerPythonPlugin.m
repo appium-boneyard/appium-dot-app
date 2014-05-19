@@ -31,7 +31,7 @@
 
 -(NSString*) preCodeBoilerplateAndroid
 {
-    return [NSString stringWithFormat:@"from selenium.webdriver.firefox.webdriver import WebDriver\n\
+	NSString *code = [NSString stringWithFormat:@"from selenium.webdriver.firefox.webdriver import WebDriver\n\
 from selenium.webdriver.common.action_chains import ActionChains\n\
 import time\n\
 \n\
@@ -39,12 +39,29 @@ success = True\n\
 desired_caps = {}\n\
 desired_caps['appium-version'] = '1.0'\n\
 desired_caps['platformName'] = '%@'\n\
-desired_caps['platformVersion'] = '%@'\n\
-desired_caps['deviceName'] = '%@'\n\
-desired_caps['app'] = os.path.abspath('%@')\n\
-desired_caps['appPackage'] = '%@'\n\
-desired_caps['appActivity'] = '%@'\n\
-\n\
+desired_caps['platformVersion'] = '%@'\n", self.model.android.platformName, self.model.android.platformVersionNumber];
+	
+	if ([self.model.android.deviceName length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"desired_caps['deviceName'] = '%@'\n", self.model.android.deviceName];
+	}
+	
+	if ([self.model.android.appPath length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"desired_caps['app'] = os.path.abspath('%@')\n", self.model.android.appPath];
+	}
+	
+	if ([self.model.android.package length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"desired_caps['appPackage'] = '%@'\n", self.model.android.package];
+	}
+	
+	if ([self.model.android.activity length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"desired_caps['appActivity'] = '%@'\n", self.model.android.activity];
+	}
+	
+	code = [code stringByAppendingFormat:@"\n\
     wd = webdriver.Remote('http://%@:%@/wd/hub', desired_caps)\n\
 wd.implicitly_wait(60)\n\
 \n\
@@ -55,12 +72,14 @@ def is_alert_present(wd):\n\
 \texcept:\n\
 \t\treturn False\n\
 \n\
-try:\n", self.model.android.platformName, self.model.android.platformVersionNumber, self.model.android.deviceName, self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.general.serverAddress, self.model.general.serverPort];
+try:\n", self.model.general.serverAddress, self.model.general.serverPort];
+	
+	return code;
 }
 
 -(NSString*) preCodeBoilerplateiOS
 {
-    return [NSString stringWithFormat:@"from selenium.webdriver.firefox.webdriver import WebDriver\n\
+	NSString *code = [NSString stringWithFormat:@"from selenium.webdriver.firefox.webdriver import WebDriver\n\
 from selenium.webdriver.common.action_chains import ActionChains\n\
 import time\n\
 \n\
@@ -68,10 +87,19 @@ success = True\n\
 desired_caps = {}\n\
 desired_caps['appium-version'] = '1.0'\n\
 desired_caps['platformName'] = 'iOS'\n\
-desired_caps['platformVersion'] = '%@'\n\
-desired_caps['deviceName'] = '%@'\n\
-desired_caps['app'] = os.path.abspath('%@')\n\
-\n\
+desired_caps['platformVersion'] = '%@'\n", self.model.iOS.platformVersion];
+	
+	if ([self.model.iOS.deviceName length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"desired_caps['deviceName'] = '%@'\n", self.model.iOS.deviceName];
+	}
+	
+	if ([self.model.iOS.appPath length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"desired_caps['app'] = os.path.abspath('%@')\n", self.model.iOS.appPath];
+	}
+	
+	code = [code stringByAppendingFormat:@"\n\
 wd = webdriver.Remote('http://%@:%@/wd/hub', desired_caps)\n\
 wd.implicitly_wait(60)\n\
 \n\
@@ -82,7 +110,9 @@ def is_alert_present(wd):\n\
 \texcept:\n\
 \t\treturn False\n\
 \n\
-try:\n", self.model.iOS.platformVersion, self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.serverAddress, self.model.general.serverPort];;
+try:\n", self.model.general.serverAddress, self.model.general.serverPort];
+	
+	return code;
 }
 
 -(NSString*) postCodeBoilerplate

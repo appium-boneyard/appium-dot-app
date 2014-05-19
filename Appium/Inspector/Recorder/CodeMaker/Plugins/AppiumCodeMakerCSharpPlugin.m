@@ -31,7 +31,7 @@
 
 -(NSString*) preCodeBoilerplateAndroid
 {
-    return [NSString stringWithFormat: @"using OpenQA.Selenium;\n\
+	NSString *code = [NSString stringWithFormat:@"using OpenQA.Selenium;\n\
 using OpenQA.Selenium.Remote;\n\
 using OpenQA.Selenium.Support.UI;\n\
 using System;\n\
@@ -43,19 +43,37 @@ namespace AppiumTests {\n\
 \t\t\tDesiredCapabilities capabilities = new DesiredCapabilities();\n\
 \t\t\tcapabilities.SetCapability(\"appium-version\", \"1.0\");\n\
 \t\t\tcapabilities.SetCapability(\"platformName\", \"%@\");\n\
-\t\t\tcapabilities.SetCapability(\"platformVersion\", \"%@\");\n\
-\t\t\tcapabilities.SetCapability(\"deviceName\", \"%@\");\n\
-\t\t\tcapabilities.SetCapability(\"app\", \"%@\");\n\
-\t\t\tcapabilities.SetCapability(\"appPackage\", \"%@\");\n\
-\t\t\tcapabilities.SetCapability(\"appActivity\", \"%@\");\n\
-\t\t\tRemoteWebDriver wd = new RemoteWebDriver(new Uri(\"http://%@:%@/wd/hub\"), capabilities);\n\
-\t\t\ttry {\n", self.model.android.platformName, self.model.android.platformVersionNumber, self.model.android.deviceName, self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.general.serverAddress, self.model.general.serverPort];
+\t\t\tcapabilities.SetCapability(\"platformVersion\", \"%@\");\n", self.model.android.platformName, self.model.android.platformVersionNumber];
+	
+	if ([self.model.android.deviceName length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t\t\tcapabilities.SetCapability(\"deviceName\", \"%@\");\n", self.model.android.deviceName];
+	}
+	
+	if ([self.model.android.appPath length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t\t\tcapabilities.SetCapability(\"app\", \"%@\");\n", self.model.android.appPath];
+	}
+	
+	if ([self.model.android.package length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t\t\tcapabilities.SetCapability(\"appPackage\", \"%@\");\n", self.model.android.package];
+	}
+	
+	if ([self.model.android.activity length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t\t\tcapabilities.SetCapability(\"appActivity\", \"%@\");\n", self.model.android.activity];
+	}
+	
+	code = [code stringByAppendingFormat:@"\t\t\tRemoteWebDriver wd = new RemoteWebDriver(new Uri(\"http://%@:%@/wd/hub\"), capabilities);\n\
+\t\t\ttry {\n", self.model.general.serverAddress, self.model.general.serverPort];
 
+	return code;
 }
 
 -(NSString*) preCodeBoilerplateiOS
 {
-    return [NSString stringWithFormat: @"using OpenQA.Selenium;\n\
+	NSString *code = [NSString stringWithFormat: @"using OpenQA.Selenium;\n\
 using OpenQA.Selenium.Remote;\n\
 using OpenQA.Selenium.Support.UI;\n\
 using System;\n\
@@ -67,11 +85,22 @@ namespace AppiumTests {\n\
 \t\t\tDesiredCapabilities capabilities = new DesiredCapabilities();\n\
 \t\t\tcapabilities.SetCapability(\"appium-version\", \"1.0\");\n\
 \t\t\tcapabilities.SetCapability(\"platformName\", \"iOS\");\n\
-\t\t\tcapabilities.SetCapability(\"platformVersion\", \"%@\");\n\
-\t\t\tcapabilities.SetCapability(\"deviceName\", \"%@\");\n\
-\t\t\tcapabilities.SetCapability(\"app\", \"%@\");\n\
-\t\t\tRemoteWebDriver wd = new RemoteWebDriver(new Uri(\"http://%@:%@/wd/hub\"), capabilities);\n\
-\t\t\ttry {\n", self.model.iOS.platformVersion, self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.serverAddress, self.model.general.serverPort];
+\t\t\tcapabilities.SetCapability(\"platformVersion\", \"%@\");\n", self.model.iOS.platformVersion];
+		
+	if ([self.model.iOS.deviceName length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t\t\tcapabilities.SetCapability(\"deviceName\", \"%@\");\n", self.model.iOS.deviceName];
+	}
+	
+	if ([self.model.iOS.appPath length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t\t\tcapabilities.SetCapability(\"app\", \"%@\");\n", self.model.iOS.appPath];
+	}
+	
+	code = [code stringByAppendingFormat:@"\t\t\tRemoteWebDriver wd = new RemoteWebDriver(new Uri(\"http://%@:%@/wd/hub\"), capabilities);\n\
+\t\t\ttry {\n", self.model.general.serverAddress, self.model.general.serverPort];
+	
+	return code;
 }
 
 -(NSString*) postCodeBoilerplate

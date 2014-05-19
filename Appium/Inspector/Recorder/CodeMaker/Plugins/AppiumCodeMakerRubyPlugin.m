@@ -25,44 +25,74 @@
 
 -(NSString*) preCodeBoilerplateAndroid
 {
-    return [NSString stringWithFormat:@"require 'rubygems'\n\
+	NSString *code = [NSString stringWithFormat:@"require 'rubygems'\n\
 require 'appium_lib'\
 \n\
 capabilities = {\n\
 \t'appium-version': '1.0',\n\
-\tplatformName: '%@',\n\
-\tplatformVersion: '%@',\n\
-\tdeviceName: '%@',\n\
-\tapp: '%@',\n\
-\t:'appPackage' => '%@',\n\
-\t:'appActivity' => '%@'\n\
-}\n\
+\t'platformName': '%@',\n\
+\t'platformVersion': '%@',\n", self.model.android.platformName, self.model.android.platformVersionNumber];
+	
+	if ([self.model.android.deviceName length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t'deviceName': '%@',\n", self.model.android.deviceName];
+	}
+	
+	if ([self.model.android.appPath length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t'app': '%@',\n", self.model.android.appPath];
+	}
+	
+	if ([self.model.android.package length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t'appPackage' => '%@',\n", self.model.android.package];
+	}
+	
+	if ([self.model.android.activity length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t'appActivity' => '%@'\n", self.model.android.activity];
+	}
+	
+	code = [code stringByAppendingFormat:@"}\n\
 \n\
 server_url = \"http://%@:%@/wd/hub\"\n\
 \n\
 Appium::Driver.new(caps: capabilities).start_driver\n\
 Appium.promote_appium_methods Object\n\
-\n ", self.model.android.platformName, self.model.android.platformVersionNumber, self.model.android.deviceName, self.model.android.appPath, self.model.android.package, self.model.android.activity, self.model.general.serverAddress, self.model.general.serverPort];
+\n ", self.model.general.serverAddress, self.model.general.serverPort];
+	
+	return code;
 }
 
 -(NSString*) preCodeBoilerplateiOS
 {
-    return [NSString stringWithFormat:@"require 'rubygems'\n\
+	NSString *code = [NSString stringWithFormat:@"require 'rubygems'\n\
 require 'appium_lib'\
 \n\
 capabilities = {\n\
 \t'appium-version': '1.0',\n\
-\tplatformName: 'iOS',\n\
-\tplatformVersion: '%@',\n\
-\tdeviceName: '%@',\n\
-\tapp: '%@'\n\
-}\n\
+\t'platformName': 'iOS',\n\
+\t'platformVersion': '%@',\n", self.model.iOS.platformVersion];
+	
+	if ([self.model.android.deviceName length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t'deviceName': '%@',\n", self.model.android.deviceName];
+	}
+	
+	if ([self.model.android.appPath length] > 0)
+	{
+		code = [code stringByAppendingFormat:@"\t'app': '%@'\n", self.model.android.appPath];
+	}
+	
+	code = [code stringByAppendingFormat:@"}\n\
 \n\
 server_url = \"http://%@:%@/wd/hub\"\n\
 \n\
 Appium::Driver.new(caps: capabilities).start_driver\n\
 Appium.promote_appium_methods Object\n\
-\n", self.model.iOS.platformVersion, self.model.iOS.deviceName, self.model.iOS.appPath, self.model.general.serverAddress, self.model.general.serverPort];
+\n", self.model.general.serverAddress, self.model.general.serverPort];
+	
+	return code;
 }
 
 -(NSString*) postCodeBoilerplate
