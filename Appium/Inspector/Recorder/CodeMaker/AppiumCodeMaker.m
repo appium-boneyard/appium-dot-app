@@ -26,6 +26,7 @@
 		_plugins = [[NSDictionary alloc] initWithObjectsAndKeys:
 					[[AppiumCodeMakerCSharpPlugin alloc] initWithCodeMaker:self], @"C#",
 					[[AppiumCodeMakerJavaPlugin alloc] initWithCodeMaker:self], @"Java",
+					[[AppiumCodeMakerNodePlugin alloc] initWithCodeMaker:self], @"node.js",
 					[[AppiumCodeMakerObjectiveCPlugin alloc] initWithCodeMaker:self], @"Objective-C",
 					[[AppiumCodeMakerPythonPlugin alloc] initWithCodeMaker:self], @"Python",
 					[[AppiumCodeMakerRubyPlugin alloc] initWithCodeMaker:self], @"Ruby",
@@ -65,7 +66,7 @@
 {
 	[self setActivePlugin:(AppiumCodeMakerPlugin*)[_plugins objectForKey:syntaxDefinition]];
 	[[NSUserDefaults standardUserDefaults] setObject:syntaxDefinition forKey:APPIUM_PLIST_INSPECTOR_CODEMAKER_LANGUAGE];
-	[_fragaria setObject:syntaxDefinition forKey:MGSFOSyntaxDefinitionName];
+	[_fragaria setObject:(![syntaxDefinition isEqualToString:@"node.js"]) ? syntaxDefinition : @"JavaScript" forKey:MGSFOSyntaxDefinitionName];
 
 }
 
