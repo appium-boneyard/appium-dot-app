@@ -185,6 +185,18 @@
 			<property name="wait package" code="as39" type="text">
 				<cocoa key="waitPackage"/>
 			</property>
+			<property name="android language" code="as40" type="text">
+				<cocoa key="language"/>
+			</property>
+			<property name="android locale" code="as41" type="text">
+				<cocoa key="locale"/>
+			</property>
+			<property name="use android language" code="as42" type="boolean">
+				<cocoa key="useLanguage"/>
+			</property>
+			<property name="use android locale" code="as43" type="boolean">
+				<cocoa key="useLocale"/>
+			</property>
 		</class>
 		<class name="developer settings model" code="cdsm" description="develoepr settings" plural="develoepr settings models">
 			<cocoa class="AppiumDeveloperSettingsModel"/>

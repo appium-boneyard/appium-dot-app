@@ -51,6 +51,19 @@
 -(void) setActivity:(NSString *)activity { [DEFAULTS setValue:activity forKey:APPIUM_PLIST_ANDROID_ACTIVITY]; }
 
 -(NSArray*) allAutomationNames { return [NSArray arrayWithObjects:@"Appium", @"Selendroid", nil]; }
+
+-(NSArray*) allLanguages {
+	return [NSArray arrayWithObjects:@"ar", @"bg", @"ca", @"cs", @"da", @"de", @"el", @"en", @"es", @"fi", @"fr", @"he", @"hi", @"hr", @"hu", @"id", @"it", @"iw",
+			@"ja", @"ko", @"li", @"lt", @"lv", @"ms", @"nb", @"nl", @"pl", @"pt", @"ro", @"ru", @"sk", @"sl", @"sr", @"sv", @"th", @"tl", @"tr", @"uk", @"vi",
+			@"zh_CN", @"zh_TW", nil];
+}
+
+-(NSArray*) allLocales {
+	return [NSArray arrayWithObjects: @"AT", @"AU", @"BE", @"BG", @"BR", @"CA", @"CH", @"CN", @"CZ", @"DE", @"DK", @"EG", @"ES", @"FI", @"FR", @"GB", @"GR", @"HR",
+			@"HU", @"ID", @"IE", @"IL", @"IN", @"JP", @"KR", @"LI", @"LT", @"LV", @"NL", @"NO", @"NZ", @"PH", @"PL", @"PT", @"RO", @"RS", @"RU", @"SE", @"SG", @"SK",
+			@"TH", @"TR", @"TW", @"UA", @"US", @"VN", @"ZA", nil];
+}
+
 -(NSArray*) allPlatformNames { return [NSArray arrayWithObjects:@"Android", @"FirefoxOS", nil]; }
 -(NSArray*) allPlatformVersions { return [NSArray arrayWithObjects:
 										  @"4.4 KitKat (API Level 19)",
@@ -122,6 +135,12 @@
 -(NSString*) keystorePath { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_KEYSTORE_PATH]; }
 -(void) setKeystorePath:(NSString *)keystorePath { [DEFAULTS setValue:keystorePath forKey:APPIUM_PLIST_ANDROID_KEYSTORE_PATH]; }
 
+-(NSString*) language { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_LANGUAGE]; }
+-(void) setLanguage:(NSString *)language { [DEFAULTS setValue:language forKey:APPIUM_PLIST_ANDROID_LANGUAGE]; }
+
+-(NSString*) locale { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_LOCALE]; }
+-(void) setLocale:(NSString *)locale { [DEFAULTS setValue:locale forKey:APPIUM_PLIST_ANDROID_LOCALE]; }
+
 -(BOOL) noReset { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_NO_RESET]; }
 -(void) setNoReset:(BOOL)noReset { [DEFAULTS setBool:noReset forKey:APPIUM_PLIST_ANDROID_NO_RESET]; }
 
@@ -182,6 +201,12 @@
 
 -(BOOL) useKeystore { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_KEYSTORE]; }
 -(void) setUseKeystore:(BOOL)useKeystore { [DEFAULTS setBool:useKeystore forKey:APPIUM_PLIST_ANDROID_USE_KEYSTORE]; }
+
+-(BOOL) useLanguage { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_LANGUAGE]; }
+-(void) setUseLanguage:(BOOL)useLanguage { [DEFAULTS setBool:useLanguage forKey:APPIUM_PLIST_ANDROID_USE_LANGUAGE]; }
+
+-(BOOL) useLocale { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_LOCALE]; }
+-(void) setUseLocale:(BOOL)useLocale { [DEFAULTS setBool:useLocale forKey:APPIUM_PLIST_ANDROID_USE_LOCALE]; }
 
 -(BOOL) usePackage { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_PACKAGE]; }
 -(void) setUsePackage:(BOOL)usePackage { [DEFAULTS setBool:usePackage forKey:APPIUM_PLIST_ANDROID_USE_PACKAGE]; }
