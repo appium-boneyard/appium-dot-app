@@ -47,6 +47,9 @@
 			<property name="is server listening" code="as02" type="boolean" access="r">
 				<cocoa key="s_IsServerListening"/>
 			</property>
+			<property name="platform" code="aapm" type="text" access="r">
+				<cocoa key="s_Platform"/>
+			</property>
 			<responds-to command="clear log">
 				<cocoa method="s_ClearLog:"/>
 			</responds-to>
@@ -181,6 +184,18 @@
 			</property>
 			<property name="wait package" code="as39" type="text">
 				<cocoa key="waitPackage"/>
+			</property>
+			<property name="android language" code="as40" type="text">
+				<cocoa key="language"/>
+			</property>
+			<property name="android locale" code="as41" type="text">
+				<cocoa key="locale"/>
+			</property>
+			<property name="use android language" code="as42" type="boolean">
+				<cocoa key="useLanguage"/>
+			</property>
+			<property name="use android locale" code="as43" type="boolean">
+				<cocoa key="useLocale"/>
 			</property>
 		</class>
 		<class name="developer settings model" code="cdsm" description="develoepr settings" plural="develoepr settings models">

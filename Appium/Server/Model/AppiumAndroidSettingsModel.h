@@ -12,6 +12,8 @@
 
 @property NSString *activity;
 @property (readonly) NSArray *allAutomationNames;
+@property (readonly) NSArray *allLanguages;
+@property (readonly) NSArray *allLocales;
 @property (readonly) NSArray *allPlatformNames;
 @property (readonly) NSArray *allPlatformVersions;
 @property NSString *appPath;
@@ -32,6 +34,8 @@
 @property NSString *keyPassword;
 @property NSString *keystorePassword;
 @property NSString *keystorePath;
+@property NSString *language;
+@property NSString *locale;
 @property BOOL noReset;
 @property NSString *package;
 @property NSString *platformName;
@@ -50,6 +54,8 @@
 @property BOOL useDeviceName;
 @property BOOL useDeviceReadyTimeout;
 @property BOOL useKeystore;
+@property BOOL useLanguage;
+@property BOOL useLocale;
 @property BOOL usePackage;
 @property BOOL useSelendroidPort;
 @property BOOL useWaitActivity;

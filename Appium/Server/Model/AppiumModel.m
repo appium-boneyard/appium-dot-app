@@ -229,6 +229,12 @@ BOOL _isServerListening;
 		if (self.android.useDeviceReadyTimeout) {
 			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--device-ready-timeout", [self.android.deviceReadyTimeout intValue]];
 		}
+		if (self.android.useLanguage) {
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --language %@", self.android.language];
+        }
+		if (self.android.useLocale) {
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --locale %@", self.android.locale];
+        }
 		if ([self.android.automationName isEqualToString:@"Selendroid"]) {
 			if (self.android.selendroidPort) {
 				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--selendroid-port", [self.android.selendroidPort intValue]];

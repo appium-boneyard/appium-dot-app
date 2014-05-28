@@ -32,6 +32,10 @@
 	<string></string>
 	<key>Android Keystore Path</key>
 	<string>/Users/me/.android/debug.keystore</string>
+	<key>Android Language</key>
+	<string>en</string>
+	<key>Android Locale</key>
+	<string>US</string>
 	<key>Android Package</key>
 	<string></string>
 	<key>Android Platform Name</key>
@@ -63,6 +67,10 @@
 	<key>Android Use Device Ready Timeout</key>
 	<false/>
 	<key>Android Use Keystore</key>
+	<false/>
+	<key>Android Use Language</key>
+	<false/>
+	<key>Android Use Locale</key>
 	<false/>
 	<key>Android Use Package</key>
 	<false/>

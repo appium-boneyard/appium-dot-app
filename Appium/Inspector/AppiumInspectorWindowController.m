@@ -52,8 +52,15 @@
             [capabilities addCapabilityForKey:@"platformName" andValue:(model.isAndroid ? model.android.platformName : @"iOS")];
 			[capabilities addCapabilityForKey:@"platformVersion" andValue:model.isAndroid ? model.android.platformVersionNumber : model.iOS.platformVersion];
 			[capabilities addCapabilityForKey:@"newCommandTimeout" andValue:@"999999"];
-			if ( (model.isAndroid && model.android.useDeviceName) || (model.isIOS && !model.iOS.useDefaultDevice))
-			[capabilities addCapabilityForKey:@"deviceName" andValue:model.isAndroid ? model.android.deviceName : model.iOS.deviceName];
+			if ((model.isAndroid && model.android.useDeviceName) || (model.isIOS && !model.iOS.useDefaultDevice)) {
+				[capabilities addCapabilityForKey:@"deviceName" andValue:model.isAndroid ? model.android.deviceName : model.iOS.deviceName];
+			}
+			if ((model.isAndroid && model.android.useLanguage) || (model.isIOS && model.iOS.useLanguage)) {
+				[capabilities addCapabilityForKey:@"language" andValue:model.isAndroid ? model.android.language : model.iOS.language];
+			}
+			if ((model.isAndroid && model.android.useLocale) || (model.isIOS && model.iOS.useLocale)) {
+				[capabilities addCapabilityForKey:@"locale" andValue:model.isAndroid ? model.android.locale : model.iOS.locale];
+			}
 
             [self.driver startSessionWithDesiredCapabilities:capabilities requiredCapabilities:nil];
 			if (self.driver == nil || self.driver.session == nil || self.driver.session.sessionId == nil)
