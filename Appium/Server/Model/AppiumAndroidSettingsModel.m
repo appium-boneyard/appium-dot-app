@@ -52,6 +52,8 @@
 
 -(NSArray*) allAutomationNames { return [NSArray arrayWithObjects:@"Appium", @"Selendroid", nil]; }
 
+- (NSArray*)allBrowserNames { return [NSArray arrayWithObjects:@"Browser", @"Chrome", @"Chromium", nil]; }
+
 -(NSArray*) allLanguages {
 	return [NSArray arrayWithObjects:@"ar", @"bg", @"ca", @"cs", @"da", @"de", @"el", @"en", @"es", @"fi", @"fr", @"he", @"hi", @"hr", @"hu", @"id", @"it", @"iw",
 			@"ja", @"ko", @"li", @"lt", @"lv", @"ms", @"nb", @"nl", @"pl", @"pt", @"ro", @"ru", @"sk", @"sl", @"sr", @"sv", @"th", @"tl", @"tr", @"uk", @"vi",
@@ -104,6 +106,9 @@
 
 -(NSNumber*) bootstrapPort { return [NSNumber numberWithInt:[[DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_BOOTSTRAP_PORT] intValue]]; }
 -(void) setBootstrapPort:(NSNumber *)bootstrapPort { [[NSUserDefaults standardUserDefaults] setValue:bootstrapPort forKey:APPIUM_PLIST_ANDROID_BOOTSTRAP_PORT]; }
+
+-(NSString*) browserName { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_BROWSER_NAME]; }
+-(void) setBrowserName:(NSString *)browserName { [DEFAULTS setValue:browserName forKey:APPIUM_PLIST_ANDROID_BROWSER_NAME]; }
 
 -(NSNumber*) chromedriverPort { return [NSNumber numberWithInt:[[DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_CHROMEDRIVER_PORT] intValue]]; }
 -(void) setChromedriverPort:(NSNumber *)chromedriverPort { [[NSUserDefaults standardUserDefaults] setValue:chromedriverPort forKey:APPIUM_PLIST_ANDROID_CHROMEDRIVER_PORT]; }

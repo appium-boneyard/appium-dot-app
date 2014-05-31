@@ -197,6 +197,9 @@
 			<property name="use android locale" code="as43" type="boolean">
 				<cocoa key="useLocale"/>
 			</property>
+			<property name="browser name" code="as44" type="text">
+				<cocoa key="browserName"/>
+			</property>
 		</class>
 		<class name="developer settings model" code="cdsm" description="develoepr settings" plural="develoepr settings models">
 			<cocoa class="AppiumDeveloperSettingsModel"/>

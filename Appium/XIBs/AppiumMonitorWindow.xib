@@ -234,10 +234,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="624" height="423"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
-                                            <size key="minSize" width="624" height="423"/>
+                                            <size key="minSize" width="609" height="423"/>
                                             <size key="maxSize" width="684" height="10000000"/>
                                             <color key="insertionPointColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="624" height="423"/>
+                                            <size key="minSize" width="609" height="423"/>
                                             <size key="maxSize" width="684" height="10000000"/>
                                         </textView>
                                     </subviews>
@@ -744,9 +744,9 @@
                                 </connections>
                             </comboBox>
                             <button id="IF0-5X-WzW" userLabel="Use Android Browser Check Box">
-                                <rect key="frame" x="16" y="12" width="153" height="18"/>
+                                <rect key="frame" x="16" y="12" width="98" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Use Android Browser" bezelStyle="regularSquare" imagePosition="left" inset="2" id="BEy-l8-kfz">
+                                <buttonCell key="cell" type="check" title="Use Browser" bezelStyle="regularSquare" imagePosition="left" inset="2" id="BEy-l8-kfz">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -818,6 +818,41 @@
                                     </binding>
                                 </connections>
                             </button>
+                            <comboBox verticalHuggingPriority="750" id="Du9-pq-uUO" userLabel="Browser Name Combo Box">
+                                <rect key="frame" x="120" y="7" width="260" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="3" id="WPa-wv-5hQ">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </comboBoxCell>
+                                <connections>
+                                    <binding destination="-2" name="contentValues" keyPath="model.android.allBrowserNames" id="fug-US-CUv"/>
+                                    <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="LV4-A7-fEx" id="Uyh-HP-r7F">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="enabled3" keyPath="model.android.useBrowser" previousBinding="Uyh-HP-r7F" id="7a5-Fa-146">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="LV4-A7-fEx">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="value" keyPath="model.android.browserName" previousBinding="fug-US-CUv" id="laN-ka-Z1I"/>
+                                </connections>
+                            </comboBox>
                         </subviews>
                     </view>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>

@@ -12,6 +12,7 @@
 
 @property NSString *activity;
 @property (readonly) NSArray *allAutomationNames;
+@property (readonly) NSArray *allBrowserNames;
 @property (readonly) NSArray *allLanguages;
 @property (readonly) NSArray *allLocales;
 @property (readonly) NSArray *allPlatformNames;
@@ -24,6 +25,7 @@
 @property NSString *avd;
 @property NSString *avdArguments;
 @property NSNumber *bootstrapPort;
+@property NSString *browserName;
 @property NSNumber *chromedriverPort;
 @property NSString *coverageClass;
 @property NSString *customSDKPath;
