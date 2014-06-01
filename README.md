@@ -41,7 +41,7 @@ To install:
  * **Wait for Activity**: Activity name for the Android activity to wait for.
  * **Launch AVD**: Selected AVD will be launched using the Android Emulator.
  * **Wait For Activity**: Android Activity you wish Appium to wait for upon launch.
- * **Use Android Browser**: Launch the Android browser.
+ * **Use Browser**: Launch the specified Android browser (e.g. `Chrome`).
  * **Full Reset**: Reset app state by uninstalling app instead of clearing app data and also remove the app after the
    session is complete.
  * **No Reset**: Prevent the device from being reset.
@@ -54,6 +54,8 @@ To install:
  * **Automation Name**: Name of the automation tool (Appium or Selendroid).
  * **Platform Version**: Version of the mobile platform.
  * **Device Name**: Name of the mobile device to use.
+ * **Language**: Language for the Emulator.
+ * **Locale**: Locale for the Emulator.
 * **Advanced**
  * **Android SDK Path**: Path to Android SDK.
  * **Coverage Class**: Fully qualified instrumentation class.
