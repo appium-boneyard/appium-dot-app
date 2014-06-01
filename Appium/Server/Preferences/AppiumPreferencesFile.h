@@ -6,6 +6,7 @@
 #define APPIUM_PLIST_ANDROID_AVD @"Android AVD"
 #define APPIUM_PLIST_ANDROID_AVD_ARGUMENTS @"Android AVD Arguments"
 #define APPIUM_PLIST_ANDROID_BOOTSTRAP_PORT @"Android Boostrap Port"
+#define APPIUM_PLIST_ANDROID_BROWSER_NAME @"Android Browser Name"
 #define APPIUM_PLIST_ANDROID_CHROMEDRIVER_PORT @"Android Chromedriver Port"
 #define APPIUM_PLIST_ANDROID_COVERAGE_CLASS @"Android Coverage Class"
 #define APPIUM_PLIST_ANDROID_CUSTOM_SDK_PATH @"Android Custom SDK Path"

@@ -218,7 +218,11 @@ BOOL _isServerListening;
 				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--app-wait-activity", self.android.waitActivity];
 			}
 		} else {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--browser-name", @"Chrome"];
+			if (self.android.browserName.length != 0) {
+				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--browser-name", self.android.browserName];
+			} else {
+				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--browser-name", @"Chrome"];
+			}
 		}
 		if (self.android.useCoverageClass) {
 			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--coverage-class", self.android.coverageClass];

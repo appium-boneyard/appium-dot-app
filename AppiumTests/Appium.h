@@ -57,6 +57,7 @@ typedef enum AppiumOrientationSetting AppiumOrientationSetting;
 @property (copy) NSString *avd;
 @property (copy) NSString *avdArguments;
 @property (copy) NSNumber *bootstrapPort;
+@property (copy) NSString *browserName;
 @property (copy) NSNumber *chromedriverPort;
 @property (copy) NSString *coverageClass;
 @property (copy) NSString *customAndroidSdkPath;

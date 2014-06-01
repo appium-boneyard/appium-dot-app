@@ -14,6 +14,8 @@
 	<string></string>
 	<key>Android Bootstrap Port</key>
 	<integer>4724</integer>
+	<key>Android Browser Name</key>
+	<string>Chrome</string>
 	<key>Android Chromedriver Port</key>
 	<real>9515</real>
 	<key>Android Coverage Class</key>
