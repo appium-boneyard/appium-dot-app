@@ -19,7 +19,7 @@
 #define APPIUM_PLIST_ANDROID_KEYSTORE_PATH @"Android Keystore Path"
 #define APPIUM_PLIST_ANDROID_LANGUAGE @"Android Language"
 #define APPIUM_PLIST_ANDROID_LOCALE @"Android Locale"
-#define APPIUM_PLIST_ANDROID_NO_RESET @"Android Full Reset"
+#define APPIUM_PLIST_ANDROID_NO_RESET @"Android No Reset"
 #define APPIUM_PLIST_ANDROID_PACKAGE @"Android Package"
 #define APPIUM_PLIST_ANDROID_PLATFORM_NAME @"Android Platform Name"
 #define APPIUM_PLIST_ANDROID_PLATFORM_VERSION @"Android Platform Version"
