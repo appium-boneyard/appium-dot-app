@@ -234,10 +234,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="624" height="423"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
-                                            <size key="minSize" width="609" height="423"/>
+                                            <size key="minSize" width="624" height="423"/>
                                             <size key="maxSize" width="684" height="10000000"/>
                                             <color key="insertionPointColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="609" height="423"/>
+                                            <size key="minSize" width="624" height="423"/>
                                             <size key="maxSize" width="684" height="10000000"/>
                                         </textView>
                                     </subviews>
@@ -828,6 +828,15 @@
                                 </comboBoxCell>
                                 <connections>
                                     <binding destination="-2" name="contentValues" keyPath="model.android.allBrowserNames" id="fug-US-CUv"/>
+                                    <binding destination="-2" name="value" keyPath="model.android.browserName" previousBinding="fug-US-CUv" id="laN-ka-Z1I"/>
+                                    <binding destination="-2" name="enabled3" keyPath="model.android.useBrowser" previousBinding="Uyh-HP-r7F" id="7a5-Fa-146">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="LV4-A7-fEx" id="Uyh-HP-r7F">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -837,20 +846,11 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="enabled3" keyPath="model.android.useBrowser" previousBinding="Uyh-HP-r7F" id="7a5-Fa-146">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                        </dictionary>
-                                    </binding>
                                     <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="LV4-A7-fEx">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.android.browserName" previousBinding="fug-US-CUv" id="laN-ka-Z1I"/>
                                 </connections>
                             </comboBox>
                         </subviews>
@@ -2484,31 +2484,6 @@
                                     </binding>
                                     <binding destination="-2" name="value" keyPath="model.iOS.useNativeInstrumentsLibrary" id="ugy-Aa-he8"/>
                                     <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="4fB-tX-yml">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
-                            </button>
-                            <button id="0Yt-Cb-GE0" userLabel="Force Kill Instruments Check Box">
-                                <rect key="frame" x="231" y="97" width="327" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Force Kill Unresponsive Instruments Processes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="2Hv-sY-Nhy">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="uOU-yo-5KF" id="4ml-FF-rfG">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="-2" name="value" keyPath="model.iOS.notMerciful" id="p8U-fM-Bp7"/>
-                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="uOU-yo-5KF">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>

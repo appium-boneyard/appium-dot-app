@@ -341,9 +341,6 @@
 			<property name="no ios reset" code="is14" type="boolean">
 				<cocoa key="noReset"/>
 			</property>
-			<property name="kill unresponsive instruments processes" code="is15" type="boolean">
-				<cocoa key="notMerciful"/>
-			</property>
 			<property name="ios orientation" code="is16" type="text">
 				<cocoa key="orientation"/>
 			</property>

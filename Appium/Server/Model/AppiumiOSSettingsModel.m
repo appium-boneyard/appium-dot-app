@@ -93,9 +93,6 @@
 -(BOOL) noReset { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_NO_RESET]; }
 -(void) setNoReset:(BOOL)noReset { [DEFAULTS setBool:noReset forKey:APPIUM_PLIST_IOS_NO_RESET]; }
 
--(BOOL) notMerciful { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_NOT_MERICIFUL]; }
--(void) setNotMerciful:(BOOL)notMerciful { [DEFAULTS setBool:notMerciful forKey:APPIUM_PLIST_IOS_NOT_MERICIFUL]; }
-
 -(NSString*) orientation { return [DEFAULTS stringForKey:APPIUM_PLIST_IOS_ORIENTATION]; }
 -(void) setOrientation:(NSString *)orientation { [DEFAULTS setValue:orientation forKey:APPIUM_PLIST_IOS_ORIENTATION]; }
 
