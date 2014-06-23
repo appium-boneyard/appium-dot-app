@@ -200,6 +200,30 @@
 			<property name="browser name" code="as44" type="text">
 				<cocoa key="browserName"/>
 			</property>
+			<property name="intent action" code="as45" type="text">
+				<cocoa key="intentAction"/>
+			</property>
+			<property name="intent category" code="as46" type="text">
+				<cocoa key="intentCategory"/>
+			</property>
+			<property name="intent flags" code="as47" type="text">
+				<cocoa key="intentFlags"/>
+			</property>
+			<property name="intent arguments" code="as48" type="text">
+				<cocoa key="intentArguments"/>
+			</property>
+			<property name="use intent action" code="as49" type="boolean">
+				<cocoa key="useIntentAction"/>
+			</property>
+			<property name="use intent category" code="as50" type="boolean">
+				<cocoa key="useIntentCategory"/>
+			</property>
+			<property name="use intent flags" code="as51" type="boolean">
+				<cocoa key="useIntentFlags"/>
+			</property>
+			<property name="use intent arguments" code="as52" type="boolean">
+				<cocoa key="useIntentArguments"/>
+			</property>
 		</class>
 		<class name="developer settings model" code="cdsm" description="develoepr settings" plural="develoepr settings models">
 			<cocoa class="AppiumDeveloperSettingsModel"/>
