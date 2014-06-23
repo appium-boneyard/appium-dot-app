@@ -29,7 +29,6 @@
 @property NSNumber *launchTimeout;
 @property NSString *locale;
 @property BOOL noReset;
-@property BOOL notMerciful;
 @property NSString *orientation;
 @property NSString *platformVersion;
 @property BOOL showSimulatorLog;

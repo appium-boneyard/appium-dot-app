@@ -277,9 +277,6 @@ BOOL _isServerListening;
 		if (self.iOS.noReset) {
 			nodeCommandString = [nodeCommandString stringByAppendingString:@" --no-reset"];
 		}
-		if (self.iOS.notMerciful) {
-			nodeCommandString = [nodeCommandString stringByAppendingString:@" --force-quit-instruments"];
-		}
 		if (self.iOS.showSimulatorLog) {
 			nodeCommandString = [nodeCommandString stringByAppendingString:@" --show-sim-log"];
         }

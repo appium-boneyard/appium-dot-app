@@ -69,7 +69,6 @@
 #define APPIUM_PLIST_IOS_LANGUAGE @"iOS Language"
 #define APPIUM_PLIST_IOS_LAUNCH_TIMEOUT @"iOS Launch Timeout"
 #define APPIUM_PLIST_IOS_LOCALE @"iOS Locale"
-#define APPIUM_PLIST_IOS_NOT_MERICIFUL @"iOS Not Merciful"
 #define APPIUM_PLIST_IOS_NO_RESET @"iOS No Reset"
 #define APPIUM_PLIST_IOS_ORIENTATION @"iOS Orientation"
 #define APPIUM_PLIST_IOS_PLATFORM_VERSION @"iOS Platform Version"

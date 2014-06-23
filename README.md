@@ -91,7 +91,6 @@ To install:
  * **Show Simulator Log**: If checked, the iOS simulator log will be written to the console.
 * **Advanced**
  * **Use Native Instruments Library**: Use the native Instruments library rather than the one included with Appium.
- * **Force Kill Unresponsive Instruments Processess**
  * **Backend Retries**: How many times to retry launching Instruments before reporting that it crashed or timed out.
  * **Instruments Launch Timeout**: How long in ms to wait for Instruments to launch.
  * **Trace Template Path**: `.tracetemplate` file to use with Instruments.

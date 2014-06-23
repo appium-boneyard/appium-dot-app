@@ -136,8 +136,6 @@
 	<string>en_US</string>
 	<key>iOS No Reset</key>
 	<false/>
-	<key>iOS Not Merciful</key>
-	<false/>
 	<key>iOS Orientation</key>
 	<string></string>
 	<key>iOS Platform Version</key>
