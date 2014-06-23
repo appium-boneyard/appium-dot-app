@@ -32,6 +32,10 @@
 @property NSString *deviceName;
 @property NSNumber *deviceReadyTimeout;
 @property BOOL fullReset;
+@property NSString *intentAction;
+@property NSString *intentCategory;
+@property NSString *intentFlags;
+@property NSString *intentArguments;
 @property NSString *keyAlias;
 @property NSString *keyPassword;
 @property NSString *keystorePassword;
@@ -55,6 +59,10 @@
 @property BOOL useCustomSDKPath;
 @property BOOL useDeviceName;
 @property BOOL useDeviceReadyTimeout;
+@property BOOL useIntentAction;
+@property BOOL useIntentCategory;
+@property BOOL useIntentFlags;
+@property BOOL useIntentArguments;
 @property BOOL useKeystore;
 @property BOOL useLanguage;
 @property BOOL useLocale;

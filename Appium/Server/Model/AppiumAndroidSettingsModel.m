@@ -128,6 +128,18 @@
 -(BOOL) fullReset { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_FULL_RESET]; }
 -(void) setFullReset:(BOOL)fullReset { [DEFAULTS setBool:fullReset forKey:APPIUM_PLIST_ANDROID_FULL_RESET]; }
 
+-(NSString*) intentAction { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_INTENT_ACTION]; }
+-(void) setIntentAction:(NSString *)intentAction { [DEFAULTS setValue:intentAction forKey:APPIUM_PLIST_ANDROID_INTENT_ACTION]; }
+
+-(NSString*) intentCategory { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_INTENT_CATEGORY]; }
+-(void) setIntentCategory:(NSString *)intentCategory { [DEFAULTS setValue:intentCategory forKey:APPIUM_PLIST_ANDROID_INTENT_CATEGORY]; }
+
+-(NSString*) intentFlags { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_INTENT_FLAGS]; }
+-(void) setIntentFlags:(NSString *)intentFlags { [DEFAULTS setValue:intentFlags forKey:APPIUM_PLIST_ANDROID_INTENT_FLAGS]; }
+
+-(NSString*) intentArguments { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_INTENT_ARGUMENTS]; }
+-(void) setIntentArguments:(NSString *)intentArguments { [DEFAULTS setValue:intentArguments forKey:APPIUM_PLIST_ANDROID_INTENT_ARGUMENTS]; }
+
 -(NSString*) keyAlias { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_KEY_ALIAS]; }
 -(void) setKeyAlias:(NSString *)keyAlias { [DEFAULTS setValue:keyAlias forKey:APPIUM_PLIST_ANDROID_KEY_ALIAS]; }
 
@@ -203,6 +215,18 @@
 
 -(BOOL) useDeviceReadyTimeout { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_DEVICE_READY_TIMEOUT]; }
 -(void) setUseDeviceReadyTimeout:(BOOL)useDeviceReadyTimeout { [DEFAULTS setBool:useDeviceReadyTimeout forKey:APPIUM_PLIST_ANDROID_USE_DEVICE_READY_TIMEOUT]; }
+
+-(BOOL) useIntentAction { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_INTENT_ACTION]; }
+-(void) setUseIntentAction:(BOOL)useIntentAction { [DEFAULTS setBool:useIntentAction forKey:APPIUM_PLIST_ANDROID_USE_INTENT_ACTION]; }
+
+-(BOOL) useIntentCategory { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_INTENT_CATEGORY]; }
+-(void) setUseIntentCategory:(BOOL)useIntentCategory { [DEFAULTS setBool:useIntentCategory forKey:APPIUM_PLIST_ANDROID_USE_INTENT_CATEGORY]; }
+
+-(BOOL) useIntentFlags { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_INTENT_FLAGS]; }
+-(void) setUseIntentFlags:(BOOL)useIntentFlags { [DEFAULTS setBool:useIntentFlags forKey:APPIUM_PLIST_ANDROID_USE_INTENT_FLAGS]; }
+
+-(BOOL) useIntentArguments { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_INTENT_ARGUMENTS]; }
+-(void) setUseIntentArguments:(BOOL)useIntentArguments { [DEFAULTS setBool:useIntentArguments forKey:APPIUM_PLIST_ANDROID_USE_INTENT_ARGUMENTS]; }
 
 -(BOOL) useKeystore { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_KEYSTORE]; }
 -(void) setUseKeystore:(BOOL)useKeystore { [DEFAULTS setBool:useKeystore forKey:APPIUM_PLIST_ANDROID_USE_KEYSTORE]; }

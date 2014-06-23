@@ -246,6 +246,22 @@ BOOL _isServerListening;
 		} else if (self.android.useBootstrapPort) {
 			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--bootstrap-port", [self.android.bootstrapPort intValue]];
 		}
+		if (self.android.useIntentAction)
+		{
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--intent-action", self.android.intentAction];
+		}
+		if (self.android.useIntentCategory)
+		{
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--intent-category", self.android.intentCategory];
+		}
+		if (self.android.useIntentFlags)
+		{
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--intent-flags", self.android.intentFlags];
+		}
+		if (self.android.useIntentArguments)
+		{
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--intent-args", self.android.intentArguments];
+		}
 		if (self.android.useKeystore)
 		{
 			nodeCommandString = [nodeCommandString stringByAppendingString:@" --use-keystore"];
