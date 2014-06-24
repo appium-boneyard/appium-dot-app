@@ -49,6 +49,10 @@ To install:
  * **Launch AVD**: Name of the AVD to launch.
  * **Device Ready Timeout**: Timeout in seconds while waiting for device to become ready.
  * **Arguments**: Additional emulator arguments to launch the avd.
+ * **Intent Action**: Intent action which will be used to start the activity.
+ * **Intent Category**: Intent category which will be used to start the activity.
+ * **Intent Flags**: Flags that will be used to start the activity.
+ * **Intent Arguments**: Additional intent arguments that will be used to start the activity.
 * **Capabilities**
  * **Platform Name**: Name of the mobile platform.
  * **Automation Name**: Name of the automation tool (Appium or Selendroid).
