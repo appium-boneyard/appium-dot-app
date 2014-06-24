@@ -45,14 +45,14 @@ To install:
  * **Full Reset**: Reset app state by uninstalling app instead of clearing app data and also remove the app after the
    session is complete.
  * **No Reset**: Prevent the device from being reset.
-* **Launch Device**
- * **Launch AVD**: Name of the AVD to launch.
- * **Device Ready Timeout**: Timeout in seconds while waiting for device to become ready.
- * **Arguments**: Additional emulator arguments to launch the avd.
  * **Intent Action**: Intent action which will be used to start the activity.
  * **Intent Category**: Intent category which will be used to start the activity.
  * **Intent Flags**: Flags that will be used to start the activity.
  * **Intent Arguments**: Additional intent arguments that will be used to start the activity.
+* **Launch Device**
+ * **Launch AVD**: Name of the AVD to launch.
+ * **Device Ready Timeout**: Timeout in seconds while waiting for device to become ready.
+ * **Arguments**: Additional emulator arguments to launch the avd.
 * **Capabilities**
  * **Platform Name**: Name of the mobile platform.
  * **Automation Name**: Name of the automation tool (Appium or Selendroid).
