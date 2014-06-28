@@ -2995,11 +2995,11 @@
             <accessibility description="iOSSettingsView"/>
         </customView>
         <customView id="lfV-Jy-qRr" userLabel="General Settings View">
-            <rect key="frame" x="0.0" y="0.0" width="417" height="448"/>
+            <rect key="frame" x="0.0" y="0.0" width="417" height="437"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="pFP-rp-D7j" userLabel="General Settings Label">
-                    <rect key="frame" x="17" y="411" width="107" height="17"/>
+                    <rect key="frame" x="17" y="400" width="107" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="General Settings" id="Svf-QT-oNe">
                         <font key="font" metaFont="system"/>
@@ -3008,14 +3008,14 @@
                     </textFieldCell>
                 </textField>
                 <box autoresizesSubviews="NO" title="Server" borderType="line" id="ATX-v7-2MS" userLabel="Selenium Grid Configuration Box">
-                    <rect key="frame" x="17" y="153" width="383" height="250"/>
+                    <rect key="frame" x="17" y="153" width="383" height="239"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView">
-                        <rect key="frame" x="1" y="1" width="381" height="234"/>
+                        <rect key="frame" x="1" y="1" width="381" height="223"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" id="FDV-95-hxi" userLabel="Server Address Label">
-                                <rect key="frame" x="16" y="205" width="103" height="17"/>
+                                <rect key="frame" x="16" y="194" width="103" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Server Address:" id="jRS-qk-Od7">
                                     <font key="font" metaFont="system"/>
@@ -3024,7 +3024,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" id="SH6-Jj-OPa" userLabel="Server Address Text Field">
-                                <rect key="frame" x="124" y="202" width="139" height="22"/>
+                                <rect key="frame" x="124" y="191" width="139" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="" drawsBackground="YES" id="Yw9-MF-Wa1">
                                     <font key="font" metaFont="system"/>
@@ -3045,7 +3045,7 @@
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" id="Ivs-JD-riO" userLabel="Server Port Label">
-                                <rect key="frame" x="268" y="205" width="34" height="17"/>
+                                <rect key="frame" x="268" y="194" width="34" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Port:" id="fhn-Yk-D3z">
                                     <font key="font" metaFont="system"/>
@@ -3054,7 +3054,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" id="KQj-a9-wcj" userLabel="Server Port TextField">
-                                <rect key="frame" x="307" y="202" width="56" height="22"/>
+                                <rect key="frame" x="307" y="191" width="56" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="" drawsBackground="YES" id="L0h-t9-HWT">
                                     <font key="font" metaFont="system"/>
@@ -3076,7 +3076,7 @@
                                 </connections>
                             </textField>
                             <button id="PTI-zo-d1Z" userLabel="Check For Updates Check Box">
-                                <rect key="frame" x="16" y="176" width="141" height="18"/>
+                                <rect key="frame" x="16" y="165" width="141" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Check For Updates" bezelStyle="regularSquare" imagePosition="left" inset="2" id="fMn-od-fZ6">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3091,7 +3091,7 @@
                                 </connections>
                             </button>
                             <button id="B1W-Xl-Uhw" userLabel="Prelaunch Simulator Check Box">
-                                <rect key="frame" x="16" y="156" width="159" height="18"/>
+                                <rect key="frame" x="16" y="145" width="159" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Prelaunch Application" bezelStyle="regularSquare" imagePosition="left" inset="2" id="OO9-qZ-yN8">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3120,7 +3120,7 @@
                                 </connections>
                             </button>
                             <button id="4ra-ha-6Wc" userLabel="Override Existing Sessions Check Box">
-                                <rect key="frame" x="16" y="136" width="189" height="18"/>
+                                <rect key="frame" x="16" y="125" width="189" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Override Existing Sessions" bezelStyle="regularSquare" imagePosition="left" inset="2" id="4s1-dV-deD">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3145,7 +3145,7 @@
                                 </connections>
                             </button>
                             <button id="8mN-9r-PAu" userLabel="Kill Processes Using Server Port Check Box">
-                                <rect key="frame" x="16" y="116" width="313" height="18"/>
+                                <rect key="frame" x="16" y="105" width="313" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Kill Processes Using Server Port Before Launch" bezelStyle="regularSquare" imagePosition="left" inset="2" id="J1x-eY-CQO">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3170,7 +3170,7 @@
                                 </connections>
                             </button>
                             <button id="xRB-51-7z3" userLabel="Use Remote Server Check Box">
-                                <rect key="frame" x="16" y="96" width="140" height="18"/>
+                                <rect key="frame" x="16" y="85" width="140" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Use Remote Server" bezelStyle="regularSquare" imagePosition="left" inset="2" id="hqA-y1-b8I">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3190,7 +3190,7 @@
                                 </connections>
                             </button>
                             <button id="sbb-m1-Yhu" userLabel="New Command Timeout Check Box">
-                                <rect key="frame" x="16" y="75" width="174" height="18"/>
+                                <rect key="frame" x="16" y="64" width="174" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="New Command Timeout" bezelStyle="regularSquare" imagePosition="left" inset="2" id="X7n-YM-eRp">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3215,7 +3215,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" id="4J5-px-Mzo" userLabel="New Command Timeout Text Field">
-                                <rect key="frame" x="192" y="73" width="58" height="22"/>
+                                <rect key="frame" x="192" y="62" width="58" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="6QL-X5-x0B">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="ONE-FB-y4D"/>
@@ -3251,7 +3251,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="C4X-At-PAz" userLabel="Units (s) Label">
-                                <rect key="frame" x="255" y="76" width="11" height="17"/>
+                                <rect key="frame" x="255" y="65" width="11" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="s" id="JLQ-EX-PHO">
                                     <font key="font" metaFont="system"/>
@@ -3281,6 +3281,7 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
+                                    <binding destination="-2" name="value" keyPath="self.model.general.useSeleniumGridConfigFile" id="WxG-pQ-uci"/>
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" id="hrK-Em-SQy" userLabel="Selenium Grid Config File Path TextField">
