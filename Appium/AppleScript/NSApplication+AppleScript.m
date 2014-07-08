@@ -66,7 +66,7 @@
 
 - (NSNumber*) s_StopServer: (NSScriptCommand*)command
 {
-    if (self.model.isServerRunning)
+    if (!self.model.isServerRunning)
         return [NSNumber numberWithBool:NO];
     [[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] launchButtonClicked:nil];
     return [NSNumber numberWithBool:YES];
