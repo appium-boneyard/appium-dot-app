@@ -242,5 +242,7 @@
 	<false/>
 	<key>Use Selenium Grid Config File</key>
 	<false/>
+	<key>Use Local Timezone</key>
+	<false/>
 </dict>
 </plist>

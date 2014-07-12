@@ -91,5 +91,7 @@
 -(BOOL) useSeleniumGridConfigFile { return [DEFAULTS boolForKey:APPIUM_PLIST_USE_SELENIUM_GRID_CONFIG_FILE]; }
 -(void) setUseSeleniumGridConfigFile:(BOOL)useSeleniumGridConfigFile { [DEFAULTS setBool:useSeleniumGridConfigFile forKey:APPIUM_PLIST_USE_SELENIUM_GRID_CONFIG_FILE]; }
 
+-(BOOL) useLocalTimezone { return [DEFAULTS boolForKey:APPIUM_PLIST_USE_LOCAL_TIMEZONE]; }
+-(void) setUseLocalTimezone:(BOOL)useLocalTimezone { [DEFAULTS setBool:useLocalTimezone forKey:APPIUM_PLIST_USE_LOCAL_TIMEZONE]; }
 
 @end

@@ -129,6 +129,7 @@ Preferences can be accessed by clicking on the appropriate button in the main wi
  * **Log to WebHook**: Send log output to this HTTP listener.
  * **Force Scroll Log to Bottom**: Force the log to scroll to the bottom when there is new output, regardless of
    the position.
+ * **Use Local Timezone**: Use local timezone for timestamps.
 
 #### Developer Settings
 

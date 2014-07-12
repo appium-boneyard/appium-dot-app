@@ -141,6 +141,7 @@ typedef enum AppiumOrientationSetting AppiumOrientationSetting;
 @property BOOL useNewCommandTimeout;
 @property BOOL useQuietLogging;
 @property BOOL useRemoteServer;
+@property BOOL useLocalTimezone;
 
 @end
 
