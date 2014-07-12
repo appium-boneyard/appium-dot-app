@@ -317,6 +317,9 @@
 			<property name="use selenium grid configuration file" code="gs18" type="boolean">
 				<cocoa key="useSeleniumGridConfigFile"/>
 			</property>
+			<property name="use local timezone" code="gs19" type="boolean">
+				<cocoa key="useLocalTimezone"/>
+			</property>
 		</class>
 		<class name="inspector window controller" code="caiw" description="inspector window">
 			<cocoa class="AppiumInspectorWindowController"/>

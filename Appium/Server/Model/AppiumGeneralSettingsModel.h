@@ -29,5 +29,6 @@
 @property BOOL useQuietLogging;
 @property BOOL useRemoteServer;
 @property BOOL useSeleniumGridConfigFile;
+@property BOOL useLocalTimezone;
 
 @end

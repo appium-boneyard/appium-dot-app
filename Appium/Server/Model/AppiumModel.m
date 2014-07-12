@@ -161,6 +161,10 @@ BOOL _isServerListening;
     if (self.general.useSeleniumGridConfigFile) {
         nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--nodeconfig", [self.general.seleniumGridConfigFile stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
     }
+	if (self.general.useLocalTimezone) {
+		NSLog(@"using local timezone");
+		nodeCommandString = [nodeCommandString stringByAppendingString:@" --local-timezone"];
+	}
 	
 	// robot preferences
 	if (self.robot.useRobot)
