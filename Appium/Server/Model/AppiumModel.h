@@ -44,5 +44,6 @@ typedef enum platformTypes
 -(BOOL) startServer;
 -(BOOL) startDoctor;
 -(void) reset;
+- (void)setupServerTask:(NSString *)commandString;
 
 @end
