@@ -75,7 +75,8 @@ BOOL _isServerListening;
 {
     return [DEFAULTS boolForKey:APPIUM_PLIST_PLATFORM_IS_ANDROID] ? Platform_Android : Platform_iOS;
 }
--(void)setPlatform:(Platform)platform {
+-(void)setPlatform:(Platform)platform
+{
 	[DEFAULTS setBool:(platform == Platform_Android) forKey:APPIUM_PLIST_PLATFORM_IS_ANDROID];
 }
 
@@ -329,24 +330,8 @@ BOOL _isServerListening;
         }
 	}
 
-	[self setServerTask:[NSTask new]];
-	if (self.developer.developerMode && self.developer.useExternalAppiumPackage)
-	{
-		[self.serverTask setCurrentDirectoryPath:self.developer.externalAppiumPackagePath];
-	}
-	else
-	{
-		[self.serverTask setCurrentDirectoryPath:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle]resourcePath], @"node_modules/appium"]];
-	}
-    [self.serverTask setLaunchPath:@"/bin/bash"];
-    [self.serverTask setArguments: [NSArray arrayWithObjects: @"-l",
-									@"-c", nodeCommandString, nil]];
-
-	// redirect i/o
-    [self.serverTask setStandardOutput:[NSPipe pipe]];
-	[self.serverTask setStandardError:[NSPipe pipe]];
-    [self.serverTask setStandardInput:[NSPipe pipe]];
-
+	[self setupServerTask:nodeCommandString];
+	
 	// launch
     [self.serverTask launch];
     [self setIsServerRunning:self.serverTask.isRunning];
@@ -354,8 +339,8 @@ BOOL _isServerListening;
     return self.isServerRunning;
 }
 
--(BOOL) startDoctor {
-    [self setServerTask:[NSTask new]];
+-(BOOL) startDoctor
+{
 	NSString *nodeCommandString;
 	if (self.developer.useExternalNodeJSBinary)
 	{
@@ -367,7 +352,22 @@ BOOL _isServerListening;
 		
 	}
     
-	if (self.developer.useExternalAppiumPackage)
+	[self setupServerTask:nodeCommandString];
+    
+	// launch
+    [self.serverTask launch];
+    [self setIsServerRunning:self.serverTask.isRunning];
+    
+    self.doctorSocket = [[SocketIO alloc] initWithDelegate:self];
+    [self performSelector:@selector(connectDoctorSocketIO:) withObject:[NSNumber numberWithInt:0] afterDelay:1];
+    return self.serverTask.isRunning;
+}
+
+- (void)setupServerTask:(NSString *)commandString
+{
+	[self setServerTask:[NSTask new]];
+	
+	if (self.developer.developerMode && self.developer.useExternalAppiumPackage)
 	{
 		[self.serverTask setCurrentDirectoryPath:self.developer.externalAppiumPackagePath];
 	}
@@ -377,20 +377,12 @@ BOOL _isServerListening;
 	}
     [self.serverTask setLaunchPath:@"/bin/bash"];
     [self.serverTask setArguments: [NSArray arrayWithObjects: @"-l",
-									@"-c", nodeCommandString, nil]];
-    
-	// redirect i/o
+									@"-c", commandString, nil]];
+	
+	// Redirect I/O
     [self.serverTask setStandardOutput:[NSPipe pipe]];
 	[self.serverTask setStandardError:[NSPipe pipe]];
     [self.serverTask setStandardInput:[NSPipe pipe]];
-    
-	// launch
-    [self.serverTask launch];
-    [self setIsServerRunning:self.serverTask.isRunning];
-    
-    self.doctorSocket = [[SocketIO alloc] initWithDelegate:self];
-    [self performSelector:@selector(connectDoctorSocketIO:) withObject:[NSNumber numberWithInt:0] afterDelay:1];
-    return self.serverTask.isRunning;
 }
 
 -(void) connectDoctorSocketIO:(NSNumber*)attemptNumber
