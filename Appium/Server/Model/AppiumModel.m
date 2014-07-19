@@ -134,6 +134,12 @@ BOOL _isServerListening;
 	if (![self.general.serverPort isEqualTo:@"4723"]) {
 		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--port", [self.general.serverPort stringValue]];
     }
+	if (self.general.useCallbackAddress) {
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--callback-address", self.general.callbackAddress];
+	}
+	if (self.general.useCallbackPort) {
+		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--callback-port", [self.general.callbackPort stringValue]];
+	}
 	if (self.general.useCommandTimeout) {
 	nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --command-timeout %d", [self.general.commandTimeout intValue]];
 	}

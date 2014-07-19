@@ -121,6 +121,8 @@ Preferences can be accessed by clicking on the appropriate button in the main wi
  * **Prelaunch Application**: Appium will prelaunch the application before beginning to listen for WebDriver
    commands.
  * **Developer Mode**: Will enable additional settings targeted at Appium project developers.
+ * **Callback Address**: IP address to be used for HTTP callback.
+ * **Callback Port**: Port to be used for HTTP callback.
 * **Logging**
  * **Quiet Logging**: Don't use verbose logging output.
  * **Use Colors**: Use colors in console output.

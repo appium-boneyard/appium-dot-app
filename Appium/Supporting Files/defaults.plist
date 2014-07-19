@@ -102,6 +102,10 @@
 	<string></string>
 	<key>Break On NodeJS Application Start</key>
 	<false/>
+	<key>Callback Address</key>
+	<string>127.0.0.1</string>
+	<key>Callback Port</key>
+	<integer>4723</integer>
 	<key>Check For Updates</key>
 	<true/>
 	<key>Custom Flags</key>
@@ -218,6 +222,10 @@
 	<string>0.0.0.0</string>
 	<key>Server Port</key>
 	<integer>4723</integer>
+	<key>Use Callback Address</key>
+	<false/>
+	<key>Use Callback Port</key>
+	<false/>
 	<key>Use Custom Flags</key>
 	<false/>
 	<key>Use External NodeJS Binary</key>
