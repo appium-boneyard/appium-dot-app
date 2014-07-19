@@ -142,6 +142,10 @@ typedef enum AppiumOrientationSetting AppiumOrientationSetting;
 @property BOOL useQuietLogging;
 @property BOOL useRemoteServer;
 @property BOOL useLocalTimezone;
+@property BOOL useCallbackAddress;
+@property BOOL useCallbackPort;
+@property (copy) NSString *callbackAddress;
+@property (copy) NSNumber *callbackPort;
 
 @end
 

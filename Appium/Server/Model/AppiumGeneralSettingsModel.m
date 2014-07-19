@@ -26,6 +26,12 @@
 			name:@"general settings"];
 }
 
+-(NSString*) callbackAddress { return [DEFAULTS stringForKey:APPIUM_PLIST_CALLBACK_ADDRESS]; }
+-(void) setCallbackAddress:(NSString *)callbackAddress { [DEFAULTS setValue:callbackAddress forKey:APPIUM_PLIST_CALLBACK_ADDRESS]; }
+
+-(NSNumber*) callbackPort { return [NSNumber numberWithInt:[[DEFAULTS stringForKey:APPIUM_PLIST_CALLBACK_PORT] intValue]]; }
+-(void) setCallbackPort:(NSNumber *)callbackPort { [[NSUserDefaults standardUserDefaults] setValue:callbackPort forKey:APPIUM_PLIST_CALLBACK_PORT]; }
+
 -(BOOL) checkForUpdates { return [DEFAULTS boolForKey:APPIUM_PLIST_CHECK_FOR_UPDATES]; }
 -(void) setCheckForUpdates:(BOOL)checkForUpdates { [DEFAULTS setBool:checkForUpdates forKey:APPIUM_PLIST_CHECK_FOR_UPDATES]; }
 
@@ -64,6 +70,12 @@
 
 -(NSNumber*) serverPort { return [NSNumber numberWithInt:[[DEFAULTS stringForKey:APPIUM_PLIST_SERVER_PORT] intValue]]; }
 -(void) setServerPort:(NSNumber *)serverPort { [[NSUserDefaults standardUserDefaults] setValue:serverPort forKey:APPIUM_PLIST_SERVER_PORT]; }
+
+-(BOOL) useCallbackAddress { return [DEFAULTS boolForKey:APPIUM_PLIST_USE_CALLBACK_ADDRESS]; }
+-(void) setUseCallbackAddress:(BOOL)useCallbackAddress { [DEFAULTS setBool:useCallbackAddress forKey:APPIUM_PLIST_USE_CALLBACK_ADDRESS]; }
+
+-(BOOL) useCallbackPort { return [DEFAULTS boolForKey:APPIUM_PLIST_USE_CALLBACK_PORT]; }
+-(void) setUseCallbackPort:(BOOL)useCallbackPort { [DEFAULTS setBool:useCallbackPort forKey:APPIUM_PLIST_USE_CALLBACK_PORT]; }
 
 -(BOOL) useCommandTimeout { return [DEFAULTS boolForKey:APPIUM_PLIST_USE_NEW_COMMAND_TIMEOUT]; }
 -(void) setUseCommandTimeout:(BOOL)useCommandTimeout { [DEFAULTS setBool:useCommandTimeout forKey:APPIUM_PLIST_USE_NEW_COMMAND_TIMEOUT]; }

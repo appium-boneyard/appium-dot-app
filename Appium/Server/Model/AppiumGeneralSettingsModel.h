@@ -30,5 +30,9 @@
 @property BOOL useRemoteServer;
 @property BOOL useSeleniumGridConfigFile;
 @property BOOL useLocalTimezone;
+@property BOOL useCallbackAddress;
+@property BOOL useCallbackPort;
+@property NSString *callbackAddress;
+@property NSNumber *callbackPort;
 
 @end

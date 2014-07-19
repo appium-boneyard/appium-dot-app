@@ -320,6 +320,18 @@
 			<property name="use local timezone" code="gs19" type="boolean">
 				<cocoa key="useLocalTimezone"/>
 			</property>
+			<property name="use callback address" code="gs20" type="boolean">
+				<cocoa key="useCallbackAddress"/>
+			</property>
+			<property name="use callback port" code="gs21" type="boolean">
+				<cocoa key="useCallbackPort"/>
+			</property>
+			<property name="callback address" code="gs22" type="text">
+				<cocoa key="callbackAddress"/>
+			</property>
+			<property name="callback port" code="gs23" type="number">
+				<cocoa key="callbackPort"/>
+			</property>
 		</class>
 		<class name="inspector window controller" code="caiw" description="inspector window">
 			<cocoa class="AppiumInspectorWindowController"/>
