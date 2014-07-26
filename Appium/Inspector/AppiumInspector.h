@@ -26,6 +26,7 @@
 	WebDriverElementNode *_rootNode;
     WebDriverElementNode *_browserRootNode;
 	NSMutableArray *_selectedIndexes;
+	SEScreenOrientation _orientation;
 	NSString *_lastPageSource;
 	NSString *_selectedContext;
 }
@@ -52,7 +53,7 @@
 -(NSString*) xPathForSelectedNode;
 -(AppiumCodeMakerLocator*) locatorForSelectedNode;
 -(BOOL) selectNodeWithRect:(NSRect)rect className:(NSString*)className fromNode:(WebDriverElementNode*)node;
-
+-(void) updateDetailsDisplay;
 -(void) handleClickAt:(NSPoint)windowPoint seleniumPoint:(NSPoint)seleniumPoint;
 -(IBAction) refresh:(id)sender;
 

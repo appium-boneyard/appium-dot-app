@@ -18,6 +18,7 @@
 
 @property NSValue *beginPoint;
 @property NSValue *endPoint;
+@property (nonatomic) NSInteger rotation;
 
 -(NSPoint) convertSeleniumPointToViewPoint:(NSPoint)point;
 -(NSRect) convertSeleniumRectToViewRect:(NSRect)rect;
