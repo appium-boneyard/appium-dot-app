@@ -142,69 +142,84 @@
 
 -(void) setUpScreenshotView:(NSImage *)newImage
 {
-	[super setImage:[self rotateImage:newImage byAngle:self.rotation]];
+	if (newImage != nil)
+	{
+		[super setImage:[self rotateImage:newImage byAngle:self.rotation]];
+	}
 
 	self.maxWidth = self.bounds.size.width;
 	self.maxHeight = self.bounds.size.height;
 	self.xBorder = 0.0f;
 	self.yBorder = 0.0f;
-
+	
+	float scalarMultiplier = 0.0f;
+	
+	// add factor of 2 to screenshot scalar to account for retina display based coordinates
+    if (self.inspector.model.isIOS)
+    {
+        // check for retina devices
+        if (self.image.size.width == 640 && self.image.size.height == 960)
+        {
+            // portrait 3.5" iphone with retina display
+            scalarMultiplier = 2.0f;
+        }
+        else if (self.image.size.width == 960 && self.image.size.height == 640)
+        {
+            // landscape 3.5" iphone with retina display
+            scalarMultiplier = 2.0f;
+        }
+        else if (self.image.size.width == 640 && self.image.size.height == 1136)
+        {
+            // portrait 4" iphone with retina display
+            scalarMultiplier = 2.0f;
+        }
+        else if (self.image.size.width == 1136 && self.image.size.height == 640)
+        {
+            // landscape 4" iphone with retina display
+            scalarMultiplier = 2.0f;
+        }
+        else if (self.image.size.width == 1536 && self.image.size.height == 2048)
+        {
+            // portrait ipad with retina display
+            scalarMultiplier = 2.0f;
+        }
+        else if (self.image.size.width == 2048 && self.image.size.height == 1536)
+        {
+            // landscape ipad with retina display
+            scalarMultiplier = 2.0f;
+        }
+    }
+	
     // determine borders
-	if (newImage.size.width > newImage.size.height)
+	if (self.image.size.width > (self.bounds.size.width * scalarMultiplier))
 	{
-		self.maxHeight = newImage.size.height * (self.bounds.size.width / newImage.size.width);
+		self.maxHeight = self.image.size.height * (self.bounds.size.width / self.image.size.width);
 		self.yBorder  = (self.bounds.size.height - self.maxHeight) / 2.0f;
-		self.screenshotScalar = self.bounds.size.width / newImage.size.width;
+		self.screenshotScalar = self.bounds.size.width / self.image.size.width;
 	}
 	else
 	{
-		self.maxWidth = newImage.size.width * (self.bounds.size.height / newImage.size.height);
+		self.maxWidth = self.image.size.width * (self.bounds.size.height / self.image.size.height);
 		self.xBorder = (self.bounds.size.width - self.maxWidth) / 2.0f;
-		self.screenshotScalar = self.bounds.size.height / newImage.size.height;
+		self.screenshotScalar = self.bounds.size.height / self.image.size.height;
 	}
-
-    // add factor of 2 to screenshot scalar to account for retina display based coordinates
-    if (self.inspector.model.isIOS)
-    {
-
-        // check for retina devices
-        if (newImage.size.width == 640 && newImage.size.height == 960)
-        {
-            // portrait 3.5" iphone with retina display
-            self.screenshotScalar *= 2.0f;
-        }
-        else if (newImage.size.width == 960 && newImage.size.height == 640)
-        {
-            // landscape 3.5" iphone with retina display
-            self.screenshotScalar *= 2.0f;
-        }
-        else if (newImage.size.width == 640 && newImage.size.height == 1136)
-        {
-            // portrait 4" iphone with retina display
-            self.screenshotScalar *= 2.0f;
-        }
-        else if (newImage.size.width == 1136 && newImage.size.height == 640)
-        {
-            // landscape 4" iphone with retina display
-            self.screenshotScalar *= 2.0f;
-        }
-        else if (newImage.size.width == 1536 && newImage.size.height == 2048)
-        {
-            // portrait ipad with retina display
-            self.screenshotScalar *= 2.0f;
-        }
-        else if (newImage.size.width == 2048 && newImage.size.height == 1536)
-        {
-            // landscape ipad with retina display
-            self.screenshotScalar *= 2.0f;
-        }
-
-    }
+	
+	if (scalarMultiplier != 0.0f)
+	{
+		self.screenshotScalar *= scalarMultiplier;
+	}
 }
 
 -(void)mouseUp:(NSEvent *)event
 {
 	NSPoint point = [event locationInWindow];
+	
+	// Update the values used when drawing layers in case the image frame changed
+	if (self.image != nil)
+	{
+		[self setUpScreenshotView:nil];
+	}
+	
 	[self.inspector handleClickAt:point seleniumPoint:[self convertWindowPointToSeleniumPoint:point]];
 	[self setNeedsDisplay];
 }

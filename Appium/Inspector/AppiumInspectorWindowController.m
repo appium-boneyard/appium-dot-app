@@ -85,6 +85,8 @@
 				[model setPlatform:Platform_Android];
 			}
 		}
+		
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:window];
     }
 
     return self;
@@ -98,15 +100,28 @@
     [self.recordButton setLayerUsesCoreImageFilters:YES];
 }
 
+- (void)windowDidResize:(NSNotification *)notification
+{
+	if (!self.selectedElementHighlightView.isHidden)
+	{
+		[self.selectedElementHighlightView setHidden:YES];
+	}
+}
+
 -(void) awakeFromNib
 {
 	// setup drawer
-    NSSize contentSize = NSMakeSize(self.window.frame.size.width, 200);
+    NSSize contentSize = NSMakeSize(self.window.minSize.width, 200.0f);
     self.bottomDrawer = [[NSDrawer alloc] initWithContentSize:contentSize preferredEdge:NSMinYEdge];
     [self.bottomDrawer setParentWindow:self.window];
     [self.bottomDrawer setMinContentSize:contentSize];
 	[self.bottomDrawer setContentView:self.bottomDrawerContentView];
 	[self.bottomDrawer.contentView setAutoresizingMask:NSViewHeightSizable];
+}
+
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(IBAction)locatorSearchButtonClicked:(id)sender {

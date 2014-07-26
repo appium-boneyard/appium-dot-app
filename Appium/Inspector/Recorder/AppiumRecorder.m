@@ -253,6 +253,7 @@
 	[self setIsRecording:[NSNumber numberWithBool:!_isRecording]];
 	if (_isRecording)
 	{
+		_windowController.bottomDrawer.contentSize = CGSizeMake(_windowController.window.frame.size.width, _windowController.bottomDrawer.contentSize.height);
 		[_windowController.bottomDrawer openOnEdge:NSMinYEdge];
 
         CIFilter *filter = [CIFilter filterWithName:@"CIFalseColor"];
