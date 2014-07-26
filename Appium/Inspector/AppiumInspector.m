@@ -76,6 +76,7 @@
 	NSError *e = nil;
     [self performSelectorOnMainThread:@selector(setDomIsPopulatingToYes) withObject:nil waitUntilDone:YES];
 	[self refreshPageSource:&e];
+	[self refreshOrientation];
     [self refreshScreenshot];
 	[self refreshContextList];
 
@@ -309,6 +310,23 @@
 -(void)refreshPageSource:(NSError **)error
 {
 	_lastPageSource = [self.driver pageSource];
+}
+
+- (void)refreshOrientation
+{
+	_orientation = [self.driver orientation];
+	
+	switch (_orientation)
+	{
+		case SELENIUM_SCREEN_ORIENTATION_PORTRAIT:
+			_windowController.screenshotImageView.rotation = 0;
+			break;
+		case SELENIUM_SCREEN_ORIENTATION_LANDSCAPE:
+			_windowController.screenshotImageView.rotation = 90;
+			break;
+		default:
+			break;
+	}
 }
 
 -(void)refreshScreenshot

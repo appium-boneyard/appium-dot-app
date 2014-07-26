@@ -18,9 +18,8 @@
 @property CGFloat yBorder;
 @property CGFloat maxWidth;
 @property CGFloat maxHeight;
-@property int rotation;
 
--(NSImage*) rotateImage:(NSImage *)image byAngle:(int)degrees;
+-(NSImage*) rotateImage:(NSImage *)image byAngle:(NSInteger)degrees;
 
 @end
 
@@ -255,16 +254,25 @@
 #pragma mark - Helpers
 -(IBAction) toggleRotation:(id)sender
 {
-	self.rotation -= 90;
-	if (self.rotation <= -360)
+	self.rotation += 90;
+	if (self.rotation >= 360)
 	{
 		self.rotation = 0;
 	}
-	[self.rotationButton setTitle:[NSString stringWithFormat:@"%dº", -1 * self.rotation]];
+	
+	_windowController.inspector.selection = nil;
+	[_windowController.inspector updateDetailsDisplay];
+}
+
+- (void)setRotation:(NSInteger)rotation
+{
+	_rotation = rotation;
+	
+	[self.rotationButton setTitle:[NSString stringWithFormat:@"%ldº", self.rotation]];
 	[self setUpScreenshotView:self.originalImage];
 }
 
--(NSImage*) rotateImage:(NSImage *)image byAngle:(int)degrees
+-(NSImage*) rotateImage:(NSImage *)image byAngle:(NSInteger)degrees
 {
 	if (degrees == 0)
 	{
@@ -273,7 +281,7 @@
 	else
 	{
 		NSSize beforeSize = [image size];
-		NSSize afterSize = degrees == 90 || degrees == -90 ? NSMakeSize(beforeSize.height, beforeSize.width) : beforeSize;
+		NSSize afterSize = degrees == 90 || degrees == 270 ? NSMakeSize(beforeSize.height, beforeSize.width) : beforeSize;
 		NSImage* newImage = [[NSImage alloc] initWithSize:afterSize];
 		NSAffineTransform* trans = [NSAffineTransform transform];
 
