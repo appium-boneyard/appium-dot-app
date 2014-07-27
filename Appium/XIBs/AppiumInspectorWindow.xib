@@ -44,18 +44,18 @@
         <window title="Appium Inspector" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" frameAutosaveName="AppiumInspector" animationBehavior="default" id="1" userLabel="Appium Inspector Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="864" height="552"/>
+            <rect key="contentRect" x="196" y="240" width="1227" height="552"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1578"/>
             <value key="minSize" type="size" width="810" height="500"/>
             <view key="contentView" id="2" userLabel="Main View">
-                <rect key="frame" x="0.0" y="0.0" width="864" height="552"/>
+                <rect key="frame" x="0.0" y="0.0" width="1227" height="552"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <box autoresizesSubviews="NO" title="Filters" borderType="line" id="102" userLabel="Filters Box">
-                        <rect key="frame" x="12" y="487" width="396" height="54"/>
+                        <rect key="frame" x="12" y="487" width="582" height="54"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView">
-                            <rect key="frame" x="1" y="1" width="394" height="38"/>
+                            <rect key="frame" x="1" y="1" width="580" height="38"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <button id="82" userLabel="Show Disabled Checkbox">
@@ -97,7 +97,7 @@
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
                     <button wantsLayer="YES" id="124" userLabel="Record Button">
-                        <rect key="frame" x="411" y="488" width="89" height="41"/>
+                        <rect key="frame" x="597" y="488" width="120" height="41"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="bevel" title="Record" bezelStyle="regularSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="125">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -108,7 +108,7 @@
                         </connections>
                     </button>
                     <button id="92" userLabel="Refresh Button">
-                        <rect key="frame" x="504" y="488" width="89" height="41"/>
+                        <rect key="frame" x="721" y="488" width="120" height="41"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="bevel" title="Refresh" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="93">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -129,7 +129,7 @@
                         </connections>
                     </button>
                     <progressIndicator hidden="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="107" userLabel="Refresh Spinner">
-                        <rect key="frame" x="540" y="501" width="16" height="16"/>
+                        <rect key="frame" x="773" y="501" width="16" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <connections>
                             <binding destination="26" name="hidden" keyPath="domIsPopulating" id="111">
@@ -148,12 +148,12 @@
                         </connections>
                     </browser>
                     <customView id="60" userLabel="Screenshot Area View">
-                        <rect key="frame" x="599" y="209" width="240" height="320"/>
+                        <rect key="frame" x="847" y="47" width="360" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView id="43" userLabel="Screenshot Image View" customClass="AppiumInspectorScreenshotImageView">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="320"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <rect key="frame" x="0.0" y="0.0" width="360" height="480"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="44"/>
                                 <connections>
                                     <outlet property="_windowController" destination="-2" id="430"/>
@@ -161,19 +161,19 @@
                                 </connections>
                             </imageView>
                             <customView id="57" userLabel="Highlight View">
-                                <rect key="frame" x="48" y="96" width="145" height="129"/>
+                                <rect key="frame" x="72" y="144" width="217" height="193"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </customView>
                         </subviews>
                     </customView>
                     <tabView id="441">
-                        <rect key="frame" x="8" y="10" width="439" height="111"/>
+                        <rect key="frame" x="8" y="10" width="590" height="111"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="Touch" identifier="1" id="442" userLabel="Touch Tab">
                                 <view key="view" id="445">
-                                    <rect key="frame" x="10" y="33" width="419" height="65"/>
+                                    <rect key="frame" x="10" y="33" width="570" height="65"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" id="89" userLabel="Tap Button">
@@ -270,7 +270,7 @@
                             </tabViewItem>
                             <tabViewItem label="Text" identifier="2" id="443" userLabel="Text Tab">
                                 <view key="view" id="444">
-                                    <rect key="frame" x="10" y="33" width="419" height="65"/>
+                                    <rect key="frame" x="10" y="33" width="570" height="65"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" id="97" userLabel="Actions Box TextField">
@@ -356,7 +356,7 @@
                             </tabViewItem>
                             <tabViewItem label="Locator" identifier="" id="73g-pF-4nF">
                                 <view key="view" id="gm2-9i-R2p">
-                                    <rect key="frame" x="10" y="33" width="419" height="65"/>
+                                    <rect key="frame" x="10" y="33" width="570" height="65"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="0gu-mb-9j3" userLabel="Value Label">
@@ -423,7 +423,7 @@
                             </tabViewItem>
                             <tabViewItem label="Misc" identifier="" id="446" userLabel="Misc Tab">
                                 <view key="view" id="447">
-                                    <rect key="frame" x="10" y="33" width="419" height="65"/>
+                                    <rect key="frame" x="10" y="33" width="570" height="65"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" id="296" userLabel="Accept Button">
@@ -471,14 +471,14 @@
                         </tabViewItems>
                     </tabView>
                     <box autoresizesSubviews="NO" title="Context" borderType="line" id="584" userLabel="Window Changer Box">
-                        <rect key="frame" x="444" y="16" width="150" height="103"/>
+                        <rect key="frame" x="596" y="16" width="246" height="103"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <view key="contentView">
-                            <rect key="frame" x="1" y="1" width="148" height="87"/>
+                            <rect key="frame" x="1" y="1" width="244" height="87"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <comboBox verticalHuggingPriority="750" id="585" userLabel="Windows ComboBox">
-                                    <rect key="frame" x="18" y="49" width="115" height="26"/>
+                                    <rect key="frame" x="18" y="49" width="211" height="26"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                     <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="586">
                                         <font key="font" metaFont="system"/>
@@ -491,7 +491,7 @@
                                     </connections>
                                 </comboBox>
                                 <button verticalHuggingPriority="750" id="603" userLabel="Change Context Button">
-                                    <rect key="frame" x="30" y="13" width="88" height="32"/>
+                                    <rect key="frame" x="78" y="7" width="88" height="32"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <buttonCell key="cell" type="push" title="Change" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="604">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -507,7 +507,7 @@
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
                     <button verticalHuggingPriority="750" id="649" userLabel="Rotation Button">
-                        <rect key="frame" x="779" y="188" width="60" height="19"/>
+                        <rect key="frame" x="1147" y="19" width="60" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="roundRect" title="0º" bezelStyle="roundedRect" image="NSRefreshTemplate" imagePosition="left" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="650">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -518,27 +518,27 @@
                         </connections>
                     </button>
                     <box autoresizesSubviews="NO" title="Details" borderType="line" id="105" userLabel="Details Box">
-                        <rect key="frame" x="596" y="16" width="246" height="185"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES"/>
+                        <rect key="frame" x="596" y="119" width="246" height="364"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
                         <view key="contentView">
-                            <rect key="frame" x="1" y="1" width="244" height="169"/>
+                            <rect key="frame" x="1" y="1" width="244" height="348"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="29" userLabel="Details Text View">
-                                    <rect key="frame" x="18" y="14" width="208" height="145"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                    <rect key="frame" x="18" y="14" width="208" height="324"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="qlf-i6-ziQ">
-                                        <rect key="frame" x="1" y="1" width="206" height="143"/>
+                                        <rect key="frame" x="1" y="1" width="206" height="322"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <textView editable="NO" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" spellingCorrection="YES" smartInsertDelete="YES" id="30">
-                                                <rect key="frame" x="0.0" y="0.0" width="206" height="143"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="206" height="322"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <size key="minSize" width="206" height="143"/>
+                                                <size key="minSize" width="206" height="322"/>
                                                 <size key="maxSize" width="463" height="10000000"/>
                                                 <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                <size key="minSize" width="206" height="143"/>
+                                                <size key="minSize" width="206" height="322"/>
                                                 <size key="maxSize" width="463" height="10000000"/>
                                             </textView>
                                         </subviews>
@@ -549,7 +549,7 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                     <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="32">
-                                        <rect key="frame" x="191" y="1" width="16" height="143"/>
+                                        <rect key="frame" x="191" y="1" width="16" height="322"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                 </scrollView>
