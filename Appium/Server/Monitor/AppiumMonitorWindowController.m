@@ -23,12 +23,14 @@
 
 - (id)initWithWindow:(NSWindow *)window
 {
-    self = [super initWithWindow:window];
-    if (self) {
-		// initialization code here
-    }
-
-    return self;
+	self = [super initWithWindow:window];
+	
+	if (self)
+	{
+		self.inspectorIsLaunching = NO;
+	}
+	
+	return self;
 }
 
 -(void) windowDidLoad
@@ -38,7 +40,6 @@
 	// launch the menu bar icon
 	_menuBarManager = [AppiumMenuBarManager new];
 	[[self model] addObserver:_menuBarManager forKeyPath:@"isServerRunning" options:NSKeyValueObservingOptionNew context:NULL];
-
 }
 
 - (void)windowWillClose:(NSNotification *)notification {

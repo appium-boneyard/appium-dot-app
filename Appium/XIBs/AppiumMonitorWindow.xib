@@ -119,8 +119,30 @@
                                 <accessibility description="Inspector"/>
                                 <connections>
                                     <action selector="displayInspector:" target="-2" id="1379"/>
+                                    <binding destination="-2" name="enabled" keyPath="self.inspectorIsLaunching" id="RT4-6j-e5z">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="image" keyPath="self.inspectorIsLaunching" id="klE-fc-sP8">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">AppiumInspectorButtonImageTransformer</string>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </button>
+                            <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="SJ8-Yv-vbi" userLabel="Inspector Spinner">
+                                <rect key="frame" x="454" y="41" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <binding destination="-2" name="animate" keyPath="self.inspectorIsLaunching" id="Egp-ug-nSA"/>
+                                    <binding destination="-2" name="hidden" keyPath="self.inspectorIsLaunching" id="Mu8-4Q-3Ey">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </progressIndicator>
                             <button toolTip="Doctor" id="R6H-hG-Zs6" userLabel="Doctor Button">
                                 <rect key="frame" x="492" y="28" width="52" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
