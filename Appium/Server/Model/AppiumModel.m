@@ -168,7 +168,6 @@ BOOL _isServerListening;
         nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--nodeconfig", [self.general.seleniumGridConfigFile stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
     }
 	if (self.general.useLocalTimezone) {
-		NSLog(@"using local timezone");
 		nodeCommandString = [nodeCommandString stringByAppendingString:@" --local-timezone"];
 	}
 	
