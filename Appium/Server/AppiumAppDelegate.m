@@ -47,13 +47,30 @@
 {
 	if (self.inspectorWindow == nil)
 	{
-		self.inspectorWindow = [[AppiumInspectorWindowController alloc] initWithWindowNibName:@"AppiumInspectorWindow"];
+		self.mainWindowController.inspectorIsLaunching = YES;
+		
+		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+			self.inspectorWindow = [[AppiumInspectorWindowController alloc] initWithWindowNibName:@"AppiumInspectorWindow"];
+			self.mainWindowController.inspectorIsLaunching = NO;
+			
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[self presentInspector];
+			});
+		});
+		
 		[[NSNotificationCenter defaultCenter] addObserver:self
 												 selector:@selector(inspectorWindowWillClose:)
 													 name:NSWindowWillCloseNotification
 												   object:[self.inspectorWindow window]];
 	}
+	else
+	{
+		[self presentInspector];
+	}
+}
 
+- (void)presentInspector
+{
 	[self.inspectorWindow showWindow:self];
 	[[self.inspectorWindow window] makeKeyAndOrderFront:self];
 }

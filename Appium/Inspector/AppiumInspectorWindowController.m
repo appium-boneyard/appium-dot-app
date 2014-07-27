@@ -17,8 +17,8 @@
 {
     self = [super initWithWindow:window];
 
-    if (self) {
-
+    if (self)
+	{
         AppiumModel *model = [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] model];
         
         self.driver = [[SERemoteWebDriver alloc] initWithServerAddress:model.general.serverAddress port:[model.general.serverPort integerValue]];
@@ -192,11 +192,14 @@
 
 -(id) closeWithError:(NSString*)informativeText
 {
-	NSAlert *alert = [NSAlert new];
-    [alert setMessageText:@"Could Not Launch Appium Inspector"];
-	[alert setInformativeText:[NSString stringWithFormat:@"%@\n\n%@", informativeText, @"Be sure the Appium server is running with an application opened by using the \"App Path\" parameter in Appium.app (along with package and activity for Android) or by connecting with selenium client and supplying this in the desired capabilities object."]];
-	[alert runModal];
-	[self close];
+	dispatch_sync(dispatch_get_main_queue(), ^{
+		NSAlert *alert = [NSAlert new];
+		[alert setMessageText:@"Could Not Launch Appium Inspector"];
+		[alert setInformativeText:[NSString stringWithFormat:@"%@\n\n%@", informativeText, @"Be sure the Appium server is running with an application opened by using the \"App Path\" parameter in Appium.app (along with package and activity for Android) or by connecting with selenium client and supplying this in the desired capabilities object."]];
+		[alert runModal];
+		[self close];
+	});
+	
 	return nil;
 }
 
