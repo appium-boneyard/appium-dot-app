@@ -313,7 +313,7 @@ BOOL _isServerListening;
 			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --calendar %@", self.iOS.calendarFormat];
         }
 		if (self.iOS.useCustomTraceTemplate) {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --trace-template \"%@\"", self.iOS.customTraceTemplatePath];
+			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --tracetemplate \"%@\"", self.iOS.customTraceTemplatePath];
         }
         if (self.iOS.useDefaultDevice) {
 			nodeCommandString = [nodeCommandString stringByAppendingString:@" --default-device"];
