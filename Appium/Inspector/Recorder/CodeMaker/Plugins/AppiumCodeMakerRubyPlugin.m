@@ -153,7 +153,7 @@ Appium.promote_appium_methods Object\n\
 	NSDictionary *args = [((NSArray*)[action.params objectForKey:@"args"]) objectAtIndex:0];
 	return [NSString stringWithFormat:@"swipe \
 :start_x => %@, \
-:start_x => %@, \
+:start_y => %@, \
 :end_x => %@, \
 :end_y => %@, \
 :touchCount => %@, \
