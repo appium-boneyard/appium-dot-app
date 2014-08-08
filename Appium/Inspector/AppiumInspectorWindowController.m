@@ -96,8 +96,9 @@
 {
     [super windowDidLoad];
     
-    // fix crash for pulse animation on record button
-    [self.recordButton setLayerUsesCoreImageFilters:YES];
+	if ([self.recordButton respondsToSelector:@selector(setLayerUsesCoreImageFilters:)])
+		// fix crash for pulse animation on record button
+		[self.recordButton setLayerUsesCoreImageFilters:YES];
 }
 
 - (void)windowDidResize:(NSNotification *)notification
