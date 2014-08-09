@@ -16,6 +16,7 @@
 #import "SocketIOPacket.h"
 #import "Utility.h"
 #import "NSObject+Properties.h"
+#import "AppiumServerArgument.h"
 
 #pragma  mark - Model
 
@@ -27,7 +28,9 @@ BOOL _isServerListening;
 - (id)init
 {
     self = [super init];
-    if (self) {
+	
+    if (self)
+	{
 		// initialize settings
 		NSString *filePath = [[NSBundle mainBundle] pathForResource:@"defaults" ofType:@"plist"];
 		NSDictionary *settingsDict = [NSDictionary dictionaryWithContentsOfFile:filePath];
@@ -46,6 +49,7 @@ BOOL _isServerListening;
 		_isServerListening = self.general.useRemoteServer;
         [self setDoctorSocketIsConnected:NO];
     }
+	
     return self;
 }
 
@@ -100,246 +104,425 @@ BOOL _isServerListening;
     {
         return NO;
     }
-
+	
     // kill any processes using the appium server port
     if (self.general.killProcessesUsingPort)
     {
         NSNumber *procPid = [Utility getPidListeningOnPort:self.general.serverPort];
         if (procPid != nil && myPid != [procPid intValue])
         {
-            NSString* script = [NSString stringWithFormat: @"kill `lsof -t -i:%@`", self.general.serverPort];
+            NSString *script = [NSString stringWithFormat:@"kill `lsof -t -i:%@`", self.general.serverPort];
             system([script UTF8String]);
 			system([@"killall -z lsof" UTF8String]);
         }
     }
-
-	NSString *nodeDebuggingArguments = @"";
-	if (self.developer.useNodeDebugging) {
-		nodeDebuggingArguments = [nodeDebuggingArguments stringByAppendingString:[NSString stringWithFormat:@" --debug=%@", [self.developer.nodeJSDebugPort stringValue]]];
-		if (self.developer.breakOnNodeApplicationStart) {
-			nodeDebuggingArguments = [nodeDebuggingArguments stringByAppendingString:@" --debug-brk"];
+	
+	NSMutableString *nodeDebugArguments = [NSMutableString string];
+	
+	if (self.developer.useNodeDebugging)
+	{
+		[nodeDebugArguments appendFormat:@" --debug=%@", [AppiumServerArgument parseIntegerValue:self.developer.nodeJSDebugPort]];
+		
+		if (self.developer.breakOnNodeApplicationStart)
+		{
+			[nodeDebugArguments appendFormat:@" --debug-brk"];
 		}
 	}
 	
-	NSString *nodeCommandString;
-	if (self.developer.developerMode && self.developer.useExternalNodeJSBinary) {
-		nodeCommandString = [NSString stringWithFormat:@"'%@'%@ lib/server/main.js", self.developer.externalNodeJSBinaryPath, nodeDebuggingArguments];
-	} else {
-		nodeCommandString = [NSString stringWithFormat:@"'%@%@'%@ lib/server/main.js", [[NSBundle mainBundle]resourcePath], @"/node/bin/node", nodeDebuggingArguments];
+	NSMutableArray  *arguments = [NSMutableArray array];
+	NSMutableString *command;
+	
+	if (self.developer.developerMode && self.developer.useExternalNodeJSBinary)
+	{
+		command = [NSMutableString stringWithFormat:@"'%@'%@ lib/server/main.js", self.developer.externalNodeJSBinaryPath, nodeDebugArguments];
 	}
-	if (![self.general.serverAddress isEqualTo:@"0.0.0.0"]) {
-		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--address", self.general.serverAddress];
-    }
-	// TODO: Strcmp with int???
-	if (![self.general.serverPort isEqualTo:@"4723"]) {
-		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--port", [self.general.serverPort stringValue]];
-    }
-	if (self.general.useCallbackAddress) {
-		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--callback-address", self.general.callbackAddress];
-	}
-	if (self.general.useCallbackPort) {
-		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--callback-port", [self.general.callbackPort stringValue]];
-	}
-	if (self.general.useCommandTimeout) {
-	nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --command-timeout %d", [self.general.commandTimeout intValue]];
-	}
-    if (self.general.overrideExistingSessions) {
-        nodeCommandString = [nodeCommandString stringByAppendingString:@" --session-override"];
-    }
-	if (self.general.prelaunchApp) {
-		nodeCommandString = [nodeCommandString stringByAppendingString:@" --pre-launch"];
-    }
-	if (!self.general.logColors) {
-        nodeCommandString = [nodeCommandString stringByAppendingString:@" --log-no-colors"];
-    }
-	if (self.general.useLogFile) {
-        nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--log", [self.general.logFile stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
-    }
-	if (self.general.logTimestamps) {
-        nodeCommandString = [nodeCommandString stringByAppendingString:@" --log-timestamp"];
-    }
-    if (self.general.useLogWebHook) {
-        nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--webhook", self.general.logWebHook];
-    }
-	if (self.general.useQuietLogging) {
-		nodeCommandString = [nodeCommandString stringByAppendingString:@" --quiet"];
-    }
-    if (self.general.useSeleniumGridConfigFile) {
-        nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--nodeconfig", [self.general.seleniumGridConfigFile stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
-    }
-	if (self.general.useLocalTimezone) {
-		nodeCommandString = [nodeCommandString stringByAppendingString:@" --local-timezone"];
+	else
+	{
+		command = [NSMutableString stringWithFormat:@"'%@%@'%@ lib/server/main.js", [[NSBundle mainBundle] resourcePath], @"/node/bin/node", nodeDebugArguments];
 	}
 	
-	// robot preferences
+#pragma mark General Preferences
+	
+	if (![self.general.serverAddress isEqualTo:@"0.0.0.0"])
+	{
+		[arguments addObject:[AppiumServerArgument argumentWithName:@"--address"
+														  withValue:self.general.serverAddress]];
+    }
+	
+	if (![[self.general.serverPort stringValue] isEqualToString:@"4723"])
+	{
+		[arguments addObject:[AppiumServerArgument argumentWithName:@"--port"
+														  withValue:[AppiumServerArgument parseIntegerValue:self.general.serverPort]]];
+    }
+	
+	if (self.general.useCallbackAddress)
+	{
+		[arguments addObject:[AppiumServerArgument argumentWithName:@"--callback-address"
+														  withValue:self.general.callbackAddress]];
+	}
+	
+	if (self.general.useCallbackPort)
+	{
+		[arguments addObject:[AppiumServerArgument argumentWithName:@"--callback-port"
+														  withValue:[AppiumServerArgument parseIntegerValue:self.general.callbackPort]]];
+	}
+	
+	if (self.general.useCommandTimeout)
+	{
+		[arguments addObject:[AppiumServerArgument argumentWithName:@"--command-timeout"
+														  withValue:[AppiumServerArgument parseIntegerValue:self.general.commandTimeout]]];
+	}
+	
+    if (self.general.overrideExistingSessions)
+	{
+		[arguments addObject:[AppiumServerArgument argumentWithName:@"--session-override"]];
+    }
+	
+	if (self.general.prelaunchApp)
+	{
+		[arguments addObject:[AppiumServerArgument argumentWithName:@"--pre-launch"]];
+    }
+	
+	if (!self.general.logColors)
+	{
+		[arguments addObject:[AppiumServerArgument argumentWithName:@"--log-no-colors"]];
+    }
+	
+	if (self.general.useLogFile)
+	{
+		[arguments addObject:[AppiumServerArgument argumentWithName:@"--log"
+														  withValue:self.general.logFile]];
+    }
+	
+	if (self.general.logTimestamps)
+	{
+		[arguments addObject:[AppiumServerArgument argumentWithName:@"--log-timestamp"]];
+    }
+	
+    if (self.general.useLogWebHook)
+	{
+		[arguments addObject:[AppiumServerArgument argumentWithName:@"--webhook"
+														  withValue:self.general.logWebHook]];
+    }
+	
+	if (self.general.useQuietLogging)
+	{
+		[arguments addObject:[AppiumServerArgument argumentWithName:@"--quiet"]];
+    }
+	
+    if (self.general.useSeleniumGridConfigFile)
+	{
+		[arguments addObject:[AppiumServerArgument argumentWithName:@"--nodeconfig"
+														  withValue:self.general.seleniumGridConfigFile]];
+    }
+	
+	if (self.general.useLocalTimezone)
+	{
+		[arguments addObject:[AppiumServerArgument argumentWithName:@"--local-timezone"]];
+	}
+	
+#pragma mark Robot Preferences
+	
 	if (self.robot.useRobot)
     {
-		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--robot-address", self.robot.robotAddress];
-		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--robot-port", [self.robot.robotPort intValue]];
-	}
-	
-	// developer preferences
-	if (self.developer.developerMode && self.developer.useCustomFlags && self.developer.customFlags != nil)
-	{
-		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@", self.developer.customFlags];
+		[arguments addObject:[AppiumServerArgument argumentWithName:@"--robot-address"
+														  withValue:self.robot.robotAddress]];
+		[arguments addObject:[AppiumServerArgument argumentWithName:@"--robot-port"
+														  withValue:[AppiumServerArgument parseIntegerValue:self.robot.robotPort]]];
 	}
 	
 	// platform specific preferences
-	if (self.platform == Platform_Android) {
-		
-		  //////////////
-	     // Android ///
-	    //////////////
-		
-		// get version number from string
-		
-		nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --automation-name %@ --platform-name %@ --platform-version %@", self.android.automationName, self.android.platformName, self.android.platformVersionNumber];
-		if (self.android.useCustomSDKPath) {
-			nodeCommandString = [NSString stringWithFormat:@"export ANDROID_HOME=\"%@\"; %@", self.android.customSDKPath, nodeCommandString];
-		}
-		if (self.android.useAppPath || self.android.useBrowser) {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --app \"%@\"", self.android.useBrowser ? @"browser" : self.android.appPath];
-		}
-		if (self.android.fullReset) {
-			nodeCommandString = [nodeCommandString stringByAppendingString:@" --full-reset"];
-		} else if (self.android.noReset) {
-			nodeCommandString = [nodeCommandString stringByAppendingString:@" --no-reset"];
-		}
-		if (self.android.useAVD) {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"@%@\"", @"--avd", self.android.avd];
-			if (self.android.useAVDArguments) {
-				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--avd-args", self.android.avdArguments];
-			}
-		}
-		if (!self.android.useBrowser) {
-			if (self.android.useChromedriverPort) {
-				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--chromedriver-port", [self.android.chromedriverPort intValue]];
-			}
-			if (self.android.usePackage) {
-				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--app-pkg", self.android.package];
-			}
-			if (self.android.useActivity) {
-				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--app-activity", self.android.activity];
-			}
-			if (self.android.useWaitPackage) {
-				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--app-wait-package", self.android.waitPackage];
-			}
-			if (self.android.useWaitActivity) {
-				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--app-wait-activity", self.android.waitActivity];
-			}
-		} else {
-			if (self.android.browserName.length != 0) {
-				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--browser-name", self.android.browserName];
-			} else {
-				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--browser-name", @"Chrome"];
-			}
-		}
-		if (self.android.useCoverageClass) {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--coverage-class", self.android.coverageClass];
-		}
-		if (self.android.useDeviceName) {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --device-name \"%@\"", self.android.deviceName];
-		}
-		if (self.android.useDeviceReadyTimeout) {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--device-ready-timeout", [self.android.deviceReadyTimeout intValue]];
-		}
-		if (self.android.useLanguage) {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --language %@", self.android.language];
-        }
-		if (self.android.useLocale) {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --locale %@", self.android.locale];
-        }
-		if ([self.android.automationName isEqualToString:@"Selendroid"]) {
-			if (self.android.selendroidPort) {
-				nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--selendroid-port", [self.android.selendroidPort intValue]];
-			}
-		} else if (self.android.useBootstrapPort) {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%d\"", @"--bootstrap-port", [self.android.bootstrapPort intValue]];
-		}
-		if (self.android.useIntentAction)
+	switch (self.platform)
+	{
+#pragma mark Android Preferences
+		case Platform_Android:
 		{
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--intent-action", self.android.intentAction];
+			// get version number from string
+			[arguments addObject:[AppiumServerArgument argumentWithName:@"--automation-name"
+															  withValue:self.android.automationName]];
+			[arguments addObject:[AppiumServerArgument argumentWithName:@"--platform-name"
+															  withValue:self.android.platformName]];
+			[arguments addObject:[AppiumServerArgument argumentWithName:@"--platform-version"
+															  withValue:self.android.platformVersionNumber]];
+			
+			if (self.android.useCustomSDKPath)
+			{
+				[command insertString:[NSString stringWithFormat:@"export ANDROID_HOME=\"%@\"; ", self.android.customSDKPath] atIndex:0];
+			}
+			
+			if (self.android.useAppPath || self.android.useBrowser)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--app"
+																  withValue:self.android.useBrowser ? @"browser" : self.android.appPath]];
+			}
+			
+			if (self.android.fullReset)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--full-reset"]];
+			}
+			else if (self.android.noReset)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--no-reset"]];
+			}
+			
+			if (self.android.useAVD)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--avd"
+																  withValue:self.android.avd]];
+				
+				if (self.android.useAVDArguments)
+				{
+					[arguments addObject:[AppiumServerArgument argumentWithName:@"--avd-args"
+																	  withValue:self.android.avdArguments]];
+				}
+			}
+			
+			if (!self.android.useBrowser)
+			{
+				if (self.android.useChromedriverPort)
+				{
+					[arguments addObject:[AppiumServerArgument argumentWithName:@"--chromedriver-port"
+																	  withValue:[AppiumServerArgument parseIntegerValue:self.android.chromedriverPort]]];
+				}
+				
+				if (self.android.usePackage)
+				{
+					[arguments addObject:[AppiumServerArgument argumentWithName:@"--app-pkg"
+																	  withValue:self.android.package]];
+				}
+				
+				if (self.android.useActivity)
+				{
+					[arguments addObject:[AppiumServerArgument argumentWithName:@"--app-activity"
+																	  withValue:self.android.activity]];
+				}
+				
+				if (self.android.useWaitPackage)
+				{
+					[arguments addObject:[AppiumServerArgument argumentWithName:@"--app-wait-package"
+																	  withValue:self.android.waitPackage]];
+				}
+				
+				if (self.android.useWaitActivity)
+				{
+					[arguments addObject:[AppiumServerArgument argumentWithName:@"--app-wait-activity"
+																	  withValue:self.android.waitActivity]];
+				}
+			}
+			else
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--browser-name"
+																  withValue:(self.android.browserName.length != 0) ? self.android.browserName : @"Chrome"]];
+			}
+			
+			if (self.android.useCoverageClass)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--coverage-class"
+																  withValue:self.android.coverageClass]];
+			}
+			
+			if (self.android.useDeviceName)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--device-name"
+																  withValue:self.android.deviceName]];
+			}
+			
+			if (self.android.useDeviceReadyTimeout)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--device-ready-timeout"
+																  withValue:[AppiumServerArgument parseIntegerValue:self.android.deviceReadyTimeout]]];
+			}
+			
+			if (self.android.useLanguage)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--language"
+																  withValue:self.android.language]];
+			}
+			
+			if (self.android.useLocale)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--locale"
+																  withValue:self.android.locale]];
+			}
+			
+			if ([self.android.automationName isEqualToString:@"Selendroid"])
+			{
+				if (self.android.selendroidPort)
+				{
+					[arguments addObject:[AppiumServerArgument argumentWithName:@"--selendroid-port"
+																	  withValue:[AppiumServerArgument parseIntegerValue:self.android.selendroidPort]]];
+				}
+			}
+			else if (self.android.useBootstrapPort)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--bootstrap-port"
+																  withValue:[AppiumServerArgument parseIntegerValue:self.android.bootstrapPort]]];
+			}
+			
+			if (self.android.useIntentAction)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--intent-action"
+																  withValue:self.android.intentAction]];
+			}
+			
+			if (self.android.useIntentCategory)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--intent-category"
+																  withValue:self.android.intentCategory]];
+			}
+			
+			if (self.android.useIntentFlags)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--intent-flags"
+																  withValue:self.android.intentFlags]];
+			}
+			
+			if (self.android.useIntentArguments)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--intent-args"
+																  withValue:self.android.intentArguments]];
+			}
+			
+			if (self.android.useKeystore)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--use-keystore"]];
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--keystore-path"
+																  withValue:self.android.keystorePath]];
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--keystore-password"
+																  withValue:self.android.keystorePassword]];
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--key-alias"
+																  withValue:self.android.keyAlias]];
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--key-password"
+																  withValue:self.android.keyPassword]];
+			}
+			
+			break;
 		}
-		if (self.android.useIntentCategory)
+#pragma mark iOS Preferences
+		case Platform_iOS:
 		{
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--intent-category", self.android.intentCategory];
+			if (self.iOS.useMobileSafari)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--safari"]];
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--browser-name"
+																  withValue:@"Safari"]];
+			}
+			else if (self.iOS.useBundleID)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--app"
+																  withValue:self.iOS.bundleID]];
+			}
+			else if (self.iOS.useAppPath)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--app"
+																  withValue:self.iOS.appPath]];
+			}
+			
+			if (self.iOS.useUDID)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--udid"
+																  withValue:self.iOS.udid]];
+			}
+			
+			if (self.iOS.fullReset)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--full-reset"]];
+			}
+			
+			if (self.iOS.noReset)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--no-reset"]];
+			}
+			
+			if (self.iOS.showSimulatorLog)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--show-sim-log"]];
+			}
+			
+			if (self.iOS.useBackendRetries)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--backend-retries"
+																  withValue:[AppiumServerArgument parseIntegerValue:self.iOS.backendRetries]]];
+			}
+			
+			if (self.iOS.useCalendar)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--calendar"
+																  withValue:self.iOS.calendarFormat]];
+			}
+			
+			if (self.iOS.useCustomTraceTemplate)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--tracetemplate"
+																  withValue:self.iOS.customTraceTemplatePath]];
+			}
+			
+			if (self.iOS.useDefaultDevice)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--default-device"]];
+			}
+			else
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--device-name"
+																  withValue:self.iOS.deviceName]];
+			}
+			
+			if (self.iOS.useLanguage)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--language"
+																  withValue:self.iOS.language]];
+			}
+			
+			if (self.iOS.useLaunchTimeout)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--launch-timeout"
+																  withValue:[AppiumServerArgument parseIntegerValue:self.iOS.launchTimeout]]];
+			}
+			
+			if (self.iOS.useLocale)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--locale"
+																  withValue:self.iOS.locale]];
+			}
+			
+			if (self.iOS.useNativeInstrumentsLibrary)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--native-instruments-lib"]];
+			}
+			
+			if (self.iOS.useOrientation)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--orientation"
+																  withValue:[self.iOS.orientation capitalizedString]]];
+			}
+			
+			break;
 		}
-		if (self.android.useIntentFlags)
+		default:
 		{
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--intent-flags", self.android.intentFlags];
+			break;
 		}
-		if (self.android.useIntentArguments)
-		{
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ \"%@\"", @"--intent-args", self.android.intentArguments];
-		}
-		if (self.android.useKeystore)
-		{
-			nodeCommandString = [nodeCommandString stringByAppendingString:@" --use-keystore"];
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--keystore-path", [self.android.keystorePath stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--keystore-password", [self.android.keystorePassword stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--key-alias", [self.android.keyAlias stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--key-password", [self.android.keyPassword stringByReplacingOccurrencesOfString:@" " withString:@"\\ "]];
-		}
-	} else if (self.platform == Platform_iOS) {
-		
-		  /////////
-		 // iOS //
-	    /////////
-		
-		if (self.iOS.useMobileSafari) {
-			nodeCommandString = [nodeCommandString stringByAppendingString:@" --safari"];
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" %@ %@", @"--browser-name", @"Safari"];
-		} else if (self.iOS.useBundleID) {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --app \"%@\"", self.iOS.bundleID];
-		} else if (self.iOS.useAppPath) {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --app \"%@\"", self.iOS.appPath];
-		}
-		if (self.iOS.useUDID) {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --udid %@", self.iOS.udid];
-		}
-		if (self.iOS.fullReset) {
-			nodeCommandString = [nodeCommandString stringByAppendingString:@" --full-reset"];
-		}
-		if (self.iOS.noReset) {
-			nodeCommandString = [nodeCommandString stringByAppendingString:@" --no-reset"];
-		}
-		if (self.iOS.showSimulatorLog) {
-			nodeCommandString = [nodeCommandString stringByAppendingString:@" --show-sim-log"];
-        }
-		if (self.iOS.useBackendRetries) {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --backend-retries %d", [self.iOS.backendRetries intValue]];
-        }
-		if (self.iOS.useCalendar) {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --calendar %@", self.iOS.calendarFormat];
-        }
-		if (self.iOS.useCustomTraceTemplate) {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --tracetemplate \"%@\"", self.iOS.customTraceTemplatePath];
-        }
-        if (self.iOS.useDefaultDevice) {
-			nodeCommandString = [nodeCommandString stringByAppendingString:@" --default-device"];
-		} else {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --device-name \"%@\"", self.iOS.deviceName];
-        }
-		if (self.iOS.useLanguage) {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --language %@", self.iOS.language];
-        }
-		if (self.iOS.useLaunchTimeout) {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --launch-timeout %d", [self.iOS.launchTimeout intValue]];
-        }
-
-		if (self.iOS.useLocale) {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@" --locale %@", self.iOS.locale];
-        }
-
-        if (self.iOS.useNativeInstrumentsLibrary) {
-			nodeCommandString = [nodeCommandString stringByAppendingString:@" --native-instruments-lib"];
-        }
-		if (self.iOS.useOrientation) {
-			nodeCommandString = [nodeCommandString stringByAppendingFormat:@"%@ %@", @" --orientation ", [self.iOS.orientation capitalizedString]];
-        }
 	}
-
-	[self setupServerTask:nodeCommandString];
+	
+	for (AppiumServerArgument *argument in arguments)
+	{
+		if (argument.value != nil)
+		{
+			[command appendFormat:@" %@ \"%@\"", argument.name, argument.value];
+		}
+		else
+		{
+			[command appendFormat:@" %@", argument.name];
+		}
+	}
+	
+	// Add custom flags
+	if (self.developer.developerMode && self.developer.useCustomFlags && [self.developer.customFlags length] != 0)
+	{
+		[command appendFormat:@" %@", self.developer.customFlags];
+	}
+	
+	[self setupServerTask:command];
 	
 	// launch
     [self.serverTask launch];
@@ -384,9 +567,9 @@ BOOL _isServerListening;
 	{
 		[self.serverTask setCurrentDirectoryPath:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle]resourcePath], @"node_modules/appium"]];
 	}
+	
     [self.serverTask setLaunchPath:@"/bin/bash"];
-    [self.serverTask setArguments: [NSArray arrayWithObjects: @"-l",
-									@"-c", commandString, nil]];
+    [self.serverTask setArguments: [NSArray arrayWithObjects: @"-l", @"-c", commandString, nil]];
 	
 	// Redirect I/O
     [self.serverTask setStandardOutput:[NSPipe pipe]];
@@ -399,7 +582,7 @@ BOOL _isServerListening;
     if (!self.doctorSocketIsConnected)
     {
         [self.doctorSocket connectToHost:@"localhost" onPort:4722];
-    
+		
         if ([attemptNumber intValue] < 5)
         {
             [self performSelector:@selector(connectDoctorSocketIO:) withObject:[NSNumber numberWithInt:[attemptNumber intValue] + 1] afterDelay:0];
