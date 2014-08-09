@@ -30,7 +30,7 @@
 @property(readonly, retain) NSColor *labelColor;
 
 #pragma mark - Common Properties
-@property Platform platform;
+@property AppiumPlatform platform;
 @property WebDriverElementNode *parent;
 @property (readonly) BOOL shouldDisplay;
 @property BOOL enabled;

@@ -74,15 +74,15 @@
 		{
 			if ([[self.driver.session.capabilities.platformName lowercaseString] isEqualToString:@"ios"])
 			{
-				[model setPlatform:Platform_iOS];
+				[model setPlatform:AppiumiOSPlatform];
 			}
 			else if ([[self.driver.session.capabilities.platformName lowercaseString] isEqualToString:@"android"])
 			{
-				[model setPlatform:Platform_Android];
+				[model setPlatform:AppiumAndroidPlatform];
 			}
 			else if ([[self.driver.session.capabilities.platformName lowercaseString] isEqualToString:@"selendroid"])
 			{
-				[model setPlatform:Platform_Android];
+				[model setPlatform:AppiumAndroidPlatform];
 			}
 		}
 		

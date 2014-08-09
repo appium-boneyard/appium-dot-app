@@ -109,6 +109,7 @@
 		36FF20D61900222400008A7D /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF20D51900222400008A7D /* XMLReader.m */; };
 		7D3CB870198579DD004D3CA4 /* AppiumInspectorButtonImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3CB86F198579DD004D3CA4 /* AppiumInspectorButtonImageTransformer.m */; };
 		7D6B509318F522C400E25292 /* AppiumCodeMakerNodePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B509218F522C400E25292 /* AppiumCodeMakerNodePlugin.m */; };
+		7D7BE878199686F90080F21A /* AppiumServerArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7BE877199686F90080F21A /* AppiumServerArgument.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -352,6 +353,8 @@
 		7D3CB86F198579DD004D3CA4 /* AppiumInspectorButtonImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumInspectorButtonImageTransformer.m; sourceTree = "<group>"; };
 		7D6B509118F522C400E25292 /* AppiumCodeMakerNodePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerNodePlugin.h; path = Plugins/AppiumCodeMakerNodePlugin.h; sourceTree = "<group>"; };
 		7D6B509218F522C400E25292 /* AppiumCodeMakerNodePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerNodePlugin.m; path = Plugins/AppiumCodeMakerNodePlugin.m; sourceTree = "<group>"; };
+		7D7BE876199686F90080F21A /* AppiumServerArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumServerArgument.h; sourceTree = "<group>"; };
+		7D7BE877199686F90080F21A /* AppiumServerArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumServerArgument.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -547,6 +550,8 @@
 				365CA3BE16EFB9C000A6DBE8 /* AppiumModel.m */,
 				3641B1C21922AAB600DCF95D /* AppiumRobotSettingsModel.h */,
 				3641B1C31922AAB600DCF95D /* AppiumRobotSettingsModel.m */,
+				7D7BE876199686F90080F21A /* AppiumServerArgument.h */,
+				7D7BE877199686F90080F21A /* AppiumServerArgument.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1027,6 +1032,7 @@
 				36919C8B171616AD00AC2C63 /* AppiumCodeMakerAction.m in Sources */,
 				3661735617172AB200E786DF /* AppiumCodeMakerPythonPlugin.m in Sources */,
 				36FF07AD171743AC009ED9E2 /* AppiumCodeMakerLocator.m in Sources */,
+				7D7BE878199686F90080F21A /* AppiumServerArgument.m in Sources */,
 				36FF07B0171747C4009ED9E2 /* AppiumCodeMakerJavaPlugin.m in Sources */,
 				36FF07B317174936009ED9E2 /* AppiumCodeMakerRubyPlugin.m in Sources */,
 				3618718D171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.m in Sources */,

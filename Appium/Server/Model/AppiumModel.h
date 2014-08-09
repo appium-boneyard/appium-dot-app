@@ -16,9 +16,9 @@
 
 typedef enum platformTypes
 {
-	Platform_iOS,
-	Platform_Android
-} Platform;
+	AppiumiOSPlatform,
+	AppiumAndroidPlatform
+} AppiumPlatform;
 
 @class SocketIO;
 
@@ -38,7 +38,7 @@ typedef enum platformTypes
 @property BOOL isIOS;
 @property BOOL isServerRunning;
 @property BOOL isServerListening;
-@property Platform platform;
+@property AppiumPlatform platform;
 
 -(BOOL) killServer;
 -(BOOL) startServer;

@@ -26,7 +26,7 @@
 
 -(NSString*) preCodeBoilerplate
 {
-    return (self.model.platform == Platform_iOS) ? self.preCodeBoilerplateiOS : self.preCodeBoilerplateAndroid;
+    return (self.model.platform == AppiumiOSPlatform) ? self.preCodeBoilerplateiOS : self.preCodeBoilerplateAndroid;
 }
 
 -(NSString*) renderAction:(AppiumCodeMakerAction*)action
