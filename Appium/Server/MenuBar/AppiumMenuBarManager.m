@@ -54,18 +54,27 @@
 	[stopServerItem setHidden:NO];
 	[stopServerItem setAction:@selector(launchButtonClicked:)];
     [stopServerItem setTarget:mainWindowController];
+	
 	NSMenuItem *addressItem = [NSMenuItem new];
 	[addressItem setTitle:[NSString stringWithFormat:@"Address: %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"Server Address"]]];
 	[addressItem setHidden:NO];
+	
 	NSMenuItem *portItem = [NSMenuItem new];
 	[portItem setTitle:[NSString stringWithFormat:@"Port: %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"Server Port"]]];
 	[portItem setHidden:NO];
-
+	
+	NSMenuItem *inspectorItem = [NSMenuItem new];
+	inspectorItem.title       = @"Show Inspector";
+	inspectorItem.action      = @selector(displayInspector:);
+	inspectorItem.target      = mainWindowController;
+	
 	[[_item menu] removeAllItems];
 	[[_item menu] addItem:stopServerItem];
 	[[_item menu] addItem:[NSMenuItem separatorItem]];
 	[[_item menu] addItem:addressItem];
 	[[_item menu] addItem:portItem];
+	[[_item menu] addItem:[NSMenuItem separatorItem]];
+	[[_item menu] addItem:inspectorItem];
 }
 
 -(void) installServerOffMenu:(AppiumMonitorWindowController*)mainWindowController
@@ -75,7 +84,7 @@
 	[startServerItem setHidden:NO];
 	[startServerItem setAction:@selector(launchButtonClicked:)];
     [startServerItem setTarget:mainWindowController];
-
+	
     [[_item menu] removeAllItems];
     [[_item menu] addItem:startServerItem];
 }
