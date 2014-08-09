@@ -38,7 +38,7 @@
 		if ([_jsonDict.allKeys containsObject:@"content-desc"])
 		{
 			// Android Node
-			[self setPlatform:Platform_Android];
+			[self setPlatform:AppiumAndroidPlatform];
 			[self setEnabled:[[_jsonDict objectForKey:@"enabled"] boolValue]];
 			[self setVisible:[[_jsonDict objectForKey:@"clickable"] boolValue]];
 			[self setType:[_jsonDict objectForKey:@"tag"]];
@@ -98,7 +98,7 @@
 		else
 		{
 			// iOS Node
-			[self setPlatform:Platform_iOS];
+			[self setPlatform:AppiumiOSPlatform];
 			[self setEnabled:[[_jsonDict valueForKey:@"enabled"] boolValue]];
 			[self setVisible:[[_jsonDict valueForKey:@"visible"] boolValue]];
 			[self setValid:[[_jsonDict valueForKey:@"valid"] boolValue]];
@@ -134,7 +134,7 @@
 - (NSString*) displayName
 {
 	NSString *label = @"";
-	if (self.platform == Platform_iOS)
+	if (self.platform == AppiumiOSPlatform)
 	{
 		label = self.name;
 		if (label == nil || [label isKindOfClass:[NSNull class]] || label.length < 1)
@@ -180,7 +180,7 @@
 #pragma mark - Additional Properties
 -(BOOL) shouldDisplay
 {
-	if ((_showInvisible || self.visible || self.platform == Platform_Android) && (_showDisabled || self.enabled))
+	if ((_showInvisible || self.visible || self.platform == AppiumAndroidPlatform) && (_showDisabled || self.enabled))
 		return YES;
     if ([self isLeaf])
 		return NO;
@@ -199,7 +199,7 @@
 -(NSAttributedString*) infoText
 {
 	NSArray* items;
-	if (self.platform == Platform_iOS)
+	if (self.platform == AppiumiOSPlatform)
 	{
 		items = [NSArray arrayWithObjects:
 				 @"name:", [NSString stringWithFormat:@" %@\n", self.name],

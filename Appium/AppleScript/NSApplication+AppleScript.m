@@ -82,11 +82,11 @@
 	NSString *parameter = [command directParameter];
 	if ([parameter isEqualToString:@"android"])
 	{
-		[self.model setPlatform:Platform_Android];
+		[self.model setPlatform:AppiumAndroidPlatform];
 	}
 	else if ([parameter isEqualToString:@"ios"])
 	{
-		[self.model setPlatform:Platform_iOS];
+		[self.model setPlatform:AppiumiOSPlatform];
 	}
 }
 

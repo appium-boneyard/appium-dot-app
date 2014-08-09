@@ -55,13 +55,13 @@ BOOL _isServerListening;
 
 #pragma mark - Properties
 
--(BOOL) isAndroid { return self.platform == Platform_Android; }
+-(BOOL) isAndroid { return self.platform == AppiumAndroidPlatform; }
 -(void) setIsAndroid:(BOOL)isAndroid {
-	[self setPlatform: isAndroid ? Platform_Android : Platform_iOS];
+	[self setPlatform: isAndroid ? AppiumAndroidPlatform : AppiumiOSPlatform];
 }
--(BOOL) isIOS { return self.platform == Platform_iOS; }
+-(BOOL) isIOS { return self.platform == AppiumiOSPlatform; }
 -(void) setIsIOS:(BOOL)isIOS {
-	[self setPlatform: isIOS ? Platform_iOS : Platform_Android];
+	[self setPlatform: isIOS ? AppiumiOSPlatform : AppiumAndroidPlatform];
 }
 
 -(BOOL) isServerRunning { return _isServerRunning; }
@@ -75,13 +75,13 @@ BOOL _isServerListening;
 -(void) setIsServerListening:(BOOL)isServerListening { _isServerListening = isServerListening; }
 
 
--(Platform)platform
+-(AppiumPlatform)platform
 {
-    return [DEFAULTS boolForKey:APPIUM_PLIST_PLATFORM_IS_ANDROID] ? Platform_Android : Platform_iOS;
+    return [DEFAULTS boolForKey:APPIUM_PLIST_PLATFORM_IS_ANDROID] ? AppiumAndroidPlatform : AppiumiOSPlatform;
 }
--(void)setPlatform:(Platform)platform
+-(void)setPlatform:(AppiumPlatform)platform
 {
-	[DEFAULTS setBool:(platform == Platform_Android) forKey:APPIUM_PLIST_PLATFORM_IS_ANDROID];
+	[DEFAULTS setBool:(platform == AppiumAndroidPlatform) forKey:APPIUM_PLIST_PLATFORM_IS_ANDROID];
 }
 
 #pragma mark - Methods
@@ -235,7 +235,7 @@ BOOL _isServerListening;
 	switch (self.platform)
 	{
 #pragma mark Android Preferences
-		case Platform_Android:
+		case AppiumAndroidPlatform:
 		{
 			// get version number from string
 			[arguments addObject:[AppiumServerArgument argumentWithName:@"--automation-name"
@@ -399,7 +399,7 @@ BOOL _isServerListening;
 			break;
 		}
 #pragma mark iOS Preferences
-		case Platform_iOS:
+		case AppiumiOSPlatform:
 		{
 			if (self.iOS.useMobileSafari)
 			{
