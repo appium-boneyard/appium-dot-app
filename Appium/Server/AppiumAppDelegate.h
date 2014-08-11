@@ -27,6 +27,7 @@
 
 -(IBAction) checkForUpdates:(id)sender;
 -(IBAction) displayInspector:(id)sender;
+- (void)closeInspector;
 -(void) restart;
 
 @end

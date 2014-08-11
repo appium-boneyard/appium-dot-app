@@ -75,6 +75,14 @@
 	[[self.inspectorWindow window] makeKeyAndOrderFront:self];
 }
 
+- (void)closeInspector
+{
+	if (self.inspectorWindow != nil)
+	{
+		[self.inspectorWindow close];
+	}
+}
+
 - (void)inspectorWindowWillClose:(NSNotification *)notification
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowWillCloseNotification object:[self.inspectorWindow window]];
