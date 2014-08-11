@@ -69,6 +69,11 @@ BOOL _isServerListening;
 {
 	_isServerRunning = isServerRunning;
 	_isServerListening = isServerRunning ? _isServerListening : NO;
+	
+	if (!isServerRunning)
+	{
+		[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] closeInspector];
+	}
 }
 
 -(BOOL) isServerListening { return _isServerListening; }
