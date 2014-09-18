@@ -61,6 +61,10 @@
 
 -(IBAction)doctorButtonClicked:(id)sender
 {
+	// Prevent startDoctor from being run for now due to issue #374
+	[self.model startExternalDoctor];
+	return;
+	
     if ([self.model startDoctor])
     {
 		[self closeAllPopovers];
