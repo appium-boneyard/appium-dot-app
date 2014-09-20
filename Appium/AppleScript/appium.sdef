@@ -437,6 +437,12 @@
 			<property name="xcode path" code="is33" type="text" access="r">
 				<cocoa key="xcodePath"/>
 			</property>
+			<property name="use trace directory" code="is34" type="boolean">
+				<cocoa key="useTraceDirectory"/>
+			</property>
+			<property name="trace directory" code="is35" type="text">
+				<cocoa key="traceDirectory"/>
+			</property>
 		</class>
 		<class name="robot settings model" code="crsm" description="robot settings" plural="robot settings model">
 			<cocoa class="AppiumRobotSettingsModel"/>

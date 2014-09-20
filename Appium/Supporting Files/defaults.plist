@@ -162,6 +162,8 @@
 	<string>7.1</string>
 	<key>iOS Show Simulator Log</key>
 	<true/>
+	<key>iOS Trace Directory</key>
+	<string></string>
 	<key>iOS UDID</key>
 	<string></string>
 	<key>iOS Use App Path</key>
@@ -187,6 +189,8 @@
 	<key>iOS Use Native Instruments Library</key>
 	<false/>
 	<key>iOS Use Orientation</key>
+	<false/>
+	<key>iOS Use Trace Directory</key>
 	<false/>
 	<key>iOS Use UDID</key>
 	<false/>

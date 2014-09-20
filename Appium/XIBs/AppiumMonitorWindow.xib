@@ -2020,11 +2020,11 @@
         </customView>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Ki3-5m-Dwf" userLabel="iOS Settings View">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="472"/>
+            <rect key="frame" x="0.0" y="-5" width="600" height="505"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Ljp-Ky-8LR" userLabel="iOS Settings Label">
-                    <rect key="frame" x="17" y="435" width="80" height="17"/>
+                    <rect key="frame" x="17" y="468" width="80" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="iOS Settings" id="2Qc-sp-YRL">
                         <font key="font" metaFont="system"/>
@@ -2033,7 +2033,7 @@
                     </textFieldCell>
                 </textField>
                 <box autoresizesSubviews="NO" title="Application" borderType="line" id="pIA-Py-pdv">
-                    <rect key="frame" x="17" y="330" width="566" height="97"/>
+                    <rect key="frame" x="17" y="363" width="566" height="97"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView">
                         <rect key="frame" x="1" y="1" width="564" height="81"/>
@@ -2282,7 +2282,7 @@
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
                 <box autoresizesSubviews="NO" title="Device Settings" borderType="line" id="LEp-JF-Vx0">
-                    <rect key="frame" x="17" y="159" width="566" height="167"/>
+                    <rect key="frame" x="17" y="192" width="566" height="167"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView">
                         <rect key="frame" x="1" y="1" width="564" height="151"/>
@@ -2705,14 +2705,14 @@
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
                 <box autoresizesSubviews="NO" title="Advanced" borderType="line" id="EeA-hm-8II">
-                    <rect key="frame" x="17" y="16" width="566" height="139"/>
+                    <rect key="frame" x="17" y="16" width="566" height="172"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView">
-                        <rect key="frame" x="1" y="1" width="564" height="123"/>
+                        <rect key="frame" x="1" y="1" width="564" height="156"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button id="jbx-pw-sDJ" userLabel="Use Native Instruments Library Check Box">
-                                <rect key="frame" x="11" y="97" width="216" height="18"/>
+                                <rect key="frame" x="11" y="130" width="216" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Use Native Instruments Library" bezelStyle="regularSquare" imagePosition="left" inset="2" id="BiF-8Z-vfF">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2737,7 +2737,7 @@
                                 </connections>
                             </button>
                             <button id="i1T-G4-KUX" userLabel="Backend Retries Check Box">
-                                <rect key="frame" x="11" y="69" width="122" height="18"/>
+                                <rect key="frame" x="11" y="102" width="122" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Backend Retries" bezelStyle="regularSquare" imagePosition="left" inset="2" id="NXg-Sh-1Ll">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2762,7 +2762,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" id="3Vs-fT-lDP" userLabel="Backend Retries Text Field">
-                                <rect key="frame" x="139" y="67" width="70" height="22"/>
+                                <rect key="frame" x="139" y="100" width="70" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="ikA-25-tHD">
                                     <font key="font" metaFont="system"/>
@@ -2797,7 +2797,7 @@
                                 </connections>
                             </textField>
                             <button id="weA-uV-Gis" userLabel="Instruments Launch Timeout Check Box">
-                                <rect key="frame" x="231" y="69" width="203" height="18"/>
+                                <rect key="frame" x="231" y="102" width="203" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Instruments Launch Timeout" bezelStyle="regularSquare" imagePosition="left" inset="2" id="J7k-br-gYk">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2822,7 +2822,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" id="ua8-A3-gQg" userLabel="Instruments Launch Timeout Text Field">
-                                <rect key="frame" x="446" y="67" width="75" height="22"/>
+                                <rect key="frame" x="446" y="100" width="75" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="uiy-1q-5mf">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="Rvm-qv-lKN"/>
@@ -2858,7 +2858,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="4qW-D0-VVC" userLabel="Units (ms) Label">
-                                <rect key="frame" x="526" y="70" width="23" height="17"/>
+                                <rect key="frame" x="526" y="103" width="23" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="ms" id="Oft-8h-R7N">
                                     <font key="font" metaFont="system"/>
@@ -2867,7 +2867,7 @@
                                 </textFieldCell>
                             </textField>
                             <button id="mhu-md-2K4" userLabel="Trace Template Check Box">
-                                <rect key="frame" x="11" y="40" width="151" height="18"/>
+                                <rect key="frame" x="11" y="73" width="151" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Trace Template Path" bezelStyle="regularSquare" imagePosition="left" inset="2" id="wkK-aW-qEX">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2893,7 +2893,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" id="zCC-jA-uTP" userLabel="Trace Template Text Field">
-                                <rect key="frame" x="168" y="39" width="300" height="22"/>
+                                <rect key="frame" x="168" y="72" width="300" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="TP3-ox-tYB">
                                     <font key="font" metaFont="system"/>
@@ -2901,12 +2901,26 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="D0N-Dh-1U0" id="ySl-kj-0aI">
+                                    <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="tPY-ir-eNq" id="lVv-Wx-KLa">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                             <integer key="NSNoSelectionPlaceholder" value="-1"/>
                                             <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                             <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="enabled3" keyPath="model.iOS.useCustomTraceTemplate" previousBinding="lVv-Wx-KLa" id="ORD-m8-XEo">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="tPY-ir-eNq">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
                                     <binding destination="-2" name="value" keyPath="model.iOS.customTraceTemplatePath" id="PGr-3o-0Yn">
@@ -2914,19 +2928,10 @@
                                             <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="enabled3" keyPath="model.iOS.useCustomTraceTemplate" previousBinding="ySl-kj-0aI" id="kep-jz-gUk">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="D0N-Dh-1U0"/>
                                 </connections>
                             </textField>
                             <button verticalHuggingPriority="750" id="CxK-Af-Tqr" userLabel="Choose Trace Template Button">
-                                <rect key="frame" x="470" y="32" width="82" height="32"/>
+                                <rect key="frame" x="470" y="65" width="82" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Choose" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jhb-gY-3OY">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2958,8 +2963,105 @@
                                     </binding>
                                 </connections>
                             </button>
+                            <button id="iEn-ea-EqB" userLabel="Trace Directory Check Box">
+                                <rect key="frame" x="11" y="46" width="151" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Trace Directory" bezelStyle="regularSquare" imagePosition="left" inset="2" id="aAO-Xe-MDl">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="T23-r7-Crg" id="sc3-cB-E72">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="T23-r7-Crg">
+                                        <dictionary key="options">
+                                            <integer key="NSNullPlaceholder" value="1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="value" keyPath="model.iOS.useTraceDirectory" id="hLW-sD-qHT"/>
+                                </connections>
+                            </button>
+                            <textField verticalHuggingPriority="750" id="dGY-K8-sgQ" userLabel="Trace Directory Text Field">
+                                <rect key="frame" x="168" y="45" width="300" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="qf3-Mo-s5V">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="5m1-OA-cbX" id="R1H-vI-Rl1">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="enabled3" keyPath="model.iOS.useTraceDirectory" previousBinding="R1H-vI-Rl1" id="N5V-HG-fkG">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="5m1-OA-cbX">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="value" keyPath="model.iOS.traceDirectory" id="14F-8E-lTJ">
+                                        <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </textField>
+                            <button verticalHuggingPriority="750" id="8p7-5h-ISV" userLabel="Choose Trace Directory Button">
+                                <rect key="frame" x="470" y="38" width="82" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Choose" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qTk-PI-u18">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="chooseiOSTraceDirectory:" target="-2" id="ZTx-SH-NW1"/>
+                                    <binding destination="-2" name="enabled2" keyPath="model.iOS.useTraceDirectory" previousBinding="Ded-vS-FF2" id="Dyg-oA-n3S">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="enabled3" keyPath="model.general.useRemoteServer" previousBinding="Dyg-oA-n3S" id="Cx9-f2-kf5">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="Ded-vS-FF2">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="kPa-jx-8EU" userLabel="Xcode Path Label">
-                                <rect key="frame" x="10" y="14" width="74" height="17"/>
+                                <rect key="frame" x="13" y="17" width="74" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Xcode Path" id="T3L-IS-QM7">
                                     <font key="font" metaFont="system"/>
@@ -2968,7 +3070,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" id="gLv-Ah-bSA" userLabel="Change Xcode Path Button">
-                                <rect key="frame" x="84" y="7" width="82" height="28"/>
+                                <rect key="frame" x="87" y="10" width="82" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Change" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LQi-b9-HG1">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2993,7 +3095,7 @@
                                 </connections>
                             </button>
                             <pathControl verticalHuggingPriority="750" id="DKn-CJ-goK" userLabel="Xcode Path Display">
-                                <rect key="frame" x="167" y="12" width="380" height="20"/>
+                                <rect key="frame" x="170" y="15" width="380" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" alignment="left" pathStyle="navigationBar" id="Vm7-rn-TSL">
                                     <font key="font" metaFont="smallSystem"/>
@@ -3015,6 +3117,7 @@
                 </box>
             </subviews>
             <accessibility description="iOSSettingsView"/>
+            <point key="canvasLocation" x="181" y="-500.5"/>
         </customView>
         <customView id="lfV-Jy-qRr" userLabel="General Settings View">
             <rect key="frame" x="0.0" y="0.0" width="417" height="520"/>

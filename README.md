@@ -98,7 +98,7 @@ To install:
  * **Backend Retries**: How many times to retry launching Instruments before reporting that it crashed or timed out.
  * **Instruments Launch Timeout**: How long in ms to wait for Instruments to launch.
  * **Trace Template Path**: `.tracetemplate` file to use with Instruments.
- * **Choose Button**: Used to choose the trace template path.
+ * **Trace Directory**: Absolute path to the directory used to save iOS Instruments traces.
  * **Xcode Path**: Path to Xcode application.
 
 ### Preference Guide
