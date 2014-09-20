@@ -214,6 +214,32 @@
     }
 }
 
+- (IBAction)chooseiOSTraceDirectory:(id)sender
+{
+	NSString *selectedPath = self.model.iOS.traceDirectory;
+	NSString *firstCharacter = ([selectedPath length] > 0) ? [selectedPath substringWithRange:NSMakeRange(0, 1)] : nil;
+	
+	NSOpenPanel *panel = [NSOpenPanel openPanel];
+	panel.showsHiddenFiles = YES;
+	panel.canChooseDirectories = YES;
+	panel.canChooseFiles = NO;
+	panel.prompt = @"Select Trace Directory";
+	
+	if (selectedPath == nil || [selectedPath length] < 1 || [selectedPath isEqualToString:@"/"] || !([firstCharacter isEqualToString:@"/"] || [firstCharacter isEqualToString:@"~"]))
+	{
+		panel.directoryURL = [NSURL fileURLWithPath:NSHomeDirectory()];
+	}
+	else
+	{
+		panel.directoryURL = [NSURL fileURLWithPath:[selectedPath stringByExpandingTildeInPath]];
+	}
+	
+	if ([panel runModal] == NSOKButton)
+	{
+		self.model.iOS.traceDirectory = [[[panel URLs] objectAtIndex:0] path];
+	}
+}
+
 -(IBAction)clearLog:(id)sender
 {
     [[self logTextView] setString:@""];

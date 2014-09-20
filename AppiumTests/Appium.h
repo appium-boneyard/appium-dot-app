@@ -177,6 +177,7 @@ typedef enum AppiumOrientationSetting AppiumOrientationSetting;
 @property (copy) NSString *iosOrientation;
 @property (copy) NSString *iosPlatformVersion;
 @property BOOL showSimulatorLog;
+@property (copy) NSString *iosTraceDirectory;
 @property (copy) NSString *udid;
 @property BOOL useIosAppPath;
 @property BOOL useBackendRetries;
@@ -191,6 +192,7 @@ typedef enum AppiumOrientationSetting AppiumOrientationSetting;
 @property BOOL useMobileSafari;
 @property BOOL useNativeInstrumentsLibrary;
 @property BOOL useIosOrientation;
+@property BOOL useIosTraceDirectory;
 @property BOOL useUdid;
 @property (copy, readonly) NSString *xcodePath;
 

@@ -501,6 +501,12 @@ BOOL _isServerListening;
 																  withValue:[self.iOS.orientation capitalizedString]]];
 			}
 			
+			if (self.iOS.useTraceDirectory)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--trace-dir"
+																  withValue:self.iOS.traceDirectory]];
+			}
+			
 			break;
 		}
 		default:

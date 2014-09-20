@@ -102,6 +102,9 @@
 -(BOOL) showSimulatorLog { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_SHOW_SIMULATOR_LOG]; }
 -(void) setShowSimulatorLog:(BOOL)showSimulatorLog { [DEFAULTS setBool:showSimulatorLog forKey:APPIUM_PLIST_IOS_SHOW_SIMULATOR_LOG]; }
 
+- (NSString *)traceDirectory { return [DEFAULTS stringForKey:APPIUM_PLIST_IOS_TRACE_DIRECTORY]; }
+- (void)setTraceDirectory:(NSString *)traceDirectory { [DEFAULTS setValue:traceDirectory forKey:APPIUM_PLIST_IOS_TRACE_DIRECTORY]; }
+
 -(NSString*) udid { return [DEFAULTS stringForKey:APPIUM_PLIST_IOS_UDID]; }
 -(void) setUdid:(NSString *)udid { [DEFAULTS setValue:udid forKey:APPIUM_PLIST_IOS_UDID]; }
 
@@ -145,6 +148,9 @@
 
 -(BOOL) useOrientation { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_USE_ORIENTATION]; }
 -(void) setUseOrientation:(BOOL)useOrientation { [DEFAULTS setBool:useOrientation forKey:APPIUM_PLIST_IOS_USE_ORIENTATION]; }
+
+- (BOOL)useTraceDirectory { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_USE_TRACE_DIRECTORY]; }
+- (void)setUseTraceDirectory:(BOOL)useTraceDirectory { [DEFAULTS setBool:useTraceDirectory forKey:APPIUM_PLIST_IOS_USE_TRACE_DIRECTORY]; }
 
 -(BOOL) useUDID { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_USE_UDID]; }
 -(void) setUseUDID:(BOOL)useUDID { [DEFAULTS setBool:useUDID forKey:APPIUM_PLIST_IOS_USE_UDID]; }
