@@ -501,6 +501,12 @@ BOOL _isServerListening;
 																  withValue:[self.iOS.orientation capitalizedString]]];
 			}
 			
+			if (self.iOS.useTraceDirectory)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--trace-dir"
+																  withValue:self.iOS.traceDirectory]];
+			}
+			
 			break;
 		}
 		default:
@@ -558,6 +564,25 @@ BOOL _isServerListening;
     self.doctorSocket = [[SocketIO alloc] initWithDelegate:self];
     [self performSelector:@selector(connectDoctorSocketIO:) withObject:[NSNumber numberWithInt:0] afterDelay:1];
     return self.serverTask.isRunning;
+}
+
+- (void)startExternalDoctor
+{
+	NSString *doctorPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/node_modules/appium/bin/appium-doctor.js"];
+    
+	NSString *command;
+    
+	if (self.developer.useExternalNodeJSBinary)
+	{
+		command = [NSString stringWithFormat:@"'%@' '%@'", self.developer.externalNodeJSBinaryPath, doctorPath];
+	}
+	else
+	{
+		command = [NSString stringWithFormat:@"'%@%@' '%@'", [[NSBundle mainBundle] resourcePath], @"/node/bin/node", doctorPath];
+	}
+	
+	NSAppleScript *script = [[NSAppleScript alloc] initWithSource:[NSString stringWithFormat:@"tell application \"Terminal\" to do script \"%@\"\nactivate application \"Terminal\"", command]];
+	[script executeAndReturnError:nil];
 }
 
 - (void)setupServerTask:(NSString *)commandString

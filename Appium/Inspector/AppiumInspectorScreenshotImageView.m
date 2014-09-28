@@ -192,15 +192,15 @@
     // determine borders
 	if (self.image.size.width > (self.bounds.size.width * scalarMultiplier))
 	{
-		self.maxHeight = self.image.size.height * (self.bounds.size.width / self.image.size.width);
+		self.screenshotScalar = self.image.size.width > 0 ? self.bounds.size.width / self.image.size.width : .0f;
+		self.maxHeight = self.image.size.height * self.screenshotScalar;
 		self.yBorder  = (self.bounds.size.height - self.maxHeight) / 2.0f;
-		self.screenshotScalar = self.bounds.size.width / self.image.size.width;
 	}
 	else
 	{
-		self.maxWidth = self.image.size.width * (self.bounds.size.height / self.image.size.height);
+		self.screenshotScalar = self.image.size.width > 0 ? self.bounds.size.width / self.image.size.width : .0f;
+		self.maxWidth = self.image.size.width * self.screenshotScalar;
 		self.xBorder = (self.bounds.size.width - self.maxWidth) / 2.0f;
-		self.screenshotScalar = self.bounds.size.height / self.image.size.height;
 	}
 	
 	if (scalarMultiplier != 0.0f)

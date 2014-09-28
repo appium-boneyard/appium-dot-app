@@ -32,6 +32,7 @@
 @property NSString *orientation;
 @property NSString *platformVersion;
 @property BOOL showSimulatorLog;
+@property NSString *traceDirectory;
 @property NSString *udid;
 @property BOOL useAppPath;
 @property BOOL useBackendRetries;
@@ -46,6 +47,7 @@
 @property BOOL useMobileSafari;
 @property BOOL useNativeInstrumentsLibrary;
 @property BOOL useOrientation;
+@property BOOL useTraceDirectory;
 @property BOOL useUDID;
 @property NSString *xcodePath;
 
