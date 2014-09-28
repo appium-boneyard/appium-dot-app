@@ -15,7 +15,7 @@
 		3641B1C41922AAB600DCF95D /* AppiumRobotSettingsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3641B1C31922AAB600DCF95D /* AppiumRobotSettingsModel.m */; };
 		3641B1C91922B10400DCF95D /* AppiumDeveloperSettingsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3641B1C81922B10400DCF95D /* AppiumDeveloperSettingsModel.m */; };
 		3641B1CC1922B5AA00DCF95D /* AppiumGeneralSettingsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3641B1CB1922B5AA00DCF95D /* AppiumGeneralSettingsModel.m */; };
-		3643D93B1742912E0048F9DA /* Selenium.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 36A1A000173FFF34002717C2 /* Selenium.framework */; };
+		3643D93B1742912E0048F9DA /* Selenium.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 36A1A000173FFF34002717C2 /* Selenium.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		36442F3E19081ACA00C2AED7 /* AppiumAndroidSettingsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36442F3D19081ACA00C2AED7 /* AppiumAndroidSettingsModel.m */; };
 		36442F4319081B3A00C2AED7 /* AppiumiOSSettingsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36442F4219081B3A00C2AED7 /* AppiumiOSSettingsModel.m */; };
 		364C076816E94B1A0093011E /* AppiumMenuBarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 364C076716E94B1A0093011E /* AppiumMenuBarManager.m */; };
@@ -63,7 +63,7 @@
 		3695CAB116E3FCAE003697A9 /* AppiumInstallationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3695CAAF16E3FCAE003697A9 /* AppiumInstallationWindow.xib */; };
 		3695E3C316FD08C800AD1544 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3695E3C216FD08C800AD1544 /* QuartzCore.framework */; };
 		369ED811171DA81E000A7A4E /* MGSFragaria.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369ED810171DA81E000A7A4E /* MGSFragaria.framework */; };
-		369ED812171DA83F000A7A4E /* MGSFragaria.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 369ED810171DA81E000A7A4E /* MGSFragaria.framework */; };
+		369ED812171DA83F000A7A4E /* MGSFragaria.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 369ED810171DA81E000A7A4E /* MGSFragaria.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		36A0138B19076BDB00952D9B /* AppiumMonitorWindowPopOverButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A0138A19076BDB00952D9B /* AppiumMonitorWindowPopOverButton.m */; };
 		36A765A616F01C7C002A7D6A /* appium.icns in Resources */ = {isa = PBXBuildFile; fileRef = 36A765A516F01C7C002A7D6A /* appium.icns */; };
 		36A7C8EC17A485C9007F15AB /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A7C8EB17A485C9007F15AB /* ScriptingBridge.framework */; };
@@ -888,7 +888,7 @@
 			attributes = {
 				CLASSPREFIX = Appium;
 				LastTestingUpgradeCheck = 0510;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = Appium;
 			};
 			buildConfigurationList = 36CEB7C316E3662E00B5B100 /* Build configuration list for PBXProject "Appium" */;
@@ -926,7 +926,8 @@
 		36A1A002173FFF34002717C2 /* SeleniumTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = SeleniumTests.octest;
+			name = SeleniumTests.octest;
+			path = SeleniumTests.xctest;
 			remoteRef = 36A1A001173FFF34002717C2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
