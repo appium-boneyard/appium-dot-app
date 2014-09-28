@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6245"/>
@@ -2910,6 +2910,11 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
+                                    <binding destination="-2" name="value" keyPath="model.iOS.customTraceTemplatePath" id="PGr-3o-0Yn">
+                                        <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="-2" name="enabled3" keyPath="model.iOS.useCustomTraceTemplate" previousBinding="lVv-Wx-KLa" id="ORD-m8-XEo">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -2921,11 +2926,6 @@
                                     <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="tPY-ir-eNq">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="-2" name="value" keyPath="model.iOS.customTraceTemplatePath" id="PGr-3o-0Yn">
-                                        <dictionary key="options">
-                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -2980,13 +2980,13 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
+                                    <binding destination="-2" name="value" keyPath="model.iOS.useTraceDirectory" id="hLW-sD-qHT"/>
                                     <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="T23-r7-Crg">
                                         <dictionary key="options">
                                             <integer key="NSNullPlaceholder" value="1"/>
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.iOS.useTraceDirectory" id="hLW-sD-qHT"/>
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" id="dGY-K8-sgQ" userLabel="Trace Directory Text Field">
@@ -3007,6 +3007,11 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
+                                    <binding destination="-2" name="value" keyPath="model.iOS.traceDirectory" id="14F-8E-lTJ">
+                                        <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                        </dictionary>
+                                    </binding>
                                     <binding destination="-2" name="enabled3" keyPath="model.iOS.useTraceDirectory" previousBinding="R1H-vI-Rl1" id="N5V-HG-fkG">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -3020,11 +3025,6 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.iOS.traceDirectory" id="14F-8E-lTJ">
-                                        <dictionary key="options">
-                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
-                                        </dictionary>
-                                    </binding>
                                 </connections>
                             </textField>
                             <button verticalHuggingPriority="750" id="8p7-5h-ISV" userLabel="Choose Trace Directory Button">
@@ -3036,14 +3036,6 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="chooseiOSTraceDirectory:" target="-2" id="ZTx-SH-NW1"/>
-                                    <binding destination="-2" name="enabled2" keyPath="model.iOS.useTraceDirectory" previousBinding="Ded-vS-FF2" id="Dyg-oA-n3S">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                        </dictionary>
-                                    </binding>
                                     <binding destination="-2" name="enabled3" keyPath="model.general.useRemoteServer" previousBinding="Dyg-oA-n3S" id="Cx9-f2-kf5">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -3051,6 +3043,14 @@
                                             <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                             <integer key="NSNullPlaceholder" value="-1"/>
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="enabled2" keyPath="model.iOS.useTraceDirectory" previousBinding="Ded-vS-FF2" id="Dyg-oA-n3S">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
                                         </dictionary>
                                     </binding>
                                     <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="Ded-vS-FF2">
