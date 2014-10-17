@@ -670,7 +670,7 @@
 			isa = PBXGroup;
 			children = (
 				36A1A000173FFF34002717C2 /* Selenium.framework */,
-				36A1A002173FFF34002717C2 /* SeleniumTests.octest */,
+				36A1A002173FFF34002717C2 /* SeleniumTests.xctest */,
 				36B9018119071DEF00AE40E8 /* liblibSelenium.a */,
 			);
 			name = Products;
@@ -923,10 +923,9 @@
 			remoteRef = 36A19FFF173FFF34002717C2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		36A1A002173FFF34002717C2 /* SeleniumTests.octest */ = {
+		36A1A002173FFF34002717C2 /* SeleniumTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			name = SeleniumTests.octest;
 			path = SeleniumTests.xctest;
 			remoteRef = 36A1A001173FFF34002717C2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;

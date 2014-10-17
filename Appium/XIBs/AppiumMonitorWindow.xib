@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6245"/>
@@ -276,18 +276,6 @@
                             </scrollView>
                         </subviews>
                     </customView>
-                    <button toolTip="Clear Log" verticalHuggingPriority="750" id="158" userLabel="Clear Log Console Button">
-                        <rect key="frame" x="596" y="17" width="52" height="42"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
-                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="trash" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="159">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <accessibility description="Clear Log"/>
-                        <connections>
-                            <action selector="clearLog:" target="-2" id="163"/>
-                        </connections>
-                    </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="sBJ-AZ-FEr">
                         <rect key="frame" x="17" y="16" width="576" height="40"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -305,6 +293,18 @@
                             </binding>
                         </connections>
                     </textField>
+                    <button toolTip="Clear Log" verticalHuggingPriority="750" id="158" userLabel="Clear Log Console Button">
+                        <rect key="frame" x="596" y="15" width="52" height="42"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="trash" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="159">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <accessibility description="Clear Log"/>
+                        <connections>
+                            <action selector="clearLog:" target="-2" id="163"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <connections>
@@ -3097,9 +3097,10 @@
                             <pathControl verticalHuggingPriority="750" id="DKn-CJ-goK" userLabel="Xcode Path Display">
                                 <rect key="frame" x="170" y="15" width="380" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" alignment="left" pathStyle="navigationBar" id="Vm7-rn-TSL">
+                                <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" alignment="left" id="Vm7-rn-TSL">
                                     <font key="font" metaFont="smallSystem"/>
                                     <url key="url" string="file://localhost/Applications/"/>
+                                    <color key="backgroundColor" red="0.89803921568627454" green="0.92549019607843142" blue="0.97254901960784312" alpha="1" colorSpace="deviceRGB"/>
                                 </pathCell>
                                 <connections>
                                     <binding destination="-2" name="value" keyPath="model.iOS.xcodePath" id="moh-jV-2hK">
