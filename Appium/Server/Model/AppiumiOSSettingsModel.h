@@ -23,6 +23,7 @@
 @property NSString *customTraceTemplatePath;
 @property NSString *deviceName;
 @property BOOL fullReset;
+@property BOOL isolateSimDevice;
 @property BOOL keepArtifacts;
 @property BOOL keepKeychains;
 @property NSString *language;

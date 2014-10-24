@@ -144,6 +144,8 @@
 	<string>iPhone</string>
 	<key>iOS Full Reset</key>
 	<false/>
+	<key>iOS Isolate Sim Device</key>
+	<false/>
 	<key>iOS Keep Artifacts</key>
 	<false/>
 	<key>iOS Keep Keychains</key>

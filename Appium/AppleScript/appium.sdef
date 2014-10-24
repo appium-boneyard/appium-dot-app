@@ -443,6 +443,9 @@
 			<property name="trace directory" code="is35" type="text">
 				<cocoa key="traceDirectory"/>
 			</property>
+			<property name="isolate simulator device" code="is36" type="boolean">
+				<cocoa key="isolateSimDevice"/>
+			</property>
 		</class>
 		<class name="robot settings model" code="crsm" description="robot settings" plural="robot settings model">
 			<cocoa class="AppiumRobotSettingsModel"/>
