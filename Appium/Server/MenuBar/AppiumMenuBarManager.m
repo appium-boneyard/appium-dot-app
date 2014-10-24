@@ -18,7 +18,7 @@
     if (self) {
         _bar = [NSStatusBar systemStatusBar];
 		_item = [_bar statusItemWithLength:NSVariableStatusItemLength];
-		NSImage *iconImage = [[NSApplication sharedApplication] applicationIconImage];
+		NSImage *iconImage = [NSImage imageNamed:@"menubar-icon"];
 		NSSize newSize = [iconImage size];
 		newSize.height = 18;
 		newSize.width = 18;

@@ -507,6 +507,11 @@ BOOL _isServerListening;
 																  withValue:self.iOS.traceDirectory]];
 			}
 			
+			if (self.iOS.isolateSimDevice)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--isolate-sim-device"]];
+			}
+			
 			break;
 		}
 		default:

@@ -75,6 +75,9 @@
 -(BOOL) fullReset { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_FULL_RESET]; }
 -(void) setFullReset:(BOOL)fullReset { [DEFAULTS setBool:fullReset forKey:APPIUM_PLIST_IOS_FULL_RESET]; }
 
+-(BOOL) isolateSimDevice { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_ISOLATE_SIM_DEVICE]; }
+-(void) setIsolateSimDevice:(BOOL)isolateSimDevice { [DEFAULTS setBool:isolateSimDevice forKey:APPIUM_PLIST_IOS_ISOLATE_SIM_DEVICE]; }
+
 -(BOOL) keepArtifacts { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_KEEP_ARTIFACTS]; }
 -(void) setKeepArtifacts:(BOOL)keepArtifacts { [DEFAULTS setBool:keepArtifacts forKey:APPIUM_PLIST_IOS_KEEP_ARTIFACTS]; }
 

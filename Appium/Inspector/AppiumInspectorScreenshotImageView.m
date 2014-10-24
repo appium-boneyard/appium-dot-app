@@ -35,7 +35,6 @@
 
 -(id) initWithFrame:(NSRect)frame
 {
-    self = [self init];
     self = [super initWithFrame:frame];
     if (self) {
 		self.rotation = 0;

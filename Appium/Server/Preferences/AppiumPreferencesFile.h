@@ -74,6 +74,7 @@
 #define APPIUM_PLIST_IOS_CUSTOM_TRACE_TEMPLATE_PATH @"iOS Custom Trace Template Path"
 #define APPIUM_PLIST_IOS_DEVICE_NAME @"iOS Device Name"
 #define APPIUM_PLIST_IOS_FULL_RESET @"iOS Full Reset"
+#define APPIUM_PLIST_IOS_ISOLATE_SIM_DEVICE @"iOS Isolate Sim Device"
 #define APPIUM_PLIST_IOS_KEEP_ARTIFACTS @"iOS Keep Artifacts"
 #define APPIUM_PLIST_IOS_KEEP_KEYCHAINS @"iOS Keep Keychains"
 #define APPIUM_PLIST_IOS_LANGUAGE @"iOS Language"
