@@ -176,6 +176,26 @@
             // landscape 4" iphone with retina display
             scalarMultiplier = 2.0f;
         }
+		else if (self.image.size.width == 750 && self.image.size.height == 1334)
+		{
+			// portrait iphone 6
+			scalarMultiplier = 2.0f;
+		}
+		else if (self.image.size.width == 1334 && self.image.size.height == 750)
+		{
+			// landscape iphone 6
+			scalarMultiplier = 2.0f;
+		}
+		else if (self.image.size.width == 1242 && self.image.size.height == 2208)
+		{
+			// portrait iphone 6 plus
+			scalarMultiplier = 3.0f;
+		}
+		else if (self.image.size.width == 2208 && self.image.size.height == 1242)
+		{
+			// landscape iphone 6 plus
+			scalarMultiplier = 3.0f;
+		}
         else if (self.image.size.width == 1536 && self.image.size.height == 2048)
         {
             // portrait ipad with retina display

@@ -29,8 +29,15 @@
 }
 
 -(NSArray*) allDevices {
-	return [NSArray arrayWithObjects:@"iPhone", @"iPhone Retina (3.5-inch)", @"iPhone Retina (4-inch)", @"iPhone Retina (4-inch 64-bit)",
-			@"iPad", @"iPad Retina", @"iPad Retina (64-bit)", nil];
+	return @[ @"iPhone 4s"
+			, @"iPhone 5"
+			, @"iPhone 5s"
+			, @"iPhone 6"
+			, @"iPhone 6 Plus"
+			, @"iPad 2"
+			, @"iPad Retina"
+			, @"iPad Air"
+			];
 }
 
 -(NSArray*) allLanguages {
