@@ -2691,12 +2691,12 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
+                                    <binding destination="-2" name="value" keyPath="model.iOS.isolateSimDevice" id="Epy-1s-KP9"/>
                                     <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="LJl-fR-0Ph">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.iOS.isolateSimDevice" id="Epy-1s-KP9"/>
                                 </connections>
                             </button>
                             <button id="Hx4-mU-8yE" userLabel="No Reset Check Box">
