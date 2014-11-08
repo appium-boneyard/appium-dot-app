@@ -540,6 +540,12 @@ BOOL _isServerListening;
 	
 	[self setupServerTask:command];
 	
+	// Log command
+	NSAttributedString *logString = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"Launching Appium with command: %@\n\n", command]
+																	attributes:@{NSFontAttributeName: [NSFont fontWithName:@"Menlo" size:12],
+																				 NSForegroundColorAttributeName: [NSColor whiteColor]}];
+	[[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] appendToLog:logString];
+	
 	// launch
     [self.serverTask launch];
     [self setIsServerRunning:self.serverTask.isRunning];
