@@ -307,6 +307,16 @@
     [self performSelectorInBackground:@selector(populateDOM) withObject:nil];
 }
 
+- (IBAction)copyXML:(id)sender
+{
+	if (_lastPageSource != nil)
+	{
+		NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+		[pasteboard clearContents];
+		[pasteboard setString:_lastPageSource forType:NSStringPboardType];
+	}
+}
+
 -(void)refreshPageSource:(NSError **)error
 {
 	_lastPageSource = [self.driver pageSource];
