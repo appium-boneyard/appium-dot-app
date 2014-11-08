@@ -48,7 +48,7 @@
 -(IBAction) clearLog:(id)sender;
 -(IBAction) launchButtonClicked:(id)sender;
 
-
+- (void)appendToLog:(NSAttributedString *)string;
 -(void) closeAllPopovers;
 
 @end
