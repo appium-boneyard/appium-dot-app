@@ -56,5 +56,6 @@
 -(void) updateDetailsDisplay;
 -(void) handleClickAt:(NSPoint)windowPoint seleniumPoint:(NSPoint)seleniumPoint;
 -(IBAction) refresh:(id)sender;
+- (IBAction)copyXML:(id)sender;
 
 @end
