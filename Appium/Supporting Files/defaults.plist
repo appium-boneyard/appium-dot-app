@@ -141,7 +141,7 @@
 	<key>iOS Custom Trace Template Path</key>
 	<string></string>
 	<key>iOS Device Name</key>
-	<string>iPhone</string>
+	<string>iPhone 6</string>
 	<key>iOS Full Reset</key>
 	<false/>
 	<key>iOS Isolate Sim Device</key>
@@ -161,7 +161,7 @@
 	<key>iOS Orientation</key>
 	<string></string>
 	<key>iOS Platform Version</key>
-	<string>7.1</string>
+	<string>8.1</string>
 	<key>iOS Show Simulator Log</key>
 	<true/>
 	<key>iOS Trace Directory</key>
