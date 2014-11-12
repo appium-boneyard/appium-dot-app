@@ -55,7 +55,7 @@
 }
 
 -(NSArray*) allPlatformVersions {
-	return [NSArray arrayWithObjects:@"7.1.1", @"7.1", @"7.0.6", @"7.0.5", @"7.0.4", @"7.0.3", @"7.0.2", @"7.0.1", @"7.0", @"6.1", @"6.0", nil];
+	return [NSArray arrayWithObjects:@"8.1", @"8.0", @"7.1.1", @"7.1", @"7.0.6", @"7.0.5", @"7.0.4", @"7.0.3", @"7.0.2", @"7.0.1", @"7.0", @"6.1", @"6.0", nil];
 }
 
 -(NSString*) appPath { return [DEFAULTS stringForKey:APPIUM_PLIST_IOS_APP_PATH]; }
