@@ -297,24 +297,27 @@
 	{
 		return image;
 	}
-	else
-	{
-		NSSize beforeSize = [image size];
-		NSSize afterSize = degrees == 90 || degrees == 270 ? NSMakeSize(beforeSize.height, beforeSize.width) : beforeSize;
-		NSImage* newImage = [[NSImage alloc] initWithSize:afterSize];
-		NSAffineTransform* trans = [NSAffineTransform transform];
 
-		[newImage lockFocus];
-		[trans translateXBy:afterSize.width * 0.5 yBy:afterSize.height * 0.5];
-		[trans rotateByDegrees:degrees];
-		[trans translateXBy:-beforeSize.width * 0.5 yBy:-beforeSize.height * 0.5];
-		[trans set];
-		[image drawAtPoint:NSZeroPoint
-				  fromRect:NSMakeRect(0, 0, beforeSize.width, beforeSize.height)
-				 operation:NSCompositeCopy
-				  fraction:1.0];
-		[newImage unlockFocus];
-		return newImage;
-	}
+	NSSize beforeSize = [image size];
+	NSSize afterSize = degrees == 90 || degrees == 270 ? NSMakeSize(beforeSize.height, beforeSize.width) : beforeSize;
+
+	NSImage* newImage = [[NSImage alloc] initWithSize:afterSize];
+
+	NSAffineTransform* trans = [NSAffineTransform transform];
+	[trans rotateByDegrees:degrees];
+
+	NSAffineTransform *center = [NSAffineTransform transform];
+	[center translateXBy:afterSize.width / 2.0 yBy:afterSize.height / 2.0];
+
+	[trans appendTransform:center];
+
+	[newImage lockFocus];
+	[trans concat];
+	NSRect rect = NSMakeRect(0, 0, beforeSize.width, beforeSize.height);
+	NSPoint corner = NSMakePoint(-beforeSize.width / 2., -beforeSize.height / 2.0);
+	[image drawAtPoint:corner fromRect:rect operation:NSCompositeCopy fraction:1.0];
+	[newImage unlockFocus];
+
+	return newImage;
 }
 @end
