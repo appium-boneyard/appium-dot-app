@@ -29,7 +29,8 @@
 }
 
 -(NSArray*) allDevices {
-	return @[ @"iPhone 4s"
+	return [self getDevices];
+	/*return @[ @"iPhone 4s"
 			, @"iPhone 5"
 			, @"iPhone 5s"
 			, @"iPhone 6"
@@ -37,7 +38,7 @@
 			, @"iPad 2"
 			, @"iPad Retina"
 			, @"iPad Air"
-			];
+			];*/
 }
 
 -(NSArray*) allLanguages {
@@ -195,6 +196,25 @@
 	
 	// update xcode path
 	NSLog(@"New Xcode Path: %@", self.xcodePath);
+}
+
+-(NSArray*) getDevices {
+	//@try
+	//{
+		NSMutableArray *devices = [NSMutableArray new];
+		NSString *deviceListString = [Utility runTaskWithBinary:@"/usr/bin/xcrun" arguments:@[@"simctl", @"list", @"devices"]];
+		for (NSString* line in [deviceListString componentsSeparatedByString:@"\n"]) {
+			if ([line hasPrefix:@"    "]) {
+				NSArray *deviceNamePieces = [[line stringByReplacingOccurrencesOfString:@"    " withString:@""] componentsSeparatedByString:@")"];
+				NSString *deviceName = [NSString stringWithFormat:@"%@)", [deviceNamePieces objectAtIndex:0]];
+				[devices addObject:deviceName];
+			}
+		}
+		return devices;
+	//}
+	//@catch (NSException *exception) {
+	//	return @[];
+	//}
 }
 
 @end
