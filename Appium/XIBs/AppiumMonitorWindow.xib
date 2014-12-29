@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
@@ -2309,7 +2309,7 @@
                                 </connections>
                             </button>
                             <comboBox verticalHuggingPriority="750" id="518" userLabel="Device Combo Box">
-                                <rect key="frame" x="124" y="117" width="172" height="26"/>
+                                <rect key="frame" x="124" y="117" width="425" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="521">
                                     <font key="font" metaFont="system"/>
@@ -2339,17 +2339,8 @@
                                     </binding>
                                 </connections>
                             </comboBox>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="SlS-Zv-uSL" userLabel="Platform Version Label">
-                                <rect key="frame" x="335" y="120" width="109" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Platform Version" id="32p-I7-7Ri">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <comboBox verticalHuggingPriority="750" id="GM3-ic-zvI" userLabel="Platform Version Combo Box">
-                                <rect key="frame" x="463" y="118" width="86" height="26"/>
+                                <rect key="frame" x="124" y="89" width="63" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="txh-uI-qqH">
                                     <font key="font" metaFont="system"/>
@@ -2366,203 +2357,8 @@
                                     </binding>
                                 </connections>
                             </comboBox>
-                            <button id="cbO-vc-xMG" userLabel="Force Orientation Check Box">
-                                <rect key="frame" x="16" y="92" width="132" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Force Orientation" bezelStyle="regularSquare" imagePosition="left" inset="2" id="gOF-wi-qoz">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="NKJ-Kj-W7B" id="xtT-S9-xLf">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="-2" name="value" keyPath="model.iOS.useOrientation" id="6BM-9u-ZOS"/>
-                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="NKJ-Kj-W7B">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
-                            </button>
-                            <comboBox verticalHuggingPriority="750" id="gQA-Qf-nak" userLabel="Orientation ComboBox">
-                                <rect key="frame" x="162" y="89" width="134" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="ok5-Ng-WiF">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    <objectValues>
-                                        <string>Portrait</string>
-                                        <string>Landscape</string>
-                                    </objectValues>
-                                </comboBoxCell>
-                                <connections>
-                                    <binding destination="-2" name="enabled3" keyPath="model.general.useRemoteServer" previousBinding="RxT-dT-LyM" id="E3f-44-ftM">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="-2" name="value" keyPath="model.iOS.orientation" id="16G-5d-X6X"/>
-                                    <binding destination="-2" name="enabled" keyPath="model.iOS.useOrientation" id="M91-tD-FlR"/>
-                                    <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="M91-tD-FlR" id="RxT-dT-LyM">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
-                            </comboBox>
-                            <button id="38E-A1-YPv" userLabel="Force Language Check Box">
-                                <rect key="frame" x="317" y="92" width="122" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Force Language" bezelStyle="regularSquare" imagePosition="left" inset="2" id="N61-Bd-hLT">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <binding destination="-2" name="value" keyPath="model.iOS.useLanguage" id="aux-w7-5er"/>
-                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="ZpF-RI-My3">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
-                            </button>
-                            <comboBox verticalHuggingPriority="750" id="Zo1-wQ-e7P" userLabel="Language Combo Box">
-                                <rect key="frame" x="463" y="90" width="86" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="AZT-MC-8GE">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </comboBoxCell>
-                                <connections>
-                                    <binding destination="-2" name="contentValues" keyPath="model.iOS.allLanguages" id="YrY-si-YXx"/>
-                                    <binding destination="-2" name="value" keyPath="model.iOS.language" previousBinding="YrY-si-YXx" id="xxD-7H-2KV"/>
-                                    <binding destination="-2" name="enabled" keyPath="model.iOS.useLanguage" id="XpG-wb-hr4"/>
-                                    <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="XpG-wb-hr4" id="lAQ-8x-UNY">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
-                            </comboBox>
-                            <button id="ONF-i1-g3h" userLabel="Force Calendar Check Box">
-                                <rect key="frame" x="16" y="65" width="117" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Force Calendar" bezelStyle="regularSquare" imagePosition="left" inset="2" id="9Vo-8F-LK4">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="FHr-fK-88H" id="pF2-Ol-ndg">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="-2" name="value" keyPath="model.iOS.useCalendar" id="WFh-Bx-98t"/>
-                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="FHr-fK-88H">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
-                            </button>
-                            <comboBox verticalHuggingPriority="750" id="UXo-16-zMv" userLabel="Calendar Combo Box">
-                                <rect key="frame" x="148" y="62" width="148" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="feP-Ng-E3S">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </comboBoxCell>
-                                <connections>
-                                    <binding destination="-2" name="enabled3" keyPath="model.general.useRemoteServer" previousBinding="lWr-pX-cPq" id="mTR-Pq-glt">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="-2" name="contentValues" keyPath="model.iOS.allCalendarFormats" id="8Pt-3G-yl9"/>
-                                    <binding destination="-2" name="value" keyPath="model.iOS.calendarFormat" previousBinding="8Pt-3G-yl9" id="czW-ZP-AZI"/>
-                                    <binding destination="-2" name="enabled" keyPath="model.iOS.useCalendar" id="CGH-ec-h5w"/>
-                                    <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="CGH-ec-h5w" id="lWr-pX-cPq">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
-                            </comboBox>
-                            <button id="pqV-nt-tTf" userLabel="Force Locale Check Box">
-                                <rect key="frame" x="317" y="65" width="100" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Force Locale" bezelStyle="regularSquare" imagePosition="left" inset="2" id="uDw-iX-83q">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <binding destination="-2" name="value" keyPath="model.iOS.useLocale" id="w79-t8-WiN"/>
-                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="89x-1Y-Gdu">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
-                            </button>
-                            <comboBox verticalHuggingPriority="750" id="970-E2-deZ" userLabel="Locale Combo Box">
-                                <rect key="frame" x="463" y="61" width="86" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="zfy-4L-2wr">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </comboBoxCell>
-                                <connections>
-                                    <binding destination="-2" name="contentValues" keyPath="model.iOS.allLocales" id="npg-5B-ZAT"/>
-                                    <binding destination="-2" name="value" keyPath="model.iOS.locale" previousBinding="npg-5B-ZAT" id="OLx-SI-eiM"/>
-                                    <binding destination="-2" name="enabled" keyPath="model.iOS.useLocale" id="eCl-oO-gXl"/>
-                                    <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="eCl-oO-gXl" id="cRO-vY-wt4">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
-                            </comboBox>
                             <button id="1129" userLabel="UDID Check Box">
-                                <rect key="frame" x="16" y="37" width="55" height="18"/>
+                                <rect key="frame" x="194" y="93" width="55" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="UDID" bezelStyle="regularSquare" imagePosition="left" inset="2" id="1130">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -2587,7 +2383,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" id="1156" userLabel="UDID Text Field">
-                                <rect key="frame" x="77" y="36" width="469" height="22"/>
+                                <rect key="frame" x="255" y="93" width="291" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="1157">
                                     <font key="font" metaFont="system"/>
@@ -2624,6 +2420,201 @@
                                     </binding>
                                 </connections>
                             </textField>
+                            <button id="cbO-vc-xMG" userLabel="Force Orientation Check Box">
+                                <rect key="frame" x="16" y="67" width="132" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Force Orientation" bezelStyle="regularSquare" imagePosition="left" inset="2" id="gOF-wi-qoz">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="NKJ-Kj-W7B" id="xtT-S9-xLf">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="value" keyPath="model.iOS.useOrientation" id="6BM-9u-ZOS"/>
+                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="NKJ-Kj-W7B">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </button>
+                            <comboBox verticalHuggingPriority="750" id="gQA-Qf-nak" userLabel="Orientation ComboBox">
+                                <rect key="frame" x="162" y="64" width="134" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="ok5-Ng-WiF">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <objectValues>
+                                        <string>Portrait</string>
+                                        <string>Landscape</string>
+                                    </objectValues>
+                                </comboBoxCell>
+                                <connections>
+                                    <binding destination="-2" name="enabled3" keyPath="model.general.useRemoteServer" previousBinding="RxT-dT-LyM" id="E3f-44-ftM">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="value" keyPath="model.iOS.orientation" id="16G-5d-X6X"/>
+                                    <binding destination="-2" name="enabled" keyPath="model.iOS.useOrientation" id="M91-tD-FlR"/>
+                                    <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="M91-tD-FlR" id="RxT-dT-LyM">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </comboBox>
+                            <button id="38E-A1-YPv" userLabel="Force Language Check Box">
+                                <rect key="frame" x="317" y="67" width="122" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Force Language" bezelStyle="regularSquare" imagePosition="left" inset="2" id="N61-Bd-hLT">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="model.iOS.useLanguage" id="aux-w7-5er"/>
+                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="ZpF-RI-My3">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </button>
+                            <comboBox verticalHuggingPriority="750" id="Zo1-wQ-e7P" userLabel="Language Combo Box">
+                                <rect key="frame" x="463" y="65" width="86" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="AZT-MC-8GE">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </comboBoxCell>
+                                <connections>
+                                    <binding destination="-2" name="contentValues" keyPath="model.iOS.allLanguages" id="YrY-si-YXx"/>
+                                    <binding destination="-2" name="value" keyPath="model.iOS.language" previousBinding="YrY-si-YXx" id="xxD-7H-2KV"/>
+                                    <binding destination="-2" name="enabled" keyPath="model.iOS.useLanguage" id="XpG-wb-hr4"/>
+                                    <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="XpG-wb-hr4" id="lAQ-8x-UNY">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </comboBox>
+                            <button id="ONF-i1-g3h" userLabel="Force Calendar Check Box">
+                                <rect key="frame" x="16" y="40" width="117" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Force Calendar" bezelStyle="regularSquare" imagePosition="left" inset="2" id="9Vo-8F-LK4">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="FHr-fK-88H" id="pF2-Ol-ndg">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="value" keyPath="model.iOS.useCalendar" id="WFh-Bx-98t"/>
+                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="FHr-fK-88H">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </button>
+                            <comboBox verticalHuggingPriority="750" id="UXo-16-zMv" userLabel="Calendar Combo Box">
+                                <rect key="frame" x="148" y="37" width="148" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="feP-Ng-E3S">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </comboBoxCell>
+                                <connections>
+                                    <binding destination="-2" name="enabled3" keyPath="model.general.useRemoteServer" previousBinding="lWr-pX-cPq" id="mTR-Pq-glt">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="contentValues" keyPath="model.iOS.allCalendarFormats" id="8Pt-3G-yl9"/>
+                                    <binding destination="-2" name="value" keyPath="model.iOS.calendarFormat" previousBinding="8Pt-3G-yl9" id="czW-ZP-AZI"/>
+                                    <binding destination="-2" name="enabled" keyPath="model.iOS.useCalendar" id="CGH-ec-h5w"/>
+                                    <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="CGH-ec-h5w" id="lWr-pX-cPq">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </comboBox>
+                            <button id="pqV-nt-tTf" userLabel="Force Locale Check Box">
+                                <rect key="frame" x="317" y="40" width="100" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Force Locale" bezelStyle="regularSquare" imagePosition="left" inset="2" id="uDw-iX-83q">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="model.iOS.useLocale" id="w79-t8-WiN"/>
+                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="89x-1Y-Gdu">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </button>
+                            <comboBox verticalHuggingPriority="750" id="970-E2-deZ" userLabel="Locale Combo Box">
+                                <rect key="frame" x="463" y="36" width="86" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="zfy-4L-2wr">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </comboBoxCell>
+                                <connections>
+                                    <binding destination="-2" name="contentValues" keyPath="model.iOS.allLocales" id="npg-5B-ZAT"/>
+                                    <binding destination="-2" name="value" keyPath="model.iOS.locale" previousBinding="npg-5B-ZAT" id="OLx-SI-eiM"/>
+                                    <binding destination="-2" name="enabled" keyPath="model.iOS.useLocale" id="eCl-oO-gXl"/>
+                                    <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="eCl-oO-gXl" id="cRO-vY-wt4">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </comboBox>
                             <button id="jZM-n9-zG9" userLabel="Full Reset Check Box">
                                 <rect key="frame" x="16" y="12" width="83" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -2724,6 +2715,15 @@
                                     </binding>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="SlS-Zv-uSL" userLabel="Platform Version Label">
+                                <rect key="frame" x="16" y="95" width="109" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Platform Version" id="32p-I7-7Ri">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>

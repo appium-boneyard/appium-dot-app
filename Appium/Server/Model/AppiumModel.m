@@ -406,6 +406,9 @@ BOOL _isServerListening;
 #pragma mark iOS Preferences
 		case AppiumiOSPlatform:
 		{
+			[arguments addObject:[AppiumServerArgument argumentWithName:@"--platform-version" withValue:self.iOS.platformVersion]];
+			[arguments addObject:[AppiumServerArgument argumentWithName:@"--platform-name" withValue:@"iOS"]];
+			
 			if (self.iOS.useMobileSafari)
 			{
 				[arguments addObject:[AppiumServerArgument argumentWithName:@"--safari"]];
