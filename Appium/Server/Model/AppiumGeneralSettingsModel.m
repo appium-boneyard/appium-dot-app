@@ -38,6 +38,9 @@
 -(NSNumber*) commandTimeout { return [NSNumber numberWithInt:[[DEFAULTS stringForKey:APPIUM_PLIST_NEW_COMMAND_TIMEOUT] intValue]]; }
 -(void) setCommandTimeout:(NSNumber *)commandTimeout { [[NSUserDefaults standardUserDefaults] setValue:commandTimeout forKey:APPIUM_PLIST_NEW_COMMAND_TIMEOUT]; }
 
+-(NSString*) environmentVariables { return [DEFAULTS stringForKey:APPIUM_PLIST_ENVIRONMENT_VARIABLES]; }
+-(void) setEnvironmentVariables:(NSString *)environmentVariables { [DEFAULTS setValue:environmentVariables forKey:APPIUM_PLIST_ENVIRONMENT_VARIABLES]; }
+
 -(BOOL) killProcessesUsingPort { return [DEFAULTS boolForKey:APPIUM_PLIST_KILL_PROCESSES_USING_PORT]; }
 -(void) setKillProcessesUsingPort:(BOOL)killProcessesUsingPort { [DEFAULTS setBool:killProcessesUsingPort forKey:APPIUM_PLIST_KILL_PROCESSES_USING_PORT];}
 

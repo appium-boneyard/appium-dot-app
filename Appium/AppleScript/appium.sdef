@@ -332,6 +332,9 @@
 			<property name="callback port" code="gs23" type="number">
 				<cocoa key="callbackPort"/>
 			</property>
+			<property name="environment variables" code="gs24" type="text">
+				<cocoa key="environmentVariables"/>
+			</property>
 		</class>
 		<class name="inspector window controller" code="caiw" description="inspector window">
 			<cocoa class="AppiumInspectorWindowController"/>

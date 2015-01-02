@@ -10,8 +10,11 @@
 
 @interface AppiumGeneralSettingsModel : NSObject
 
+@property NSString *callbackAddress;
+@property NSNumber *callbackPort;
 @property BOOL checkForUpdates;
 @property NSNumber *commandTimeout;
+@property NSString *environmentVariables;
 @property BOOL killProcessesUsingPort;
 @property BOOL logColors;
 @property NSString *logFile;
@@ -32,7 +35,5 @@
 @property BOOL useLocalTimezone;
 @property BOOL useCallbackAddress;
 @property BOOL useCallbackPort;
-@property NSString *callbackAddress;
-@property NSNumber *callbackPort;
 
 @end

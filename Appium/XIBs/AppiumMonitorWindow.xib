@@ -1578,7 +1578,7 @@
                                 </connections>
                             </textField>
                             <button id="T2Y-rV-vtT" userLabel="Coverage Class Check Box">
-                                <rect key="frame" x="16" y="46" width="117" height="18"/>
+                                <rect key="frame" x="16" y="46" width="120" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Coverage Class" bezelStyle="regularSquare" imagePosition="left" inset="2" id="QmC-aa-GBj">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3146,11 +3146,11 @@
             <point key="canvasLocation" x="181" y="-500.5"/>
         </customView>
         <customView id="lfV-Jy-qRr" userLabel="General Settings View">
-            <rect key="frame" x="0.0" y="0.0" width="417" height="520"/>
+            <rect key="frame" x="0.0" y="6" width="417" height="620"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="pFP-rp-D7j" userLabel="General Settings Label">
-                    <rect key="frame" x="18" y="483" width="107" height="17"/>
+                    <rect key="frame" x="18" y="583" width="107" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="General Settings" id="Svf-QT-oNe">
                         <font key="font" metaFont="system"/>
@@ -3159,7 +3159,7 @@
                     </textFieldCell>
                 </textField>
                 <box autoresizesSubviews="NO" title="Server" borderType="line" id="ATX-v7-2MS" userLabel="Selenium Grid Configuration Box">
-                    <rect key="frame" x="17" y="179" width="383" height="296"/>
+                    <rect key="frame" x="17" y="279" width="383" height="296"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView">
                         <rect key="frame" x="1" y="1" width="381" height="280"/>
@@ -3537,7 +3537,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" id="hrK-Em-SQy" userLabel="Selenium Grid Config File Path TextField">
-                                <rect key="frame" x="18" y="71" width="344" height="22"/>
+                                <rect key="frame" x="18" y="71" width="345" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="rsW-Kl-rfl">
                                     <font key="font" metaFont="system"/>
@@ -3573,7 +3573,7 @@
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
                 <box autoresizesSubviews="NO" title="Logging" borderType="line" id="6DB-Rn-YeW" userLabel="Logging Box">
-                    <rect key="frame" x="17" y="16" width="383" height="159"/>
+                    <rect key="frame" x="17" y="116" width="383" height="159"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView">
                         <rect key="frame" x="1" y="1" width="381" height="143"/>
@@ -3793,7 +3793,36 @@
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
+                <box autoresizesSubviews="NO" title="Environment Variables" borderType="line" id="dBb-dn-yap" userLabel="Environment Variables Box">
+                    <rect key="frame" x="17" y="16" width="383" height="96"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <view key="contentView">
+                        <rect key="frame" x="1" y="1" width="381" height="80"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="l4g-qL-EMQ">
+                                <rect key="frame" x="18" y="14" width="345" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Lep-z2-h16">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="-2" name="value" keyPath="model.general.environmentVariables" id="oTK-Qi-jzO">
+                                        <dictionary key="options">
+                                            <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </textField>
+                        </subviews>
+                    </view>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </box>
             </subviews>
+            <point key="canvasLocation" x="-167.5" y="322"/>
         </customView>
         <customView id="2rW-W8-vOb" userLabel="Developer Settings View">
             <rect key="frame" x="0.0" y="0.0" width="600" height="252"/>
@@ -3834,7 +3863,7 @@
                     </connections>
                 </button>
                 <button id="S5Z-KB-RSL" userLabel="Use External NodeJS Binary Check Box">
-                    <rect key="frame" x="18" y="151" width="192" height="18"/>
+                    <rect key="frame" x="18" y="151" width="197" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Use External NodeJS Binary" bezelStyle="regularSquare" imagePosition="left" inset="2" id="pER-cD-Id2">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3972,7 +4001,7 @@
                     </connections>
                 </textField>
                 <button id="vRI-mA-xaR" userLabel="NodeJS Debug Port Check Box">
-                    <rect key="frame" x="18" y="87" width="141" height="18"/>
+                    <rect key="frame" x="18" y="87" width="151" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="NodeJS Debug Port" bezelStyle="regularSquare" imagePosition="left" inset="2" id="aQV-8n-Z7d">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>

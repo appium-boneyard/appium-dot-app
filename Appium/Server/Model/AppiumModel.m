@@ -250,11 +250,6 @@ BOOL _isServerListening;
 			[arguments addObject:[AppiumServerArgument argumentWithName:@"--platform-version"
 															  withValue:self.android.platformVersionNumber]];
 			
-			if (self.android.useCustomSDKPath)
-			{
-				[command insertString:[NSString stringWithFormat:@"export ANDROID_HOME=\"%@\"; ", self.android.customSDKPath] atIndex:0];
-			}
-			
 			if (self.android.useAppPath || self.android.useBrowser)
 			{
 				[arguments addObject:[AppiumServerArgument argumentWithName:@"--app"
@@ -541,6 +536,16 @@ BOOL _isServerListening;
 		[command appendFormat:@" %@", self.developer.customFlags];
 	}
 	
+	// Add environment variables
+	if (self.isAndroid && self.android.useCustomSDKPath)
+	{
+		[command insertString:[NSString stringWithFormat:@"export ANDROID_HOME=\"%@\"; ", self.android.customSDKPath] atIndex:0];
+	}
+	NSDictionary *environmentVariables = [self getEnvironmentVariables];
+	for (NSString *key in environmentVariables) {
+		[command insertString:[NSString stringWithFormat:@"export %@=\"%@\"; ", key, [environmentVariables valueForKey:key]] atIndex:0];
+	}
+	
 	[self setupServerTask:command];
 	
 	// Log command
@@ -554,6 +559,13 @@ BOOL _isServerListening;
     [self setIsServerRunning:self.serverTask.isRunning];
 	[self performSelectorInBackground:@selector(monitorListenStatus) withObject:nil];
     return self.isServerRunning;
+}
+
+- (NSDictionary*) getEnvironmentVariables {
+	NSError *error;
+	NSData *json = [self.general.environmentVariables dataUsingEncoding:NSUTF8StringEncoding];
+	NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:json options:0 error:&error];
+	return (error == nil ? jsonDict : [NSDictionary new]);
 }
 
 -(BOOL) startDoctor
