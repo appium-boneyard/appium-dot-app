@@ -1578,7 +1578,7 @@
                                 </connections>
                             </textField>
                             <button id="T2Y-rV-vtT" userLabel="Coverage Class Check Box">
-                                <rect key="frame" x="16" y="46" width="117" height="18"/>
+                                <rect key="frame" x="16" y="46" width="120" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Coverage Class" bezelStyle="regularSquare" imagePosition="left" inset="2" id="QmC-aa-GBj">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3794,6 +3794,7 @@
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
             </subviews>
+            <point key="canvasLocation" x="-167.5" y="272"/>
         </customView>
         <customView id="2rW-W8-vOb" userLabel="Developer Settings View">
             <rect key="frame" x="0.0" y="0.0" width="600" height="252"/>
@@ -3834,7 +3835,7 @@
                     </connections>
                 </button>
                 <button id="S5Z-KB-RSL" userLabel="Use External NodeJS Binary Check Box">
-                    <rect key="frame" x="18" y="151" width="192" height="18"/>
+                    <rect key="frame" x="18" y="151" width="197" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Use External NodeJS Binary" bezelStyle="regularSquare" imagePosition="left" inset="2" id="pER-cD-Id2">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3972,7 +3973,7 @@
                     </connections>
                 </textField>
                 <button id="vRI-mA-xaR" userLabel="NodeJS Debug Port Check Box">
-                    <rect key="frame" x="18" y="87" width="141" height="18"/>
+                    <rect key="frame" x="18" y="87" width="151" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="NodeJS Debug Port" bezelStyle="regularSquare" imagePosition="left" inset="2" id="aQV-8n-Z7d">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
