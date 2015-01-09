@@ -34,6 +34,7 @@
 -(NSString*) executeScript:(AppiumCodeMakerActionExecuteScript*)action;
 -(NSString*) preciseTap:(AppiumCodeMakerActionPreciseTap*)action;
 -(NSString*) sendKeys:(AppiumCodeMakerActionSendKeys*)action;
+- (NSString *)scrollTo:(AppiumCodeMakerActionScrollTo *)action;
 -(NSString*) shake:(AppiumCodeMakerActionShake*)action;
 -(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action;
 -(NSString*) tap:(AppiumCodeMakerActionTap*)action;

@@ -131,9 +131,15 @@ browser.init(desired).then(function() {\n\
 \"y\": %@ })\n", self.indentation, [args objectForKey:@"tapCount"], [args objectForKey:@"touchCount"], [args objectForKey:@"duration"], [args objectForKey:@"x"], [args objectForKey:@"y"]];
 }
 
+- (NSString *)scrollTo:(AppiumCodeMakerActionScrollTo *)action
+{
+	return [NSString stringWithFormat:@"%@.execute(\"mobile: scrollTo\", \
+{ \"element\": %@.value })\n", self.indentation, [self locatorString:action.locator]];
+}
+
 - (NSString *)sendKeys:(AppiumCodeMakerActionSendKeys *)action
 {
-	return [NSString stringWithFormat:@"%@%@.sendKeys(\"%@\")\n", self.indentation, [self locatorString:action.locator], action.keys];
+	return [NSString stringWithFormat:@"%@.%@.sendKeys(\"%@\")\n", self.indentation, [self locatorString:action.locator], action.keys];
 }
 
 - (NSString *)shake:(AppiumCodeMakerActionShake *)action
@@ -155,7 +161,7 @@ browser.init(desired).then(function() {\n\
 
 - (NSString *)tap:(AppiumCodeMakerActionTap *)action
 {
-	return [NSString stringWithFormat:@"%@%@.click()\n", self.indentation, [self locatorString:action.locator]];
+	return [NSString stringWithFormat:@"%@.%@.click()\n", self.indentation, [self locatorString:action.locator]];
 }
 
 #pragma mark - Helper Methods
@@ -176,10 +182,10 @@ browser.init(desired).then(function() {\n\
 	
 	switch (newLocator.locatorType) {
 		case APPIUM_CODE_MAKER_LOCATOR_TYPE_NAME:
-			return [NSString stringWithFormat:@".elementByName(\"%@\")", [self escapeString:newLocator.locatorString]];
+			return [NSString stringWithFormat:@"elementByName(\"%@\")", [self escapeString:newLocator.locatorString]];
 			break;
 		case APPIUM_CODE_MAKER_LOCATOR_TYPE_XPATH:
-			return [NSString stringWithFormat:@".elementByXPath(\"%@\")", [self escapeString:newLocator.locatorString]];
+			return [NSString stringWithFormat:@"elementByXPath(\"%@\")", [self escapeString:newLocator.locatorString]];
 			break;
 		default:
 			return nil;

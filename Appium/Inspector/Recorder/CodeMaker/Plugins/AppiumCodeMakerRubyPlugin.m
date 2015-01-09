@@ -138,6 +138,11 @@ Appium.promote_appium_methods Object\n\
 				[args objectForKey:@"tapCount"], [args objectForKey:@"duration"]];
 }
 
+- (NSString *)scrollTo:(AppiumCodeMakerActionScrollTo *)action
+{
+	return [NSString stringWithFormat:@"execute_script \"mobile: scrollTo\", :element => %@.ref\n", [self locatorString:action.locator]];
+}
+
 -(NSString*) sendKeys:(AppiumCodeMakerActionSendKeys*)action
 {
 	return [NSString stringWithFormat:@"%@.send_keys \"%@\"\n", [self locatorString:action.locator], [self escapeString:action.keys]];
