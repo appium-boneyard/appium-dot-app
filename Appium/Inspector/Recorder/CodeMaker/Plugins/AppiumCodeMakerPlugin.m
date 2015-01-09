@@ -43,6 +43,8 @@
             return [self executeScript:(AppiumCodeMakerActionExecuteScript*)action];
         case APPIUM_CODE_MAKER_ACTION_PRECISE_TAP:
             return [self preciseTap:(AppiumCodeMakerActionPreciseTap*)action];
+		case APPIUM_CODE_MAKER_ACTION_SCROLL_TO:
+			return [self scrollTo:(AppiumCodeMakerActionScrollTo *)action];
 		case APPIUM_CODE_MAKER_ACTION_SEND_KEYS:
 			return [self sendKeys:(AppiumCodeMakerActionSendKeys*)action];
 		case APPIUM_CODE_MAKER_ACTION_SHAKE:
@@ -83,6 +85,11 @@
 -(NSString*) preciseTap:(AppiumCodeMakerActionPreciseTap *)action
 {
     return [self commentWithString:APPIUM_CODE_MAKER_PLUGIN_METHOD_NYI_STRING];
+}
+
+-(NSString *)scrollTo:(AppiumCodeMakerActionScrollTo *)action
+{
+	return [self commentWithString:APPIUM_CODE_MAKER_PLUGIN_METHOD_NYI_STRING];
 }
 
 -(NSString*) sendKeys:(AppiumCodeMakerActionSendKeys*)action
