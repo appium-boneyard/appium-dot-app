@@ -29,6 +29,11 @@
 #pragma mark - AppiumCodeMakerPlugin Implementation
 -(NSString*) name { return @"C#"; }
 
+- (NSString *)fileExtension
+{
+	return @"cs";
+}
+
 -(NSString*) preCodeBoilerplateAndroid
 {
 	NSString *code = [NSString stringWithFormat:@"using OpenQA.Selenium;\n\

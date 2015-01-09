@@ -38,6 +38,11 @@
 	return @"node.js";
 }
 
+- (NSString *)fileExtension
+{
+	return @"js";
+}
+
 - (NSString *)preCodeBoilerplateAndroid
 {
 	return [NSString stringWithFormat:@"\"use strict\";\n\

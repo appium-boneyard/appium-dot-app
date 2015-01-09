@@ -18,6 +18,7 @@
 
 @property (readonly) AppiumModel *model;
 @property (readonly) NSString *name;
+@property (readonly) NSString *fileExtension;
 @property (readonly) NSString *preCodeBoilerplate;
 @property (readonly) NSString *preCodeBoilerplateAndroid;
 @property (readonly) NSString *preCodeBoilerplateiOS;

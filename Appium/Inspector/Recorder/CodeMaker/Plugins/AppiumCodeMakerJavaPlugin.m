@@ -30,6 +30,11 @@
 #pragma mark - AppiumCodeMakerPlugin Implementation
 -(NSString*) name { return @"Java"; }
 
+- (NSString *)fileExtension
+{
+	return @"java";
+}
+
 -(NSString*) preCodeBoilerplateAndroid
 {
 	NSString *code = [NSString stringWithFormat:@"import io.appium.java_client.AppiumDriver;\n\

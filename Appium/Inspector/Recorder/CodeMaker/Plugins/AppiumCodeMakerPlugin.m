@@ -59,6 +59,12 @@
 }
 
 #pragma mark - Abstract Methods
+
+- (NSString *)fileExtension
+{
+	return nil;
+}
+
 -(NSString*) preCodeBoilerplateAndroid { APPIUM_ABSTRACT_CLASS_ERROR }
 
 -(NSString*) preCodeBoilerplateiOS { APPIUM_ABSTRACT_CLASS_ERROR }

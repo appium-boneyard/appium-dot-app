@@ -29,6 +29,11 @@
 #pragma mark - AppiumCodeMakerPlugin Implementation
 -(NSString*) name { return @"Python"; }
 
+- (NSString *)fileExtension
+{
+	return @"py";
+}
+
 -(NSString*) preCodeBoilerplateAndroid
 {
 	NSString *code = [NSString stringWithFormat:@"from selenium.webdriver.firefox.webdriver import WebDriver\n\
