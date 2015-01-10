@@ -332,6 +332,9 @@
 			<property name="callback port" code="gs23" type="number">
 				<cocoa key="callbackPort"/>
 			</property>
+			<property name="maximum log length" code="gs24" type="number">
+				<cocoa key="maxLogLength"/>
+			</property>
 		</class>
 		<class name="inspector window controller" code="caiw" description="inspector window">
 			<cocoa class="AppiumInspectorWindowController"/>

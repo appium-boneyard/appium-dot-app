@@ -118,9 +118,18 @@
 		scrollToBottom = YES;
 	}
 	
-    [[self.logTextView textStorage] beginEditing];
-    [[self.logTextView textStorage] appendAttributedString:string];
-    [[self.logTextView textStorage] endEditing];
+	NSTextStorage *textStorage = self.logTextView.textStorage;
+	
+    [textStorage beginEditing];
+    [textStorage appendAttributedString:string];
+	
+	if ([textStorage length] > self.model.maxLogLength)
+	{
+		// Remove characters from the start of the log to make space
+		[textStorage deleteCharactersInRange:NSMakeRange(0, [string length])];
+	}
+	
+    [textStorage endEditing];
 	
 	if (scrollToBottom)
 	{

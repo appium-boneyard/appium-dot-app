@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="AppiumMonitorWindowController">
@@ -3146,11 +3146,11 @@
             <point key="canvasLocation" x="181" y="-500.5"/>
         </customView>
         <customView id="lfV-Jy-qRr" userLabel="General Settings View">
-            <rect key="frame" x="0.0" y="0.0" width="417" height="520"/>
+            <rect key="frame" x="0.0" y="5" width="417" height="550"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="pFP-rp-D7j" userLabel="General Settings Label">
-                    <rect key="frame" x="18" y="483" width="107" height="17"/>
+                    <rect key="frame" x="18" y="513" width="107" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="General Settings" id="Svf-QT-oNe">
                         <font key="font" metaFont="system"/>
@@ -3159,7 +3159,7 @@
                     </textFieldCell>
                 </textField>
                 <box autoresizesSubviews="NO" title="Server" borderType="line" id="ATX-v7-2MS" userLabel="Selenium Grid Configuration Box">
-                    <rect key="frame" x="17" y="179" width="383" height="296"/>
+                    <rect key="frame" x="17" y="209" width="383" height="296"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView">
                         <rect key="frame" x="1" y="1" width="381" height="280"/>
@@ -3573,12 +3573,51 @@
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
                 <box autoresizesSubviews="NO" title="Logging" borderType="line" id="6DB-Rn-YeW" userLabel="Logging Box">
-                    <rect key="frame" x="17" y="16" width="383" height="159"/>
+                    <rect key="frame" x="17" y="16" width="383" height="189"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView">
-                        <rect key="frame" x="1" y="1" width="381" height="143"/>
+                        <rect key="frame" x="1" y="1" width="381" height="173"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textField verticalHuggingPriority="750" id="Bdy-tr-GwL" userLabel="Maximum Log Length Label">
+                                <rect key="frame" x="16" y="144" width="138" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Maximum Log Length" id="fp0-TP-Oml">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" id="XAw-9B-mwV" userLabel="Maximum Log Length Text Field">
+                                <rect key="frame" x="160" y="141" width="203" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Z0I-bw-GoG">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="hhP-ph-CpR" id="aAO-rl-1fr">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="hhP-ph-CpR">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="value" keyPath="self.model.general.maxLogLength" id="dGh-7E-LZr">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">AppiumPortTransformer</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </textField>
                             <button id="Sjw-Vh-exR" userLabel="Quiet Logging Check Box">
                                 <rect key="frame" x="16" y="117" width="112" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -3680,7 +3719,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" id="Ith-xg-9Ja" userLabel="Log File Path Text Field">
-                                <rect key="frame" x="117" y="89" width="250" height="22"/>
+                                <rect key="frame" x="117" y="89" width="246" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="KsP-C6-4eY">
                                     <font key="font" metaFont="system"/>
@@ -3736,7 +3775,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" id="HRq-2J-jb3" userLabel="Webhook Address Text Field">
-                                <rect key="frame" x="158" y="62" width="209" height="22"/>
+                                <rect key="frame" x="158" y="62" width="205" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="cfD-hT-Kyz">
                                     <font key="font" metaFont="system"/>
@@ -3794,7 +3833,7 @@
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
             </subviews>
-            <point key="canvasLocation" x="-167.5" y="272"/>
+            <point key="canvasLocation" x="-167.5" y="287"/>
         </customView>
         <customView id="2rW-W8-vOb" userLabel="Developer Settings View">
             <rect key="frame" x="0.0" y="0.0" width="600" height="252"/>
