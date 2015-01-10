@@ -155,7 +155,7 @@ nil], nil]];\n", [args objectForKey:@"tapCount"], [args objectForKey:@"touchCoun
 
 -(NSString*) shake:(AppiumCodeMakerActionShake*)action
 {
-	return [NSString stringWithFormat:@"%@[wd executeScript:@\"mobile: shake\"];\n", self.indentation];
+	return [NSString stringWithFormat:@"%@[wd shakeDevice];\n", self.indentation];
 }
 
 -(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action

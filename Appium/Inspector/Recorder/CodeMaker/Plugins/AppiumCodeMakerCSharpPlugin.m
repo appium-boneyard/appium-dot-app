@@ -186,7 +186,7 @@ new Dictionary<string, double>() \
 
 -(NSString*) shake:(AppiumCodeMakerActionShake*)action
 {
-	return [NSString stringWithFormat:@"%@wd.ExecuteScript(\"mobile: shake\", null);\n", self.indentation];
+	return [NSString stringWithFormat:@"%@wd.ShakeDevice();\n", self.indentation];
 }
 
 -(NSString*) tap:(AppiumCodeMakerActionTap*)action

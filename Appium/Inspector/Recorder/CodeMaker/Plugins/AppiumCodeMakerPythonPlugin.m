@@ -173,7 +173,7 @@ try:\n", self.model.general.serverAddress, self.model.general.serverPort];
 
 -(NSString*) shake:(AppiumCodeMakerActionShake*)action
 {
-	return [NSString stringWithFormat:@"%@wd.execute_script(\"mobile: shake\", None);\n", self.indentation];
+	return [NSString stringWithFormat:@"%@wd.shake();\n", self.indentation];
 }
 
 -(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action

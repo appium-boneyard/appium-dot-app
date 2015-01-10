@@ -23,7 +23,7 @@
 -(AppiumCodeMakerActionBlock) block
 {
     return ^(SERemoteWebDriver* driver){
-        [driver executeScript:@"mobile: shake"];
+        [driver shakeDevice];
     };
 }
 
