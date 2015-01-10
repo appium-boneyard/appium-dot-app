@@ -23,6 +23,11 @@
 #pragma mark - AppiumCodeMakerPlugin Implementation
 -(NSString*) name { return @"Ruby"; }
 
+- (NSString *)fileExtension
+{
+	return @"rb";
+}
+
 -(NSString*) preCodeBoilerplateAndroid
 {
 	NSString *code = [NSString stringWithFormat:@"require 'rubygems'\n\

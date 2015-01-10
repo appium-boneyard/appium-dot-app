@@ -29,6 +29,11 @@
 #pragma mark - AppiumCodeMakerPlugin Implementation
 -(NSString*) name { return @"Objective-C"; }
 
+- (NSString *)fileExtension
+{
+	return @"m";
+}
+
 -(NSString*) preCodeBoilerplateAndroid
 {
 	NSString *code = [NSString stringWithFormat:@"#import <Selenium/SERemoteWebDriver.h>\n\

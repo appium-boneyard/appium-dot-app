@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="AppiumInspectorWindowController">
@@ -148,11 +148,11 @@
                         </connections>
                     </browser>
                     <customView id="60" userLabel="Screenshot Area View">
-                        <rect key="frame" x="847" y="47" width="360.00000043404486" height="480"/>
+                        <rect key="frame" x="847" y="47" width="360.0000002152392" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView id="43" userLabel="Screenshot Image View" customClass="AppiumInspectorScreenshotImageView">
-                                <rect key="frame" x="4.3404486405052012e-07" y="0.0" width="360" height="480"/>
+                                <rect key="frame" x="2.1523919713217765e-07" y="0.0" width="360" height="480"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="44"/>
                                 <connections>
@@ -624,7 +624,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" id="407" userLabel="Replay Button">
-                    <rect key="frame" x="481" y="200" width="75" height="19"/>
+                    <rect key="frame" x="520" y="200" width="75" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="roundRect" title="Replay" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="408">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -636,7 +636,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" id="338" userLabel="Clear Button">
-                    <rect key="frame" x="730" y="200" width="75" height="19"/>
+                    <rect key="frame" x="769" y="200" width="75" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="roundRect" title="Clear" bezelStyle="roundedRect" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="339">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -648,7 +648,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" id="555" userLabel="Undo Button">
-                    <rect key="frame" x="564" y="200" width="75" height="19"/>
+                    <rect key="frame" x="603" y="200" width="75" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="roundRect" title="Undo" bezelStyle="roundedRect" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="556">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -660,7 +660,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" id="559" userLabel="Redo Button">
-                    <rect key="frame" x="647" y="200" width="75" height="19"/>
+                    <rect key="frame" x="686" y="200" width="75" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="roundRect" title="Redo" bezelStyle="roundedRect" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="560">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -673,19 +673,22 @@
                         <action selector="redoLast:" target="357" id="562"/>
                     </connections>
                 </button>
-                <textField verticalHuggingPriority="750" id="213">
-                    <rect key="frame" x="817" y="200" width="50" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="BETA" id="214">
-                        <font key="font" metaFont="systemBold"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
                 <customView id="410">
                     <rect key="frame" x="0.0" y="0.0" width="864" height="195"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </customView>
+                <button verticalHuggingPriority="750" id="O0O-6w-c6v" userLabel="Save Button">
+                    <rect key="frame" x="437" y="200" width="75" height="19"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="roundRect" title="Save" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bfG-7F-Txy">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="cellTitle"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="save:" target="357" id="f1a-8P-xin"/>
+                        <binding destination="357" name="enabled" keyPath="codeMaker.canUndo" id="7Y2-jo-d48"/>
+                    </connections>
+                </button>
             </subviews>
         </customView>
         <viewController id="222" userLabel="Swipe Popover View Controller" customClass="AppiumCodeMakerSwipePopOverViewController">
