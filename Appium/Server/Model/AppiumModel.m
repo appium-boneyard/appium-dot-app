@@ -612,6 +612,9 @@ BOOL _isServerListening;
 		[self.serverTask setCurrentDirectoryPath:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle]resourcePath], @"node_modules/appium"]];
 	}
 	
+	// Add a cd call to the start of the command in case the .bash_profile or .bashrc changes the current directory
+	commandString = [NSString stringWithFormat:@"cd \"%@\" ; %@", self.serverTask.currentDirectoryPath, commandString];
+	
     [self.serverTask setLaunchPath:@"/bin/bash"];
     [self.serverTask setArguments: [NSArray arrayWithObjects: @"-l", @"-c", commandString, nil]];
 	
