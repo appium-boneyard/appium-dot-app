@@ -118,6 +118,8 @@
 	<string>/usr/local/bin/node</string>
 	<key>Force Scroll Log</key>
 	<false/>
+	<key>Maximum Log Length</key>
+	<integer>200000</integer>
 	<key>Inspector CodeMaker Language</key>
 	<string>Java</string>
 	<key>Inspector Shows Disabled Elements</key>

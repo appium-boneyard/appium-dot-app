@@ -132,6 +132,7 @@ typedef enum AppiumOrientationSetting AppiumOrientationSetting;
 @property (copy) NSString *logFile;
 @property (copy) NSString *logWebhook;
 @property BOOL forceScrollLog;
+@property (copy) NSNumber *maxLogLength;
 @property BOOL overrideExistingSessions;
 @property BOOL prelaunchApplication;
 @property (copy) NSString *seleniumGridConfigurationFile;

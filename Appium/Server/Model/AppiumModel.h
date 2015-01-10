@@ -40,6 +40,8 @@ typedef enum platformTypes
 @property BOOL isServerListening;
 @property AppiumPlatform platform;
 
+@property NSInteger maxLogLength;
+
 -(BOOL) killServer;
 -(BOOL) startServer;
 -(BOOL) startDoctor;

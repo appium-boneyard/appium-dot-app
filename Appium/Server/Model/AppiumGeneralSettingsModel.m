@@ -56,6 +56,9 @@
 -(BOOL) forceScrollLog { return [DEFAULTS boolForKey:APPIUM_PLIST_LOG_FORCE_SCROLL]; }
 -(void) setForceScrollLog:(BOOL)forceScrollLog { [DEFAULTS setBool:forceScrollLog forKey:APPIUM_PLIST_LOG_FORCE_SCROLL]; }
 
+- (NSNumber *)maxLogLength { return [NSNumber numberWithInteger:[DEFAULTS integerForKey:APPIUM_PLIST_MAXIMUM_LOG_LENGTH]]; }
+- (void)setMaxLogLength:(NSNumber *)maxLogLength { [DEFAULTS setInteger:[maxLogLength integerValue] forKey:APPIUM_PLIST_MAXIMUM_LOG_LENGTH]; }
+
 -(BOOL) overrideExistingSessions { return [DEFAULTS boolForKey:APPIUM_PLIST_OVERRIDE_EXISTING_SESSIONS]; }
 -(void) setOverrideExistingSessions:(BOOL)overrideExistingSessions { [DEFAULTS setBool:overrideExistingSessions forKey:APPIUM_PLIST_OVERRIDE_EXISTING_SESSIONS]; }
 

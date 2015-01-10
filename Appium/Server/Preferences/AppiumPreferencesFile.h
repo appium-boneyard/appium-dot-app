@@ -106,6 +106,7 @@
 #define APPIUM_PLIST_LOG_TIMESTAMPS @"Log Timestamps"
 #define APPIUM_PLIST_LOG_WEBHOOK @"Log Webhook"
 #define APPIUM_PLIST_LOG_FORCE_SCROLL @"Force Scroll Log"
+#define APPIUM_PLIST_MAXIMUM_LOG_LENGTH @"Maximum Log Length"
 #define APPIUM_PLIST_NEW_COMMAND_TIMEOUT @"New Command Timeout"
 #define APPIUM_PLIST_NODEJS_DEBUG_PORT @"NodeJS Debug Port"
 #define APPIUM_PLIST_OVERRIDE_EXISTING_SESSIONS @"Override Existing Sessions"

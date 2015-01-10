@@ -622,6 +622,9 @@ BOOL _isServerListening;
     [self.serverTask setStandardOutput:[NSPipe pipe]];
 	[self.serverTask setStandardError:[NSPipe pipe]];
     [self.serverTask setStandardInput:[NSPipe pipe]];
+	
+	// Convert the NSNumber value to a NSInteger and keep it locally, as it is referenced every time the log is appened to
+	self.maxLogLength = [self.general.maxLogLength integerValue];
 }
 
 -(void) connectDoctorSocketIO:(NSNumber*)attemptNumber
