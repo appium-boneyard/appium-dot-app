@@ -250,11 +250,6 @@ BOOL _isServerListening;
 			[arguments addObject:[AppiumServerArgument argumentWithName:@"--platform-version"
 															  withValue:self.android.platformVersionNumber]];
 			
-			if (self.android.useCustomSDKPath)
-			{
-				[command insertString:[NSString stringWithFormat:@"export ANDROID_HOME=\"%@\"; ", self.android.customSDKPath] atIndex:0];
-			}
-			
 			if (self.android.useAppPath || self.android.useBrowser)
 			{
 				[arguments addObject:[AppiumServerArgument argumentWithName:@"--app"
@@ -539,6 +534,16 @@ BOOL _isServerListening;
 	if (self.developer.developerMode && self.developer.useCustomFlags && [self.developer.customFlags length] != 0)
 	{
 		[command appendFormat:@" %@", self.developer.customFlags];
+	}
+	
+	// Add environment variables
+	if (self.isAndroid && self.android.useCustomSDKPath)
+	{
+		[command insertString:[NSString stringWithFormat:@"export ANDROID_HOME=\"%@\"; ", self.android.customSDKPath] atIndex:0];
+	}
+	NSDictionary *environmentVariables = [self.general.environmentVariables copy];
+	for (NSString *key in environmentVariables) {
+		[command insertString:[NSString stringWithFormat:@"export %@=\"%@\"; ", key, [environmentVariables valueForKey:key]] atIndex:0];
 	}
 	
 	[self setupServerTask:command];

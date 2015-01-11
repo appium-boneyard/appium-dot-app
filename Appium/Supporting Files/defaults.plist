@@ -116,6 +116,8 @@
 	<string>/Users/me/appium</string>
 	<key>External NodeJS Binary Path</key>
 	<string>/usr/local/bin/node</string>
+	<key>Environment Variables</key>
+	<array/>
 	<key>Force Scroll Log</key>
 	<false/>
 	<key>Maximum Log Length</key>

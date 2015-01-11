@@ -55,26 +55,52 @@
 
 #pragma mark - Methods
 
-- (NSNumber*) s_StartServer: (NSScriptCommand*)command
+-(void) s_AddEnvironmentVariable:(NSScriptCommand *)command
 {
-    if (self.model.isServerRunning)
-        return [NSNumber numberWithBool:NO];
-    [[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] launchButtonClicked:nil];
-    return [NSNumber numberWithBool:YES];
-
+	NSString *parameter = [[command directParameter] stringValue];
+	NSArray *pieces = [parameter componentsSeparatedByString:@"="];
+	NSString *key = [pieces objectAtIndex:0];
+	NSString *value = @"";
+	for (int i=1; i < pieces.count; i++) {
+		if (i > 1) {
+			value = [value stringByAppendingString:@"="];
+		}
+		value = [value stringByAppendingString:[pieces objectAtIndex:i]];
+	}
+	NSArray *envVars = ((AppiumAppDelegate*)[[NSApplication sharedApplication] delegate]).model.general.environmentVariables;
+	[((AppiumAppDelegate*)[[NSApplication sharedApplication] delegate]).model.general setEnvironmentVariables:[envVars arrayByAddingObject:@{@"key":key, @"value":value}]];
 }
 
-- (NSNumber*) s_StopServer: (NSScriptCommand*)command
+-(void) s_ClearEnvironmentVariables:(NSScriptCommand *)command
 {
-    if (!self.model.isServerRunning)
-        return [NSNumber numberWithBool:NO];
-    [[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] launchButtonClicked:nil];
-    return [NSNumber numberWithBool:YES];
+	[((AppiumAppDelegate*)[[NSApplication sharedApplication] delegate]).model.general setEnvironmentVariables:@[]];
 }
 
 -(void) s_ClearLog: (NSScriptCommand*)command
 {
 	[[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] clearLog:nil];
+}
+
+-(void) s_ResetPreferences:(NSScriptCommand *)command
+{
+	[self.model reset];
+}
+
+- (NSNumber*) s_StartServer: (NSScriptCommand*)command
+{
+	if (self.model.isServerRunning)
+		return [NSNumber numberWithBool:NO];
+	[[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] launchButtonClicked:nil];
+	return [NSNumber numberWithBool:YES];
+	
+}
+
+- (NSNumber*) s_StopServer: (NSScriptCommand*)command
+{
+	if (!self.model.isServerRunning)
+		return [NSNumber numberWithBool:NO];
+	[[(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] mainWindowController] launchButtonClicked:nil];
+	return [NSNumber numberWithBool:YES];
 }
 
 -(void) s_UsePlatform:(NSScriptCommand *)command
@@ -88,11 +114,6 @@
 	{
 		[self.model setPlatform:AppiumiOSPlatform];
 	}
-}
-
--(void) s_ResetPreferences:(NSScriptCommand *)command
-{
-	[self.model reset];
 }
 
 @end
