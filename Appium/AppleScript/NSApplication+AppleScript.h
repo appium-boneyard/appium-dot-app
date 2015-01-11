@@ -30,6 +30,8 @@
 @property (readonly) BOOL s_IsServerListening;
 
 #pragma mark - Methods
+-(void) s_addEnvironmentVariable: (NSScriptCommand*)command;
+-(void) s_ClearEnvironmentVariables: (NSScriptCommand*)command;
 -(void) s_ClearLog: (NSScriptCommand*)command;
 -(NSNumber*) s_StartServer: (NSScriptCommand*)command;
 -(NSNumber*) s_StopServer: (NSScriptCommand*)command;

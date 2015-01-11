@@ -117,7 +117,7 @@
 	<key>External NodeJS Binary Path</key>
 	<string>/usr/local/bin/node</string>
 	<key>Environment Variables</key>
-	<string>{ &quot;APPIUM_VAR1&quot; : &quot;Value 1&quot;, &quot;APPIUM_VAR2&quot; : &quot;Value 2&quot; }</string>
+	<array/>
 	<key>Force Scroll Log</key>
 	<false/>
 	<key>Maximum Log Length</key>

@@ -541,7 +541,7 @@ BOOL _isServerListening;
 	{
 		[command insertString:[NSString stringWithFormat:@"export ANDROID_HOME=\"%@\"; ", self.android.customSDKPath] atIndex:0];
 	}
-	NSDictionary *environmentVariables = [self getEnvironmentVariables];
+	NSDictionary *environmentVariables = [self.general.environmentVariables copy];
 	for (NSString *key in environmentVariables) {
 		[command insertString:[NSString stringWithFormat:@"export %@=\"%@\"; ", key, [environmentVariables valueForKey:key]] atIndex:0];
 	}
@@ -559,13 +559,6 @@ BOOL _isServerListening;
     [self setIsServerRunning:self.serverTask.isRunning];
 	[self performSelectorInBackground:@selector(monitorListenStatus) withObject:nil];
     return self.isServerRunning;
-}
-
-- (NSDictionary*) getEnvironmentVariables {
-	NSError *error;
-	NSData *json = [self.general.environmentVariables dataUsingEncoding:NSUTF8StringEncoding];
-	NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:json options:0 error:&error];
-	return (error == nil ? jsonDict : [NSDictionary new]);
 }
 
 -(BOOL) startDoctor

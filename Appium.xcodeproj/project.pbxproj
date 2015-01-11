@@ -110,6 +110,7 @@
 		7D3CB870198579DD004D3CA4 /* AppiumInspectorButtonImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3CB86F198579DD004D3CA4 /* AppiumInspectorButtonImageTransformer.m */; };
 		7D6B509318F522C400E25292 /* AppiumCodeMakerNodePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B509218F522C400E25292 /* AppiumCodeMakerNodePlugin.m */; };
 		7D7BE878199686F90080F21A /* AppiumServerArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7BE877199686F90080F21A /* AppiumServerArgument.m */; };
+		C71F95651A5FF2470013F230 /* AppiumMonitorWindowGeneralSettingsPopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C71F95641A5FF2470013F230 /* AppiumMonitorWindowGeneralSettingsPopOverViewController.m */; };
 		C7FFBA8D19F15CDE005B030F /* menubar-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C7FFBA8C19F15CDE005B030F /* menubar-icon.png */; };
 /* End PBXBuildFile section */
 
@@ -148,6 +149,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 36CEB7C716E3662E00B5B100;
 			remoteInfo = Appium;
+		};
+		C71F956A1A5FF2470013F230 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 363782F1172AD9F200A924F8 /* Selenium.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C77BC82D19FFC16B008979E5;
+			remoteInfo = SeleniumForiOS;
+		};
+		C71F956C1A5FF2470013F230 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 363782F1172AD9F200A924F8 /* Selenium.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C77BC83719FFC16B008979E5;
+			remoteInfo = SeleniumForiOSTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -356,6 +371,8 @@
 		7D6B509218F522C400E25292 /* AppiumCodeMakerNodePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerNodePlugin.m; path = Plugins/AppiumCodeMakerNodePlugin.m; sourceTree = "<group>"; };
 		7D7BE876199686F90080F21A /* AppiumServerArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumServerArgument.h; sourceTree = "<group>"; };
 		7D7BE877199686F90080F21A /* AppiumServerArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumServerArgument.m; sourceTree = "<group>"; };
+		C71F95631A5FF2470013F230 /* AppiumMonitorWindowGeneralSettingsPopOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumMonitorWindowGeneralSettingsPopOverViewController.h; sourceTree = "<group>"; };
+		C71F95641A5FF2470013F230 /* AppiumMonitorWindowGeneralSettingsPopOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumMonitorWindowGeneralSettingsPopOverViewController.m; sourceTree = "<group>"; };
 		C7FFBA8C19F15CDE005B030F /* menubar-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menubar-icon.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -545,6 +562,8 @@
 				36442F3D19081ACA00C2AED7 /* AppiumAndroidSettingsModel.m */,
 				3641B1C71922B10400DCF95D /* AppiumDeveloperSettingsModel.h */,
 				3641B1C81922B10400DCF95D /* AppiumDeveloperSettingsModel.m */,
+				C71F95631A5FF2470013F230 /* AppiumMonitorWindowGeneralSettingsPopOverViewController.h */,
+				C71F95641A5FF2470013F230 /* AppiumMonitorWindowGeneralSettingsPopOverViewController.m */,
 				3641B1CA1922B5AA00DCF95D /* AppiumGeneralSettingsModel.h */,
 				3641B1CB1922B5AA00DCF95D /* AppiumGeneralSettingsModel.m */,
 				36442F4119081B3A00C2AED7 /* AppiumiOSSettingsModel.h */,
@@ -675,6 +694,8 @@
 				36A1A000173FFF34002717C2 /* Selenium.framework */,
 				36A1A002173FFF34002717C2 /* SeleniumTests.xctest */,
 				36B9018119071DEF00AE40E8 /* liblibSelenium.a */,
+				C71F956B1A5FF2470013F230 /* SeleniumForiOS.framework */,
+				C71F956D1A5FF2470013F230 /* SeleniumForiOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -940,6 +961,20 @@
 			remoteRef = 36B9018019071DEF00AE40E8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		C71F956B1A5FF2470013F230 /* SeleniumForiOS.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SeleniumForiOS.framework;
+			remoteRef = C71F956A1A5FF2470013F230 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C71F956D1A5FF2470013F230 /* SeleniumForiOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SeleniumForiOSTests.xctest;
+			remoteRef = C71F956C1A5FF2470013F230 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1038,6 +1073,7 @@
 				36FF07AD171743AC009ED9E2 /* AppiumCodeMakerLocator.m in Sources */,
 				7D7BE878199686F90080F21A /* AppiumServerArgument.m in Sources */,
 				36FF07B0171747C4009ED9E2 /* AppiumCodeMakerJavaPlugin.m in Sources */,
+				C71F95651A5FF2470013F230 /* AppiumMonitorWindowGeneralSettingsPopOverViewController.m in Sources */,
 				36FF07B317174936009ED9E2 /* AppiumCodeMakerRubyPlugin.m in Sources */,
 				3618718D171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.m in Sources */,
 				36FF20D61900222400008A7D /* XMLReader.m in Sources */,

@@ -50,6 +50,12 @@
 			<property name="platform" code="aapm" type="text" access="r">
 				<cocoa key="s_Platform"/>
 			</property>
+			<responds-to command="add environment variable">
+				<cocoa method="s_AddEnvironmentVariable:"/>
+			</responds-to>
+			<responds-to command="clear environment variables">
+				<cocoa method="s_ClearEnvironmentVariables:"/>
+			</responds-to>
 			<responds-to command="clear log">
 				<cocoa method="s_ClearLog:"/>
 			</responds-to>
@@ -332,10 +338,7 @@
 			<property name="callback port" code="gs23" type="number">
 				<cocoa key="callbackPort"/>
 			</property>
-			<property name="environment variables" code="gs24" type="text">
-				<cocoa key="environmentVariables"/>
-                        </property>
-			<property name="maximum log length" code="gs25" type="number">
+			<property name="maximum log length" code="gs24" type="number">
 				<cocoa key="maxLogLength"/>
 			</property>
 		</class>
@@ -465,6 +468,10 @@
 				<cocoa key="useRobot"/>
 			</property>
 		</class>
+		<command name="add environment variable" code="appmaenv" description="adds an environment variable">
+			<direct-parameter description="variable and value seperated by an equals sign (e.g. key=value)" type="text"/>
+		</command>
+		<command name="clear environment variables" code="appmcenv" description="clears all environment variables"/>
 		<command name="clear log" code="aapmclog" description="clears the appium server log display"/>
 		<command name="start server" code="appmstas" description="starts the appium server">
 			<result description="true if the server was started" type="boolean"/>
