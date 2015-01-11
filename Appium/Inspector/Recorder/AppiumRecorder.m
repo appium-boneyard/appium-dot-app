@@ -306,4 +306,33 @@
     [self.inspector refresh:sender];
 }
 
+- (IBAction)save:(id)sender
+{
+	NSSavePanel *savePanel = [NSSavePanel savePanel];
+	NSString    *extension = self.codeMaker.activePlugin.fileExtension;
+	
+	if (extension != nil)
+	{
+		savePanel.nameFieldStringValue = [@"CodeMakerTest." stringByAppendingString:extension];
+	}
+	
+	[savePanel beginSheetModalForWindow:_windowController.window
+					  completionHandler:^(NSInteger result) {
+		if (result == NSFileHandlingPanelOKButton)
+		{
+			if (![[NSFileManager defaultManager] createFileAtPath:savePanel.URL.path
+														contents:[self.codeMaker.string dataUsingEncoding:NSUTF8StringEncoding]
+													  attributes:nil])
+			{
+				NSAlert *errorAlert = [NSAlert alertWithMessageText:@"Code Maker Save Error"
+													  defaultButton:@"OK"
+													alternateButton:nil
+														otherButton:nil
+										  informativeTextWithFormat:@"The file could not be saved. Please check your directory write permissions and ensure that the disk is not full."];
+				[errorAlert runModal];
+			}
+		}
+	}];
+}
+
 @end

@@ -29,6 +29,11 @@
 #pragma mark - AppiumCodeMakerPlugin Implementation
 -(NSString*) name { return @"C#"; }
 
+- (NSString *)fileExtension
+{
+	return @"cs";
+}
+
 -(NSString*) preCodeBoilerplateAndroid
 {
 	NSString *code = [NSString stringWithFormat:@"using OpenQA.Selenium;\n\
@@ -181,7 +186,7 @@ new Dictionary<string, double>() \
 
 -(NSString*) shake:(AppiumCodeMakerActionShake*)action
 {
-	return [NSString stringWithFormat:@"%@wd.ExecuteScript(\"mobile: shake\", null);\n", self.indentation];
+	return [NSString stringWithFormat:@"%@wd.ShakeDevice();\n", self.indentation];
 }
 
 -(NSString*) tap:(AppiumCodeMakerActionTap*)action

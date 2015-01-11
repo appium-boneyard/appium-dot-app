@@ -23,6 +23,11 @@
 #pragma mark - AppiumCodeMakerPlugin Implementation
 -(NSString*) name { return @"Ruby"; }
 
+- (NSString *)fileExtension
+{
+	return @"rb";
+}
+
 -(NSString*) preCodeBoilerplateAndroid
 {
 	NSString *code = [NSString stringWithFormat:@"require 'rubygems'\n\
@@ -136,6 +141,11 @@ Appium.promote_appium_methods Object\n\
 :duration => %@\n",
 			[args objectForKey:@"x"], [args objectForKey:@"y"], [args objectForKey:@"touchCount"],
 				[args objectForKey:@"tapCount"], [args objectForKey:@"duration"]];
+}
+
+- (NSString *)scrollTo:(AppiumCodeMakerActionScrollTo *)action
+{
+	return [NSString stringWithFormat:@"execute_script \"mobile: scrollTo\", :element => %@.ref\n", [self locatorString:action.locator]];
 }
 
 -(NSString*) sendKeys:(AppiumCodeMakerActionSendKeys*)action

@@ -18,6 +18,7 @@
 
 @property (readonly) AppiumModel *model;
 @property (readonly) NSString *name;
+@property (readonly) NSString *fileExtension;
 @property (readonly) NSString *preCodeBoilerplate;
 @property (readonly) NSString *preCodeBoilerplateAndroid;
 @property (readonly) NSString *preCodeBoilerplateiOS;
@@ -34,6 +35,7 @@
 -(NSString*) executeScript:(AppiumCodeMakerActionExecuteScript*)action;
 -(NSString*) preciseTap:(AppiumCodeMakerActionPreciseTap*)action;
 -(NSString*) sendKeys:(AppiumCodeMakerActionSendKeys*)action;
+- (NSString *)scrollTo:(AppiumCodeMakerActionScrollTo *)action;
 -(NSString*) shake:(AppiumCodeMakerActionShake*)action;
 -(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action;
 -(NSString*) tap:(AppiumCodeMakerActionTap*)action;

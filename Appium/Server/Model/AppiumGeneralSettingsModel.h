@@ -21,6 +21,7 @@
 @property BOOL logTimestamps;
 @property NSString *logWebHook;
 @property BOOL forceScrollLog;
+@property NSNumber *maxLogLength;
 @property BOOL overrideExistingSessions;
 @property BOOL prelaunchApp;
 @property NSString *seleniumGridConfigFile;

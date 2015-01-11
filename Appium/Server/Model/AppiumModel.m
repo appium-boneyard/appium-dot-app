@@ -624,6 +624,9 @@ BOOL _isServerListening;
 		[self.serverTask setCurrentDirectoryPath:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle]resourcePath], @"node_modules/appium"]];
 	}
 	
+	// Add a cd call to the start of the command in case the .bash_profile or .bashrc changes the current directory
+	commandString = [NSString stringWithFormat:@"cd \"%@\" ; %@", self.serverTask.currentDirectoryPath, commandString];
+	
     [self.serverTask setLaunchPath:@"/bin/bash"];
     [self.serverTask setArguments: [NSArray arrayWithObjects: @"-l", @"-c", commandString, nil]];
 	
@@ -631,6 +634,9 @@ BOOL _isServerListening;
     [self.serverTask setStandardOutput:[NSPipe pipe]];
 	[self.serverTask setStandardError:[NSPipe pipe]];
     [self.serverTask setStandardInput:[NSPipe pipe]];
+	
+	// Convert the NSNumber value to a NSInteger and keep it locally, as it is referenced every time the log is appened to
+	self.maxLogLength = [self.general.maxLogLength integerValue];
 }
 
 -(void) connectDoctorSocketIO:(NSNumber*)attemptNumber

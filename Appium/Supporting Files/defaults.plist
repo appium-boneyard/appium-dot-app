@@ -120,6 +120,8 @@
 	<string>{ &quot;APPIUM_VAR1&quot; : &quot;Value 1&quot;, &quot;APPIUM_VAR2&quot; : &quot;Value 2&quot; }</string>
 	<key>Force Scroll Log</key>
 	<false/>
+	<key>Maximum Log Length</key>
+	<integer>200000</integer>
 	<key>Inspector CodeMaker Language</key>
 	<string>Java</string>
 	<key>Inspector Shows Disabled Elements</key>

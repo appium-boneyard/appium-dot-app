@@ -124,6 +124,8 @@ Preferences can be accessed by clicking on the appropriate button in the main wi
  * **Callback Address**: IP address to be used for HTTP callback.
  * **Callback Port**: Port to be used for HTTP callback.
 * **Logging**
+ * **Maximum Log Length**: The maximum number of characters that are allowed in the console. Lower this value if
+   you find that the GUI slows down after long use.
  * **Quiet Logging**: Don't use verbose logging output.
  * **Use Colors**: Use colors in console output.
  * **Show Timestamps**: Show timestamps in console output.

@@ -29,6 +29,11 @@
 #pragma mark - AppiumCodeMakerPlugin Implementation
 -(NSString*) name { return @"Python"; }
 
+- (NSString *)fileExtension
+{
+	return @"py";
+}
+
 -(NSString*) preCodeBoilerplateAndroid
 {
 	NSString *code = [NSString stringWithFormat:@"from selenium.webdriver.firefox.webdriver import WebDriver\n\
@@ -168,7 +173,7 @@ try:\n", self.model.general.serverAddress, self.model.general.serverPort];
 
 -(NSString*) shake:(AppiumCodeMakerActionShake*)action
 {
-	return [NSString stringWithFormat:@"%@wd.execute_script(\"mobile: shake\", None);\n", self.indentation];
+	return [NSString stringWithFormat:@"%@wd.shake();\n", self.indentation];
 }
 
 -(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action

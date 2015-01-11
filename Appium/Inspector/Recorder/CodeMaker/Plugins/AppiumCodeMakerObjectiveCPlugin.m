@@ -29,6 +29,11 @@
 #pragma mark - AppiumCodeMakerPlugin Implementation
 -(NSString*) name { return @"Objective-C"; }
 
+- (NSString *)fileExtension
+{
+	return @"m";
+}
+
 -(NSString*) preCodeBoilerplateAndroid
 {
 	NSString *code = [NSString stringWithFormat:@"#import <Selenium/SERemoteWebDriver.h>\n\
@@ -150,7 +155,7 @@ nil], nil]];\n", [args objectForKey:@"tapCount"], [args objectForKey:@"touchCoun
 
 -(NSString*) shake:(AppiumCodeMakerActionShake*)action
 {
-	return [NSString stringWithFormat:@"%@[wd executeScript:@\"mobile: shake\"];\n", self.indentation];
+	return [NSString stringWithFormat:@"%@[wd shakeDevice];\n", self.indentation];
 }
 
 -(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action

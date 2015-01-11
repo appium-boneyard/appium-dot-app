@@ -30,6 +30,11 @@
 #pragma mark - AppiumCodeMakerPlugin Implementation
 -(NSString*) name { return @"Java"; }
 
+- (NSString *)fileExtension
+{
+	return @"java";
+}
+
 -(NSString*) preCodeBoilerplateAndroid
 {
 	NSString *code = [NSString stringWithFormat:@"import io.appium.java_client.AppiumDriver;\n\
@@ -145,6 +150,15 @@ put(\"y\", %@); \
 }});\n", [args objectForKey:@"tapCount"], [args objectForKey:@"touchCount"], [args objectForKey:@"duration"], [args objectForKey:@"x"], [args objectForKey:@"y"]];
 }
 
+- (NSString *)scrollTo:(AppiumCodeMakerActionScrollTo *)action
+{
+	return [NSString stringWithFormat:@"%@(JavascriptExecutor)wd.executeScript(\"mobile: scrollTo\", \
+new HashMap<String, String>() \
+{{ \
+put(\"element\", %@.getId()); \
+}});\n", self.indentation, [self locatorString:action.locator]];
+}
+
 -(NSString*) sendKeys:(AppiumCodeMakerActionSendKeys*)action
 {
 	return [NSString stringWithFormat:@"%@%@.sendKeys(\"%@\");\n", self.indentation, [self locatorString:action.locator], [self escapeString:action.keys]];
@@ -152,7 +166,7 @@ put(\"y\", %@); \
 
 -(NSString*) shake:(AppiumCodeMakerActionShake*)action
 {
-	return [NSString stringWithFormat:@"%@(JavascriptExecutor)wd.executeScript(\"mobile: shake\", null);\n", self.indentation];
+	return [NSString stringWithFormat:@"%@wd.shake();\n", self.indentation];
 }
 
 -(NSString*) swipe:(AppiumCodeMakerActionSwipe*)action

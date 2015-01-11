@@ -334,6 +334,9 @@
 			</property>
 			<property name="environment variables" code="gs24" type="text">
 				<cocoa key="environmentVariables"/>
+                        </property>
+			<property name="maximum log length" code="gs25" type="number">
+				<cocoa key="maxLogLength"/>
 			</property>
 		</class>
 		<class name="inspector window controller" code="caiw" description="inspector window">
