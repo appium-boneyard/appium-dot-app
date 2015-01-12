@@ -129,7 +129,6 @@
 #define APPIUM_PLIST_USE_NEW_COMMAND_TIMEOUT @"Use New Command Timeout"
 #define APPIUM_PLIST_USE_NODEJS_DEBUGGING @"Use NodeJS Debugging"
 #define APPIUM_PLIST_USE_REMOTE_SERVER @"Use Remote Server"
-#define APPIUM_PLIST_USE_QUIET_LOGGING @"Use Quiet Logging"
 #define APPIUM_PLIST_USE_ROBOT @"Use Robot"
 #define APPIUM_PLIST_USE_SELENIUM_GRID_CONFIG_FILE @"Use Selenium Grid Config File"
 #define APPIUM_PLIST_USE_LOCAL_TIMEZONE @"Use Local Timezone"

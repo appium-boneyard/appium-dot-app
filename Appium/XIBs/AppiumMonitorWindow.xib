@@ -3146,11 +3146,11 @@
             <point key="canvasLocation" x="181" y="-500.5"/>
         </customView>
         <customView id="lfV-Jy-qRr" userLabel="General Settings View">
-            <rect key="frame" x="0.0" y="-5" width="417" height="671"/>
+            <rect key="frame" x="0.0" y="-6" width="417" height="645"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="pFP-rp-D7j" userLabel="General Settings Label">
-                    <rect key="frame" x="18" y="634" width="107" height="17"/>
+                    <rect key="frame" x="18" y="608" width="107" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="General Settings" id="Svf-QT-oNe">
                         <font key="font" metaFont="system"/>
@@ -3159,7 +3159,7 @@
                     </textFieldCell>
                 </textField>
                 <box autoresizesSubviews="NO" title="Server" borderType="line" id="ATX-v7-2MS" userLabel="Selenium Grid Configuration Box">
-                    <rect key="frame" x="17" y="330" width="383" height="296"/>
+                    <rect key="frame" x="17" y="304" width="383" height="296"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView">
                         <rect key="frame" x="1" y="1" width="381" height="280"/>
@@ -3573,14 +3573,14 @@
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
                 <box autoresizesSubviews="NO" title="Logging" borderType="line" id="6DB-Rn-YeW" userLabel="Logging Box">
-                    <rect key="frame" x="17" y="137" width="383" height="189"/>
+                    <rect key="frame" x="17" y="137" width="383" height="163"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <view key="contentView">
-                        <rect key="frame" x="1" y="1" width="381" height="173"/>
+                        <rect key="frame" x="1" y="1" width="381" height="147"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" id="Bdy-tr-GwL" userLabel="Maximum Log Length Label">
-                                <rect key="frame" x="16" y="144" width="138" height="17"/>
+                                <rect key="frame" x="16" y="118" width="138" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Maximum Log Length" id="fp0-TP-Oml">
                                     <font key="font" metaFont="system"/>
@@ -3589,7 +3589,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" id="XAw-9B-mwV" userLabel="Maximum Log Length Text Field">
-                                <rect key="frame" x="160" y="141" width="203" height="22"/>
+                                <rect key="frame" x="160" y="115" width="203" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Z0I-bw-GoG">
                                     <font key="font" metaFont="system"/>
@@ -3618,33 +3618,8 @@
                                     </binding>
                                 </connections>
                             </textField>
-                            <button id="Sjw-Vh-exR" userLabel="Quiet Logging Check Box">
-                                <rect key="frame" x="16" y="117" width="112" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Quiet Logging" bezelStyle="regularSquare" imagePosition="left" inset="2" id="RAd-Rt-odx">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <binding destination="-2" name="value" keyPath="model.general.useQuietLogging" id="hUf-H0-dr3"/>
-                                    <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="5vu-G3-90g" id="Ws2-V0-TLV">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="5vu-G3-90g">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
-                                </connections>
-                            </button>
                             <button id="lts-Bk-ASi" userLabel="Use Colors Check Box">
-                                <rect key="frame" x="134" y="117" width="90" height="18"/>
+                                <rect key="frame" x="16" y="92" width="90" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Use Colors" bezelStyle="regularSquare" imagePosition="left" inset="2" id="jex-eo-F4f">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3669,7 +3644,7 @@
                                 </connections>
                             </button>
                             <button id="Yo3-kt-WeH" userLabel="Show Timestamps Check Box">
-                                <rect key="frame" x="232" y="117" width="137" height="18"/>
+                                <rect key="frame" x="112" y="92" width="137" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Show Timestamps" bezelStyle="regularSquare" imagePosition="left" inset="2" id="zVv-Va-qaG">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3694,7 +3669,7 @@
                                 </connections>
                             </button>
                             <button id="XYh-qS-VqU" userLabel="Log To File Check Box">
-                                <rect key="frame" x="16" y="91" width="92" height="18"/>
+                                <rect key="frame" x="16" y="65" width="92" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Log To File" bezelStyle="regularSquare" imagePosition="left" inset="2" id="KAP-K2-Kna">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3719,7 +3694,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" id="Ith-xg-9Ja" userLabel="Log File Path Text Field">
-                                <rect key="frame" x="117" y="89" width="246" height="22"/>
+                                <rect key="frame" x="117" y="63" width="246" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="KsP-C6-4eY">
                                     <font key="font" metaFont="system"/>
@@ -3750,7 +3725,7 @@
                                 </connections>
                             </textField>
                             <button id="7Dd-2o-uFC" userLabel="Log To Webhook Check Box">
-                                <rect key="frame" x="16" y="64" width="146" height="18"/>
+                                <rect key="frame" x="16" y="38" width="146" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Log To WebHook" bezelStyle="regularSquare" imagePosition="left" inset="2" id="G7m-AP-E4e">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3775,7 +3750,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" id="HRq-2J-jb3" userLabel="Webhook Address Text Field">
-                                <rect key="frame" x="158" y="62" width="205" height="22"/>
+                                <rect key="frame" x="158" y="36" width="205" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="cfD-hT-Kyz">
                                     <font key="font" metaFont="system"/>
@@ -3806,7 +3781,7 @@
                                 </connections>
                             </textField>
                             <button id="5Ae-M5-oVP" userLabel="Force Scroll Log to Bottom Check Box">
-                                <rect key="frame" x="16" y="38" width="349" height="18"/>
+                                <rect key="frame" x="16" y="12" width="349" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Force Scroll Log to Bottom" bezelStyle="regularSquare" imagePosition="left" inset="2" id="YYU-jz-9TJ">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3817,7 +3792,7 @@
                                 </connections>
                             </button>
                             <button id="tcB-Uy-Me3" userLabel="Force Scroll Log to Bottom Check Box">
-                                <rect key="frame" x="16" y="12" width="349" height="18"/>
+                                <rect key="frame" x="214" y="12" width="349" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Use Local Timezone" bezelStyle="regularSquare" imagePosition="left" inset="2" id="NMt-1X-5Ia">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -3968,7 +3943,7 @@
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
             </subviews>
-            <point key="canvasLocation" x="-167.5" y="347.5"/>
+            <point key="canvasLocation" x="-167.5" y="334.5"/>
         </customView>
         <customView id="2rW-W8-vOb" userLabel="Developer Settings View">
             <rect key="frame" x="0.0" y="0.0" width="600" height="252"/>

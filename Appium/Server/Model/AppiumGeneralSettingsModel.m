@@ -111,9 +111,6 @@
 	[((AppiumModel*)((AppiumAppDelegate*)[NSApplication sharedApplication].delegate).model) setIsServerListening:useRemoteServer];
 }
 
--(BOOL) useQuietLogging { return [DEFAULTS boolForKey:APPIUM_PLIST_USE_QUIET_LOGGING]; }
--(void) setUseQuietLogging:(BOOL)useQuietLogging { [DEFAULTS setBool:useQuietLogging forKey:APPIUM_PLIST_USE_QUIET_LOGGING]; }
-
 -(BOOL) useSeleniumGridConfigFile { return [DEFAULTS boolForKey:APPIUM_PLIST_USE_SELENIUM_GRID_CONFIG_FILE]; }
 -(void) setUseSeleniumGridConfigFile:(BOOL)useSeleniumGridConfigFile { [DEFAULTS setBool:useSeleniumGridConfigFile forKey:APPIUM_PLIST_USE_SELENIUM_GRID_CONFIG_FILE]; }
 

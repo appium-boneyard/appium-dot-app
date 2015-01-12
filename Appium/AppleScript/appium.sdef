@@ -314,9 +314,6 @@
 			<property name="use new command timeout" code="gs15" type="boolean">
 				<cocoa key="useCommandTimeout"/>
 			</property>
-			<property name="use quiet logging" code="gs16" type="boolean">
-				<cocoa key="useQuietLogging"/>
-			</property>
 			<property name="use remote server" code="gs17" type="boolean">
 				<cocoa key="useRemoteServer"/>
 			</property>

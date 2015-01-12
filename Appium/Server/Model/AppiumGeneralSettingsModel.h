@@ -30,7 +30,6 @@
 @property BOOL useLogFile;
 @property BOOL useLogWebHook;
 @property BOOL useCommandTimeout;
-@property BOOL useQuietLogging;
 @property BOOL useRemoteServer;
 @property BOOL useSeleniumGridConfigFile;
 @property BOOL useLocalTimezone;
