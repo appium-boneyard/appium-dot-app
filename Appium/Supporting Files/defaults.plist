@@ -252,8 +252,6 @@
 	<true/>
 	<key>Use NodeJS Debugging</key>
 	<false/>
-	<key>Use Quiet Logging</key>
-	<false/>
 	<key>Use Remote Server</key>
 	<false/>
 	<key>Use Robot</key>

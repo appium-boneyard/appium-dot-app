@@ -210,11 +210,6 @@ BOOL _isServerListening;
 														  withValue:self.general.logWebHook]];
     }
 	
-	if (self.general.useQuietLogging)
-	{
-		[arguments addObject:[AppiumServerArgument argumentWithName:@"--quiet"]];
-    }
-	
     if (self.general.useSeleniumGridConfigFile)
 	{
 		[arguments addObject:[AppiumServerArgument argumentWithName:@"--nodeconfig"
@@ -439,7 +434,7 @@ BOOL _isServerListening;
 			
 			if (self.iOS.showSimulatorLog)
 			{
-				[arguments addObject:[AppiumServerArgument argumentWithName:@"--show-sim-log"]];
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--show-ios-log"]];
 			}
 			
 			if (self.iOS.useBackendRetries)
