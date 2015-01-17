@@ -779,11 +779,15 @@ BOOL _isServerListening;
 
 -(void) reset
 {
-	NSString *prefsPath = [[NSBundle mainBundle] pathForResource:@"defaults" ofType:@"plist"];
+	[self resetWithFile:[[NSBundle mainBundle] pathForResource:@"defaults" ofType:@"plist"]];
+}
+
+
+-(BOOL) resetWithFile:(NSString*)prefsPath {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	
 	if ([[NSFileManager defaultManager] fileExistsAtPath:prefsPath]) {
-
+		
 		// grab values that should not be reset
 		BOOL hasAuthorizediOS = self.iOS.authorized;
 		BOOL checkForUodates = self.general.checkForUpdates;
@@ -798,6 +802,8 @@ BOOL _isServerListening;
 		// set back values that should not be reset
 		[self.iOS setAuthorized:hasAuthorizediOS];
 		[self.general setCheckForUpdates:checkForUodates];
+	} else {
+		return NO;
 	}
 	
 	// update the bindings through notifications
@@ -805,6 +811,7 @@ BOOL _isServerListening;
 		[self willChangeValueForKey:propName];
 		[self didChangeValueForKey:propName];
 	}
+	return YES;
 }
 
 @end
