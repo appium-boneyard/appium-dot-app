@@ -179,4 +179,44 @@
     [[NSApplication sharedApplication] terminate:nil];
 }
 
+#pragma mark - Open / Save / Open Recent
+
+-(IBAction)openDocument:(id)sender {
+	NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+	[openPanel setAllowedFileTypes:@[@"plist"]];
+	[openPanel setDirectoryURL:[NSURL fileURLWithPath: NSHomeDirectory()]];
+	[openPanel beginSheetModalForWindow:self.mainWindowController.window completionHandler:^(NSInteger result){
+		if (result == NSFileHandlingPanelOKButton) {
+			[openPanel orderOut:self];
+			[self.model resetWithFile:[openPanel.URL path]];
+			[[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:openPanel.URL];
+		}
+	}];
+}
+
+-(IBAction)saveDocument:(id)sender {
+	NSSavePanel *savePanel = [NSSavePanel savePanel];
+	[savePanel setAllowedFileTypes:@[@"plist"]];
+	[savePanel setDirectoryURL:[NSURL fileURLWithPath: NSHomeDirectory()]];
+	[savePanel beginSheetModalForWindow:self.mainWindowController.window completionHandler:^(NSInteger result){
+		if (result == NSFileHandlingPanelOKButton) {
+			[savePanel orderOut:self];
+			NSError *err;
+			NSString *pListPath = [NSString pathWithComponents:@[NSHomeDirectory(),@"Library",@"Preferences",@"com.appium.Appium.plist"]];
+			[[NSFileManager defaultManager] copyItemAtPath:pListPath toPath:[savePanel.URL path] error:&err];
+			
+			if (err) {
+				NSLog(@"%@",err.description);
+			} else {
+				[[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:savePanel.URL];
+			}
+		}
+	}];
+}
+
+-(BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename {
+	[[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:filename]];
+	return [self.model resetWithFile:filename];
+}
+
 @end
