@@ -6,19 +6,21 @@
 //  Copyright (c) 2015 Appium. All rights reserved.
 //
 
-#import "AppiumMonitorWindowGeneralSettingsPopOverViewController.h"
+#import "AppiumGeneralSettingsPopOverViewController.h"
 #import "AppiumAppDelegate.h"
 
 #define TABLE_COLUMNS @[@"KeyCellView", @"ValueCellView"]
 
-@interface AppiumMonitorWindowGeneralSettingsPopOverViewController()
+@interface AppiumGeneralSettingsPopOverViewController()
 
 @property (readonly) NSArray *environmentVariables;
 @property (nonatomic, strong) NSMutableArray *delegates;
 
 @end
 
-@implementation AppiumMonitorWindowGeneralSettingsPopOverViewController
+@implementation AppiumGeneralSettingsPopOverViewController
+
+#pragma mark -
 
 - (IBAction)addButtonClicked:(id)sender {
 	AppiumGeneralSettingsModel *generalSettings = ((AppiumAppDelegate*)[[NSApplication sharedApplication] delegate]).model.general;

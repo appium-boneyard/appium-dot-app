@@ -10,7 +10,7 @@
 #import "AppiumMonitorWindowPopOverViewController.h"
 
 
-@interface AppiumMonitorWindowGeneralSettingsPopOverViewController : AppiumMonitorWindowPopOverViewController<NSTableViewDataSource,NSTableViewDelegate>
+@interface AppiumGeneralSettingsPopOverViewController : AppiumMonitorWindowPopOverViewController<NSTableViewDataSource,NSTableViewDelegate>
 @property IBOutlet NSTableView *environmentVariablesTableView;
 @end
 

@@ -536,9 +536,9 @@ BOOL _isServerListening;
 	{
 		[command insertString:[NSString stringWithFormat:@"export ANDROID_HOME=\"%@\"; ", self.android.customSDKPath] atIndex:0];
 	}
-	NSDictionary *environmentVariables = [self.general.environmentVariables copy];
-	for (NSString *key in environmentVariables) {
-		[command insertString:[NSString stringWithFormat:@"export %@=\"%@\"; ", key, [environmentVariables valueForKey:key]] atIndex:0];
+	NSArray *environmentVariables = [self.general.environmentVariables copy];
+	for (NSDictionary *kvp in environmentVariables) {
+		[command insertString:[NSString stringWithFormat:@"export %@=\"%@\"; ", [kvp valueForKey:@"key"], [kvp valueForKey:@"value"]] atIndex:0];
 	}
 	
 	[self setupServerTask:command];

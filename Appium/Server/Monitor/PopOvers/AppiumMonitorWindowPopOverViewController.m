@@ -30,6 +30,10 @@
     return self;
 }
 
+-(AppiumModel*) model {
+	return [(AppiumAppDelegate*)[NSApplication sharedApplication].delegate model];
+}
+
 -(void) close
 {
 	if (self.popover.isShown) {
