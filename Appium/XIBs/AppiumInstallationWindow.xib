@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="AppiumInstallationWindowController">
             <connections>
+                <outlet property="_appiumLogoImageView" destination="27" id="0Kq-fk-2XI"/>
                 <outlet property="messageLabel" destination="5" id="13"/>
                 <outlet property="window" destination="1" id="3"/>
             </connections>
@@ -21,7 +22,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="480" height="112"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <imageView id="27" userLabel="Appium Logo">
+                    <imageView wantsLayer="YES" id="27" userLabel="Appium Logo">
                         <rect key="frame" x="206" y="44" width="48" height="48"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="appium" id="28"/>
