@@ -60,7 +60,7 @@
 		36A7C8F117A487DC007F15AB /* AppiumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CEB7F516E3662E00B5B100 /* AppiumTests.m */; };
 		36A871C8170B980F005BFD15 /* AppiumInspectorScreenshotImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A871C7170B980F005BFD15 /* AppiumInspectorScreenshotImageView.m */; };
 		36AA8D6F16E40B28007472C1 /* AppiumMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AA8D6D16E40B28007472C1 /* AppiumMainWindowController.m */; };
-		36AA8D7016E40B28007472C1 /* AppiumMonitorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36AA8D6E16E40B28007472C1 /* AppiumMonitorWindow.xib */; };
+		36AA8D7016E40B28007472C1 /* AppiumMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36AA8D6E16E40B28007472C1 /* AppiumMainWindow.xib */; };
 		36ADA116172093D200D4287B /* AppiumCodeMakerPreciseTapPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36ADA115172093D200D4287B /* AppiumCodeMakerPreciseTapPopoverViewController.m */; };
 		36ADA119172098FA00D4287B /* AppiumCodeMakerActionPreciseTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 36ADA118172098FA00D4287B /* AppiumCodeMakerActionPreciseTap.m */; };
 		36B2F18616E6379C008764E0 /* defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 36B2F18516E6379C008764E0 /* defaults.plist */; };
@@ -286,7 +286,7 @@
 		36A871C7170B980F005BFD15 /* AppiumInspectorScreenshotImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumInspectorScreenshotImageView.m; sourceTree = "<group>"; };
 		36AA8D6C16E40B28007472C1 /* AppiumMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumMainWindowController.h; sourceTree = "<group>"; };
 		36AA8D6D16E40B28007472C1 /* AppiumMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumMainWindowController.m; sourceTree = "<group>"; };
-		36AA8D6E16E40B28007472C1 /* AppiumMonitorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AppiumMonitorWindow.xib; path = XIBs/AppiumMonitorWindow.xib; sourceTree = "<group>"; };
+		36AA8D6E16E40B28007472C1 /* AppiumMainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AppiumMainWindow.xib; path = XIBs/AppiumMainWindow.xib; sourceTree = "<group>"; };
 		36ADA114172093D200D4287B /* AppiumCodeMakerPreciseTapPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerPreciseTapPopoverViewController.h; sourceTree = "<group>"; };
 		36ADA115172093D200D4287B /* AppiumCodeMakerPreciseTapPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerPreciseTapPopoverViewController.m; sourceTree = "<group>"; };
 		36ADA117172098FA00D4287B /* AppiumCodeMakerActionPreciseTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerActionPreciseTap.h; sourceTree = "<group>"; };
@@ -479,7 +479,7 @@
 				C79097451A6AB1D9007621D0 /* Inspector */,
 				C7D0D53E1A6A84DF00D3D883 /* Settings PopOvers */,
 				3695CAAF16E3FCAE003697A9 /* AppiumInstallationWindow.xib */,
-				36AA8D6E16E40B28007472C1 /* AppiumMonitorWindow.xib */,
+				36AA8D6E16E40B28007472C1 /* AppiumMainWindow.xib */,
 				36CEB7E016E3662E00B5B100 /* MainMenu.xib */,
 			);
 			name = XIBs;
@@ -1055,7 +1055,7 @@
 				36BA3A1D191EE417007FA51B /* doctor.png in Resources */,
 				3695CAB116E3FCAE003697A9 /* AppiumInstallationWindow.xib in Resources */,
 				36F1DE43191FE67300FC65AC /* logTextViewBg.png in Resources */,
-				36AA8D7016E40B28007472C1 /* AppiumMonitorWindow.xib in Resources */,
+				36AA8D7016E40B28007472C1 /* AppiumMainWindow.xib in Resources */,
 				C79097471A6AB2BF007621D0 /* AppiumGeneralSettingsPopOverView.xib in Resources */,
 				3612E5F816E5B6520050CF0A /* appium.sdef in Resources */,
 				364EED59191EE27000AB4439 /* robot.png in Resources */,
