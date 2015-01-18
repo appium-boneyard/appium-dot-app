@@ -7,7 +7,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="AppiumInspectorWindowController">
             <connections>
-                <outlet property="bottomDrawerContentView" destination="133" id="346"/>
                 <outlet property="browser" destination="6" id="347"/>
                 <outlet property="detailsTextView" destination="30" id="348"/>
                 <outlet property="findElementButton" destination="w64-8V-5y3" id="WuH-Sm-N5w"/>
@@ -27,17 +26,7 @@
         <customObject id="26" customClass="AppiumInspector">
             <connections>
                 <outlet property="_windowController" destination="-2" id="356"/>
-            </connections>
-        </customObject>
-        <customObject id="357" customClass="AppiumRecorder">
-            <connections>
-                <outlet property="_windowController" destination="-2" id="359"/>
-                <outlet property="codeMaker" destination="414" id="426"/>
-            </connections>
-        </customObject>
-        <customObject id="414" customClass="AppiumCodeMaker">
-            <connections>
-                <outlet property="_contentView" destination="410" id="415"/>
+                <outlet property="recorderViewController" destination="TWF-cz-UTf" id="9Rr-Po-f2c"/>
             </connections>
         </customObject>
         <userDefaultsController representsSharedInstance="YES" id="85"/>
@@ -104,7 +93,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="toggleRecording:" target="357" id="367"/>
+                            <action selector="toggleRecording:" target="-2" id="pXl-pa-J3c"/>
                         </connections>
                     </button>
                     <button id="92" userLabel="Refresh Button">
@@ -148,11 +137,11 @@
                         </connections>
                     </browser>
                     <customView id="60" userLabel="Screenshot Area View">
-                        <rect key="frame" x="847" y="47" width="360.00000042208706" height="480"/>
+                        <rect key="frame" x="847" y="47" width="360" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView id="43" userLabel="Screenshot Image View" customClass="AppiumInspectorScreenshotImageView">
-                                <rect key="frame" x="4.220870550852851e-07" y="0.0" width="360" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="360" height="480"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="44"/>
                                 <connections>
@@ -184,7 +173,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="tap:" target="357" id="366"/>
+                                                <action selector="tap:" target="TWF-cz-UTf" id="wRa-gT-g03"/>
                                                 <binding destination="26" name="enabled" keyPath="domIsPopulating" id="308">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
@@ -200,7 +189,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="toggleSwipePopover:" target="357" id="368"/>
+                                                <action selector="toggleSwipePopover:" target="-2" id="Nmw-fg-DnA"/>
                                                 <binding destination="26" name="enabled" keyPath="domIsPopulating" id="312">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
@@ -216,7 +205,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="scrollTo:" target="357" id="583"/>
+                                                <action selector="scrollTo:" target="TWF-cz-UTf" id="Vow-du-hhL"/>
                                                 <binding destination="26" name="enabled" keyPath="domIsPopulating" id="619">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
@@ -241,7 +230,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="togglePreciseTapPopover:" target="357" id="536"/>
+                                                <action selector="togglePreciseTapPopover:" target="-2" id="zeg-OQ-KHY"/>
                                                 <binding destination="26" name="enabled" keyPath="domIsPopulating" id="535">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
@@ -257,7 +246,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="shake:" target="357" id="582"/>
+                                                <action selector="shake:" target="TWF-cz-UTf" id="bPt-Gd-MRt"/>
                                                 <binding destination="26" name="enabled" keyPath="domIsPopulating" id="595">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
@@ -274,7 +263,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" id="97" userLabel="Actions Box TextField">
-                                            <rect key="frame" x="17" y="40" width="385" height="22"/>
+                                            <rect key="frame" x="17" y="40" width="536" height="22"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="98">
                                                 <font key="font" metaFont="system"/>
@@ -282,7 +271,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="357" name="value" keyPath="keysToSend" id="406">
+                                                <binding destination="TWF-cz-UTf" name="value" keyPath="keysToSend" id="DLa-kz-eXN">
                                                     <dictionary key="options">
                                                         <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                                     </dictionary>
@@ -291,13 +280,13 @@
                                         </textField>
                                         <button verticalHuggingPriority="750" id="94" userLabel="Send Keys Button">
                                             <rect key="frame" x="11" y="4" width="132" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <buttonCell key="cell" type="push" title="Send Keys" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="95">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="sendKeys:" target="357" id="365"/>
+                                                <action selector="sendKeys:" target="TWF-cz-UTf" id="XNZ-Qn-VKS"/>
                                                 <binding destination="26" name="enabled" keyPath="domIsPopulating" id="316">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
@@ -307,13 +296,13 @@
                                         </button>
                                         <button verticalHuggingPriority="750" id="552" userLabel="Execute Script Button">
                                             <rect key="frame" x="143" y="4" width="132" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <buttonCell key="cell" type="push" title="Execute Script" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="553">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="executeScript:" target="357" id="554"/>
+                                                <action selector="executeScript:" target="TWF-cz-UTf" id="Ej9-FT-cPS"/>
                                                 <binding destination="26" name="enabled" keyPath="domIsPopulating" id="599">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
@@ -323,32 +312,18 @@
                                         </button>
                                         <button verticalHuggingPriority="750" id="2Wo-TV-66A" userLabel="Add Comment Button">
                                             <rect key="frame" x="275" y="4" width="133" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <buttonCell key="cell" type="push" title="Add Comment" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pyN-GZ-7Ms">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="comment:" target="357" id="MAC-A3-hS1"/>
-                                                <binding destination="26" name="enabled2" keyPath="domIsPopulating" previousBinding="Ymn-6t-uhN" id="UDE-2k-f6E">
+                                                <action selector="comment:" target="TWF-cz-UTf" id="gPx-4c-dc4"/>
+                                                <binding destination="26" name="enabled" keyPath="domIsPopulating" id="5t1-R0-9n9">
                                                     <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                        <integer key="NSNullPlaceholder" value="-1"/>
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
                                                 </binding>
-                                                <binding destination="357" name="enabled3" keyPath="isRecording" previousBinding="UDE-2k-f6E" id="C5w-wl-6Uw">
-                                                    <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                        <integer key="NSNullPlaceholder" value="-1"/>
-                                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                                    </dictionary>
-                                                </binding>
-                                                <binding destination="357" name="enabled" keyPath="isRecording" id="Ymn-6t-uhN"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -369,7 +344,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="yzy-oT-MDo" userLabel="Value Text Field">
-                                            <rect key="frame" x="78" y="40" width="324" height="22"/>
+                                            <rect key="frame" x="78" y="40" width="475" height="22"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="gBV-aq-NQL">
                                                 <font key="font" metaFont="system"/>
@@ -395,7 +370,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <comboBox verticalHuggingPriority="750" id="mM3-ea-JOG" userLabel="Strategy Combo Box">
-                                            <rect key="frame" x="78" y="8" width="252" height="26"/>
+                                            <rect key="frame" x="78" y="8" width="400" height="26"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="BIJ-IW-zCZ">
                                                 <font key="font" metaFont="system"/>
@@ -408,7 +383,7 @@
                                             </connections>
                                         </comboBox>
                                         <button verticalHuggingPriority="750" id="w64-8V-5y3" userLabel="Search Button">
-                                            <rect key="frame" x="326" y="3" width="82" height="32"/>
+                                            <rect key="frame" x="477" y="5" width="82" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                             <buttonCell key="cell" type="push" title="Search" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lbx-ZQ-VG6">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -441,7 +416,7 @@
                                                 </connections>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="acceptAlert:" target="357" id="360"/>
+                                                <action selector="acceptAlert:" target="TWF-cz-UTf" id="Ala-hD-8Vz"/>
                                                 <binding destination="26" name="enabled" keyPath="domIsPopulating" id="600">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
@@ -457,7 +432,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="dismissAlert:" target="357" id="363"/>
+                                                <action selector="dismissAlert:" target="TWF-cz-UTf" id="CrW-zc-iDp"/>
                                                 <binding destination="26" name="enabled" keyPath="domIsPopulating" id="333">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
@@ -498,7 +473,7 @@
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                     <connections>
-                                        <action selector="changeContext:" target="357" id="Md1-ht-Llh"/>
+                                        <action selector="changeContext:" target="TWF-cz-UTf" id="pex-Wg-Uyd"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -575,127 +550,16 @@
                 <outlet property="delegate" destination="-2" id="4"/>
             </connections>
         </window>
-        <customView wantsLayer="YES" id="133" userLabel="Drawer Content View">
-            <rect key="frame" x="0.0" y="0.0" width="864" height="226"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <popUpButton verticalHuggingPriority="750" id="190" userLabel="Language Selection ComboBox">
-                    <rect key="frame" x="18" y="197" width="120" height="26"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="push" title="C#" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="193" id="191">
-                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="menu"/>
-                        <menu key="menu" title="OtherViews" id="192">
-                            <items>
-                                <menuItem title="C#" state="on" id="193"/>
-                                <menuItem title="Item 2" id="194"/>
-                                <menuItem title="Item 3" id="195"/>
-                            </items>
-                        </menu>
-                        <connections>
-                            <binding destination="357" name="selectedObject" keyPath="codeMaker.syntaxDefinition" id="390"/>
-                        </connections>
-                    </popUpButtonCell>
-                    <connections>
-                        <binding destination="414" name="contentValues" keyPath="allPlugins" id="418"/>
-                        <binding destination="414" name="selectedObject" keyPath="syntaxDefinition" previousBinding="418" id="421"/>
-                    </connections>
-                </popUpButton>
-                <button id="205" userLabel="Add Boilerplate Checkbox">
-                    <rect key="frame" x="148" y="201" width="119" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Add Boilerplate" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="206">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <binding destination="414" name="value" keyPath="useBoilerPlate" id="423"/>
-                    </connections>
-                </button>
-                <button id="211" userLabel="XPath Only Checkbox">
-                    <rect key="frame" x="283" y="201" width="103" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="XPath Only" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="212">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <binding destination="414" name="value" keyPath="useXPathOnly" id="425"/>
-                    </connections>
-                </button>
-                <button verticalHuggingPriority="750" id="407" userLabel="Replay Button">
-                    <rect key="frame" x="520" y="200" width="75" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="roundRect" title="Replay" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="408">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="cellTitle"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="replay:" target="357" id="409"/>
-                        <binding destination="357" name="enabled" keyPath="codeMaker.canUndo" id="579"/>
-                    </connections>
-                </button>
-                <button verticalHuggingPriority="750" id="338" userLabel="Clear Button">
-                    <rect key="frame" x="769" y="200" width="75" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="roundRect" title="Clear" bezelStyle="roundedRect" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="339">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="cellTitle"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="clearRecording:" target="357" id="361"/>
-                        <binding destination="357" name="enabled" keyPath="codeMaker.canUndo" id="575"/>
-                    </connections>
-                </button>
-                <button verticalHuggingPriority="750" id="555" userLabel="Undo Button">
-                    <rect key="frame" x="603" y="200" width="75" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="roundRect" title="Undo" bezelStyle="roundedRect" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="556">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="cellTitle"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="undoLast:" target="357" id="581"/>
-                        <binding destination="357" name="enabled" keyPath="codeMaker.canUndo" id="571"/>
-                    </connections>
-                </button>
-                <button verticalHuggingPriority="750" id="559" userLabel="Redo Button">
-                    <rect key="frame" x="686" y="200" width="75" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="roundRect" title="Redo" bezelStyle="roundedRect" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="560">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="cellTitle"/>
-                        <connections>
-                            <binding destination="357" name="enabled" keyPath="codeMaker.canRedo" id="566"/>
-                        </connections>
-                    </buttonCell>
-                    <connections>
-                        <action selector="redoLast:" target="357" id="562"/>
-                    </connections>
-                </button>
-                <customView id="410">
-                    <rect key="frame" x="0.0" y="0.0" width="864" height="195"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                </customView>
-                <button verticalHuggingPriority="750" id="O0O-6w-c6v" userLabel="Save Button">
-                    <rect key="frame" x="437" y="200" width="75" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="roundRect" title="Save" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bfG-7F-Txy">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="cellTitle"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="save:" target="357" id="f1a-8P-xin"/>
-                        <binding destination="357" name="enabled" keyPath="codeMaker.canUndo" id="7Y2-jo-d48"/>
-                    </connections>
-                </button>
-            </subviews>
-        </customView>
-        <viewController id="222" userLabel="Swipe Popover View Controller" customClass="AppiumCodeMakerSwipePopOverViewController">
+        <viewController nibName="AppiumRecorderView" id="TWF-cz-UTf" userLabel="Appium Recorder View Controller" customClass="AppiumRecorderViewController">
+            <connections>
+                <outlet property="_inspector" destination="26" id="r6n-lf-Hby"/>
+                <outlet property="_inspectorWindowController" destination="-2" id="e07-GM-U9Z"/>
+            </connections>
+        </viewController>
+        <viewController nibName="SwipePopOverView" id="222" userLabel="Swipe Popover View Controller" customClass="AppiumCodeMakerSwipePopOverViewController">
             <connections>
                 <outlet property="_windowController" destination="-2" id="550"/>
                 <outlet property="popover" destination="223" id="429"/>
-                <outlet property="view" destination="225" id="228"/>
             </connections>
         </viewController>
         <popover id="223" userLabel="Swipe Popover">
@@ -704,122 +568,10 @@
                 <outlet property="delegate" destination="222" id="517"/>
             </connections>
         </popover>
-        <customView id="225" userLabel="Swipe PopOver View">
-            <rect key="frame" x="0.0" y="0.0" width="214" height="131"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <subviews>
-                <textField verticalHuggingPriority="750" id="233" userLabel="Fingers Label">
-                    <rect key="frame" x="13" y="107" width="51" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Fingers" id="234">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <popUpButton verticalHuggingPriority="750" id="235" userLabel="Fingers Pop Up Button">
-                    <rect key="frame" x="86" y="101" width="50" height="26"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="push" title="1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="238" id="236">
-                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="menu"/>
-                        <menu key="menu" title="Fingers Menu" id="237" userLabel="Fingers Menu">
-                            <items>
-                                <menuItem title="1" state="on" id="238"/>
-                                <menuItem title="2" id="239"/>
-                                <menuItem title="3" id="240"/>
-                                <menuItem title="4" id="241">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                            </items>
-                        </menu>
-                    </popUpButtonCell>
-                    <connections>
-                        <binding destination="222" name="selectedValue" keyPath="numberOfFingersString" id="263"/>
-                    </connections>
-                </popUpButton>
-                <textField verticalHuggingPriority="750" id="242" userLabel="Duration Label">
-                    <rect key="frame" x="9" y="82" width="59" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Duration" id="243">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <slider verticalHuggingPriority="750" id="244" userLabel="Duration Slider">
-                    <rect key="frame" x="86" y="76" width="119" height="25"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" state="on" alignment="left" minValue="0.5" maxValue="2" doubleValue="0.5" tickMarkPosition="below" numberOfTickMarks="16" sliderType="linear" id="245">
-                        <connections>
-                            <binding destination="222" name="value" keyPath="duration" id="262"/>
-                        </connections>
-                    </sliderCell>
-                    <connections>
-                        <binding destination="222" name="value" keyPath="duration" id="259"/>
-                    </connections>
-                </slider>
-                <textField verticalHuggingPriority="750" id="246" userLabel="Begin Label">
-                    <rect key="frame" x="19" y="57" width="39" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Begin" id="247">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField verticalHuggingPriority="750" id="248" userLabel="Begin Value">
-                    <rect key="frame" x="85" y="57" width="99" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="(click to select)" id="249">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="222" name="value" keyPath="beginPointLabel" id="551"/>
-                    </connections>
-                </textField>
-                <textField verticalHuggingPriority="750" id="250" userLabel="End Label">
-                    <rect key="frame" x="24" y="32" width="28" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="End" id="251">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField verticalHuggingPriority="750" id="252" userLabel="End Value">
-                    <rect key="frame" x="85" y="32" width="99" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="(click to select)" id="253">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="222" name="value" keyPath="endPointLabel" id="275"/>
-                    </connections>
-                </textField>
-                <button verticalHuggingPriority="750" id="280" userLabel="Perform Button">
-                    <rect key="frame" x="142" y="5" width="61" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="roundRect" title="Perform" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="281">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="cellTitle"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="performSwipe:" target="357" id="369"/>
-                        <binding destination="222" name="enabled" keyPath="isReady" id="285"/>
-                    </connections>
-                </button>
-            </subviews>
-        </customView>
-        <viewController id="448" userLabel="Precise Tap Popover View Controller" customClass="AppiumCodeMakerPreciseTapPopoverViewController">
+        <viewController nibName="PreciseTapPopOverView" id="448" userLabel="Precise Tap Popover View Controller" customClass="AppiumCodeMakerPreciseTapPopoverViewController">
             <connections>
                 <outlet property="_windowController" destination="-2" id="549"/>
                 <outlet property="popover" destination="449" id="513"/>
-                <outlet property="view" destination="482" id="514"/>
             </connections>
         </viewController>
         <popover id="449" userLabel="Precise Tap Popover">
@@ -828,123 +580,6 @@
                 <outlet property="delegate" destination="448" id="516"/>
             </connections>
         </popover>
-        <customView id="482" userLabel="Precise Tap View">
-            <rect key="frame" x="0.0" y="0.0" width="214" height="131"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <subviews>
-                <textField verticalHuggingPriority="750" id="538" userLabel="Taps Label">
-                    <rect key="frame" x="13" y="108" width="35" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Taps" id="539">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <popUpButton verticalHuggingPriority="750" id="540" userLabel="Taps Pop Up Button">
-                    <rect key="frame" x="86" y="103" width="50" height="26"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="541">
-                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="menu"/>
-                        <menu key="menu" title="Fingers Menu" id="542" userLabel="Fingers Menu">
-                            <items>
-                                <menuItem title="1" id="543"/>
-                                <menuItem title="2" id="544"/>
-                                <menuItem title="3" id="545"/>
-                            </items>
-                        </menu>
-                    </popUpButtonCell>
-                    <connections>
-                        <binding destination="448" name="selectedValue" keyPath="numberOfTapsString" id="548"/>
-                    </connections>
-                </popUpButton>
-                <textField verticalHuggingPriority="750" id="483" userLabel="Fingers Label">
-                    <rect key="frame" x="13" y="83" width="51" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Fingers" id="505">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <popUpButton verticalHuggingPriority="750" id="484" userLabel="Fingers Pop Up Button">
-                    <rect key="frame" x="86" y="77" width="50" height="26"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="499">
-                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="menu"/>
-                        <menu key="menu" title="Fingers Menu" id="500" userLabel="Fingers Menu">
-                            <items>
-                                <menuItem title="1" id="504"/>
-                                <menuItem title="2" id="503"/>
-                                <menuItem title="3" id="502"/>
-                                <menuItem title="4" id="501">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                            </items>
-                        </menu>
-                    </popUpButtonCell>
-                    <connections>
-                        <binding destination="448" name="selectedValue" keyPath="numberOfFingersString" id="523"/>
-                    </connections>
-                </popUpButton>
-                <textField verticalHuggingPriority="750" id="485" userLabel="Duration Label">
-                    <rect key="frame" x="9" y="58" width="59" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Duration" id="498">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <slider verticalHuggingPriority="750" id="486" userLabel="Duration Slider">
-                    <rect key="frame" x="86" y="52" width="119" height="25"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" state="on" alignment="left" minValue="0.5" maxValue="2" doubleValue="0.5" tickMarkPosition="below" numberOfTickMarks="16" sliderType="linear" id="497">
-                        <connections>
-                            <binding destination="222" name="value" keyPath="duration" id="507"/>
-                        </connections>
-                    </sliderCell>
-                    <connections>
-                        <binding destination="448" name="value" keyPath="duration" id="526"/>
-                    </connections>
-                </slider>
-                <textField verticalHuggingPriority="750" id="487" userLabel="Point Label">
-                    <rect key="frame" x="19" y="33" width="36" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Point" id="496">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField verticalHuggingPriority="750" id="488" userLabel="Point Value">
-                    <rect key="frame" x="85" y="33" width="99" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="(click to select)" id="495">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="448" name="value" keyPath="touchPointLabel" id="529"/>
-                    </connections>
-                </textField>
-                <button verticalHuggingPriority="750" id="491" userLabel="Perform Button">
-                    <rect key="frame" x="142" y="6" width="61" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="roundRect" title="Perform" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="492">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="cellTitle"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="performPreciseTap:" target="357" id="537"/>
-                        <binding destination="448" name="enabled" keyPath="isReady" id="520"/>
-                    </connections>
-                </button>
-            </subviews>
-        </customView>
     </objects>
     <resources>
         <image name="NSRefreshTemplate" width="11" height="15"/>

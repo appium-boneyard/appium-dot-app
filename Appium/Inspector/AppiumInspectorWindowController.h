@@ -23,7 +23,6 @@
 @interface AppiumInspectorWindowController : NSWindowController
     @property SERemoteWebDriver *driver;
     @property NSDrawer *bottomDrawer;
-	@property IBOutlet NSView *bottomDrawerContentView;
 	@property IBOutlet NSBrowser *browser;
 	@property IBOutlet NSTextView *detailsTextView;
 	@property IBOutlet NSView *selectedElementHighlightView;

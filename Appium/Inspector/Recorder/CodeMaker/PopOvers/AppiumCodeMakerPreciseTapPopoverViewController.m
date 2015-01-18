@@ -7,6 +7,7 @@
 //
 
 #import "AppiumCodeMakerPreciseTapPopoverViewController.h"
+#import "AppiumCodeMakerActionPreciseTap.h"
 
 @interface AppiumCodeMakerPreciseTapPopoverViewController ()
 
@@ -34,7 +35,6 @@
 }
 
 #pragma mark - Properties
--(NSUInteger) numberOfTaps { return _numberOfTaps; }
 
 -(NSString*) numberOfTapsString { return [NSString stringWithFormat:@"%li", _numberOfTaps]; }
 -(void) setNumberOfTapsString:(NSString *)numberOfTapsString
@@ -42,21 +42,15 @@
 	_numberOfTaps = [numberOfTapsString integerValue];
 }
 
--(NSUInteger) numberOfFingers {	return _numberOfFingers; }
-
 -(NSString*) numberOfFingersString { return [NSString stringWithFormat:@"%li", _numberOfFingers]; }
 -(void) setNumberOfFingersString:(NSString *)numberOfFingersString
 {
 	_numberOfFingers = [numberOfFingersString integerValue];
 }
 
--(NSNumber*) duration {	return [NSNumber numberWithFloat:_duration]; }
--(void) setDuration:(NSNumber *)duration
-{
-	_duration = [duration floatValue];
-}
 
 -(NSPoint) touchPoint { return _touchPoint; }
+
 -(void) setTouchPoint:(NSPoint)beginPoint
 {
 	_touchPoint = beginPoint;
@@ -72,6 +66,31 @@
 }
 
 #pragma mark - Public Methods
+-(IBAction)performPreciseTap:(id)sender
+{
+	// perform the swipe
+	NSArray *args = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys:
+													  [NSNumber numberWithInteger:_windowController.preciseTapPopoverViewController.numberOfTaps], @"tapCount",
+													  [NSNumber numberWithInteger:_windowController.preciseTapPopoverViewController.numberOfFingers], @"touchCount",
+													  [NSNumber numberWithInteger:_windowController.preciseTapPopoverViewController.touchPoint.x], @"x",
+													  [NSNumber numberWithInteger:_windowController.preciseTapPopoverViewController.touchPoint.y], @"y",
+													  [_windowController.preciseTapPopoverViewController.duration copy], @"duration",
+													  nil],nil];
+	
+	AppiumCodeMakerAction *action = [[AppiumCodeMakerActionPreciseTap alloc] initWithArguments:args];
+	if ([_windowController.inspector.recorderViewController.codeMaker.isRecording boolValue])
+	{
+		[_windowController.inspector.recorderViewController.codeMaker addAction:action];
+	}
+	action.block(_windowController.driver);
+	
+	// reset for next iteration
+	[_windowController.preciseTapPopoverViewController.popover close];
+	[_windowController.preciseTapPopoverViewController reset];
+	[_windowController.selectedElementHighlightView setHidden:NO];
+	[_windowController.inspector refresh:sender];
+}
+
 -(void) reset
 {
 	[self setIsReady:[NSNumber numberWithBool:NO]];

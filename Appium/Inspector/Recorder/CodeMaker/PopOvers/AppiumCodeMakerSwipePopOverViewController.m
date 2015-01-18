@@ -34,18 +34,10 @@
 }
 
 #pragma mark - Properties
--(NSUInteger) numberOfFingers {	return _numberOfFingers; }
-
 -(NSString*) numberOfFingersString { return [NSString stringWithFormat:@"%li", _numberOfFingers]; }
 -(void) setNumberOfFingersString:(NSString *)numberOfFingersString
 {
 	_numberOfFingers = [numberOfFingersString integerValue];
-}
-
--(NSNumber*) duration {	return [NSNumber numberWithFloat:_duration]; }
--(void) setDuration:(NSNumber *)duration
-{
-	_duration = [duration floatValue];
 }
 
 -(NSPoint) beginPoint { return _beginPoint; }
@@ -79,13 +71,33 @@
 	_endPointLabel = endPointLabel;
 }
 
--(NSNumber*) isReady { return [NSNumber numberWithBool:_isReady]; }
--(void) setIsReady:(NSNumber *)isReady
+#pragma mark - Public Methods
+-(IBAction)performSwipe:(id)sender
 {
-	_isReady = [isReady boolValue];
+	// perform the swipe
+	NSArray *args = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys:
+													  [NSNumber numberWithInteger:_windowController.swipePopoverViewController.numberOfFingers], @"touchCount",
+													  [NSNumber numberWithInteger:_windowController.swipePopoverViewController.beginPoint.x], @"startX",
+													  [NSNumber numberWithInteger:_windowController.swipePopoverViewController.beginPoint.y], @"startY",
+													  [NSNumber numberWithInteger:_windowController.swipePopoverViewController.endPoint.x], @"endX",
+													  [NSNumber numberWithInteger:_windowController.swipePopoverViewController.endPoint.y], @"endY",
+													  [_windowController.swipePopoverViewController.duration copy], @"duration",
+													  nil],nil];
+	
+	AppiumCodeMakerAction *action = [[AppiumCodeMakerActionSwipe alloc] initWithArguments:args];
+	if ([_windowController.inspector.recorderViewController.codeMaker.isRecording boolValue])
+	{
+		[_windowController.inspector.recorderViewController.codeMaker addAction:action];
+	}
+	action.block(_windowController.driver);
+	
+	// reset for next iteration
+	[_windowController.swipePopoverViewController.popover close];
+	[_windowController.swipePopoverViewController reset];
+	[_windowController.selectedElementHighlightView setHidden:NO];
+	[_windowController.inspector refresh:sender];
 }
 
-#pragma mark - Public Methods
 -(void) reset
 {
 	[self setBeginPointWasSetLast:NO];

@@ -35,6 +35,7 @@
 @property NSAttributedString *attributedString;
 @property BOOL canUndo;
 @property BOOL canRedo;
+@property NSNumber *isRecording;
 
 -(void) reset;
 -(void) undoLast;

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6724" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6724"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="AppiumRecorderViewController">
+            <connections>
+                <outlet property="codeMaker" destination="8AV-Wh-cJi" id="7Q0-cI-cQc"/>
+                <outlet property="sourceItemView" destination="JNw-Ln-jzi" id="YU0-6z-NbF"/>
+                <outlet property="view" destination="LCZ-qM-sId" id="bJ9-ip-4Sw"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView wantsLayer="YES" id="LCZ-qM-sId" userLabel="Appium Recorder View">
+            <rect key="frame" x="0.0" y="0.0" width="864" height="226"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zqc-m2-JoK" userLabel="Language Selection ComboBox">
+                    <rect key="frame" x="18" y="197" width="120" height="26"/>
+                    <popUpButtonCell key="cell" type="push" title="C#" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="QhD-WW-XWQ" id="8Tf-hx-Ifx">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" title="OtherViews" id="bDo-S6-tv8">
+                            <items>
+                                <menuItem title="C#" state="on" id="QhD-WW-XWQ"/>
+                                <menuItem title="Item 2" id="ogV-9M-bVz"/>
+                                <menuItem title="Item 3" id="4ck-Ld-gIE"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                    <connections>
+                        <binding destination="-2" name="content" keyPath="codeMaker.allPlugins" id="8EL-uO-zqc"/>
+                        <binding destination="-2" name="selectedObject" keyPath="codeMaker.syntaxDefinition" previousBinding="8EL-uO-zqc" id="vcd-3s-GTV"/>
+                    </connections>
+                </popUpButton>
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sYc-lx-Jfs" userLabel="Add Boilerplate Checkbox">
+                    <rect key="frame" x="148" y="201" width="119" height="18"/>
+                    <buttonCell key="cell" type="check" title="Add Boilerplate" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Ejz-SP-0ZH">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="codeMaker.useBoilerPlate" id="j4G-Qf-IY2"/>
+                    </connections>
+                </button>
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ckp-4T-GVM" userLabel="XPath Only Checkbox">
+                    <rect key="frame" x="283" y="201" width="103" height="18"/>
+                    <buttonCell key="cell" type="check" title="XPath Only" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="XP9-mI-1lj">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="codeMaker.useXPathOnly" id="Zxm-9u-y8i"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l7X-Gr-Sbb" userLabel="Save Button">
+                    <rect key="frame" x="437" y="200" width="75" height="19"/>
+                    <buttonCell key="cell" type="roundRect" title="Save" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eS0-gr-ojg">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="titleBar" size="12"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="save:" target="-2" id="r95-ve-846"/>
+                        <binding destination="-2" name="enabled" keyPath="codeMaker.canUndo" id="tGL-XI-egX"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d6x-kW-yDV" userLabel="Replay Button">
+                    <rect key="frame" x="520" y="200" width="75" height="19"/>
+                    <buttonCell key="cell" type="roundRect" title="Replay" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MJF-oP-E3i">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="titleBar" size="12"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="replay:" target="-2" id="h4y-DC-iEp"/>
+                        <binding destination="-2" name="enabled" keyPath="codeMaker.canUndo" id="jFT-Ve-a6s"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="srx-Pm-zsE" userLabel="Clear Button">
+                    <rect key="frame" x="769" y="200" width="75" height="19"/>
+                    <buttonCell key="cell" type="roundRect" title="Clear" bezelStyle="roundedRect" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nFt-wB-byt">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="titleBar" size="12"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="clearRecording:" target="-2" id="8Gb-2t-WjR"/>
+                        <binding destination="-2" name="enabled" keyPath="codeMaker.canUndo" id="3fy-vi-T43"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v4L-i4-Daj" userLabel="Undo Button">
+                    <rect key="frame" x="603" y="200" width="75" height="19"/>
+                    <buttonCell key="cell" type="roundRect" title="Undo" bezelStyle="roundedRect" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wzf-gI-FyP">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="titleBar" size="12"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="undoLast:" target="-2" id="aCE-yR-Ke1"/>
+                        <binding destination="-2" name="enabled" keyPath="codeMaker.canUndo" id="E8j-0R-nae"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="esh-32-rNw" userLabel="Redo Button">
+                    <rect key="frame" x="686" y="200" width="75" height="19"/>
+                    <buttonCell key="cell" type="roundRect" title="Redo" bezelStyle="roundedRect" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CcY-8B-PAw">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="titleBar" size="12"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="redoLast:" target="-2" id="PPl-dJ-x8d"/>
+                        <binding destination="-2" name="enabled" keyPath="codeMaker.canRedo" id="Roq-dq-4Id"/>
+                    </connections>
+                </button>
+                <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JNw-Ln-jzi">
+                    <rect key="frame" x="0.0" y="0.0" width="864" height="195"/>
+                </customView>
+            </subviews>
+        </customView>
+        <customObject id="8AV-Wh-cJi" customClass="AppiumCodeMaker">
+            <connections>
+                <outlet property="_contentView" destination="JNw-Ln-jzi" id="FOj-Oq-3sd"/>
+            </connections>
+        </customObject>
+    </objects>
+</document>
