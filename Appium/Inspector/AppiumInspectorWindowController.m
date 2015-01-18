@@ -10,6 +10,7 @@
 
 #import "AppiumAppDelegate.h"
 #import "AppiumModel.h"
+#import "AppiumPreferencesFile.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation AppiumInspectorWindowController
@@ -21,7 +22,7 @@
     if (self)
 	{
         AppiumModel *model = [(AppiumAppDelegate*)[[NSApplication sharedApplication] delegate] model];
-        
+		
         self.driver = [[SERemoteWebDriver alloc] initWithServerAddress:model.general.serverAddress port:[model.general.serverPort integerValue]];
 		
 		if (self.driver == nil)
@@ -126,6 +127,12 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+-(NSNumber*) searchLocatorsFromCurrentElement { return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:APPIUM_PLIST_INSPECTOR_SEARCH_FOR_LOCATORS_FROM_CURRENT_ELEMENT]]; }
+
+-(void) setSearchLocatorsFromCurrentElement:(NSNumber *)searchLocatorsFromCurrentElement {
+	[[NSUserDefaults standardUserDefaults] setValue:searchLocatorsFromCurrentElement forKey:APPIUM_PLIST_INSPECTOR_SEARCH_FOR_LOCATORS_FROM_CURRENT_ELEMENT];
+}
+
 -(IBAction)locatorSearchButtonClicked:(id)sender {
 	
 	[self.findElementButton setEnabled:NO];
@@ -154,7 +161,13 @@
 
 		// find elements and grab identifying information
 		if (locator != nil) {
-			[elements addObjectsFromArray:[self.driver findElementsBy:locator]];
+			if ([self.searchLocatorsFromCurrentElement boolValue]) {
+				SEWebElement *root = [self.driver findElementBy:self.inspector.locatorForSelectedNode.by];
+				[elements addObjectsFromArray:[root findElementsBy:locator]];
+			} else {
+				[elements addObjectsFromArray:[self.driver findElementsBy:locator]];
+			}
+			
 			if ([elements count] == 1) {
 				element = (SEWebElement*)[elements objectAtIndex:0];
 				if (element.opaqueId != nil) {

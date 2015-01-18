@@ -124,6 +124,8 @@
 	<integer>200000</integer>
 	<key>Inspector CodeMaker Language</key>
 	<string>Java</string>
+	<key>Inspector Search For Locators From Current Element</key>
+	<false/>
 	<key>Inspector Shows Disabled Elements</key>
 	<true/>
 	<key>Inspector Shows Invisible Elements</key>

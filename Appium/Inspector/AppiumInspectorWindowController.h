@@ -31,6 +31,7 @@
 	@property IBOutlet NSButton *recordButton;
     @property IBOutlet AppiumCodeMakerPreciseTapPopoverViewController *preciseTapPopoverViewController;
     @property IBOutlet NSButton *preciseTapButton;
+	@property NSNumber *searchLocatorsFromCurrentElement;
     @property IBOutlet AppiumCodeMakerSwipePopOverViewController *swipePopoverViewController;
     @property IBOutlet NSButton *swipeButton;
 	@property IBOutlet NSButton *findElementButton;

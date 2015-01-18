@@ -63,6 +63,7 @@
 #define APPIUM_PLIST_EXTERNAL_APPIUM_PACKAGE_PATH @"External Appium Package Path"
 #define APPIUM_PLIST_EXTERNAL_NODEJS_BINARY_PATH @"External NodeJS Binary Path"
 #define APPIUM_PLIST_INSPECTOR_CODEMAKER_LANGUAGE @"Inspector CodeMaker Language"
+#define APPIUM_PLIST_INSPECTOR_SEARCH_FOR_LOCATORS_FROM_CURRENT_ELEMENT @"Inspector Search For Locators From Current Element"
 #define APPIUM_PLIST_INSPECTOR_SHOWS_DISABLED_ELEMENTS @"Inspector Shows Disabled Elements"
 #define APPIUM_PLIST_INSPECTOR_SHOWS_INVISIBLE_ELEMENTS @"Inspector Shows Invisible Elements"
 #define APPIUM_PLIST_INSPECTOR_USES_CODEMAKER_BOILERPLATE @"Inspector Uses CodeMaker Boilerplate"

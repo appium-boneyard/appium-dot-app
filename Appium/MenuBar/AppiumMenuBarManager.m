@@ -11,12 +11,14 @@
 #import "NSImage+Rotated.h"
 
 #define ANIMATION_FPS 15.0f
-#define ANIMATION_DEGREES_PER_FRAME 10.0f
+#define ANIMATION_DEGREES_PER_FRAME 5.0f
 
 @interface AppiumMenuBarManager() {
 	@private
 	NSTimer *_animationTimer;
 	float _nextRotationInDegrees;
+	NSImage *_serverOffIcon;
+	NSImage *_serverOnIcon;
 }
 
 @end
@@ -30,13 +32,21 @@
 		_nextRotationInDegrees = 0.0f;
         _bar = [NSStatusBar systemStatusBar];
 		_item = [_bar statusItemWithLength:NSVariableStatusItemLength];
-		NSImage *iconImage = [NSImage imageNamed:@"menubar-icon"];
-		NSSize newSize = [iconImage size];
+
+		// create the off state icon
+		_serverOffIcon = [NSImage imageNamed:@"menubar-icon"];
+		NSSize newSize = [_serverOffIcon size];
 		newSize.height = 18;
 		newSize.width = 18;
-		[iconImage setSize:newSize];
-		[_item setImage:iconImage];
+		[_serverOffIcon setSize:newSize];
+		[_item setImage:_serverOffIcon];
 		[_item setHighlightMode:YES];
+		
+		// create the on state icon
+		NSString* appPath = [[NSBundle mainBundle] bundlePath];
+		_serverOnIcon = [[NSWorkspace sharedWorkspace] iconForFile:appPath];
+		[_serverOnIcon setSize:newSize];
+
 
 		// add menu
 		[_item setMenu:[NSMenu new]];
@@ -113,6 +123,7 @@
 - (void)stopAnimating
 {
 	[_animationTimer invalidate];
+	[_item setImage:_serverOffIcon];
 }
 
 - (void)updateImage:(NSTimer*)timer
@@ -124,7 +135,7 @@
 	}
 	
 	// update with the rotated image
-	NSImage* image = [[NSImage imageNamed:@"menubar-icon"] imageRotated:-1.0*_nextRotationInDegrees];
+	NSImage* image = [_serverOnIcon imageRotated:-1.0*_nextRotationInDegrees];
 	[_item setImage:image];
 }
 
