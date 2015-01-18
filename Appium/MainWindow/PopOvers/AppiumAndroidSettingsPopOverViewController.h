@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 Appium. All rights reserved.
 //
 
-#import "AppiumMonitorWindowPopOverViewController.h"
+#import "AppiumMainWindowPopOverViewController.h"
 
-@interface AppiumAndroidSettingsPopOverViewController : AppiumMonitorWindowPopOverViewController
+@interface AppiumAndroidSettingsPopOverViewController : AppiumMainWindowPopOverViewController
 
 @end

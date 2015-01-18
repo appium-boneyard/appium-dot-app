@@ -60,7 +60,7 @@
                     <rect key="frame" x="437" y="200" width="75" height="19"/>
                     <buttonCell key="cell" type="roundRect" title="Save" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eS0-gr-ojg">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="titleBar" size="12"/>
+                        <font key="font" metaFont="cellTitle"/>
                     </buttonCell>
                     <connections>
                         <action selector="save:" target="-2" id="r95-ve-846"/>
@@ -71,7 +71,7 @@
                     <rect key="frame" x="520" y="200" width="75" height="19"/>
                     <buttonCell key="cell" type="roundRect" title="Replay" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MJF-oP-E3i">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="titleBar" size="12"/>
+                        <font key="font" metaFont="cellTitle"/>
                     </buttonCell>
                     <connections>
                         <action selector="replay:" target="-2" id="h4y-DC-iEp"/>
@@ -82,7 +82,7 @@
                     <rect key="frame" x="769" y="200" width="75" height="19"/>
                     <buttonCell key="cell" type="roundRect" title="Clear" bezelStyle="roundedRect" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nFt-wB-byt">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="titleBar" size="12"/>
+                        <font key="font" metaFont="cellTitle"/>
                     </buttonCell>
                     <connections>
                         <action selector="clearRecording:" target="-2" id="8Gb-2t-WjR"/>
@@ -93,7 +93,7 @@
                     <rect key="frame" x="603" y="200" width="75" height="19"/>
                     <buttonCell key="cell" type="roundRect" title="Undo" bezelStyle="roundedRect" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wzf-gI-FyP">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="titleBar" size="12"/>
+                        <font key="font" metaFont="cellTitle"/>
                     </buttonCell>
                     <connections>
                         <action selector="undoLast:" target="-2" id="aCE-yR-Ke1"/>
@@ -104,7 +104,7 @@
                     <rect key="frame" x="686" y="200" width="75" height="19"/>
                     <buttonCell key="cell" type="roundRect" title="Redo" bezelStyle="roundedRect" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CcY-8B-PAw">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="titleBar" size="12"/>
+                        <font key="font" metaFont="cellTitle"/>
                     </buttonCell>
                     <connections>
                         <action selector="redoLast:" target="-2" id="PPl-dJ-x8d"/>

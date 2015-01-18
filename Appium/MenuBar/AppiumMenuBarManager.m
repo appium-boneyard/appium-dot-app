@@ -47,7 +47,7 @@
 	}
 }
 
--(void) installServerOnMenu:(AppiumMonitorWindowController*)mainWindowController
+-(void) installServerOnMenu:(AppiumMainWindowController*)mainWindowController
 {
 	NSMenuItem *stopServerItem = [NSMenuItem new];
 	[stopServerItem setTitle:@"Stop Server"];
@@ -77,7 +77,7 @@
 	[[_item menu] addItem:inspectorItem];
 }
 
--(void) installServerOffMenu:(AppiumMonitorWindowController*)mainWindowController
+-(void) installServerOffMenu:(AppiumMainWindowController*)mainWindowController
 {
     NSMenuItem *startServerItem = [NSMenuItem new];
 	[startServerItem setTitle:@"Start Server"];

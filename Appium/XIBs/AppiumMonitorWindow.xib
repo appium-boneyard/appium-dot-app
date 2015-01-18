@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6724" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6724"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="AppiumMonitorWindowController">
+        <customObject id="-2" userLabel="File's Owner" customClass="AppiumMainWindowController">
             <connections>
-                <outlet property="androidPrefsButton" destination="FEf-Ny-JLn" id="ise-Ft-90W"/>
-                <outlet property="androidPrefsWindowController" destination="Lnv-D6-UQb" id="DD9-Eb-3M4"/>
-                <outlet property="androidRadioButton" destination="EwA-Hk-UWU" id="mT8-xj-UDo"/>
-                <outlet property="buttonBarView" destination="fCp-SW-qmt" id="jBP-sc-ZzF"/>
-                <outlet property="developerPrefsWindowController" destination="8ME-c5-j9d" id="eJP-Kt-oVI"/>
-                <outlet property="generalPrefsWindowController" destination="Ug1-6P-qDs" id="T09-cX-zXg"/>
-                <outlet property="iOSPrefsButton" destination="JXs-kf-O2d" id="OaU-1j-Wco"/>
-                <outlet property="iosPrefsWindowController" destination="XEC-az-lQA" id="5NY-8C-q3b"/>
+                <outlet property="_androidPrefsButton" destination="FEf-Ny-JLn" id="uWX-JO-5ON"/>
+                <outlet property="_androidPrefsWindowController" destination="Lnv-D6-UQb" id="tYv-6f-yK0"/>
+                <outlet property="_androidRadioButton" destination="EwA-Hk-UWU" id="HaS-TC-VFb"/>
+                <outlet property="_buttonBarView" destination="fCp-SW-qmt" id="vRH-lm-Ghu"/>
+                <outlet property="_developerPrefsWindowController" destination="8ME-c5-j9d" id="5Wd-Ev-0J6"/>
+                <outlet property="_generalPrefsWindowController" destination="Ug1-6P-qDs" id="EzG-RG-jQw"/>
+                <outlet property="_iOSPrefsButton" destination="JXs-kf-O2d" id="26K-Gg-MNC"/>
+                <outlet property="_iOSRadioButton" destination="1RP-HM-Fli" id="m5R-ZC-bhW"/>
+                <outlet property="_iosPrefsWindowController" destination="XEC-az-lQA" id="UPs-ng-0MF"/>
+                <outlet property="_robotPrefsWindowController" destination="Vql-EG-AP5" id="mBO-lF-CjD"/>
                 <outlet property="logTextView" destination="29" id="104"/>
-                <outlet property="robotPrefsWindowController" destination="Vql-EG-AP5" id="FUE-IW-deA"/>
                 <outlet property="window" destination="1" id="3"/>
             </connections>
         </customObject>
@@ -35,7 +35,7 @@
                         <rect key="frame" x="20" y="484" width="626" height="72"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <button toolTip="Android Settings" id="FEf-Ny-JLn" userLabel="Android Settings Button" customClass="AppiumMonitorWindowPopOverButton">
+                            <button toolTip="Android Settings" id="FEf-Ny-JLn" userLabel="Android Settings Button" customClass="AppiumMainWindowPopOverButton">
                                 <rect key="frame" x="-2" y="28" width="52" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="android" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" id="GPI-PZ-IQE">
@@ -73,7 +73,7 @@
                                     </column>
                                 </cells>
                             </matrix>
-                            <button toolTip="General Settings" id="nTF-89-OOV" userLabel="General Settings Button" customClass="AppiumMonitorWindowPopOverButton">
+                            <button toolTip="General Settings" id="nTF-89-OOV" userLabel="General Settings Button" customClass="AppiumMainWindowPopOverButton">
                                 <rect key="frame" x="110" y="28" width="52" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="settings" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" id="pKj-N7-wu7">
@@ -85,7 +85,7 @@
                                     <outlet property="popoverController" destination="Ug1-6P-qDs" id="nFs-nc-yah"/>
                                 </connections>
                             </button>
-                            <button toolTip="Developer Settings" id="RLj-er-2g4" userLabel="Developer Settings Button" customClass="AppiumMonitorWindowPopOverButton">
+                            <button toolTip="Developer Settings" id="RLj-er-2g4" userLabel="Developer Settings Button" customClass="AppiumMainWindowPopOverButton">
                                 <rect key="frame" x="166" y="28" width="52" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="dev-settings" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" id="gsJ-aC-Tgs">
@@ -97,7 +97,7 @@
                                     <outlet property="popoverController" destination="8ME-c5-j9d" id="Ihe-YG-OGg"/>
                                 </connections>
                             </button>
-                            <button toolTip="Robot Settings" id="MPC-8q-i8X" userLabel="Robot Settings Button" customClass="AppiumMonitorWindowPopOverButton">
+                            <button toolTip="Robot Settings" id="MPC-8q-i8X" userLabel="Robot Settings Button" customClass="AppiumMainWindowPopOverButton">
                                 <rect key="frame" x="222" y="28" width="52" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="robot" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" id="4rl-rw-UXu">
@@ -177,7 +177,7 @@
                                     </binding>
                                 </connections>
                             </button>
-                            <button toolTip="iOS Settings" id="JXs-kf-O2d" userLabel="iOS Settings Button" customClass="AppiumMonitorWindowPopOverButton">
+                            <button toolTip="iOS Settings" id="JXs-kf-O2d" userLabel="iOS Settings Button" customClass="AppiumMainWindowPopOverButton">
                                 <rect key="frame" x="54" y="28" width="52" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="apple" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" id="eKK-2C-39P">

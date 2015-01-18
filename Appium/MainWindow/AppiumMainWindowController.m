@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 Appium. All rights reserved.
 //
 
-#import "AppiumMonitorWindowController.h"
+#import "AppiumMainWindowController.h"
 #import "AppiumAppDelegate.h"
 #import "ANSIUtility.h"
 #import "Utility.h"
 
-@implementation AppiumMonitorWindowController
+@implementation AppiumMainWindowController
 
 -(id)init
 {
@@ -157,9 +157,9 @@
 
 -(void) closeAllPopovers
 {
-	for(NSView* button in [buttonBarView subviews]) {
-		if ([button isKindOfClass:[AppiumMonitorWindowPopOverButton class]]) {
-			[((AppiumMonitorWindowPopOverButton*)button).popoverController close];
+	for(NSView* button in [_buttonBarView subviews]) {
+		if ([button isKindOfClass:[AppiumMainWindowPopOverButton class]]) {
+			[((AppiumMainWindowPopOverButton*)button).popoverController close];
 		}
 	}
 }

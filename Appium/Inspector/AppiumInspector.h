@@ -33,6 +33,7 @@
 }
 
 @property IBOutlet AppiumRecorderViewController *recorderViewController;
+@property IBOutlet NSWindow *window;
 @property (readonly) SERemoteWebDriver *driver;
 
 // dom hierarchy properties

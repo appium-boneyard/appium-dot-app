@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AppiumMonitorWindowController.h"
+#import "AppiumMainWindowController.h"
 
 @interface AppiumUpdater : NSObject
 
--(id) initWithAppiumMonitorWindowController:(AppiumMonitorWindowController*)windowController;
+-(id) initWithAppiumMonitorWindowController:(AppiumMainWindowController*)windowController;
 -(void) checkForUpdates:(id)sender;
 
 @end

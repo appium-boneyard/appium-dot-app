@@ -24,7 +24,7 @@
 	[self setModel:[AppiumModel new]];
 
     // create main monitor window
-    [self setMainWindowController:[[AppiumMonitorWindowController alloc] initWithWindowNibName:@"AppiumMonitorWindow"]];
+    [self setMainWindowController:[[AppiumMainWindowController alloc] initWithWindowNibName:@"AppiumMonitorWindow"]];
 	_updater = [[AppiumUpdater alloc] initWithAppiumMonitorWindowController:[self mainWindowController]];
 
     // install anything that's missing
@@ -45,12 +45,12 @@
 
 -(IBAction) displayInspector:(id)sender
 {
-	if (self.inspectorWindow == nil)
+	if (self.inspectorWindowController == nil)
 	{
 		self.mainWindowController.inspectorIsLaunching = YES;
 		
 		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-			self.inspectorWindow = [[AppiumInspectorWindowController alloc] initWithWindowNibName:@"AppiumInspectorWindow"];
+			self.inspectorWindowController = [[AppiumInspectorWindowController alloc] initWithWindowNibName:@"AppiumInspectorWindow"];
 			self.mainWindowController.inspectorIsLaunching = NO;
 			
 			dispatch_async(dispatch_get_main_queue(), ^{
@@ -61,7 +61,7 @@
 		[[NSNotificationCenter defaultCenter] addObserver:self
 												 selector:@selector(inspectorWindowWillClose:)
 													 name:NSWindowWillCloseNotification
-												   object:[self.inspectorWindow window]];
+												   object:[self.inspectorWindowController window]];
 	}
 	else
 	{
@@ -71,22 +71,22 @@
 
 - (void)presentInspector
 {
-	[self.inspectorWindow showWindow:self];
-	[[self.inspectorWindow window] makeKeyAndOrderFront:self];
+	[self.inspectorWindowController showWindow:self];
+	[[self.inspectorWindowController window] makeKeyAndOrderFront:self];
 }
 
 - (void)closeInspector
 {
-	if (self.inspectorWindow != nil)
+	if (self.inspectorWindowController != nil)
 	{
-		[self.inspectorWindow close];
+		[self.inspectorWindowController close];
 	}
 }
 
 - (void)inspectorWindowWillClose:(NSNotification *)notification
 {
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowWillCloseNotification object:[self.inspectorWindow window]];
-	self.inspectorWindow = nil;
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowWillCloseNotification object:[self.inspectorWindowController window]];
+	self.inspectorWindowController = nil;
 }
 
 #pragma mark - Updates

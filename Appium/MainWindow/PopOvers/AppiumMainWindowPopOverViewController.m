@@ -7,18 +7,18 @@
 //
 
 #import "AppiumAppDelegate.h"
-#import "AppiumMonitorWindowController.h"
-#import "AppiumMonitorWindowPopOverViewController.h"
-#import "AppiumMonitorWindowPopOverButton.h"
+#import "AppiumMainWindowController.h"
+#import "AppiumMainWindowPopOverViewController.h"
+#import "AppiumMainWindowPopOverButton.h"
 
 @class AppiumAppDelegate;
-@class AppiumMonitorWindowController;
+@class AppiumMainWindowController;
 
-@interface AppiumMonitorWindowPopOverViewController ()
+@interface AppiumMainWindowPopOverViewController ()
 
 @end
 
-@implementation AppiumMonitorWindowPopOverViewController
+@implementation AppiumMainWindowPopOverViewController
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,7 +45,7 @@
 {
 	if (!self.popover.isShown) {
 		// close all popovers
-		AppiumMonitorWindowController *monitorWindow = ((AppiumAppDelegate*)[NSApplication sharedApplication].delegate).mainWindowController;
+		AppiumMainWindowController *monitorWindow = ((AppiumAppDelegate*)[NSApplication sharedApplication].delegate).mainWindowController;
 		[monitorWindow closeAllPopovers];
 		
 		// open the popover

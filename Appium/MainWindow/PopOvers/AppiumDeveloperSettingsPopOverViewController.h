@@ -7,8 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "AppiumMonitorWindowPopOverViewController.h"
+#import "AppiumMainWindowPopOverViewController.h"
 
-@interface AppiumDeveloperSettingsPopOverViewController : AppiumMonitorWindowPopOverViewController
+@interface AppiumDeveloperSettingsPopOverViewController : AppiumMainWindowPopOverViewController
 
 @end

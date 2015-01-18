@@ -10,6 +10,7 @@
 
 #import "AppiumAppDelegate.h"
 
+
 @implementation NSApplication(AppiumAppleScriptSupport)
 
 -(AppiumModel*) model { return [(AppiumAppDelegate*)[self delegate] model]; }
@@ -25,7 +26,7 @@
 -(AppiumInspectorWindowController*) s_InspectorWindow
 {
 	AppiumAppDelegate *delegate = [self delegate];
-	return delegate.inspectorWindow;
+	return delegate.inspectorWindowController;
 }
 
 -(NSString*) s_LogText
