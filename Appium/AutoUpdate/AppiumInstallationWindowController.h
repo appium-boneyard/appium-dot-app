@@ -8,7 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface AppiumInstallationWindowController : NSWindowController
+@interface AppiumInstallationWindowController : NSWindowController{
+	@private
+	IBOutlet NSImageView *_appiumLogoImageView;
+}
 
 @property (weak) IBOutlet NSTextField *messageLabel;
 
