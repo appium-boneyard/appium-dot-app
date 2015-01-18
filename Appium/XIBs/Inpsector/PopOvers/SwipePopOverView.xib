@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6724" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6724"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="AppiumCodeMakerSwipePopOverViewController">
+            <connections>
+                <outlet property="view" destination="yCP-cM-7Sh" id="C5o-mw-T8y"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="yCP-cM-7Sh" userLabel="Swipe PopOver View">
+            <rect key="frame" x="0.0" y="0.0" width="214" height="131"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="otG-Ae-ycI" userLabel="Fingers Label">
+                    <rect key="frame" x="13" y="107" width="51" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Fingers" id="BXQ-sL-AZ1">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tiu-bE-b5T" userLabel="Fingers Pop Up Button">
+                    <rect key="frame" x="86" y="101" width="50" height="26"/>
+                    <popUpButtonCell key="cell" type="push" title="1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="lWq-Vw-jj1" id="vw5-Zz-gXI">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" title="Fingers Menu" id="qII-ZP-woq" userLabel="Fingers Menu">
+                            <items>
+                                <menuItem title="1" state="on" id="lWq-Vw-jj1"/>
+                                <menuItem title="2" id="Adr-eM-m1a"/>
+                                <menuItem title="3" id="RPW-9N-C76"/>
+                                <menuItem title="4" id="NBv-pA-Zer">
+                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                </menuItem>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                    <connections>
+                        <binding destination="-2" name="selectedValue" keyPath="numberOfFingersString" id="SE8-TS-1jk"/>
+                    </connections>
+                </popUpButton>
+                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xlu-PL-Xfe" userLabel="Duration Label">
+                    <rect key="frame" x="9" y="82" width="59" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Duration" id="oWd-dY-beB">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Agb-xI-8G6" userLabel="Duration Slider">
+                    <rect key="frame" x="86" y="76" width="119" height="25"/>
+                    <sliderCell key="cell" state="on" alignment="left" minValue="0.5" maxValue="2" doubleValue="0.5" tickMarkPosition="below" numberOfTickMarks="16" sliderType="linear" id="y6u-6t-Eij"/>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="duration" id="Rkb-Dn-yPW"/>
+                    </connections>
+                </slider>
+                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kIi-j6-G6F" userLabel="Begin Label">
+                    <rect key="frame" x="19" y="57" width="39" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Begin" id="aoB-qp-FAY">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qcu-GF-bV7" userLabel="Begin Value">
+                    <rect key="frame" x="85" y="57" width="99" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="(click to select)" id="JUA-eR-XeC">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="beginPointLabel" id="Nj8-8A-UrZ"/>
+                    </connections>
+                </textField>
+                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zhu-xw-t5D" userLabel="End Label">
+                    <rect key="frame" x="24" y="32" width="28" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="End" id="cOp-eT-6lf">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jPA-nM-JaL" userLabel="End Value">
+                    <rect key="frame" x="85" y="32" width="99" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="(click to select)" id="zr4-Ra-dfT">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="endPointLabel" id="ZJo-6B-173"/>
+                    </connections>
+                </textField>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fiw-YI-daj" userLabel="Perform Button">
+                    <rect key="frame" x="142" y="5" width="61" height="19"/>
+                    <buttonCell key="cell" type="roundRect" title="Perform" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BZG-ud-Sx3">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="titleBar" size="12"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="performSwipe:" target="-2" id="Fbe-rf-UAA"/>
+                        <binding destination="-2" name="enabled" keyPath="isReady" id="ZZa-XZ-svD"/>
+                    </connections>
+                </button>
+            </subviews>
+        </customView>
+        <userDefaultsController representsSharedInstance="YES" id="LS2-Xr-eDg"/>
+    </objects>
+</document>

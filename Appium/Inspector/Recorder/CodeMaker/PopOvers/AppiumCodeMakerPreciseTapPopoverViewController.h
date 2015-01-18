@@ -13,9 +13,6 @@
 
 @interface AppiumCodeMakerPreciseTapPopoverViewController : NSViewController<NSPopoverDelegate> {
 	@private
-	NSUInteger _numberOfTaps;
-	NSUInteger _numberOfFingers;
-	float _duration;
 	NSPoint _touchPoint;
 	NSString *_beginPointLabel;
 	IBOutlet AppiumInspectorWindowController * _windowController;

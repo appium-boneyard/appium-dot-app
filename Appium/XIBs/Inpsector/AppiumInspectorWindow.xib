@@ -27,6 +27,8 @@
         <customObject id="26" customClass="AppiumInspector">
             <connections>
                 <outlet property="_windowController" destination="-2" id="356"/>
+                <outlet property="codeMaker" destination="414" id="BJf-9K-lZP"/>
+                <outlet property="recorder" destination="357" id="i0X-0b-lpK"/>
             </connections>
         </customObject>
         <customObject id="357" customClass="AppiumRecorder">
@@ -148,11 +150,11 @@
                         </connections>
                     </browser>
                     <customView id="60" userLabel="Screenshot Area View">
-                        <rect key="frame" x="847" y="47" width="360.00000042208706" height="480"/>
+                        <rect key="frame" x="847" y="47" width="360" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView id="43" userLabel="Screenshot Image View" customClass="AppiumInspectorScreenshotImageView">
-                                <rect key="frame" x="4.220870550852851e-07" y="0.0" width="360" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="360" height="480"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="44"/>
                                 <connections>
@@ -691,11 +693,10 @@
                 </button>
             </subviews>
         </customView>
-        <viewController id="222" userLabel="Swipe Popover View Controller" customClass="AppiumCodeMakerSwipePopOverViewController">
+        <viewController nibName="SwipePopOverView" id="222" userLabel="Swipe Popover View Controller" customClass="AppiumCodeMakerSwipePopOverViewController">
             <connections>
                 <outlet property="_windowController" destination="-2" id="550"/>
                 <outlet property="popover" destination="223" id="429"/>
-                <outlet property="view" destination="225" id="228"/>
             </connections>
         </viewController>
         <popover id="223" userLabel="Swipe Popover">
@@ -704,122 +705,10 @@
                 <outlet property="delegate" destination="222" id="517"/>
             </connections>
         </popover>
-        <customView id="225" userLabel="Swipe PopOver View">
-            <rect key="frame" x="0.0" y="0.0" width="214" height="131"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <subviews>
-                <textField verticalHuggingPriority="750" id="233" userLabel="Fingers Label">
-                    <rect key="frame" x="13" y="107" width="51" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Fingers" id="234">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <popUpButton verticalHuggingPriority="750" id="235" userLabel="Fingers Pop Up Button">
-                    <rect key="frame" x="86" y="101" width="50" height="26"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="push" title="1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="238" id="236">
-                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="menu"/>
-                        <menu key="menu" title="Fingers Menu" id="237" userLabel="Fingers Menu">
-                            <items>
-                                <menuItem title="1" state="on" id="238"/>
-                                <menuItem title="2" id="239"/>
-                                <menuItem title="3" id="240"/>
-                                <menuItem title="4" id="241">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                            </items>
-                        </menu>
-                    </popUpButtonCell>
-                    <connections>
-                        <binding destination="222" name="selectedValue" keyPath="numberOfFingersString" id="263"/>
-                    </connections>
-                </popUpButton>
-                <textField verticalHuggingPriority="750" id="242" userLabel="Duration Label">
-                    <rect key="frame" x="9" y="82" width="59" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Duration" id="243">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <slider verticalHuggingPriority="750" id="244" userLabel="Duration Slider">
-                    <rect key="frame" x="86" y="76" width="119" height="25"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" state="on" alignment="left" minValue="0.5" maxValue="2" doubleValue="0.5" tickMarkPosition="below" numberOfTickMarks="16" sliderType="linear" id="245">
-                        <connections>
-                            <binding destination="222" name="value" keyPath="duration" id="262"/>
-                        </connections>
-                    </sliderCell>
-                    <connections>
-                        <binding destination="222" name="value" keyPath="duration" id="259"/>
-                    </connections>
-                </slider>
-                <textField verticalHuggingPriority="750" id="246" userLabel="Begin Label">
-                    <rect key="frame" x="19" y="57" width="39" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Begin" id="247">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField verticalHuggingPriority="750" id="248" userLabel="Begin Value">
-                    <rect key="frame" x="85" y="57" width="99" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="(click to select)" id="249">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="222" name="value" keyPath="beginPointLabel" id="551"/>
-                    </connections>
-                </textField>
-                <textField verticalHuggingPriority="750" id="250" userLabel="End Label">
-                    <rect key="frame" x="24" y="32" width="28" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="End" id="251">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField verticalHuggingPriority="750" id="252" userLabel="End Value">
-                    <rect key="frame" x="85" y="32" width="99" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="(click to select)" id="253">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="222" name="value" keyPath="endPointLabel" id="275"/>
-                    </connections>
-                </textField>
-                <button verticalHuggingPriority="750" id="280" userLabel="Perform Button">
-                    <rect key="frame" x="142" y="5" width="61" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="roundRect" title="Perform" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="281">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="cellTitle"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="performSwipe:" target="357" id="369"/>
-                        <binding destination="222" name="enabled" keyPath="isReady" id="285"/>
-                    </connections>
-                </button>
-            </subviews>
-        </customView>
-        <viewController id="448" userLabel="Precise Tap Popover View Controller" customClass="AppiumCodeMakerPreciseTapPopoverViewController">
+        <viewController nibName="PreciseTapPopOverView" id="448" userLabel="Precise Tap Popover View Controller" customClass="AppiumCodeMakerPreciseTapPopoverViewController">
             <connections>
                 <outlet property="_windowController" destination="-2" id="549"/>
                 <outlet property="popover" destination="449" id="513"/>
-                <outlet property="view" destination="482" id="514"/>
             </connections>
         </viewController>
         <popover id="449" userLabel="Precise Tap Popover">
@@ -828,123 +717,6 @@
                 <outlet property="delegate" destination="448" id="516"/>
             </connections>
         </popover>
-        <customView id="482" userLabel="Precise Tap View">
-            <rect key="frame" x="0.0" y="0.0" width="214" height="131"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <subviews>
-                <textField verticalHuggingPriority="750" id="538" userLabel="Taps Label">
-                    <rect key="frame" x="13" y="108" width="35" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Taps" id="539">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <popUpButton verticalHuggingPriority="750" id="540" userLabel="Taps Pop Up Button">
-                    <rect key="frame" x="86" y="103" width="50" height="26"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="541">
-                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="menu"/>
-                        <menu key="menu" title="Fingers Menu" id="542" userLabel="Fingers Menu">
-                            <items>
-                                <menuItem title="1" id="543"/>
-                                <menuItem title="2" id="544"/>
-                                <menuItem title="3" id="545"/>
-                            </items>
-                        </menu>
-                    </popUpButtonCell>
-                    <connections>
-                        <binding destination="448" name="selectedValue" keyPath="numberOfTapsString" id="548"/>
-                    </connections>
-                </popUpButton>
-                <textField verticalHuggingPriority="750" id="483" userLabel="Fingers Label">
-                    <rect key="frame" x="13" y="83" width="51" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Fingers" id="505">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <popUpButton verticalHuggingPriority="750" id="484" userLabel="Fingers Pop Up Button">
-                    <rect key="frame" x="86" y="77" width="50" height="26"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="499">
-                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="menu"/>
-                        <menu key="menu" title="Fingers Menu" id="500" userLabel="Fingers Menu">
-                            <items>
-                                <menuItem title="1" id="504"/>
-                                <menuItem title="2" id="503"/>
-                                <menuItem title="3" id="502"/>
-                                <menuItem title="4" id="501">
-                                    <modifierMask key="keyEquivalentModifierMask"/>
-                                </menuItem>
-                            </items>
-                        </menu>
-                    </popUpButtonCell>
-                    <connections>
-                        <binding destination="448" name="selectedValue" keyPath="numberOfFingersString" id="523"/>
-                    </connections>
-                </popUpButton>
-                <textField verticalHuggingPriority="750" id="485" userLabel="Duration Label">
-                    <rect key="frame" x="9" y="58" width="59" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Duration" id="498">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <slider verticalHuggingPriority="750" id="486" userLabel="Duration Slider">
-                    <rect key="frame" x="86" y="52" width="119" height="25"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <sliderCell key="cell" state="on" alignment="left" minValue="0.5" maxValue="2" doubleValue="0.5" tickMarkPosition="below" numberOfTickMarks="16" sliderType="linear" id="497">
-                        <connections>
-                            <binding destination="222" name="value" keyPath="duration" id="507"/>
-                        </connections>
-                    </sliderCell>
-                    <connections>
-                        <binding destination="448" name="value" keyPath="duration" id="526"/>
-                    </connections>
-                </slider>
-                <textField verticalHuggingPriority="750" id="487" userLabel="Point Label">
-                    <rect key="frame" x="19" y="33" width="36" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Point" id="496">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField verticalHuggingPriority="750" id="488" userLabel="Point Value">
-                    <rect key="frame" x="85" y="33" width="99" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="(click to select)" id="495">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="448" name="value" keyPath="touchPointLabel" id="529"/>
-                    </connections>
-                </textField>
-                <button verticalHuggingPriority="750" id="491" userLabel="Perform Button">
-                    <rect key="frame" x="142" y="6" width="61" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="roundRect" title="Perform" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="492">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="cellTitle"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="performPreciseTap:" target="357" id="537"/>
-                        <binding destination="448" name="enabled" keyPath="isReady" id="520"/>
-                    </connections>
-                </button>
-            </subviews>
-        </customView>
     </objects>
     <resources>
         <image name="NSRefreshTemplate" width="11" height="15"/>

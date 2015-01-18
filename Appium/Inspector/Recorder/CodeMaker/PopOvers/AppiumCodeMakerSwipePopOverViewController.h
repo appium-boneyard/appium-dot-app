@@ -13,13 +13,10 @@
 
 @interface AppiumCodeMakerSwipePopOverViewController : NSViewController<NSPopoverDelegate> {
 	@private
-	NSUInteger _numberOfFingers;
-	float _duration;
 	NSPoint _beginPoint;
 	NSPoint _endPoint;
 	NSString *_beginPointLabel;
 	NSString *_endPointLabel;
-	BOOL _isReady;
 	IBOutlet AppiumInspectorWindowController * _windowController;
 }
 

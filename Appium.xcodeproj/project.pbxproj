@@ -118,6 +118,8 @@
 		C79097511A6AC3BE007621D0 /* AppiumiOSSettingsPopOverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C790974F1A6AC3BE007621D0 /* AppiumiOSSettingsPopOverViewController.xib */; };
 		C79097551A6AD3A4007621D0 /* AppiumAndroidSettingsPopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C79097531A6AD3A4007621D0 /* AppiumAndroidSettingsPopOverViewController.m */; };
 		C79097561A6AD3A4007621D0 /* AppiumAndroidSettingsPopOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C79097541A6AD3A4007621D0 /* AppiumAndroidSettingsPopOverView.xib */; };
+		C7A23A3F1A6B1BE7004CA025 /* PreciseTapPopOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7A23A3E1A6B1BE7004CA025 /* PreciseTapPopOverView.xib */; };
+		C7A23A411A6B2225004CA025 /* SwipePopOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7A23A401A6B2225004CA025 /* SwipePopOverView.xib */; };
 		C7D0D54B1A6A859C00D3D883 /* AppiumRobotSettingsPopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D0D5491A6A859C00D3D883 /* AppiumRobotSettingsPopOverViewController.m */; };
 		C7D0D54C1A6A859C00D3D883 /* AppiumRobotSettingsPopOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7D0D54A1A6A859C00D3D883 /* AppiumRobotSettingsPopOverView.xib */; };
 		C7FFBA8D19F15CDE005B030F /* menubar-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C7FFBA8C19F15CDE005B030F /* menubar-icon.png */; };
@@ -392,6 +394,8 @@
 		C79097521A6AD3A4007621D0 /* AppiumAndroidSettingsPopOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumAndroidSettingsPopOverViewController.h; sourceTree = "<group>"; };
 		C79097531A6AD3A4007621D0 /* AppiumAndroidSettingsPopOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumAndroidSettingsPopOverViewController.m; sourceTree = "<group>"; };
 		C79097541A6AD3A4007621D0 /* AppiumAndroidSettingsPopOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppiumAndroidSettingsPopOverView.xib; sourceTree = "<group>"; };
+		C7A23A3E1A6B1BE7004CA025 /* PreciseTapPopOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreciseTapPopOverView.xib; sourceTree = "<group>"; };
+		C7A23A401A6B2225004CA025 /* SwipePopOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwipePopOverView.xib; sourceTree = "<group>"; };
 		C7D0D5481A6A859C00D3D883 /* AppiumRobotSettingsPopOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumRobotSettingsPopOverViewController.h; sourceTree = "<group>"; };
 		C7D0D5491A6A859C00D3D883 /* AppiumRobotSettingsPopOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumRobotSettingsPopOverViewController.m; sourceTree = "<group>"; };
 		C7D0D54A1A6A859C00D3D883 /* AppiumRobotSettingsPopOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppiumRobotSettingsPopOverView.xib; sourceTree = "<group>"; };
@@ -897,10 +901,20 @@
 		C79097451A6AB1D9007621D0 /* Inspector */ = {
 			isa = PBXGroup;
 			children = (
+				C7A23A391A6B1B77004CA025 /* PopOvers */,
 				36CD44ED16F0D5C300194193 /* AppiumInspectorWindow.xib */,
 			);
 			name = Inspector;
 			path = XIBs/Inpsector;
+			sourceTree = "<group>";
+		};
+		C7A23A391A6B1B77004CA025 /* PopOvers */ = {
+			isa = PBXGroup;
+			children = (
+				C7A23A3E1A6B1BE7004CA025 /* PreciseTapPopOverView.xib */,
+				C7A23A401A6B2225004CA025 /* SwipePopOverView.xib */,
+			);
+			path = PopOvers;
 			sourceTree = "<group>";
 		};
 		C7D0D53E1A6A84DF00D3D883 /* Settings PopOvers */ = {
@@ -1036,6 +1050,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36CEB7D616E3662E00B5B100 /* InfoPlist.strings in Resources */,
+				C7A23A411A6B2225004CA025 /* SwipePopOverView.xib in Resources */,
 				36CEB7DC16E3662E00B5B100 /* Credits.rtf in Resources */,
 				364EED47191EDF6C00AB4439 /* android.png in Resources */,
 				364EED49191EDF9100AB4439 /* apple.png in Resources */,
@@ -1059,6 +1074,7 @@
 				36A765A616F01C7C002A7D6A /* appium.icns in Resources */,
 				36CD44EF16F0D5C300194193 /* AppiumInspectorWindow.xib in Resources */,
 				36D17E2916F144E600DC5797 /* Upgrade.applescript in Resources */,
+				C7A23A3F1A6B1BE7004CA025 /* PreciseTapPopOverView.xib in Resources */,
 				364EED3B191EDE6F00AB4439 /* dev-settings.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

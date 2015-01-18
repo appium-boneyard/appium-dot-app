@@ -197,57 +197,6 @@
 	}
 }
 
--(IBAction)performPreciseTap:(id)sender
-{
-	// perform the swipe
-	NSArray *args = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys:
-													  [NSNumber numberWithInteger:_windowController.preciseTapPopoverViewController.numberOfTaps], @"tapCount",
-													  [NSNumber numberWithInteger:_windowController.preciseTapPopoverViewController.numberOfFingers], @"touchCount",
-													  [NSNumber numberWithInteger:_windowController.preciseTapPopoverViewController.touchPoint.x], @"x",
-													  [NSNumber numberWithInteger:_windowController.preciseTapPopoverViewController.touchPoint.y], @"y",
-													  [_windowController.preciseTapPopoverViewController.duration copy], @"duration",
-													  nil],nil];
-
-    AppiumCodeMakerAction *action = [[AppiumCodeMakerActionPreciseTap alloc] initWithArguments:args];
-	if (_isRecording)
-	{
-		[_codeMaker addAction:action];
-	}
-    action.block(self.driver);
-
-	// reset for next iteration
-	[_windowController.preciseTapPopoverViewController.popover close];
-	[_windowController.preciseTapPopoverViewController reset];
-	[_windowController.selectedElementHighlightView setHidden:NO];
-	[self.inspector refresh:sender];
-}
-
--(IBAction)performSwipe:(id)sender
-{
-	// perform the swipe
-	NSArray *args = [[NSArray alloc] initWithObjects:[[NSDictionary alloc] initWithObjectsAndKeys:
-													  [NSNumber numberWithInteger:_windowController.swipePopoverViewController.numberOfFingers], @"touchCount",
-													  [NSNumber numberWithInteger:_windowController.swipePopoverViewController.beginPoint.x], @"startX",
-													  [NSNumber numberWithInteger:_windowController.swipePopoverViewController.beginPoint.y], @"startY",
-													  [NSNumber numberWithInteger:_windowController.swipePopoverViewController.endPoint.x], @"endX",
-													  [NSNumber numberWithInteger:_windowController.swipePopoverViewController.endPoint.y], @"endY",
-													  [_windowController.swipePopoverViewController.duration copy], @"duration",
-													  nil],nil];
-
-    AppiumCodeMakerAction *action = [[AppiumCodeMakerActionSwipe alloc] initWithArguments:args];
-	if (_isRecording)
-	{
-		[_codeMaker addAction:action];
-	}
-    action.block(self.driver);
-
-	// reset for next iteration
-	[_windowController.swipePopoverViewController.popover close];
-	[_windowController.swipePopoverViewController reset];
-	[_windowController.selectedElementHighlightView setHidden:NO];
-	[self.inspector refresh:sender];
-}
-
 -(IBAction)toggleRecording:(id)sender
 {
 	[self setIsRecording:[NSNumber numberWithBool:!_isRecording]];
