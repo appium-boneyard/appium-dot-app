@@ -14,13 +14,13 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe" userLabel="General Settings View">
-            <rect key="frame" x="0.0" y="0.0" width="397" height="638"/>
+            <rect key="frame" x="0.0" y="0.0" width="417" height="638"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Zm-Ng-8YY" userLabel="General Settings Label">
-                    <rect key="frame" x="18" y="601" width="130" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="General Settings" id="mhk-eP-TMP" userLabel="General Settings">
-                        <font key="font" metaFont="system"/>
+                    <rect key="frame" x="18" y="601" width="381" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="General Settings" id="mhk-eP-TMP" userLabel="General Settings">
+                        <font key="font" metaFont="systemBold"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -47,12 +47,12 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
+                                    <binding destination="-2" name="value" keyPath="model.general.serverAddress" id="dh9-YZ-DGW"/>
                                     <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="Dbn-zi-7BE">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.general.serverAddress" id="dh9-YZ-DGW"/>
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="17J-L3-OJJ" userLabel="Callback Address Text Field">
@@ -63,15 +63,8 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="AFX-ci-kw1" id="q9j-3T-4J3">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
+                                    <binding destination="-2" name="value" keyPath="model.general.callbackAddress" id="wTU-1B-Br6"/>
+                                    <binding destination="-2" name="enabled" keyPath="model.general.useCallbackAddress" id="AFX-ci-kw1"/>
                                     <binding destination="-2" name="enabled3" keyPath="model.general.useRemoteServer" previousBinding="q9j-3T-4J3" id="xAe-ks-fT0">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -81,8 +74,15 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.general.callbackAddress" id="wTU-1B-Br6"/>
-                                    <binding destination="-2" name="enabled" keyPath="model.general.useCallbackAddress" id="AFX-ci-kw1"/>
+                                    <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="AFX-ci-kw1" id="q9j-3T-4J3">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R3k-bx-YBT" userLabel="Server Port Label">
@@ -101,14 +101,14 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="VfN-jD-p5U">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
                                     <binding destination="-2" name="value" keyPath="model.general.serverPort" id="qeC-Xy-lkF">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">AppiumPortTransformer</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="VfN-jD-p5U">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
                                 </connections>
@@ -121,15 +121,12 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="EDd-GN-ISB" id="FIQ-w4-ar8">
+                                    <binding destination="-2" name="value" keyPath="model.general.callbackPort" id="cqE-Qb-ug5">
                                         <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                            <string key="NSValueTransformerName">AppiumPortTransformer</string>
                                         </dictionary>
                                     </binding>
+                                    <binding destination="-2" name="enabled" keyPath="model.general.useCallbackPort" id="EDd-GN-ISB"/>
                                     <binding destination="-2" name="enabled3" keyPath="model.general.useRemoteServer" previousBinding="FIQ-w4-ar8" id="HEM-aY-PWb">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -139,12 +136,15 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.general.callbackPort" id="cqE-Qb-ug5">
+                                    <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="EDd-GN-ISB" id="FIQ-w4-ar8">
                                         <dictionary key="options">
-                                            <string key="NSValueTransformerName">AppiumPortTransformer</string>
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="enabled" keyPath="model.general.useCallbackPort" id="EDd-GN-ISB"/>
                                 </connections>
                             </textField>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1pT-Iu-RgM" userLabel="Check For Updates Check Box">
@@ -164,6 +164,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
+                                    <binding destination="-2" name="value" keyPath="model.general.useCallbackAddress" id="QUb-bB-mgW"/>
                                     <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="B3j-LV-w0l" id="6f5-PF-Drh">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -178,7 +179,6 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.general.useCallbackAddress" id="QUb-bB-mgW"/>
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gdx-TN-W8v" userLabel="Callback Port Check Box">
@@ -188,6 +188,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
+                                    <binding destination="-2" name="value" keyPath="model.general.useCallbackPort" id="LoE-TA-EWX"/>
                                     <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="2eY-Jh-jFI" id="UZa-nH-0Fb">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -202,7 +203,6 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.general.useCallbackPort" id="LoE-TA-EWX"/>
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NJV-Jg-FIw" userLabel="Prelaunch Simulator Check Box">
@@ -212,6 +212,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
+                                    <binding destination="-2" name="value" keyPath="model.general.prelaunchApp" id="84b-qc-QCZ"/>
                                     <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="iub-QG-bmG" id="SEg-3b-IdU">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -226,7 +227,6 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.general.prelaunchApp" id="84b-qc-QCZ"/>
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tuh-fG-5K2" userLabel="Override Existing Sessions Check Box">
@@ -236,6 +236,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
+                                    <binding destination="-2" name="value" keyPath="model.general.overrideExistingSessions" id="ZV1-5o-Bvk"/>
                                     <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="98W-CB-0Ix" id="7X0-7O-hbc">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -250,7 +251,6 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.general.overrideExistingSessions" id="ZV1-5o-Bvk"/>
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PHD-F0-S0f" userLabel="Kill Processes Using Server Port Check Box">
@@ -260,6 +260,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
+                                    <binding destination="-2" name="value" keyPath="model.general.killProcessesUsingPort" id="6cl-l9-Gxj"/>
                                     <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="rpD-Ez-CgA" id="KC7-04-fzX">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -274,7 +275,6 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.general.killProcessesUsingPort" id="6cl-l9-Gxj"/>
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zLk-xf-cRG" userLabel="Use Remote Server Check Box">
@@ -284,12 +284,12 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
+                                    <binding destination="-2" name="value" keyPath="model.general.useRemoteServer" id="T90-oL-qPi"/>
                                     <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="F0B-MD-Jmj">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.general.useRemoteServer" id="T90-oL-qPi"/>
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZJ5-S2-q8B" userLabel="New Command Timeout Check Box">
@@ -299,6 +299,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
+                                    <binding destination="-2" name="value" keyPath="model.general.useCommandTimeout" id="oOm-je-r99"/>
                                     <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="enI-4j-Yqt" id="bzd-6a-fZi">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -313,7 +314,6 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.general.useCommandTimeout" id="oOm-je-r99"/>
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t36-3b-ilJ" userLabel="New Command Timeout Text Field">
@@ -325,15 +325,8 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="HnE-GK-4if" id="Zxm-ih-c1S">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
+                                    <binding destination="-2" name="value" keyPath="model.general.commandTimeout" id="l4D-3f-N6T"/>
+                                    <binding destination="-2" name="enabled" keyPath="model.general.useCommandTimeout" id="HnE-GK-4if"/>
                                     <binding destination="-2" name="enabled3" keyPath="model.general.useRemoteServer" previousBinding="Zxm-ih-c1S" id="joa-9B-y6H">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -343,8 +336,15 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.general.commandTimeout" id="l4D-3f-N6T"/>
-                                    <binding destination="-2" name="enabled" keyPath="model.general.useCommandTimeout" id="HnE-GK-4if"/>
+                                    <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="HnE-GK-4if" id="Zxm-ih-c1S">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lFl-jj-2jk" userLabel="Units (s) Label">
@@ -371,12 +371,12 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
+                                    <binding destination="-2" name="value" keyPath="model.general.useSeleniumGridConfigFile" id="B4P-pI-81j"/>
                                     <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="Ulg-kF-kct">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.general.useSeleniumGridConfigFile" id="B4P-pI-81j"/>
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qUY-Vl-u5D" userLabel="Selenium Grid Config File Path TextField">
@@ -387,15 +387,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="cMF-jc-imv" id="qoj-Hk-pNh">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
+                                    <binding destination="-2" name="value" keyPath="model.general.seleniumGridConfigFile" id="PAf-DN-pTl"/>
                                     <binding destination="-2" name="enabled3" keyPath="model.general.useRemoteServer" previousBinding="qoj-Hk-pNh" id="ORq-hk-Gh3">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -405,8 +397,16 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.general.seleniumGridConfigFile" id="PAf-DN-pTl"/>
                                     <binding destination="-2" name="enabled" keyPath="model.general.useSeleniumGridConfigFile" id="cMF-jc-imv"/>
+                                    <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="cMF-jc-imv" id="qoj-Hk-pNh">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </textField>
                         </subviews>
@@ -446,6 +446,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
+                                    <binding destination="-2" name="value" keyPath="model.general.logColors" id="nrE-E6-ulT"/>
                                     <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="rmR-js-uhk" id="D4f-im-ifY">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -460,7 +461,6 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.general.logColors" id="nrE-E6-ulT"/>
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OXG-JW-tIw" userLabel="Show Timestamps Check Box">
@@ -470,6 +470,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
+                                    <binding destination="-2" name="value" keyPath="model.general.logTimestamps" id="Rtb-xT-Jaf"/>
                                     <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="eGf-lY-5wu" id="kOO-i4-ERH">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -484,7 +485,6 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.general.logTimestamps" id="Rtb-xT-Jaf"/>
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aXb-Td-4uk" userLabel="Log To File Check Box">
@@ -494,6 +494,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
+                                    <binding destination="-2" name="value" keyPath="model.general.useLogFile" id="Wm2-an-km9"/>
                                     <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="ptE-GU-AVm" id="GNt-xz-oVl">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -508,7 +509,6 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.general.useLogFile" id="Wm2-an-km9"/>
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3m7-3F-SFF" userLabel="Log File Path Text Field">
@@ -519,15 +519,8 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="a7k-0r-WOc" id="bP5-qK-8hV">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
+                                    <binding destination="-2" name="value" keyPath="model.general.logFile" id="0mW-SC-EeT"/>
+                                    <binding destination="-2" name="enabled" keyPath="model.general.useLogFile" id="a7k-0r-WOc"/>
                                     <binding destination="-2" name="enabled3" keyPath="model.general.useRemoteServer" previousBinding="bP5-qK-8hV" id="mKR-yQ-UcZ">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -537,8 +530,15 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.general.logFile" id="0mW-SC-EeT"/>
-                                    <binding destination="-2" name="enabled" keyPath="model.general.useLogFile" id="a7k-0r-WOc"/>
+                                    <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="a7k-0r-WOc" id="bP5-qK-8hV">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </textField>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cVc-lq-bu7" userLabel="Log To Webhook Check Box">
@@ -548,6 +548,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
+                                    <binding destination="-2" name="value" keyPath="model.general.useLogWebHook" id="APR-ks-EiK"/>
                                     <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="d35-pL-i46" id="iEH-ha-WWZ">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -562,7 +563,6 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.general.useLogWebHook" id="APR-ks-EiK"/>
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zfp-kU-btw" userLabel="Webhook Address Text Field">
@@ -573,15 +573,8 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="35K-9I-QMz" id="eKa-Gw-d6q">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                        </dictionary>
-                                    </binding>
+                                    <binding destination="-2" name="value" keyPath="model.general.logWebHook" id="t27-8E-SM7"/>
+                                    <binding destination="-2" name="enabled" keyPath="model.general.useLogWebHook" id="35K-9I-QMz"/>
                                     <binding destination="-2" name="enabled3" keyPath="model.general.useRemoteServer" previousBinding="eKa-Gw-d6q" id="TNI-ea-ViU">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -591,8 +584,15 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.general.logWebHook" id="t27-8E-SM7"/>
-                                    <binding destination="-2" name="enabled" keyPath="model.general.useLogWebHook" id="35K-9I-QMz"/>
+                                    <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="35K-9I-QMz" id="eKa-Gw-d6q">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </textField>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dCm-pp-EtA" userLabel="Force Scroll Log to Bottom Check Box">
@@ -612,6 +612,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
+                                    <binding destination="-2" name="value" keyPath="model.general.useLocalTimezone" id="1qa-SH-nmb"/>
                                     <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="Ott-Or-RjC" id="gcZ-Zt-tdv">
                                         <dictionary key="options">
                                             <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -626,7 +627,6 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="-2" name="value" keyPath="model.general.useLocalTimezone" id="1qa-SH-nmb"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -806,7 +806,7 @@
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
             </subviews>
-            <point key="canvasLocation" x="220.5" y="499"/>
+            <point key="canvasLocation" x="230.5" y="499"/>
         </customView>
         <userDefaultsController representsSharedInstance="YES" id="DWm-zE-weu"/>
     </objects>
