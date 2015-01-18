@@ -40,7 +40,7 @@
 			// Android Node
 			[self setPlatform:AppiumAndroidPlatform];
 			[self setEnabled:[[_jsonDict objectForKey:@"enabled"] boolValue]];
-			[self setVisible:[[_jsonDict objectForKey:@"clickable"] boolValue]];
+			[self setVisible:YES];
 			[self setType:[_jsonDict objectForKey:@"tag"]];
 			[self setValue:[_jsonDict objectForKey:@"text"]];
 			[self setText:[_jsonDict objectForKey:@"text"]];
@@ -221,12 +221,12 @@
 				 @"text:", [NSString stringWithFormat:@" %@\n", self.text],
 				 @"index:", [NSString stringWithFormat:@" %@\n", [NSString stringWithFormat:@"%lu", (u_long)self.index]],
  				 @"enabled:", [NSString stringWithFormat:@" %@\n", (self.enabled ? @"true" : @"false")],
- 				 @"visible:", [NSString stringWithFormat:@" %@\n", (self.clickable ? @"true" : @"false")],
   				 @"location:", [NSString stringWithFormat:@" %@\n", NSStringFromPoint(self.rect.origin)],
   				 @"size:", [NSString stringWithFormat:@" %@\n", NSStringFromSize(self.rect.size)],
   				 @"checkable:", [NSString stringWithFormat:@" %@\n", (self.checkable ? @"true" : @"false")],
   				 @"checked:", [NSString stringWithFormat:@" %@\n", (self.checked ? @"true" : @"false")],
   				 @"focusable:", [NSString stringWithFormat:@" %@\n", (self.focusable ? @"true" : @"false")],
+				 @"clickable:", [NSString stringWithFormat:@" %@\n", (self.clickable ? @"true" : @"false")],
 				 @"long-clickable:", [NSString stringWithFormat:@" %@\n", (self.longClickable ? @"true" : @"false")],
  				 @"package:", [NSString stringWithFormat:@" %@\n", self.package],
  				 @"password:", [NSString stringWithFormat:@" %@\n", (self.password ? @"true" : @"false")],
