@@ -9,15 +9,15 @@
 #import "AppiumCodeMaker.h"
 
 @class AppiumCodeMaker;
+@class AppiumInspector;
 @class AppiumInspectorWindowController;
 
-@interface AppiumRecorder : NSObject {
+@interface AppiumRecorderViewController : NSViewController {
     @private
-    IBOutlet AppiumInspectorWindowController *_windowController;
-    BOOL _isRecording;
+    IBOutlet AppiumInspector *_inspector;
+	IBOutlet AppiumInspectorWindowController *_inspectorWindowController;
 }
 
-@property NSNumber *isRecording;
 @property NSString *keysToSend;
 @property IBOutlet AppiumCodeMaker *codeMaker;
 

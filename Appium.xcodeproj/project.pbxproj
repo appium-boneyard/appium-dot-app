@@ -86,7 +86,7 @@
 		36BF1D75171B540100C2CF01 /* AppiumCodeMakerActionComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BF1D74171B540000C2CF01 /* AppiumCodeMakerActionComment.m */; };
 		36BF83771738787E00FF4234 /* AppiumCodeMakerActionShake.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BF83761738787E00FF4234 /* AppiumCodeMakerActionShake.m */; };
 		36C4BDFD171C9D4C004FD4FA /* AppiumCodeMakerPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C4BDFC171C9D4C004FD4FA /* AppiumCodeMakerPlugin.m */; };
-		36C9479C1719D0CB008DE83F /* AppiumRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C9479B1719D0CB008DE83F /* AppiumRecorder.m */; };
+		36C9479C1719D0CB008DE83F /* AppiumRecorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C9479B1719D0CB008DE83F /* AppiumRecorderViewController.m */; };
 		36CD44EE16F0D5C300194193 /* AppiumInspectorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CD44EC16F0D5C300194193 /* AppiumInspectorWindowController.m */; };
 		36CD44EF16F0D5C300194193 /* AppiumInspectorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36CD44ED16F0D5C300194193 /* AppiumInspectorWindow.xib */; };
 		36CD44F616F0E22800194193 /* WebDriverElementNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CD44F516F0E22800194193 /* WebDriverElementNode.m */; };
@@ -122,6 +122,7 @@
 		C7A23A411A6B2225004CA025 /* SwipePopOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7A23A401A6B2225004CA025 /* SwipePopOverView.xib */; };
 		C7D0D54B1A6A859C00D3D883 /* AppiumRobotSettingsPopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D0D5491A6A859C00D3D883 /* AppiumRobotSettingsPopOverViewController.m */; };
 		C7D0D54C1A6A859C00D3D883 /* AppiumRobotSettingsPopOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7D0D54A1A6A859C00D3D883 /* AppiumRobotSettingsPopOverView.xib */; };
+		C7FE35671A6B80F900827EAF /* AppiumRecorderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7FE35661A6B80F900827EAF /* AppiumRecorderView.xib */; };
 		C7FFBA8D19F15CDE005B030F /* menubar-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C7FFBA8C19F15CDE005B030F /* menubar-icon.png */; };
 /* End PBXBuildFile section */
 
@@ -336,8 +337,8 @@
 		36BF83761738787E00FF4234 /* AppiumCodeMakerActionShake.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerActionShake.m; sourceTree = "<group>"; };
 		36C4BDFC171C9D4C004FD4FA /* AppiumCodeMakerPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerPlugin.m; path = Plugins/AppiumCodeMakerPlugin.m; sourceTree = "<group>"; };
 		36C4BDFE171CA5F4004FD4FA /* AppiumCodeMakerPlugins.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerPlugins.h; path = Plugins/AppiumCodeMakerPlugins.h; sourceTree = "<group>"; };
-		36C9479A1719D0CB008DE83F /* AppiumRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumRecorder.h; sourceTree = "<group>"; };
-		36C9479B1719D0CB008DE83F /* AppiumRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumRecorder.m; sourceTree = "<group>"; };
+		36C9479A1719D0CB008DE83F /* AppiumRecorderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumRecorderViewController.h; sourceTree = "<group>"; };
+		36C9479B1719D0CB008DE83F /* AppiumRecorderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumRecorderViewController.m; sourceTree = "<group>"; };
 		36CD44EB16F0D5C300194193 /* AppiumInspectorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumInspectorWindowController.h; sourceTree = "<group>"; };
 		36CD44EC16F0D5C300194193 /* AppiumInspectorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumInspectorWindowController.m; sourceTree = "<group>"; };
 		36CD44ED16F0D5C300194193 /* AppiumInspectorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppiumInspectorWindow.xib; sourceTree = "<group>"; };
@@ -399,6 +400,7 @@
 		C7D0D5481A6A859C00D3D883 /* AppiumRobotSettingsPopOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumRobotSettingsPopOverViewController.h; sourceTree = "<group>"; };
 		C7D0D5491A6A859C00D3D883 /* AppiumRobotSettingsPopOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumRobotSettingsPopOverViewController.m; sourceTree = "<group>"; };
 		C7D0D54A1A6A859C00D3D883 /* AppiumRobotSettingsPopOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppiumRobotSettingsPopOverView.xib; sourceTree = "<group>"; };
+		C7FE35661A6B80F900827EAF /* AppiumRecorderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppiumRecorderView.xib; sourceTree = "<group>"; };
 		C7FFBA8C19F15CDE005B030F /* menubar-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menubar-icon.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -518,8 +520,8 @@
 			isa = PBXGroup;
 			children = (
 				363236781713B1EA0088FFBC /* CodeMaker */,
-				36C9479A1719D0CB008DE83F /* AppiumRecorder.h */,
-				36C9479B1719D0CB008DE83F /* AppiumRecorder.m */,
+				36C9479A1719D0CB008DE83F /* AppiumRecorderViewController.h */,
+				36C9479B1719D0CB008DE83F /* AppiumRecorderViewController.m */,
 			);
 			path = Recorder;
 			sourceTree = "<group>";
@@ -903,6 +905,7 @@
 			children = (
 				C7A23A391A6B1B77004CA025 /* PopOvers */,
 				36CD44ED16F0D5C300194193 /* AppiumInspectorWindow.xib */,
+				C7FE35661A6B80F900827EAF /* AppiumRecorderView.xib */,
 			);
 			name = Inspector;
 			path = XIBs/Inpsector;
@@ -1061,6 +1064,7 @@
 				364EED53191EE04A00AB4439 /* settings.png in Resources */,
 				C7D0D54C1A6A859C00D3D883 /* AppiumRobotSettingsPopOverView.xib in Resources */,
 				C7FFBA8D19F15CDE005B030F /* menubar-icon.png in Resources */,
+				C7FE35671A6B80F900827EAF /* AppiumRecorderView.xib in Resources */,
 				36CEB7E216E3662E00B5B100 /* MainMenu.xib in Resources */,
 				364EED55191EE07000AB4439 /* trash.png in Resources */,
 				36BA3A1D191EE417007FA51B /* doctor.png in Resources */,
@@ -1156,7 +1160,7 @@
 				36683069184A5DB500C1A91D /* SBJsonStreamParserState.m in Sources */,
 				3668306A184A5DB500C1A91D /* SBJsonStreamTokeniser.m in Sources */,
 				3641B1C41922AAB600DCF95D /* AppiumRobotSettingsModel.m in Sources */,
-				36C9479C1719D0CB008DE83F /* AppiumRecorder.m in Sources */,
+				36C9479C1719D0CB008DE83F /* AppiumRecorderViewController.m in Sources */,
 				C79097551A6AD3A4007621D0 /* AppiumAndroidSettingsPopOverViewController.m in Sources */,
 				36BF1D66171B434C00C2CF01 /* AppiumCodeMakerActionTap.m in Sources */,
 				3668306C184A5DB500C1A91D /* SBJsonStreamWriterAccumulator.m in Sources */,

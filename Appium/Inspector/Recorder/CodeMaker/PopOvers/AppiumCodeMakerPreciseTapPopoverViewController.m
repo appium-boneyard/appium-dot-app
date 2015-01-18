@@ -78,9 +78,9 @@
 													  nil],nil];
 	
 	AppiumCodeMakerAction *action = [[AppiumCodeMakerActionPreciseTap alloc] initWithArguments:args];
-	if ([_windowController.inspector.recorder.isRecording boolValue])
+	if ([_windowController.inspector.recorderViewController.codeMaker.isRecording boolValue])
 	{
-		[_windowController.inspector.codeMaker addAction:action];
+		[_windowController.inspector.recorderViewController.codeMaker addAction:action];
 	}
 	action.block(_windowController.driver);
 	

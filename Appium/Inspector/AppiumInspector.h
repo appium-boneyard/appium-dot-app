@@ -8,14 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <Selenium/SERemoteWebDriver.h>
-#import "AppiumRecorder.h"
+#import "AppiumRecorderViewController.h"
 #import "AppiumCodeMakerLocator.h"
 #import "AppiumInspectorWindowController.h"
 #import "WebDriverElementNode.h"
 
 
-@class AppiumCodeMaker;
-@class AppiumCodeMakerLocator;
 @class AppiumInspectorWindowController;
 @class AppiumModel;
 @class SERemoteWebDriver;
@@ -34,8 +32,8 @@
 	NSString *_selectedContext;
 }
 
-@property IBOutlet AppiumCodeMaker *codeMaker;
-@property IBOutlet AppiumRecorder *recorder;
+@property IBOutlet AppiumRecorderViewController *recorderViewController;
+@property (readonly) SERemoteWebDriver *driver;
 
 // dom hierarchy properties
 @property (readonly) AppiumModel *model;

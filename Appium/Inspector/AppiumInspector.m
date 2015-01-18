@@ -14,10 +14,6 @@
 #import "AppiumPreferencesFile.h"
 #import "XMLReader.h"
 
-@interface AppiumInspector ()
-@property (readonly) SERemoteWebDriver *driver;
-@end
-
 @implementation AppiumInspector
 
 -(id) init
@@ -33,11 +29,9 @@
     return self;
 }
 
-#pragma mark - Private Properties
--(SERemoteWebDriver*) driver { return _windowController.driver; }
-
 #pragma mark - Public Properties
 -(AppiumModel*) model { return ((AppiumAppDelegate*)[[NSApplication sharedApplication] delegate]).model; }
+-(SERemoteWebDriver*) driver { return _windowController.driver; }
 
 -(NSNumber*) showDisabled { return [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:APPIUM_PLIST_INSPECTOR_SHOWS_DISABLED_ELEMENTS]]; }
 
