@@ -18,12 +18,12 @@
 
 #pragma mark - Appium Updater
 
-AppiumMonitorWindowController *mainWindowController;
+AppiumMainWindowController *mainWindowController;
 NSString* upgradeUrl;
 
 @implementation AppiumUpdater
 
-- (id)initWithAppiumMonitorWindowController:(AppiumMonitorWindowController*)windowController
+- (id)initWithAppiumMonitorWindowController:(AppiumMainWindowController*)windowController
 {
     self = [super init];
     if (self) {

@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "AppiumMonitorWindowController.h"
+#import "AppiumMainWindowController.h"
 #import "AppiumModel.h"
 #import "AppiumUpdater.h"
 
@@ -17,17 +17,17 @@
 
 @interface AppiumAppDelegate : NSObject <NSApplicationDelegate> {
     @private
-    AppiumPreferencesWindowController *_preferencesWindow;
+    AppiumPreferencesWindowController *_preferencesWindowController;
     AppiumUpdater *_updater;
 }
 
-@property (nonatomic, retain) IBOutlet AppiumMonitorWindowController *mainWindowController;
-@property AppiumInspectorWindowController *inspectorWindow;
+@property (nonatomic, retain) IBOutlet AppiumMainWindowController *mainWindowController;
+@property AppiumInspectorWindowController *inspectorWindowController;
 @property (nonatomic, retain) AppiumModel *model;
 
 -(IBAction) checkForUpdates:(id)sender;
 -(IBAction) displayInspector:(id)sender;
-- (void)closeInspector;
+-(void) closeInspector;
 -(void) restart;
 
 @end

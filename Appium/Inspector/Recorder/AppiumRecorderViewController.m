@@ -184,7 +184,7 @@
 		savePanel.nameFieldStringValue = [@"CodeMakerTest." stringByAppendingString:extension];
 	}
 	
-	[savePanel beginSheetModalForWindow:_inspectorWindowController.window
+	[savePanel beginSheetModalForWindow:_inspector.window
 					  completionHandler:^(NSInteger result) {
 		if (result == NSFileHandlingPanelOKButton)
 		{

@@ -15,7 +15,6 @@
 @interface AppiumRecorderViewController : NSViewController {
     @private
     IBOutlet AppiumInspector *_inspector;
-	IBOutlet AppiumInspectorWindowController *_inspectorWindowController;
 }
 
 @property NSString *keysToSend;

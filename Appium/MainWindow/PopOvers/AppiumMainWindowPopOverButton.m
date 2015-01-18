@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Appium. All rights reserved.
 //
 
-#import "AppiumMonitorWindowPopOverButton.h"
+#import "AppiumMainWindowPopOverButton.h"
 
-@implementation AppiumMonitorWindowPopOverButton
+@implementation AppiumMainWindowPopOverButton
 
 - (id)initWithFrame:(NSRect)frame
 {

@@ -7,10 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "AppiumMonitorWindowPopOverViewController.h"
+#import "AppiumMainWindowPopOverViewController.h"
 
 
-@interface AppiumGeneralSettingsPopOverViewController : AppiumMonitorWindowPopOverViewController<NSTableViewDataSource,NSTableViewDelegate>
+@interface AppiumGeneralSettingsPopOverViewController : AppiumMainWindowPopOverViewController<NSTableViewDataSource,NSTableViewDelegate>
 @property IBOutlet NSTableView *environmentVariablesTableView;
 @end
 

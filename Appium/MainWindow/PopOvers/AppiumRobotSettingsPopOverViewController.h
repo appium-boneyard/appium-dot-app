@@ -7,9 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "AppiumMonitorWindowPopOverViewController.h"
+#import "AppiumMainWindowPopOverViewController.h"
 #import "AppiumModel.h"
 
-@interface AppiumRobotSettingsPopOverViewController : AppiumMonitorWindowPopOverViewController
+@interface AppiumRobotSettingsPopOverViewController : AppiumMainWindowPopOverViewController
 
 @end

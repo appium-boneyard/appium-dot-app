@@ -27,6 +27,7 @@
             <connections>
                 <outlet property="_windowController" destination="-2" id="356"/>
                 <outlet property="recorderViewController" destination="TWF-cz-UTf" id="9Rr-Po-f2c"/>
+                <outlet property="window" destination="1" id="U3h-6C-O1P"/>
             </connections>
         </customObject>
         <userDefaultsController representsSharedInstance="YES" id="85"/>
@@ -137,7 +138,7 @@
                         </connections>
                     </browser>
                     <customView id="60" userLabel="Screenshot Area View">
-                        <rect key="frame" x="847" y="47" width="360" height="480"/>
+                        <rect key="frame" x="847.00000043404475" y="47" width="360" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView id="43" userLabel="Screenshot Image View" customClass="AppiumInspectorScreenshotImageView">
@@ -553,7 +554,6 @@
         <viewController nibName="AppiumRecorderView" id="TWF-cz-UTf" userLabel="Appium Recorder View Controller" customClass="AppiumRecorderViewController">
             <connections>
                 <outlet property="_inspector" destination="26" id="r6n-lf-Hby"/>
-                <outlet property="_inspectorWindowController" destination="-2" id="e07-GM-U9Z"/>
             </connections>
         </viewController>
         <viewController nibName="SwipePopOverView" id="222" userLabel="Swipe Popover View Controller" customClass="AppiumCodeMakerSwipePopOverViewController">
