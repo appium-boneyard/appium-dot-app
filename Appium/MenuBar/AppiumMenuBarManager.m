@@ -7,8 +7,19 @@
 //
 
 #import "AppiumMenuBarManager.h"
-
 #import "AppiumAppDelegate.h"
+#import "NSImage+Rotated.h"
+
+#define ANIMATION_FPS 15.0f
+#define ANIMATION_DEGREES_PER_FRAME 10.0f
+
+@interface AppiumMenuBarManager() {
+	@private
+	NSTimer *_animationTimer;
+	float _nextRotationInDegrees;
+}
+
+@end
 
 @implementation AppiumMenuBarManager
 
@@ -16,6 +27,7 @@
 {
     self = [super init];
     if (self) {
+		_nextRotationInDegrees = 0.0f;
         _bar = [NSStatusBar systemStatusBar];
 		_item = [_bar statusItemWithLength:NSVariableStatusItemLength];
 		NSImage *iconImage = [NSImage imageNamed:@"menubar-icon"];
@@ -75,6 +87,7 @@
 	[[_item menu] addItem:portItem];
 	[[_item menu] addItem:[NSMenuItem separatorItem]];
 	[[_item menu] addItem:inspectorItem];
+	[self startAnimating];
 }
 
 -(void) installServerOffMenu:(AppiumMainWindowController*)mainWindowController
@@ -87,5 +100,32 @@
 	
     [[_item menu] removeAllItems];
     [[_item menu] addItem:startServerItem];
+	[self stopAnimating];
 }
+
+#pragma mark - Animation
+
+- (void)startAnimating
+{
+	_animationTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/ANIMATION_FPS target:self selector:@selector(updateImage:) userInfo:nil repeats:YES];
+}
+
+- (void)stopAnimating
+{
+	[_animationTimer invalidate];
+}
+
+- (void)updateImage:(NSTimer*)timer
+{
+	// calculate next rotation
+	_nextRotationInDegrees += ANIMATION_DEGREES_PER_FRAME;
+	while (_nextRotationInDegrees >= 360) {
+		_nextRotationInDegrees -= 360;
+	}
+	
+	// update with the rotated image
+	NSImage* image = [[NSImage imageNamed:@"menubar-icon"] imageRotated:-1.0*_nextRotationInDegrees];
+	[_item setImage:image];
+}
+
 @end

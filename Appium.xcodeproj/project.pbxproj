@@ -122,6 +122,7 @@
 		C7A23A3F1A6B1BE7004CA025 /* PreciseTapPopOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7A23A3E1A6B1BE7004CA025 /* PreciseTapPopOverView.xib */; };
 		C7A23A411A6B2225004CA025 /* SwipePopOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7A23A401A6B2225004CA025 /* SwipePopOverView.xib */; };
 		C7D0D54C1A6A859C00D3D883 /* AppiumRobotSettingsPopOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7D0D54A1A6A859C00D3D883 /* AppiumRobotSettingsPopOverView.xib */; };
+		C7E595F61A6C0A5300B951F9 /* NSImage+Rotated.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E595F51A6C0A5300B951F9 /* NSImage+Rotated.m */; };
 		C7FE35671A6B80F900827EAF /* AppiumRecorderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7FE35661A6B80F900827EAF /* AppiumRecorderView.xib */; };
 		C7FFBA8D19F15CDE005B030F /* menubar-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C7FFBA8C19F15CDE005B030F /* menubar-icon.png */; };
 /* End PBXBuildFile section */
@@ -400,6 +401,8 @@
 		C7A23A3E1A6B1BE7004CA025 /* PreciseTapPopOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreciseTapPopOverView.xib; sourceTree = "<group>"; };
 		C7A23A401A6B2225004CA025 /* SwipePopOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwipePopOverView.xib; sourceTree = "<group>"; };
 		C7D0D54A1A6A859C00D3D883 /* AppiumRobotSettingsPopOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppiumRobotSettingsPopOverView.xib; sourceTree = "<group>"; };
+		C7E595F41A6C0A5300B951F9 /* NSImage+Rotated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImage+Rotated.h"; path = "Utility/NSImage+Rotated.h"; sourceTree = "<group>"; };
+		C7E595F51A6C0A5300B951F9 /* NSImage+Rotated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImage+Rotated.m"; path = "Utility/NSImage+Rotated.m"; sourceTree = "<group>"; };
 		C7FE35661A6B80F900827EAF /* AppiumRecorderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppiumRecorderView.xib; sourceTree = "<group>"; };
 		C7FFBA8C19F15CDE005B030F /* menubar-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menubar-icon.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -682,6 +685,8 @@
 				365A2D8316E3DF48007BADF9 /* ANSIUtility.m */,
 				365A2D8516E3E67B007BADF9 /* NodeInstance.h */,
 				365A2D8616E3E67B007BADF9 /* NodeInstance.m */,
+				C7E595F41A6C0A5300B951F9 /* NSImage+Rotated.h */,
+				C7E595F51A6C0A5300B951F9 /* NSImage+Rotated.m */,
 				36580CB017A4543A004C2D94 /* NSString+TrimLeadingWhitespace.h */,
 				36580CB117A4543A004C2D94 /* NSString+TrimLeadingWhitespace.m */,
 				365A2D7C16E3C847007BADF9 /* Utility.h */,
@@ -1101,6 +1106,7 @@
 			files = (
 				36683084184A5DCE00C1A91D /* NSData+SRB64Additions.m in Sources */,
 				36CEB7D816E3662E00B5B100 /* main.m in Sources */,
+				C7E595F61A6C0A5300B951F9 /* NSImage+Rotated.m in Sources */,
 				C79C75771A6BBAD10030023D /* AppiumGeneralSettingsPopOverViewController.m in Sources */,
 				365A2D7E16E3C847007BADF9 /* Utility.m in Sources */,
 				365A2D8416E3DF48007BADF9 /* ANSIUtility.m in Sources */,
