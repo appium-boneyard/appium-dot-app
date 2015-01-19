@@ -16,7 +16,7 @@
 -(id)init
 {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                   reason:@"-init is not a valid initializer for the class AppiumMonitorWindowController"
+                                   reason:@"-init is not a valid initializer for the class AppiumMainWindowController"
                                  userInfo:nil];
     return nil;
 }

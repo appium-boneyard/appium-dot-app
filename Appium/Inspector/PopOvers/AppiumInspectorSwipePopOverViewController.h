@@ -1,8 +1,8 @@
 //
-//  AppiumCodeMakerPreciseTapPopoverViewController.h
+//  AppiumCodeMakerSwipePopOverViewController.h
 //  Appium
 //
-//  Created by Dan Cuellar on 4/18/13.
+//  Created by Dan Cuellar on 4/12/13.
 //  Copyright (c) 2013 Appium. All rights reserved.
 //
 
@@ -11,22 +11,25 @@
 
 @class AppiumInspectorWindowController;
 
-@interface AppiumCodeMakerPreciseTapPopoverViewController : NSViewController<NSPopoverDelegate> {
+@interface AppiumInspectorSwipePopOverViewController : NSViewController<NSPopoverDelegate> {
 	@private
-	NSPoint _touchPoint;
+	NSPoint _beginPoint;
+	NSPoint _endPoint;
 	NSString *_beginPointLabel;
+	NSString *_endPointLabel;
 	IBOutlet AppiumInspectorWindowController * _windowController;
 }
 
 @property IBOutlet NSPopover *popover;
-@property (readonly) NSUInteger numberOfTaps;
-@property NSString *numberOfTapsString;
 @property (readonly) NSUInteger numberOfFingers;
 @property NSString *numberOfFingersString;
 @property NSNumber *duration;
-@property NSPoint touchPoint;
-@property NSString *touchPointLabel;
+@property NSPoint beginPoint;
+@property NSString *beginPointLabel;
+@property NSPoint endPoint;
+@property NSString *endPointLabel;
 @property NSNumber *isReady;
+@property BOOL beginPointWasSetLast;
 
 -(void)reset;
 

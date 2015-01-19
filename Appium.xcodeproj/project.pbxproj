@@ -10,7 +10,6 @@
 		360BD91516F12B03000D3BEB /* AppiumInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 360BD91416F12B03000D3BEB /* AppiumInspector.m */; };
 		3612E5F816E5B6520050CF0A /* appium.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 3612E5F716E5B6520050CF0A /* appium.sdef */; };
 		3612E5FC16E5B69C0050CF0A /* NSApplication+AppleScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 3612E5FB16E5B69C0050CF0A /* NSApplication+AppleScript.m */; };
-		3618718D171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3618718C171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.m */; };
 		362B5B651713B35A00F1B344 /* AppiumCodeMakerCSharpPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 362B5B641713B35A00F1B344 /* AppiumCodeMakerCSharpPlugin.m */; };
 		3643D93B1742912E0048F9DA /* Selenium.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 36A1A000173FFF34002717C2 /* Selenium.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		364EED3B191EDE6F00AB4439 /* dev-settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 364EED3A191EDE6F00AB4439 /* dev-settings.png */; };
@@ -61,7 +60,6 @@
 		36A871C8170B980F005BFD15 /* AppiumInspectorScreenshotImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A871C7170B980F005BFD15 /* AppiumInspectorScreenshotImageView.m */; };
 		36AA8D6F16E40B28007472C1 /* AppiumMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36AA8D6D16E40B28007472C1 /* AppiumMainWindowController.m */; };
 		36AA8D7016E40B28007472C1 /* AppiumMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36AA8D6E16E40B28007472C1 /* AppiumMainWindow.xib */; };
-		36ADA116172093D200D4287B /* AppiumCodeMakerPreciseTapPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36ADA115172093D200D4287B /* AppiumCodeMakerPreciseTapPopoverViewController.m */; };
 		36ADA119172098FA00D4287B /* AppiumCodeMakerActionPreciseTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 36ADA118172098FA00D4287B /* AppiumCodeMakerActionPreciseTap.m */; };
 		36B2F18616E6379C008764E0 /* defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 36B2F18516E6379C008764E0 /* defaults.plist */; };
 		36BA17BB16E81BF30041DD86 /* AppiumAppPathTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BA17BA16E81BF30041DD86 /* AppiumAppPathTransformer.m */; };
@@ -121,6 +119,8 @@
 		C79C759C1A6BBBA30030023D /* AppiumUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = C79C759A1A6BBBA30030023D /* AppiumUpdater.m */; };
 		C7A23A3F1A6B1BE7004CA025 /* PreciseTapPopOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7A23A3E1A6B1BE7004CA025 /* PreciseTapPopOverView.xib */; };
 		C7A23A411A6B2225004CA025 /* SwipePopOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7A23A401A6B2225004CA025 /* SwipePopOverView.xib */; };
+		C7CA57CC1A6DB65100CB37FC /* AppiumInspectorPreciseTapPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CA57C81A6DB65100CB37FC /* AppiumInspectorPreciseTapPopoverViewController.m */; };
+		C7CA57CD1A6DB65100CB37FC /* AppiumInspectorSwipePopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CA57CA1A6DB65100CB37FC /* AppiumInspectorSwipePopOverViewController.m */; };
 		C7D0D54C1A6A859C00D3D883 /* AppiumRobotSettingsPopOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7D0D54A1A6A859C00D3D883 /* AppiumRobotSettingsPopOverView.xib */; };
 		C7E595F61A6C0A5300B951F9 /* NSImage+Rotated.m in Sources */ = {isa = PBXBuildFile; fileRef = C7E595F51A6C0A5300B951F9 /* NSImage+Rotated.m */; };
 		C7FE35671A6B80F900827EAF /* AppiumRecorderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C7FE35661A6B80F900827EAF /* AppiumRecorderView.xib */; };
@@ -199,8 +199,6 @@
 		3612E5F716E5B6520050CF0A /* appium.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = appium.sdef; sourceTree = "<group>"; };
 		3612E5FA16E5B69C0050CF0A /* NSApplication+AppleScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSApplication+AppleScript.h"; sourceTree = "<group>"; };
 		3612E5FB16E5B69C0050CF0A /* NSApplication+AppleScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSApplication+AppleScript.m"; sourceTree = "<group>"; };
-		3618718B171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerSwipePopOverViewController.h; sourceTree = "<group>"; };
-		3618718C171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerSwipePopOverViewController.m; sourceTree = "<group>"; };
 		362B5B631713B35A00F1B344 /* AppiumCodeMakerCSharpPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerCSharpPlugin.h; path = Plugins/AppiumCodeMakerCSharpPlugin.h; sourceTree = "<group>"; };
 		362B5B641713B35A00F1B344 /* AppiumCodeMakerCSharpPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerCSharpPlugin.m; path = Plugins/AppiumCodeMakerCSharpPlugin.m; sourceTree = "<group>"; };
 		362DF1E4170F4350001CAD1D /* AppiumGlobals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppiumGlobals.h; sourceTree = "<group>"; };
@@ -288,8 +286,6 @@
 		36AA8D6C16E40B28007472C1 /* AppiumMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumMainWindowController.h; sourceTree = "<group>"; };
 		36AA8D6D16E40B28007472C1 /* AppiumMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumMainWindowController.m; sourceTree = "<group>"; };
 		36AA8D6E16E40B28007472C1 /* AppiumMainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AppiumMainWindow.xib; path = XIBs/AppiumMainWindow.xib; sourceTree = "<group>"; };
-		36ADA114172093D200D4287B /* AppiumCodeMakerPreciseTapPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerPreciseTapPopoverViewController.h; sourceTree = "<group>"; };
-		36ADA115172093D200D4287B /* AppiumCodeMakerPreciseTapPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerPreciseTapPopoverViewController.m; sourceTree = "<group>"; };
 		36ADA117172098FA00D4287B /* AppiumCodeMakerActionPreciseTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerActionPreciseTap.h; sourceTree = "<group>"; };
 		36ADA118172098FA00D4287B /* AppiumCodeMakerActionPreciseTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerActionPreciseTap.m; sourceTree = "<group>"; };
 		36B2F18516E6379C008764E0 /* defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = defaults.plist; sourceTree = "<group>"; };
@@ -400,6 +396,10 @@
 		C79C759A1A6BBBA30030023D /* AppiumUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumUpdater.m; path = Appium/AutoUpdate/AppiumUpdater.m; sourceTree = SOURCE_ROOT; };
 		C7A23A3E1A6B1BE7004CA025 /* PreciseTapPopOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreciseTapPopOverView.xib; sourceTree = "<group>"; };
 		C7A23A401A6B2225004CA025 /* SwipePopOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwipePopOverView.xib; sourceTree = "<group>"; };
+		C7CA57C71A6DB65100CB37FC /* AppiumInspectorPreciseTapPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumInspectorPreciseTapPopoverViewController.h; sourceTree = "<group>"; };
+		C7CA57C81A6DB65100CB37FC /* AppiumInspectorPreciseTapPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumInspectorPreciseTapPopoverViewController.m; sourceTree = "<group>"; };
+		C7CA57C91A6DB65100CB37FC /* AppiumInspectorSwipePopOverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumInspectorSwipePopOverViewController.h; sourceTree = "<group>"; };
+		C7CA57CA1A6DB65100CB37FC /* AppiumInspectorSwipePopOverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumInspectorSwipePopOverViewController.m; sourceTree = "<group>"; };
 		C7D0D54A1A6A859C00D3D883 /* AppiumRobotSettingsPopOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppiumRobotSettingsPopOverView.xib; sourceTree = "<group>"; };
 		C7E595F41A6C0A5300B951F9 /* NSImage+Rotated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSImage+Rotated.h"; path = "Utility/NSImage+Rotated.h"; sourceTree = "<group>"; };
 		C7E595F51A6C0A5300B951F9 /* NSImage+Rotated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImage+Rotated.m"; path = "Utility/NSImage+Rotated.m"; sourceTree = "<group>"; };
@@ -501,7 +501,6 @@
 			isa = PBXGroup;
 			children = (
 				363236781713B1EA0088FFBC /* CodeMaker */,
-				3618718A1718879A0021D7F7 /* PopOvers */,
 				36C9479A1719D0CB008DE83F /* AppiumRecorderViewController.h */,
 				36C9479B1719D0CB008DE83F /* AppiumRecorderViewController.m */,
 			);
@@ -511,10 +510,10 @@
 		3618718A1718879A0021D7F7 /* PopOvers */ = {
 			isa = PBXGroup;
 			children = (
-				36ADA114172093D200D4287B /* AppiumCodeMakerPreciseTapPopoverViewController.h */,
-				36ADA115172093D200D4287B /* AppiumCodeMakerPreciseTapPopoverViewController.m */,
-				3618718B171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.h */,
-				3618718C171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.m */,
+				C7CA57C71A6DB65100CB37FC /* AppiumInspectorPreciseTapPopoverViewController.h */,
+				C7CA57C81A6DB65100CB37FC /* AppiumInspectorPreciseTapPopoverViewController.m */,
+				C7CA57C91A6DB65100CB37FC /* AppiumInspectorSwipePopOverViewController.h */,
+				C7CA57CA1A6DB65100CB37FC /* AppiumInspectorSwipePopOverViewController.m */,
 			);
 			path = PopOvers;
 			sourceTree = "<group>";
@@ -775,6 +774,7 @@
 			isa = PBXGroup;
 			children = (
 				3614B1721719F4C400A72D99 /* Recorder */,
+				3618718A1718879A0021D7F7 /* PopOvers */,
 				360BD91316F12B03000D3BEB /* AppiumInspector.h */,
 				360BD91416F12B03000D3BEB /* AppiumInspector.m */,
 				36A871C6170B980F005BFD15 /* AppiumInspectorScreenshotImageView.h */,
@@ -1128,6 +1128,7 @@
 				C79C759B1A6BBBA30030023D /* AppiumInstallationWindowController.m in Sources */,
 				C79C758A1A6BBAF00030023D /* AppiumAndroidSettingsModel.m in Sources */,
 				3668307D184A5DC000C1A91D /* SocketIOTransportWebsocket.m in Sources */,
+				C7CA57CC1A6DB65100CB37FC /* AppiumInspectorPreciseTapPopoverViewController.m in Sources */,
 				3668308B184A5E6600C1A91D /* base64.c in Sources */,
 				360BD91516F12B03000D3BEB /* AppiumInspector.m in Sources */,
 				369126DD1704DABD007FBB5E /* AppiumInspectorRefreshButtonTextTransformer.m in Sources */,
@@ -1142,7 +1143,6 @@
 				C79C758B1A6BBAF00030023D /* AppiumDeveloperSettingsModel.m in Sources */,
 				C79C75761A6BBAD10030023D /* AppiumDeveloperSettingsPopOverViewController.m in Sources */,
 				36FF07B317174936009ED9E2 /* AppiumCodeMakerRubyPlugin.m in Sources */,
-				3618718D171887CC0021D7F7 /* AppiumCodeMakerSwipePopOverViewController.m in Sources */,
 				36FF20D61900222400008A7D /* XMLReader.m in Sources */,
 				C79C75901A6BBAF00030023D /* AppiumServerArgument.m in Sources */,
 				36683069184A5DB500C1A91D /* SBJsonStreamParserState.m in Sources */,
@@ -1150,6 +1150,7 @@
 				36C9479C1719D0CB008DE83F /* AppiumRecorderViewController.m in Sources */,
 				36BF1D66171B434C00C2CF01 /* AppiumCodeMakerActionTap.m in Sources */,
 				3668306C184A5DB500C1A91D /* SBJsonStreamWriterAccumulator.m in Sources */,
+				C7CA57CD1A6DB65100CB37FC /* AppiumInspectorSwipePopOverViewController.m in Sources */,
 				36BF1D69171B4C1000C2CF01 /* AppiumCodeMakerActionSendKeys.m in Sources */,
 				36BF1D6C171B4ED400C2CF01 /* AppiumCodeMakerAlertDismiss.m in Sources */,
 				36BF1D6F171B4F5100C2CF01 /* AppiumCodeMakerActionAlertAccept.m in Sources */,
@@ -1165,7 +1166,6 @@
 				C79C757B1A6BBAD10030023D /* AppiumRobotSettingsPopOverViewController.m in Sources */,
 				C79C75791A6BBAD10030023D /* AppiumMainWindowPopOverButton.m in Sources */,
 				36C4BDFD171C9D4C004FD4FA /* AppiumCodeMakerPlugin.m in Sources */,
-				36ADA116172093D200D4287B /* AppiumCodeMakerPreciseTapPopoverViewController.m in Sources */,
 				36ADA119172098FA00D4287B /* AppiumCodeMakerActionPreciseTap.m in Sources */,
 				368DC8521737255A0030F656 /* AppiumCodeMakerActionExecuteScript.m in Sources */,
 				3668307B184A5DC000C1A91D /* SocketIOJSONSerialization.m in Sources */,
