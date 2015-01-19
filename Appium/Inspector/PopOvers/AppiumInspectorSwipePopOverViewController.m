@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Appium. All rights reserved.
 //
 
-#import "AppiumCodeMakerSwipePopOverViewController.h"
+#import "AppiumInspectorSwipePopOverViewController.h"
 
-@interface AppiumCodeMakerSwipePopOverViewController ()
+@interface AppiumInspectorSwipePopOverViewController ()
 
 @end
 
-@implementation AppiumCodeMakerSwipePopOverViewController
+@implementation AppiumInspectorSwipePopOverViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

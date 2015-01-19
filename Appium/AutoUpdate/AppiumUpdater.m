@@ -23,7 +23,7 @@ NSString* upgradeUrl;
 
 @implementation AppiumUpdater
 
-- (id)initWithAppiumMonitorWindowController:(AppiumMainWindowController*)windowController
+- (id)initWithAppiumMainWindowController:(AppiumMainWindowController*)windowController
 {
     self = [super init];
     if (self) {

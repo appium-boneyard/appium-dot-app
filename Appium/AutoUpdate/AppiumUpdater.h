@@ -11,7 +11,7 @@
 
 @interface AppiumUpdater : NSObject
 
--(id) initWithAppiumMonitorWindowController:(AppiumMainWindowController*)windowController;
+-(id) initWithAppiumMainWindowController:(AppiumMainWindowController*)windowController;
 -(void) checkForUpdates:(id)sender;
 
 @end

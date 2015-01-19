@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6724" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6724"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="AppiumCodeMakerPreciseTapPopoverViewController">
+        <customObject id="-2" userLabel="File's Owner" customClass="AppiumInspectorPreciseTapPopoverViewController">
             <connections>
                 <outlet property="view" destination="t9v-Mr-QyA" id="neX-PQ-Qlw"/>
             </connections>
@@ -26,12 +25,12 @@
                 </textField>
                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pVg-g7-483" userLabel="Taps Pop Up Button">
                     <rect key="frame" x="86" y="103" width="50" height="26"/>
-                    <popUpButtonCell key="cell" type="push" title="1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="wgs-d0-Z6Z">
+                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="wgs-d0-Z6Z">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="Fingers Menu" id="Len-Q8-KhW" userLabel="Fingers Menu">
                             <items>
-                                <menuItem title="1" state="on" id="0hD-Cj-acE"/>
+                                <menuItem title="1" id="0hD-Cj-acE"/>
                                 <menuItem title="2" id="Pjy-l4-s4i"/>
                                 <menuItem title="3" id="Xth-9S-HrL"/>
                             </items>
@@ -51,12 +50,12 @@
                 </textField>
                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cGZ-y0-BxU" userLabel="Fingers Pop Up Button">
                     <rect key="frame" x="86" y="77" width="50" height="26"/>
-                    <popUpButtonCell key="cell" type="push" title="1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="Gb0-K1-39Z">
+                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="Gb0-K1-39Z">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="Fingers Menu" id="Qgg-Og-V0f" userLabel="Fingers Menu">
                             <items>
-                                <menuItem title="1" state="on" id="cfj-gc-WYM"/>
+                                <menuItem title="1" id="cfj-gc-WYM"/>
                                 <menuItem title="2" id="JAV-SK-auY"/>
                                 <menuItem title="3" id="W4G-bk-tly"/>
                                 <menuItem title="4" id="yfB-ZL-i1A">
@@ -107,7 +106,7 @@
                     <rect key="frame" x="142" y="6" width="61" height="19"/>
                     <buttonCell key="cell" type="roundRect" title="Perform" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tG9-6J-ZkH">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="titleBar" size="12"/>
+                        <font key="font" metaFont="cellTitle"/>
                     </buttonCell>
                     <connections>
                         <action selector="performPreciseTap:" target="-2" id="RZt-BZ-eEQ"/>

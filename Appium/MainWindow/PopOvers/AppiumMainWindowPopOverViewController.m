@@ -45,8 +45,8 @@
 {
 	if (!self.popover.isShown) {
 		// close all popovers
-		AppiumMainWindowController *monitorWindow = ((AppiumAppDelegate*)[NSApplication sharedApplication].delegate).mainWindowController;
-		[monitorWindow closeAllPopovers];
+		AppiumMainWindowController *mainWindow = ((AppiumAppDelegate*)[NSApplication sharedApplication].delegate).mainWindowController;
+		[mainWindow closeAllPopovers];
 		
 		// open the popover
 		[self.popover showRelativeToRect:[(NSView*)sender bounds]

@@ -24,8 +24,8 @@
 	[self setModel:[AppiumModel new]];
 
     // create main monitor window
-    [self setMainWindowController:[[AppiumMainWindowController alloc] initWithWindowNibName:@"AppiumMonitorWindow"]];
-	_updater = [[AppiumUpdater alloc] initWithAppiumMonitorWindowController:[self mainWindowController]];
+    [self setMainWindowController:[[AppiumMainWindowController alloc] initWithWindowNibName:@"AppiumMainWindow"]];
+	_updater = [[AppiumUpdater alloc] initWithAppiumMainWindowController:[self mainWindowController]];
 
     // install anything that's missing
     [self performSelectorInBackground:@selector(install) withObject:nil];

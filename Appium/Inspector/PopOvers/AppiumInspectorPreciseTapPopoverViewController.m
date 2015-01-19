@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Appium. All rights reserved.
 //
 
-#import "AppiumCodeMakerPreciseTapPopoverViewController.h"
+#import "AppiumInspectorPreciseTapPopoverViewController.h"
 #import "AppiumCodeMakerActionPreciseTap.h"
 
-@interface AppiumCodeMakerPreciseTapPopoverViewController ()
+@interface AppiumInspectorPreciseTapPopoverViewController ()
 
 @end
 
-@implementation AppiumCodeMakerPreciseTapPopoverViewController
+@implementation AppiumInspectorPreciseTapPopoverViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
