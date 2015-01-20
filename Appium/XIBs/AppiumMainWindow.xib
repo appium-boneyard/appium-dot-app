@@ -135,7 +135,7 @@
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                             <connections>
-                                                <binding destination="107" name="value" keyPath="values.Platform is Android" id="TSD-MP-C19"/>
+                                                <binding destination="-2" name="value" keyPath="model.isAndroid" id="Rqd-zv-XCP"/>
                                             </connections>
                                         </buttonCell>
                                     </column>
@@ -166,11 +166,11 @@
                                 </buttonCell>
                                 <cells>
                                     <column>
-                                        <buttonCell type="radio" imagePosition="left" alignment="left" tag="1" inset="2" id="1RP-HM-Fli" userLabel="Android Radio Button">
+                                        <buttonCell type="radio" imagePosition="left" alignment="left" tag="1" inset="2" id="1RP-HM-Fli" userLabel="iOS Radio Button">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                             <connections>
-                                                <binding destination="107" name="value" keyPath="values.Platform is Android" id="uhX-z9-hQW">
+                                                <binding destination="-2" name="value" keyPath="model.isAndroid" id="8Yr-DS-Cp7">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                     </dictionary>
