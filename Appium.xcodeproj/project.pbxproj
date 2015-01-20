@@ -95,6 +95,8 @@
 		36FF20D61900222400008A7D /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF20D51900222400008A7D /* XMLReader.m */; };
 		7D3CB870198579DD004D3CA4 /* AppiumInspectorButtonImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3CB86F198579DD004D3CA4 /* AppiumInspectorButtonImageTransformer.m */; };
 		7D6B509318F522C400E25292 /* AppiumCodeMakerNodePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B509218F522C400E25292 /* AppiumCodeMakerNodePlugin.m */; };
+		C7615F681A6E6E8100557977 /* open.png in Resources */ = {isa = PBXBuildFile; fileRef = C7615F671A6E6E8100557977 /* open.png */; };
+		C7615F6E1A6E6E8700557977 /* save.png in Resources */ = {isa = PBXBuildFile; fileRef = C7615F6D1A6E6E8700557977 /* save.png */; };
 		C79097471A6AB2BF007621D0 /* AppiumGeneralSettingsPopOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C79097461A6AB2BF007621D0 /* AppiumGeneralSettingsPopOverView.xib */; };
 		C790974C1A6ABF3B007621D0 /* AppiumDeveloperSettingsPopOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C790974A1A6ABF3B007621D0 /* AppiumDeveloperSettingsPopOverView.xib */; };
 		C79097511A6AC3BE007621D0 /* AppiumiOSSettingsPopOverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C790974F1A6AC3BE007621D0 /* AppiumiOSSettingsPopOverViewController.xib */; };
@@ -353,6 +355,8 @@
 		7D3CB86F198579DD004D3CA4 /* AppiumInspectorButtonImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumInspectorButtonImageTransformer.m; sourceTree = "<group>"; };
 		7D6B509118F522C400E25292 /* AppiumCodeMakerNodePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerNodePlugin.h; path = Plugins/AppiumCodeMakerNodePlugin.h; sourceTree = "<group>"; };
 		7D6B509218F522C400E25292 /* AppiumCodeMakerNodePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerNodePlugin.m; path = Plugins/AppiumCodeMakerNodePlugin.m; sourceTree = "<group>"; };
+		C7615F671A6E6E8100557977 /* open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = open.png; sourceTree = "<group>"; };
+		C7615F6D1A6E6E8700557977 /* save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save.png; sourceTree = "<group>"; };
 		C79097461A6AB2BF007621D0 /* AppiumGeneralSettingsPopOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppiumGeneralSettingsPopOverView.xib; sourceTree = "<group>"; };
 		C790974A1A6ABF3B007621D0 /* AppiumDeveloperSettingsPopOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppiumDeveloperSettingsPopOverView.xib; sourceTree = "<group>"; };
 		C790974F1A6AC3BE007621D0 /* AppiumiOSSettingsPopOverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppiumiOSSettingsPopOverViewController.xib; sourceTree = "<group>"; };
@@ -540,7 +544,9 @@
 				364EED3A191EDE6F00AB4439 /* dev-settings.png */,
 				36BA3A1C191EE417007FA51B /* doctor.png */,
 				364EED4E191EDFFF00AB4439 /* inspector.png */,
+				C7615F671A6E6E8100557977 /* open.png */,
 				364EED58191EE27000AB4439 /* robot.png */,
+				C7615F6D1A6E6E8700557977 /* save.png */,
 				364EED52191EE04A00AB4439 /* settings.png */,
 				364EED54191EE07000AB4439 /* trash.png */,
 			);
@@ -1043,6 +1049,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36CEB7D616E3662E00B5B100 /* InfoPlist.strings in Resources */,
+				C7615F681A6E6E8100557977 /* open.png in Resources */,
 				C7A23A411A6B2225004CA025 /* SwipePopOverView.xib in Resources */,
 				36CEB7DC16E3662E00B5B100 /* Credits.rtf in Resources */,
 				364EED47191EDF6C00AB4439 /* android.png in Resources */,
@@ -1067,6 +1074,7 @@
 				36B2F18616E6379C008764E0 /* defaults.plist in Resources */,
 				36A765A616F01C7C002A7D6A /* appium.icns in Resources */,
 				36CD44EF16F0D5C300194193 /* AppiumInspectorWindow.xib in Resources */,
+				C7615F6E1A6E6E8700557977 /* save.png in Resources */,
 				36D17E2916F144E600DC5797 /* Upgrade.applescript in Resources */,
 				C7A23A3F1A6B1BE7004CA025 /* PreciseTapPopOverView.xib in Resources */,
 				364EED3B191EDE6F00AB4439 /* dev-settings.png in Resources */,
