@@ -183,7 +183,7 @@
 
 -(IBAction)openDocument:(id)sender {
 	NSOpenPanel *openPanel = [NSOpenPanel openPanel];
-	[openPanel setAllowedFileTypes:@[@"plist"]];
+	[openPanel setAllowedFileTypes:@[@"appiumconfig"]];
 	[openPanel setDirectoryURL:[NSURL fileURLWithPath: NSHomeDirectory()]];
 	[openPanel beginSheetModalForWindow:self.mainWindowController.window completionHandler:^(NSInteger result){
 		if (result == NSFileHandlingPanelOKButton) {
@@ -196,7 +196,7 @@
 
 -(IBAction)saveDocument:(id)sender {
 	NSSavePanel *savePanel = [NSSavePanel savePanel];
-	[savePanel setAllowedFileTypes:@[@"plist"]];
+	[savePanel setAllowedFileTypes:@[@"appiumconfig"]];
 	[savePanel setDirectoryURL:[NSURL fileURLWithPath: NSHomeDirectory()]];
 	[savePanel beginSheetModalForWindow:self.mainWindowController.window completionHandler:^(NSInteger result){
 		if (result == NSFileHandlingPanelOKButton) {
