@@ -203,6 +203,17 @@
 			[savePanel orderOut:self];
 			NSError *err;
 			NSString *pListPath = [NSString pathWithComponents:@[NSHomeDirectory(),@"Library",@"Preferences",@"com.appium.Appium.plist"]];
+			
+			// remove the file if it exists
+			if ([[NSFileManager defaultManager] fileExistsAtPath:[savePanel.URL path]  isDirectory:NO]) {
+				[[NSFileManager defaultManager] removeItemAtPath:[savePanel.URL path] error:&err];
+				if (err) {
+					NSLog(@"%@",err.description);
+					return;
+				}
+			}
+			
+			// copy the current settings to the file
 			[[NSFileManager defaultManager] copyItemAtPath:pListPath toPath:[savePanel.URL path] error:&err];
 			
 			if (err) {

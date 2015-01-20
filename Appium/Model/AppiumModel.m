@@ -794,11 +794,17 @@ BOOL _isServerListening;
 		
 		// read the defaults.plist file and reset all the values
 		NSDictionary *defaultPrefs = [[NSDictionary alloc] initWithContentsOfFile:prefsPath];
+		
 		for(NSString *key in defaultPrefs) {
 			NSObject *value = [defaultPrefs objectForKey:key];
-			[defaults setObject:value forKey:key];
+			if ([key hasPrefix:@"NS"]) {
+				// ignore window positioning and other cocoa entries
+				continue;
+			} else {
+				[defaults setObject:value forKey:key];
+			}
 		}
-		
+	
 		// set back values that should not be reset
 		[self.iOS setAuthorized:hasAuthorizediOS];
 		[self.general setCheckForUpdates:checkForUodates];
