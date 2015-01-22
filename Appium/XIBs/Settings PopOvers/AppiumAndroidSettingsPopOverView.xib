@@ -46,16 +46,21 @@
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                     <connections>
-                                                        <binding destination="-2" name="value" keyPath="model.android.useAppPath" id="vLS-6s-KN5"/>
-                                                        <binding destination="-2" name="enabled2" keyPath="model.android.useBrowser" previousBinding="vAJ-Nh-qrS" id="LRM-xc-DLh">
+                                                        <binding destination="-2" name="enabled2" keyPath="model.android.useBrowser" previousBinding="BIB-R2-uwm" id="5fe-2j-rJw">
                                                             <dictionary key="options">
                                                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                                 <integer key="NSNoSelectionPlaceholder" value="-1"/>
                                                                 <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                                 <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                             </dictionary>
                                                         </binding>
-                                                        <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="vAJ-Nh-qrS"/>
+                                                        <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="BIB-R2-uwm">
+                                                            <dictionary key="options">
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="-2" name="value" keyPath="model.android.useAppPath" id="vLS-6s-KN5"/>
                                                     </connections>
                                                 </button>
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hfy-un-bQV" userLabel="App Path Text Field">
@@ -66,24 +71,26 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <connections>
+                                                        <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="s0Q-5A-krU" id="Z4T-Ee-XeU">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="-2" name="enabled3" keyPath="model.android.useBrowser" previousBinding="Z4T-Ee-XeU" id="RK5-ef-8SH">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
                                                         <binding destination="-2" name="value" keyPath="model.android.appPath" id="NYS-Pc-P5a"/>
                                                         <binding destination="-2" name="enabled" keyPath="model.android.useAppPath" id="s0Q-5A-krU"/>
-                                                        <binding destination="-2" name="enabled3" keyPath="model.android.useBrowser" previousBinding="Xtu-gc-4cy" id="aGd-4n-x4x">
-                                                            <dictionary key="options">
-                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                                <integer key="NSNullPlaceholder" value="-1"/>
-                                                            </dictionary>
-                                                        </binding>
-                                                        <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="s0Q-5A-krU" id="Xtu-gc-4cy">
-                                                            <dictionary key="options">
-                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                                <integer key="NSNullPlaceholder" value="-1"/>
-                                                            </dictionary>
-                                                        </binding>
                                                     </connections>
                                                 </textField>
                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Usq-dr-7vf" userLabel="Choose App Path Button">
@@ -94,23 +101,25 @@
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="chooseAndroidApp:" target="-2" id="U1K-06-Xfh"/>
+                                                        <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="btc-bJ-Qgs" id="cNR-en-hXy">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="-2" name="enabled3" keyPath="model.android.useBrowser" previousBinding="cNR-en-hXy" id="aXa-b2-IGd">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
                                                         <binding destination="-2" name="enabled" keyPath="model.android.useAppPath" id="btc-bJ-Qgs"/>
-                                                        <binding destination="-2" name="enabled3" keyPath="model.android.useBrowser" previousBinding="4E6-vc-Ee7" id="ngb-do-Y8G">
-                                                            <dictionary key="options">
-                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                                <integer key="NSNullPlaceholder" value="-1"/>
-                                                            </dictionary>
-                                                        </binding>
-                                                        <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="btc-bJ-Qgs" id="4E6-vc-Ee7">
-                                                            <dictionary key="options">
-                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                                <integer key="NSNullPlaceholder" value="-1"/>
-                                                            </dictionary>
-                                                        </binding>
                                                     </connections>
                                                 </button>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="66C-sh-IrH" userLabel="Use Package Check Box">
