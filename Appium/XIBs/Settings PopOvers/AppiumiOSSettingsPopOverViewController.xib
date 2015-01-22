@@ -46,16 +46,21 @@
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                     <connections>
-                                                        <binding destination="-2" name="value" keyPath="model.iOS.useAppPath" id="zHO-A9-3oo"/>
-                                                        <binding destination="-2" name="enabled2" keyPath="model.iOS.useMobileSafari" previousBinding="Fbz-iT-jCB" id="qpo-3J-cWJ">
+                                                        <binding destination="-2" name="enabled2" keyPath="model.iOS.useMobileSafari" previousBinding="Qr6-nQ-5Qr" id="fJL-Hh-JkZ">
                                                             <dictionary key="options">
                                                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                                 <integer key="NSNoSelectionPlaceholder" value="-1"/>
                                                                 <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                                                 <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                             </dictionary>
                                                         </binding>
-                                                        <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="Fbz-iT-jCB"/>
+                                                        <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="Qr6-nQ-5Qr">
+                                                            <dictionary key="options">
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="-2" name="value" keyPath="model.iOS.useAppPath" id="zHO-A9-3oo"/>
                                                     </connections>
                                                 </button>
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EWZ-ab-ky7" userLabel="App Path Text Field">
@@ -66,24 +71,26 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <connections>
+                                                        <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="obo-Fe-W08" id="BUh-Oc-UeH">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="-2" name="enabled3" keyPath="model.iOS.useMobileSafari" previousBinding="BUh-Oc-UeH" id="vQ8-ZI-6uZ">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
                                                         <binding destination="-2" name="value" keyPath="model.iOS.appPath" id="9mx-Rn-CE7"/>
                                                         <binding destination="-2" name="enabled" keyPath="model.iOS.useAppPath" id="obo-Fe-W08"/>
-                                                        <binding destination="-2" name="enabled3" keyPath="model.iOS.useMobileSafari" previousBinding="Dr4-kz-BSh" id="Bga-ic-Nib">
-                                                            <dictionary key="options">
-                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                                <integer key="NSNullPlaceholder" value="-1"/>
-                                                            </dictionary>
-                                                        </binding>
-                                                        <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="obo-Fe-W08" id="Dr4-kz-BSh">
-                                                            <dictionary key="options">
-                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                                <integer key="NSNullPlaceholder" value="-1"/>
-                                                            </dictionary>
-                                                        </binding>
                                                     </connections>
                                                 </textField>
                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ACb-V7-jkQ" userLabel="Choose App Path Button">
@@ -94,23 +101,25 @@
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="chooseiOSApp:" target="-2" id="qaE-U3-b2o"/>
+                                                        <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="qOi-Zg-u2g" id="Ofn-TL-02O">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="-2" name="enabled3" keyPath="model.iOS.useMobileSafari" previousBinding="Ofn-TL-02O" id="cun-A8-icO">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
                                                         <binding destination="-2" name="enabled" keyPath="model.iOS.useAppPath" id="qOi-Zg-u2g"/>
-                                                        <binding destination="-2" name="enabled3" keyPath="model.iOS.useMobileSafari" previousBinding="b0G-MS-rY2" id="ioh-FB-AIL">
-                                                            <dictionary key="options">
-                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                                <integer key="NSNullPlaceholder" value="-1"/>
-                                                            </dictionary>
-                                                        </binding>
-                                                        <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="qOi-Zg-u2g" id="b0G-MS-rY2">
-                                                            <dictionary key="options">
-                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                                <integer key="NSNullPlaceholder" value="-1"/>
-                                                            </dictionary>
-                                                        </binding>
                                                     </connections>
                                                 </button>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4ha-nt-GSq" userLabel="BundleID Check Box">
