@@ -14,11 +14,6 @@
 
 @implementation AppiumiOSSettingsPopOverViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do view setup here.
-}
-
 -(IBAction)chooseiOSApp:(id)sender
 {
 	NSString *selectedApp = self.model.iOS.appPath;

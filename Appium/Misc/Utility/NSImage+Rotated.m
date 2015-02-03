@@ -45,7 +45,7 @@
 	
 	CGImageRef imageRef = NULL;
 	if (imageData) {
-		CGImageSourceRef imageSource = CGImageSourceCreateWithData((CFDataRef)imageData, NULL);
+		CGImageSourceRef imageSource = CGImageSourceCreateWithData((__bridge CFDataRef)imageData, NULL);
 		imageRef = CGImageSourceCreateImageAtIndex(imageSource, 0, NULL);
 	}
 	return imageRef;
