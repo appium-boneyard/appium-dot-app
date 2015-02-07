@@ -377,7 +377,7 @@
                 <outlet property="delegate" destination="Ug1-6P-qDs" id="HYZ-LR-2gp"/>
             </connections>
         </popover>
-        <viewController id="XEC-az-lQA" userLabel="iOS Settings Popover View Controller" customClass="AppiumiOSSettingsPopOverViewController">
+        <viewController nibName="AppiumiOSSettingsPopOverView" id="XEC-az-lQA" userLabel="iOS Settings Popover View Controller" customClass="AppiumiOSSettingsPopOverViewController">
             <connections>
                 <outlet property="popover" destination="IDq-46-1H6" id="i5i-PF-in9"/>
             </connections>
