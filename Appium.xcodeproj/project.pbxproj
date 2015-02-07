@@ -99,7 +99,7 @@
 		C7615F6E1A6E6E8700557977 /* save.png in Resources */ = {isa = PBXBuildFile; fileRef = C7615F6D1A6E6E8700557977 /* save.png */; };
 		C79097471A6AB2BF007621D0 /* AppiumGeneralSettingsPopOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C79097461A6AB2BF007621D0 /* AppiumGeneralSettingsPopOverView.xib */; };
 		C790974C1A6ABF3B007621D0 /* AppiumDeveloperSettingsPopOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C790974A1A6ABF3B007621D0 /* AppiumDeveloperSettingsPopOverView.xib */; };
-		C79097511A6AC3BE007621D0 /* AppiumiOSSettingsPopOverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C790974F1A6AC3BE007621D0 /* AppiumiOSSettingsPopOverViewController.xib */; };
+		C79097511A6AC3BE007621D0 /* AppiumiOSSettingsPopOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C790974F1A6AC3BE007621D0 /* AppiumiOSSettingsPopOverView.xib */; };
 		C79097561A6AD3A4007621D0 /* AppiumAndroidSettingsPopOverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C79097541A6AD3A4007621D0 /* AppiumAndroidSettingsPopOverView.xib */; };
 		C79C75611A6BB9650030023D /* AppiumAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C79C75601A6BB9650030023D /* AppiumAppDelegate.m */; };
 		C79C75751A6BBAD10030023D /* AppiumAndroidSettingsPopOverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C79C75681A6BBAD10030023D /* AppiumAndroidSettingsPopOverViewController.m */; };
@@ -359,7 +359,7 @@
 		C7615F6D1A6E6E8700557977 /* save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save.png; sourceTree = "<group>"; };
 		C79097461A6AB2BF007621D0 /* AppiumGeneralSettingsPopOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppiumGeneralSettingsPopOverView.xib; sourceTree = "<group>"; };
 		C790974A1A6ABF3B007621D0 /* AppiumDeveloperSettingsPopOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppiumDeveloperSettingsPopOverView.xib; sourceTree = "<group>"; };
-		C790974F1A6AC3BE007621D0 /* AppiumiOSSettingsPopOverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppiumiOSSettingsPopOverViewController.xib; sourceTree = "<group>"; };
+		C790974F1A6AC3BE007621D0 /* AppiumiOSSettingsPopOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppiumiOSSettingsPopOverView.xib; sourceTree = "<group>"; };
 		C79097541A6AD3A4007621D0 /* AppiumAndroidSettingsPopOverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppiumAndroidSettingsPopOverView.xib; sourceTree = "<group>"; };
 		C79C755E1A6BB9010030023D /* AppiumPreferencesFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumPreferencesFile.h; sourceTree = "<group>"; };
 		C79C755F1A6BB9650030023D /* AppiumAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumAppDelegate.h; sourceTree = "<group>"; };
@@ -922,7 +922,7 @@
 				C79097541A6AD3A4007621D0 /* AppiumAndroidSettingsPopOverView.xib */,
 				C790974A1A6ABF3B007621D0 /* AppiumDeveloperSettingsPopOverView.xib */,
 				C79097461A6AB2BF007621D0 /* AppiumGeneralSettingsPopOverView.xib */,
-				C790974F1A6AC3BE007621D0 /* AppiumiOSSettingsPopOverViewController.xib */,
+				C790974F1A6AC3BE007621D0 /* AppiumiOSSettingsPopOverView.xib */,
 				C7D0D54A1A6A859C00D3D883 /* AppiumRobotSettingsPopOverView.xib */,
 			);
 			name = "Settings PopOvers";
@@ -1055,7 +1055,7 @@
 				364EED47191EDF6C00AB4439 /* android.png in Resources */,
 				364EED49191EDF9100AB4439 /* apple.png in Resources */,
 				364EED4F191EDFFF00AB4439 /* inspector.png in Resources */,
-				C79097511A6AC3BE007621D0 /* AppiumiOSSettingsPopOverViewController.xib in Resources */,
+				C79097511A6AC3BE007621D0 /* AppiumiOSSettingsPopOverView.xib in Resources */,
 				C790974C1A6ABF3B007621D0 /* AppiumDeveloperSettingsPopOverView.xib in Resources */,
 				C79097561A6AD3A4007621D0 /* AppiumAndroidSettingsPopOverView.xib in Resources */,
 				364EED53191EE04A00AB4439 /* settings.png in Resources */,
