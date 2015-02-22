@@ -109,6 +109,10 @@
 	{
 		[self.selectedElementHighlightView setHidden:YES];
 	}
+	
+	// Hide selected points, as when the window resizes, they will likely be out of place
+	self.screenshotImageView.beginPoint = nil;
+	self.screenshotImageView.endPoint   = nil;
 }
 
 -(void) awakeFromNib
