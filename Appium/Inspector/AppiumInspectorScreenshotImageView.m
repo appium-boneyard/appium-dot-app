@@ -13,11 +13,13 @@
 @property (readonly) AppiumInspector *inspector;
 @property IBOutlet NSButton *rotationButton;
 @property NSImage *originalImage;
-@property CGFloat screenshotScalar;
-@property CGFloat xBorder;
-@property CGFloat yBorder;
-@property CGFloat maxWidth;
-@property CGFloat maxHeight;
+
+@property (readonly) CGFloat scalar;
+@property CGFloat scalarMultiplier;
+
+- (CGFloat)multipliedScalar:(CGFloat)scalar;
+- (CGSize)offsetForScaledSize:(CGSize)scaled;
+- (CGSize)scaledImageSizeForScalar:(CGFloat)scalar;
 
 -(NSImage*) rotateImage:(NSImage *)image byAngle:(NSInteger)degrees;
 
@@ -36,8 +38,11 @@
 -(id) initWithFrame:(NSRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) {
-		self.rotation = 0;
+	
+    if (self)
+	{
+		self.rotation         = 0;
+		self.scalarMultiplier = 1.0;
     }
 
     return self;
@@ -143,88 +148,63 @@
 	if (newImage != nil)
 	{
 		[super setImage:[self rotateImage:newImage byAngle:self.rotation]];
-	}
-
-	self.maxWidth = self.bounds.size.width;
-	self.maxHeight = self.bounds.size.height;
-	self.xBorder = 0.0f;
-	self.yBorder = 0.0f;
-	
-	float scalarMultiplier = 0.0f;
-	
-	// add factor of 2 to screenshot scalar to account for retina display based coordinates
-    if (self.inspector.model.isIOS)
-    {
-        // check for retina devices
-        if (self.image.size.width == 640 && self.image.size.height == 960)
-        {
-            // portrait 3.5" iphone with retina display
-            scalarMultiplier = 2.0f;
-        }
-        else if (self.image.size.width == 960 && self.image.size.height == 640)
-        {
-            // landscape 3.5" iphone with retina display
-            scalarMultiplier = 2.0f;
-        }
-        else if (self.image.size.width == 640 && self.image.size.height == 1136)
-        {
-            // portrait 4" iphone with retina display
-            scalarMultiplier = 2.0f;
-        }
-        else if (self.image.size.width == 1136 && self.image.size.height == 640)
-        {
-            // landscape 4" iphone with retina display
-            scalarMultiplier = 2.0f;
-        }
-		else if (self.image.size.width == 750 && self.image.size.height == 1334)
+		
+		// Update screenshot scalar
+		// add factor of 2 to screenshot scalar to account for retina display based coordinates
+		if (self.inspector.model.isIOS)
 		{
-			// portrait iphone 6
-			scalarMultiplier = 2.0f;
+			// check for retina devices
+			if (self.image.size.width == 640 && self.image.size.height == 960)
+			{
+				// portrait 3.5" iphone with retina display
+				self.scalarMultiplier = 2.0f;
+			}
+			else if (self.image.size.width == 960 && self.image.size.height == 640)
+			{
+				// landscape 3.5" iphone with retina display
+				self.scalarMultiplier = 2.0f;
+			}
+			else if (self.image.size.width == 640 && self.image.size.height == 1136)
+			{
+				// portrait 4" iphone with retina display
+				self.scalarMultiplier = 2.0f;
+			}
+			else if (self.image.size.width == 1136 && self.image.size.height == 640)
+			{
+				// landscape 4" iphone with retina display
+				self.scalarMultiplier = 2.0f;
+			}
+			else if (self.image.size.width == 750 && self.image.size.height == 1334)
+			{
+				// portrait iphone 6
+				self.scalarMultiplier = 2.0f;
+			}
+			else if (self.image.size.width == 1334 && self.image.size.height == 750)
+			{
+				// landscape iphone 6
+				self.scalarMultiplier = 2.0f;
+			}
+			else if (self.image.size.width == 1242 && self.image.size.height == 2208)
+			{
+				// portrait iphone 6 plus
+				self.scalarMultiplier = 3.0f;
+			}
+			else if (self.image.size.width == 2208 && self.image.size.height == 1242)
+			{
+				// landscape iphone 6 plus
+				self.scalarMultiplier = 3.0f;
+			}
+			else if (self.image.size.width == 1536 && self.image.size.height == 2048)
+			{
+				// portrait ipad with retina display
+				self.scalarMultiplier = 2.0f;
+			}
+			else if (self.image.size.width == 2048 && self.image.size.height == 1536)
+			{
+				// landscape ipad with retina display
+				self.scalarMultiplier = 2.0f;
+			}
 		}
-		else if (self.image.size.width == 1334 && self.image.size.height == 750)
-		{
-			// landscape iphone 6
-			scalarMultiplier = 2.0f;
-		}
-		else if (self.image.size.width == 1242 && self.image.size.height == 2208)
-		{
-			// portrait iphone 6 plus
-			scalarMultiplier = 3.0f;
-		}
-		else if (self.image.size.width == 2208 && self.image.size.height == 1242)
-		{
-			// landscape iphone 6 plus
-			scalarMultiplier = 3.0f;
-		}
-        else if (self.image.size.width == 1536 && self.image.size.height == 2048)
-        {
-            // portrait ipad with retina display
-            scalarMultiplier = 2.0f;
-        }
-        else if (self.image.size.width == 2048 && self.image.size.height == 1536)
-        {
-            // landscape ipad with retina display
-            scalarMultiplier = 2.0f;
-        }
-    }
-	
-    // determine borders
-	if (self.image.size.width > (self.bounds.size.width * scalarMultiplier))
-	{
-		self.screenshotScalar = self.image.size.width > 0 ? self.bounds.size.width / self.image.size.width : .0f;
-		self.maxHeight = self.image.size.height * self.screenshotScalar;
-		self.yBorder  = (self.bounds.size.height - self.maxHeight) / 2.0f;
-	}
-	else
-	{
-		self.screenshotScalar = self.image.size.width > 0 ? self.bounds.size.width / self.image.size.width : .0f;
-		self.maxWidth = self.image.size.width * self.screenshotScalar;
-		self.xBorder = (self.bounds.size.width - self.maxWidth) / 2.0f;
-	}
-	
-	if (scalarMultiplier != 0.0f)
-	{
-		self.screenshotScalar *= scalarMultiplier;
 	}
 }
 
@@ -243,31 +223,103 @@
 }
 
 #pragma mark - Coordinate Conversion Methods
--(NSPoint)convertSeleniumPointToViewPoint:(NSPoint)point
+- (NSPoint)convertSeleniumPointToViewPoint:(NSPoint)point
 {
-	NSPoint viewPoint = NSMakePoint(0,0);
-	viewPoint.x = self.xBorder + (point.x * self.screenshotScalar);
-	viewPoint.y = self.yBorder + (self.maxHeight - point.y * self.screenshotScalar);
+	// Get the scalar value
+	CGFloat scalar = self.scalar;
+	
+	// Calculate the multiplied scalar
+	CGFloat multipliedScalar = [self multipliedScalar:scalar];
+	
+	// Calculate the scaled image size
+	CGSize scaled = [self scaledImageSizeForScalar:scalar];
+	
+	// Calculate the offset size
+	CGSize offset = [self offsetForScaledSize:scaled];
+	
+	// Create a new point
+	NSPoint viewPoint = NSZeroPoint;
+	
+	// Map the point onto the view using the offset and scalar
+	viewPoint.x = offset.width + (point.x * multipliedScalar);
+	viewPoint.y = (self.bounds.size.height - (point.y * multipliedScalar)) - offset.height;
+	
 	return viewPoint;
 }
 
--(NSRect)convertSeleniumRectToViewRect:(NSRect)rect
+- (NSRect)convertSeleniumRectToViewRect:(NSRect)rect
 {
+	// Get the scalar value
+	CGFloat scalar = self.scalar;
+	
+	// Calculate the multiplied scalar
+	CGFloat multipliedScalar = [self multipliedScalar:scalar];
+	
+	// Calculate the scaled image size
+	CGSize scaled = [self scaledImageSizeForScalar:scalar];
+	
+	// Calculate the offset size
+	CGSize offset = [self offsetForScaledSize:scaled];
+	
+	// Copy the provided rect
 	CGRect viewRect = rect;
-	viewRect.size.width *= self.screenshotScalar;
-	viewRect.size.height *= self.screenshotScalar;
-	viewRect.origin.x = self.xBorder + (rect.origin.x * self.screenshotScalar);
-	viewRect.origin.y = self.yBorder + (self.maxHeight - (rect.origin.y + rect.size.height) * self.screenshotScalar);
+	
+	// Update the size using the scalar
+	viewRect.size.width  *= multipliedScalar;
+	viewRect.size.height *= multipliedScalar;
+	
+	// Update the origin
+	viewRect.origin.x = offset.width + (rect.origin.x * multipliedScalar);
+	viewRect.origin.y = (self.bounds.size.height - (rect.origin.y + rect.size.height) * multipliedScalar) - offset.height;
+	
 	return viewRect;
 }
 
--(NSPoint)convertWindowPointToSeleniumPoint:(NSPoint)pointInWindow
+- (NSPoint)convertWindowPointToSeleniumPoint:(NSPoint)pointInWindow
 {
-	NSPoint newPoint = NSMakePoint(0.0f, 0.0f);
+	// Get the scalar value
+	CGFloat scalar = self.scalar;
+	
+	// Calculate the multiplied scalar
+	CGFloat multipliedScalar = [self multipliedScalar:scalar];
+	
+	// Calculate the scaled image size
+	CGSize scaled = [self scaledImageSizeForScalar:scalar];
+	
+	// Calculate the offset size
+	CGSize offset = [self offsetForScaledSize:scaled];
+	
+	// Convert the point to the view
 	NSPoint relativePoint = [self convertPoint:pointInWindow fromView:nil];
-	newPoint.x = (relativePoint.x - self.xBorder) / self.screenshotScalar;
-	newPoint.y = (self.maxHeight - (relativePoint.y - self.yBorder)) / self.screenshotScalar;
+	
+	// Create a new point
+	NSPoint newPoint = NSZeroPoint;
+	
+	// Map the point onto the view using the offset and scalar
+	newPoint.x = (relativePoint.x - offset.width) / multipliedScalar;
+	newPoint.y = (self.bounds.size.height - (relativePoint.y + offset.height)) / multipliedScalar;
+	
 	return newPoint;
+}
+
+- (CGFloat)scalar
+{
+	return fminf(self.bounds.size.width / self.image.size.width, self.bounds.size.height / self.image.size.height);
+}
+
+- (CGFloat)multipliedScalar:(CGFloat)scalar
+{
+	return scalar * self.scalarMultiplier;
+}
+
+- (CGSize)offsetForScaledSize:(CGSize)scaled
+{
+	return CGSizeMake((self.bounds.size.width - scaled.width) / 2, (self.bounds.size.height - scaled.height) / 2);
+}
+
+- (CGSize)scaledImageSizeForScalar:(CGFloat)scalar
+{
+	return CGSizeMake(self.image.size.width * scalar, self.image.size.height * scalar);
 }
 
 #pragma mark - Helpers
