@@ -143,7 +143,9 @@
 	[DEFAULTS setValue:launchTimeout forKey:APPIUM_PLIST_IOS_LAUNCH_TIMEOUT];
 }
 
--(NSString*) locale { return [DEFAULTS stringForKey:APPIUM_PLIST_IOS_LOCALE]; }
+-(NSString*) locale {
+	return [DEFAULTS stringForKey:APPIUM_PLIST_IOS_LOCALE];
+}
 -(void) setLocale:(NSString *)locale {
 	[DEFAULTS setValue:locale forKey:APPIUM_PLIST_IOS_LOCALE];
 }
