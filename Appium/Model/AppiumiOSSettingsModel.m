@@ -237,7 +237,9 @@
 	[DEFAULTS setBool:useCustomTraceTemplate forKey:APPIUM_PLIST_IOS_USE_CUSTOM_TRACE_TEMPLATE];
 }
 
--(BOOL) useDefaultDevice { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_USE_DEFAULT_DEVICE]; }
+-(BOOL) useDefaultDevice {
+	return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_USE_DEFAULT_DEVICE];
+}
 -(void) setUseDefaultDevice:(BOOL)useDefaultDevice {
 	[DEFAULTS setBool:useDefaultDevice forKey:APPIUM_PLIST_IOS_USE_DEFAULT_DEVICE];
 }
@@ -284,12 +286,16 @@
 	[DEFAULTS setBool:useNativeInstrumentsLibrary forKey:APPIUM_PLIST_IOS_USE_NATIVE_INSTRUMENTS_LIBRARY];
 }
 
--(BOOL) useOrientation { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_USE_ORIENTATION]; }
+-(BOOL) useOrientation {
+	return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_USE_ORIENTATION];
+}
 -(void) setUseOrientation:(BOOL)useOrientation {
 	[DEFAULTS setBool:useOrientation forKey:APPIUM_PLIST_IOS_USE_ORIENTATION];
 }
 
-- (BOOL)useTraceDirectory { return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_USE_TRACE_DIRECTORY]; }
+- (BOOL)useTraceDirectory {
+	return [DEFAULTS boolForKey:APPIUM_PLIST_IOS_USE_TRACE_DIRECTORY];
+}
 - (void)setUseTraceDirectory:(BOOL)useTraceDirectory {
 	[DEFAULTS setBool:useTraceDirectory forKey:APPIUM_PLIST_IOS_USE_TRACE_DIRECTORY];
 }
@@ -304,8 +310,7 @@
 #pragma mark - Methods
 
 -(NSString*) xcodePath{
-	@try
-	{
+	@try{
 		NSString *path = [Utility runTaskWithBinary:@"/usr/bin/xcode-select" arguments:[NSArray arrayWithObject:@"--print-path"]];
 		path = [path stringByReplacingOccurrencesOfString:@"\n" withString:@""];
 		if ([path hasSuffix:@"/Contents/Developer"])
@@ -331,8 +336,7 @@
 }
 
 -(NSArray*) getDevices {
-	//@try
-	//{
+	//@try{
 		NSMutableArray *devices = [NSMutableArray new];
 		NSString *deviceListString = [Utility runTaskWithBinary:@"/usr/bin/xcrun" arguments:@[@"simctl", @"list", @"devices"]];
 		for (NSString* line in [deviceListString componentsSeparatedByString:@"\n"]) {
