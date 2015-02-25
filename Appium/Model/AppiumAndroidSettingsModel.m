@@ -126,7 +126,23 @@
 -(void) setDeviceReadyTimeout:(NSNumber *)deviceReadyTimeout { [[NSUserDefaults standardUserDefaults] setValue:deviceReadyTimeout forKey:APPIUM_PLIST_ANDROID_DEVICE_READY_TIMEOUT]; }
 
 -(BOOL) fullReset { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_FULL_RESET]; }
--(void) setFullReset:(BOOL)fullReset { [DEFAULTS setBool:fullReset forKey:APPIUM_PLIST_ANDROID_FULL_RESET]; }
+-(void) setFullReset:(BOOL)fullReset {
+	if((self.noReset==YES)&&(fullReset==YES)){
+		[self setNoReset:NO];
+	}
+	[DEFAULTS setBool:fullReset forKey:APPIUM_PLIST_ANDROID_FULL_RESET];
+}
+
+-(BOOL) noReset {
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_NO_RESET];
+}
+-(void) setNoReset:(BOOL)noReset {
+	if((self.fullReset==YES)&&(noReset==YES)){
+		[self setFullReset:NO];
+	}
+	[DEFAULTS setBool:noReset forKey:APPIUM_PLIST_ANDROID_NO_RESET];
+}
+
 
 -(NSString*) intentAction { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_INTENT_ACTION]; }
 -(void) setIntentAction:(NSString *)intentAction { [DEFAULTS setValue:intentAction forKey:APPIUM_PLIST_ANDROID_INTENT_ACTION]; }
@@ -158,8 +174,6 @@
 -(NSString*) locale { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_LOCALE]; }
 -(void) setLocale:(NSString *)locale { [DEFAULTS setValue:locale forKey:APPIUM_PLIST_ANDROID_LOCALE]; }
 
--(BOOL) noReset { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_NO_RESET]; }
--(void) setNoReset:(BOOL)noReset { [DEFAULTS setBool:noReset forKey:APPIUM_PLIST_ANDROID_NO_RESET]; }
 
 -(NSString*) package { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_PACKAGE]; }
 -(void) setPackage:(NSString *)package { [DEFAULTS setValue:package forKey:APPIUM_PLIST_ANDROID_PACKAGE]; }
