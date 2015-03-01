@@ -14,6 +14,8 @@
 #import "AppiumPreferencesFile.h"
 #import "XMLReader.h"
 
+NSString *const AppiumInspectoriOSUIAWindow = @"UIAWindow";
+
 @implementation AppiumInspector
 
 -(id) init
@@ -151,7 +153,7 @@
 			return result;
 	}
 
-	if (NSPointInRect(point, node.rect))
+	if (NSPointInRect(point, node.rect) && !(self.model.isIOS && [node.type isEqualToString:AppiumInspectoriOSUIAWindow]))
 		return node;
 
 	return nil;
