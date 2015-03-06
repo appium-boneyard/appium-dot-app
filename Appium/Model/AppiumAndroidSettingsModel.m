@@ -13,9 +13,11 @@
 
 @implementation AppiumAndroidSettingsModel
 
--(id) init {
+-(id) init
+{
 	self = [super init];
-    if (self) {
+    if (self)
+	{
 
 		// initialize
 		[self setAvailableAVDs:[NSArray new]];
@@ -47,27 +49,44 @@
 
 #pragma mark - Properties
 
--(NSString*) activity { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_ACTIVITY]; }
--(void) setActivity:(NSString *)activity { [DEFAULTS setValue:activity forKey:APPIUM_PLIST_ANDROID_ACTIVITY]; }
+-(NSString*) activity
+{
+	return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_ACTIVITY];
+}
+-(void) setActivity:(NSString *)activity {
+	[DEFAULTS setValue:activity forKey:APPIUM_PLIST_ANDROID_ACTIVITY];
+}
 
--(NSArray*) allAutomationNames { return [NSArray arrayWithObjects:@"Appium", @"Selendroid", nil]; }
+-(NSArray*) allAutomationNames {
+	return [NSArray arrayWithObjects:@"Appium", @"Selendroid", nil];
+}
 
-- (NSArray*)allBrowserNames { return [NSArray arrayWithObjects:@"Browser", @"Chrome", @"Chromium", nil]; }
+- (NSArray*)allBrowserNames
+{
+	return [NSArray arrayWithObjects:@"Browser", @"Chrome", @"Chromium", nil];
+}
 
--(NSArray*) allLanguages {
+-(NSArray*) allLanguages
+{
 	return [NSArray arrayWithObjects:@"ar", @"bg", @"ca", @"cs", @"da", @"de", @"el", @"en", @"es", @"fi", @"fr", @"he", @"hi", @"hr", @"hu", @"id", @"it", @"iw",
 			@"ja", @"ko", @"li", @"lt", @"lv", @"ms", @"nb", @"nl", @"pl", @"pt", @"ro", @"ru", @"sk", @"sl", @"sr", @"sv", @"th", @"tl", @"tr", @"uk", @"vi",
 			@"zh_CN", @"zh_TW", nil];
 }
 
--(NSArray*) allLocales {
+-(NSArray*) allLocales
+{
 	return [NSArray arrayWithObjects: @"AT", @"AU", @"BE", @"BG", @"BR", @"CA", @"CH", @"CN", @"CZ", @"DE", @"DK", @"EG", @"ES", @"FI", @"FR", @"GB", @"GR", @"HR",
 			@"HU", @"ID", @"IE", @"IL", @"IN", @"JP", @"KR", @"LI", @"LT", @"LV", @"NL", @"NO", @"NZ", @"PH", @"PL", @"PT", @"RO", @"RS", @"RU", @"SE", @"SG", @"SK",
 			@"TH", @"TR", @"TW", @"UA", @"US", @"VN", @"ZA", nil];
 }
 
--(NSArray*) allPlatformNames { return [NSArray arrayWithObjects:@"Android", @"FirefoxOS", nil]; }
--(NSArray*) allPlatformVersions { return [NSArray arrayWithObjects:
+-(NSArray*) allPlatformNames
+{
+	return [NSArray arrayWithObjects:@"Android", @"FirefoxOS", nil];
+}
+-(NSArray*) allPlatformVersions
+{
+	return [NSArray arrayWithObjects:
 										  @"4.4 KitKat (API Level 19)",
 										  @"4.3 Jelly Bean (API Level 18)",
 										  @"4.2 Jelly Bean (API Level 17)",
@@ -86,180 +105,494 @@
 										  @"1.6 Donut (API Level 4)",
 										  @"1.5 Cupcake (API Level 3)",
 										  @"1.1 (API Level 2)",
-										  @"1.0 (API Level 1)", nil]; }
+										  @"1.0 (API Level 1)", nil];
+}
 
--(NSString*) automationName { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_AUTOMATION_NAME]; }
--(void) setAutomationName:(NSString *)automationName { [DEFAULTS setValue:automationName forKey:APPIUM_PLIST_ANDROID_AUTOMATION_NAME]; }
+-(NSString*) automationName
+{
+	return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_AUTOMATION_NAME];
+}
+-(void) setAutomationName:(NSString *)automationName
+{
+	[DEFAULTS setValue:automationName forKey:APPIUM_PLIST_ANDROID_AUTOMATION_NAME];
+}
 
--(NSString*) appPath { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_APP_PATH]; }
+-(NSString*) appPath
+{
+	return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_APP_PATH];
+}
 -(void) setAppPath:(NSString *)appPath
 {
 	[DEFAULTS setValue:appPath forKey:APPIUM_PLIST_ANDROID_APP_PATH];
 	[self performSelectorInBackground:@selector(refreshAvailableActivitiesAndPackages) withObject:nil];
 }
 
--(NSString*) avd { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_AVD]; }
--(void) setAvd:(NSString *)avd { [DEFAULTS setValue:avd forKey:APPIUM_PLIST_ANDROID_AVD]; }
+-(NSString*) avd
+{
+	return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_AVD];
+}
+-(void) setAvd:(NSString *)avd
+{
+	[DEFAULTS setValue:avd forKey:APPIUM_PLIST_ANDROID_AVD];
+}
 
--(NSString*) avdArguments { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_AVD_ARGUMENTS]; }
--(void) setAvdArguments:(NSString *)avdArguments { [DEFAULTS setValue:avdArguments forKey:APPIUM_PLIST_ANDROID_AVD_ARGUMENTS]; }
+-(NSString*) avdArguments
+{
+	return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_AVD_ARGUMENTS];
+}
+-(void) setAvdArguments:(NSString *)avdArguments
+{
+	[DEFAULTS setValue:avdArguments forKey:APPIUM_PLIST_ANDROID_AVD_ARGUMENTS];
+}
 
--(NSNumber*) bootstrapPort { return [NSNumber numberWithInt:[[DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_BOOTSTRAP_PORT] intValue]]; }
--(void) setBootstrapPort:(NSNumber *)bootstrapPort { [[NSUserDefaults standardUserDefaults] setValue:bootstrapPort forKey:APPIUM_PLIST_ANDROID_BOOTSTRAP_PORT]; }
+-(NSNumber*) bootstrapPort
+{
+	return [NSNumber numberWithInt:[[DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_BOOTSTRAP_PORT] intValue]];
+}
+-(void) setBootstrapPort:(NSNumber *)bootstrapPort
+{
+	[[NSUserDefaults standardUserDefaults] setValue:bootstrapPort forKey:APPIUM_PLIST_ANDROID_BOOTSTRAP_PORT];
+}
 
--(NSString*) browserName { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_BROWSER_NAME]; }
--(void) setBrowserName:(NSString *)browserName { [DEFAULTS setValue:browserName forKey:APPIUM_PLIST_ANDROID_BROWSER_NAME]; }
+-(NSString*) browserName
+{
+	return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_BROWSER_NAME];
+}
+-(void) setBrowserName:(NSString *)browserName
+{
+	[DEFAULTS setValue:browserName forKey:APPIUM_PLIST_ANDROID_BROWSER_NAME];
+}
 
--(NSNumber*) chromedriverPort { return [NSNumber numberWithInt:[[DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_CHROMEDRIVER_PORT] intValue]]; }
--(void) setChromedriverPort:(NSNumber *)chromedriverPort { [[NSUserDefaults standardUserDefaults] setValue:chromedriverPort forKey:APPIUM_PLIST_ANDROID_CHROMEDRIVER_PORT]; }
+-(NSNumber*) chromedriverPort
+{
+	return [NSNumber numberWithInt:[[DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_CHROMEDRIVER_PORT] intValue]];
+}
+-(void) setChromedriverPort:(NSNumber *)chromedriverPort
+{
+	[[NSUserDefaults standardUserDefaults] setValue:chromedriverPort forKey:APPIUM_PLIST_ANDROID_CHROMEDRIVER_PORT];
+}
 
--(NSString*) coverageClass { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_COVERAGE_CLASS]; }
--(void) setCoverageClass:(NSString *)coverageClass { [DEFAULTS setValue:coverageClass forKey:APPIUM_PLIST_ANDROID_COVERAGE_CLASS]; }
+-(NSString*) coverageClass
+{
+	return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_COVERAGE_CLASS];
+}
+-(void) setCoverageClass:(NSString *)coverageClass
+{
+	[DEFAULTS setValue:coverageClass forKey:APPIUM_PLIST_ANDROID_COVERAGE_CLASS];
+}
 
--(NSString*) customSDKPath { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_CUSTOM_SDK_PATH]; }
--(void) setCustomSDKPath:(NSString *)customSDKPath { [DEFAULTS setValue:customSDKPath forKey:APPIUM_PLIST_ANDROID_CUSTOM_SDK_PATH]; }
+-(NSString*) customSDKPath
+{
+	return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_CUSTOM_SDK_PATH];
+}
+-(void) setCustomSDKPath:(NSString *)customSDKPath
+{
+	[DEFAULTS setValue:customSDKPath forKey:APPIUM_PLIST_ANDROID_CUSTOM_SDK_PATH];
+}
 
--(NSString*) deviceName { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_DEVICE_NAME]; }
--(void) setDeviceName:(NSString *)deviceName { [DEFAULTS setValue:deviceName forKey:APPIUM_PLIST_ANDROID_DEVICE_NAME]; }
+-(NSString*) deviceName
+{
+	return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_DEVICE_NAME];
+}
+-(void) setDeviceName:(NSString *)deviceName
+{
+	[DEFAULTS setValue:deviceName forKey:APPIUM_PLIST_ANDROID_DEVICE_NAME];
+}
 
--(NSNumber*) deviceReadyTimeout { return [NSNumber numberWithInt:[[DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_DEVICE_READY_TIMEOUT] intValue]]; }
--(void) setDeviceReadyTimeout:(NSNumber *)deviceReadyTimeout { [[NSUserDefaults standardUserDefaults] setValue:deviceReadyTimeout forKey:APPIUM_PLIST_ANDROID_DEVICE_READY_TIMEOUT]; }
+-(NSNumber*) deviceReadyTimeout
+{
+	return [NSNumber numberWithInt:[[DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_DEVICE_READY_TIMEOUT] intValue]];
+}
+-(void) setDeviceReadyTimeout:(NSNumber *)deviceReadyTimeout
+{
+	[[NSUserDefaults standardUserDefaults] setValue:deviceReadyTimeout forKey:APPIUM_PLIST_ANDROID_DEVICE_READY_TIMEOUT];
+}
 
--(BOOL) fullReset { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_FULL_RESET]; }
--(void) setFullReset:(BOOL)fullReset { [DEFAULTS setBool:fullReset forKey:APPIUM_PLIST_ANDROID_FULL_RESET]; }
+-(BOOL) fullReset
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_FULL_RESET];
+}
+-(void) setFullReset:(BOOL)fullReset
+{
+	if(self.noReset&&fullReset)
+	{
+		[self setNoReset:NO];
+	}
+	[DEFAULTS setBool:fullReset forKey:APPIUM_PLIST_ANDROID_FULL_RESET];
+}
 
--(NSString*) intentAction { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_INTENT_ACTION]; }
--(void) setIntentAction:(NSString *)intentAction { [DEFAULTS setValue:intentAction forKey:APPIUM_PLIST_ANDROID_INTENT_ACTION]; }
+-(BOOL) noReset
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_NO_RESET];
+}
+-(void) setNoReset:(BOOL)noReset
+{
+	if(self.fullReset&&noReset)
+	{
+		[self setFullReset:NO];
+	}
+	[DEFAULTS setBool:noReset forKey:APPIUM_PLIST_ANDROID_NO_RESET];
+}
 
--(NSString*) intentCategory { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_INTENT_CATEGORY]; }
--(void) setIntentCategory:(NSString *)intentCategory { [DEFAULTS setValue:intentCategory forKey:APPIUM_PLIST_ANDROID_INTENT_CATEGORY]; }
 
--(NSString*) intentFlags { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_INTENT_FLAGS]; }
--(void) setIntentFlags:(NSString *)intentFlags { [DEFAULTS setValue:intentFlags forKey:APPIUM_PLIST_ANDROID_INTENT_FLAGS]; }
+-(NSString*) intentAction
+{
+	return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_INTENT_ACTION];
+}
+-(void) setIntentAction:(NSString *)intentAction
+{
+	[DEFAULTS setValue:intentAction forKey:APPIUM_PLIST_ANDROID_INTENT_ACTION];
+}
 
--(NSString*) intentArguments { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_INTENT_ARGUMENTS]; }
--(void) setIntentArguments:(NSString *)intentArguments { [DEFAULTS setValue:intentArguments forKey:APPIUM_PLIST_ANDROID_INTENT_ARGUMENTS]; }
+-(NSString*) intentCategory
+{
+	return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_INTENT_CATEGORY];
+}
+-(void) setIntentCategory:(NSString *)intentCategory {
+	[DEFAULTS setValue:intentCategory forKey:APPIUM_PLIST_ANDROID_INTENT_CATEGORY];
+}
 
--(NSString*) keyAlias { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_KEY_ALIAS]; }
--(void) setKeyAlias:(NSString *)keyAlias { [DEFAULTS setValue:keyAlias forKey:APPIUM_PLIST_ANDROID_KEY_ALIAS]; }
+-(NSString*) intentFlags
+{
+	return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_INTENT_FLAGS];
+}
+-(void) setIntentFlags:(NSString *)intentFlags
+{
+	[DEFAULTS setValue:intentFlags forKey:APPIUM_PLIST_ANDROID_INTENT_FLAGS];
+}
 
--(NSString*) keyPassword { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_KEY_PASSWORD]; }
--(void) setKeyPassword:(NSString *)keyPassword { [DEFAULTS setValue:keyPassword forKey:APPIUM_PLIST_ANDROID_KEY_PASSWORD]; }
+-(NSString*) intentArguments
+{
+	return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_INTENT_ARGUMENTS];
+}
+-(void) setIntentArguments:(NSString *)intentArguments
+{
+	[DEFAULTS setValue:intentArguments forKey:APPIUM_PLIST_ANDROID_INTENT_ARGUMENTS];
+}
 
--(NSString*) keystorePassword { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_KEYSTORE_PASSWORD]; }
--(void) setKeystorePassword:(NSString *)keystorePassword { [DEFAULTS setValue:keystorePassword forKey:APPIUM_PLIST_ANDROID_KEYSTORE_PASSWORD]; }
+-(NSString*) keyAlias
+{
+	return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_KEY_ALIAS];
+}
+-(void) setKeyAlias:(NSString *)keyAlias
+{
+	[DEFAULTS setValue:keyAlias forKey:APPIUM_PLIST_ANDROID_KEY_ALIAS];
+}
 
--(NSString*) keystorePath { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_KEYSTORE_PATH]; }
--(void) setKeystorePath:(NSString *)keystorePath { [DEFAULTS setValue:keystorePath forKey:APPIUM_PLIST_ANDROID_KEYSTORE_PATH]; }
+-(NSString*) keyPassword
+{
+	return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_KEY_PASSWORD];
+}
+-(void) setKeyPassword:(NSString *)keyPassword
+{
+	[DEFAULTS setValue:keyPassword forKey:APPIUM_PLIST_ANDROID_KEY_PASSWORD];
+}
 
--(NSString*) language { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_LANGUAGE]; }
--(void) setLanguage:(NSString *)language { [DEFAULTS setValue:language forKey:APPIUM_PLIST_ANDROID_LANGUAGE]; }
+-(NSString*) keystorePassword
+{
+	return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_KEYSTORE_PASSWORD];
+}
+-(void) setKeystorePassword:(NSString *)keystorePassword
+{
+	[DEFAULTS setValue:keystorePassword forKey:APPIUM_PLIST_ANDROID_KEYSTORE_PASSWORD];
+}
 
--(NSString*) locale { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_LOCALE]; }
--(void) setLocale:(NSString *)locale { [DEFAULTS setValue:locale forKey:APPIUM_PLIST_ANDROID_LOCALE]; }
+-(NSString*) keystorePath
+{
+	return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_KEYSTORE_PATH];
+}
+-(void) setKeystorePath:(NSString *)keystorePath
+{
+	[DEFAULTS setValue:keystorePath forKey:APPIUM_PLIST_ANDROID_KEYSTORE_PATH];
+}
 
--(BOOL) noReset { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_NO_RESET]; }
--(void) setNoReset:(BOOL)noReset { [DEFAULTS setBool:noReset forKey:APPIUM_PLIST_ANDROID_NO_RESET]; }
+-(NSString*) language
+{
+	return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_LANGUAGE];
+}
+-(void) setLanguage:(NSString *)language
+{
+	[DEFAULTS setValue:language forKey:APPIUM_PLIST_ANDROID_LANGUAGE];
+}
 
--(NSString*) package { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_PACKAGE]; }
--(void) setPackage:(NSString *)package { [DEFAULTS setValue:package forKey:APPIUM_PLIST_ANDROID_PACKAGE]; }
+-(NSString*) locale
+{
+	return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_LOCALE];
+}
+-(void) setLocale:(NSString *)locale
+{
+	[DEFAULTS setValue:locale forKey:APPIUM_PLIST_ANDROID_LOCALE];
+}
 
--(NSString*) platformName { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_PLATFORM_NAME]; }
--(void) setPlatformName:(NSString *)platformName { [DEFAULTS setValue:platformName forKey:APPIUM_PLIST_ANDROID_PLATFORM_NAME]; }
 
--(NSString*) platformVersion { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_PLATFORM_VERSION]; }
--(void) setPlatformVersion:(NSString *)platformVersion { [DEFAULTS setValue:platformVersion forKey:APPIUM_PLIST_ANDROID_PLATFORM_VERSION]; }
--(NSString*) platformVersionNumber {
+-(NSString*) package
+{
+	return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_PACKAGE];
+}
+-(void) setPackage:(NSString *)package
+{
+	[DEFAULTS setValue:package forKey:APPIUM_PLIST_ANDROID_PACKAGE];
+}
+
+-(NSString*) platformName
+{
+	return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_PLATFORM_NAME];
+}
+-(void) setPlatformName:(NSString *)platformName
+{
+	[DEFAULTS setValue:platformName forKey:APPIUM_PLIST_ANDROID_PLATFORM_NAME];
+}
+
+-(NSString*) platformVersion
+{
+	return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_PLATFORM_VERSION];
+}
+-(void) setPlatformVersion:(NSString *)platformVersion
+{
+	[DEFAULTS setValue:platformVersion forKey:APPIUM_PLIST_ANDROID_PLATFORM_VERSION];
+}
+-(NSString*) platformVersionNumber
+{
 	NSError *err;
 	NSRegularExpression *platformVersionNumberRegex = [NSRegularExpression regularExpressionWithPattern:@"\\d+\\.\\d\\.?\\d?" options:NSRegularExpressionCaseInsensitive error:&err];
 	NSRange rangeOfFirstMatch = [platformVersionNumberRegex rangeOfFirstMatchInString:self.platformVersion options:0 range:NSMakeRange(0, [self.platformVersion length])];
 	NSString *versionNumber = @"4.4";
-	if (!NSEqualRanges(rangeOfFirstMatch, NSMakeRange(NSNotFound, 0))) {
+	if (!NSEqualRanges(rangeOfFirstMatch, NSMakeRange(NSNotFound, 0)))
+	{
 		versionNumber = [self.platformVersion substringWithRange:rangeOfFirstMatch];
 	}
 	return versionNumber;
 }
 
--(NSNumber*) selendroidPort { return [NSNumber numberWithInt:[[DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_SELENDROID_PORT] intValue]]; }
--(void) setSelendroidPort:(NSNumber *)selendroidPort { [[NSUserDefaults standardUserDefaults] setValue:selendroidPort forKey:APPIUM_PLIST_ANDROID_SELENDROID_PORT]; }
+-(NSNumber*) selendroidPort
+{
+	return [NSNumber numberWithInt:[[DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_SELENDROID_PORT] intValue]];
+}
+-(void) setSelendroidPort:(NSNumber *)selendroidPort
+{
+	[[NSUserDefaults standardUserDefaults] setValue:selendroidPort forKey:APPIUM_PLIST_ANDROID_SELENDROID_PORT];
+}
 
--(BOOL) useActivity { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_ACTIVITY]; }
--(void) setUseActivity:(BOOL)useActivity { [DEFAULTS setBool:useActivity forKey:APPIUM_PLIST_ANDROID_USE_ACTIVITY]; }
+-(BOOL) useActivity
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_ACTIVITY];
+}
+-(void) setUseActivity:(BOOL)useActivity
+{
+	[DEFAULTS setBool:useActivity forKey:APPIUM_PLIST_ANDROID_USE_ACTIVITY];
+}
 
--(BOOL) useAppPath { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_APP_PATH]; }
--(void) setUseAppPath:(BOOL)useAppPath { [DEFAULTS setBool:useAppPath forKey:APPIUM_PLIST_ANDROID_USE_APP_PATH]; }
+-(BOOL) useAppPath
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_APP_PATH];
+}
+-(void) setUseAppPath:(BOOL)useAppPath
+{
+	[DEFAULTS setBool:useAppPath forKey:APPIUM_PLIST_ANDROID_USE_APP_PATH];
+}
 
--(BOOL) useAVD { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_AVD]; }
--(void) setUseAVD:(BOOL)useAVD { [DEFAULTS setBool:useAVD forKey:APPIUM_PLIST_ANDROID_USE_AVD]; }
+-(BOOL) useAVD
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_AVD];
+}
+-(void) setUseAVD:(BOOL)useAVD
+{
+	[DEFAULTS setBool:useAVD forKey:APPIUM_PLIST_ANDROID_USE_AVD];
+}
 
--(BOOL) useAVDArguments { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_AVD_ARGUMENTS]; }
--(void) setUseAVDArguments :(BOOL)useAVDArguments  { [DEFAULTS setBool:useAVDArguments  forKey:APPIUM_PLIST_ANDROID_USE_AVD_ARGUMENTS]; }
+-(BOOL) useAVDArguments
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_AVD_ARGUMENTS];
+}
+-(void) setUseAVDArguments :(BOOL)useAVDArguments
+{
+	[DEFAULTS setBool:useAVDArguments  forKey:APPIUM_PLIST_ANDROID_USE_AVD_ARGUMENTS];
+}
 
--(BOOL) useBoostrapPort { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_BOOTSTRAP_PORT]; }
--(void) setUseBoostrapPort:(BOOL)useBoostrapPort { [DEFAULTS setBool:useBoostrapPort forKey:APPIUM_PLIST_ANDROID_USE_BOOTSTRAP_PORT]; }
+-(BOOL) useBoostrapPort
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_BOOTSTRAP_PORT];
+}
+-(void) setUseBoostrapPort:(BOOL)useBoostrapPort
+{
+	[DEFAULTS setBool:useBoostrapPort forKey:APPIUM_PLIST_ANDROID_USE_BOOTSTRAP_PORT];
+}
 
--(BOOL) useBrowser { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_BROWSER]; }
--(void) setUseBrowser:(BOOL)useBrowser { [DEFAULTS setBool:useBrowser forKey:APPIUM_PLIST_ANDROID_USE_BROWSER]; }
+-(BOOL) useBrowser
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_BROWSER];
+}
+-(void) setUseBrowser:(BOOL)useBrowser
+{
+	[DEFAULTS setBool:useBrowser forKey:APPIUM_PLIST_ANDROID_USE_BROWSER];
+}
 
--(BOOL) useChromedriverPort { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_CHROMEDRIVER_PORT]; }
--(void) setUseChromedriverPort:(BOOL)useChromedriverPort { [DEFAULTS setBool:useChromedriverPort forKey:APPIUM_PLIST_ANDROID_USE_CHROMEDRIVER_PORT]; }
+-(BOOL) useChromedriverPort
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_CHROMEDRIVER_PORT];
+}
+-(void) setUseChromedriverPort:(BOOL)useChromedriverPort
+{
+	[DEFAULTS setBool:useChromedriverPort forKey:APPIUM_PLIST_ANDROID_USE_CHROMEDRIVER_PORT];
+}
 
--(BOOL) useCoverageClass { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_COVERAGE_CLASS]; }
--(void) setUseCoverageClass:(BOOL)useCoverageClass { [DEFAULTS setBool:useCoverageClass forKey:APPIUM_PLIST_ANDROID_USE_COVERAGE_CLASS]; }
+-(BOOL) useCoverageClass
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_COVERAGE_CLASS];
+}
+-(void) setUseCoverageClass:(BOOL)useCoverageClass
+{
+	[DEFAULTS setBool:useCoverageClass forKey:APPIUM_PLIST_ANDROID_USE_COVERAGE_CLASS];
+}
 
--(BOOL) useCustomSDKPath { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_CUSTOM_SDK_PATH]; }
--(void) setUseCustomSDKPath:(BOOL)useCustomSDKPath { [DEFAULTS setBool:useCustomSDKPath forKey:APPIUM_PLIST_ANDROID_USE_CUSTOM_SDK_PATH]; }
+-(BOOL) useCustomSDKPath
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_CUSTOM_SDK_PATH];
+}
+-(void) setUseCustomSDKPath:(BOOL)useCustomSDKPath
+{
+	[DEFAULTS setBool:useCustomSDKPath forKey:APPIUM_PLIST_ANDROID_USE_CUSTOM_SDK_PATH];
+}
 
--(BOOL) useDeviceName { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_DEVICE_NAME]; }
--(void) setUseDeviceName:(BOOL)useDeviceName { [DEFAULTS setBool:useDeviceName forKey:APPIUM_PLIST_ANDROID_USE_DEVICE_NAME]; }
+-(BOOL) useDeviceName
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_DEVICE_NAME];
+}
+-(void) setUseDeviceName:(BOOL)useDeviceName
+{
+	[DEFAULTS setBool:useDeviceName forKey:APPIUM_PLIST_ANDROID_USE_DEVICE_NAME];
+}
 
--(BOOL) useDeviceReadyTimeout { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_DEVICE_READY_TIMEOUT]; }
--(void) setUseDeviceReadyTimeout:(BOOL)useDeviceReadyTimeout { [DEFAULTS setBool:useDeviceReadyTimeout forKey:APPIUM_PLIST_ANDROID_USE_DEVICE_READY_TIMEOUT]; }
+-(BOOL) useDeviceReadyTimeout
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_DEVICE_READY_TIMEOUT];
+}
+-(void) setUseDeviceReadyTimeout:(BOOL)useDeviceReadyTimeout
+{
+	[DEFAULTS setBool:useDeviceReadyTimeout forKey:APPIUM_PLIST_ANDROID_USE_DEVICE_READY_TIMEOUT];
+}
 
--(BOOL) useIntentAction { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_INTENT_ACTION]; }
--(void) setUseIntentAction:(BOOL)useIntentAction { [DEFAULTS setBool:useIntentAction forKey:APPIUM_PLIST_ANDROID_USE_INTENT_ACTION]; }
+-(BOOL) useIntentAction
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_INTENT_ACTION];
+}
+-(void) setUseIntentAction:(BOOL)useIntentAction
+{
+	[DEFAULTS setBool:useIntentAction forKey:APPIUM_PLIST_ANDROID_USE_INTENT_ACTION];
+}
 
--(BOOL) useIntentCategory { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_INTENT_CATEGORY]; }
--(void) setUseIntentCategory:(BOOL)useIntentCategory { [DEFAULTS setBool:useIntentCategory forKey:APPIUM_PLIST_ANDROID_USE_INTENT_CATEGORY]; }
+-(BOOL) useIntentCategory
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_INTENT_CATEGORY];
+}
+-(void) setUseIntentCategory:(BOOL)useIntentCategory
+{
+	[DEFAULTS setBool:useIntentCategory forKey:APPIUM_PLIST_ANDROID_USE_INTENT_CATEGORY];
+}
 
--(BOOL) useIntentFlags { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_INTENT_FLAGS]; }
--(void) setUseIntentFlags:(BOOL)useIntentFlags { [DEFAULTS setBool:useIntentFlags forKey:APPIUM_PLIST_ANDROID_USE_INTENT_FLAGS]; }
+-(BOOL) useIntentFlags
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_INTENT_FLAGS];
+}
+-(void) setUseIntentFlags:(BOOL)useIntentFlags
+{
+	[DEFAULTS setBool:useIntentFlags forKey:APPIUM_PLIST_ANDROID_USE_INTENT_FLAGS];
+}
 
--(BOOL) useIntentArguments { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_INTENT_ARGUMENTS]; }
--(void) setUseIntentArguments:(BOOL)useIntentArguments { [DEFAULTS setBool:useIntentArguments forKey:APPIUM_PLIST_ANDROID_USE_INTENT_ARGUMENTS]; }
+-(BOOL) useIntentArguments
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_INTENT_ARGUMENTS];
+}
+-(void) setUseIntentArguments:(BOOL)useIntentArguments
+{
+	[DEFAULTS setBool:useIntentArguments forKey:APPIUM_PLIST_ANDROID_USE_INTENT_ARGUMENTS];
+}
 
--(BOOL) useKeystore { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_KEYSTORE]; }
--(void) setUseKeystore:(BOOL)useKeystore { [DEFAULTS setBool:useKeystore forKey:APPIUM_PLIST_ANDROID_USE_KEYSTORE]; }
+-(BOOL) useKeystore
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_KEYSTORE];
+}
+-(void) setUseKeystore:(BOOL)useKeystore
+{
+	[DEFAULTS setBool:useKeystore forKey:APPIUM_PLIST_ANDROID_USE_KEYSTORE];
+}
 
--(BOOL) useLanguage { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_LANGUAGE]; }
--(void) setUseLanguage:(BOOL)useLanguage { [DEFAULTS setBool:useLanguage forKey:APPIUM_PLIST_ANDROID_USE_LANGUAGE]; }
+-(BOOL) useLanguage
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_LANGUAGE];
+}
+-(void) setUseLanguage:(BOOL)useLanguage
+{
+	[DEFAULTS setBool:useLanguage forKey:APPIUM_PLIST_ANDROID_USE_LANGUAGE];
+}
 
--(BOOL) useLocale { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_LOCALE]; }
--(void) setUseLocale:(BOOL)useLocale { [DEFAULTS setBool:useLocale forKey:APPIUM_PLIST_ANDROID_USE_LOCALE]; }
+-(BOOL) useLocale
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_LOCALE];
+}
+-(void) setUseLocale:(BOOL)useLocale
+{
+	[DEFAULTS setBool:useLocale forKey:APPIUM_PLIST_ANDROID_USE_LOCALE];
+}
 
--(BOOL) usePackage { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_PACKAGE]; }
--(void) setUsePackage:(BOOL)usePackage { [DEFAULTS setBool:usePackage forKey:APPIUM_PLIST_ANDROID_USE_PACKAGE]; }
+-(BOOL) usePackage
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_PACKAGE];
+}
+-(void) setUsePackage:(BOOL)usePackage
+{
+	[DEFAULTS setBool:usePackage forKey:APPIUM_PLIST_ANDROID_USE_PACKAGE];
+}
 
--(BOOL) useSelendroidPort { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_SELENDROID_PORT]; }
--(void) setUseSelendroidPort:(BOOL)useSelendroidPort { [DEFAULTS setBool:useSelendroidPort forKey:APPIUM_PLIST_ANDROID_USE_SELENDROID_PORT]; }
+-(BOOL) useSelendroidPort
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_SELENDROID_PORT];
+}
+-(void) setUseSelendroidPort:(BOOL)useSelendroidPort
+{
+	[DEFAULTS setBool:useSelendroidPort forKey:APPIUM_PLIST_ANDROID_USE_SELENDROID_PORT];
+}
 
--(BOOL) useWaitActivity { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_WAIT_ACTIVITY]; }
--(void) setUseWaitActivity:(BOOL)useWaitActivity { [DEFAULTS setBool:useWaitActivity forKey:APPIUM_PLIST_ANDROID_USE_WAIT_ACTIVITY]; }
+-(BOOL) useWaitActivity
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_WAIT_ACTIVITY];
+}
+-(void) setUseWaitActivity:(BOOL)useWaitActivity
+{
+	[DEFAULTS setBool:useWaitActivity forKey:APPIUM_PLIST_ANDROID_USE_WAIT_ACTIVITY];
+}
 
--(BOOL) useWaitPackage { return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_WAIT_PACKAGE]; }
--(void) setUseWaitPackage:(BOOL)useWaitPackage { [DEFAULTS setBool:useWaitPackage forKey:APPIUM_PLIST_ANDROID_USE_WAIT_PACKAGE]; }
+-(BOOL) useWaitPackage
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_WAIT_PACKAGE];
+}
+-(void) setUseWaitPackage:(BOOL)useWaitPackage
+{
+	[DEFAULTS setBool:useWaitPackage forKey:APPIUM_PLIST_ANDROID_USE_WAIT_PACKAGE];
+}
 
--(NSString*) waitActivity { return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_WAIT_ACTIVITY]; }
--(void) setWaitActivity:(NSString *)waitActivity { [DEFAULTS setValue:waitActivity forKey:APPIUM_PLIST_ANDROID_WAIT_ACTIVITY]; }
+-(NSString*) waitActivity
+{
+	return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_WAIT_ACTIVITY];
+}
+-(void) setWaitActivity:(NSString *)waitActivity
+{
+	[DEFAULTS setValue:waitActivity forKey:APPIUM_PLIST_ANDROID_WAIT_ACTIVITY];
+}
 
--(NSString*) waitPackage{ return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_WAIT_PACKAGE]; }
--(void) setWaitPackage:(NSString *)waitPackage { [DEFAULTS setValue:waitPackage forKey:APPIUM_PLIST_ANDROID_WAIT_PACKAGE]; }
+-(NSString*) waitPackage
+{
+	return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_WAIT_PACKAGE];
+}
+-(void) setWaitPackage:(NSString *)waitPackage
+{
+	[DEFAULTS setValue:waitPackage forKey:APPIUM_PLIST_ANDROID_WAIT_PACKAGE];
+}
 
 
 #pragma mark - Methods
 
--(void) refreshAvailableActivitiesAndPackages
-{
+-(void) refreshAvailableActivitiesAndPackages{
 	// do not load if no app path is provided
 	if (self.appPath == nil || ![[NSFileManager defaultManager] fileExistsAtPath:self.appPath]) {
 		return;
@@ -267,12 +600,12 @@
 	
 	// do not load if aapt cannot be found
     NSString *androidBinaryPath = [Utility pathToAndroidBinary:@"aapt" atSDKPath:self.useCustomSDKPath ? self.customSDKPath : nil];
-	if (androidBinaryPath == nil || ![[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath]) {
+	if (androidBinaryPath == nil || ![[NSFileManager defaultManager] fileExistsAtPath:androidBinaryPath])
+	{
 		return;
 	}
 	
-	@try
-	{
+	@try	{
 		// get the xml dump from aapt
 		NSString *aaptString = [Utility runTaskWithBinary:androidBinaryPath arguments:[NSArray arrayWithObjects:@"dump", @"xmltree", self.appPath, @"AndroidManifest.xml", nil]];
 		
@@ -292,8 +625,7 @@
 			}
 			
 			// determine when the activity name has appeared
-			if (currentElementIsActivity && [line hasPrefix:@"A: android:name("])
-			{
+			if (currentElementIsActivity && [line hasPrefix:@"A: android:name("]){
 				NSArray *lineComponents = [line componentsSeparatedByString:@"\""];
 				if (lineComponents.count >= 3)
 				{
@@ -314,13 +646,13 @@
 		[self setAvailableActivities:activities];
 		[self setAvailablePackages:packages];
 	}
-	@catch (NSException *exception) {
+	@catch (NSException *exception)
+	{
 		NSLog(@"Could not list Android Activities: %@", exception);
 	}
 }
 
--(void) refreshAVDs
-{
+-(void) refreshAVDs{
 	NSString *androidBinaryPath = [Utility pathToAndroidBinary:@"android" atSDKPath:self.useCustomSDKPath ? self.customSDKPath : nil];
     NSString *vBoxManagePath = [Utility pathToVBoxManageBinary];
     // have to have either "android" or "vboxmanage" available
@@ -334,15 +666,13 @@
 	
 	NSMutableArray *avds = [NSMutableArray new];
 	
-	@try
-	{
+	@try{
         // check android avd first
 		if (hasAndroid)
 		{
 			NSString *avdString = [Utility runTaskWithBinary:androidBinaryPath arguments:[NSArray arrayWithObjects:@"list", @"avd", @"-c", nil]];
 			NSArray *avdList = [avdString componentsSeparatedByString:@"\n"];
-			for (NSString *avd in avdList)
-			{
+			for (NSString *avd in avdList){
 				if (avd.length > 0)
 				{
 					[avds addObject:avd];
@@ -354,14 +684,11 @@
 		{
             NSString *vBoxManageString = [Utility runTaskWithBinary:vBoxManagePath arguments:[NSArray arrayWithObjects:@"list", @"vms", nil]];
             NSArray *gmList = [vBoxManageString componentsSeparatedByString:@"\n"];
-            for (NSString *gm in gmList)
-            {
+            for (NSString *gm in gmList){
                 NSRange startQuote = [gm rangeOfString:@"\""];
-                if (startQuote.location != NSNotFound)
-                {
+                if (startQuote.location != NSNotFound) {
                     NSRange endQuote = [gm rangeOfString:@"\"" options:NSBackwardsSearch];
-                    if (endQuote.location != NSNotFound && endQuote.location > startQuote.location)
-                    {
+                    if (endQuote.location != NSNotFound && endQuote.location > startQuote.location){
                         NSString *gmAvd = [gm substringWithRange:NSMakeRange(startQuote.location + 1, endQuote.location-1)];
                         [avds addObject:gmAvd];
                     }
@@ -369,13 +696,13 @@
             }
 		}
 	}
-	@catch (NSException *exception) {
+	@catch (NSException *exception)
+	{
 		NSLog(@"Could not list Android AVDs: %@", exception);
 	}
 	
 	[self setAvailableAVDs:avds];
-	if (avds.count > 0)
-	{
+	if (avds.count > 0)	{
 		[self setAvd:[avds objectAtIndex:0]];
 	}
 }
