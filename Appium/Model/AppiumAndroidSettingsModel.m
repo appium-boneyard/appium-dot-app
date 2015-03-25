@@ -58,54 +58,57 @@
 }
 
 -(NSArray*) allAutomationNames {
-	return [NSArray arrayWithObjects:@"Appium", @"Selendroid", nil];
+	return @[@"Appium", @"Selendroid"];
 }
 
 - (NSArray*)allBrowserNames
 {
-	return [NSArray arrayWithObjects:@"Browser", @"Chrome", @"Chromium", nil];
+	return @[@"Browser", @"Chrome", @"Chromium"];
 }
 
 -(NSArray*) allLanguages
 {
-	return [NSArray arrayWithObjects:@"ar", @"bg", @"ca", @"cs", @"da", @"de", @"el", @"en", @"es", @"fi", @"fr", @"he", @"hi", @"hr", @"hu", @"id", @"it", @"iw",
+	return @[@"ar", @"bg", @"ca", @"cs", @"da", @"de", @"el", @"en", @"es", @"fi", @"fr", @"he", @"hi", @"hr", @"hu", @"id", @"it", @"iw",
 			@"ja", @"ko", @"li", @"lt", @"lv", @"ms", @"nb", @"nl", @"pl", @"pt", @"ro", @"ru", @"sk", @"sl", @"sr", @"sv", @"th", @"tl", @"tr", @"uk", @"vi",
-			@"zh_CN", @"zh_TW", nil];
+			@"zh_CN", @"zh_TW"];
 }
 
 -(NSArray*) allLocales
 {
-	return [NSArray arrayWithObjects: @"AT", @"AU", @"BE", @"BG", @"BR", @"CA", @"CH", @"CN", @"CZ", @"DE", @"DK", @"EG", @"ES", @"FI", @"FR", @"GB", @"GR", @"HR",
+	return @[@"AT", @"AU", @"BE", @"BG", @"BR", @"CA", @"CH", @"CN", @"CZ", @"DE", @"DK", @"EG", @"ES", @"FI", @"FR", @"GB", @"GR", @"HR",
 			@"HU", @"ID", @"IE", @"IL", @"IN", @"JP", @"KR", @"LI", @"LT", @"LV", @"NL", @"NO", @"NZ", @"PH", @"PL", @"PT", @"RO", @"RS", @"RU", @"SE", @"SG", @"SK",
-			@"TH", @"TR", @"TW", @"UA", @"US", @"VN", @"ZA", nil];
+			@"TH", @"TR", @"TW", @"UA", @"US", @"VN", @"ZA"];
 }
 
 -(NSArray*) allPlatformNames
 {
-	return [NSArray arrayWithObjects:@"Android", @"FirefoxOS", nil];
+	return @[@"Android", @"FirefoxOS"];
 }
 -(NSArray*) allPlatformVersions
 {
-	return [NSArray arrayWithObjects:
-										  @"4.4 KitKat (API Level 19)",
-										  @"4.3 Jelly Bean (API Level 18)",
-										  @"4.2 Jelly Bean (API Level 17)",
-										  @"4.1 Jelly Bean (API Level 16)",
-										  @"4.0.3 Ice Cream Sandwich (API Level 15)",
-										  @"4.0 Ice Cream Sandwich (API Level 14)",
-										  @"3.2 Honeycomb (API Level 13)",
-										  @"3.1 Honeycomb (API Level 12)",
-										  @"3.0 Honeycomb (API Level 11)",
-										  @"2.3.3 Gingerbread (API Level 10)",
-										  @"2.3 Gingerbread (API Level 9)",
-										  @"2.2 Froyo (API Level 8)",
-										  @"2.1 Eclair (API Level 7)",
-										  @"2.0.1 Eclair (API Level 6)",
-										  @"2.0 Eclair (API Level 5)",
-										  @"1.6 Donut (API Level 4)",
-										  @"1.5 Cupcake (API Level 3)",
-										  @"1.1 (API Level 2)",
-										  @"1.0 (API Level 1)", nil];
+	return  @[
+			  @"5.1 Lollipop (API Level 21)",
+			  @"5.0 Lollipop (API Level 20)",
+			  @"4.4 KitKat (API Level 19)",
+			  @"4.3 Jelly Bean (API Level 18)",
+			  @"4.2 Jelly Bean (API Level 17)",
+			  @"4.1 Jelly Bean (API Level 16)",
+			  @"4.0.3 Ice Cream Sandwich (API Level 15)",
+			  @"4.0 Ice Cream Sandwich (API Level 14)",
+			  @"3.2 Honeycomb (API Level 13)",
+			  @"3.1 Honeycomb (API Level 12)",
+			  @"3.0 Honeycomb (API Level 11)",
+			  @"2.3.3 Gingerbread (API Level 10)",
+			  @"2.3 Gingerbread (API Level 9)",
+			  @"2.2 Froyo (API Level 8)",
+			  @"2.1 Eclair (API Level 7)",
+			  @"2.0.1 Eclair (API Level 6)",
+			  @"2.0 Eclair (API Level 5)",
+			  @"1.6 Donut (API Level 4)",
+			  @"1.5 Cupcake (API Level 3)",
+			  @"1.1 (API Level 2)",
+			  @"1.0 (API Level 1)"
+			  ];
 }
 
 -(NSString*) automationName

@@ -30,37 +30,37 @@
 
 -(NSArray*) allDevices
 {
-	return [self getDevices];
-	/*return @[ @"iPhone 4s"
-			, @"iPhone 5"
-			, @"iPhone 5s"
-			, @"iPhone 6"
+	//return [self getDevices];
+	return @[@"iPhone 6"
 			, @"iPhone 6 Plus"
+			, @"iPhone 5s"
+			, @"iPhone 5"
+			, @"iPhone 4s"
 			, @"iPad 2"
 			, @"iPad Retina"
 			, @"iPad Air"
-			];*/
+			];
 }
 
 -(NSArray*) allLanguages
 {
-	return [NSArray arrayWithObjects:@"ar", @"ca", @"cs", @"da", @"de", @"el", @"en", @"en-GB", @"en-AU", @"es", @"es-MX", @"fi", @"fr", @"he", @"hr", @"hu",
-			@"id", @"it", @"ja", @"ko", @"ms", @"nb", @"nl", @"pl", @"pt", @"pt-PT", @"ro", @"ru", @"sk", @"sv", @"th", @"tr", @"uk", @"vi", @"zh-Hans", @"zh-Hant", nil];
+	return @[@"ar", @"ca", @"cs", @"da", @"de", @"el", @"en", @"en-GB", @"en-AU", @"es", @"es-MX", @"fi", @"fr", @"he", @"hr", @"hu",
+			@"id", @"it", @"ja", @"ko", @"ms", @"nb", @"nl", @"pl", @"pt", @"pt-PT", @"ro", @"ru", @"sk", @"sv", @"th", @"tr", @"uk", @"vi", @"zh-Hans", @"zh-Hant"];
 }
 
 -(NSArray*) allLocales
 {
-	return [NSArray arrayWithObjects: @"ar_AE", @"ar_BH", @"ar_DZ", @"ar_EG", @"ar_IQ", @"ar_JO", @"ar_LB", @"ar_LY", @"ar_MA", @"ar_OM", @"ar_QA", @"ar_SA", @"ar_SY",
+	return @[@"ar_AE", @"ar_BH", @"ar_DZ", @"ar_EG", @"ar_IQ", @"ar_JO", @"ar_LB", @"ar_LY", @"ar_MA", @"ar_OM", @"ar_QA", @"ar_SA", @"ar_SY",
 			@"ar_TN", @"ca_ES", @"cs_CZ", @"da_DK", @"de_AT", @"de_CH", @"de_DE", @"de_LU", @"el_CY", @"el_GR", @"en_AU", @"en_CA", @"en_GB", @"en_IE", @"en_IN",
 			@"en_NZ", @"en_SG", @"en_US", @"en_ZH", @"es_AR", @"es_BO", @"es_CL", @"es_CO", @"es_CR", @"es_DO", @"es_EC", @"es_ES", @"es_GT", @"es_HN", @"es_MX",
 			@"es_NI", @"es_PA", @"es_PE", @"es_PR", @"es_PY", @"es_US", @"es_UG", @"es_VE", @"fi_FI", @"fr_BE", @"fr_CA", @"fr_FR", @"fr_LU", @"fr_CS", @"he_IL",
 			@"hr_HR", @"hu_HU", @"it_CH", @"it_IT", @"ja_JP", @"ko_KR", @"ms_MY", @"nb_NO", @"nl_BE", @"nl_NL", @"pl_PL", @"pt_BR", @"pt_PT", @"ro_RO", @"ru_RU",
-			@"sk_SK", @"sv_SE", @"th_TH", @"tr_TR", @"uk_UA", @"vi_VN", @"zh_CN", @"zh_HK", @"zh_SG", @"zh_TW", nil];
+			@"sk_SK", @"sv_SE", @"th_TH", @"tr_TR", @"uk_UA", @"vi_VN", @"zh_CN", @"zh_HK", @"zh_SG", @"zh_TW"];
 }
 
 -(NSArray*) allPlatformVersions
 {
-	return [NSArray arrayWithObjects:@"8.1", @"8.0", @"7.1.1", @"7.1", @"7.0.6", @"7.0.5", @"7.0.4", @"7.0.3", @"7.0.2", @"7.0.1", @"7.0", @"6.1", @"6.0", nil];
+	return @[@"8.3", @"8.2", @"8.1.2", @"8.1.1", @"8.1", @"8.0.2", @"8.0", @"7.1.1", @"7.1", @"7.0.6", @"7.0.5", @"7.0.4", @"7.0.3", @"7.0.2", @"7.0.1", @"7.0", @"6.1", @"6.0"];
 }
 
 -(NSString*) appPath
