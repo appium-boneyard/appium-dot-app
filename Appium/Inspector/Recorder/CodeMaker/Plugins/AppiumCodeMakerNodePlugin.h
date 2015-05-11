@@ -13,6 +13,4 @@
 
 @interface AppiumCodeMakerNodePlugin : AppiumCodeMakerPlugin
 
-@property (weak) AppiumCodeMaker *codeMaker;
-
 @end
