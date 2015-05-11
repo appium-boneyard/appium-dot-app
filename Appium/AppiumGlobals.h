@@ -8,4 +8,4 @@
 
 #define APPIUM_DEBUG_LEVEL 0
 #define APPIUM_ABSTRACT_CLASS_ERROR @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:[NSString stringWithFormat:@"You must override %@ in a subclass", NSStringFromSelector(_cmd)] userInfo:nil];
-#define NODE_JS_DOWNLOAD_URL @"http://nodejs.org/dist/v0.12.1/node-v0.12.1-darwin-x64.tar.gz"
+#define NODE_JS_DOWNLOAD_URL @"http://nodejs.org/dist/v0.12.2/node-v0.12.2-darwin-x64.tar.gz"
