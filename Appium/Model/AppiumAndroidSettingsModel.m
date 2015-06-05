@@ -87,7 +87,8 @@
 -(NSArray*) allPlatformVersions
 {
 	return  @[
-			  @"5.1 Lollipop (API Level 21)",
+			  @"5.1 Lollipop (API Level 22)",
+			  @"5.0.1 Lollipop (API Level 21)",
 			  @"5.0 Lollipop (API Level 20)",
 			  @"4.4 KitKat (API Level 19)",
 			  @"4.3 Jelly Bean (API Level 18)",
