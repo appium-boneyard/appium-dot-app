@@ -41,6 +41,7 @@
 	
     if (self)
 	{
+		// BUG: THIS IS NOT CALLED
 		self.rotation         = 0;
 		self.scalarMultiplier = 1.0;
     }
@@ -151,6 +152,7 @@
 		
 		// Update screenshot scalar
 		// add factor of 2 to screenshot scalar to account for retina display based coordinates
+		self.scalarMultiplier = 1.0f;
 		if (self.inspector.model.isIOS)
 		{
 			// check for retina devices
