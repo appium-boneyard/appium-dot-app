@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6724" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6724"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7702"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="AppiumAndroidSettingsPopOverViewController">
@@ -46,6 +46,7 @@
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                     <connections>
+                                                        <binding destination="-2" name="value" keyPath="model.android.useAppPath" id="vLS-6s-KN5"/>
                                                         <binding destination="-2" name="enabled2" keyPath="model.android.useBrowser" previousBinding="BIB-R2-uwm" id="5fe-2j-rJw">
                                                             <dictionary key="options">
                                                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -60,7 +61,6 @@
                                                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                             </dictionary>
                                                         </binding>
-                                                        <binding destination="-2" name="value" keyPath="model.android.useAppPath" id="vLS-6s-KN5"/>
                                                     </connections>
                                                 </button>
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hfy-un-bQV" userLabel="App Path Text Field">
@@ -71,15 +71,8 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <connections>
-                                                        <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="s0Q-5A-krU" id="Z4T-Ee-XeU">
-                                                            <dictionary key="options">
-                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                                <integer key="NSNullPlaceholder" value="-1"/>
-                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                                            </dictionary>
-                                                        </binding>
+                                                        <binding destination="-2" name="value" keyPath="model.android.appPath" id="NYS-Pc-P5a"/>
+                                                        <binding destination="-2" name="enabled" keyPath="model.android.useAppPath" id="s0Q-5A-krU"/>
                                                         <binding destination="-2" name="enabled3" keyPath="model.android.useBrowser" previousBinding="Z4T-Ee-XeU" id="RK5-ef-8SH">
                                                             <dictionary key="options">
                                                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -89,8 +82,15 @@
                                                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                             </dictionary>
                                                         </binding>
-                                                        <binding destination="-2" name="value" keyPath="model.android.appPath" id="NYS-Pc-P5a"/>
-                                                        <binding destination="-2" name="enabled" keyPath="model.android.useAppPath" id="s0Q-5A-krU"/>
+                                                        <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="s0Q-5A-krU" id="Z4T-Ee-XeU">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
                                                     </connections>
                                                 </textField>
                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Usq-dr-7vf" userLabel="Choose App Path Button">
@@ -101,15 +101,7 @@
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="chooseAndroidApp:" target="-2" id="U1K-06-Xfh"/>
-                                                        <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="btc-bJ-Qgs" id="cNR-en-hXy">
-                                                            <dictionary key="options">
-                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                                <integer key="NSNullPlaceholder" value="-1"/>
-                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                                            </dictionary>
-                                                        </binding>
+                                                        <binding destination="-2" name="enabled" keyPath="model.android.useAppPath" id="btc-bJ-Qgs"/>
                                                         <binding destination="-2" name="enabled3" keyPath="model.android.useBrowser" previousBinding="cNR-en-hXy" id="aXa-b2-IGd">
                                                             <dictionary key="options">
                                                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -119,7 +111,15 @@
                                                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                             </dictionary>
                                                         </binding>
-                                                        <binding destination="-2" name="enabled" keyPath="model.android.useAppPath" id="btc-bJ-Qgs"/>
+                                                        <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="btc-bJ-Qgs" id="cNR-en-hXy">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
                                                     </connections>
                                                 </button>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="66C-sh-IrH" userLabel="Use Package Check Box">
@@ -358,7 +358,7 @@
                                                     </connections>
                                                 </button>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="muw-nA-TV5" userLabel="Full Reset Check Box">
-                                                    <rect key="frame" x="383" y="71" width="83" height="18"/>
+                                                    <rect key="frame" x="273" y="71" width="83" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Full Reset" bezelStyle="regularSquare" imagePosition="left" inset="2" id="tvG-ce-WnZ">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -382,7 +382,7 @@
                                                     </connections>
                                                 </button>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dej-5a-hQS" userLabel="No Reset Check Box">
-                                                    <rect key="frame" x="470" y="71" width="78" height="18"/>
+                                                    <rect key="frame" x="359" y="71" width="78" height="18"/>
                                                     <buttonCell key="cell" type="check" title="No Reset" bezelStyle="regularSquare" imagePosition="left" inset="2" id="362-fH-a3m">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -406,7 +406,7 @@
                                                     </connections>
                                                 </button>
                                                 <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7hC-TP-s5z" userLabel="Browser Name Combo Box">
-                                                    <rect key="frame" x="120" y="66" width="260" height="26"/>
+                                                    <rect key="frame" x="120" y="66" width="144" height="26"/>
                                                     <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="3" id="9rm-hC-n5S">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -643,6 +643,34 @@
                                                         </binding>
                                                     </connections>
                                                 </textField>
+                                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B40-3H-hkv" userLabel="No Reset Check Box">
+                                                    <rect key="frame" x="439" y="72" width="110" height="18"/>
+                                                    <buttonCell key="cell" type="check" title="Stop on Reset" bezelStyle="regularSquare" imagePosition="left" inset="2" id="HBa-9b-5lx">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="GW7-W6-gxZ" id="XVC-Gy-TIJ">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="GW7-W6-gxZ">
+                                                            <dictionary key="options">
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="-2" name="value" keyPath="model.android.dontStopAppOnReset" id="bjz-tG-szK">
+                                                            <dictionary key="options">
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -1040,13 +1068,13 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <box autoresizesSubviews="NO" fixedFrame="YES" title="Advanced" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="yDx-DS-QaF" userLabel="Advanced Box">
-                                        <rect key="frame" x="6" y="410" width="566" height="122"/>
+                                        <rect key="frame" x="6" y="384" width="566" height="148"/>
                                         <view key="contentView">
-                                            <rect key="frame" x="1" y="1" width="564" height="106"/>
+                                            <rect key="frame" x="1" y="1" width="564" height="132"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5aJ-jk-qaq" userLabel="Android SDK Path Check Box">
-                                                    <rect key="frame" x="16" y="75" width="134" height="18"/>
+                                                    <rect key="frame" x="16" y="101" width="134" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Android SDK Path" bezelStyle="regularSquare" imagePosition="left" inset="2" id="vp5-0a-crs">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -1070,7 +1098,7 @@
                                                     </connections>
                                                 </button>
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Kc-Cq-vIe" userLabel="Android SDK Path Text Field">
-                                                    <rect key="frame" x="156" y="74" width="390" height="22"/>
+                                                    <rect key="frame" x="156" y="100" width="390" height="22"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="fNy-XL-Ob0">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1100,7 +1128,7 @@
                                                     </connections>
                                                 </textField>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8kA-jv-2W2" userLabel="Coverage Class Check Box">
-                                                    <rect key="frame" x="16" y="46" width="120" height="18"/>
+                                                    <rect key="frame" x="16" y="72" width="120" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Coverage Class" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Egz-2r-Qer">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -1124,7 +1152,7 @@
                                                     </connections>
                                                 </button>
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QvT-Bk-6V4" userLabel="Coverage Class Text Field">
-                                                    <rect key="frame" x="139" y="46" width="407" height="22"/>
+                                                    <rect key="frame" x="139" y="72" width="407" height="22"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="T9N-Vc-LMu">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1154,7 +1182,7 @@
                                                     </connections>
                                                 </textField>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kn0-sP-Gz7" userLabel="Bootrap Port Check Box">
-                                                    <rect key="frame" x="16" y="16" width="107" height="18"/>
+                                                    <rect key="frame" x="16" y="42" width="107" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Boostrap Port" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ptb-02-E45">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -1178,7 +1206,7 @@
                                                     </connections>
                                                 </button>
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="idX-fz-8H2" userLabel="Bootstrap Port Text Field">
-                                                    <rect key="frame" x="126" y="14" width="47" height="22"/>
+                                                    <rect key="frame" x="126" y="40" width="47" height="22"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="lYj-8T-LGV">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1212,7 +1240,7 @@
                                                     </connections>
                                                 </textField>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cQ8-p3-vGa" userLabel="Selendroid Port Check Box">
-                                                    <rect key="frame" x="179" y="16" width="119" height="18"/>
+                                                    <rect key="frame" x="179" y="42" width="119" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Selendroid Port" bezelStyle="regularSquare" imagePosition="left" inset="2" id="NkP-tB-Of5">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -1236,7 +1264,7 @@
                                                     </connections>
                                                 </button>
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6S7-fX-DFP" userLabel="Selendroid Port Text Field">
-                                                    <rect key="frame" x="302" y="14" width="47" height="22"/>
+                                                    <rect key="frame" x="302" y="40" width="47" height="22"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="WM9-wi-QRL">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1270,7 +1298,7 @@
                                                     </connections>
                                                 </textField>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VTN-2h-u4v" userLabel="Chromedriver Port Check Box">
-                                                    <rect key="frame" x="355" y="16" width="138" height="18"/>
+                                                    <rect key="frame" x="355" y="42" width="138" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Chromedriver Port" bezelStyle="regularSquare" imagePosition="left" inset="2" id="aJW-k5-Q9T">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -1293,8 +1321,32 @@
                                                         </binding>
                                                     </connections>
                                                 </button>
+                                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JrW-nD-gMV" userLabel="Chromedriver Port Check Box">
+                                                    <rect key="frame" x="16" y="16" width="138" height="18"/>
+                                                    <buttonCell key="cell" type="check" title="Chromedriver Path" bezelStyle="regularSquare" imagePosition="left" inset="2" id="xFf-Mh-dDR">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="FnI-wX-upE" id="QOG-4n-3xB">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="FnI-wX-upE">
+                                                            <dictionary key="options">
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="-2" name="value" keyPath="model.android.useChromedriverExecutablePath" id="vna-ZO-gRW"/>
+                                                    </connections>
+                                                </button>
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g90-71-4y7" userLabel="Chromedriver Port Text Field">
-                                                    <rect key="frame" x="499" y="14" width="47" height="22"/>
+                                                    <rect key="frame" x="499" y="40" width="47" height="22"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="2qu-YM-ADW">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1327,13 +1379,43 @@
                                                         </binding>
                                                     </connections>
                                                 </textField>
+                                                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fNi-VP-EyG" userLabel="Coverage Class Text Field">
+                                                    <rect key="frame" x="156" y="14" width="390" height="22"/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="6ph-b7-Moo">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="Bh6-pP-5Ne" id="9Of-Ls-1qG">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="-2" name="enabled3" keyPath="model.general.useRemoteServer" previousBinding="9Of-Ls-1qG" id="Ciw-eD-y0x">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="-2" name="enabled" keyPath="model.android.useChromedriverExecutablePath" id="Bh6-pP-5Ne"/>
+                                                        <binding destination="-2" name="value" keyPath="model.android.chromedriverExecutablePath" id="WRW-DZ-wWi"/>
+                                                    </connections>
+                                                </textField>
                                             </subviews>
                                         </view>
                                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </box>
                                     <box autoresizesSubviews="NO" fixedFrame="YES" title="Keystore Settings" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="YDa-rh-ysb" userLabel="Keystore Settings Box">
-                                        <rect key="frame" x="6" y="297" width="566" height="109"/>
+                                        <rect key="frame" x="11" y="271" width="566" height="109"/>
                                         <view key="contentView">
                                             <rect key="frame" x="1" y="1" width="564" height="93"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
