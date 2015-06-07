@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6724" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6724"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7702"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="AppiumiOSSettingsPopOverViewController">
@@ -13,11 +13,11 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY" userLabel="iOS Settings View">
-            <rect key="frame" x="0.0" y="0.0" width="628" height="381"/>
+            <rect key="frame" x="0.0" y="-7" width="628" height="411"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fLd-WN-JFc" userLabel="iOS Settings Label">
-                    <rect key="frame" x="18" y="344" width="592" height="17"/>
+                    <rect key="frame" x="18" y="374" width="592" height="17"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="iOS Settings" id="oEy-sq-DqG">
                         <font key="font" metaFont="systemBold"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -25,16 +25,16 @@
                     </textFieldCell>
                 </textField>
                 <tabView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dwU-ew-lTq">
-                    <rect key="frame" x="13" y="9" width="602" height="325"/>
+                    <rect key="frame" x="13" y="10" width="602" height="354"/>
                     <font key="font" metaFont="system"/>
                     <tabViewItems>
                         <tabViewItem label="Basic" identifier="1" id="N7U-yS-Sec">
                             <view key="view" id="qaz-BC-DdP">
-                                <rect key="frame" x="10" y="33" width="582" height="279"/>
+                                <rect key="frame" x="10" y="33" width="582" height="308"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <box autoresizesSubviews="NO" fixedFrame="YES" title="Application" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="Qa7-a5-jda">
-                                        <rect key="frame" x="6" y="182" width="566" height="97"/>
+                                        <rect key="frame" x="6" y="211" width="566" height="97"/>
                                         <view key="contentView">
                                             <rect key="frame" x="1" y="1" width="564" height="81"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -46,6 +46,7 @@
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                     <connections>
+                                                        <binding destination="-2" name="value" keyPath="model.iOS.useAppPath" id="zHO-A9-3oo"/>
                                                         <binding destination="-2" name="enabled2" keyPath="model.iOS.useMobileSafari" previousBinding="Qr6-nQ-5Qr" id="fJL-Hh-JkZ">
                                                             <dictionary key="options">
                                                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -60,7 +61,6 @@
                                                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                             </dictionary>
                                                         </binding>
-                                                        <binding destination="-2" name="value" keyPath="model.iOS.useAppPath" id="zHO-A9-3oo"/>
                                                     </connections>
                                                 </button>
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EWZ-ab-ky7" userLabel="App Path Text Field">
@@ -71,15 +71,8 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <connections>
-                                                        <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="obo-Fe-W08" id="BUh-Oc-UeH">
-                                                            <dictionary key="options">
-                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                                <integer key="NSNullPlaceholder" value="-1"/>
-                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                                            </dictionary>
-                                                        </binding>
+                                                        <binding destination="-2" name="value" keyPath="model.iOS.appPath" id="9mx-Rn-CE7"/>
+                                                        <binding destination="-2" name="enabled" keyPath="model.iOS.useAppPath" id="obo-Fe-W08"/>
                                                         <binding destination="-2" name="enabled3" keyPath="model.iOS.useMobileSafari" previousBinding="BUh-Oc-UeH" id="vQ8-ZI-6uZ">
                                                             <dictionary key="options">
                                                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -89,8 +82,15 @@
                                                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                             </dictionary>
                                                         </binding>
-                                                        <binding destination="-2" name="value" keyPath="model.iOS.appPath" id="9mx-Rn-CE7"/>
-                                                        <binding destination="-2" name="enabled" keyPath="model.iOS.useAppPath" id="obo-Fe-W08"/>
+                                                        <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="obo-Fe-W08" id="BUh-Oc-UeH">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
                                                     </connections>
                                                 </textField>
                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ACb-V7-jkQ" userLabel="Choose App Path Button">
@@ -101,15 +101,7 @@
                                                     </buttonCell>
                                                     <connections>
                                                         <action selector="chooseiOSApp:" target="-2" id="qaE-U3-b2o"/>
-                                                        <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="qOi-Zg-u2g" id="Ofn-TL-02O">
-                                                            <dictionary key="options">
-                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                                <integer key="NSNullPlaceholder" value="-1"/>
-                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                                            </dictionary>
-                                                        </binding>
+                                                        <binding destination="-2" name="enabled" keyPath="model.iOS.useAppPath" id="qOi-Zg-u2g"/>
                                                         <binding destination="-2" name="enabled3" keyPath="model.iOS.useMobileSafari" previousBinding="Ofn-TL-02O" id="cun-A8-icO">
                                                             <dictionary key="options">
                                                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -119,7 +111,15 @@
                                                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                             </dictionary>
                                                         </binding>
-                                                        <binding destination="-2" name="enabled" keyPath="model.iOS.useAppPath" id="qOi-Zg-u2g"/>
+                                                        <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="qOi-Zg-u2g" id="Ofn-TL-02O">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
                                                     </connections>
                                                 </button>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4ha-nt-GSq" userLabel="BundleID Check Box">
@@ -197,13 +197,13 @@
                                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </box>
                                     <box autoresizesSubviews="NO" fixedFrame="YES" title="Device Settings" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="hF4-hL-vFd">
-                                        <rect key="frame" x="6" y="11" width="566" height="167"/>
+                                        <rect key="frame" x="6" y="13" width="566" height="194"/>
                                         <view key="contentView">
-                                            <rect key="frame" x="1" y="1" width="564" height="151"/>
+                                            <rect key="frame" x="1" y="1" width="564" height="178"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dna-as-Wto" userLabel="Force Device Check Box">
-                                                    <rect key="frame" x="16" y="119" width="102" height="18"/>
+                                                    <rect key="frame" x="16" y="146" width="102" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Force Device" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Bpy-6I-A4P">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -222,7 +222,7 @@
                                                     </connections>
                                                 </button>
                                                 <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FdQ-Xq-lRk" userLabel="Device Combo Box">
-                                                    <rect key="frame" x="124" y="117" width="425" height="26"/>
+                                                    <rect key="frame" x="124" y="144" width="425" height="26"/>
                                                     <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="A7m-6f-TZs">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -248,7 +248,7 @@
                                                     </connections>
                                                 </comboBox>
                                                 <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OK0-sb-gbF" userLabel="Platform Version Combo Box">
-                                                    <rect key="frame" x="124" y="89" width="63" height="26"/>
+                                                    <rect key="frame" x="124" y="116" width="63" height="26"/>
                                                     <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="DE8-tB-NRC">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -265,7 +265,7 @@
                                                     </connections>
                                                 </comboBox>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sLz-50-mH8" userLabel="UDID Check Box">
-                                                    <rect key="frame" x="194" y="93" width="55" height="18"/>
+                                                    <rect key="frame" x="194" y="120" width="55" height="18"/>
                                                     <buttonCell key="cell" type="check" title="UDID" bezelStyle="regularSquare" imagePosition="left" inset="2" id="lN2-vY-s6X">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -280,7 +280,7 @@
                                                     </connections>
                                                 </button>
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5LR-gw-K2d" userLabel="UDID Text Field">
-                                                    <rect key="frame" x="255" y="93" width="291" height="22"/>
+                                                    <rect key="frame" x="255" y="120" width="291" height="22"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="n0L-Za-WPH">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -301,7 +301,7 @@
                                                     </connections>
                                                 </textField>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rwJ-7G-A61" userLabel="Force Orientation Check Box">
-                                                    <rect key="frame" x="16" y="67" width="132" height="18"/>
+                                                    <rect key="frame" x="16" y="94" width="132" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Force Orientation" bezelStyle="regularSquare" imagePosition="left" inset="2" id="sFk-E7-n1R">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -316,7 +316,7 @@
                                                     </connections>
                                                 </button>
                                                 <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NWh-ZI-O8H" userLabel="Orientation ComboBox">
-                                                    <rect key="frame" x="162" y="64" width="134" height="26"/>
+                                                    <rect key="frame" x="162" y="91" width="134" height="26"/>
                                                     <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="ETY-HR-6s4">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -341,7 +341,7 @@
                                                     </connections>
                                                 </comboBox>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v9E-nK-mxp" userLabel="Force Language Check Box">
-                                                    <rect key="frame" x="317" y="67" width="122" height="18"/>
+                                                    <rect key="frame" x="317" y="94" width="122" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Force Language" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Gyt-en-d4t">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -356,7 +356,7 @@
                                                     </connections>
                                                 </button>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7FY-mb-f4R" userLabel="Force Calendar Check Box">
-                                                    <rect key="frame" x="16" y="40" width="117" height="18"/>
+                                                    <rect key="frame" x="16" y="67" width="117" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Force Calendar" bezelStyle="regularSquare" imagePosition="left" inset="2" id="U2n-vT-hDd">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -371,7 +371,7 @@
                                                     </connections>
                                                 </button>
                                                 <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bkg-Ed-hHH" userLabel="Calendar Combo Box">
-                                                    <rect key="frame" x="148" y="37" width="148" height="26"/>
+                                                    <rect key="frame" x="148" y="64" width="148" height="26"/>
                                                     <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="jiH-09-bFB">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -393,7 +393,7 @@
                                                     </connections>
                                                 </comboBox>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hbu-e6-6uv" userLabel="Force Locale Check Box">
-                                                    <rect key="frame" x="317" y="40" width="100" height="18"/>
+                                                    <rect key="frame" x="317" y="67" width="100" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Force Locale" bezelStyle="regularSquare" imagePosition="left" inset="2" id="8e8-5M-w79">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -408,7 +408,7 @@
                                                     </connections>
                                                 </button>
                                                 <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TYA-B8-y5f" userLabel="Locale Combo Box">
-                                                    <rect key="frame" x="463" y="36" width="86" height="26"/>
+                                                    <rect key="frame" x="463" y="63" width="86" height="26"/>
                                                     <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="dfm-u1-WN2">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -430,7 +430,7 @@
                                                     </connections>
                                                 </comboBox>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n35-8T-NzX" userLabel="Full Reset Check Box">
-                                                    <rect key="frame" x="16" y="12" width="83" height="18"/>
+                                                    <rect key="frame" x="16" y="39" width="83" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Full Reset" bezelStyle="regularSquare" imagePosition="left" inset="2" id="BMl-ow-VH7">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -454,7 +454,7 @@
                                                     </connections>
                                                 </button>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3ry-wi-2Cw" userLabel="Show Simulator Logs Check Box">
-                                                    <rect key="frame" x="215" y="12" width="147" height="18"/>
+                                                    <rect key="frame" x="16" y="12" width="147" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Show Simulator Log" bezelStyle="regularSquare" imagePosition="left" inset="2" id="qIm-mj-fok">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -478,7 +478,7 @@
                                                     </connections>
                                                 </button>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gfH-Q1-kP5" userLabel="Show Simulator Logs Check Box">
-                                                    <rect key="frame" x="377" y="12" width="171" height="18"/>
+                                                    <rect key="frame" x="209" y="39" width="171" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Isolate Simulator Device" bezelStyle="regularSquare" imagePosition="left" inset="2" id="sWN-4z-QGL">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -502,7 +502,7 @@
                                                     </connections>
                                                 </button>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jxL-6e-vD0" userLabel="No Reset Check Box">
-                                                    <rect key="frame" x="117" y="12" width="78" height="18"/>
+                                                    <rect key="frame" x="117" y="39" width="78" height="18"/>
                                                     <buttonCell key="cell" type="check" title="No Reset" bezelStyle="regularSquare" imagePosition="left" inset="2" id="4sv-pU-7qT">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -526,7 +526,7 @@
                                                     </connections>
                                                 </button>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9o5-XC-T65" userLabel="Platform Version Label">
-                                                    <rect key="frame" x="16" y="95" width="109" height="17"/>
+                                                    <rect key="frame" x="16" y="122" width="109" height="17"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Platform Version" id="qaK-21-AxU">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -534,7 +534,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qYY-vU-wrf" userLabel="Language Combo Box">
-                                                    <rect key="frame" x="463" y="63" width="86" height="26"/>
+                                                    <rect key="frame" x="463" y="90" width="86" height="26"/>
                                                     <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="XnC-FG-nNY">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -555,6 +555,30 @@
                                                         </binding>
                                                     </connections>
                                                 </comboBox>
+                                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dkk-0i-O90" userLabel="Show Simulator Logs Check Box">
+                                                    <rect key="frame" x="171" y="12" width="160" height="18"/>
+                                                    <buttonCell key="cell" type="check" title="Show iOS System Log" bezelStyle="regularSquare" imagePosition="left" inset="2" id="oPQ-Mx-ezT">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="59u-wb-Vwk" id="Au5-nc-4MO">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="59u-wb-Vwk">
+                                                            <dictionary key="options">
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="-2" name="value" keyPath="model.iOS.showSystemLog" id="dHw-JQ-hjq"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -565,17 +589,17 @@
                         </tabViewItem>
                         <tabViewItem label="Advanced" identifier="2" id="yej-5F-Jjp">
                             <view key="view" id="c1J-iI-wU0">
-                                <rect key="frame" x="10" y="33" width="582" height="279"/>
+                                <rect key="frame" x="10" y="33" width="582" height="308"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <box autoresizesSubviews="NO" fixedFrame="YES" title="Advanced" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="9Rh-nN-04p">
-                                        <rect key="frame" x="6" y="107" width="566" height="172"/>
+                                        <rect key="frame" x="6" y="76" width="566" height="232"/>
                                         <view key="contentView">
-                                            <rect key="frame" x="1" y="1" width="564" height="156"/>
+                                            <rect key="frame" x="1" y="1" width="564" height="216"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2cH-MD-DFP" userLabel="Use Native Instruments Library Check Box">
-                                                    <rect key="frame" x="11" y="130" width="216" height="18"/>
+                                                    <rect key="frame" x="16" y="190" width="216" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Use Native Instruments Library" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Qkb-5t-fsY">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -599,7 +623,7 @@
                                                     </connections>
                                                 </button>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lYC-M5-PE3" userLabel="Backend Retries Check Box">
-                                                    <rect key="frame" x="11" y="102" width="122" height="18"/>
+                                                    <rect key="frame" x="16" y="162" width="122" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Backend Retries" bezelStyle="regularSquare" imagePosition="left" inset="2" id="M1Q-dc-hXF">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -623,7 +647,7 @@
                                                     </connections>
                                                 </button>
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qey-Wu-FTs" userLabel="Backend Retries Text Field">
-                                                    <rect key="frame" x="139" y="100" width="70" height="22"/>
+                                                    <rect key="frame" x="144" y="160" width="70" height="22"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="HPq-LV-vJP">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -653,7 +677,7 @@
                                                     </connections>
                                                 </textField>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Xh-bq-5UI" userLabel="Instruments Launch Timeout Check Box">
-                                                    <rect key="frame" x="231" y="102" width="203" height="18"/>
+                                                    <rect key="frame" x="239" y="190" width="203" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Instruments Launch Timeout" bezelStyle="regularSquare" imagePosition="left" inset="2" id="wUP-eD-QjF">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -677,7 +701,7 @@
                                                     </connections>
                                                 </button>
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KH9-cr-sBI" userLabel="Instruments Launch Timeout Text Field">
-                                                    <rect key="frame" x="446" y="100" width="75" height="22"/>
+                                                    <rect key="frame" x="447" y="189" width="75" height="22"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="lCQ-aN-hrX">
                                                         <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="RDN-So-ptD"/>
                                                         <font key="font" metaFont="system"/>
@@ -711,16 +735,8 @@
                                                         </binding>
                                                     </connections>
                                                 </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RID-v3-3HN" userLabel="Units (ms) Label">
-                                                    <rect key="frame" x="526" y="103" width="23" height="17"/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="ms" id="LL6-mp-DG5">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jeo-JX-svV" userLabel="Trace Template Check Box">
-                                                    <rect key="frame" x="11" y="73" width="151" height="18"/>
+                                                    <rect key="frame" x="16" y="80" width="151" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Trace Template Path" bezelStyle="regularSquare" imagePosition="left" inset="2" id="yof-8h-o9w">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -744,7 +760,7 @@
                                                     </connections>
                                                 </button>
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="27R-da-jha" userLabel="Trace Template Text Field">
-                                                    <rect key="frame" x="168" y="72" width="300" height="22"/>
+                                                    <rect key="frame" x="170" y="78" width="300" height="22"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="46W-xU-h3p">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -774,7 +790,7 @@
                                                     </connections>
                                                 </textField>
                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QJY-b3-x4h" userLabel="Choose Trace Template Button">
-                                                    <rect key="frame" x="470" y="65" width="82" height="32"/>
+                                                    <rect key="frame" x="470" y="72" width="82" height="32"/>
                                                     <buttonCell key="cell" type="push" title="Choose" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="q3F-j8-Ya7">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -803,7 +819,7 @@
                                                     </connections>
                                                 </button>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wGN-Kj-ql5" userLabel="Trace Directory Check Box">
-                                                    <rect key="frame" x="11" y="46" width="151" height="18"/>
+                                                    <rect key="frame" x="16" y="50" width="151" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Trace Directory" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ix0-21-yla">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -827,7 +843,7 @@
                                                     </connections>
                                                 </button>
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3mD-jl-I7a" userLabel="Trace Directory Text Field">
-                                                    <rect key="frame" x="168" y="45" width="300" height="22"/>
+                                                    <rect key="frame" x="170" y="47" width="300" height="22"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="iBO-0r-ZXp">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -856,8 +872,171 @@
                                                         </binding>
                                                     </connections>
                                                 </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TlI-Hc-oyM" userLabel="Xcode Path Label">
+                                                    <rect key="frame" x="16" y="16" width="74" height="17"/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Xcode Path" id="OOb-cc-WjF">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hxe-nn-SWc" userLabel="Change Xcode Path Button">
+                                                    <rect key="frame" x="90" y="9" width="82" height="28"/>
+                                                    <buttonCell key="cell" type="push" title="Change" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5fn-6M-6oY">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="chooseXcodePath:" target="-2" id="skW-1O-B3C"/>
+                                                        <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="Xbc-ka-J16" id="DFN-l4-hxr">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="Xbc-ka-J16">
+                                                            <dictionary key="options">
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                    </connections>
+                                                </button>
+                                                <pathControl verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kbQ-Fn-VO6" userLabel="Xcode Path Display">
+                                                    <rect key="frame" x="173" y="14" width="380" height="20"/>
+                                                    <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" alignment="left" id="keF-iv-F2h">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <url key="url" string="file://localhost/Applications/"/>
+                                                        <color key="backgroundColor" red="0.89803921568627454" green="0.92549019607843142" blue="0.97254901960784312" alpha="1" colorSpace="deviceRGB"/>
+                                                    </pathCell>
+                                                    <connections>
+                                                        <binding destination="-2" name="value" keyPath="model.iOS.xcodePath" id="nPm-9X-Kri">
+                                                            <dictionary key="options">
+                                                                <string key="NSValueTransformerName">AppiumAppPathTransformer</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                    </connections>
+                                                </pathControl>
+                                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wau-DE-KLq" userLabel="Trace Template Check Box">
+                                                    <rect key="frame" x="16" y="135" width="151" height="18"/>
+                                                    <buttonCell key="cell" type="check" title="Instruments Path" bezelStyle="regularSquare" imagePosition="left" inset="2" id="NGb-Hi-B0t">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="8XL-CJ-sAa" id="fMf-iV-6Hf">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="8XL-CJ-sAa">
+                                                            <dictionary key="options">
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="-2" name="value" keyPath="model.iOS.useInstrumentsBinaryPath" id="s48-9D-PCd"/>
+                                                    </connections>
+                                                </button>
+                                                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GSn-di-BEn" userLabel="Trace Template Text Field">
+                                                    <rect key="frame" x="170" y="134" width="383" height="22"/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="nCn-FA-qXw">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="oxU-YC-lfw" id="ewC-vQ-rXz">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="-2" name="enabled3" keyPath="model.general.useRemoteServer" previousBinding="ewC-vQ-rXz" id="UE3-jE-8bP">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="-2" name="enabled" keyPath="model.iOS.useInstrumentsBinaryPath" id="oxU-YC-lfw"/>
+                                                        <binding destination="-2" name="value" keyPath="model.iOS.instrumentsBinaryPath" id="472-8g-Xma"/>
+                                                    </connections>
+                                                </textField>
+                                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FXA-Ls-S7Z" userLabel="Trace Directory Check Box">
+                                                    <rect key="frame" x="16" y="108" width="151" height="18"/>
+                                                    <buttonCell key="cell" type="check" title="Localizable Strings" bezelStyle="regularSquare" imagePosition="left" inset="2" id="dAC-YF-ZpD">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="1Pm-CK-dnD" id="Vs4-Be-W4n">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="1Pm-CK-dnD">
+                                                            <dictionary key="options">
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="-2" name="value" keyPath="model.iOS.useLocalizableStringsDirectory" id="nB0-6T-kv9"/>
+                                                    </connections>
+                                                </button>
+                                                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pbq-kf-Mwi" userLabel="Trace Directory Text Field">
+                                                    <rect key="frame" x="170" y="107" width="383" height="22"/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="2wr-qP-s9e">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="cxY-mG-bUJ" id="cBy-D6-hZW">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="-2" name="enabled3" keyPath="model.general.useRemoteServer" previousBinding="cBy-D6-hZW" id="8ho-yN-FhQ">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
+                                                        <binding destination="-2" name="enabled" keyPath="model.iOS.useLocalizableStringsDirectory" id="cxY-mG-bUJ"/>
+                                                        <binding destination="-2" name="value" keyPath="model.iOS.localizableStringsDirectory" id="dWX-d4-Ez1"/>
+                                                    </connections>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RID-v3-3HN" userLabel="Units (ms) Label">
+                                                    <rect key="frame" x="525" y="191" width="23" height="17"/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="ms" id="LL6-mp-DG5">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TaA-rE-Gmz" userLabel="Choose Trace Directory Button">
-                                                    <rect key="frame" x="470" y="38" width="82" height="32"/>
+                                                    <rect key="frame" x="470" y="41" width="82" height="32"/>
                                                     <buttonCell key="cell" type="push" title="Choose" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LRA-yY-f42">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -885,53 +1064,6 @@
                                                         </binding>
                                                     </connections>
                                                 </button>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TlI-Hc-oyM" userLabel="Xcode Path Label">
-                                                    <rect key="frame" x="13" y="17" width="74" height="17"/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Xcode Path" id="OOb-cc-WjF">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
-                                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hxe-nn-SWc" userLabel="Change Xcode Path Button">
-                                                    <rect key="frame" x="87" y="10" width="82" height="28"/>
-                                                    <buttonCell key="cell" type="push" title="Change" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5fn-6M-6oY">
-                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="smallSystem"/>
-                                                    </buttonCell>
-                                                    <connections>
-                                                        <action selector="chooseXcodePath:" target="-2" id="skW-1O-B3C"/>
-                                                        <binding destination="-2" name="enabled2" keyPath="model.general.useRemoteServer" previousBinding="Xbc-ka-J16" id="DFN-l4-hxr">
-                                                            <dictionary key="options">
-                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                                <integer key="NSNullPlaceholder" value="-1"/>
-                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                                            </dictionary>
-                                                        </binding>
-                                                        <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="Xbc-ka-J16">
-                                                            <dictionary key="options">
-                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                                            </dictionary>
-                                                        </binding>
-                                                    </connections>
-                                                </button>
-                                                <pathControl verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kbQ-Fn-VO6" userLabel="Xcode Path Display">
-                                                    <rect key="frame" x="170" y="15" width="380" height="20"/>
-                                                    <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" alignment="left" id="keF-iv-F2h">
-                                                        <font key="font" metaFont="smallSystem"/>
-                                                        <url key="url" string="file://localhost/Applications/"/>
-                                                        <color key="backgroundColor" red="0.89803921568627454" green="0.92549019607843142" blue="0.97254901960784312" alpha="1" colorSpace="deviceRGB"/>
-                                                    </pathCell>
-                                                    <connections>
-                                                        <binding destination="-2" name="value" keyPath="model.iOS.xcodePath" id="nPm-9X-Kri">
-                                                            <dictionary key="options">
-                                                                <string key="NSValueTransformerName">AppiumAppPathTransformer</string>
-                                                            </dictionary>
-                                                        </binding>
-                                                    </connections>
-                                                </pathControl>
                                             </subviews>
                                         </view>
                                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -943,7 +1075,7 @@
                     </tabViewItems>
                 </tabView>
             </subviews>
-            <point key="canvasLocation" x="331" y="214.5"/>
+            <point key="canvasLocation" x="329" y="245.5"/>
         </customView>
         <userDefaultsController representsSharedInstance="YES" id="UO3-Kh-V1G"/>
     </objects>
