@@ -26,11 +26,13 @@
 @property NSString *avdArguments;
 @property NSNumber *bootstrapPort;
 @property NSString *browserName;
+@property NSString *chromedriverExecutablePath;
 @property NSNumber *chromedriverPort;
 @property NSString *coverageClass;
 @property NSString *customSDKPath;
 @property NSString *deviceName;
 @property NSNumber *deviceReadyTimeout;
+@property BOOL dontStopAppOnReset;
 @property BOOL fullReset;
 @property NSString *intentAction;
 @property NSString *intentCategory;
@@ -54,6 +56,7 @@
 @property BOOL useAVDArguments;
 @property BOOL useBootstrapPort;
 @property BOOL useBrowser;
+@property BOOL useChromedriverExecutablePath;
 @property BOOL useChromedriverPort;
 @property BOOL useCoverageClass;
 @property BOOL useCustomSDKPath;

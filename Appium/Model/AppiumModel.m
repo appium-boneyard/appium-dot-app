@@ -183,6 +183,11 @@ BOOL _isServerListening;
 		[arguments addObject:[AppiumServerArgument argumentWithName:@"--session-override"]];
     }
 	
+	if (self.general.bypassPermissionsCheck)
+	{
+		[arguments addObject:[AppiumServerArgument argumentWithName:@"--no-perms-check"]];
+	}
+	
 	if (self.general.prelaunchApp)
 	{
 		[arguments addObject:[AppiumServerArgument argumentWithName:@"--pre-launch"]];
@@ -192,6 +197,11 @@ BOOL _isServerListening;
 	{
 		[arguments addObject:[AppiumServerArgument argumentWithName:@"--log-no-colors"]];
     }
+
+	if (!self.general.useAdditionalLogSpacing)
+	{
+		[arguments addObject:[AppiumServerArgument argumentWithName:@"--debug-log-spacing"]];
+	}
 	
 	if (self.general.useLogFile)
 	{
@@ -204,11 +214,23 @@ BOOL _isServerListening;
 		[arguments addObject:[AppiumServerArgument argumentWithName:@"--log-timestamp"]];
     }
 	
+	if (![self.general.logLevel isEqualToString:@"default"] && self.general.logLevel.length > 0)
+	{
+		[arguments addObject:[AppiumServerArgument argumentWithName:@"--log-level"
+														  withValue:self.general.logLevel]];
+	}
+	
     if (self.general.useLogWebHook)
 	{
 		[arguments addObject:[AppiumServerArgument argumentWithName:@"--webhook"
 														  withValue:self.general.logWebHook]];
     }
+	
+	if (self.general.useTempFolderPath)
+	{
+		[arguments addObject:[AppiumServerArgument argumentWithName:@"--tmp"
+														  withValue:self.general.tempFolderPath]];
+	}
 	
     if (self.general.useSeleniumGridConfigFile)
 	{
@@ -219,6 +241,11 @@ BOOL _isServerListening;
 	if (self.general.useLocalTimezone)
 	{
 		[arguments addObject:[AppiumServerArgument argumentWithName:@"--local-timezone"]];
+	}
+	
+	if (self.general.useStrictCapabilities)
+	{
+		[arguments addObject:[AppiumServerArgument argumentWithName:@"--strict-caps"]];
 	}
 	
 #pragma mark Robot Preferences
@@ -259,6 +286,9 @@ BOOL _isServerListening;
 			{
 				[arguments addObject:[AppiumServerArgument argumentWithName:@"--no-reset"]];
 			}
+			if (self.android.dontStopAppOnReset) {
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--dont-stop-app-on-reset"]];
+			}
 			
 			if (self.android.useAVD)
 			{
@@ -274,6 +304,11 @@ BOOL _isServerListening;
 			
 			if (!self.android.useBrowser)
 			{
+				if (self.android.useChromedriverExecutablePath) {
+					[arguments addObject:[AppiumServerArgument argumentWithName:@"--chromedriver-executable"
+																	  withValue:self.android.chromedriverExecutablePath]];
+				}
+				
 				if (self.android.useChromedriverPort)
 				{
 					[arguments addObject:[AppiumServerArgument argumentWithName:@"--chromedriver-port"
@@ -432,10 +467,21 @@ BOOL _isServerListening;
 				[arguments addObject:[AppiumServerArgument argumentWithName:@"--no-reset"]];
 			}
 			
+			if (self.iOS.keepKeychains)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--keep-keychains"]];
+			}
+			
 			if (self.iOS.showSimulatorLog)
 			{
 				[arguments addObject:[AppiumServerArgument argumentWithName:@"--show-ios-log"]];
 			}
+			
+			if (self.iOS.showSystemLog)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--show-ios-log"]];
+			}
+			
 			
 			if (self.iOS.useBackendRetries)
 			{
@@ -481,6 +527,18 @@ BOOL _isServerListening;
 			{
 				[arguments addObject:[AppiumServerArgument argumentWithName:@"--locale"
 																  withValue:self.iOS.locale]];
+			}
+			
+			if (self.iOS.useLocalizableStringsDirectory)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--localizable-strings-dir"
+																  withValue:self.iOS.localizableStringsDirectory]];
+			}
+			
+			if (self.iOS.useInstrumentsBinaryPath)
+			{
+				[arguments addObject:[AppiumServerArgument argumentWithName:@"--instruments"
+																  withValue:self.iOS.instrumentsBinaryPath]];
 			}
 			
 			if (self.iOS.useNativeInstrumentsLibrary)

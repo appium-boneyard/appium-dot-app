@@ -10,6 +10,7 @@
 
 @interface AppiumGeneralSettingsModel : NSObject
 
+@property BOOL bypassPermissionsCheck;
 @property NSString *callbackAddress;
 @property NSNumber *callbackPort;
 @property BOOL checkForUpdates;
@@ -18,6 +19,7 @@
 @property BOOL killProcessesUsingPort;
 @property BOOL logColors;
 @property NSString *logFile;
+@property NSString *logLevel;
 @property BOOL logTimestamps;
 @property NSString *logWebHook;
 @property BOOL forceScrollLog;
@@ -27,13 +29,17 @@
 @property NSString *seleniumGridConfigFile;
 @property NSString *serverAddress;
 @property NSNumber *serverPort;
+@property NSString *tempFolderPath;
+@property BOOL useAdditionalLogSpacing;
+@property BOOL useCallbackAddress;
+@property BOOL useCallbackPort;
+@property BOOL useLocalTimezone;
 @property BOOL useLogFile;
 @property BOOL useLogWebHook;
 @property BOOL useCommandTimeout;
 @property BOOL useRemoteServer;
+@property BOOL useStrictCapabilities;
 @property BOOL useSeleniumGridConfigFile;
-@property BOOL useLocalTimezone;
-@property BOOL useCallbackAddress;
-@property BOOL useCallbackPort;
+@property BOOL useTempFolderPath;
 
 @end

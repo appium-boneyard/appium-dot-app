@@ -167,6 +167,15 @@
 	[DEFAULTS setValue:browserName forKey:APPIUM_PLIST_ANDROID_BROWSER_NAME];
 }
 
+-(NSString*) chromedriverExecutablePath
+{
+	return [DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_CHROMEDRIVER_EXECUTABLE_PATH];
+}
+-(void) setChromedriverExecutablePath:(NSString *)chromedriverExecutablePath
+{
+	[DEFAULTS setValue:chromedriverExecutablePath forKey:APPIUM_PLIST_ANDROID_CHROMEDRIVER_EXECUTABLE_PATH];
+}
+
 -(NSNumber*) chromedriverPort
 {
 	return [NSNumber numberWithInt:[[DEFAULTS stringForKey:APPIUM_PLIST_ANDROID_CHROMEDRIVER_PORT] intValue]];
@@ -210,6 +219,15 @@
 -(void) setDeviceReadyTimeout:(NSNumber *)deviceReadyTimeout
 {
 	[[NSUserDefaults standardUserDefaults] setValue:deviceReadyTimeout forKey:APPIUM_PLIST_ANDROID_DEVICE_READY_TIMEOUT];
+}
+
+-(BOOL) dontStopAppOnReset
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_DONT_STOP_APP_ON_RESET];
+}
+-(void) setDontStopAppOnReset:(BOOL)dontStopAppOnReset
+{
+	[DEFAULTS setBool:dontStopAppOnReset forKey:APPIUM_PLIST_ANDROID_DONT_STOP_APP_ON_RESET];
 }
 
 -(BOOL) fullReset
@@ -429,6 +447,15 @@
 -(void) setUseBrowser:(BOOL)useBrowser
 {
 	[DEFAULTS setBool:useBrowser forKey:APPIUM_PLIST_ANDROID_USE_BROWSER];
+}
+
+-(BOOL) useChromedriverExecutablePath
+{
+	return [DEFAULTS boolForKey:APPIUM_PLIST_ANDROID_USE_CHROMEDRIVER_EXECUTABLE_PATH];
+}
+-(void) setUseChromedriverExecutablePath:(BOOL)useChromedriverExecutablePath
+{
+	[DEFAULTS setBool:useChromedriverExecutablePath forKey:APPIUM_PLIST_ANDROID_USE_CHROMEDRIVER_EXECUTABLE_PATH];
 }
 
 -(BOOL) useChromedriverPort

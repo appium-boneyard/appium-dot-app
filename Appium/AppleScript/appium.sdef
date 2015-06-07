@@ -230,6 +230,15 @@
 			<property name="use intent arguments" code="as52" type="boolean">
 				<cocoa key="useIntentArguments"/>
 			</property>
+			<property name="chromedriver executable path" code="as53" type="text">
+				<cocoa key="chromedriverExecutablePath"/>
+			</property>
+			<property name="dont stop app on reset" code="as54" type="boolean">
+				<cocoa key="dontStopAppOnReset"/>
+			</property>
+			<property name="use chromedriver executable path" code="as55" type="boolean">
+				<cocoa key="useChromedriverExecutablePath"/>
+			</property>
 		</class>
 		<class name="developer settings model" code="cdsm" description="develoepr settings" plural="develoepr settings models">
 			<cocoa class="AppiumDeveloperSettingsModel"/>
@@ -338,6 +347,24 @@
 			<property name="maximum log length" code="gs24" type="number">
 				<cocoa key="maxLogLength"/>
 			</property>
+			<property name="bypass permissions checks" code="gs25" type="boolean">
+				<cocoa key="bypassPermissionsCheck"/>
+			</property>
+			<property name="log level" code="gs26" type="text">
+				<cocoa key="logLevel"/>
+			</property>
+			<property name="temp folder path" code="gs27" type="text">
+				<cocoa key="tempFolderPath"/>
+			</property>
+			<property name="use additional log spacing" code="gs28" type="boolean">
+				<cocoa key="useAdditionalLogSpacing"/>
+			</property>
+			<property name="use strict capabilities" code="gs29" type="boolean">
+				<cocoa key="useStrictCapabilities"/>
+			</property>
+			<property name="use temp folder path" code="gs30" type="boolean">
+				<cocoa key="useTempFolderPath"/>
+			</property>
 		</class>
 		<class name="inspector window controller" code="caiw" description="inspector window">
 			<cocoa class="AppiumInspectorWindowController"/>
@@ -370,9 +397,6 @@
 			</property>
 			<property name="full ios reset" code="is08" type="boolean">
 				<cocoa key="fullReset"/>
-			</property>
-			<property name="keep artifacts" code="is09" type="boolean">
-				<cocoa key="keepArtifacts"/>
 			</property>
 			<property name="keep keychains" code="is10" type="boolean">
 				<cocoa key="keepKeychains"/>
@@ -451,6 +475,21 @@
 			</property>
 			<property name="isolate simulator device" code="is36" type="boolean">
 				<cocoa key="isolateSimDevice"/>
+			</property>
+			<property name="instruments binarypath" code="is37" type="text">
+				<cocoa key="instrumentsBinaryPath"/>
+			</property>
+			<property name="localizable strings directory" code="is38" type="text">
+				<cocoa key="localizableStringsDirectory"/>
+			</property>
+			<property name="show system log" code="is39" type="boolean">
+				<cocoa key="showSystemLog"/>
+			</property>
+			<property name="use instruments binary path" code="is40" type="boolean">
+				<cocoa key="useInstrumentsBinaryPath"/>
+			</property>
+			<property name="use localizable strings directory" code="is41" type="boolean">
+				<cocoa key="useLocalizableStringsDirectory"/>
 			</property>
 		</class>
 		<class name="robot settings model" code="crsm" description="robot settings" plural="robot settings model">

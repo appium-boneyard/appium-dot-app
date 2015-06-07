@@ -26,6 +26,9 @@
 			name:@"general settings"];
 }
 
+-(BOOL) bypassPermissionsCheck { return [DEFAULTS boolForKey:APPIUM_PLIST_BYPASS_PERMISSIONS_CHECKS]; }
+-(void) setBypassPermissionsCheck:(BOOL)bypassPermissionsCheck { [DEFAULTS setBool:bypassPermissionsCheck forKey:APPIUM_PLIST_BYPASS_PERMISSIONS_CHECKS]; }
+
 -(NSString*) callbackAddress { return [DEFAULTS stringForKey:APPIUM_PLIST_CALLBACK_ADDRESS]; }
 -(void) setCallbackAddress:(NSString *)callbackAddress { [DEFAULTS setValue:callbackAddress forKey:APPIUM_PLIST_CALLBACK_ADDRESS]; }
 
@@ -58,6 +61,9 @@
 -(NSString*) logFile { return [DEFAULTS stringForKey:APPIUM_PLIST_LOG_FILE]; }
 -(void) setLogFile:(NSString *)logFile { [DEFAULTS setValue:logFile forKey:APPIUM_PLIST_LOG_FILE]; }
 
+-(NSString*) logLevel { return [DEFAULTS stringForKey:APPIUM_PLIST_LOG_LEVEL]; }
+-(void) setLogLevel:(NSString *)logLevel { [DEFAULTS setValue:logLevel forKey:APPIUM_PLIST_LOG_LEVEL]; }
+
 -(BOOL) logTimestamps { return [DEFAULTS boolForKey:APPIUM_PLIST_LOG_TIMESTAMPS]; }
 -(void) setLogTimestamps:(BOOL)logTimestamps { [DEFAULTS setBool:logTimestamps forKey:APPIUM_PLIST_LOG_TIMESTAMPS]; }
 
@@ -85,6 +91,12 @@
 -(NSNumber*) serverPort { return [NSNumber numberWithInt:[[DEFAULTS stringForKey:APPIUM_PLIST_SERVER_PORT] intValue]]; }
 -(void) setServerPort:(NSNumber *)serverPort { [[NSUserDefaults standardUserDefaults] setValue:serverPort forKey:APPIUM_PLIST_SERVER_PORT]; }
 
+-(NSString*) tempFolderPath { return [DEFAULTS stringForKey:APPIUM_PLIST_TEMP_FOLDER_PATH]; }
+-(void) setTempFolderPath:(NSString *)tempFolderPath { [DEFAULTS setValue:tempFolderPath forKey:APPIUM_PLIST_TEMP_FOLDER_PATH]; }
+
+-(BOOL) useAdditionalLogSpacing { return [DEFAULTS boolForKey:APPIUM_PLIST_USE_ADDITIONAL_LOG_SPACING]; }
+-(void) setUseAdditionalLogSpacing:(BOOL)useAdditionalLogSpacing { [DEFAULTS setBool:useAdditionalLogSpacing forKey:APPIUM_PLIST_USE_ADDITIONAL_LOG_SPACING]; }
+
 -(BOOL) useCallbackAddress { return [DEFAULTS boolForKey:APPIUM_PLIST_USE_CALLBACK_ADDRESS]; }
 -(void) setUseCallbackAddress:(BOOL)useCallbackAddress { [DEFAULTS setBool:useCallbackAddress forKey:APPIUM_PLIST_USE_CALLBACK_ADDRESS]; }
 
@@ -93,6 +105,9 @@
 
 -(BOOL) useCommandTimeout { return [DEFAULTS boolForKey:APPIUM_PLIST_USE_NEW_COMMAND_TIMEOUT]; }
 -(void) setUseCommandTimeout:(BOOL)useCommandTimeout { [DEFAULTS setBool:useCommandTimeout forKey:APPIUM_PLIST_USE_NEW_COMMAND_TIMEOUT]; }
+
+-(BOOL) useLocalTimezone { return [DEFAULTS boolForKey:APPIUM_PLIST_USE_LOCAL_TIMEZONE]; }
+-(void) setUseLocalTimezone:(BOOL)useLocalTimezone { [DEFAULTS setBool:useLocalTimezone forKey:APPIUM_PLIST_USE_LOCAL_TIMEZONE]; }
 
 -(BOOL) useLogFile { return [DEFAULTS boolForKey:APPIUM_PLIST_USE_LOG_FILE]; }
 -(void) setUseLogFile:(BOOL)useLogFile { [DEFAULTS setBool:useLogFile forKey:APPIUM_PLIST_USE_LOG_FILE]; }
@@ -114,7 +129,7 @@
 -(BOOL) useSeleniumGridConfigFile { return [DEFAULTS boolForKey:APPIUM_PLIST_USE_SELENIUM_GRID_CONFIG_FILE]; }
 -(void) setUseSeleniumGridConfigFile:(BOOL)useSeleniumGridConfigFile { [DEFAULTS setBool:useSeleniumGridConfigFile forKey:APPIUM_PLIST_USE_SELENIUM_GRID_CONFIG_FILE]; }
 
--(BOOL) useLocalTimezone { return [DEFAULTS boolForKey:APPIUM_PLIST_USE_LOCAL_TIMEZONE]; }
--(void) setUseLocalTimezone:(BOOL)useLocalTimezone { [DEFAULTS setBool:useLocalTimezone forKey:APPIUM_PLIST_USE_LOCAL_TIMEZONE]; }
+-(BOOL) useStrictCapabilities { return [DEFAULTS boolForKey:APPIUM_PLIST_USE_STRICT_CAPABILITIES]; }
+-(void) setUseStrictCapabilities:(BOOL)useStrictCapabilities { [DEFAULTS setBool:useStrictCapabilities forKey:APPIUM_PLIST_USE_STRICT_CAPABILITIES]; }
 
 @end

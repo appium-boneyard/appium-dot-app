@@ -16,6 +16,8 @@
 	<integer>4724</integer>
 	<key>Android Browser Name</key>
 	<string>Chrome</string>
+	<key>Android Chromedriver Executable Path</key>
+	<string></string>
 	<key>Android Chromedriver Port</key>
 	<real>9515</real>
 	<key>Android Coverage Class</key>
@@ -24,6 +26,8 @@
 	<string></string>
 	<key>Android Device Ready Timeout</key>
 	<integer>5</integer>
+	<key>Android Don&apos;t Stop App On Reset</key>
+	<false/>
 	<key>Android Full Reset</key>
 	<false/>
 	<key>Android Intent Action</key>
@@ -66,6 +70,8 @@
 	<false/>
 	<key>Android Use Bootstrap Port</key>
 	<false/>
+	<key>Android Use Chromedriver Executable Path</key>
+	<false/>
 	<key>Android Use Chromedriver Port</key>
 	<false/>
 	<key>Android Use Coverage Class</key>
@@ -101,6 +107,8 @@
 	<key>Android Wait Activity</key>
 	<string></string>
 	<key>Break On NodeJS Application Start</key>
+	<false/>
+	<key>Bypass Permissions Checks</key>
 	<false/>
 	<key>Callback Address</key>
 	<string>127.0.0.1</string>
@@ -150,9 +158,9 @@
 	<string>iPhone 6</string>
 	<key>iOS Full Reset</key>
 	<false/>
+	<key>iOS Instruments Binary Path</key>
+	<string></string>
 	<key>iOS Isolate Sim Device</key>
-	<false/>
-	<key>iOS Keep Artifacts</key>
 	<false/>
 	<key>iOS Keep Keychains</key>
 	<false/>
@@ -162,6 +170,8 @@
 	<integer>90000</integer>
 	<key>iOS Locale</key>
 	<string>en_US</string>
+	<key>iOS Localizable Strings Directory</key>
+	<string></string>
 	<key>iOS No Reset</key>
 	<false/>
 	<key>iOS Orientation</key>
@@ -170,6 +180,8 @@
 	<string>8.1</string>
 	<key>iOS Show Simulator Log</key>
 	<true/>
+	<key>iOS Show System Log</key>
+	<false/>
 	<key>iOS Trace Directory</key>
 	<string></string>
 	<key>iOS UDID</key>
@@ -186,11 +198,15 @@
 	<false/>
 	<key>iOS Use Default Device</key>
 	<true/>
+	<key>iOS Use Instruments Binary Path</key>
+	<false/>
 	<key>iOS Use Language</key>
 	<false/>
 	<key>iOS Use Launch Timeout</key>
 	<false/>
 	<key>iOS Use Locale</key>
+	<false/>
+	<key>iOS Use Localizable Strings Directory</key>
 	<false/>
 	<key>iOS Use Mobile Safari</key>
 	<false/>
@@ -208,6 +224,8 @@
 	<true/>
 	<key>Log File</key>
 	<string>/tmp/appium.log</string>
+	<key>Log Level</key>
+	<string>default</string>
 	<key>Log Timestamps</key>
 	<false/>
 	<key>Log Webhook</key>
@@ -234,6 +252,10 @@
 	<string>0.0.0.0</string>
 	<key>Server Port</key>
 	<integer>4723</integer>
+	<key>Temp Folder Path</key>
+	<string>/tmp</string>
+	<key>Use Additional Log Spacing</key>
+	<false/>
 	<key>Use Callback Address</key>
 	<false/>
 	<key>Use Callback Port</key>
@@ -243,6 +265,8 @@
 	<key>Use External NodeJS Binary</key>
 	<false/>
 	<key>Use External Appium Package</key>
+	<false/>
+	<key>Use Local Timezone</key>
 	<false/>
 	<key>Use Log File</key>
 	<false/>
@@ -260,7 +284,9 @@
 	<false/>
 	<key>Use Selenium Grid Config File</key>
 	<false/>
-	<key>Use Local Timezone</key>
+	<key>Use Strict Capabilities</key>
+	<false/>
+	<key>Use Temp Folder Path</key>
 	<false/>
 </dict>
 </plist>
