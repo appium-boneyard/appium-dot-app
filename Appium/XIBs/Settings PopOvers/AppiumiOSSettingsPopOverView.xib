@@ -30,11 +30,11 @@
                     <tabViewItems>
                         <tabViewItem label="Basic" identifier="1" id="N7U-yS-Sec">
                             <view key="view" id="qaz-BC-DdP">
-                                <rect key="frame" x="10" y="33" width="582" height="308"/>
+                                <rect key="frame" x="10" y="33" width="136" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <box autoresizesSubviews="NO" fixedFrame="YES" title="Application" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="Qa7-a5-jda">
-                                        <rect key="frame" x="6" y="211" width="566" height="97"/>
+                                        <rect key="frame" x="6" y="-97" width="566" height="97"/>
                                         <view key="contentView">
                                             <rect key="frame" x="1" y="1" width="564" height="81"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -197,7 +197,7 @@
                                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </box>
                                     <box autoresizesSubviews="NO" fixedFrame="YES" title="Device Settings" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="hF4-hL-vFd">
-                                        <rect key="frame" x="6" y="13" width="566" height="194"/>
+                                        <rect key="frame" x="6" y="-295" width="566" height="194"/>
                                         <view key="contentView">
                                             <rect key="frame" x="1" y="1" width="564" height="178"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
