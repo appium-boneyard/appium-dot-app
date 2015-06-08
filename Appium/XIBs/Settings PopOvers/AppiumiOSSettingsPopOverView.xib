@@ -571,12 +571,12 @@
                                                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                             </dictionary>
                                                         </binding>
+                                                        <binding destination="-2" name="value" keyPath="model.iOS.showSystemLog" id="dHw-JQ-hjq"/>
                                                         <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="59u-wb-Vwk">
                                                             <dictionary key="options">
                                                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                             </dictionary>
                                                         </binding>
-                                                        <binding destination="-2" name="value" keyPath="model.iOS.showSystemLog" id="dHw-JQ-hjq"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -935,12 +935,12 @@
                                                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                             </dictionary>
                                                         </binding>
+                                                        <binding destination="-2" name="value" keyPath="model.iOS.useInstrumentsBinaryPath" id="s48-9D-PCd"/>
                                                         <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="8XL-CJ-sAa">
                                                             <dictionary key="options">
                                                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                             </dictionary>
                                                         </binding>
-                                                        <binding destination="-2" name="value" keyPath="model.iOS.useInstrumentsBinaryPath" id="s48-9D-PCd"/>
                                                     </connections>
                                                 </button>
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GSn-di-BEn" userLabel="Trace Template Text Field">
@@ -951,15 +951,6 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <connections>
-                                                        <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="oxU-YC-lfw" id="ewC-vQ-rXz">
-                                                            <dictionary key="options">
-                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                                <integer key="NSNullPlaceholder" value="-1"/>
-                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                                            </dictionary>
-                                                        </binding>
                                                         <binding destination="-2" name="enabled3" keyPath="model.general.useRemoteServer" previousBinding="ewC-vQ-rXz" id="UE3-jE-8bP">
                                                             <dictionary key="options">
                                                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -969,8 +960,17 @@
                                                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                             </dictionary>
                                                         </binding>
-                                                        <binding destination="-2" name="enabled" keyPath="model.iOS.useInstrumentsBinaryPath" id="oxU-YC-lfw"/>
                                                         <binding destination="-2" name="value" keyPath="model.iOS.instrumentsBinaryPath" id="472-8g-Xma"/>
+                                                        <binding destination="-2" name="enabled" keyPath="model.iOS.useInstrumentsBinaryPath" id="oxU-YC-lfw"/>
+                                                        <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="oxU-YC-lfw" id="ewC-vQ-rXz">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
                                                     </connections>
                                                 </textField>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FXA-Ls-S7Z" userLabel="Trace Directory Check Box">
@@ -989,12 +989,12 @@
                                                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                             </dictionary>
                                                         </binding>
+                                                        <binding destination="-2" name="value" keyPath="model.iOS.useLocalizableStringsDirectory" id="nB0-6T-kv9"/>
                                                         <binding destination="-2" name="enabled" keyPath="model.isServerRunning" id="1Pm-CK-dnD">
                                                             <dictionary key="options">
                                                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                             </dictionary>
                                                         </binding>
-                                                        <binding destination="-2" name="value" keyPath="model.iOS.useLocalizableStringsDirectory" id="nB0-6T-kv9"/>
                                                     </connections>
                                                 </button>
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pbq-kf-Mwi" userLabel="Trace Directory Text Field">
@@ -1005,15 +1005,6 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <connections>
-                                                        <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="cxY-mG-bUJ" id="cBy-D6-hZW">
-                                                            <dictionary key="options">
-                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                                <integer key="NSNullPlaceholder" value="-1"/>
-                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                                            </dictionary>
-                                                        </binding>
                                                         <binding destination="-2" name="enabled3" keyPath="model.general.useRemoteServer" previousBinding="cBy-D6-hZW" id="8ho-yN-FhQ">
                                                             <dictionary key="options">
                                                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -1023,8 +1014,17 @@
                                                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                                                             </dictionary>
                                                         </binding>
-                                                        <binding destination="-2" name="enabled" keyPath="model.iOS.useLocalizableStringsDirectory" id="cxY-mG-bUJ"/>
                                                         <binding destination="-2" name="value" keyPath="model.iOS.localizableStringsDirectory" id="dWX-d4-Ez1"/>
+                                                        <binding destination="-2" name="enabled" keyPath="model.iOS.useLocalizableStringsDirectory" id="cxY-mG-bUJ"/>
+                                                        <binding destination="-2" name="enabled2" keyPath="model.isServerRunning" previousBinding="cxY-mG-bUJ" id="cBy-D6-hZW">
+                                                            <dictionary key="options">
+                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                                <integer key="NSNullPlaceholder" value="-1"/>
+                                                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                                            </dictionary>
+                                                        </binding>
                                                     </connections>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RID-v3-3HN" userLabel="Units (ms) Label">

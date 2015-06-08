@@ -10,6 +10,7 @@
 
 @interface AppiumGeneralSettingsModel : NSObject
 
+@property (readonly) NSArray* allLogLevels;
 @property BOOL bypassPermissionsCheck;
 @property NSString *callbackAddress;
 @property NSNumber *callbackPort;

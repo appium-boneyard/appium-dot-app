@@ -26,6 +26,10 @@
 			name:@"general settings"];
 }
 
+-(NSArray*)allLogLevels {
+	return @[@"default",@"debug"];
+}
+
 -(BOOL) bypassPermissionsCheck { return [DEFAULTS boolForKey:APPIUM_PLIST_BYPASS_PERMISSIONS_CHECKS]; }
 -(void) setBypassPermissionsCheck:(BOOL)bypassPermissionsCheck { [DEFAULTS setBool:bypassPermissionsCheck forKey:APPIUM_PLIST_BYPASS_PERMISSIONS_CHECKS]; }
 
