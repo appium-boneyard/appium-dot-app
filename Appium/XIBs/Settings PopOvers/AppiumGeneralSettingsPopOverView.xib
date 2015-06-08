@@ -17,14 +17,6 @@
             <rect key="frame" x="0.0" y="-7" width="630" height="560"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Zm-Ng-8YY" userLabel="General Settings Label">
-                    <rect key="frame" x="18" y="523" width="381" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="General Settings" id="mhk-eP-TMP" userLabel="General Settings">
-                        <font key="font" metaFont="systemBold"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
                 <box autoresizesSubviews="NO" fixedFrame="YES" title="Server" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="xLf-4s-alG" userLabel="Selenium Grid Configuration Box">
                     <rect key="frame" x="17" y="282" width="596" height="233"/>
                     <view key="contentView">
@@ -938,6 +930,14 @@
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Zm-Ng-8YY" userLabel="General Settings Label">
+                    <rect key="frame" x="125" y="523" width="381" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="General Settings" id="mhk-eP-TMP" userLabel="General Settings">
+                        <font key="font" metaFont="systemBold"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <point key="canvasLocation" x="317" y="460"/>
         </customView>
