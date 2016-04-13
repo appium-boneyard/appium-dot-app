@@ -1,0 +1,10 @@
+PODS:
+  - Selenium (1.3.3)
+
+DEPENDENCIES:
+  - Selenium
+
+SPEC CHECKSUMS:
+  Selenium: eff3fafe01424444a3b4a3a6981b7feac60518f0
+
+COCOAPODS: 0.39.0
