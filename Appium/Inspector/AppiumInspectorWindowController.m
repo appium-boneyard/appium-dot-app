@@ -53,9 +53,14 @@
             [capabilities addCapabilityForKey:@"automationName" andValue:(model.isAndroid ? model.android.automationName : @"Appium")];
             [capabilities addCapabilityForKey:@"platformName" andValue:(model.isAndroid ? model.android.platformName : @"iOS")];
 			[capabilities addCapabilityForKey:@"platformVersion" andValue:model.isAndroid ? model.android.platformVersionNumber : model.iOS.platformVersion];
-			[capabilities addCapabilityForKey:@"newCommandTimeout" andValue:@"999999"];
 			if ((model.isAndroid && model.android.useDeviceName) || (model.isIOS && !model.iOS.useDefaultDevice)) {
 				[capabilities addCapabilityForKey:@"deviceName" andValue:model.isAndroid ? model.android.deviceName : model.iOS.deviceName];
+			}
+			if ((model.isAndroid && model.android.useAppPath)) {
+				[capabilities addCapabilityForKey:@"app" andValue:model.android.appPath];
+			}
+			if ((model.isAndroid && model.android.usePackage)) {
+				[capabilities addCapabilityForKey:@"appPackage" andValue:model.android.package];
 			}
 			if ((model.isAndroid && model.android.useLanguage) || (model.isIOS && model.iOS.useLanguage)) {
 				[capabilities addCapabilityForKey:@"language" andValue:model.isAndroid ? model.android.language : model.iOS.language];
@@ -74,15 +79,15 @@
         // detect the current platform (if using a remote server)
 		if (model.general.useRemoteServer)
 		{
-			if ([[self.driver.session.capabilities.platformName lowercaseString] isEqualToString:@"ios"])
+			if ([[self.driver.session.capabilities.platform lowercaseString] isEqualToString:@"ios"])
 			{
 				[model setPlatform:AppiumiOSPlatform];
 			}
-			else if ([[self.driver.session.capabilities.platformName lowercaseString] isEqualToString:@"android"])
+			else if ([[self.driver.session.capabilities.platform lowercaseString] isEqualToString:@"android"])
 			{
 				[model setPlatform:AppiumAndroidPlatform];
 			}
-			else if ([[self.driver.session.capabilities.platformName lowercaseString] isEqualToString:@"selendroid"])
+			else if ([[self.driver.session.capabilities.platform lowercaseString] isEqualToString:@"selendroid"])
 			{
 				[model setPlatform:AppiumAndroidPlatform];
 			}
