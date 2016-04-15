@@ -69,6 +69,17 @@
 				[capabilities addCapabilityForKey:@"locale" andValue:model.isAndroid ? model.android.locale : model.iOS.locale];
 			}
 
+			// iOS caps
+			if ((model.isIOS && model.iOS.useAppPath)) {
+				[capabilities addCapabilityForKey:@"app" andValue:model.iOS.appPath];
+			}
+			if ((model.isIOS && model.iOS.useBundleID)) {
+				[capabilities addCapabilityForKey:@"bundleId" andValue:model.iOS.bundleID];
+			}
+			if ((model.isIOS && model.iOS.useUDID)) {
+				[capabilities addCapabilityForKey:@"udid" andValue:model.iOS.udid];
+			}
+
             [self.driver startSessionWithDesiredCapabilities:capabilities requiredCapabilities:nil];
 			if (self.driver == nil || self.driver.session == nil || self.driver.session.sessionId == nil)
 			{
