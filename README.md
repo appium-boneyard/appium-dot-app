@@ -14,6 +14,7 @@ To install:
 ### Build with XCode
 
 Install CocoaPods:
+
 1. Open Termianl
 2. `sudo gem install cocoapods`
 3. `pod setup`
@@ -21,6 +22,7 @@ Install CocoaPods:
 5. `pod install`
 
 To Open in XCode: 
+
 open the `appium-dot-app/Appium.xcworkspace` project file
 
 
