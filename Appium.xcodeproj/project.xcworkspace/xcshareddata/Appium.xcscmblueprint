@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "6280D33A9EC8F9D31B608F456EA890C809438EB6",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "C2648D93E3DB9804876995452D911FA4E49667C4" : 0,
+    "6280D33A9EC8F9D31B608F456EA890C809438EB6" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "3C751137-8947-4143-933B-81074B373C91",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "C2648D93E3DB9804876995452D911FA4E49667C4" : "appium-dot-app\/submodules\/selenium-objective-c\/",
+    "6280D33A9EC8F9D31B608F456EA890C809438EB6" : "appium-dot-app\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Appium",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Appium.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jason-edstrom\/appium-dot-app.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "6280D33A9EC8F9D31B608F456EA890C809438EB6"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/appium\/selenium-objective-c",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C2648D93E3DB9804876995452D911FA4E49667C4"
+    }
+  ]
+}

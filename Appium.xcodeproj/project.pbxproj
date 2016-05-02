@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2AABB9841CBEDD5F00CCC9D7 /* MGSFragaria.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369ED810171DA81E000A7A4E /* MGSFragaria.framework */; };
+		2AABB9851CBEDD5F00CCC9D7 /* MGSFragaria.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 369ED810171DA81E000A7A4E /* MGSFragaria.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2AABB98A1CBEDD8F00CCC9D7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AABB9891CBEDD8F00CCC9D7 /* Images.xcassets */; };
 		360BD91516F12B03000D3BEB /* AppiumInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 360BD91416F12B03000D3BEB /* AppiumInspector.m */; };
 		3612E5F816E5B6520050CF0A /* appium.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 3612E5F716E5B6520050CF0A /* appium.sdef */; };
 		3612E5FC16E5B69C0050CF0A /* NSApplication+AppleScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 3612E5FB16E5B69C0050CF0A /* NSApplication+AppleScript.m */; };
 		362B5B651713B35A00F1B344 /* AppiumCodeMakerCSharpPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 362B5B641713B35A00F1B344 /* AppiumCodeMakerCSharpPlugin.m */; };
-		3643D93B1742912E0048F9DA /* Selenium.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 36A1A000173FFF34002717C2 /* Selenium.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		364EED3B191EDE6F00AB4439 /* dev-settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 364EED3A191EDE6F00AB4439 /* dev-settings.png */; };
 		364EED47191EDF6C00AB4439 /* android.png in Resources */ = {isa = PBXBuildFile; fileRef = 364EED46191EDF6C00AB4439 /* android.png */; };
 		364EED49191EDF9100AB4439 /* apple.png in Resources */ = {isa = PBXBuildFile; fileRef = 364EED48191EDF9100AB4439 /* apple.png */; };
@@ -52,8 +54,6 @@
 		36919C8B171616AD00AC2C63 /* AppiumCodeMakerAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 36919C8A171616AD00AC2C63 /* AppiumCodeMakerAction.m */; };
 		3695CAB116E3FCAE003697A9 /* AppiumInstallationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3695CAAF16E3FCAE003697A9 /* AppiumInstallationWindow.xib */; };
 		3695E3C316FD08C800AD1544 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3695E3C216FD08C800AD1544 /* QuartzCore.framework */; };
-		369ED811171DA81E000A7A4E /* MGSFragaria.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 369ED810171DA81E000A7A4E /* MGSFragaria.framework */; };
-		369ED812171DA83F000A7A4E /* MGSFragaria.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 369ED810171DA81E000A7A4E /* MGSFragaria.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		36A765A616F01C7C002A7D6A /* appium.icns in Resources */ = {isa = PBXBuildFile; fileRef = 36A765A516F01C7C002A7D6A /* appium.icns */; };
 		36A7C8EC17A485C9007F15AB /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A7C8EB17A485C9007F15AB /* ScriptingBridge.framework */; };
 		36A7C8F117A487DC007F15AB /* AppiumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CEB7F516E3662E00B5B100 /* AppiumTests.m */; };
@@ -87,12 +87,12 @@
 		36D17E2916F144E600DC5797 /* Upgrade.applescript in Resources */ = {isa = PBXBuildFile; fileRef = 36D17E2816F144E600DC5797 /* Upgrade.applescript */; };
 		36D66777191FC8CE0088C110 /* NSObject+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D66776191FC8CE0088C110 /* NSObject+Properties.m */; };
 		36F1DE43191FE67300FC65AC /* logTextViewBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 36F1DE42191FE67300FC65AC /* logTextViewBg.png */; };
-		36F5FA2C16F4E87F007751D6 /* Selenium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F5FA2B16F4E87E007751D6 /* Selenium.framework */; };
 		36FA922C174037FD00699A6B /* AppiumCodeMakerActionScrollTo.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FA922B174037FD00699A6B /* AppiumCodeMakerActionScrollTo.m */; };
 		36FF07AD171743AC009ED9E2 /* AppiumCodeMakerLocator.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF07AC171743AC009ED9E2 /* AppiumCodeMakerLocator.m */; };
 		36FF07B0171747C4009ED9E2 /* AppiumCodeMakerJavaPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF07AF171747C4009ED9E2 /* AppiumCodeMakerJavaPlugin.m */; };
 		36FF07B317174936009ED9E2 /* AppiumCodeMakerRubyPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF07B217174935009ED9E2 /* AppiumCodeMakerRubyPlugin.m */; };
 		36FF20D61900222400008A7D /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF20D51900222400008A7D /* XMLReader.m */; };
+		676077AA89B061B34A4421D4 /* libPods-Appium.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D75688BB0102C0824A450C7D /* libPods-Appium.a */; };
 		7D3CB870198579DD004D3CA4 /* AppiumInspectorButtonImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D3CB86F198579DD004D3CA4 /* AppiumInspectorButtonImageTransformer.m */; };
 		7D6B509318F522C400E25292 /* AppiumCodeMakerNodePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D6B509218F522C400E25292 /* AppiumCodeMakerNodePlugin.m */; };
 		C7615F681A6E6E8100557977 /* open.png in Resources */ = {isa = PBXBuildFile; fileRef = C7615F671A6E6E8100557977 /* open.png */; };
@@ -130,13 +130,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		36683086184A5DDB00C1A91D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 363782F1172AD9F200A924F8 /* Selenium.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 36BB380016F268C2003A46FD;
-			remoteInfo = Selenium;
-		};
 		36A19FFF173FFF34002717C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 363782F1172AD9F200A924F8 /* Selenium.xcodeproj */;
@@ -182,20 +175,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		3631DD9216F4E4830087779D /* CopyFiles */ = {
+		2AABB9861CBEDD5F00CCC9D7 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3643D93B1742912E0048F9DA /* Selenium.framework in CopyFiles */,
-				369ED812171DA83F000A7A4E /* MGSFragaria.framework in CopyFiles */,
+				2AABB9851CBEDD5F00CCC9D7 /* MGSFragaria.framework in Embed Frameworks */,
 			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2AABB9891CBEDD8F00CCC9D7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		360BD91316F12B03000D3BEB /* AppiumInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumInspector.h; sourceTree = "<group>"; };
 		360BD91416F12B03000D3BEB /* AppiumInspector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumInspector.m; sourceTree = "<group>"; };
 		3612E5F716E5B6520050CF0A /* appium.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = appium.sdef; sourceTree = "<group>"; };
@@ -340,7 +334,6 @@
 		36D66775191FC8CE0088C110 /* NSObject+Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+Properties.h"; path = "Utility/NSObject+Properties.h"; sourceTree = "<group>"; };
 		36D66776191FC8CE0088C110 /* NSObject+Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+Properties.m"; path = "Utility/NSObject+Properties.m"; sourceTree = "<group>"; };
 		36F1DE42191FE67300FC65AC /* logTextViewBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logTextViewBg.png; sourceTree = "<group>"; };
-		36F5FA2B16F4E87E007751D6 /* Selenium.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Selenium.framework; path = Frameworks/Selenium.framework; sourceTree = "<group>"; };
 		36FA922A174037FD00699A6B /* AppiumCodeMakerActionScrollTo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerActionScrollTo.h; sourceTree = "<group>"; };
 		36FA922B174037FD00699A6B /* AppiumCodeMakerActionScrollTo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumCodeMakerActionScrollTo.m; sourceTree = "<group>"; };
 		36FF07AB171743AC009ED9E2 /* AppiumCodeMakerLocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumCodeMakerLocator.h; sourceTree = "<group>"; };
@@ -351,6 +344,8 @@
 		36FF07B217174935009ED9E2 /* AppiumCodeMakerRubyPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppiumCodeMakerRubyPlugin.m; path = Plugins/AppiumCodeMakerRubyPlugin.m; sourceTree = "<group>"; };
 		36FF20D41900222400008A7D /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReader.h; path = Utility/XMLReader.h; sourceTree = "<group>"; };
 		36FF20D51900222400008A7D /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReader.m; path = Utility/XMLReader.m; sourceTree = "<group>"; };
+		5960DE769BC354F349FE4DCD /* Pods-Appium.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Appium.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Appium/Pods-Appium.debug.xcconfig"; sourceTree = "<group>"; };
+		7365428E54065E0F86932BCE /* Pods-Appium.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Appium.release.xcconfig"; path = "Pods/Target Support Files/Pods-Appium/Pods-Appium.release.xcconfig"; sourceTree = "<group>"; };
 		7D3CB86E198579DD004D3CA4 /* AppiumInspectorButtonImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiumInspectorButtonImageTransformer.h; sourceTree = "<group>"; };
 		7D3CB86F198579DD004D3CA4 /* AppiumInspectorButtonImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppiumInspectorButtonImageTransformer.m; sourceTree = "<group>"; };
 		7D6B509118F522C400E25292 /* AppiumCodeMakerNodePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppiumCodeMakerNodePlugin.h; path = Plugins/AppiumCodeMakerNodePlugin.h; sourceTree = "<group>"; };
@@ -409,6 +404,7 @@
 		C7E595F51A6C0A5300B951F9 /* NSImage+Rotated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSImage+Rotated.m"; path = "Utility/NSImage+Rotated.m"; sourceTree = "<group>"; };
 		C7FE35661A6B80F900827EAF /* AppiumRecorderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppiumRecorderView.xib; sourceTree = "<group>"; };
 		C7FFBA8C19F15CDE005B030F /* menubar-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menubar-icon.png"; sourceTree = "<group>"; };
+		D75688BB0102C0824A450C7D /* libPods-Appium.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Appium.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -417,10 +413,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				36683089184A5DF300C1A91D /* Security.framework in Frameworks */,
-				369ED811171DA81E000A7A4E /* MGSFragaria.framework in Frameworks */,
+				2AABB9841CBEDD5F00CCC9D7 /* MGSFragaria.framework in Frameworks */,
 				3695E3C316FD08C800AD1544 /* QuartzCore.framework in Frameworks */,
 				36CEB7CC16E3662E00B5B100 /* Cocoa.framework in Frameworks */,
-				36F5FA2C16F4E87F007751D6 /* Selenium.framework in Frameworks */,
+				676077AA89B061B34A4421D4 /* libPods-Appium.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -802,6 +798,7 @@
 				36CEB7EE16E3662E00B5B100 /* AppiumTests */,
 				36CEB7CA16E3662E00B5B100 /* Frameworks */,
 				36CEB7C916E3662E00B5B100 /* Products */,
+				E9BFDA844CE385C83889EEAF /* Pods */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 1;
@@ -823,9 +820,9 @@
 				369ED810171DA81E000A7A4E /* MGSFragaria.framework */,
 				36CEB7CB16E3662E00B5B100 /* Cocoa.framework */,
 				3695E3C216FD08C800AD1544 /* QuartzCore.framework */,
-				36F5FA2B16F4E87E007751D6 /* Selenium.framework */,
 				363782F1172AD9F200A924F8 /* Selenium.xcodeproj */,
 				36CEB7CD16E3662E00B5B100 /* Other Frameworks */,
+				D75688BB0102C0824A450C7D /* libPods-Appium.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -855,6 +852,7 @@
 				C79C75601A6BB9650030023D /* AppiumAppDelegate.m */,
 				362DF1E4170F4350001CAD1D /* AppiumGlobals.h */,
 				C79C755E1A6BB9010030023D /* AppiumPreferencesFile.h */,
+				2AABB9891CBEDD8F00CCC9D7 /* Images.xcassets */,
 			);
 			path = Appium;
 			sourceTree = "<group>";
@@ -929,6 +927,15 @@
 			path = "XIBs/Settings PopOvers";
 			sourceTree = "<group>";
 		};
+		E9BFDA844CE385C83889EEAF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5960DE769BC354F349FE4DCD /* Pods-Appium.debug.xcconfig */,
+				7365428E54065E0F86932BCE /* Pods-Appium.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -936,15 +943,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 36CEB7F916E3662E00B5B100 /* Build configuration list for PBXNativeTarget "Appium" */;
 			buildPhases = (
+				7528096C637940E4A940668A /* Check Pods Manifest.lock */,
 				36CEB7C416E3662E00B5B100 /* Sources */,
-				3631DD9216F4E4830087779D /* CopyFiles */,
 				36CEB7C516E3662E00B5B100 /* Frameworks */,
 				36CEB7C616E3662E00B5B100 /* Resources */,
+				856EA0D876F912C9776B6C10 /* Embed Pods Frameworks */,
+				DEEC48A7FC113930B2608336 /* Copy Pods Resources */,
+				2AABB9861CBEDD5F00CCC9D7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				36683087184A5DDB00C1A91D /* PBXTargetDependency */,
 			);
 			name = Appium;
 			productName = Appium;
@@ -978,7 +987,7 @@
 			attributes = {
 				CLASSPREFIX = Appium;
 				LastTestingUpgradeCheck = 0510;
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Appium;
 			};
 			buildConfigurationList = 36CEB7C316E3662E00B5B100 /* Build configuration list for PBXProject "Appium" */;
@@ -1053,6 +1062,7 @@
 				C7A23A411A6B2225004CA025 /* SwipePopOverView.xib in Resources */,
 				36CEB7DC16E3662E00B5B100 /* Credits.rtf in Resources */,
 				364EED47191EDF6C00AB4439 /* android.png in Resources */,
+				2AABB98A1CBEDD8F00CCC9D7 /* Images.xcassets in Resources */,
 				364EED49191EDF9100AB4439 /* apple.png in Resources */,
 				364EED4F191EDFFF00AB4439 /* inspector.png in Resources */,
 				C79097511A6AC3BE007621D0 /* AppiumiOSSettingsPopOverView.xib in Resources */,
@@ -1104,6 +1114,51 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		7528096C637940E4A940668A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		856EA0D876F912C9776B6C10 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Appium/Pods-Appium-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DEEC48A7FC113930B2608336 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Appium/Pods-Appium-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1205,11 +1260,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		36683087184A5DDB00C1A91D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Selenium;
-			targetProxy = 36683086184A5DDB00C1A91D /* PBXContainerItemProxy */;
-		};
 		36CEB7ED16E3662E00B5B100 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 36CEB7C716E3662E00B5B100 /* Appium */;
@@ -1268,6 +1318,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -1314,17 +1365,22 @@
 		};
 		36CEB7FA16E3662E00B5B100 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5960DE769BC354F349FE4DCD /* Pods-Appium.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
 					"\"$(SRCROOT)/Frameworks\"",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Appium/Appium-Prefix.pch";
 				INFOPLIST_FILE = "Appium/Appium-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.appium.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1332,17 +1388,22 @@
 		};
 		36CEB7FB16E3662E00B5B100 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7365428E54065E0F86932BCE /* Pods-Appium.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
 					"\"$(SRCROOT)/Frameworks\"",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Appium/Appium-Prefix.pch";
 				INFOPLIST_FILE = "Appium/Appium-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.appium.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1360,6 +1421,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Appium/Appium-Prefix.pch";
 				INFOPLIST_FILE = "AppiumTests/AppiumTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.appium.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
@@ -1377,6 +1439,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Appium/Appium-Prefix.pch";
 				INFOPLIST_FILE = "AppiumTests/AppiumTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.appium.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
