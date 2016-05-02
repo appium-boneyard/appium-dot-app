@@ -13,7 +13,7 @@ To install:
 
 ### Build with XCode
 
-Install CocoaPods
+Install CocoaPods:
 1. Open Termianl
 2. `sudo gem install cocoapods`
 3. `pod setup`
