@@ -155,7 +155,8 @@ NSString* const SocketIOException = @"SocketIOException";
         }
         else {
             // connection failed
-            [self connection:_handshake didFailWithError:nil];
+			NSError *error = nil;
+			[self connection:_handshake didFailWithError:error];
         }
     }
 }

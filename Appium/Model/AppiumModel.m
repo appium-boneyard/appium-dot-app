@@ -139,11 +139,11 @@ BOOL _isServerListening;
 	
 	if (self.developer.developerMode && self.developer.useExternalNodeJSBinary)
 	{
-		command = [NSMutableString stringWithFormat:@"'%@'%@ lib/server/main.js", self.developer.externalNodeJSBinaryPath, nodeDebugArguments];
+		command = [NSMutableString stringWithFormat:@"'%@'%@ build/lib/main.js", self.developer.externalNodeJSBinaryPath, nodeDebugArguments];
 	}
 	else
 	{
-		command = [NSMutableString stringWithFormat:@"'%@%@'%@ lib/server/main.js", [[NSBundle mainBundle] resourcePath], @"/node/bin/node", nodeDebugArguments];
+		command = [NSMutableString stringWithFormat:@"'%@%@'%@ build/lib/main.js", [[NSBundle mainBundle] resourcePath], @"/node/bin/node", nodeDebugArguments];
 	}
 	
 #pragma mark General Preferences
