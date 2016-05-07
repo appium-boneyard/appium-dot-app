@@ -172,12 +172,6 @@ BOOL _isServerListening;
 														  withValue:[AppiumServerArgument parseIntegerValue:self.general.callbackPort]]];
 	}
 	
-	if (self.general.useCommandTimeout)
-	{
-		[arguments addObject:[AppiumServerArgument argumentWithName:@"--command-timeout"
-														  withValue:[AppiumServerArgument parseIntegerValue:self.general.commandTimeout]]];
-	}
-	
     if (self.general.overrideExistingSessions)
 	{
 		[arguments addObject:[AppiumServerArgument argumentWithName:@"--session-override"]];

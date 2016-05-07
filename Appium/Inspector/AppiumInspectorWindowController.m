@@ -50,9 +50,17 @@
         {
 			// create a new session if one does not already exist
 			SECapabilities *capabilities = [SECapabilities new];
+			
             [capabilities addCapabilityForKey:@"automationName" andValue:(model.isAndroid ? model.android.automationName : @"Appium")];
             [capabilities addCapabilityForKey:@"platformName" andValue:(model.isAndroid ? model.android.platformName : @"iOS")];
 			[capabilities addCapabilityForKey:@"platformVersion" andValue:model.isAndroid ? model.android.platformVersionNumber : model.iOS.platformVersion];
+			
+			if (model.general.commandTimeout && model.general.useCommandTimeout)
+			{
+				[capabilities addCapabilityForKey:@"newCommandTimeout" andValue:model.general.commandTimeout.stringValue];
+			}
+			
+			// Android capabilities
 			if ((model.isAndroid && model.android.useDeviceName) || (model.isIOS && !model.iOS.useDefaultDevice)) {
 				[capabilities addCapabilityForKey:@"deviceName" andValue:model.isAndroid ? model.android.deviceName : model.iOS.deviceName];
 			}
@@ -68,8 +76,8 @@
 			if ((model.isAndroid && model.android.useLocale) || (model.isIOS && model.iOS.useLocale)) {
 				[capabilities addCapabilityForKey:@"locale" andValue:model.isAndroid ? model.android.locale : model.iOS.locale];
 			}
-
-			// iOS caps
+			
+			// iOS capabilities
 			if ((model.isIOS && model.iOS.useAppPath)) {
 				[capabilities addCapabilityForKey:@"app" andValue:model.iOS.appPath];
 			}
@@ -79,7 +87,7 @@
 			if ((model.isIOS && model.iOS.useUDID)) {
 				[capabilities addCapabilityForKey:@"udid" andValue:model.iOS.udid];
 			}
-
+			
             [self.driver startSessionWithDesiredCapabilities:capabilities requiredCapabilities:nil];
 			if (self.driver == nil || self.driver.session == nil || self.driver.session.sessionId == nil)
 			{
