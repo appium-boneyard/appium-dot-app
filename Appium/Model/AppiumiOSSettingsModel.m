@@ -30,16 +30,7 @@
 
 -(NSArray*) allDevices
 {
-	//return [self getDevices];
-	return @[@"iPhone 6"
-			, @"iPhone 6 Plus"
-			, @"iPhone 5s"
-			, @"iPhone 5"
-			, @"iPhone 4s"
-			, @"iPad 2"
-			, @"iPad Retina"
-			, @"iPad Air"
-			];
+	return [self getDevices];
 }
 
 -(NSArray*) allLanguages
@@ -60,7 +51,7 @@
 
 -(NSArray*) allPlatformVersions
 {
-	return @[@"8.4", @"8.3", @"8.2", @"8.1.2", @"8.1.1", @"8.1", @"8.0.2", @"8.0", @"7.1.1", @"7.1", @"7.0.6", @"7.0.5", @"7.0.4", @"7.0.3", @"7.0.2", @"7.0.1", @"7.0", @"6.1", @"6.0"];
+	return @[@"9.3", @"9.2", @"9.1", @"9.0", @"8.4", @"8.3", @"8.2", @"8.1.2", @"8.1.1", @"8.1", @"8.0.2", @"8.0", @"7.1.1", @"7.1", @"7.0.6", @"7.0.5", @"7.0.4", @"7.0.3", @"7.0.2", @"7.0.1", @"7.0", @"6.1", @"6.0"];
 }
 
 -(NSString*) appPath
@@ -457,11 +448,17 @@
 		{
 			if ([line hasPrefix:@"    "])
 			{
-				NSArray *deviceNamePieces = [[line stringByReplacingOccurrencesOfString:@"    " withString:@""] componentsSeparatedByString:@")"];
-				NSString *deviceName = [NSString stringWithFormat:@"%@)", [deviceNamePieces objectAtIndex:0]];
-				[devices addObject:deviceName];
+				NSArray *deviceNamePieces = [[line stringByReplacingOccurrencesOfString:@"    " withString:@""] componentsSeparatedByString:@" ("];
+				NSString *deviceName = [deviceNamePieces objectAtIndex:0];
+				
+				if (([deviceName containsString:@"iPhone"] || [deviceName containsString:@"iPad"]) && [devices indexOfObject:deviceName] == NSNotFound) {
+					[devices addObject:deviceName];
+				}
 			}
 		}
+		
+		[devices sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+	
 		return devices;
 	//}
 	//@catch (NSException *exception) {
