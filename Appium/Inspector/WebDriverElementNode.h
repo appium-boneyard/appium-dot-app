@@ -45,6 +45,7 @@
 
 #pragma mark - iOS-Specific properties
 @property NSString *label;
+@property NSString *hint;
 @property BOOL valid;
 
 #pragma mark - Android-Specific Properties
