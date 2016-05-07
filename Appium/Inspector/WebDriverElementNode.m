@@ -207,7 +207,7 @@
 				 @"value:", [NSString stringWithFormat:@" %@\n", self.value],
 				 @"label:", [NSString stringWithFormat:@" %@\n", self.label],
  				 @"enabled:", [NSString stringWithFormat:@" %@\n", (self.enabled ? @"true" : @"false")],
- 				 @"visible:", [NSString stringWithFormat:@" %@\n", (self.clickable ? @"true" : @"false")],
+ 				 @"visible:", [NSString stringWithFormat:@" %@\n", (self.visible ? @"true" : @"false")],
   				 @"valid:", [NSString stringWithFormat:@" %@\n", (self.valid ? @"true" : @"false")],
   				 @"location:", [NSString stringWithFormat:@" %@\n", NSStringFromPoint(self.rect.origin)],
   				 @"size:", [NSString stringWithFormat:@" %@\n", NSStringFromSize(self.rect.size)],
