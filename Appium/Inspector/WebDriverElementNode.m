@@ -103,6 +103,7 @@
 			[self setVisible:[[_jsonDict valueForKey:@"visible"] boolValue]];
 			[self setValid:[[_jsonDict valueForKey:@"valid"] boolValue]];
 			[self setLabel:[_jsonDict valueForKey:@"label"]];
+			[self setHint:[_jsonDict valueForKey:@"hint"]];
 			[self setType:[_jsonDict valueForKey:@"tag"]];
 			[self setPath:[_jsonDict valueForKey:@"path"]];
 			[self setValue:[_jsonDict valueForKey:@"value"]];
@@ -206,8 +207,9 @@
 				 @"type:", [NSString stringWithFormat:@" %@\n", self.type],
 				 @"value:", [NSString stringWithFormat:@" %@\n", self.value],
 				 @"label:", [NSString stringWithFormat:@" %@\n", self.label],
+				 @"hint:", [NSString stringWithFormat:@" %@\n", self.hint],
  				 @"enabled:", [NSString stringWithFormat:@" %@\n", (self.enabled ? @"true" : @"false")],
- 				 @"visible:", [NSString stringWithFormat:@" %@\n", (self.clickable ? @"true" : @"false")],
+ 				 @"visible:", [NSString stringWithFormat:@" %@\n", (self.visible ? @"true" : @"false")],
   				 @"valid:", [NSString stringWithFormat:@" %@\n", (self.valid ? @"true" : @"false")],
   				 @"location:", [NSString stringWithFormat:@" %@\n", NSStringFromPoint(self.rect.origin)],
   				 @"size:", [NSString stringWithFormat:@" %@\n", NSStringFromSize(self.rect.size)],
