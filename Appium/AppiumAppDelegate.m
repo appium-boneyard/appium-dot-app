@@ -95,10 +95,11 @@
 {
     // check is nodejs, appium, or appium pre-reqs are missing
     NSString *nodeRootPath = [[NSBundle mainBundle] resourcePath];
-    BOOL installationRequired = ![NodeInstance instanceExistsAtPath:nodeRootPath];
-    installationRequired |= ![NodeInstance packageIsInstalledAtPath:nodeRootPath withName:@"appium"];
-
-    if (installationRequired)
+    BOOL nodeInstallationRequired = ![NodeInstance instanceExistsAtPath:nodeRootPath];
+    BOOL appiumInstallationRequired = ![NodeInstance packageIsInstalledAtPath:nodeRootPath withName:@"appium"];
+	BOOL doctorInstallationRequired = ![NodeInstance packageIsInstalledAtPath:nodeRootPath withName:@"appium-doctor"];
+	
+    if (nodeInstallationRequired || appiumInstallationRequired || doctorInstallationRequired)
     {
         // install software
         AppiumInstallationWindowController *installationWindow = [[AppiumInstallationWindowController alloc] initWithWindowNibName:@"AppiumInstallationWindow"];
@@ -107,9 +108,19 @@
         [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Installing NodeJS..." waitUntilDone:YES];
         [[self mainWindowController] setNode:[[NodeInstance alloc] initWithPath:nodeRootPath]];
         [[installationWindow messageLabel] performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Installing Appium..." waitUntilDone:YES];
-        NSString *appiumVersion = [[[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] componentsSeparatedByString:@" "] objectAtIndex:0];
-		[[[self mainWindowController] node] installPackage:@"appium" atVersion:appiumVersion forceInstall:NO];
-        [[installationWindow window] performSelectorOnMainThread:@selector(close) withObject:nil waitUntilDone:YES];
+		NSString *appiumVersion = [[[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] componentsSeparatedByString:@" "] objectAtIndex:0];
+		
+		if (appiumInstallationRequired)
+		{
+			[[[self mainWindowController] node] installPackage:@"appium" atVersion:appiumVersion forceInstall:NO];
+		}
+		
+		if (doctorInstallationRequired)
+		{
+			[[[self mainWindowController] node] installPackage:@"appium-doctor" atVersion:nil forceInstall:NO];
+		}
+		
+		[[installationWindow window] performSelectorOnMainThread:@selector(close) withObject:nil waitUntilDone:YES];
     }
     else
     {

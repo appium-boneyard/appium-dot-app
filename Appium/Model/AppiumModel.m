@@ -139,11 +139,11 @@ BOOL _isServerListening;
 	
 	if (self.developer.developerMode && self.developer.useExternalNodeJSBinary)
 	{
-		command = [NSMutableString stringWithFormat:@"'%@'%@ build/lib/main.js", self.developer.externalNodeJSBinaryPath, nodeDebugArguments];
+		command = [NSMutableString stringWithFormat:@"'%@'%@ appium/build/lib/main.js", self.developer.externalNodeJSBinaryPath, nodeDebugArguments];
 	}
 	else
 	{
-		command = [NSMutableString stringWithFormat:@"'%@%@'%@ build/lib/main.js", [[NSBundle mainBundle] resourcePath], @"/node/bin/node", nodeDebugArguments];
+		command = [NSMutableString stringWithFormat:@"'%@%@'%@ appium/build/lib/main.js", [[NSBundle mainBundle] resourcePath], @"/node/bin/node", nodeDebugArguments];
 	}
 	
 #pragma mark General Preferences
@@ -613,11 +613,11 @@ BOOL _isServerListening;
 	NSString *nodeCommandString;
 	if (self.developer.useExternalNodeJSBinary)
 	{
-		nodeCommandString = [NSString stringWithFormat:@"'%@' bin/appium-doctor.js --port 4722", self.developer.externalNodeJSBinaryPath];
+		nodeCommandString = [NSString stringWithFormat:@"'%@' appium-doctor/appium-doctor.js --port 4722", self.developer.externalNodeJSBinaryPath];
 	}
 	else
 	{
-		nodeCommandString = [NSString stringWithFormat:@"'%@%@' bin/appium-doctor.js --port 4722", [[NSBundle mainBundle]resourcePath], @"/node/bin/node"];
+		nodeCommandString = [NSString stringWithFormat:@"'%@%@' appium-doctor/appium-doctor.js --port 4722", [[NSBundle mainBundle]resourcePath], @"/node/bin/node"];
 		
 	}
     
@@ -634,7 +634,7 @@ BOOL _isServerListening;
 
 - (void)startExternalDoctor
 {
-	NSString *doctorPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/node_modules/appium/bin/appium-doctor.js"];
+	NSString *doctorPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingString:@"/node_modules/appium-doctor/appium-doctor.js"];
     
 	NSString *command;
     
@@ -661,7 +661,7 @@ BOOL _isServerListening;
 	}
 	else
 	{
-		[self.serverTask setCurrentDirectoryPath:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle]resourcePath], @"node_modules/appium"]];
+		[self.serverTask setCurrentDirectoryPath:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle]resourcePath], @"node_modules"]];
 	}
 	
 	// Add a cd call to the start of the command in case the .bash_profile or .bashrc changes the current directory
