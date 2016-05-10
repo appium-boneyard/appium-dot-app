@@ -137,7 +137,11 @@ BOOL _isServerListening;
 	NSMutableArray  *arguments = [NSMutableArray array];
 	NSMutableString *command;
 	
-	if (self.developer.developerMode && self.developer.useExternalNodeJSBinary)
+	if (self.developer.developerMode && self.developer.useExternalAppiumPackage)
+	{
+		command = [NSMutableString stringWithString:self.developer.externalAppiumPackagePath];
+	}
+	else if (self.developer.developerMode && self.developer.useExternalNodeJSBinary)
 	{
 		command = [NSMutableString stringWithFormat:@"'%@'%@ build/lib/main.js", self.developer.externalNodeJSBinaryPath, nodeDebugArguments];
 	}
@@ -655,11 +659,7 @@ BOOL _isServerListening;
 {
 	[self setServerTask:[NSTask new]];
 	
-	if (self.developer.developerMode && self.developer.useExternalAppiumPackage)
-	{
-		[self.serverTask setCurrentDirectoryPath:self.developer.externalAppiumPackagePath];
-	}
-	else
+	if (!self.developer.developerMode || !self.developer.useExternalAppiumPackage)
 	{
 		[self.serverTask setCurrentDirectoryPath:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle]resourcePath], @"node_modules/appium"]];
 	}
