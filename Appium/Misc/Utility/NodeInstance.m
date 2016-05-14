@@ -62,25 +62,13 @@
 
 	NSString *nodeModulesDirectory = [NSString stringWithFormat:@"%@/%@", _nodeRootPath,@"node_modules"];
     NSString *packagePath = [NSString stringWithFormat:@"%@/%@", nodeModulesDirectory, packageName];
-    if (forceInstall || ![[NSFileManager defaultManager] fileExistsAtPath:packagePath])
-    {
-		// create node modules folder if it does not exist (so npm will install locally)
-		BOOL isDirectory;
-		if(![[NSFileManager defaultManager] fileExistsAtPath:nodeModulesDirectory isDirectory:&isDirectory])
-		{
-			if(![[NSFileManager defaultManager] createDirectoryAtPath:nodeModulesDirectory withIntermediateDirectories:YES attributes:nil error:NULL])
-			{
-				NSLog(@"Error: Create folder failed %@", nodeModulesDirectory);
-			}
-			else
-			{
-				// install package
-				NSString *npmPath = [NSString stringWithFormat:@"%@/%@", _nodeRootPath, @"node/bin/npm"];
-				NSString *packageArg = [NSString stringWithFormat:@"%@%@", packageName, version ? [NSString stringWithFormat:@"%@%@", @"@", version] : @""];
-				[Utility runTaskWithBinary:npmPath arguments:[NSArray arrayWithObjects: @"install", packageArg, nil] path:_nodeRootPath];
-			}
-		}
-    }
+	if (forceInstall || ![[NSFileManager defaultManager] fileExistsAtPath:packagePath])
+	{
+		// install package
+		NSString *npmPath = [NSString stringWithFormat:@"%@/%@", _nodeRootPath, @"node/bin/npm"];
+		NSString *packageArg = [NSString stringWithFormat:@"%@%@", packageName, version ? [NSString stringWithFormat:@"%@%@", @"@", version] : @""];
+		[Utility runTaskWithBinary:npmPath arguments:[NSArray arrayWithObjects: @"install", packageArg, nil] path:_nodeRootPath];
+	}
 }
 
 -(NSString*) pathtoPackage:(NSString*)packageName
