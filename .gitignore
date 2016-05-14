@@ -15,6 +15,7 @@ profile
 DerivedData
 .idea/
 *.hmap
+*.xcscmblueprint
 #Pods   #check in pods to build locally without internet
 
 Appium.xcodeproj/xcuserdata/danc.xcuserdatad/xcschemes/xcschememanagement.plist
