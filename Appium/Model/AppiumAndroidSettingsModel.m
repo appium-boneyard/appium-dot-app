@@ -87,6 +87,9 @@
 -(NSArray*) allPlatformVersions
 {
 	return  @[
+			  @"7.1 Nougat (API Level 25)",
+			  @"7.0 Nougat (API Level 24)",
+			  @"6.0 Marshmallow (API Level 23)",
 			  @"5.1 Lollipop (API Level 22)",
 			  @"5.0.1 Lollipop (API Level 21)",
 			  @"5.0 Lollipop (API Level 20)",
