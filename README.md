@@ -1,3 +1,8 @@
+DEPRECATED
+===================
+  		  
+Please see the new GUI Client [Appium Desktop](https://github.com/appium/appium-desktop)
+
 ## An OS X GUI for Appium
 
 [![Build Status](https://travis-ci.org/appium/appium-dot-app.svg?branch=master)](https://travis-ci.org/appium/appium-dot-app)
